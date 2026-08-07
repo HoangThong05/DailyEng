@@ -1,5 +1,6 @@
 /**
- * Kiểu dữ liệu của database, viết tay khớp với supabase/schema.sql.
+ * Kiểu dữ liệu của database, viết tay khớp với supabase/schema.sql
+ * và supabase/schema-02-flashcard.sql.
  *
  * Khi schema đổi, sinh lại bằng:
  *   npx supabase gen types typescript --project-id <id> > lib/database.types.ts
@@ -11,6 +12,8 @@ export type Json =
   | null
   | { [key: string]: Json | undefined }
   | Json[];
+
+export type DeckLevel = "beginner" | "intermediate" | "advanced";
 
 export type Database = {
   public: {
@@ -39,6 +42,105 @@ export type Database = {
         };
         Relationships: [];
       };
+      decks: {
+        Row: {
+          id: string;
+          owner_id: string | null;
+          slug: string | null;
+          name: string;
+          description: string | null;
+          level: DeckLevel | null;
+          position: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          owner_id?: string | null;
+          slug?: string | null;
+          name: string;
+          description?: string | null;
+          level?: DeckLevel | null;
+          position?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          owner_id?: string | null;
+          slug?: string | null;
+          name?: string;
+          description?: string | null;
+          level?: DeckLevel | null;
+          position?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      words: {
+        Row: {
+          id: string;
+          deck_id: string;
+          term: string;
+          phonetic: string | null;
+          meaning_vi: string;
+          example_en: string | null;
+          example_vi: string | null;
+          position: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          deck_id: string;
+          term: string;
+          phonetic?: string | null;
+          meaning_vi: string;
+          example_en?: string | null;
+          example_vi?: string | null;
+          position?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          deck_id?: string;
+          term?: string;
+          phonetic?: string | null;
+          meaning_vi?: string;
+          example_en?: string | null;
+          example_vi?: string | null;
+          position?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      word_progress: {
+        Row: {
+          user_id: string;
+          word_id: string;
+          box: number;
+          due_on: string;
+          review_count: number;
+          correct_count: number;
+          last_reviewed_at: string | null;
+        };
+        Insert: {
+          user_id: string;
+          word_id: string;
+          box?: number;
+          due_on?: string;
+          review_count?: number;
+          correct_count?: number;
+          last_reviewed_at?: string | null;
+        };
+        Update: {
+          user_id?: string;
+          word_id?: string;
+          box?: number;
+          due_on?: string;
+          review_count?: number;
+          correct_count?: number;
+          last_reviewed_at?: string | null;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<never, never>;
     Functions: Record<never, never>;
@@ -48,3 +150,6 @@ export type Database = {
 };
 
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
+export type Deck = Database["public"]["Tables"]["decks"]["Row"];
+export type Word = Database["public"]["Tables"]["words"]["Row"];
+export type WordProgress = Database["public"]["Tables"]["word_progress"]["Row"];

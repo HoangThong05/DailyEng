@@ -7,11 +7,11 @@ import {
 } from "@/app/_components/icons";
 import { InstallPrompt } from "@/app/_components/install-prompt";
 import { PageHeader } from "@/app/_components/page-header";
+import { startOfTodayIso } from "@/lib/leitner";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
-// TODO: hai số này sẽ lấy từ bảng tiến độ học, làm cùng tính năng flashcard.
+// TODO: chuỗi ngày học liên tiếp cần bảng nhật ký riêng — làm ở issue #9.
 const streakDays = 0;
-const learnedToday = 0;
 
 export default async function Home() {
   const user = await getCurrentUser();
@@ -24,6 +24,13 @@ export default async function Home() {
     .eq("id", user?.id ?? "")
     .maybeSingle();
 
+  // RLS đã giới hạn về đúng người dùng hiện tại nên không cần lọc user_id.
+  const { count } = await supabase
+    .from("word_progress")
+    .select("word_id", { count: "exact", head: true })
+    .gte("last_reviewed_at", startOfTodayIso());
+
+  const learnedToday = count ?? 0;
   const name = profile?.display_name ?? user?.email?.split("@")[0] ?? "bạn";
   const dailyGoal = profile?.daily_goal ?? 10;
   const progress = Math.min(100, Math.round((learnedToday / dailyGoal) * 100));
