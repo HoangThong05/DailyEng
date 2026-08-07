@@ -2,13 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CardsIcon, ChartIcon, HomeIcon, QuizIcon } from "./icons";
+import {
+  CardsIcon,
+  ChartIcon,
+  HomeIcon,
+  QuizIcon,
+  UserIcon,
+} from "./icons";
 
 const TABS = [
   { href: "/", label: "Trang chủ", Icon: HomeIcon },
   { href: "/hoc", label: "Học", Icon: CardsIcon },
   { href: "/quiz", label: "Quiz", Icon: QuizIcon },
   { href: "/tien-do", label: "Tiến độ", Icon: ChartIcon },
+  { href: "/tai-khoan", label: "Cá nhân", Icon: UserIcon },
 ] as const;
 
 export function BottomNav() {

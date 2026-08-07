@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { signOut } from "@/app/_actions/auth";
 import { FlameIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { getStudyStats } from "@/lib/stats";
-import { getCurrentUser } from "@/lib/supabase/server";
 import { WeekChart } from "./week-chart";
 
 export const metadata: Metadata = { title: "Tiến độ" };
@@ -18,8 +16,7 @@ function StatTile({ value, label }: { value: string; label: string }) {
 }
 
 export default async function TienDoPage() {
-  const [user, stats] = await Promise.all([getCurrentUser(), getStudyStats()]);
-  const { streak, today, week, totals } = stats;
+  const { streak, today, week, totals } = await getStudyStats();
 
   return (
     <>
@@ -94,23 +91,6 @@ export default async function TienDoPage() {
           </p>
         </section>
 
-        <section aria-labelledby="tai-khoan" className="pb-2">
-          <div className="border-border bg-card rounded-2xl border p-4">
-            <h2 id="tai-khoan" className="text-muted text-xs font-medium">
-              Đang đăng nhập
-            </h2>
-            <p className="mt-1 truncate font-medium">{user?.email ?? "—"}</p>
-
-            <form action={signOut}>
-              <button
-                type="submit"
-                className="border-border mt-4 min-h-11 w-full rounded-xl border text-sm font-semibold text-red-500 transition-transform duration-100 active:scale-[0.98]"
-              >
-                Đăng xuất
-              </button>
-            </form>
-          </div>
-        </section>
       </div>
     </>
   );
