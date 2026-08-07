@@ -4,11 +4,13 @@ import type { Database } from "@/lib/database.types";
 import { getSupabaseEnv } from "./env";
 
 export const LOGIN_PATH = "/dang-nhap";
+/** Trang nhập mã xác nhận 6 số, vào được khi chưa đăng nhập. */
+export const VERIFY_PATH = "/nhap-ma";
 /** Tham số lưu trang người dùng định vào, để đăng nhập xong quay lại đúng chỗ. */
 export const REDIRECT_PARAM = "tiep-tuc";
 
 /** Những đường dẫn xem được khi chưa đăng nhập. */
-const PUBLIC_PATHS = [LOGIN_PATH, "/auth", "/offline"];
+const PUBLIC_PATHS = [LOGIN_PATH, VERIFY_PATH, "/auth", "/offline"];
 
 function isPublicPath(pathname: string) {
   return PUBLIC_PATHS.some(

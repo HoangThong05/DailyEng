@@ -139,15 +139,6 @@ export function AuthForm({ next }: { next: string }) {
           </p>
         ) : null}
 
-        {state.notice ? (
-          <p
-            role="status"
-            className="bg-brand-soft text-fg rounded-xl px-4 py-3 text-sm"
-          >
-            {state.notice}
-          </p>
-        ) : null}
-
         <button
           type="submit"
           disabled={pending || mismatch}
