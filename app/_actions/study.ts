@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { reviewOutcome, todayInAppZone } from "@/lib/leitner";
+import { nextReviewState, todayInAppZone } from "@/lib/leitner";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 export type ReviewResult = { ok: true } | { ok: false; error: string };
@@ -24,12 +24,17 @@ export async function recordReview(
 
   const { data: current } = await supabase
     .from("word_progress")
-    .select("box, review_count, correct_count")
+    .select("box, due_on, review_count, correct_count")
     .eq("user_id", user.id)
     .eq("word_id", wordId)
     .maybeSingle();
 
-  const { box, dueOn } = reviewOutcome(current?.box ?? 1, remembered);
+  const today = todayInAppZone();
+  const { box, dueOn } = nextReviewState(
+    current ? { box: current.box, dueOn: current.due_on } : null,
+    remembered,
+    today,
+  );
 
   const [progressResult, logResult] = await Promise.all([
     supabase.from("word_progress").upsert(
@@ -48,7 +53,7 @@ export async function recordReview(
     supabase.from("review_log").insert({
       user_id: user.id,
       word_id: wordId,
-      day: todayInAppZone(),
+      day: today,
       remembered,
     }),
   ]);

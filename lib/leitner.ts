@@ -42,12 +42,14 @@ export function startOfTodayIso(today: string = todayInAppZone()): string {
   return new Date(`${today}T00:00:00+07:00`).toISOString();
 }
 
-/** Hộp và hạn ôn tiếp theo sau một lần trả lời. */
+export type ReviewState = { box: number; dueOn: string };
+
+/** Hộp và hạn ôn tiếp theo, chưa xét tới chuyện từ đã đến hạn hay chưa. */
 export function reviewOutcome(
   currentBox: number,
   remembered: boolean,
   today: string = todayInAppZone(),
-): { box: number; dueOn: string } {
+): ReviewState {
   if (!remembered) {
     // Về hộp 1 và đến hạn ngay, để còn gặp lại trong phiên học hôm nay.
     return { box: 1, dueOn: today };
@@ -55,4 +57,33 @@ export function reviewOutcome(
 
   const box = Math.min(currentBox + 1, MAX_BOX);
   return { box, dueOn: addDays(today, BOX_INTERVAL_DAYS[box - 1]) };
+}
+
+/**
+ * Trạng thái mới sau một lần trả lời, có tôn trọng lịch giãn cách.
+ *
+ * Quiz bốc từ ngẫu nhiên trong bộ, không lọc theo hạn ôn như flashcard. Nếu
+ * lần đúng nào cũng đẩy lên hộp thì làm quiz vài lượt liên tiếp trong một buổi
+ * là tống được một từ lên hộp 5 — đúng thứ mà giãn cách sinh ra để ngăn.
+ *
+ * Quy tắc:
+ *  - Trả lời sai  → luôn rơi về hộp 1, kể cả từ chưa tới hạn. Sai là bằng
+ *    chứng chưa thuộc, không có lý do bỏ qua.
+ *  - Đúng, đã tới hạn  → lên hộp như bình thường.
+ *  - Đúng, chưa tới hạn → giữ nguyên hộp và hạn. Lượt này vẫn được ghi nhật ký
+ *    nên vẫn tính vào thống kê và chuỗi ngày, chỉ không đẩy tiến độ.
+ *
+ * @param current Tiến độ hiện có; null nghĩa là từ mới, luôn coi như đã tới hạn.
+ */
+export function nextReviewState(
+  current: ReviewState | null,
+  remembered: boolean,
+  today: string = todayInAppZone(),
+): ReviewState {
+  if (!remembered) return { box: 1, dueOn: today };
+
+  if (current === null) return reviewOutcome(1, true, today);
+
+  const isDue = current.dueOn <= today;
+  return isDue ? reviewOutcome(current.box, true, today) : current;
 }
