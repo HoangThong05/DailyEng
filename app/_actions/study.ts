@@ -7,7 +7,8 @@ import { createClient, getCurrentUser } from "@/lib/supabase/server";
 export type ReviewResult = { ok: true } | { ok: false; error: string };
 
 /**
- * Ghi lại một lần trả lời thẻ và đẩy từ sang hộp Leitner tiếp theo.
+ * Ghi lại một lần trả lời và đẩy từ sang hộp Leitner tiếp theo.
+ * Dùng chung cho cả flashcard lẫn quiz — cả hai đều là một lần nhớ lại.
  *
  * Hộp hiện tại được đọc lại từ database chứ không nhận từ client, để client
  * không tự đặt được hộp tuỳ ý.
@@ -48,8 +49,9 @@ export async function recordReview(
   return { ok: true };
 }
 
-/** Gọi khi kết thúc phiên, để Home và danh sách bộ thẻ hiện số liệu mới. */
+/** Gọi khi kết thúc phiên, để các màn hình hiện số liệu mới. */
 export async function refreshStudyViews() {
   revalidatePath("/");
   revalidatePath("/hoc");
+  revalidatePath("/quiz");
 }

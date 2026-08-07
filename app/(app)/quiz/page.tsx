@@ -1,19 +1,46 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
-import { QuizIcon } from "@/app/_components/icons";
+import { ChevronRightIcon, QuizIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
+import { listDecks } from "@/lib/decks";
 
 export const metadata: Metadata = { title: "Quiz" };
 
-export default function QuizPage() {
+export default async function QuizPage() {
+  const decks = await listDecks();
+  // Dưới 2 từ thì không dựng nổi câu hỏi trắc nghiệm.
+  const playable = decks.filter((deck) => deck.wordCount >= 2);
+
   return (
     <>
-      <PageHeader title="Quiz" subtitle="Trắc nghiệm" />
-      <EmptyState
-        icon={<QuizIcon className="h-8 w-8" />}
-        title="Chưa có bộ câu hỏi"
-        description="Câu hỏi sẽ sinh từ những từ bạn đã học, lấy về từ database."
-      />
+      <PageHeader title="Quiz" subtitle="Chọn bộ để kiểm tra lại" />
+
+      {playable.length === 0 ? (
+        <EmptyState
+          icon={<QuizIcon className="h-8 w-8" />}
+          title="Chưa có bộ nào để làm quiz"
+          description="Bộ thẻ cần ít nhất 2 từ mới dựng được câu hỏi trắc nghiệm."
+        />
+      ) : (
+        <div className="space-y-3 px-5 pt-2">
+          {playable.map((deck) => (
+            <Link
+              key={deck.id}
+              href={`/quiz/${deck.id}`}
+              className="border-border bg-card flex items-center gap-3 rounded-2xl border p-4 transition-transform duration-100 active:scale-[0.98]"
+            >
+              <span className="min-w-0 flex-1">
+                <span className="block truncate font-semibold">{deck.name}</span>
+                <span className="text-muted mt-0.5 block text-sm">
+                  {deck.wordCount} từ
+                </span>
+              </span>
+              <ChevronRightIcon className="text-muted h-5 w-5 shrink-0" />
+            </Link>
+          ))}
+        </div>
+      )}
     </>
   );
 }

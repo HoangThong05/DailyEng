@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { recordReview, refreshStudyViews } from "@/app/_actions/study";
 import { MAX_BOX } from "@/lib/leitner";
 import type { StudyCard } from "@/lib/decks";
-import { recordReview, refreshStudyViews } from "../actions";
 
 /** Kéo quá bao nhiêu pixel thì tính là đã vuốt dứt khoát. */
 const SWIPE_THRESHOLD = 90;
