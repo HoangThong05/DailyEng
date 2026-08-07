@@ -58,8 +58,14 @@ export async function authenticate(
     return { error: "Nhập đủ email và mật khẩu giúp mình nhé." };
   }
 
-  if (mode === "signup" && password.length < 6) {
-    return { error: "Mật khẩu cần ít nhất 6 ký tự." };
+  if (mode === "signup") {
+    if (password.length < 6) {
+      return { error: "Mật khẩu cần ít nhất 6 ký tự." };
+    }
+    // Kiểm lại ở server, vì kiểm tra phía client có thể bị bỏ qua.
+    if (password !== String(formData.get("confirm") ?? "")) {
+      return { error: "Hai mật khẩu chưa khớp nhau." };
+    }
   }
 
   const supabase = await createClient();
