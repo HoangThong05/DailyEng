@@ -1,11 +1,14 @@
 /* Service worker của DailyEng.
  * Chiến lược:
- *  - Điều hướng trang: network-first, hỏng thì lấy bản cache, cuối cùng mới về /offline
+ *  - Điều hướng trang: chỉ lấy từ mạng. Mọi trang đều cần đăng nhập và render
+ *    riêng cho từng người, nên KHÔNG cache HTML — cache lại thì sau khi đăng
+ *    xuất, mở offline vẫn thấy dữ liệu cá nhân của phiên trước. Mất mạng thì
+ *    trả về trang /offline đã lưu sẵn.
  *  - Asset build của Next (/_next/static): cache-first vì tên file có hash, không bao giờ đổi nội dung
  *  - Còn lại (ảnh, icon...): stale-while-revalidate
  * Tăng VERSION mỗi lần đổi logic để cache cũ bị dọn.
  */
-const VERSION = "dailyeng-v1";
+const VERSION = "dailyeng-v2";
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 const OFFLINE_URL = "/offline";
@@ -41,18 +44,11 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-async function networkFirst(request) {
+async function navigate(request) {
   try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(RUNTIME);
-      cache.put(request, response.clone());
-    }
-    return response;
+    // Cố tình không cache: HTML ở đây luôn gắn với người đang đăng nhập.
+    return await fetch(request);
   } catch {
-    const cached = await caches.match(request);
-    if (cached) return cached;
-
     const offline = await caches.match(OFFLINE_URL);
     if (offline) return offline;
 
@@ -103,7 +99,7 @@ self.addEventListener("fetch", (event) => {
   if (url.searchParams.has("_rsc")) return;
 
   if (request.mode === "navigate") {
-    event.respondWith(networkFirst(request));
+    event.respondWith(navigate(request));
     return;
   }
 
