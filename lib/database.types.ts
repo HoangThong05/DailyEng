@@ -141,8 +141,47 @@ export type Database = {
         };
         Relationships: [];
       };
+      review_log: {
+        Row: {
+          id: string;
+          user_id: string;
+          word_id: string;
+          day: string;
+          remembered: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          word_id: string;
+          day: string;
+          remembered: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          word_id?: string;
+          day?: string;
+          remembered?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
-    Views: Record<never, never>;
+    Views: {
+      /** Gộp review_log theo ngày. Chỉ đọc. */
+      study_days: {
+        Row: {
+          user_id: string;
+          day: string;
+          reviews: number;
+          correct: number;
+          words: number;
+        };
+        Relationships: [];
+      };
+    };
     Functions: Record<never, never>;
     Enums: Record<never, never>;
     CompositeTypes: Record<never, never>;

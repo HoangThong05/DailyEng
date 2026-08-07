@@ -7,30 +7,25 @@ import {
 } from "@/app/_components/icons";
 import { InstallPrompt } from "@/app/_components/install-prompt";
 import { PageHeader } from "@/app/_components/page-header";
-import { startOfTodayIso } from "@/lib/leitner";
+import { getStudyStats } from "@/lib/stats";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
-
-// TODO: chuỗi ngày học liên tiếp cần bảng nhật ký riêng — làm ở issue #9.
-const streakDays = 0;
 
 export default async function Home() {
   const user = await getCurrentUser();
   const supabase = await createClient();
 
   // maybeSingle() để không ném lỗi nếu trigger tạo profile chưa chạy xong.
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("display_name, daily_goal")
-    .eq("id", user?.id ?? "")
-    .maybeSingle();
+  const [{ data: profile }, stats] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("display_name, daily_goal")
+      .eq("id", user?.id ?? "")
+      .maybeSingle(),
+    getStudyStats(),
+  ]);
 
-  // RLS đã giới hạn về đúng người dùng hiện tại nên không cần lọc user_id.
-  const { count } = await supabase
-    .from("word_progress")
-    .select("word_id", { count: "exact", head: true })
-    .gte("last_reviewed_at", startOfTodayIso());
-
-  const learnedToday = count ?? 0;
+  const streakDays = stats.streak.current;
+  const learnedToday = stats.today.words;
   const name = profile?.display_name ?? user?.email?.split("@")[0] ?? "bạn";
   const dailyGoal = profile?.daily_goal ?? 10;
   const progress = Math.min(100, Math.round((learnedToday / dailyGoal) * 100));

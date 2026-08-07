@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { reviewOutcome } from "@/lib/leitner";
+import { reviewOutcome, todayInAppZone } from "@/lib/leitner";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 export type ReviewResult = { ok: true } | { ok: false; error: string };
@@ -31,20 +31,36 @@ export async function recordReview(
 
   const { box, dueOn } = reviewOutcome(current?.box ?? 1, remembered);
 
-  const { error } = await supabase.from("word_progress").upsert(
-    {
+  const [progressResult, logResult] = await Promise.all([
+    supabase.from("word_progress").upsert(
+      {
+        user_id: user.id,
+        word_id: wordId,
+        box,
+        due_on: dueOn,
+        review_count: (current?.review_count ?? 0) + 1,
+        correct_count: (current?.correct_count ?? 0) + (remembered ? 1 : 0),
+        last_reviewed_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id,word_id" },
+    ),
+    // Nhật ký để tính chuỗi ngày và biểu đồ. Ghi thêm, không sửa.
+    supabase.from("review_log").insert({
       user_id: user.id,
       word_id: wordId,
-      box,
-      due_on: dueOn,
-      review_count: (current?.review_count ?? 0) + 1,
-      correct_count: (current?.correct_count ?? 0) + (remembered ? 1 : 0),
-      last_reviewed_at: new Date().toISOString(),
-    },
-    { onConflict: "user_id,word_id" },
-  );
+      day: todayInAppZone(),
+      remembered,
+    }),
+  ]);
 
-  if (error) return { ok: false, error: error.message };
+  // Tiến độ quan trọng hơn nhật ký: hỏng nhật ký thì chỉ lệch thống kê,
+  // nên chỉ báo lỗi khi chính word_progress ghi hụt.
+  if (progressResult.error) {
+    return { ok: false, error: progressResult.error.message };
+  }
+  if (logResult.error) {
+    console.error("Không ghi được review_log:", logResult.error.message);
+  }
 
   return { ok: true };
 }
