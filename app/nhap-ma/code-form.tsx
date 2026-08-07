@@ -19,13 +19,16 @@ export function CodeForm({ email }: { email: string }) {
 
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  /** Mã đã tự gửi rồi, để mã sai không bị gửi lại thành vòng lặp. */
+  const autoSubmitted = useRef("");
 
-  // Gõ/dán đủ 6 số là gửi luôn, khỏi phải với tay bấm nút.
+  // Gõ/dán đủ số là gửi luôn, khỏi phải với tay bấm nút.
   useEffect(() => {
-    if (code.length === CODE_LENGTH && !verifying) {
+    if (code.length === CODE_LENGTH && autoSubmitted.current !== code) {
+      autoSubmitted.current = code;
       formRef.current?.requestSubmit();
     }
-  }, [code, verifying]);
+  }, [code]);
 
   const error = verifyState.error ?? resendState.error;
 
