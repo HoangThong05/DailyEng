@@ -48,14 +48,14 @@ export default async function TienDoPage() {
           </h2>
           <div className="grid grid-cols-3 gap-3">
             <StatTile value={String(today.words)} label="từ đã ôn" />
-            <StatTile value={String(today.reviews)} label="lượt trả lời" />
+            <StatTile value={String(today.reviews)} label="lượt ôn" />
             <StatTile
               value={
                 today.reviews > 0
                   ? `${Math.round((today.correct / today.reviews) * 100)}%`
                   : "—"
               }
-              label="đúng"
+              label="nhớ được"
             />
           </div>
         </section>
@@ -82,7 +82,7 @@ export default async function TienDoPage() {
             />
             <StatTile
               value={totals.accuracy === null ? "—" : `${totals.accuracy}%`}
-              label="đúng trung bình"
+              label="tỉ lệ nhớ"
             />
           </div>
           <p className="text-muted px-1 text-xs">
