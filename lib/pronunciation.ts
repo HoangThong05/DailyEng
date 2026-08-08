@@ -21,24 +21,12 @@ export type Alternative = {
   confidence: number;
 };
 
-export type AttemptReason =
-  /** Máy nhận ra ngay ở phương án đầu, tin cậy tốt. */
-  | "exact"
-  /** Đúng từ, nhưng máy phải mò xuống phương án sau hoặc không mấy chắc chắn. */
-  | "guessed"
-  /** Nghe ra thứ na ná, chưa thành từ đúng. */
-  | "partial"
-  /** Máy nghe thành từ khác hẳn. */
-  | "mismatch";
+export type Verdict = "good" | "close" | "off";
 
 export type Attempt = {
-  reason: AttemptReason;
-  /** Độ khớp văn bản 0..100 của phương án khớp nhất. */
-  match: number;
-  /** Từ đúng nằm ở phương án thứ mấy, đếm từ 1. */
-  rank: number;
-  /** Độ tin cậy của phương án khớp nhất; 0 nghĩa là trình duyệt không báo. */
-  confidence: number;
+  /** Điểm cuối 0..100, đã gộp cả ba tín hiệu. */
+  score: number;
+  verdict: Verdict;
   /** Phương án đầu tiên — thứ máy nghe thành. */
   heard: string;
 };
@@ -84,10 +72,25 @@ export function similarity(a: string, b: string): number {
   return Math.max(0, Math.round((1 - levenshtein(a, b) / longest) * 100));
 }
 
-const GOOD_MATCH = 85;
-const PARTIAL_MATCH = 55;
-/** Dưới mức này coi như máy không chắc. Bằng 0 nghĩa là trình duyệt không báo. */
-const CONFIDENCE_FLOOR = 0.5;
+const GOOD_SCORE = 85;
+const CLOSE_SCORE = 55;
+
+/**
+ * Từ đúng tụt xuống phương án sau nghĩa là máy phải mò mới ra — trừ điểm dần.
+ * Hạng 1 giữ nguyên, hạng 2 còn 0.8, hạng 3 còn 0.67...
+ */
+function rankFactor(rank: number): number {
+  return 1 / (1 + 0.25 * (rank - 1));
+}
+
+/**
+ * Máy càng không chắc thì điểm càng giảm, nhưng chỉ giảm tới 0.6 để một lần
+ * tin cậy thấp không xoá sạch điểm. confidence = 0 nghĩa là trình duyệt không
+ * báo, khi đó không trừ gì cả.
+ */
+function confidenceFactor(confidence: number): number {
+  return confidence === 0 ? 1 : 0.6 + 0.4 * confidence;
+}
 
 export function assessAttempt(
   term: string,
@@ -97,45 +100,35 @@ export function assessAttempt(
   const usable = alternatives.filter((item) => normalizeSpoken(item.transcript));
 
   if (!target || usable.length === 0) {
-    return {
-      reason: "mismatch",
-      match: 0,
-      rank: 0,
-      confidence: 0,
-      heard: alternatives[0]?.transcript ?? "",
-    };
+    return { score: 0, verdict: "off", heard: alternatives[0]?.transcript ?? "" };
   }
 
   // Tìm phương án khớp nhất; hoà thì lấy phương án đứng trước.
   let bestIndex = 0;
   let bestMatch = -1;
   usable.forEach((item, index) => {
-    const score = similarity(target, normalizeSpoken(item.transcript));
-    if (score > bestMatch) {
-      bestMatch = score;
+    const match = similarity(target, normalizeSpoken(item.transcript));
+    if (match > bestMatch) {
+      bestMatch = match;
       bestIndex = index;
     }
   });
 
-  const best = usable[bestIndex];
-  const confidence = best.confidence;
-  // confidence = 0 nghĩa là không có thông tin, không nên vì thế mà trừ điểm.
-  const confident = confidence === 0 || confidence >= CONFIDENCE_FLOOR;
-
-  let reason: AttemptReason;
-  if (bestMatch >= GOOD_MATCH) {
-    reason = bestIndex === 0 && confident ? "exact" : "guessed";
-  } else if (bestMatch >= PARTIAL_MATCH) {
-    reason = "partial";
-  } else {
-    reason = "mismatch";
-  }
+  const score = Math.max(
+    0,
+    Math.min(
+      100,
+      Math.round(
+        bestMatch *
+          rankFactor(bestIndex + 1) *
+          confidenceFactor(usable[bestIndex].confidence),
+      ),
+    ),
+  );
 
   return {
-    reason,
-    match: bestMatch,
-    rank: bestIndex + 1,
-    confidence,
+    score,
+    verdict: score >= GOOD_SCORE ? "good" : score >= CLOSE_SCORE ? "close" : "off",
     heard: usable[0].transcript,
   };
 }

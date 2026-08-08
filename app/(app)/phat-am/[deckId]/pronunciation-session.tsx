@@ -17,25 +17,22 @@ import {
   type SpeechRecognitionLike,
 } from "@/lib/speech";
 
-const REASON_TEXT: Record<Attempt["reason"], string> = {
-  exact: "Chuẩn rồi 👏",
-  guessed: "Gần đúng, thử lại xem",
-  partial: "Gần đúng, thử lại xem",
-  mismatch: "Chưa khớp",
+const VERDICT_TEXT: Record<Attempt["verdict"], string> = {
+  good: "Chuẩn rồi 👏",
+  close: "Gần đúng, thử lại xem",
+  off: "Chưa khớp",
 };
 
-const REASON_COLOR: Record<Attempt["reason"], string> = {
-  exact: "text-emerald-500",
-  guessed: "text-amber-500",
-  partial: "text-amber-500",
-  mismatch: "text-red-500",
+const VERDICT_COLOR: Record<Attempt["verdict"], string> = {
+  good: "text-emerald-500",
+  close: "text-amber-500",
+  off: "text-red-500",
 };
 
-const BAR_COLOR: Record<Attempt["reason"], string> = {
-  exact: "bg-emerald-500",
-  guessed: "bg-amber-500",
-  partial: "bg-amber-500",
-  mismatch: "bg-red-500",
+const BAR_COLOR: Record<Attempt["verdict"], string> = {
+  good: "bg-emerald-500",
+  close: "bg-amber-500",
+  off: "bg-red-500",
 };
 
 function errorMessage(code: RecognitionErrorCode): string | null {
@@ -243,8 +240,8 @@ export function PronunciationSession({
           role="status"
           className="border-border bg-card mt-4 rounded-2xl border p-4"
         >
-          <p className={`font-semibold ${REASON_COLOR[result.reason]}`}>
-            {REASON_TEXT[result.reason]}
+          <p className={`font-semibold ${VERDICT_COLOR[result.verdict]}`}>
+            {VERDICT_TEXT[result.verdict]}
           </p>
 
           <p className="text-muted mt-1 text-sm">
@@ -257,27 +254,14 @@ export function PronunciationSession({
           <div className="mt-3 flex items-center gap-3">
             <div className="bg-brand-soft h-2 flex-1 overflow-hidden rounded-full">
               <div
-                className={`h-full rounded-full ${BAR_COLOR[result.reason]}`}
-                style={{ width: `${result.match}%` }}
+                className={`h-full rounded-full ${BAR_COLOR[result.verdict]}`}
+                style={{ width: `${result.score}%` }}
               />
             </div>
             <span className="text-sm font-semibold tabular-nums">
-              {result.match}%
+              {result.score}%
             </span>
           </div>
-
-          {result.rank > 1 ? (
-            <p className="text-muted mt-2 text-xs">
-              Máy phải xét tới phương án thứ {result.rank} mới ra từ này — dấu
-              hiệu bạn nói chưa thật rõ.
-            </p>
-          ) : null}
-
-          {result.confidence > 0 ? (
-            <p className="text-muted mt-1 text-xs">
-              Độ tin cậy máy tự báo: {Math.round(result.confidence * 100)}%
-            </p>
-          ) : null}
         </div>
       ) : null}
 
