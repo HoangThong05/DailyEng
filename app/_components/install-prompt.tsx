@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import { CloseIcon, ShareIcon } from "./icons";
+import { useHydrated } from "./use-hydrated";
 
 // Sự kiện này chưa có trong lib DOM của TypeScript nên phải tự khai báo.
 type BeforeInstallPromptEvent = Event & {
@@ -10,17 +11,6 @@ type BeforeInstallPromptEvent = Event & {
 };
 
 const DISMISS_KEY = "dailyeng:install-dismissed";
-
-const noopSubscribe = () => () => {};
-
-/** Trả về false khi render trên server, true sau khi hydrate xong ở client. */
-function useHydrated() {
-  return useSyncExternalStore(
-    noopSubscribe,
-    () => true,
-    () => false,
-  );
-}
 
 export function InstallPrompt() {
   const hydrated = useHydrated();

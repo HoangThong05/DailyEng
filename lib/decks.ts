@@ -71,6 +71,32 @@ export async function listDecks(): Promise<DeckSummary[]> {
   });
 }
 
+/**
+ * Bộ thẻ + toàn bộ từ trong đó.
+ *
+ * Không lọc theo hạn ôn: luyện phát âm là kỹ năng khác với nhớ nghĩa, muốn tập
+ * từ nào lúc nào cũng được.
+ */
+export async function getDeckWithWords(deckId: string) {
+  const supabase = await createClient();
+
+  const { data: deck } = await supabase
+    .from("decks")
+    .select("id, name")
+    .eq("id", deckId)
+    .maybeSingle();
+
+  if (!deck) return null;
+
+  const { data: words } = await supabase
+    .from("words")
+    .select("*")
+    .eq("deck_id", deckId)
+    .order("position");
+
+  return { deck, words: words ?? [] };
+}
+
 /** Bộ thẻ + các từ đến hạn hôm nay, đã sắp xếp sẵn cho phiên học. */
 export async function getStudySession(deckId: string) {
   const supabase = await createClient();

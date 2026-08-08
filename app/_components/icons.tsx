@@ -69,6 +69,16 @@ export function MicIcon({ className }: IconProps) {
   );
 }
 
+export function SpeakerIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M4 9.5h3L11.5 5.5v13L7 14.5H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z" />
+      <path d="M15.5 9a4 4 0 0 1 0 6" />
+      <path d="M18.5 6.5a8 8 0 0 1 0 11" />
+    </svg>
+  );
+}
+
 export function FlameIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className}>
