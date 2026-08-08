@@ -71,7 +71,7 @@ export function QuizSession({ deckId, questions }: Props) {
           <p className="text-muted mt-2 text-sm">
             {percent === 100
               ? "Trọn vẹn, không sai câu nào."
-              : "Những từ sai đã được đưa về hộp 1 để ôn lại sớm."}
+              : "Những từ sai sẽ sớm quay lại để bạn ôn thêm."}
           </p>
         </div>
 

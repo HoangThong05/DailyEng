@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
-import { MAX_BOX } from "@/lib/leitner";
 import type { StudyCard } from "@/lib/decks";
 
 /** Kéo quá bao nhiêu pixel thì tính là đã vuốt dứt khoát. */
@@ -197,9 +196,6 @@ export function FlashcardSession({ deckName, cards }: Props) {
         >
           {/* Mặt trước: từ tiếng Anh */}
           <div className="border-border bg-card absolute inset-0 flex flex-col items-center justify-center rounded-3xl border p-6 text-center [backface-visibility:hidden]">
-            <span className="text-muted absolute top-4 right-5 text-xs">
-              Hộp {current.box}/{MAX_BOX}
-            </span>
             <p className="text-3xl font-bold tracking-tight">{current.term}</p>
             {current.phonetic ? (
               <p className="text-muted mt-2 text-lg">{current.phonetic}</p>

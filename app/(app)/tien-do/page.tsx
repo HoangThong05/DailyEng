@@ -85,10 +85,6 @@ export default async function TienDoPage() {
               label="tỉ lệ nhớ"
             />
           </div>
-          <p className="text-muted px-1 text-xs">
-            &quot;Đã thuộc&quot; là những từ đã lên hộp 5 — hộp cao nhất, ôn lại
-            sau mỗi 14 ngày.
-          </p>
         </section>
 
       </div>
