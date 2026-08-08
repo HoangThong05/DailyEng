@@ -3,6 +3,7 @@ import { signOut } from "@/app/_actions/auth";
 import { PageHeader } from "@/app/_components/page-header";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { ProfileForm } from "./profile-form";
+import { ThemeToggle } from "./theme-toggle";
 
 export const metadata: Metadata = { title: "Cá nhân" };
 
@@ -31,6 +32,16 @@ export default async function TaiKhoanPage() {
             }
             dailyGoal={profile?.daily_goal ?? 10}
           />
+        </section>
+
+        <section aria-labelledby="giao-dien">
+          <h2
+            id="giao-dien"
+            className="text-muted mb-3 px-1 text-sm font-medium"
+          >
+            Giao diện
+          </h2>
+          <ThemeToggle />
         </section>
 
         <section aria-labelledby="phien">

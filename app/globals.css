@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  /* Bảng sáng — dùng khi không có gì ghi đè */
   --bg: #f5f7fb;
   --card: #ffffff;
   --fg: #0f172a;
@@ -8,18 +9,44 @@
   --border: #e4e9f2;
   --brand: #2563eb;
   --brand-soft: #e5edff;
+
+  /* Bảng tối — khai báo đúng một lần, hai khối bên dưới chỉ trỏ vào đây */
+  --dark-bg: #0b1120;
+  --dark-card: #141d31;
+  --dark-fg: #e8edf7;
+  --dark-muted: #93a3bd;
+  --dark-border: #23304a;
+  --dark-brand: #6d9dff;
+  --dark-brand-soft: #1a2643;
 }
 
+/*
+ * Ba trạng thái giao diện:
+ *  - Chưa chọn gì → theo hệ điều hành, nhờ khối @media. Đây cũng là đường lui
+ *    khi JavaScript bị chặn, vì lúc đó data-theme không được đặt.
+ *  - Chọn "Sáng"  → :not([data-theme="light"]) loại khối @media ra
+ *  - Chọn "Tối"   → khối [data-theme="dark"] bên dưới thắng
+ */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0b1120;
-    --card: #141d31;
-    --fg: #e8edf7;
-    --muted: #93a3bd;
-    --border: #23304a;
-    --brand: #6d9dff;
-    --brand-soft: #1a2643;
+  :root:not([data-theme="light"]) {
+    --bg: var(--dark-bg);
+    --card: var(--dark-card);
+    --fg: var(--dark-fg);
+    --muted: var(--dark-muted);
+    --border: var(--dark-border);
+    --brand: var(--dark-brand);
+    --brand-soft: var(--dark-brand-soft);
   }
+}
+
+:root[data-theme="dark"] {
+  --bg: var(--dark-bg);
+  --card: var(--dark-card);
+  --fg: var(--dark-fg);
+  --muted: var(--dark-muted);
+  --border: var(--dark-border);
+  --brand: var(--dark-brand);
+  --brand-soft: var(--dark-brand-soft);
 }
 
 @theme inline {
