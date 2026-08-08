@@ -5,27 +5,37 @@ import { useEffect, useRef, useState } from "react";
 import { MicIcon, SpeakerIcon } from "@/app/_components/icons";
 import { useHydrated } from "@/app/_components/use-hydrated";
 import type { Word } from "@/lib/database.types";
-import { scoreAttempt, type Attempt } from "@/lib/pronunciation";
+import { assessAttempt, type Attempt } from "@/lib/pronunciation";
 import {
   createRecognition,
+  readAlternatives,
   speak,
+  startRecording,
   supportsRecognition,
   type RecognitionErrorCode,
+  type Recorder,
   type SpeechRecognitionLike,
 } from "@/lib/speech";
 
-type Result = Attempt & { transcript: string };
-
-const VERDICT_TEXT: Record<Attempt["verdict"], string> = {
-  good: "Chuẩn rồi 👏",
-  close: "Gần đúng, thử lại xem",
-  off: "Chưa khớp",
+const REASON_TEXT: Record<Attempt["reason"], string> = {
+  exact: "Chuẩn rồi 👏",
+  guessed: "Gần đúng, thử lại xem",
+  partial: "Gần đúng, thử lại xem",
+  mismatch: "Chưa khớp",
 };
 
-const VERDICT_COLOR: Record<Attempt["verdict"], string> = {
-  good: "text-emerald-500",
-  close: "text-amber-500",
-  off: "text-red-500",
+const REASON_COLOR: Record<Attempt["reason"], string> = {
+  exact: "text-emerald-500",
+  guessed: "text-amber-500",
+  partial: "text-amber-500",
+  mismatch: "text-red-500",
+};
+
+const BAR_COLOR: Record<Attempt["reason"], string> = {
+  exact: "bg-emerald-500",
+  guessed: "bg-amber-500",
+  partial: "bg-amber-500",
+  mismatch: "bg-red-500",
 };
 
 function errorMessage(code: RecognitionErrorCode): string | null {
@@ -57,16 +67,30 @@ export function PronunciationSession({
   const hydrated = useHydrated();
   const [index, setIndex] = useState(0);
   const [listening, setListening] = useState(false);
-  const [result, setResult] = useState<Result | null>(null);
+  const [result, setResult] = useState<Attempt | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [recordingUrl, setRecordingUrl] = useState<string | null>(null);
 
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+  const recorderRef = useRef<Recorder | null>(null);
+  const recordingUrlRef = useRef<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
   const word = words[index];
 
-  // Rời màn hình giữa chừng thì dừng cả micro lẫn giọng đọc.
+  /** Thay đoạn ghi âm hiện có, nhớ thu hồi URL cũ kẻo rò bộ nhớ. */
+  function replaceRecording(url: string | null) {
+    if (recordingUrlRef.current) URL.revokeObjectURL(recordingUrlRef.current);
+    recordingUrlRef.current = url;
+    setRecordingUrl(url);
+  }
+
+  // Rời màn hình giữa chừng thì dừng micro, dừng giọng đọc, thu hồi URL.
   useEffect(() => {
     return () => {
       recognitionRef.current?.abort();
+      void recorderRef.current?.stop();
+      if (recordingUrlRef.current) URL.revokeObjectURL(recordingUrlRef.current);
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
       }
@@ -79,13 +103,25 @@ export function PronunciationSession({
 
   function goTo(nextIndex: number) {
     recognitionRef.current?.abort();
+    void recorderRef.current?.stop();
+    recorderRef.current = null;
     setListening(false);
     setResult(null);
     setError(null);
+    replaceRecording(null);
     setIndex(nextIndex);
   }
 
-  function listen() {
+  async function finishRecording() {
+    const recorder = recorderRef.current;
+    recorderRef.current = null;
+    if (!recorder) return;
+
+    const blob = await recorder.stop();
+    if (blob) replaceRecording(URL.createObjectURL(blob));
+  }
+
+  async function listen() {
     if (listening) {
       recognitionRef.current?.stop();
       return;
@@ -96,17 +132,30 @@ export function PronunciationSession({
 
     setResult(null);
     setError(null);
-    recognitionRef.current = recognition;
+    replaceRecording(null);
 
     recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setResult({ transcript, ...scoreAttempt(word.term, transcript) });
+      setResult(assessAttempt(word.term, readAlternatives(event.results)));
     };
     recognition.onerror = (event) => setError(errorMessage(event.error));
-    recognition.onend = () => setListening(false);
+    recognition.onend = () => {
+      setListening(false);
+      void finishRecording();
+    };
 
+    recognitionRef.current = recognition;
     setListening(true);
-    recognition.start();
+
+    // Ghi âm chỉ là phụ. startRecording() tự nuốt lỗi nên hỏng cũng không sao.
+    recorderRef.current = await startRecording();
+
+    try {
+      recognition.start();
+    } catch {
+      setListening(false);
+      void finishRecording();
+      setError("Không khởi động được micro, thử lại nhé.");
+    }
   }
 
   return (
@@ -163,11 +212,23 @@ export function PronunciationSession({
         ) : null}
       </div>
 
+      {recordingUrl ? (
+        <>
+          <audio ref={audioRef} src={recordingUrl} className="hidden" />
+          <button
+            type="button"
+            onClick={() => audioRef.current?.play()}
+            className="border-border bg-card mt-3 min-h-12 w-full rounded-xl border text-sm font-semibold transition-transform duration-100 active:scale-[0.98]"
+          >
+            Nghe lại giọng bạn
+          </button>
+        </>
+      ) : null}
+
       {hydrated && !canRecord ? (
         <p className="text-muted mt-4 text-sm">
-          Trình duyệt này không hỗ trợ nhận dạng giọng nói nên chưa chấm điểm
-          được. Phần nghe mẫu vẫn dùng bình thường. Muốn chấm điểm thì mở bằng
-          Chrome hoặc Edge.
+          Trình duyệt này không hỗ trợ nhận dạng giọng nói. Phần nghe mẫu vẫn
+          dùng bình thường. Muốn chấm điểm thì mở bằng Chrome hoặc Edge.
         </p>
       ) : null}
 
@@ -182,31 +243,41 @@ export function PronunciationSession({
           role="status"
           className="border-border bg-card mt-4 rounded-2xl border p-4"
         >
-          <p className={`font-semibold ${VERDICT_COLOR[result.verdict]}`}>
-            {VERDICT_TEXT[result.verdict]}
+          <p className={`font-semibold ${REASON_COLOR[result.reason]}`}>
+            {REASON_TEXT[result.reason]}
           </p>
+
           <p className="text-muted mt-1 text-sm">
             Máy nghe được:{" "}
-            <span className="text-fg font-medium">{result.transcript}</span>
+            <span className="text-fg font-medium">
+              {result.heard || "(không rõ)"}
+            </span>
           </p>
 
           <div className="mt-3 flex items-center gap-3">
             <div className="bg-brand-soft h-2 flex-1 overflow-hidden rounded-full">
               <div
-                className={`h-full rounded-full ${
-                  result.verdict === "good"
-                    ? "bg-emerald-500"
-                    : result.verdict === "close"
-                      ? "bg-amber-500"
-                      : "bg-red-500"
-                }`}
-                style={{ width: `${result.score}%` }}
+                className={`h-full rounded-full ${BAR_COLOR[result.reason]}`}
+                style={{ width: `${result.match}%` }}
               />
             </div>
             <span className="text-sm font-semibold tabular-nums">
-              {result.score}%
+              {result.match}%
             </span>
           </div>
+
+          {result.rank > 1 ? (
+            <p className="text-muted mt-2 text-xs">
+              Máy phải xét tới phương án thứ {result.rank} mới ra từ này — dấu
+              hiệu bạn nói chưa thật rõ.
+            </p>
+          ) : null}
+
+          {result.confidence > 0 ? (
+            <p className="text-muted mt-1 text-xs">
+              Độ tin cậy máy tự báo: {Math.round(result.confidence * 100)}%
+            </p>
+          ) : null}
         </div>
       ) : null}
 
