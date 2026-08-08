@@ -8,25 +8,22 @@ import {
 import { InstallPrompt } from "@/app/_components/install-prompt";
 import { PageHeader } from "@/app/_components/page-header";
 import { getStudyStats } from "@/lib/stats";
-import { createClient, getCurrentUser } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 
 export default async function Home() {
-  const user = await getCurrentUser();
   const supabase = await createClient();
 
+  // RLS chỉ trả về đúng hàng của người đang đăng nhập nên khỏi lọc theo id —
+  // nhờ vậy bỏ được một lượt xác thực JWT trên đường đi.
   // maybeSingle() để không ném lỗi nếu trigger tạo profile chưa chạy xong.
   const [{ data: profile }, stats] = await Promise.all([
-    supabase
-      .from("profiles")
-      .select("display_name, daily_goal")
-      .eq("id", user?.id ?? "")
-      .maybeSingle(),
+    supabase.from("profiles").select("display_name, daily_goal").maybeSingle(),
     getStudyStats(),
   ]);
 
   const streakDays = stats.streak.current;
   const learnedToday = stats.today.words;
-  const name = profile?.display_name ?? user?.email?.split("@")[0] ?? "bạn";
+  const name = profile?.display_name ?? "bạn";
   const dailyGoal = profile?.daily_goal ?? 10;
   const progress = Math.min(100, Math.round((learnedToday / dailyGoal) * 100));
 
