@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EmptyState } from "@/app/_components/empty-state";
-import { CardsIcon } from "@/app/_components/icons";
+import { CardsIcon, PencilIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { getStudySession } from "@/lib/decks";
 import { FlashcardSession } from "./flashcard-session";
@@ -30,6 +30,17 @@ export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
             ? `${cards.length} thẻ trong phiên này`
             : `${totalWords} từ trong bộ`
         }
+        trailing={
+          deck.isOwn ? (
+            <Link
+              href={`/hoc/${deck.id}/sua`}
+              aria-label="Sửa bộ từ"
+              className="border-border bg-card flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-transform duration-100 active:scale-90"
+            >
+              <PencilIcon className="h-5 w-5" />
+            </Link>
+          ) : undefined
+        }
       />
 
       {cards.length === 0 ? (
@@ -41,7 +52,7 @@ export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
             }
             description={
               totalWords === 0
-                ? "Thêm từ vào bộ rồi quay lại học."
+                ? "Bấm nút bút ở góc trên để thêm từ vào bộ."
                 : "Các từ trong bộ đều chưa tới hạn ôn. Quay lại vào những ngày tới nhé."
             }
           />

@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/nhac-hoc",
+      "schedule": "0 13 * * *"
+    }
+  ]
+}

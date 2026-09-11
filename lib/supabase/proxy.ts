@@ -9,8 +9,11 @@ export const VERIFY_PATH = "/nhap-ma";
 /** Tham số lưu trang người dùng định vào, để đăng nhập xong quay lại đúng chỗ. */
 export const REDIRECT_PARAM = "tiep-tuc";
 
-/** Những đường dẫn xem được khi chưa đăng nhập. */
-const PUBLIC_PATHS = [LOGIN_PATH, VERIFY_PATH, "/auth", "/offline"];
+/**
+ * Những đường dẫn xem được khi chưa đăng nhập.
+ * /api/cron do Vercel gọi, không có cookie — tự xác thực bằng CRON_SECRET.
+ */
+const PUBLIC_PATHS = [LOGIN_PATH, VERIFY_PATH, "/auth", "/offline", "/api/cron"];
 
 function isPublicPath(pathname: string) {
   return PUBLIC_PATHS.some(

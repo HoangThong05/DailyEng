@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { FORMAT_HINT } from "@/lib/word-import";
 import { createDeck, type CreateDeckState } from "./actions";
 
 const EMPTY: CreateDeckState = {};
@@ -45,10 +46,7 @@ export function CreateDeckForm() {
         <label htmlFor="words" className="block text-sm font-medium">
           Danh sách từ
         </label>
-        <p className="text-muted text-sm">
-          Mỗi dòng một từ, viết theo dạng{" "}
-          <span className="text-fg font-medium">word = nghĩa</span>.
-        </p>
+        <p className="text-muted text-sm">{FORMAT_HINT}</p>
         <textarea
           id="words"
           name="words"

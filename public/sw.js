@@ -6,9 +6,10 @@
  *    trả về trang /offline đã lưu sẵn.
  *  - Asset build của Next (/_next/static): cache-first vì tên file có hash, không bao giờ đổi nội dung
  *  - Còn lại (ảnh, icon...): stale-while-revalidate
+ *  - Push: hiện thông báo nhắc học, bấm vào thì mở app
  * Tăng VERSION mỗi lần đổi logic để cache cũ bị dọn.
  */
-const VERSION = "dailyeng-v2";
+const VERSION = "dailyeng-v3";
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 const OFFLINE_URL = "/offline";
@@ -109,4 +110,47 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(staleWhileRevalidate(request));
+});
+
+/* ---- Thông báo nhắc học ------------------------------------------------ */
+
+self.addEventListener("push", (event) => {
+  // Server gửi JSON { title, body, url }; phòng hờ payload lạ thì vẫn hiện được.
+  let payload = { title: "DailyEng", body: "Đến giờ học rồi!", url: "/" };
+  try {
+    payload = { ...payload, ...event.data.json() };
+  } catch {
+    // Không phải JSON — giữ nội dung mặc định.
+  }
+
+  event.waitUntil(
+    self.registration.showNotification(payload.title, {
+      body: payload.body,
+      icon: "/icon-192.png",
+      badge: "/icon-192.png",
+      lang: "vi",
+      // Cùng tag thì thông báo mới thay thông báo cũ, không chất đống.
+      tag: "dailyeng-nhac-hoc",
+      data: { url: payload.url },
+    }),
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const target = new URL(event.notification.data?.url ?? "/", self.location.origin).href;
+
+  event.waitUntil(
+    self.clients
+      .matchAll({ type: "window", includeUncontrolled: true })
+      .then((windows) => {
+        // App đang mở thì đưa lên trước, không mở thêm tab mới.
+        const existing = windows.find((w) => w.url.startsWith(self.location.origin));
+        if (existing) {
+          existing.navigate(target);
+          return existing.focus();
+        }
+        return self.clients.openWindow(target);
+      }),
+  );
 });

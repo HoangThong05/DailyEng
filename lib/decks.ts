@@ -102,13 +102,21 @@ export async function getStudySession(deckId: string) {
   const supabase = await createClient();
   const today = todayInAppZone();
 
-  const { data: deck } = await supabase
+  const { data: row } = await supabase
     .from("decks")
-    .select("id, name, description")
+    .select("id, name, description, owner_id")
     .eq("id", deckId)
     .maybeSingle();
 
-  if (!deck) return null;
+  if (!row) return null;
+
+  // RLS chỉ cho thấy bộ công khai và bộ của mình, nên có owner_id tức là của mình.
+  const deck = {
+    id: row.id,
+    name: row.name,
+    description: row.description,
+    isOwn: row.owner_id !== null,
+  };
 
   const { data: words } = await supabase
     .from("words")
@@ -142,4 +150,28 @@ export async function getStudySession(deckId: string) {
     .slice(0, SESSION_SIZE);
 
   return { deck, cards, totalWords: words.length };
+}
+/**
+ * Bộ thẻ của chính người dùng kèm toàn bộ từ, cho trang sửa bộ.
+ * Bộ công khai (owner_id null) trả về null như không tồn tại: không ai sửa được.
+ */
+export async function getOwnDeckWithWords(deckId: string) {
+  const supabase = await createClient();
+
+  const { data: deck } = await supabase
+    .from("decks")
+    .select("id, name, description")
+    .eq("id", deckId)
+    .not("owner_id", "is", null)
+    .maybeSingle();
+
+  if (!deck) return null;
+
+  const { data: words } = await supabase
+    .from("words")
+    .select("id, term, meaning_vi, position")
+    .eq("deck_id", deckId)
+    .order("position");
+
+  return { deck, words: words ?? [] };
 }

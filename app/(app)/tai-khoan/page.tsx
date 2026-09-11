@@ -3,6 +3,7 @@ import { signOut } from "@/app/_actions/auth";
 import { PageHeader } from "@/app/_components/page-header";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { ProfileForm } from "./profile-form";
+import { ReminderToggle } from "./reminder-toggle";
 import { ThemeToggle } from "./theme-toggle";
 
 export const metadata: Metadata = { title: "Cá nhân" };
@@ -31,6 +32,15 @@ export default async function TaiKhoanPage() {
               profile?.display_name ?? user?.email?.split("@")[0] ?? ""
             }
             dailyGoal={profile?.daily_goal ?? 10}
+          />
+        </section>
+
+        <section aria-labelledby="nhac-hoc">
+          <h2 id="nhac-hoc" className="text-muted mb-3 px-1 text-sm font-medium">
+            Thông báo
+          </h2>
+          <ReminderToggle
+            vapidPublicKey={process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? null}
           />
         </section>
 

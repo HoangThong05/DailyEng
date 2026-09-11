@@ -1,6 +1,5 @@
 /**
- * Kiểu dữ liệu của database, viết tay khớp với supabase/schema.sql
- * và supabase/schema-02-flashcard.sql.
+ * Kiểu dữ liệu của database, viết tay khớp với các file supabase/schema*.sql.
  *
  * Khi schema đổi, sinh lại bằng:
  *   npx supabase gen types typescript --project-id <id> > lib/database.types.ts
@@ -164,6 +163,30 @@ export type Database = {
           word_id?: string;
           day?: string;
           remembered?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      push_subscriptions: {
+        Row: {
+          endpoint: string;
+          user_id: string;
+          p256dh: string;
+          auth: string;
+          created_at: string;
+        };
+        Insert: {
+          endpoint: string;
+          user_id: string;
+          p256dh: string;
+          auth: string;
+          created_at?: string;
+        };
+        Update: {
+          endpoint?: string;
+          user_id?: string;
+          p256dh?: string;
+          auth?: string;
           created_at?: string;
         };
         Relationships: [];
