@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { FlameIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
-import { getStudyStats } from "@/lib/stats";
+import { BOX_INTERVAL_DAYS } from "@/lib/leitner";
+import { getDetailedStats, getStudyStats } from "@/lib/stats";
 import { WeekChart } from "./week-chart";
 
 export const metadata: Metadata = { title: "Tiến độ" };
@@ -16,7 +17,11 @@ function StatTile({ value, label }: { value: string; label: string }) {
 }
 
 export default async function TienDoPage() {
-  const { streak, today, week, totals } = await getStudyStats();
+  const [{ streak, today, week, totals }, detail] = await Promise.all([
+    getStudyStats(),
+    getDetailedStats(),
+  ]);
+  const boxTotal = detail.boxes.reduce((sum, count) => sum + count, 0);
 
   return (
     <>
@@ -87,6 +92,113 @@ export default async function TienDoPage() {
           </div>
         </section>
 
+        {boxTotal > 0 ? (
+          <section
+            aria-labelledby="hop-on"
+            className="border-border bg-card rounded-2xl border p-5"
+          >
+            <h2 id="hop-on" className="font-semibold">
+              Từ đang ở đâu
+            </h2>
+            <p className="text-muted mt-0.5 text-sm">
+              Nhớ đúng thì từ lên hộp cao hơn, lâu mới phải ôn lại.
+            </p>
+            <ul className="mt-4 space-y-2.5">
+              {detail.boxes.map((count, index) => {
+                const percent = Math.round((count / boxTotal) * 100);
+                const last = index === detail.boxes.length - 1;
+                return (
+                  <li key={index} className="flex items-center gap-3 text-sm">
+                    <span className="text-muted w-20 shrink-0 tabular-nums">
+                      {last ? "Đã thuộc" : `${BOX_INTERVAL_DAYS[index]} ngày`}
+                    </span>
+                    <span className="bg-brand-soft h-2.5 flex-1 overflow-hidden rounded-full">
+                      <span
+                        className={`block h-full rounded-full ${last ? "bg-brand" : "bg-brand/50"}`}
+                        style={{ width: `${percent}%` }}
+                      />
+                    </span>
+                    <span className="w-8 shrink-0 text-right font-semibold tabular-nums">
+                      {count}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ) : null}
+
+        {detail.decks.length > 0 ? (
+          <section aria-labelledby="theo-bo" className="space-y-3">
+            <h2 id="theo-bo" className="text-muted px-1 text-sm font-medium">
+              Theo bộ thẻ
+            </h2>
+            <ul className="border-border bg-card divide-border divide-y rounded-2xl border">
+              {detail.decks.map((deck) => (
+                <li
+                  key={deck.deckId}
+                  className="flex items-center gap-3 px-4 py-3"
+                >
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate font-medium">
+                      {deck.name}
+                    </span>
+                    <span className="text-muted block text-sm">
+                      {deck.wordsSeen}/{deck.wordsTotal} từ đã học ·{" "}
+                      {deck.reviews} lượt
+                    </span>
+                  </span>
+                  <span
+                    className={`shrink-0 text-lg font-bold tabular-nums ${
+                      deck.accuracy !== null && deck.accuracy < 60
+                        ? "text-red-500"
+                        : ""
+                    }`}
+                  >
+                    {deck.accuracy === null ? "—" : `${deck.accuracy}%`}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {detail.hardestWords.length > 0 ? (
+          <section aria-labelledby="hay-sai" className="space-y-3 pb-4">
+            <h2 id="hay-sai" className="text-muted px-1 text-sm font-medium">
+              Từ hay sai nhất
+            </h2>
+            <ul className="border-border bg-card divide-border divide-y rounded-2xl border">
+              {detail.hardestWords.map((word) => (
+                <li
+                  key={word.wordId}
+                  className="flex items-center gap-3 px-4 py-3"
+                >
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate font-medium">
+                      {word.term}
+                      <span className="text-muted font-normal">
+                        {" "}
+                        · {word.meaning}
+                      </span>
+                    </span>
+                    <span className="text-muted block truncate text-sm">
+                      {word.deckName}
+                    </span>
+                  </span>
+                  <span className="shrink-0 text-right">
+                    <span className="block text-sm font-semibold text-red-500 tabular-nums">
+                      sai {word.wrong}/{word.reviews}
+                    </span>
+                    <span className="text-muted block text-xs">
+                      hộp {word.box}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
       </div>
     </>
   );

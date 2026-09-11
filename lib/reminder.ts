@@ -3,5 +3,11 @@
  * mà không kéo theo thư viện web-push (chỉ chạy được ở Node).
  */
 
-/** Giờ nhắc theo giờ VN. Đổi thì sửa cả lịch cron trong vercel.json. */
-export const REMINDER_HOUR_LABEL = "20:00";
+/** Các mốc giờ (giờ VN) cho người dùng chọn. Cột reminder_hour nhận 0–23. */
+export const REMINDER_HOURS = [7, 12, 20] as const;
+
+export const DEFAULT_REMINDER_HOUR = 20;
+
+export function formatHour(hour: number) {
+  return `${String(hour).padStart(2, "0")}:00`;
+}

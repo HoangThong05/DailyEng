@@ -175,3 +175,27 @@ export async function getOwnDeckWithWords(deckId: string) {
 
   return { deck, words: words ?? [] };
 }
+
+/** Một từ trong bộ của chính người dùng, cho trang sửa từ. */
+export async function getOwnWord(deckId: string, wordId: string) {
+  const supabase = await createClient();
+
+  const { data: deck } = await supabase
+    .from("decks")
+    .select("id, name")
+    .eq("id", deckId)
+    .not("owner_id", "is", null)
+    .maybeSingle();
+
+  if (!deck) return null;
+
+  const { data: word } = await supabase
+    .from("words")
+    .select("*")
+    .eq("id", wordId)
+    .eq("deck_id", deckId)
+    .maybeSingle();
+
+  if (!word) return null;
+  return { deck, word };
+}

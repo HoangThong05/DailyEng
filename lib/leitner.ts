@@ -26,6 +26,16 @@ export function todayInAppZone(now: Date = new Date()): string {
   }).format(now);
 }
 
+/** Giờ hiện tại theo giờ VN, 0–23. */
+export function hourInAppZone(now: Date = new Date()): number {
+  const text = new Intl.DateTimeFormat("en-GB", {
+    timeZone: APP_TIME_ZONE,
+    hour: "2-digit",
+    hourCycle: "h23",
+  }).format(now);
+  return Number(text);
+}
+
 /** Cộng ngày vào chuỗi YYYY-MM-DD, tính bằng UTC nên không dính lệch múi giờ. */
 export function addDays(isoDate: string, days: number): string {
   const [year, month, day] = isoDate.split("-").map(Number);

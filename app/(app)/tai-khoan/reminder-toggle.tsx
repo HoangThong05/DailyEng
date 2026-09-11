@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useHydrated } from "@/app/_components/use-hydrated";
-import { REMINDER_HOUR_LABEL } from "@/lib/reminder";
+import { formatHour, REMINDER_HOURS } from "@/lib/reminder";
 import {
   removePushSubscription,
   savePushSubscription,
   sendTestPush,
+  updateReminderHour,
 } from "./push-actions";
 
 type Status = "loading" | "off" | "on" | "busy";
@@ -45,9 +46,11 @@ function isStandalone() {
 type Props = {
   /** null khi server chưa cấu hình khoá — ẩn hẳn tính năng. */
   vapidPublicKey: string | null;
+  /** Giờ nhắc đang lưu trong profile (giờ VN). */
+  reminderHour: number;
 };
 
-export function ReminderToggle({ vapidPublicKey }: Props) {
+export function ReminderToggle({ vapidPublicKey, reminderHour }: Props) {
   const hydrated = useHydrated();
   const capability: Capability | null = hydrated ? detectCapability() : null;
 
@@ -56,6 +59,7 @@ export function ReminderToggle({ vapidPublicKey }: Props) {
     null,
   );
   const [message, setMessage] = useState<{ text: string; error?: boolean }>();
+  const [hour, setHour] = useState(reminderHour);
 
   useEffect(() => {
     if (capability !== "supported") return;
@@ -125,7 +129,9 @@ export function ReminderToggle({ vapidPublicKey }: Props) {
 
       setSubscription(fresh);
       setStatus("on");
-      setMessage({ text: `Sẽ nhắc bạn lúc ${REMINDER_HOUR_LABEL} mỗi ngày chưa học.` });
+      setMessage({
+        text: `Sẽ nhắc bạn lúc ${formatHour(hour)} mỗi ngày chưa học.`,
+      });
     } catch (error) {
       console.error(error);
       setMessage({ text: "Không bật được nhắc học. Thử lại nhé.", error: true });
@@ -144,6 +150,17 @@ export function ReminderToggle({ vapidPublicKey }: Props) {
     setSubscription(null);
     setStatus("off");
     setMessage({ text: "Đã tắt nhắc học." });
+  }
+
+  async function chooseHour(next: number) {
+    const previous = hour;
+    setHour(next);
+    setMessage(undefined);
+    const result = await updateReminderHour(next);
+    if (!result.ok) {
+      setHour(previous);
+      setMessage({ text: result.error, error: true });
+    }
   }
 
   async function sendTest() {
@@ -193,7 +210,7 @@ export function ReminderToggle({ vapidPublicKey }: Props) {
         <div className="min-w-0">
           <p className="font-medium">Nhắc học mỗi ngày</p>
           <p className="text-muted mt-0.5 text-sm">
-            Lúc {REMINDER_HOUR_LABEL}, chỉ khi hôm đó bạn chưa học.
+            Chỉ nhắc khi hôm đó bạn chưa học.
           </p>
         </div>
 
@@ -215,6 +232,32 @@ export function ReminderToggle({ vapidPublicKey }: Props) {
           />
         </button>
       </div>
+
+      {on ? (
+        <div
+          role="radiogroup"
+          aria-label="Giờ nhắc"
+          className="bg-brand-soft mt-4 flex rounded-xl p-1"
+        >
+          {REMINDER_HOURS.map((option) => {
+            const active = hour === option;
+            return (
+              <button
+                key={option}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() => chooseHour(option)}
+                className={`min-h-11 flex-1 rounded-lg text-sm font-semibold transition-colors ${
+                  active ? "bg-card text-fg shadow-sm" : "text-muted"
+                }`}
+              >
+                {formatHour(option)}
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
 
       {on ? (
         <button

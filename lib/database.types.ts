@@ -22,6 +22,7 @@ export type Database = {
           id: string;
           display_name: string | null;
           daily_goal: number;
+          reminder_hour: number;
           created_at: string;
           updated_at: string;
         };
@@ -29,6 +30,7 @@ export type Database = {
           id: string;
           display_name?: string | null;
           daily_goal?: number;
+          reminder_hour?: number;
           created_at?: string;
           updated_at?: string;
         };
@@ -36,6 +38,7 @@ export type Database = {
           id?: string;
           display_name?: string | null;
           daily_goal?: number;
+          reminder_hour?: number;
           created_at?: string;
           updated_at?: string;
         };

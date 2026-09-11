@@ -10,9 +10,9 @@
 - Flashcard theo bộ thẻ có sẵn hoặc tự tạo (dán hàng loạt từ Excel/Sheets/Quizlet), ôn tập giãn cách
 - Quiz trắc nghiệm 4 đáp án, chấm điểm, xem lại từ sai
 - Luyện phát âm: nghe mẫu, ghi âm nghe lại, chấm điểm qua Web Speech API
-- Chuỗi ngày học, biểu đồ tuần, thống kê
+- Chuỗi ngày học, biểu đồ tuần, độ chính xác theo bộ, từ hay sai nhất
 - Đổi tên hiển thị, mục tiêu từ/ngày, giao diện sáng/tối
-- Nhắc học mỗi tối qua thông báo đẩy (Web Push), chỉ khi hôm đó chưa học
+- Nhắc học qua thông báo đẩy (Web Push) vào giờ tự chọn, chỉ khi hôm đó chưa học
 - PWA: offline, cài lên màn hình chính
 
 ## Công nghệ
@@ -35,7 +35,7 @@ app/
 ├── dang-nhap/        # Đăng nhập / đăng ký
 ├── nhap-ma/          # Nhập mã xác nhận
 ├── auth/             # Callback Google và link xác nhận email
-├── api/cron/         # Vercel Cron gọi mỗi tối để gửi nhắc học
+├── api/cron/         # pg_cron của Supabase gọi mỗi giờ để gửi nhắc học
 ├── _actions/         # Server Actions dùng chung
 └── _components/      # Component dùng chung
 
@@ -60,6 +60,7 @@ Trước đó, trong Supabase SQL Editor chạy lần lượt:
 3. `supabase/schema-03-tien-do.sql`
 4. `supabase/schema-04-ten-tu-google.sql`
 5. `supabase/schema-05-nhac-hoc.sql`
+6. `supabase/schema-06-gio-nhac.sql` (đọc chú thích đầu file: cần nạp 2 secret vào Vault trước)
 
 Và thêm vào **Authentication → URL Configuration → Redirect URLs**:
 
@@ -70,4 +71,4 @@ http://localhost:3000/auth/callback
 
 Đăng nhập Google: tạo OAuth client trên Google Cloud với redirect URI `https://<project-ref>.supabase.co/auth/v1/callback`, rồi dán Client ID + Secret vào **Authentication → Sign In / Providers → Google**.
 
-Nhắc học (tuỳ chọn): chạy `npx web-push generate-vapid-keys`, điền các biến `VAPID_*`, `CRON_SECRET`, `SUPABASE_SERVICE_ROLE_KEY` theo `.env.local.example` — trên Vercel cũng thêm y hệt. Lịch gửi nằm trong `vercel.json`.
+Nhắc học (tuỳ chọn): chạy `npx web-push generate-vapid-keys`, điền các biến `VAPID_*`, `CRON_SECRET`, `SUPABASE_SERVICE_ROLE_KEY` theo `.env.local.example` — trên Vercel cũng thêm y hệt. Lịch gửi do `pg_cron` trong Supabase đảm nhiệm (schema-06).

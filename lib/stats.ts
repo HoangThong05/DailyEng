@@ -87,3 +87,122 @@ export async function getStudyStats(): Promise<StudyStats> {
     },
   };
 }
+/** Tối đa bao nhiêu từ hiện ở mục "hay sai nhất". */
+const HARDEST_LIMIT = 8;
+
+export type HardWord = {
+  wordId: string;
+  term: string;
+  meaning: string;
+  deckName: string;
+  wrong: number;
+  reviews: number;
+  box: number;
+};
+
+export type DeckAccuracy = {
+  deckId: string;
+  name: string;
+  wordsSeen: number;
+  wordsTotal: number;
+  reviews: number;
+  accuracy: number | null;
+};
+
+export type DetailedStats = {
+  hardestWords: HardWord[];
+  decks: DeckAccuracy[];
+  /** Số từ ở từng hộp 1..MAX_BOX; index 0 là hộp 1. */
+  boxes: number[];
+};
+
+/**
+ * Thống kê chi tiết cho trang Tiến độ.
+ *
+ * Dựa trên word_progress (mỗi từ một hàng, đã cộng dồn số lượt) thay vì quét
+ * review_log — rẻ hơn nhiều và đủ cho mọi con số ở đây.
+ */
+export async function getDetailedStats(): Promise<DetailedStats> {
+  const supabase = await createClient();
+
+  const [progressResult, wordsResult, decksResult] = await Promise.all([
+    supabase
+      .from("word_progress")
+      .select("word_id, box, review_count, correct_count"),
+    supabase.from("words").select("id, deck_id, term, meaning_vi"),
+    supabase.from("decks").select("id, name, owner_id, position").order("position"),
+  ]);
+
+  const progress = progressResult.data ?? [];
+  const words = wordsResult.data ?? [];
+  const decks = decksResult.data ?? [];
+
+  const wordById = new Map(words.map((word) => [word.id, word]));
+  const deckById = new Map(decks.map((deck) => [deck.id, deck]));
+
+  const boxes = Array.from({ length: MAX_BOX }, () => 0);
+  const perDeck = new Map<
+    string,
+    { seen: number; reviews: number; correct: number }
+  >();
+  const hard: HardWord[] = [];
+
+  for (const row of progress) {
+    const word = wordById.get(row.word_id);
+    if (!word) continue; // Từ đã bị xoá khỏi bộ sau khi học.
+
+    boxes[row.box - 1] += 1;
+
+    const deckEntry = perDeck.get(word.deck_id) ?? {
+      seen: 0,
+      reviews: 0,
+      correct: 0,
+    };
+    deckEntry.seen += 1;
+    deckEntry.reviews += row.review_count;
+    deckEntry.correct += row.correct_count;
+    perDeck.set(word.deck_id, deckEntry);
+
+    const wrong = row.review_count - row.correct_count;
+    if (wrong > 0) {
+      hard.push({
+        wordId: word.id,
+        term: word.term,
+        meaning: word.meaning_vi,
+        deckName: deckById.get(word.deck_id)?.name ?? "",
+        wrong,
+        reviews: row.review_count,
+        box: row.box,
+      });
+    }
+  }
+
+  // Sai nhiều lên trước; bằng nhau thì ưu tiên từ có tỉ lệ sai cao hơn.
+  hard.sort(
+    (a, b) => b.wrong - a.wrong || b.wrong / b.reviews - a.wrong / a.reviews,
+  );
+
+  const totalByDeck = new Map<string, number>();
+  for (const word of words) {
+    totalByDeck.set(word.deck_id, (totalByDeck.get(word.deck_id) ?? 0) + 1);
+  }
+
+  const deckStats: DeckAccuracy[] = decks
+    .filter((deck) => perDeck.has(deck.id))
+    .map((deck) => {
+      const entry = perDeck.get(deck.id)!;
+      return {
+        deckId: deck.id,
+        name: deck.name,
+        wordsSeen: entry.seen,
+        wordsTotal: totalByDeck.get(deck.id) ?? 0,
+        reviews: entry.reviews,
+        accuracy:
+          entry.reviews > 0
+            ? Math.round((entry.correct / entry.reviews) * 100)
+            : null,
+      };
+    });
+
+  return { hardestWords: hard.slice(0, HARDEST_LIMIT), decks: deckStats, boxes };
+}

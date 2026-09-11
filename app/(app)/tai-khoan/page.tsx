@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { signOut } from "@/app/_actions/auth";
 import { PageHeader } from "@/app/_components/page-header";
+import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { ProfileForm } from "./profile-form";
 import { ReminderToggle } from "./reminder-toggle";
@@ -14,7 +15,7 @@ export default async function TaiKhoanPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("display_name, daily_goal")
+    .select("display_name, daily_goal, reminder_hour")
     .eq("id", user?.id ?? "")
     .maybeSingle();
 
@@ -41,6 +42,7 @@ export default async function TaiKhoanPage() {
           </h2>
           <ReminderToggle
             vapidPublicKey={process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? null}
+            reminderHour={profile?.reminder_hour ?? DEFAULT_REMINDER_HOUR}
           />
         </section>
 

@@ -1,6 +1,8 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { sendPush } from "@/lib/push";
+import { REMINDER_HOURS } from "@/lib/reminder";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 /** Dữ liệu trình duyệt trả về từ pushManager.subscribe(), đã toJSON(). */
@@ -78,5 +80,27 @@ export async function sendTestPush(
   if (result !== "sent") {
     return { ok: false, error: "Không gửi được. Thử tắt rồi bật lại nhắc học." };
   }
+  return { ok: true };
+}
+
+export async function updateReminderHour(
+  hour: number,
+): Promise<PushActionResult> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "Phiên đăng nhập đã hết hạn." };
+
+  if (!REMINDER_HOURS.includes(hour as (typeof REMINDER_HOURS)[number])) {
+    return { ok: false, error: "Giờ nhắc không hợp lệ." };
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("profiles")
+    .update({ reminder_hour: hour })
+    .eq("id", user.id);
+
+  if (error) return { ok: false, error: error.message };
+
+  revalidatePath("/tai-khoan");
   return { ok: true };
 }

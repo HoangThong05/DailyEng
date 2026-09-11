@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CloseIcon } from "@/app/_components/icons";
+import { ChevronRightIcon, CloseIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { getOwnDeckWithWords } from "@/lib/decks";
 import { deleteWord } from "./actions";
@@ -37,7 +38,7 @@ export default async function SuaBoTuPage({
             id="danh-sach"
             className="text-muted mb-3 px-1 text-sm font-medium"
           >
-            Từ trong bộ
+            Từ trong bộ · bấm vào từ để sửa
           </h2>
 
           {words.length === 0 ? (
@@ -45,18 +46,21 @@ export default async function SuaBoTuPage({
           ) : (
             <ul className="border-border bg-card divide-border divide-y rounded-2xl border">
               {words.map((word) => (
-                <li
-                  key={word.id}
-                  className="flex items-center gap-3 py-2 pr-1 pl-4"
-                >
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate font-medium">
-                      {word.term}
+                <li key={word.id} className="flex items-center gap-1 pr-1">
+                  <Link
+                    href={`/hoc/${deck.id}/sua/${word.id}`}
+                    className="flex min-h-14 min-w-0 flex-1 items-center gap-2 py-2 pl-4"
+                  >
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate font-medium">
+                        {word.term}
+                      </span>
+                      <span className="text-muted block truncate text-sm">
+                        {word.meaning_vi}
+                      </span>
                     </span>
-                    <span className="text-muted block truncate text-sm">
-                      {word.meaning_vi}
-                    </span>
-                  </span>
+                    <ChevronRightIcon className="text-muted h-4 w-4 shrink-0" />
+                  </Link>
                   <form action={deleteWord.bind(null, deck.id, word.id)}>
                     <button
                       type="submit"

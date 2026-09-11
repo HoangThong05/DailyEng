@@ -1,15 +1,17 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { addDays, todayInAppZone } from "@/lib/leitner";
+import { addDays, hourInAppZone, todayInAppZone } from "@/lib/leitner";
 import { isPushConfigured, sendPush, type PushPayload } from "@/lib/push";
 import { computeStreak } from "@/lib/streak";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 /**
- * Cron nhắc học, Vercel gọi mỗi tối theo lịch trong vercel.json.
+ * Cron nhắc học, pg_cron trên Supabase gọi mỗi giờ (xem schema-06-gio-nhac.sql).
  *
- * Gửi cho những thiết bị đã bật nhắc mà chủ nhân hôm nay chưa học từ nào.
- * Không có ai đăng nhập ở đây nên phải dùng service role để đọc subscription
- * của mọi người — vì thế route được khoá bằng CRON_SECRET.
+ * Gửi cho những thiết bị đã bật nhắc mà chủ nhân chọn đúng giờ này và hôm
+ * nay chưa học từ nào. Không có ai đăng nhập ở đây nên phải dùng service role
+ * để đọc dữ liệu của mọi người — vì thế route được khoá bằng CRON_SECRET.
+ *
+ * Thêm ?hour=20 để giả lập một giờ khác khi chạy thử bằng tay.
  */
 
 /** Chỉ cần đủ dài để xác định chuỗi hiện tại, không cần cả lịch sử. */
@@ -48,16 +50,37 @@ export async function GET(request: NextRequest) {
   }
 
   const today = todayInAppZone();
+  const override = Number(request.nextUrl.searchParams.get("hour"));
+  const hour =
+    Number.isInteger(override) && override >= 0 && override <= 23
+      ? override
+      : hourInAppZone();
+
+  const { data: profiles, error: profilesError } = await supabase
+    .from("profiles")
+    .select("id")
+    .eq("reminder_hour", hour);
+
+  if (profilesError) {
+    return NextResponse.json({ error: profilesError.message }, { status: 500 });
+  }
+  if (!profiles?.length) {
+    return NextResponse.json({ hour, sent: 0, skipped: 0, removed: 0 });
+  }
 
   const { data: subscriptions, error } = await supabase
     .from("push_subscriptions")
-    .select("endpoint, user_id, p256dh, auth");
+    .select("endpoint, user_id, p256dh, auth")
+    .in(
+      "user_id",
+      profiles.map((profile) => profile.id),
+    );
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
   if (!subscriptions?.length) {
-    return NextResponse.json({ sent: 0, skipped: 0, removed: 0 });
+    return NextResponse.json({ hour, sent: 0, skipped: 0, removed: 0 });
   }
 
   const userIds = [...new Set(subscriptions.map((row) => row.user_id))];
@@ -100,5 +123,5 @@ export async function GET(request: NextRequest) {
     await supabase.from("push_subscriptions").delete().in("endpoint", gone);
   }
 
-  return NextResponse.json({ sent, skipped, removed: gone.length });
+  return NextResponse.json({ hour, sent, skipped, removed: gone.length });
 }
