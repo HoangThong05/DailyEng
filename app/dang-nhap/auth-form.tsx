@@ -1,8 +1,8 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { EyeIcon, EyeOffIcon } from "@/app/_components/icons";
-import { authenticate, type AuthState } from "./actions";
+import { EyeIcon, EyeOffIcon, GoogleIcon } from "@/app/_components/icons";
+import { authenticate, signInWithGoogle, type AuthState } from "./actions";
 
 const EMPTY: AuthState = {};
 
@@ -27,6 +27,22 @@ export function AuthForm({ next }: { next: string }) {
 
   return (
     <div className="space-y-5">
+      <form action={signInWithGoogle}>
+        <button
+          type="submit"
+          className="border-border bg-card flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border text-base font-semibold transition-transform duration-100 active:scale-[0.98]"
+        >
+          <GoogleIcon className="h-5 w-5" />
+          Tiếp tục với Google
+        </button>
+      </form>
+
+      <div className="flex items-center gap-3">
+        <span className="bg-border h-px flex-1" />
+        <span className="text-muted text-xs">hoặc dùng email</span>
+        <span className="bg-border h-px flex-1" />
+      </div>
+
       {/* Chuyển giữa Đăng nhập / Đăng ký */}
       <div
         role="tablist"

@@ -4,13 +4,20 @@ import { AuthForm } from "./auth-form";
 
 export const metadata: Metadata = { title: "Đăng nhập" };
 
+/** Thông báo ứng với tham số ?loi= mà các luồng đăng nhập đá về đây. */
+const ERROR_MESSAGES: Record<string, string | undefined> = {
+  "xac-nhan":
+    "Link xác nhận không hợp lệ hoặc đã hết hạn. Đăng nhập lại để nhận mã mới.",
+  google: "Đăng nhập bằng Google không thành công. Thử lại nhé.",
+};
+
 export default async function DangNhapPage({
   searchParams,
 }: PageProps<"/dang-nhap">) {
   const params = await searchParams;
   const raw = params[REDIRECT_PARAM];
   const next = typeof raw === "string" ? raw : "/";
-  const confirmFailed = params.loi === "xac-nhan";
+  const errorMessage = ERROR_MESSAGES[String(params.loi ?? "")];
 
   return (
     <main className="pt-safe pb-safe flex flex-1 flex-col justify-center px-6 py-10">
@@ -27,13 +34,12 @@ export default async function DangNhapPage({
         </p>
       </div>
 
-      {confirmFailed ? (
+      {errorMessage ? (
         <p
           role="alert"
           className="mb-4 rounded-xl bg-red-500/10 px-4 py-3 text-sm font-medium text-red-500"
         >
-          Link xác nhận không hợp lệ hoặc đã hết hạn. Đăng nhập lại để nhận link
-          mới.
+          {errorMessage}
         </p>
       ) : null}
 

@@ -1,8 +1,9 @@
 "use server";
 
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import type { AuthError } from "@supabase/supabase-js";
-import { VERIFY_PATH } from "@/lib/supabase/proxy";
+import { LOGIN_PATH, VERIFY_PATH } from "@/lib/supabase/proxy";
 import { createClient } from "@/lib/supabase/server";
 
 export type AuthState = {
@@ -13,6 +14,20 @@ export type AuthState = {
 function safeRedirect(target: string) {
   if (!target.startsWith("/") || target.startsWith("//")) return "/";
   return target;
+}
+
+/**
+ * Địa chỉ gốc của bản đang chạy, để Google biết quay về đâu.
+ * Lấy từ header thay vì hằng số nên localhost và bản deploy đều đúng.
+ */
+async function siteOrigin() {
+  const headerList = await headers();
+  const origin = headerList.get("origin");
+  if (origin) return origin;
+
+  const host = headerList.get("x-forwarded-host") ?? headerList.get("host");
+  const proto = headerList.get("x-forwarded-proto") ?? "https";
+  return host ? `${proto}://${host}` : "";
 }
 
 function verifyUrl(email: string) {
@@ -34,6 +49,26 @@ function toVietnamese(error: AuthError) {
     default:
       return error.message;
   }
+}
+
+/**
+ * Bắt đầu đăng nhập bằng Google.
+ *
+ * Gọi ở server nên signInWithOAuth không tự chuyển trang mà trả về URL của
+ * Google — ta tự redirect. Chuỗi bí mật PKCE được ghi vào cookie ngay tại đây,
+ * nhờ vậy /auth/callback đọc lại được để đổi lấy phiên đăng nhập.
+ */
+export async function signInWithGoogle() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: `${await siteOrigin()}/auth/callback` },
+  });
+
+  if (error || !data.url) redirect(`${LOGIN_PATH}?loi=google`);
+
+  redirect(data.url);
 }
 
 export async function authenticate(
