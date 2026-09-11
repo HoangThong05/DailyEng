@@ -41,3 +41,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# huong dan cho AI coding agent, next dev tu sinh lai
+AGENTS.md
+CLAUDE.md
