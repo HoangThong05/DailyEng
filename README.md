@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📘 DailyEng
 
-## Getting Started
+Ứng dụng học tiếng Anh mỗi ngày: flashcard từ vựng, quiz trắc nghiệm, luyện phát âm và theo dõi tiến độ. Chạy như PWA, cài được lên điện thoại.
 
-First, run the development server:
+🌐 **Live demo:** https://daily-eng-omega.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tính năng
+
+- Đăng nhập bằng email/mật khẩu (xác nhận bằng mã 6 số) hoặc Google
+- Flashcard theo bộ thẻ có sẵn hoặc tự tạo, ôn tập giãn cách
+- Quiz trắc nghiệm 4 đáp án, chấm điểm, xem lại từ sai
+- Luyện phát âm: nghe mẫu, ghi âm nghe lại, chấm điểm qua Web Speech API
+- Chuỗi ngày học, biểu đồ tuần, thống kê
+- Đổi tên hiển thị, mục tiêu từ/ngày, giao diện sáng/tối
+- PWA: offline, cài lên màn hình chính
+
+## Công nghệ
+
+- Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4
+- Supabase: Postgres, Row Level Security, Auth
+- Web Speech API
+- Deploy trên Vercel
+
+## Cấu trúc thư mục
+
+```
+app/
+├── (app)/            # Các trang cần đăng nhập
+│   ├── hoc/          #   Flashcard
+│   ├── quiz/         #   Quiz trắc nghiệm
+│   ├── phat-am/      #   Luyện phát âm
+│   ├── tien-do/      #   Chuỗi ngày + thống kê
+│   └── tai-khoan/    #   Hồ sơ, cài đặt
+├── dang-nhap/        # Đăng nhập / đăng ký
+├── nhap-ma/          # Nhập mã xác nhận
+├── auth/             # Callback Google và link xác nhận email
+├── _actions/         # Server Actions dùng chung
+└── _components/      # Component dùng chung
+
+lib/                  # Supabase client, thuật toán ôn tập, quiz, phát âm, thống kê
+supabase/             # Schema SQL
+proxy.ts              # Làm mới session, chặn chưa đăng nhập
+public/               # Icon PWA, service worker
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Chạy local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+cp .env.local.example .env.local   # điền URL và publishable key của Supabase
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Trước đó, trong Supabase SQL Editor chạy lần lượt:
 
-## Learn More
+1. `supabase/schema.sql`
+2. `supabase/schema-02-flashcard.sql`
+3. `supabase/schema-03-tien-do.sql`
+4. `supabase/schema-04-ten-tu-google.sql`
 
-To learn more about Next.js, take a look at the following resources:
+Và thêm vào **Authentication → URL Configuration → Redirect URLs**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+http://localhost:3000/auth/xac-nhan
+http://localhost:3000/auth/callback
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Đăng nhập Google: tạo OAuth client trên Google Cloud với redirect URI `https://<project-ref>.supabase.co/auth/v1/callback`, rồi dán Client ID + Secret vào **Authentication → Sign In / Providers → Google**.
