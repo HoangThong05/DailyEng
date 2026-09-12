@@ -6,7 +6,7 @@
 /** Số từ mỗi lượt Nghe & gõ. */
 export const DICTATION_SIZE = 10;
 /** Số từ mỗi ván Mưa từ vựng. */
-export const RAIN_SIZE = 15;
+export const RAIN_SIZE = 25;
 /** Số lần để từ rơi chạm đáy trước khi thua. */
 export const RAIN_LIVES = 3;
 
@@ -23,12 +23,12 @@ export type DictationWord = GameWord;
 
 /** Giây để một giọt rơi hết màn; nhanh dần theo số từ đã rơi. */
 export function fallDuration(index: number) {
-  return Math.max(4.5, 9 - index * 0.3);
+  return Math.max(6.5, 12 - index * 0.22);
 }
 
 /** Mili giây chờ trước khi thả giọt tiếp theo. */
 export function spawnDelay(index: number) {
-  return Math.max(1400, 2600 - index * 90);
+  return Math.max(1900, 3200 - index * 55);
 }
 
 /**
