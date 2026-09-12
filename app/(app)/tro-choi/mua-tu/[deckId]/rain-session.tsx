@@ -161,6 +161,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
   const [bullets, setBullets] = useState<Bullet[]>([]);
   const [bursts, setBursts] = useState<Burst[]>([]);
   const [sound, setSound] = useState(true);
+  const [focused, setFocused] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const fieldRef = useRef<HTMLDivElement>(null);
@@ -477,10 +478,30 @@ export function RainSession({ words }: { words: GameWord[] }) {
       <div
         ref={fieldRef}
         aria-live="off"
-        className={`rain-field relative h-[52dvh] min-h-64 overflow-hidden rounded-2xl border border-slate-800 md:h-[62vh] ${
-          shake ? "rain-shake" : ""
-        }`}
+        onClick={() => inputRef.current?.focus()}
+        className={`rain-field relative h-[52dvh] min-h-64 overflow-hidden rounded-2xl border md:h-[62vh] ${
+          focused ? "border-slate-700" : "border-yellow-500/60"
+        } ${shake ? "rain-shake" : ""}`}
       >
+        {/*
+         * Ô gõ vô hình: vẫn nhận bàn phím (kể cả bàn phím ảo trên điện thoại)
+         * nhưng không chiếm chỗ — chữ gõ được hiện thẳng trên giọt đang ngắm.
+         */}
+        <input
+          ref={inputRef}
+          type="text"
+          value={input}
+          onChange={(event) => handleInput(event.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          autoCapitalize="none"
+          autoCorrect="off"
+          autoComplete="off"
+          spellCheck={false}
+          enterKeyHint="go"
+          aria-label="Từ tiếng Anh"
+          className="absolute top-0 left-0 h-px w-px opacity-0"
+        />
         {drops.map((drop) => {
           const isTarget = aimed?.drop.id === drop.id;
           const matched = isTarget ? aimed.matched : 0;
@@ -589,20 +610,11 @@ export function RainSession({ words }: { words: GameWord[] }) {
         <Jet planeRef={planeRef} />
       </div>
 
-      <input
-        ref={inputRef}
-        type="text"
-        value={input}
-        onChange={(event) => handleInput(event.target.value)}
-        placeholder={mode === "go" ? "Gõ từ đang rơi…" : "Gõ từ tiếng Anh…"}
-        autoCapitalize="none"
-        autoCorrect="off"
-        autoComplete="off"
-        spellCheck={false}
-        enterKeyHint="go"
-        aria-label="Từ tiếng Anh"
-        className="border-border bg-card focus:border-brand mx-auto block min-h-14 w-full max-w-md rounded-xl border px-4 text-center font-mono text-xl font-semibold outline-none"
-      />
+      <p className="text-muted text-center text-xs">
+        {focused
+          ? "Chữ bạn gõ hiện ngay trên giọt đang ngắm."
+          : "Chạm vào sân để gõ."}
+      </p>
     </div>
   );
 }

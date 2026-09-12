@@ -45,71 +45,123 @@ export function saveSoundPreference(enabled: boolean) {
   }
 }
 
-/** Một nốt oscillator trượt tần số rồi tắt dần. */
-function tone(
-  type: OscillatorType,
-  fromHz: number,
-  toHz: number,
-  seconds: number,
-  volume: number,
-) {
+type ToneOptions = {
+  type: OscillatorType;
+  fromHz: number;
+  toHz?: number;
+  seconds: number;
+  volume: number;
+  /** Trễ trước khi phát, để xếp nhiều nốt nối tiếp nhau. */
+  delay?: number;
+  /** Lọc bớt tần số cao cho tiếng dịu, không chói. */
+  lowpassHz?: number;
+};
+
+/**
+ * Một nốt: âm lượng lên nhanh (vài ms, tránh tiếng "tách" lúc bắt đầu) rồi
+ * tắt dần theo hàm mũ, tần số trượt từ fromHz tới toHz.
+ */
+function tone({
+  type,
+  fromHz,
+  toHz = fromHz,
+  seconds,
+  volume,
+  delay = 0,
+  lowpassHz,
+}: ToneOptions) {
   const ctx = getContext();
   if (!ctx || ctx.state !== "running") return;
 
-  const now = ctx.currentTime;
+  const start = ctx.currentTime + delay;
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
 
   osc.type = type;
-  osc.frequency.setValueAtTime(fromHz, now);
-  osc.frequency.exponentialRampToValueAtTime(toHz, now + seconds);
+  osc.frequency.setValueAtTime(fromHz, start);
+  osc.frequency.exponentialRampToValueAtTime(toHz, start + seconds);
 
-  gain.gain.setValueAtTime(volume, now);
-  gain.gain.exponentialRampToValueAtTime(0.001, now + seconds);
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.linearRampToValueAtTime(volume, start + 0.008);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + seconds);
 
-  osc.connect(gain).connect(ctx.destination);
-  osc.start(now);
-  osc.stop(now + seconds);
+  let chain: AudioNode = osc;
+  if (lowpassHz) {
+    const filter = ctx.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.value = lowpassHz;
+    chain = chain.connect(filter);
+  }
+  chain.connect(gain).connect(ctx.destination);
+
+  osc.start(start);
+  osc.stop(start + seconds + 0.02);
 }
 
-/** Tiếng "pew" ngắn khi bắn một viên. */
+/** Tiếng "piu" mềm khi bắn một viên: sóng tam giác trượt xuống, đã lọc. */
 export function playShot() {
-  tone("square", 900, 300, 0.08, 0.12);
+  tone({
+    type: "triangle",
+    fromHz: 1100,
+    toHz: 420,
+    seconds: 0.09,
+    volume: 0.07,
+    lowpassHz: 2400,
+  });
 }
 
-/** Tiếng nổ: nhiễu trắng qua lọc thấp, tắt dần. */
+/**
+ * Hạ mục tiêu: một cú "bụp" trầm mềm + hai nốt chuông đi lên (E5 → A5)
+ * cho cảm giác được thưởng, thay vì tiếng nổ nhiễu thô.
+ */
 export function playExplosion() {
   const ctx = getContext();
   if (!ctx || ctx.state !== "running") return;
 
-  const seconds = 0.35;
-  const buffer = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * seconds), ctx.sampleRate);
+  // Bụp: nhiễu ngắn lọc rất thấp, nghe như tiếng trống mềm.
+  const seconds = 0.18;
+  const buffer = ctx.createBuffer(
+    1,
+    Math.ceil(ctx.sampleRate * seconds),
+    ctx.sampleRate,
+  );
   const data = buffer.getChannelData(0);
   for (let i = 0; i < data.length; i++) {
-    // Nhiễu giảm dần theo thời gian để tiếng nổ có "đuôi".
-    data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+    data[i] = (Math.random() * 2 - 1) * (1 - i / data.length) ** 2;
   }
-
   const source = ctx.createBufferSource();
   source.buffer = buffer;
-
   const filter = ctx.createBiquadFilter();
   filter.type = "lowpass";
-  filter.frequency.setValueAtTime(1200, ctx.currentTime);
-  filter.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + seconds);
-
+  filter.frequency.setValueAtTime(500, ctx.currentTime);
+  filter.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + seconds);
   const gain = ctx.createGain();
-  gain.gain.setValueAtTime(0.35, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + seconds);
-
+  gain.gain.setValueAtTime(0.18, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + seconds);
   source.connect(filter).connect(gain).connect(ctx.destination);
   source.start();
 
-  // Thêm một nốt trầm cho tiếng nổ có lực.
-  tone("sine", 160, 40, 0.3, 0.25);
+  tone({ type: "sine", fromHz: 150, toHz: 60, seconds: 0.2, volume: 0.16 });
+
+  // Chuông thưởng.
+  tone({ type: "triangle", fromHz: 659, seconds: 0.16, volume: 0.07, lowpassHz: 3000 });
+  tone({
+    type: "triangle",
+    fromHz: 880,
+    seconds: 0.28,
+    volume: 0.07,
+    delay: 0.09,
+    lowpassHz: 3000,
+  });
 }
 
-/** Tiếng trầm rè khi để giọt chạm đáy. */
+/** Để giọt chạm đáy: nốt trầm mềm đi xuống, không rè. */
 export function playMiss() {
-  tone("sawtooth", 220, 70, 0.35, 0.15);
+  tone({
+    type: "sine",
+    fromHz: 320,
+    toHz: 110,
+    seconds: 0.35,
+    volume: 0.12,
+  });
 }
