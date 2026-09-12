@@ -9,7 +9,7 @@
  *  - Push: hiện thông báo nhắc học, bấm vào thì mở app
  * Tăng VERSION mỗi lần đổi logic để cache cũ bị dọn.
  */
-const VERSION = "dailyeng-v3";
+const VERSION = "dailyeng-v4";
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 const OFFLINE_URL = "/offline";
@@ -83,7 +83,9 @@ async function staleWhileRevalidate(request) {
       }
       return response;
     })
-    .catch(() => cached);
+    // Mất mạng mà cũng không có bản cache thì phải trả về một Response lỗi
+    // thật sự; trả undefined sẽ làm respondWith ném TypeError.
+    .catch(() => cached ?? Response.error());
 
   return cached || network;
 }

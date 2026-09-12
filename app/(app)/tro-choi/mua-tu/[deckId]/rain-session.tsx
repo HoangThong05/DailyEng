@@ -298,21 +298,38 @@ export function RainSession({ words }: { words: GameWord[] }) {
     if (sound) (explode ? playExplosion : playShot)();
   }
 
+  /**
+   * Lọc chuỗi trong ô gõ: chỉ giữ những chữ mà vẫn còn giọt sống nào bắt đầu
+   * bằng chuỗi đó. Chữ sai bị bỏ qua chứ không vào ô, nên không phải xoá đi
+   * gõ lại; dấu do bộ gõ tiếng Việt chèn vào ("á") cũng bị loại.
+   */
+  function acceptedPrefix(value: string, alive: Drop[]) {
+    let next = "";
+    for (const char of value) {
+      const candidate = next + char;
+      const ok = alive.some(
+        (drop) => matchedPrefix(drop.word.term, candidate) === candidate.length,
+      );
+      if (ok) next = candidate;
+    }
+    return next;
+  }
+
   function handleInput(value: string) {
-    setInput(value);
     if (phase !== "playing") return;
 
     const alive = drops.filter((drop) => !drop.dead);
+    const next = acceptedPrefix(value, alive);
+    setInput(next);
+    if (next === input) return;
 
     // Khớp giọt nào là hạ ngay, không cần Enter.
-    const target = alive.find((drop) => isCorrectAnswer(value, drop.word.term));
+    const target = alive.find((drop) => isCorrectAnswer(next, drop.word.term));
     if (!target) {
       // Chế độ gõ từ: mỗi chữ gõ đúng là một viên đạn bay về giọt đang ngắm.
       // Chế độ dịch nghĩa thì không, kẻo đạn bay lộ mất đáp án.
-      if (mode === "go" && value) {
-        const aimed = alive.find(
-          (drop) => matchedPrefix(drop.word.term, value) === value.length,
-        );
+      if (mode === "go" && next.length > input.length) {
+        const aimed = findAimed(alive, next)?.drop;
         if (aimed) shoot(aimed, false);
       }
       return;
@@ -365,8 +382,9 @@ export function RainSession({ words }: { words: GameWord[] }) {
           </span>
           <p className="mt-4 font-semibold">Chọn cách chơi</p>
           <p className="text-muted mt-2 text-sm leading-relaxed">
-            Gõ đúng từ là bắn tan giọt, không cần Enter. Để {RAIN_LIVES} giọt
-            chạm vạch đỏ là thua. Càng về sau rơi càng nhanh.
+            Gõ đúng từ là bắn tan giọt, không cần Enter; chữ gõ sai tự bị bỏ
+            qua. Để {RAIN_LIVES} giọt chạm vạch đỏ là thua. Nhớ tắt bộ gõ tiếng
+            Việt (Unikey) khi chơi.
           </p>
         </div>
 
