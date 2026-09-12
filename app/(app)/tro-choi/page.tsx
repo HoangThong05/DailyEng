@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { ActionCard } from "@/app/_components/action-card";
-import {
-  CloudRainIcon,
-  GamepadIcon,
-  MicIcon,
-  QuizIcon,
-  SpeakerIcon,
-} from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
+import { GameCard } from "./game-card";
+import { GAMES } from "./games";
 
 export const metadata: Metadata = { title: "Trò chơi" };
 
@@ -28,37 +22,17 @@ export default function TroChoiPage() {
         </div>
       </div>
 
-      <div className="stagger grid gap-3 px-5 md:grid-cols-2">
-        <ActionCard
-          href="/tro-choi/ghep-cap"
-          title="Ghép cặp"
-          description="Nối từ với nghĩa, đua với đồng hồ"
-          icon={<GamepadIcon className="h-5 w-5" />}
-        />
-        <ActionCard
-          href="/tro-choi/nghe-go"
-          title="Nghe & gõ"
-          description="Nghe máy đọc, gõ đúng chính tả"
-          icon={<SpeakerIcon className="h-5 w-5" />}
-        />
-        <ActionCard
-          href="/tro-choi/mua-tu"
-          title="Mưa từ vựng"
-          description="Nghĩa rơi xuống, gõ từ để bắn"
-          icon={<CloudRainIcon className="h-5 w-5" />}
-        />
-        <ActionCard
-          href="/quiz"
-          title="Quiz trắc nghiệm"
-          description="Chọn nghĩa đúng trong 4 đáp án"
-          icon={<QuizIcon className="h-5 w-5" />}
-        />
-        <ActionCard
-          href="/phat-am"
-          title="Luyện phát âm"
-          description="Nghe mẫu, nói theo, chấm điểm"
-          icon={<MicIcon className="h-5 w-5" />}
-        />
+      <div className="flex items-center gap-2 px-6 pb-3">
+        <h2 className="font-semibold">Game từ vựng</h2>
+        <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
+          {GAMES.length}
+        </span>
+      </div>
+
+      <div className="stagger grid gap-4 px-5 pb-4 md:grid-cols-2 lg:grid-cols-3">
+        {GAMES.map((game) => (
+          <GameCard key={game.slug} game={game} />
+        ))}
       </div>
     </>
   );
