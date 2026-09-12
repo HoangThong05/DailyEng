@@ -7,6 +7,7 @@ import {
   QuizIcon,
   SpeakerIcon,
 } from "@/app/_components/icons";
+import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
 
 export const metadata: Metadata = { title: "Trò chơi" };
@@ -17,7 +18,17 @@ export default function TroChoiPage() {
     <>
       <PageHeader title="Trò chơi" subtitle="Chơi 5 phút, nhớ từ cả tuần" />
 
-      <div className="grid gap-3 px-5 pt-2 md:grid-cols-2">
+      <div className="px-5 pt-2 pb-4">
+        <div className="border-border bg-card flex items-center gap-4 rounded-2xl border p-4">
+          <Mascot variant="nghe" size={88} className="shrink-0 rounded-2xl" />
+          <p className="text-muted text-sm leading-relaxed">
+            Mỗi trò là một cách ôn khác nhau. Chơi xong, từ nào nhớ hay quên
+            đều được ghi lại và tính XP như khi học flashcard.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid gap-3 px-5 md:grid-cols-2">
         <ActionCard
           href="/tro-choi/ghep-cap"
           title="Ghép cặp"

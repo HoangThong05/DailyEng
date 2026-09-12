@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { Mascot, resultMascot } from "@/app/_components/mascot";
 import type { QuizQuestion } from "@/lib/quiz";
 import { xpForAnswers } from "@/lib/xp";
 
@@ -63,7 +64,11 @@ export function QuizSession({ deckId, questions }: Props) {
     return (
       <div className="px-5 py-10">
         <div className="flex flex-col items-center text-center">
-          <span className="bg-brand-soft text-brand flex h-20 w-20 items-center justify-center rounded-2xl text-2xl font-bold tabular-nums">
+          <Mascot
+            variant={resultMascot(correctCount, questions.length)}
+            size={128}
+          />
+          <span className="bg-brand-soft text-brand mt-2 flex h-14 w-20 items-center justify-center rounded-2xl text-2xl font-bold tabular-nums">
             {percent}%
           </span>
           <h2 className="mt-5 text-xl font-bold">

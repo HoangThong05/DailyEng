@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Mascot } from "./mascot";
 import { isTabActive, NAV_TABS } from "./nav-tabs";
 
 /** Sidebar bên trái cho màn hình từ md trở lên; điện thoại dùng BottomNav. */
@@ -18,9 +19,7 @@ export function SideNav() {
         className="flex items-center gap-3 px-5 pt-6 pb-4"
         aria-label="Về trang chủ"
       >
-        <span className="bg-brand flex h-9 w-9 items-center justify-center rounded-xl text-lg font-bold text-white">
-          D
-        </span>
+        <Mascot variant="tot-nghiep" size={40} className="shrink-0 rounded-xl" />
         <span className="text-lg font-bold tracking-tight">DailyEng</span>
       </Link>
 

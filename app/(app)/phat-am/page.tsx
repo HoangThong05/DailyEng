@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
 import { ChevronRightIcon, MicIcon } from "@/app/_components/icons";
+import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
 import { listDecks } from "@/lib/decks";
 
@@ -12,7 +13,11 @@ export default async function PhatAmPage() {
 
   return (
     <>
-      <PageHeader title="Luyện phát âm" subtitle="Nghe mẫu rồi nói theo" />
+      <PageHeader
+        title="Luyện phát âm"
+        subtitle="Nghe mẫu rồi nói theo"
+        trailing={<Mascot variant="noi" size={64} className="shrink-0" />}
+      />
 
       {decks.length === 0 ? (
         <EmptyState

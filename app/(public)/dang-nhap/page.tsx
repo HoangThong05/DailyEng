@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { REDIRECT_PARAM } from "@/lib/supabase/proxy";
+import { Mascot } from "@/app/_components/mascot";
 import { AuthForm } from "./auth-form";
 
 export const metadata: Metadata = { title: "Đăng nhập" };
@@ -22,12 +23,7 @@ export default async function DangNhapPage({
   return (
     <main className="pt-safe pb-safe flex flex-1 flex-col justify-center px-6 py-10">
       <div className="mb-8 flex flex-col items-center text-center">
-        <span
-          aria-hidden
-          className="flex h-16 w-16 items-center justify-center rounded-[1.125rem] bg-gradient-to-br from-blue-500 to-blue-700 text-3xl font-bold text-white"
-        >
-          D
-        </span>
+        <Mascot variant="chao" size={112} priority className="rounded-3xl" />
         <h1 className="mt-4 text-2xl font-bold tracking-tight">DailyEng</h1>
         <p className="text-muted mt-1 text-sm">
           Đăng nhập để tiến độ học được lưu lại

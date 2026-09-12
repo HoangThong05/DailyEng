@@ -7,6 +7,7 @@ import {
   QuizIcon,
 } from "@/app/_components/icons";
 import { InstallPrompt } from "@/app/_components/install-prompt";
+import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
 import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
@@ -35,9 +36,23 @@ export default async function Home() {
         title={`Chào ${name} 👋`}
         subtitle="Hôm nay học gì nào?"
         trailing={
-          <span className="border-border bg-card flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5">
-            <FlameIcon className="text-brand h-4 w-4" />
-            <span className="text-sm font-semibold">{streakDays}</span>
+          <span className="flex shrink-0 items-center gap-2">
+            <span className="border-border bg-card flex items-center gap-1.5 rounded-full border px-3 py-1.5">
+              <FlameIcon className="text-brand h-4 w-4" />
+              <span className="text-sm font-semibold">{streakDays}</span>
+            </span>
+            <Mascot
+              variant={
+                learnedToday >= dailyGoal
+                  ? "an-mung"
+                  : learnedToday === 0
+                    ? "ngu"
+                    : "chao"
+              }
+              size={52}
+              priority
+              className="rounded-xl"
+            />
           </span>
         }
       />

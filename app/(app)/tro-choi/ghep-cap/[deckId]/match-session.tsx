@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { buildMatchTiles, type MatchPair, type MatchTile } from "@/lib/match-game";
 import { xpForAnswers } from "@/lib/xp";
 
@@ -130,7 +131,12 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
     return (
       <div className="space-y-5 px-5 pt-2">
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
-          <p className="text-muted text-sm">Xong trong</p>
+          <Mascot
+            variant={resultMascot(clean, pairs.length)}
+            size={112}
+            className="mx-auto"
+          />
+          <p className="text-muted mt-2 text-sm">Xong trong</p>
           <p className="mt-1 text-5xl font-bold tabular-nums">
             {formatTime(elapsed)}
           </p>

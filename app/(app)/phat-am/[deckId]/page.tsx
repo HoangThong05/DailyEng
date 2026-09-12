@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EmptyState } from "@/app/_components/empty-state";
 import { MicIcon } from "@/app/_components/icons";
+import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
 import { getDeckWithWords } from "@/lib/decks";
 import { PronunciationSession } from "./pronunciation-session";
@@ -27,7 +28,11 @@ export default async function PhatAmDeckPage({
 
   return (
     <>
-      <PageHeader title={deck.name} subtitle={`${words.length} từ`} />
+      <PageHeader
+        title={deck.name}
+        subtitle={`${words.length} từ`}
+        trailing={<Mascot variant="noi" size={56} className="shrink-0" />}
+      />
 
       {words.length === 0 ? (
         <>

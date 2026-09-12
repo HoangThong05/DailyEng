@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Mascot } from "@/app/_components/mascot";
 import { useHydrated } from "@/app/_components/use-hydrated";
 import { formatHour, REMINDER_HOURS } from "@/lib/reminder";
 import {
@@ -207,11 +208,14 @@ export function ReminderToggle({ vapidPublicKey, reminderHour }: Props) {
   return (
     <div className={cardClass}>
       <div className="flex items-center justify-between gap-4">
-        <div className="min-w-0">
-          <p className="font-medium">Nhắc học mỗi ngày</p>
-          <p className="text-muted mt-0.5 text-sm">
-            Chỉ nhắc khi hôm đó bạn chưa học.
-          </p>
+        <div className="flex min-w-0 items-center gap-3">
+          <Mascot variant="ngu" size={56} className="shrink-0" />
+          <div className="min-w-0">
+            <p className="font-medium">Nhắc học mỗi ngày</p>
+            <p className="text-muted mt-0.5 text-sm">
+              Chỉ nhắc khi hôm đó bạn chưa học.
+            </p>
+          </div>
         </div>
 
         <button

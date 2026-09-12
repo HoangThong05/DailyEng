@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
 import { CloudRainIcon } from "@/app/_components/icons";
+import { Mascot } from "@/app/_components/mascot";
 import {
   fallDuration,
   isCorrectAnswer,
@@ -410,7 +411,12 @@ export function RainSession({ words }: { words: GameWord[] }) {
     return (
       <div className="mx-auto max-w-md space-y-5 px-5 pt-2">
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
-          <p className="text-muted text-sm">
+          <Mascot
+            variant={survived && hits.length >= misses.length ? "an-mung" : "buon"}
+            size={112}
+            className="mx-auto"
+          />
+          <p className="text-muted mt-2 text-sm">
             {survived ? "Hết mưa!" : "Ướt hết rồi…"}
           </p>
           <p className="mt-1 text-5xl font-bold tabular-nums">

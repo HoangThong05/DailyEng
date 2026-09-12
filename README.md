@@ -22,6 +22,8 @@
 - Chuỗi ngày học, biểu đồ tuần, phân bố hộp ôn, độ chính xác theo bộ, từ hay sai nhất
 - Nhắc học qua thông báo đẩy (Web Push) vào giờ tự chọn (07:00 / 12:00 / 20:00), chỉ khi hôm đó chưa học
 
+**Linh vật**: chú vịt vàng với 8 tư thế (tốt nghiệp, chào, nghe, học, ăn mừng, buồn, ngủ, nói) — làm icon app, đổi theo tiến độ trong ngày ở trang chủ, vui/buồn ở màn kết thúc mỗi phiên, ngủ trong thông báo nhắc học, cầm micro ở luyện phát âm.
+
 **Tài khoản & giao diện**
 - Đăng nhập bằng email/mật khẩu (xác nhận bằng mã 6 số) hoặc Google
 - Đổi tên hiển thị, mục tiêu từ/ngày, giao diện sáng/tối/theo máy
@@ -49,7 +51,7 @@ app/
 ├── auth/             # Callback Google và link xác nhận email
 ├── api/cron/         # pg_cron của Supabase gọi mỗi giờ để gửi nhắc học
 ├── _actions/         # Server Actions dùng chung (ghi lượt ôn…)
-└── _components/      # Icon, tab bar, sidebar, header…
+└── _components/      # Icon, linh vật (mascot.tsx), tab bar, sidebar, header…
 
 lib/
 ├── supabase/         # Client server / admin, làm mới session
@@ -62,9 +64,10 @@ lib/
 ├── push.ts, reminder.ts               # Web Push, giờ nhắc
 └── word-import.ts    # Tách văn bản dán vào thành danh sách từ
 
+scripts/              # render-icons.mjs: sinh bộ icon PNG/ICO từ ảnh linh vật
 supabase/             # Schema SQL, chạy theo thứ tự
 proxy.ts              # Middleware: làm mới session, chặn chưa đăng nhập
-public/               # Icon PWA, service worker (offline + nhận push)
+public/               # Icon PWA, ảnh linh vật (mascot/), service worker (offline + nhận push)
 ```
 
 ## Chạy local
@@ -113,3 +116,4 @@ Push lên GitHub, import vào Vercel, thêm biến môi trường ở **Settings
 | `npm run build` | Build production |
 | `npm run start` | Chạy bản đã build |
 | `npm run lint` | ESLint |
+| `node scripts/render-icons.mjs` | Sinh lại icon PWA/favicon từ `public/mascot/vit-tot-nghiep.png` (cần Python + Pillow) |

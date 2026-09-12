@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
-import { CardsIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { listDecks } from "@/lib/decks";
 import { DeckCard } from "./deck-card";
@@ -27,7 +26,7 @@ export default async function HocPage() {
 
       {decks.length === 0 ? (
         <EmptyState
-          icon={<CardsIcon className="h-8 w-8" />}
+          mascot="hoc"
           title="Chưa có bộ thẻ nào"
           description="Chạy file supabase/schema-02-flashcard.sql trong SQL Editor để nạp các bộ từ có sẵn."
         />

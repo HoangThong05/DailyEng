@@ -9,7 +9,7 @@
  *  - Push: hiện thông báo nhắc học, bấm vào thì mở app
  * Tăng VERSION mỗi lần đổi logic để cache cũ bị dọn.
  */
-const VERSION = "dailyeng-v4";
+const VERSION = "dailyeng-v7";
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 const OFFLINE_URL = "/offline";
@@ -19,6 +19,7 @@ const PRECACHE_URLS = [
   "/manifest.webmanifest",
   "/icon-192.png",
   "/icon-512.png",
+  "/mascot/vit-chao-256.png",
 ];
 
 self.addEventListener("install", (event) => {
@@ -130,6 +131,8 @@ self.addEventListener("push", (event) => {
       body: payload.body,
       icon: "/icon-192.png",
       badge: "/icon-192.png",
+      // Android hiện ảnh to bên dưới nội dung; nền tảng khác bỏ qua.
+      image: "/mascot/vit-ngu.png",
       lang: "vi",
       // Cùng tag thì thông báo mới thay thông báo cũ, không chất đống.
       tag: "dailyeng-nhac-hoc",

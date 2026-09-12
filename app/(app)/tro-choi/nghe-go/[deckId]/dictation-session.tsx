@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
 import { SpeakerIcon } from "@/app/_components/icons";
+import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { useHydrated } from "@/app/_components/use-hydrated";
 import { isCorrectAnswer, type DictationWord } from "@/lib/dictation-game";
 import { speak } from "@/lib/speech";
@@ -91,9 +92,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
     return (
       <div className="space-y-4 px-5 pt-2">
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
-          <span className="bg-brand-soft text-brand mx-auto flex h-16 w-16 items-center justify-center rounded-2xl">
-            <SpeakerIcon className="h-8 w-8" />
-          </span>
+          <Mascot variant="nghe" size={128} className="mx-auto rounded-3xl" />
           <p className="mt-4 font-semibold">Nghe rồi gõ lại từ</p>
           <p className="text-muted mt-2 text-sm leading-relaxed">
             Máy sẽ đọc từng từ tiếng Anh. Bạn gõ đúng chính tả rồi bấm Enter.
@@ -117,7 +116,12 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
     return (
       <div className="space-y-5 px-5 pt-2">
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
-          <p className="text-muted text-sm">Đúng</p>
+          <Mascot
+            variant={resultMascot(correctCount, words.length)}
+            size={112}
+            className="mx-auto"
+          />
+          <p className="text-muted mt-2 text-sm">Đúng</p>
           <p className="mt-1 text-5xl font-bold tabular-nums">
             {correctCount}/{words.length}
           </p>
