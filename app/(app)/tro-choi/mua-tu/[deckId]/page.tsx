@@ -26,9 +26,8 @@ export default async function MuaTuDeckPage({
   return (
     <>
       <PageHeader title={deck.name} subtitle={`${words.length} từ sắp rơi`} />
-      <div className="mx-auto w-full max-w-md">
-        <RainSession words={words} />
-      </div>
+      {/* Không bó theo bề ngang điện thoại: sân rơi càng rộng càng dễ nhìn. */}
+      <RainSession words={words} />
     </>
   );
 }

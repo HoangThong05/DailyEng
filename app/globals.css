@@ -109,6 +109,70 @@
   animation: rain-fall var(--fall) linear forwards;
 }
 
+/* Bầu trời đêm có sao: ba lớp chấm sáng kích cỡ khác nhau trên nền xanh đen. */
+.rain-field {
+  background-color: #0b1120;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.9) 50%, transparent 51%),
+    radial-gradient(1px 1px at 68% 8%, rgba(255, 255, 255, 0.8) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 40% 55%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 85% 40%, rgba(255, 255, 255, 0.9) 50%, transparent 51%),
+    radial-gradient(1px 1px at 25% 80%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 92% 75%, rgba(255, 255, 255, 0.8) 50%, transparent 51%),
+    radial-gradient(1px 1px at 55% 30%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 5% 50%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 75% 92%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 33% 5%, rgba(255, 255, 255, 0.8) 50%, transparent 51%),
+    radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 18% 35%, rgba(255, 255, 255, 0.6) 50%, transparent 51%);
+  background-size: 260px 260px;
+}
+
+@keyframes rain-laser {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.rain-laser {
+  animation: rain-laser 0.3s ease-out forwards;
+}
+
+@keyframes rain-burst {
+  from {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+}
+
+.rain-burst {
+  animation: rain-burst 0.35s ease-out forwards;
+}
+
+@keyframes rain-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+.rain-shake {
+  animation: rain-shake 0.3s ease-in-out;
+}
+
 /* Người dùng bật "giảm chuyển động" thì tắt hết animation */
 @media (prefers-reduced-motion: reduce) {
   *,
