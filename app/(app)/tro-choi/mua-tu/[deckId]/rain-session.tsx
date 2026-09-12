@@ -11,6 +11,14 @@ import {
   spawnDelay,
   type GameWord,
 } from "@/lib/dictation-game";
+import {
+  playExplosion,
+  playMiss,
+  playShot,
+  readSoundPreference,
+  saveSoundPreference,
+  unlockAudio,
+} from "@/lib/game-audio";
 import { xpForAnswers } from "@/lib/xp";
 
 type Phase = "intro" | "playing" | "finished";
@@ -25,7 +33,21 @@ type Drop = {
   id: string;
   word: GameWord;
   duration: number;
+  /** Đã bị hạ: đứng khựng lại và nổ tan, không còn bắn/ngắm được. */
+  dead?: boolean;
 };
+
+/** Giọt nổ trong ngần này ms rồi mới bị gỡ khỏi màn. */
+const DEATH_MS = 380;
+
+/**
+ * Hướng bay của các mảnh vỡ (độ) và độ xa (px). Cố định thay vì random để
+ * không gọi Math.random trong lúc render.
+ */
+const SHARDS = [0, 40, 75, 110, 150, 190, 230, 265, 300, 335].map((deg, i) => ({
+  deg,
+  distance: 34 + (i % 3) * 12,
+}));
 
 type Point = { x: number; y: number };
 
@@ -123,6 +145,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
   const [shake, setShake] = useState(false);
   const [bullets, setBullets] = useState<Bullet[]>([]);
   const [bursts, setBursts] = useState<Burst[]>([]);
+  const [sound, setSound] = useState(true);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const fieldRef = useRef<HTMLDivElement>(null);
@@ -182,7 +205,9 @@ export function RainSession({ words }: { words: GameWord[] }) {
     aimRef.current =
       mode === "go" && input
         ? (drops.find(
-            (drop) => matchedPrefix(drop.word.term, input) === input.length,
+            (drop) =>
+              !drop.dead &&
+              matchedPrefix(drop.word.term, input) === input.length,
           )?.id ?? null)
         : null;
   }, [mode, input, drops]);
@@ -209,6 +234,8 @@ export function RainSession({ words }: { words: GameWord[] }) {
   }
 
   function start(chosen: Mode) {
+    unlockAudio();
+    setSound(readSoundPreference());
     setMode(chosen);
     setDrops([]);
     setSpawned(0);
@@ -221,9 +248,21 @@ export function RainSession({ words }: { words: GameWord[] }) {
     setTimeout(() => inputRef.current?.focus(), 0);
   }
 
-  /** Ván xong khi mọi từ đã rơi và không còn giọt nào trên màn. */
+  function toggleSound() {
+    const next = !sound;
+    setSound(next);
+    saveSoundPreference(next);
+    if (next) {
+      unlockAudio();
+      playShot();
+    }
+    inputRef.current?.focus();
+  }
+
+  /** Ván xong khi mọi từ đã rơi và không còn giọt nào sống trên màn. */
   function maybeFinish(remaining: Drop[]) {
-    if (remaining.length === 0 && spawned >= words.length) finish();
+    const alive = remaining.filter((drop) => !drop.dead);
+    if (alive.length === 0 && spawned >= words.length) finish();
   }
 
   /** Bắn một viên từ mũi máy bay tới giọt; `explode` = viên kết liễu. */
@@ -247,19 +286,22 @@ export function RainSession({ words }: { words: GameWord[] }) {
     };
     setBullets((list) => [...list, { id, from, to }]);
     if (explode) setBursts((list) => [...list, { id, at: to }]);
+    if (sound) (explode ? playExplosion : playShot)();
   }
 
   function handleInput(value: string) {
     setInput(value);
     if (phase !== "playing") return;
 
+    const alive = drops.filter((drop) => !drop.dead);
+
     // Khớp giọt nào là hạ ngay, không cần Enter.
-    const target = drops.find((drop) => isCorrectAnswer(value, drop.word.term));
+    const target = alive.find((drop) => isCorrectAnswer(value, drop.word.term));
     if (!target) {
       // Chế độ gõ từ: mỗi chữ gõ đúng là một viên đạn bay về giọt đang ngắm.
       // Chế độ dịch nghĩa thì không, kẻo đạn bay lộ mất đáp án.
       if (mode === "go" && value) {
-        const aimed = drops.find(
+        const aimed = alive.find(
           (drop) => matchedPrefix(drop.word.term, value) === value.length,
         );
         if (aimed) shoot(aimed, false);
@@ -268,21 +310,32 @@ export function RainSession({ words }: { words: GameWord[] }) {
     }
 
     shoot(target, true);
-    const remaining = drops.filter((drop) => drop.id !== target.id);
+    // Giữ giọt lại một nhịp ở trạng thái "chết" để chạy hiệu ứng nổ.
+    const remaining = drops.map((drop) =>
+      drop.id === target.id ? { ...drop, dead: true } : drop,
+    );
     setDrops(remaining);
+    setTimeout(() => {
+      setDrops((list) => list.filter((drop) => drop.id !== target.id));
+    }, DEATH_MS);
+
     setHits((list) => [...list, target.word]);
     setInput("");
     void recordReview(target.word.wordId, true).catch(() => {});
     maybeFinish(remaining);
   }
 
-  function handleMiss(drop: Drop) {
-    if (phase !== "playing") return;
+  function handleMiss(drop: Drop, event: React.AnimationEvent) {
+    // Giọt đã chết cũng phát animationend (của hiệu ứng nổ) — bỏ qua.
+    if (phase !== "playing" || drop.dead || event.animationName !== "rain-fall") {
+      return;
+    }
 
     const remaining = drops.filter((item) => item.id !== drop.id);
     setDrops(remaining);
     setMisses((list) => [...list, drop.word]);
     setShake(true);
+    if (sound) playMiss();
     void recordReview(drop.word.wordId, false).catch(() => {});
 
     const left = lives - 1;
@@ -387,13 +440,26 @@ export function RainSession({ words }: { words: GameWord[] }) {
   // Ở chế độ gõ từ, giọt đang được gõ dở là "mục tiêu": chữ đã gõ sáng lên.
   const targetId =
     mode === "go" && input
-      ? (drops.find((drop) => matchedPrefix(drop.word.term, input) === input.length)?.id ?? null)
+      ? (drops.find(
+          (drop) => !drop.dead && matchedPrefix(drop.word.term, input) === input.length,
+        )?.id ?? null)
       : null;
 
   return (
     <div className="space-y-3 px-5 pt-2">
       <div className="text-muted flex items-center justify-between px-1 text-sm tabular-nums">
-        <span className="text-fg font-semibold">🏆 {hits.length}</span>
+        <span className="flex items-center gap-2">
+          <span className="text-fg font-semibold">🏆 {hits.length}</span>
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-label={sound ? "Tắt tiếng" : "Bật tiếng"}
+            aria-pressed={sound}
+            className="flex h-8 w-8 items-center justify-center rounded-full text-base transition-transform active:scale-90"
+          >
+            {sound ? "🔊" : "🔇"}
+          </button>
+        </span>
         <span className="text-muted">
           {MODES.find((option) => option.value === mode)?.title} ·{" "}
           {spawned}/{words.length} từ
@@ -424,7 +490,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
                 if (node) dropRefs.current.set(drop.id, node);
                 else dropRefs.current.delete(drop.id);
               }}
-              onAnimationEnd={() => handleMiss(drop)}
+              onAnimationEnd={(event) => handleMiss(drop, event)}
               style={
                 {
                   left: `${drop.word.left}%`,
@@ -432,9 +498,11 @@ export function RainSession({ words }: { words: GameWord[] }) {
                 } as React.CSSProperties
               }
               className={`rain-drop absolute max-w-[40%] rounded-xl border px-3 py-1.5 text-center shadow-lg md:max-w-xs ${
-                isTarget
-                  ? "border-yellow-400 bg-slate-900/90 shadow-yellow-400/30"
-                  : "border-slate-700 bg-slate-900/80"
+                drop.dead
+                  ? "rain-drop-dead border-yellow-300 bg-yellow-400/30"
+                  : isTarget
+                    ? "border-yellow-400 bg-slate-900/90 shadow-yellow-400/30"
+                    : "border-slate-700 bg-slate-900/80"
               }`}
             >
               {mode === "go" ? (
@@ -476,9 +544,24 @@ export function RainSession({ words }: { words: GameWord[] }) {
           <div
             key={burst.id}
             aria-hidden
-            className="rain-burst absolute h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-yellow-300"
+            className="absolute"
             style={{ left: burst.at.x, top: burst.at.y }}
-          />
+          >
+            <div className="rain-burst absolute h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-yellow-300" />
+            <div className="rain-flash absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+            {SHARDS.map((shard) => (
+              <span
+                key={shard.deg}
+                className="rain-shard absolute h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-300"
+                style={
+                  {
+                    "--sx": `${Math.cos((shard.deg * Math.PI) / 180) * shard.distance}px`,
+                    "--sy": `${Math.sin((shard.deg * Math.PI) / 180) * shard.distance}px`,
+                  } as React.CSSProperties
+                }
+              />
+            ))}
+          </div>
         ))}
 
         {/* Vạch đỏ nguy hiểm + tàu */}
