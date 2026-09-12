@@ -9,6 +9,7 @@
 - Đăng nhập bằng email/mật khẩu (xác nhận bằng mã 6 số) hoặc Google
 - Flashcard theo bộ thẻ có sẵn hoặc tự tạo (dán hàng loạt từ Excel/Sheets/Quizlet), ôn tập giãn cách
 - Quiz trắc nghiệm 4 đáp án, chấm điểm, xem lại từ sai
+- Trò chơi Ghép cặp: nối từ với nghĩa, tính giờ, lưu kỷ lục
 - Luyện phát âm: nghe mẫu, ghi âm nghe lại, chấm điểm qua Web Speech API
 - Chuỗi ngày học, biểu đồ tuần, độ chính xác theo bộ, từ hay sai nhất
 - Đổi tên hiển thị, mục tiêu từ/ngày, giao diện sáng/tối
@@ -17,7 +18,7 @@
 
 ## Công nghệ
 
-- Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4
+- Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 — responsive: tab bar trên điện thoại, sidebar trên màn hình lớn
 - Supabase: Postgres, Row Level Security, Auth
 - Web Speech API
 - Deploy trên Vercel
@@ -29,11 +30,11 @@ app/
 ├── (app)/            # Các trang cần đăng nhập
 │   ├── hoc/          #   Flashcard
 │   ├── quiz/         #   Quiz trắc nghiệm
+│   ├── tro-choi/     #   Hub trò chơi, Ghép cặp
 │   ├── phat-am/      #   Luyện phát âm
 │   ├── tien-do/      #   Chuỗi ngày + thống kê
 │   └── tai-khoan/    #   Hồ sơ, cài đặt
-├── dang-nhap/        # Đăng nhập / đăng ký
-├── nhap-ma/          # Nhập mã xác nhận
+├── (public)/         # Đăng nhập, nhập mã xác nhận, trang offline
 ├── auth/             # Callback Google và link xác nhận email
 ├── api/cron/         # pg_cron của Supabase gọi mỗi giờ để gửi nhắc học
 ├── _actions/         # Server Actions dùng chung

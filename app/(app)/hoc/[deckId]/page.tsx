@@ -66,7 +66,9 @@ export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
           </div>
         </>
       ) : (
-        <FlashcardSession deckName={deck.name} cards={cards} />
+        <div className="mx-auto w-full max-w-md">
+          <FlashcardSession deckName={deck.name} cards={cards} />
+        </div>
       )}
     </>
   );

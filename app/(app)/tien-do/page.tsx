@@ -27,10 +27,10 @@ export default async function TienDoPage() {
     <>
       <PageHeader title="Tiến độ" subtitle="Thống kê học tập" />
 
-      <div className="space-y-6 px-5 pt-2">
+      <div className="grid gap-6 px-5 pt-2 md:grid-cols-2">
         <section
           aria-labelledby="chuoi-ngay"
-          className="border-border bg-card flex items-center gap-4 rounded-2xl border p-5"
+          className="border-border bg-card flex items-center gap-4 rounded-2xl border p-5 md:col-span-2"
         >
           <span className="bg-brand-soft text-brand flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl">
             <FlameIcon className="h-7 w-7" />

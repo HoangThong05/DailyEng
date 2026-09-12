@@ -34,10 +34,13 @@ export default async function HocPage() {
       ) : (
         <div className="space-y-6 px-5 pt-2">
           {publicDecks.length > 0 ? (
-            <section aria-labelledby="bo-co-san" className="space-y-3">
+            <section
+              aria-labelledby="bo-co-san"
+              className="grid gap-3 md:grid-cols-2"
+            >
               <h2
                 id="bo-co-san"
-                className="text-muted px-1 text-sm font-medium"
+                className="text-muted px-1 text-sm font-medium md:col-span-2"
               >
                 Bộ có sẵn
               </h2>
@@ -47,8 +50,14 @@ export default async function HocPage() {
             </section>
           ) : null}
 
-          <section aria-labelledby="bo-cua-toi" className="space-y-3">
-            <h2 id="bo-cua-toi" className="text-muted px-1 text-sm font-medium">
+          <section
+            aria-labelledby="bo-cua-toi"
+            className="grid gap-3 md:grid-cols-2"
+          >
+            <h2
+              id="bo-cua-toi"
+              className="text-muted px-1 text-sm font-medium md:col-span-2"
+            >
               Bộ của tôi
             </h2>
 

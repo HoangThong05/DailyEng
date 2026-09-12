@@ -23,7 +23,7 @@ export default async function TaiKhoanPage() {
     <>
       <PageHeader title="Cá nhân" subtitle={user?.email ?? undefined} />
 
-      <div className="space-y-8 px-5 pt-2 pb-4">
+      <div className="grid gap-8 px-5 pt-2 pb-4 md:grid-cols-2">
         <section aria-labelledby="ho-so">
           <h2 id="ho-so" className="text-muted mb-3 px-1 text-sm font-medium">
             Hồ sơ

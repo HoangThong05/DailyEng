@@ -2,6 +2,7 @@ import { ActionCard } from "@/app/_components/action-card";
 import {
   CardsIcon,
   FlameIcon,
+  GamepadIcon,
   MicIcon,
   QuizIcon,
 } from "@/app/_components/icons";
@@ -72,12 +73,20 @@ export default async function Home() {
           <p className="text-muted mt-3 text-sm">
             {learnedToday === 0
               ? "Chưa học từ nào hôm nay. Bắt đầu thôi!"
-              : `Còn ${dailyGoal - learnedToday} từ nữa là xong mục tiêu.`}
+              : learnedToday >= dailyGoal
+                ? "Đã đạt mục tiêu hôm nay. Học thêm càng tốt!"
+                : `Còn ${dailyGoal - learnedToday} từ nữa là xong mục tiêu.`}
           </p>
         </section>
 
-        <section aria-labelledby="bat-dau" className="space-y-3">
-          <h2 id="bat-dau" className="text-muted px-1 text-sm font-medium">
+        <section
+          aria-labelledby="bat-dau"
+          className="grid gap-3 md:grid-cols-2 lg:grid-cols-4"
+        >
+          <h2
+            id="bat-dau"
+            className="text-muted px-1 text-sm font-medium md:col-span-2 lg:col-span-4"
+          >
             Bắt đầu học
           </h2>
 
@@ -98,6 +107,12 @@ export default async function Home() {
             title="Luyện phát âm"
             description="Nghe mẫu và nói theo"
             icon={<MicIcon className="h-5 w-5" />}
+          />
+          <ActionCard
+            href="/tro-choi/ghep-cap"
+            title="Ghép cặp"
+            description="Nối từ với nghĩa, đua với đồng hồ"
+            icon={<GamepadIcon className="h-5 w-5" />}
           />
         </section>
 

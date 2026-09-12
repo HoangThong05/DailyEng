@@ -1,51 +1,50 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EmptyState } from "@/app/_components/empty-state";
-import { QuizIcon } from "@/app/_components/icons";
+import { GamepadIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
-import { getQuizSession } from "@/lib/quiz";
-import { QuizSession } from "./quiz-session";
+import { buildMatchTiles, getMatchSession, MATCH_MIN_WORDS } from "@/lib/games";
+import { MatchSession } from "./match-session";
 
 export async function generateMetadata({
   params,
-}: PageProps<"/quiz/[deckId]">) {
+}: PageProps<"/tro-choi/ghep-cap/[deckId]">) {
   const { deckId } = await params;
-  const session = await getQuizSession(deckId);
-  return { title: session ? `Quiz · ${session.deck.name}` : "Quiz" };
+  const session = await getMatchSession(deckId);
+  return { title: session ? `Ghép cặp · ${session.deck.name}` : "Ghép cặp" };
 }
 
-export default async function QuizDeckPage({
+export default async function GhepCapDeckPage({
   params,
-}: PageProps<"/quiz/[deckId]">) {
+}: PageProps<"/tro-choi/ghep-cap/[deckId]">) {
   const { deckId } = await params;
-  const session = await getQuizSession(deckId);
+  const session = await getMatchSession(deckId);
 
-  // Không tìm thấy, hoặc RLS chặn vì đây là bộ riêng của người khác.
   if (!session) notFound();
 
-  const { deck, questions, wordCount } = session;
+  const { deck, pairs, wordCount } = session;
 
   return (
     <>
       <PageHeader
         title={deck.name}
         subtitle={
-          questions.length > 0
-            ? `${questions.length} câu trắc nghiệm`
+          pairs.length > 0
+            ? `${pairs.length} cặp từ – nghĩa`
             : `${wordCount} từ trong bộ`
         }
       />
 
-      {questions.length === 0 ? (
+      {pairs.length < 2 ? (
         <>
           <EmptyState
-            icon={<QuizIcon className="h-8 w-8" />}
+            icon={<GamepadIcon className="h-8 w-8" />}
             title="Bộ này chưa đủ từ"
-            description="Cần ít nhất 2 từ mới dựng được câu hỏi có đáp án sai để chọn."
+            description={`Cần ít nhất ${MATCH_MIN_WORDS} từ có nghĩa khác nhau để chơi.`}
           />
           <div className="px-5">
             <Link
-              href="/quiz"
+              href="/tro-choi/ghep-cap"
               className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
             >
               Chọn bộ khác
@@ -54,7 +53,11 @@ export default async function QuizDeckPage({
         </>
       ) : (
         <div className="mx-auto w-full max-w-md">
-          <QuizSession deckId={deckId} questions={questions} />
+          <MatchSession
+            deckId={deck.id}
+            pairs={pairs}
+            initialTiles={buildMatchTiles(pairs)}
+          />
         </div>
       )}
     </>

@@ -25,7 +25,7 @@ export default async function SuaBoTuPage({
     <>
       <PageHeader title={deck.name} subtitle={`${words.length} từ trong bộ`} />
 
-      <div className="space-y-8 px-5 pt-2 pb-4">
+      <div className="grid gap-8 px-5 pt-2 pb-4 md:grid-cols-2">
         <section aria-labelledby="them-tu">
           <h2 id="them-tu" className="text-muted mb-3 px-1 text-sm font-medium">
             Thêm từ
@@ -33,7 +33,7 @@ export default async function SuaBoTuPage({
           <AddWordsForm deckId={deck.id} />
         </section>
 
-        <section aria-labelledby="danh-sach">
+        <section aria-labelledby="danh-sach" className="md:row-span-2">
           <h2
             id="danh-sach"
             className="text-muted mb-3 px-1 text-sm font-medium"

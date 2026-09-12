@@ -21,7 +21,7 @@ export default async function PhatAmPage() {
           description="Tạo hoặc chọn một bộ từ ở tab Học rồi quay lại đây."
         />
       ) : (
-        <div className="space-y-3 px-5 pt-2">
+        <div className="grid gap-3 px-5 pt-2 md:grid-cols-2">
           {decks.map((deck) => (
             <Link
               key={deck.id}

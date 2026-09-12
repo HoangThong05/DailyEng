@@ -74,6 +74,15 @@ export function GoogleIcon({ className }: IconProps) {
   );
 }
 
+export function GamepadIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M6 12h4M8 10v4M15 11h.01M18 13h.01" />
+      <path d="M7.5 6h9a5 5 0 0 1 5 5.2l-.6 5.3a2.5 2.5 0 0 1-4.4 1.3L14.8 15H9.2l-1.7 2.8a2.5 2.5 0 0 1-4.4-1.3L2.5 11.2A5 5 0 0 1 7.5 6Z" />
+    </svg>
+  );
+}
+
 export function PencilIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className}>

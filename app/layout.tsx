@@ -50,9 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body className="bg-bg text-fg min-h-[100dvh] font-sans antialiased">
-        <div className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col">
-          {children}
-        </div>
+        {children}
         <ServiceWorkerRegister />
       </body>
     </html>

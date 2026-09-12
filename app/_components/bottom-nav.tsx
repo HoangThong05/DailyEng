@@ -2,35 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  CardsIcon,
-  ChartIcon,
-  HomeIcon,
-  QuizIcon,
-  UserIcon,
-} from "./icons";
+import { isTabActive, NAV_TABS } from "./nav-tabs";
 
-const TABS = [
-  { href: "/", label: "Trang chủ", Icon: HomeIcon },
-  { href: "/hoc", label: "Học", Icon: CardsIcon },
-  { href: "/quiz", label: "Quiz", Icon: QuizIcon },
-  { href: "/tien-do", label: "Tiến độ", Icon: ChartIcon },
-  { href: "/tai-khoan", label: "Cá nhân", Icon: UserIcon },
-] as const;
-
+/** Tab bar dưới đáy, chỉ hiện trên điện thoại; màn hình lớn dùng SideNav. */
 export function BottomNav() {
   const pathname = usePathname();
 
   return (
     <nav
       aria-label="Điều hướng chính"
-      className="fixed inset-x-0 bottom-0 z-50 select-none"
+      className="fixed inset-x-0 bottom-0 z-50 select-none md:hidden"
     >
       <div className="border-border bg-card/85 mx-auto w-full max-w-md border-t backdrop-blur-lg">
         <ul className="pb-safe flex">
-          {TABS.map(({ href, label, Icon }) => {
-            const active =
-              href === "/" ? pathname === "/" : pathname.startsWith(href);
+          {NAV_TABS.map(({ href, label, Icon }) => {
+            const active = isTabActive(href, pathname);
 
             return (
               <li key={href} className="flex-1">
