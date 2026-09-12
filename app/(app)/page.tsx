@@ -168,6 +168,7 @@ export default async function Home() {
             >
               <DeckCover
                 deck={nextDeck}
+                sizes="96px"
                 className="h-20 w-24 shrink-0 rounded-xl"
               />
               <span className="min-w-0 flex-1">

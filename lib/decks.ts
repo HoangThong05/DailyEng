@@ -7,11 +7,15 @@ export const SESSION_SIZE = 20;
 
 export type DeckSummary = {
   id: string;
+  /** Chỉ bộ công khai có slug; dùng để tìm ảnh bìa vẽ riêng. */
+  slug: string | null;
   name: string;
   description: string | null;
   level: string | null;
   isOwn: boolean;
   wordCount: number;
+  /** Số từ đã học ít nhất một lần. */
+  learnedCount: number;
   dueCount: number;
 };
 
@@ -32,7 +36,7 @@ export async function listDecks(): Promise<DeckSummary[]> {
   const [decksResult, wordsResult, progressResult] = await Promise.all([
     supabase
       .from("decks")
-      .select("id, name, description, level, owner_id, position")
+      .select("id, slug, name, description, level, owner_id, position")
       .order("owner_id", { nullsFirst: true })
       .order("position"),
     supabase.from("words").select("id, deck_id"),
@@ -45,12 +49,16 @@ export async function listDecks(): Promise<DeckSummary[]> {
 
   const dueByWordId = new Map(progress.map((row) => [row.word_id, row.due_on]));
 
-  const counts = new Map<string, { total: number; due: number }>();
+  const counts = new Map<
+    string,
+    { total: number; learned: number; due: number }
+  >();
   for (const word of words) {
-    const entry = counts.get(word.deck_id) ?? { total: 0, due: 0 };
+    const entry = counts.get(word.deck_id) ?? { total: 0, learned: 0, due: 0 };
     entry.total += 1;
 
     const dueOn = dueByWordId.get(word.id);
+    if (dueOn !== undefined) entry.learned += 1;
     // Chưa có tiến độ nghĩa là từ mới, luôn tính là đến hạn.
     if (dueOn === undefined || dueOn <= today) entry.due += 1;
 
@@ -58,14 +66,16 @@ export async function listDecks(): Promise<DeckSummary[]> {
   }
 
   return decks.map((deck) => {
-    const entry = counts.get(deck.id) ?? { total: 0, due: 0 };
+    const entry = counts.get(deck.id) ?? { total: 0, learned: 0, due: 0 };
     return {
       id: deck.id,
+      slug: deck.slug,
       name: deck.name,
       description: deck.description,
       level: deck.level,
       isOwn: deck.owner_id !== null,
       wordCount: entry.total,
+      learnedCount: entry.learned,
       dueCount: entry.due,
     };
   });

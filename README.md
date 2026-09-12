@@ -67,7 +67,7 @@ lib/
 scripts/              # render-icons.mjs: sinh bộ icon PNG/ICO từ ảnh linh vật
 supabase/             # Schema SQL, chạy theo thứ tự
 proxy.ts              # Middleware: làm mới session, chặn chưa đăng nhập
-public/               # Icon PWA, ảnh linh vật (mascot/), bìa trò chơi (games/), service worker
+public/               # Icon PWA, ảnh linh vật (mascot/), bìa trò chơi (games/), bìa bộ từ (decks/), service worker
 ```
 
 ## Chạy local
