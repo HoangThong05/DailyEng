@@ -1,16 +1,35 @@
 /**
- * Phần thuần logic của trò Nghe & gõ. Không import gì phía server.
+ * Phần thuần logic của các trò gõ chữ (Nghe & gõ, Mưa từ vựng).
+ * Không import gì phía server.
  */
 
-/** Số từ mỗi lượt chơi. */
+/** Số từ mỗi lượt Nghe & gõ. */
 export const DICTATION_SIZE = 10;
+/** Số từ mỗi ván Mưa từ vựng. */
+export const RAIN_SIZE = 15;
+/** Số lần để từ rơi chạm đáy trước khi thua. */
+export const RAIN_LIVES = 3;
 
-export type DictationWord = {
+export type GameWord = {
   wordId: string;
   term: string;
   meaning: string;
   phonetic: string | null;
+  /** Vị trí ngang (%) khi rơi, chọn sẵn ở server để client không lệch. */
+  left: number;
 };
+
+export type DictationWord = GameWord;
+
+/** Giây để một giọt rơi hết màn; nhanh dần theo số từ đã rơi. */
+export function fallDuration(index: number) {
+  return Math.max(4.5, 9 - index * 0.3);
+}
+
+/** Mili giây chờ trước khi thả giọt tiếp theo. */
+export function spawnDelay(index: number) {
+  return Math.max(1400, 2600 - index * 90);
+}
 
 /**
  * So sánh câu trả lời với từ gốc một cách dễ tính: bỏ hoa/thường, khoảng

@@ -23,6 +23,7 @@ export default async function Home() {
   ]);
 
   const streakDays = stats.streak.current;
+  const level = stats.level;
   const learnedToday = stats.today.words;
   const name = profile?.display_name ?? "bạn";
   const dailyGoal = profile?.daily_goal ?? 10;
@@ -42,6 +43,38 @@ export default async function Home() {
       />
 
       <div className="space-y-6 px-5 pt-2">
+        <section
+          aria-labelledby="cap-do"
+          className="border-border bg-card rounded-2xl border p-4"
+        >
+          <div className="flex items-center gap-3">
+            <span className="bg-brand-soft text-brand flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-lg font-bold tabular-nums">
+              {level.level}
+            </span>
+            <div className="min-w-0 flex-1">
+              <h2 id="cap-do" className="font-semibold">
+                Cấp {level.level} · {level.title}
+              </h2>
+              <p className="text-muted text-sm tabular-nums">
+                {level.current}/{level.needed} XP tới cấp {level.level + 1}
+              </p>
+            </div>
+          </div>
+          <div
+            role="progressbar"
+            aria-valuenow={level.current}
+            aria-valuemin={0}
+            aria-valuemax={level.needed}
+            aria-labelledby="cap-do"
+            className="bg-brand-soft mt-3 h-2 overflow-hidden rounded-full"
+          >
+            <div
+              className="bg-brand h-full rounded-full transition-[width] duration-500"
+              style={{ width: `${level.percent}%` }}
+            />
+          </div>
+        </section>
+
         <section
           aria-labelledby="muc-tieu"
           className="border-border bg-card rounded-2xl border p-5"

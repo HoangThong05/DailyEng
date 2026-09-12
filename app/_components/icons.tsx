@@ -83,6 +83,15 @@ export function GamepadIcon({ className }: IconProps) {
   );
 }
 
+export function CloudRainIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M7 15a4.5 4.5 0 0 1-.5-8.97A6 6 0 0 1 18 7.5a3.75 3.75 0 0 1-.5 7.5" />
+      <path d="M8 17l-1 3M12 17l-1 3M16 17l-1 3" />
+    </svg>
+  );
+}
+
 export function PencilIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className}>

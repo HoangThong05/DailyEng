@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
 import type { StudyCard } from "@/lib/decks";
+import { xpForAnswers } from "@/lib/xp";
 
 /** Kéo quá bao nhiêu pixel thì tính là đã vuốt dứt khoát. */
 const SWIPE_THRESHOLD = 90;
@@ -114,6 +115,9 @@ export function FlashcardSession({ deckName, cards }: Props) {
           🎉
         </span>
         <h2 className="mt-5 text-xl font-bold">Xong phiên học</h2>
+        <p className="text-brand mt-2 text-sm font-semibold tabular-nums">
+          +{xpForAnswers(rememberedIds.size, forgot)} XP
+        </p>
         <p className="text-muted mt-2 text-sm">
           Thuộc <span className="text-fg font-semibold">{rememberedIds.size}</span>
           /{cards.length} từ

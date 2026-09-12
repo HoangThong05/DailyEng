@@ -17,7 +17,7 @@ function StatTile({ value, label }: { value: string; label: string }) {
 }
 
 export default async function TienDoPage() {
-  const [{ streak, today, week, totals }, detail] = await Promise.all([
+  const [{ streak, today, week, totals, level }, detail] = await Promise.all([
     getStudyStats(),
     getDetailedStats(),
   ]);
@@ -35,7 +35,7 @@ export default async function TienDoPage() {
           <span className="bg-brand-soft text-brand flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl">
             <FlameIcon className="h-7 w-7" />
           </span>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <h2 id="chuoi-ngay" className="text-2xl font-bold">
               {streak.current} ngày
             </h2>
@@ -43,6 +43,12 @@ export default async function TienDoPage() {
               {streak.current === 0
                 ? "Học một từ hôm nay để bắt đầu chuỗi"
                 : `Chuỗi hiện tại · dài nhất ${streak.longest} ngày`}
+            </p>
+          </div>
+          <div className="shrink-0 text-right">
+            <p className="text-2xl font-bold tabular-nums">Cấp {level.level}</p>
+            <p className="text-muted text-sm tabular-nums">
+              {level.title} · {level.total} XP
             </p>
           </div>
         </section>

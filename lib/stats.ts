@@ -1,6 +1,7 @@
 import { addDays, MAX_BOX, todayInAppZone } from "@/lib/leitner";
 import { computeStreak, type StreakInfo } from "@/lib/streak";
 import { createClient } from "@/lib/supabase/server";
+import { levelFromXp, xpForAnswers, type LevelInfo } from "@/lib/xp";
 
 export const WEEK_LENGTH = 7;
 
@@ -13,6 +14,7 @@ export type DayBar = {
 
 export type StudyStats = {
   streak: StreakInfo;
+  level: LevelInfo;
   today: { reviews: number; words: number; correct: number };
   week: DayBar[];
   totals: {
@@ -72,6 +74,7 @@ export async function getStudyStats(): Promise<StudyStats> {
       days.map((row) => row.day),
       today,
     ),
+    level: levelFromXp(xpForAnswers(correct, reviews - correct)),
     today: {
       reviews: todayRow?.reviews ?? 0,
       words: todayRow?.words ?? 0,

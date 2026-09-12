@@ -95,6 +95,20 @@
   }
 }
 
+/* Giọt chữ rơi trong trò Mưa từ vựng. --fall là số giây rơi hết màn. */
+@keyframes rain-fall {
+  from {
+    top: -3rem;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+.rain-drop {
+  animation: rain-fall var(--fall) linear forwards;
+}
+
 /* Người dùng bật "giảm chuyển động" thì tắt hết animation */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -102,5 +116,13 @@
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* …trừ giọt rơi: tắt animation thì trò chơi không chơi được. Vẫn tôn trọng
+   lựa chọn ở mức giảm hiệu ứng khác (không có transition nào ở giọt). */
+@media (prefers-reduced-motion: reduce) {
+  .rain-drop {
+    animation-duration: var(--fall) !important;
   }
 }

@@ -7,6 +7,7 @@ import { SpeakerIcon } from "@/app/_components/icons";
 import { useHydrated } from "@/app/_components/use-hydrated";
 import { isCorrectAnswer, type DictationWord } from "@/lib/dictation-game";
 import { speak } from "@/lib/speech";
+import { xpForAnswers } from "@/lib/xp";
 
 type Phase = "intro" | "typing" | "checked" | "finished";
 
@@ -124,6 +125,9 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
             {wrong.length === 0
               ? "Chính tả chuẩn không cần chỉnh!"
               : `${wrong.length} từ gõ chưa đúng, xem lại bên dưới.`}
+          </p>
+          <p className="text-brand mt-3 text-sm font-semibold tabular-nums">
+            +{xpForAnswers(correctCount, wrong.length)} XP
           </p>
         </div>
 

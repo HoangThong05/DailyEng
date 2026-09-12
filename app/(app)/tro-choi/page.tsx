@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ActionCard } from "@/app/_components/action-card";
 import {
+  CloudRainIcon,
   GamepadIcon,
   MicIcon,
   QuizIcon,
@@ -28,6 +29,12 @@ export default function TroChoiPage() {
           title="Nghe & gõ"
           description="Nghe máy đọc, gõ đúng chính tả"
           icon={<SpeakerIcon className="h-5 w-5" />}
+        />
+        <ActionCard
+          href="/tro-choi/mua-tu"
+          title="Mưa từ vựng"
+          description="Nghĩa rơi xuống, gõ từ để bắn"
+          icon={<CloudRainIcon className="h-5 w-5" />}
         />
         <ActionCard
           href="/quiz"

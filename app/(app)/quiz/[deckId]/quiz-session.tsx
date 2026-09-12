@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
 import type { QuizQuestion } from "@/lib/quiz";
+import { xpForAnswers } from "@/lib/xp";
 
 type Props = {
   deckId: string;
@@ -72,6 +73,9 @@ export function QuizSession({ deckId, questions }: Props) {
             {percent === 100
               ? "Trọn vẹn, không sai câu nào."
               : "Những từ sai sẽ sớm quay lại để bạn ôn thêm."}
+          </p>
+          <p className="text-brand mt-3 text-sm font-semibold tabular-nums">
+            +{xpForAnswers(correctCount, questions.length - correctCount)} XP
           </p>
         </div>
 

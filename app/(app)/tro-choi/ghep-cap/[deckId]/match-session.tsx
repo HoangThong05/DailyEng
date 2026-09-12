@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
 import { buildMatchTiles, type MatchPair, type MatchTile } from "@/lib/match-game";
+import { xpForAnswers } from "@/lib/xp";
 
 /** Ô sai đỏ lên trong ngần này ms rồi tự bỏ chọn. */
 const WRONG_FLASH_MS = 450;
@@ -139,6 +140,9 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
             {isRecord
               ? " · kỷ lục mới!"
               : ` · kỷ lục ${formatTime(previousBest)}`}
+          </p>
+          <p className="text-brand mt-3 text-sm font-semibold tabular-nums">
+            +{xpForAnswers(clean, pairs.length - clean)} XP
           </p>
         </div>
 
