@@ -79,6 +79,21 @@ function matchedPrefix(term: string, input: string) {
   return n;
 }
 
+/**
+ * Giọt đang được ngắm: giọt sống có nhiều chữ đầu khớp với ô gõ nhất (ít nhất
+ * 1 chữ). Gõ sai một chữ vẫn giữ mục tiêu, để người chơi thấy mình sai ở đâu
+ * thay vì mất dấu.
+ */
+function findAimed(drops: Drop[], input: string) {
+  let best: { drop: Drop; matched: number } | null = null;
+  for (const drop of drops) {
+    if (drop.dead) continue;
+    const matched = matchedPrefix(drop.word.term, input);
+    if (matched > 0 && (!best || matched > best.matched)) best = { drop, matched };
+  }
+  return best;
+}
+
 /** Khoảng cách từ tâm máy bay tới mũi, để đạn bay ra từ mũi chứ không từ bụng. */
 const NOSE_OFFSET = 30;
 
@@ -202,15 +217,8 @@ export function RainSession({ words }: { words: GameWord[] }) {
   // Đồng bộ mục tiêu cho vòng lặp rAF. Tính lại ở đây (không phải trong
   // render) vì ghi ref trong lúc render là điều React cấm.
   useEffect(() => {
-    aimRef.current =
-      mode === "go" && input
-        ? (drops.find(
-            (drop) =>
-              !drop.dead &&
-              matchedPrefix(drop.word.term, input) === input.length,
-          )?.id ?? null)
-        : null;
-  }, [mode, input, drops]);
+    aimRef.current = input ? (findAimed(drops, input)?.drop.id ?? null) : null;
+  }, [input, drops]);
 
   // Dọn đạn / vụ nổ sau khi hiệu ứng chạy xong.
   useEffect(() => {
@@ -437,13 +445,8 @@ export function RainSession({ words }: { words: GameWord[] }) {
     );
   }
 
-  // Ở chế độ gõ từ, giọt đang được gõ dở là "mục tiêu": chữ đã gõ sáng lên.
-  const targetId =
-    mode === "go" && input
-      ? (drops.find(
-          (drop) => !drop.dead && matchedPrefix(drop.word.term, input) === input.length,
-        )?.id ?? null)
-      : null;
+  // Giọt đang được gõ dở là "mục tiêu": chữ đã gõ hiện lên trên nó.
+  const aimed = input ? findAimed(drops, input) : null;
 
   return (
     <div className="space-y-3 px-5 pt-2">
@@ -479,8 +482,10 @@ export function RainSession({ words }: { words: GameWord[] }) {
         }`}
       >
         {drops.map((drop) => {
-          const isTarget = drop.id === targetId;
-          const matched = isTarget ? input.length : 0;
+          const isTarget = aimed?.drop.id === drop.id;
+          const matched = isTarget ? aimed.matched : 0;
+          // Phần gõ sai (sau đoạn khớp) hiện đỏ đè lên chữ của từ.
+          const wrong = isTarget ? Math.min(input.length, drop.word.term.length) - matched : 0;
           const term = drop.word.term;
 
           return (
@@ -509,16 +514,31 @@ export function RainSession({ words }: { words: GameWord[] }) {
                 <>
                   <span className="block font-mono text-lg font-bold tracking-wide text-white">
                     <span className="text-green-400">{term.slice(0, matched)}</span>
-                    {term.slice(matched)}
+                    <span className="bg-red-500/40 text-red-300">
+                      {term.slice(matched, matched + wrong)}
+                    </span>
+                    {term.slice(matched + wrong)}
                   </span>
                   <span className="block truncate text-xs text-slate-400">
                     {drop.word.meaning}
                   </span>
                 </>
               ) : (
-                <span className="block text-base font-semibold text-white">
-                  {drop.word.meaning}
-                </span>
+                <>
+                  <span className="block text-base font-semibold text-white">
+                    {drop.word.meaning}
+                  </span>
+                  {isTarget ? (
+                    // Chữ đã gõ + chấm cho số chữ còn thiếu, để canh độ dài từ.
+                    <span className="block font-mono text-sm font-bold tracking-widest">
+                      <span className="text-green-400">{input.slice(0, matched)}</span>
+                      <span className="text-red-300">{input.slice(matched)}</span>
+                      <span className="text-slate-500">
+                        {"·".repeat(Math.max(0, term.length - input.length))}
+                      </span>
+                    </span>
+                  ) : null}
+                </>
               )}
             </div>
           );
