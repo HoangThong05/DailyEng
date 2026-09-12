@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { ActionCard } from "@/app/_components/action-card";
-import { GamepadIcon, MicIcon, QuizIcon } from "@/app/_components/icons";
+import {
+  GamepadIcon,
+  MicIcon,
+  QuizIcon,
+  SpeakerIcon,
+} from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 
 export const metadata: Metadata = { title: "Trò chơi" };
@@ -17,6 +22,12 @@ export default function TroChoiPage() {
           title="Ghép cặp"
           description="Nối từ với nghĩa, đua với đồng hồ"
           icon={<GamepadIcon className="h-5 w-5" />}
+        />
+        <ActionCard
+          href="/tro-choi/nghe-go"
+          title="Nghe & gõ"
+          description="Nghe máy đọc, gõ đúng chính tả"
+          icon={<SpeakerIcon className="h-5 w-5" />}
         />
         <ActionCard
           href="/quiz"

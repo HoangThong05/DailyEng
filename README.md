@@ -9,7 +9,7 @@
 - Đăng nhập bằng email/mật khẩu (xác nhận bằng mã 6 số) hoặc Google
 - Flashcard theo bộ thẻ có sẵn hoặc tự tạo (dán hàng loạt từ Excel/Sheets/Quizlet), ôn tập giãn cách
 - Quiz trắc nghiệm 4 đáp án, chấm điểm, xem lại từ sai
-- Trò chơi Ghép cặp: nối từ với nghĩa, tính giờ, lưu kỷ lục
+- Trò chơi: Ghép cặp (nối từ với nghĩa, tính giờ) và Nghe & gõ (nghe máy đọc, gõ chính tả)
 - Luyện phát âm: nghe mẫu, ghi âm nghe lại, chấm điểm qua Web Speech API
 - Chuỗi ngày học, biểu đồ tuần, độ chính xác theo bộ, từ hay sai nhất
 - Đổi tên hiển thị, mục tiêu từ/ngày, giao diện sáng/tối
@@ -30,7 +30,7 @@ app/
 ├── (app)/            # Các trang cần đăng nhập
 │   ├── hoc/          #   Flashcard
 │   ├── quiz/         #   Quiz trắc nghiệm
-│   ├── tro-choi/     #   Hub trò chơi, Ghép cặp
+│   ├── tro-choi/     #   Hub trò chơi: Ghép cặp, Nghe & gõ
 │   ├── phat-am/      #   Luyện phát âm
 │   ├── tien-do/      #   Chuỗi ngày + thống kê
 │   └── tai-khoan/    #   Hồ sơ, cài đặt

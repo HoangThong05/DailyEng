@@ -1,9 +1,11 @@
+import { DICTATION_SIZE, type DictationWord } from "@/lib/dictation-game";
 import { todayInAppZone } from "@/lib/leitner";
 import { MATCH_MIN_WORDS, MATCH_PAIRS, shuffle, type MatchPair } from "@/lib/match-game";
 import { createClient } from "@/lib/supabase/server";
 
 export { MATCH_MIN_WORDS, MATCH_PAIRS, buildMatchTiles } from "@/lib/match-game";
 export type { MatchPair, MatchTile } from "@/lib/match-game";
+export type { DictationWord } from "@/lib/dictation-game";
 
 /**
  * Dựng một ván ghép cặp từ bộ thẻ.
@@ -63,4 +65,58 @@ export async function getMatchSession(deckId: string) {
   }
 
   return { deck, pairs: chosen, wordCount };
+}
+
+/**
+ * Dựng một lượt Nghe & gõ: ưu tiên từ đến hạn ôn, bù bằng từ ngẫu nhiên.
+ */
+export async function getDictationSession(deckId: string) {
+  const supabase = await createClient();
+  const today = todayInAppZone();
+
+  const { data: deck } = await supabase
+    .from("decks")
+    .select("id, name")
+    .eq("id", deckId)
+    .maybeSingle();
+
+  if (!deck) return null;
+
+  const { data: words } = await supabase
+    .from("words")
+    .select("id, term, meaning_vi, phonetic")
+    .eq("deck_id", deckId);
+
+  const wordCount = words?.length ?? 0;
+  if (!words || wordCount === 0) {
+    return { deck, words: [] as DictationWord[], wordCount };
+  }
+
+  const { data: progress } = await supabase
+    .from("word_progress")
+    .select("word_id, due_on")
+    .in(
+      "word_id",
+      words.map((word) => word.id),
+    );
+
+  const dueByWordId = new Map(
+    (progress ?? []).map((row) => [row.word_id, row.due_on]),
+  );
+  const due = words.filter((word) => {
+    const dueOn = dueByWordId.get(word.id);
+    return dueOn === undefined || dueOn <= today;
+  });
+  const rest = words.filter((word) => !due.includes(word));
+
+  const chosen: DictationWord[] = [...shuffle(due), ...shuffle(rest)]
+    .slice(0, DICTATION_SIZE)
+    .map((word) => ({
+      wordId: word.id,
+      term: word.term,
+      meaning: word.meaning_vi,
+      phonetic: word.phonetic,
+    }));
+
+  return { deck, words: chosen, wordCount };
 }
