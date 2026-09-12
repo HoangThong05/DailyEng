@@ -128,19 +128,6 @@
   background-size: 260px 260px;
 }
 
-@keyframes rain-laser {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.rain-laser {
-  animation: rain-laser 0.3s ease-out forwards;
-}
-
 @keyframes rain-burst {
   from {
     transform: translate(-50%, -50%) scale(0.3);
@@ -156,15 +143,31 @@
   animation: rain-burst 0.35s ease-out forwards;
 }
 
-/* Tàu: trượt ngang mượt khi đổi mục tiêu, nòng xoay quanh tâm tàu. */
-.rain-ship {
-  transition: left 0.25s ease-out;
+/* Máy bay: đứng yên giữa sân, cả thân xoay về mục tiêu. */
+.rain-jet {
+  transform: translateX(-50%);
+  transform-origin: 50% 50%;
+  transition: transform 0.12s ease-out;
   filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.45));
 }
 
-.rain-turret {
-  transform-origin: 32px 30px;
-  transition: transform 0.12s linear;
+/* Đạn: bay thẳng từ mũi máy bay tới giọt trong 0.22s rồi biến mất. */
+@keyframes rain-bullet {
+  from {
+    translate: 0 0;
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    translate: var(--dx) var(--dy);
+    opacity: 0;
+  }
+}
+
+.rain-bullet {
+  animation: rain-bullet 0.22s linear forwards;
 }
 
 @keyframes rain-flame {

@@ -29,8 +29,8 @@ type Drop = {
 
 type Point = { x: number; y: number };
 
-/** Tia laser từ tàu tới giọt vừa trúng, tự tắt sau vài trăm ms. */
-type Laser = { id: number; from: Point; to: Point };
+/** Một viên đạn bay từ mũi máy bay tới giọt, tự biến mất khi tới nơi. */
+type Bullet = { id: number; from: Point; to: Point };
 
 /** Vụ nổ nhỏ tại chỗ giọt tan. */
 type Burst = { id: number; at: Point };
@@ -57,57 +57,40 @@ function matchedPrefix(term: string, input: string) {
   return n;
 }
 
-/** Giới hạn x để tàu không chui ra ngoài mép sân. */
-const SHIP_MARGIN = 36;
+/** Khoảng cách từ tâm máy bay tới mũi, để đạn bay ra từ mũi chứ không từ bụng. */
+const NOSE_OFFSET = 30;
 
 /**
- * Tàu chiến vẽ bằng SVG: thân, cánh, buồng lái, nòng súng xoay được và
- * lửa động cơ nhấp nháy bằng CSS. Nòng nằm trong <g> riêng để xoay quanh
- * tâm tàu mà không kéo theo thân.
+ * Máy bay chiến đấu vẽ bằng SVG, mũi hướng lên. Đứng yên giữa sân, cả thân
+ * xoay về phía mục tiêu khi ngắm bắn. Lửa động cơ nhấp nháy bằng CSS.
  */
-function Ship({
-  shipRef,
-  turretRef,
-}: {
-  shipRef: React.RefObject<HTMLDivElement | null>;
-  turretRef: React.RefObject<SVGGElement | null>;
-}) {
+function Jet({ planeRef }: { planeRef: React.RefObject<HTMLDivElement | null> }) {
   return (
     <div
-      ref={shipRef}
+      ref={planeRef}
       aria-hidden
-      className="rain-ship absolute bottom-1 h-16 w-16 -translate-x-1/2"
-      style={{ left: "50%" }}
+      className="rain-jet absolute bottom-1 left-1/2 h-16 w-16"
     >
       <svg viewBox="0 0 64 64" className="h-full w-full overflow-visible">
-        {/* Lửa động cơ */}
-        <polygon
-          className="rain-flame"
-          points="26,50 32,64 38,50"
-          fill="#fb923c"
-        />
-        <polygon
-          className="rain-flame-core"
-          points="29,50 32,59 35,50"
-          fill="#fde68a"
-        />
-        {/* Cánh */}
-        <path d="M14 46 L26 30 L26 50 Z" fill="#334155" />
-        <path d="M50 46 L38 30 L38 50 Z" fill="#334155" />
+        {/* Lửa động cơ đôi */}
+        <polygon className="rain-flame" points="24,52 27,64 30,52" fill="#fb923c" />
+        <polygon className="rain-flame" points="34,52 37,64 40,52" fill="#fb923c" />
+        <polygon className="rain-flame-core" points="25,52 27,60 29,52" fill="#fde68a" />
+        <polygon className="rain-flame-core" points="35,52 37,60 39,52" fill="#fde68a" />
+        {/* Cánh chính vuốt về sau */}
+        <path d="M32 22 L6 46 L10 50 L32 42 L54 50 L58 46 Z" fill="#475569" />
+        {/* Cánh đuôi */}
+        <path d="M32 44 L20 56 L24 58 L32 54 L40 58 L44 56 Z" fill="#334155" />
         {/* Thân */}
-        <path
-          d="M32 8 C40 16 42 30 42 50 L22 50 C22 30 24 16 32 8 Z"
-          fill="#cbd5e1"
-        />
-        <path d="M32 8 C36 16 37 30 37 50 L32 50 Z" fill="#94a3b8" />
+        <path d="M32 2 C36 10 38 26 38 52 L26 52 C26 26 28 10 32 2 Z" fill="#e2e8f0" />
+        <path d="M32 2 C35 10 36 26 36 52 L32 52 Z" fill="#94a3b8" />
+        {/* Cửa hút gió */}
+        <rect x="27" y="40" width="10" height="4" rx="1" fill="#1e293b" />
         {/* Buồng lái */}
-        <ellipse cx="32" cy="24" rx="4" ry="6" fill="#22d3ee" />
-        <ellipse cx="31" cy="22" rx="1.5" ry="2.5" fill="#ecfeff" opacity="0.8" />
-        {/* Nòng súng, xoay quanh (32,30) */}
-        <g ref={turretRef} className="rain-turret">
-          <rect x="30" y="4" width="4" height="26" rx="2" fill="#0ea5e9" />
-          <circle cx="32" cy="30" r="5" fill="#0369a1" />
-        </g>
+        <path d="M32 12 C34 14 35 20 35 26 L29 26 C29 20 30 14 32 12 Z" fill="#22d3ee" />
+        <path d="M31 14 C32 16 32 20 32 24 L30 24 C30 20 30 16 31 14 Z" fill="#ecfeff" opacity="0.7" />
+        {/* Mũi */}
+        <path d="M32 2 L30 8 L34 8 Z" fill="#f87171" />
       </svg>
     </div>
   );
@@ -123,6 +106,11 @@ function centerOf(element: Element, field: Element): Point {
   };
 }
 
+/** Góc (độ) để mũi máy bay (mặc định chỉ lên) hướng từ `from` tới `to`. */
+function angleTo(from: Point, to: Point) {
+  return (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI + 90;
+}
+
 export function RainSession({ words }: { words: GameWord[] }) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [mode, setMode] = useState<Mode>("go");
@@ -133,13 +121,12 @@ export function RainSession({ words }: { words: GameWord[] }) {
   const [lives, setLives] = useState(RAIN_LIVES);
   const [input, setInput] = useState("");
   const [shake, setShake] = useState(false);
-  const [lasers, setLasers] = useState<Laser[]>([]);
+  const [bullets, setBullets] = useState<Bullet[]>([]);
   const [bursts, setBursts] = useState<Burst[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const fieldRef = useRef<HTMLDivElement>(null);
-  const shipRef = useRef<HTMLDivElement>(null);
-  const turretRef = useRef<SVGGElement>(null);
+  const planeRef = useRef<HTMLDivElement>(null);
   const dropRefs = useRef(new Map<string, HTMLDivElement>());
   const effectId = useRef(0);
   /** Giọt đang được ngắm, để vòng lặp rAF đọc mà không cần re-render. */
@@ -163,9 +150,9 @@ export function RainSession({ words }: { words: GameWord[] }) {
     return () => clearTimeout(timer);
   }, [phase, spawned, words]);
 
-  // Vòng lặp lái tàu: mỗi khung hình tìm giọt đang ngắm (hoặc giọt thấp
-  // nhất), trượt tàu tới dưới nó và xoay nòng về phía nó. Ghi thẳng vào
-  // style qua ref, không qua state, để không render lại 60 lần/giây.
+  // Vòng lặp ngắm: mỗi khung hình xoay máy bay về phía giọt đang gõ dở.
+  // Không có mục tiêu thì quay về thẳng đứng. Ghi thẳng vào style qua ref,
+  // không qua state, để không render lại 60 lần/giây.
   useEffect(() => {
     if (phase !== "playing") return;
 
@@ -173,37 +160,16 @@ export function RainSession({ words }: { words: GameWord[] }) {
     const tick = () => {
       frame = requestAnimationFrame(tick);
       const field = fieldRef.current;
-      const ship = shipRef.current;
-      const turret = turretRef.current;
-      if (!field || !ship || !turret) return;
+      const plane = planeRef.current;
+      if (!field || !plane) return;
 
-      let target: HTMLDivElement | undefined;
-      if (aimRef.current) target = dropRefs.current.get(aimRef.current);
-      if (!target) {
-        let lowest = -Infinity;
-        for (const node of dropRefs.current.values()) {
-          const top = node.getBoundingClientRect().top;
-          if (top > lowest) {
-            lowest = top;
-            target = node;
-          }
-        }
-      }
+      const target = aimRef.current
+        ? dropRefs.current.get(aimRef.current)
+        : undefined;
 
-      if (!target) {
-        turret.style.transform = "rotate(0deg)";
-        return;
-      }
-
-      const width = field.clientWidth;
-      const to = centerOf(target, field);
-      const x = Math.min(width - SHIP_MARGIN, Math.max(SHIP_MARGIN, to.x));
-      ship.style.left = `${x}px`;
-
-      const from = centerOf(ship, field);
-      // Nòng mặc định chỉ thẳng lên (-90°), nên cộng 90° để quy về hướng mục tiêu.
-      const degrees = (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI + 90;
-      turret.style.transform = `rotate(${degrees}deg)`;
+      plane.style.transform = `translateX(-50%) rotate(${
+        target ? angleTo(centerOf(plane, field), centerOf(target, field)) : 0
+      }deg)`;
     };
 
     frame = requestAnimationFrame(tick);
@@ -221,15 +187,15 @@ export function RainSession({ words }: { words: GameWord[] }) {
         : null;
   }, [mode, input, drops]);
 
-  // Dọn hiệu ứng laser / nổ sau khi chúng chạy xong.
+  // Dọn đạn / vụ nổ sau khi hiệu ứng chạy xong.
   useEffect(() => {
-    if (lasers.length === 0 && bursts.length === 0) return;
+    if (bullets.length === 0 && bursts.length === 0) return;
     const timer = setTimeout(() => {
-      setLasers([]);
+      setBullets([]);
       setBursts([]);
-    }, 400);
+    }, 450);
     return () => clearTimeout(timer);
-  }, [lasers, bursts]);
+  }, [bullets, bursts]);
 
   useEffect(() => {
     if (!shake) return;
@@ -260,27 +226,48 @@ export function RainSession({ words }: { words: GameWord[] }) {
     if (remaining.length === 0 && spawned >= words.length) finish();
   }
 
-  function fireAt(drop: Drop) {
+  /** Bắn một viên từ mũi máy bay tới giọt; `explode` = viên kết liễu. */
+  function shoot(drop: Drop, explode: boolean) {
     const field = fieldRef.current;
-    const ship = shipRef.current;
+    const plane = planeRef.current;
     const element = dropRefs.current.get(drop.id);
-    if (!field || !ship || !element) return;
+    if (!field || !plane || !element) return;
 
     const id = (effectId.current += 1);
+    const center = centerOf(plane, field);
     const to = centerOf(element, field);
-    setLasers((list) => [...list, { id, from: centerOf(ship, field), to }]);
-    setBursts((list) => [...list, { id, at: to }]);
+    // Xoay ngay về mục tiêu, khỏi đợi khung hình rAF kế tiếp.
+    const degrees = angleTo(center, to);
+    plane.style.transform = `translateX(-50%) rotate(${degrees}deg)`;
+
+    const radians = ((degrees - 90) * Math.PI) / 180;
+    const from = {
+      x: center.x + Math.cos(radians) * NOSE_OFFSET,
+      y: center.y + Math.sin(radians) * NOSE_OFFSET,
+    };
+    setBullets((list) => [...list, { id, from, to }]);
+    if (explode) setBursts((list) => [...list, { id, at: to }]);
   }
 
   function handleInput(value: string) {
     setInput(value);
     if (phase !== "playing") return;
 
-    // Khớp giọt nào là bắn ngay, không cần Enter.
+    // Khớp giọt nào là hạ ngay, không cần Enter.
     const target = drops.find((drop) => isCorrectAnswer(value, drop.word.term));
-    if (!target) return;
+    if (!target) {
+      // Chế độ gõ từ: mỗi chữ gõ đúng là một viên đạn bay về giọt đang ngắm.
+      // Chế độ dịch nghĩa thì không, kẻo đạn bay lộ mất đáp án.
+      if (mode === "go" && value) {
+        const aimed = drops.find(
+          (drop) => matchedPrefix(drop.word.term, value) === value.length,
+        );
+        if (aimed) shoot(aimed, false);
+      }
+      return;
+    }
 
-    fireAt(target);
+    shoot(target, true);
     const remaining = drops.filter((drop) => drop.id !== target.id);
     setDrops(remaining);
     setHits((list) => [...list, target.word]);
@@ -469,23 +456,21 @@ export function RainSession({ words }: { words: GameWord[] }) {
           );
         })}
 
-        {lasers.map((laser) => {
-          const dx = laser.to.x - laser.from.x;
-          const dy = laser.to.y - laser.from.y;
-          return (
-            <div
-              key={laser.id}
-              aria-hidden
-              className="rain-laser absolute h-0.5 origin-left rounded-full bg-cyan-300 shadow-[0_0_8px_2px_rgba(103,232,249,0.8)]"
-              style={{
-                left: laser.from.x,
-                top: laser.from.y,
-                width: Math.hypot(dx, dy),
-                transform: `rotate(${Math.atan2(dy, dx)}rad)`,
-              }}
-            />
-          );
-        })}
+        {bullets.map((bullet) => (
+          <div
+            key={bullet.id}
+            aria-hidden
+            className="rain-bullet absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-300 shadow-[0_0_6px_2px_rgba(253,224,71,0.8)]"
+            style={
+              {
+                left: bullet.from.x,
+                top: bullet.from.y,
+                "--dx": `${bullet.to.x - bullet.from.x}px`,
+                "--dy": `${bullet.to.y - bullet.from.y}px`,
+              } as React.CSSProperties
+            }
+          />
+        ))}
 
         {bursts.map((burst) => (
           <div
@@ -498,7 +483,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
 
         {/* Vạch đỏ nguy hiểm + tàu */}
         <div className="absolute inset-x-0 bottom-0 h-1 bg-red-500/80 shadow-[0_0_12px_2px_rgba(239,68,68,0.6)]" />
-        <Ship shipRef={shipRef} turretRef={turretRef} />
+        <Jet planeRef={planeRef} />
       </div>
 
       <input
