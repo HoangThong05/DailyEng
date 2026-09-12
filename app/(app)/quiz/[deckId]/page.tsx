@@ -46,7 +46,7 @@ export default async function QuizDeckPage({
           <div className="px-5">
             <Link
               href="/quiz"
-              className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
+              className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
             >
               Chọn bộ khác
             </Link>

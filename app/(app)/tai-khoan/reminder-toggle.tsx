@@ -267,7 +267,7 @@ export function ReminderToggle({ vapidPublicKey, reminderHour }: Props) {
         <button
           type="button"
           onClick={sendTest}
-          className="border-border mt-4 min-h-11 w-full rounded-xl border text-sm font-semibold transition-transform duration-100 active:scale-[0.98]"
+          className="border-border mt-4 min-h-11 w-full rounded-xl border text-sm font-semibold press"
         >
           Gửi thông báo thử
         </button>

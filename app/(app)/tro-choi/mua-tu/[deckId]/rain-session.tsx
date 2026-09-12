@@ -394,7 +394,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
             key={option.value}
             type="button"
             onClick={() => start(option.value)}
-            className="border-border bg-card w-full rounded-2xl border p-4 text-left transition-transform duration-100 active:scale-[0.98]"
+            className="border-border bg-card w-full rounded-2xl border p-4 text-left press"
           >
             <span className="block font-semibold">{option.title}</span>
             <span className="text-muted mt-0.5 block text-sm">
@@ -449,20 +449,20 @@ export function RainSession({ words }: { words: GameWord[] }) {
         <button
           type="button"
           onClick={() => start(mode)}
-          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98]"
+          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press"
         >
           Chơi lại
         </button>
         <button
           type="button"
           onClick={() => setPhase("intro")}
-          className="border-border flex min-h-12 w-full items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
+          className="border-border flex min-h-12 w-full items-center justify-center rounded-xl border font-medium press"
         >
           Đổi cách chơi
         </button>
         <Link
           href="/tro-choi/mua-tu"
-          className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
+          className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
         >
           Chọn bộ khác
         </Link>

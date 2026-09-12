@@ -24,11 +24,15 @@ export function BottomNav() {
                   href={href}
                   aria-current={active ? "page" : undefined}
                   // min-h-14 = 56px, thoải mái trên mức 44px tối thiểu cho vùng chạm
-                  className={`flex min-h-14 flex-col items-center justify-center gap-1 transition-transform duration-100 active:scale-90 ${
+                  className={`flex min-h-14 flex-col items-center justify-center gap-1 transition-colors duration-200 active:scale-90 ${
                     active ? "text-brand" : "text-muted"
                   }`}
                 >
-                  <Icon className="h-6 w-6" />
+                  {/* key đổi khi active đổi → icon nảy lên một cái */}
+                  <Icon
+                    key={active ? "on" : "off"}
+                    className={`h-6 w-6 ${active ? "tab-pop" : ""}`}
+                  />
                   <span className="text-[11px] leading-none font-medium">
                     {label}
                   </span>

@@ -1,20 +1,34 @@
+import { Mascot } from "@/app/_components/mascot";
+
 /**
- * Khung xương hiện ngay khi bấm chuyển tab, trong lúc server còn dựng trang.
+ * Màn chờ hiện ngay khi bấm chuyển tab, trong lúc server còn dựng trang:
+ * vịt nhún nhảy giữa màn + ba chấm nhấp nháy.
  *
  * Đặt ở cấp nhóm (app) nên mọi tab đều dùng chung, khỏi phải viết cho từng
  * route. Trang nào cần khung riêng thì thêm loading.tsx trong thư mục của nó.
  */
 export default function Loading() {
   return (
-    <div className="animate-pulse px-5 pt-6">
-      <div className="bg-border h-8 w-40 rounded-lg" />
-      <div className="bg-border mt-2 h-4 w-56 rounded" />
-
-      <div className="mt-8 space-y-3">
-        <div className="bg-border h-24 rounded-2xl" />
-        <div className="bg-border h-24 rounded-2xl" />
-        <div className="bg-border h-24 rounded-2xl" />
+    <div
+      role="status"
+      aria-live="polite"
+      className="flex min-h-[60dvh] flex-col items-center justify-center gap-4 px-6"
+    >
+      <div className="relative flex flex-col items-center">
+        <Mascot variant="chao" size={120} priority className="duck-bounce rounded-3xl" />
+        <span
+          aria-hidden
+          className="duck-shadow mt-2 h-2.5 w-20 rounded-full bg-black/40 dark:bg-black/60"
+        />
       </div>
+      <p className="text-muted flex items-center gap-1 text-sm">
+        Đang tải
+        <span aria-hidden className="flex gap-0.5">
+          <span className="loading-dot">.</span>
+          <span className="loading-dot [animation-delay:0.2s]">.</span>
+          <span className="loading-dot [animation-delay:0.4s]">.</span>
+        </span>
+      </p>
     </div>
   );
 }

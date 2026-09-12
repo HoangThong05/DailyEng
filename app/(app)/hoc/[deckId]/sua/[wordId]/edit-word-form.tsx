@@ -97,7 +97,7 @@ export function EditWordForm({ deckId, word }: { deckId: string; word: Word }) {
       <button
         type="submit"
         disabled={pending}
-        className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98] disabled:opacity-60"
+        className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press disabled:opacity-60"
       >
         {pending ? "Đang lưu…" : "Lưu thay đổi"}
       </button>

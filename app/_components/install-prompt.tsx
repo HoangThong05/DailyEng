@@ -76,7 +76,7 @@ export function InstallPrompt() {
           <button
             type="button"
             onClick={install}
-            className="bg-brand mt-3 min-h-11 w-full rounded-xl px-4 text-sm font-semibold text-white transition-transform duration-100 active:scale-[0.97]"
+            className="bg-brand mt-3 min-h-11 w-full rounded-xl px-4 text-sm font-semibold text-white press"
           >
             Thêm vào màn hình chính
           </button>

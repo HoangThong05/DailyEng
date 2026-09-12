@@ -215,7 +215,7 @@ export function PronunciationSession({
           <button
             type="button"
             onClick={() => audioRef.current?.play()}
-            className="border-border bg-card mt-3 min-h-12 w-full rounded-xl border text-sm font-semibold transition-transform duration-100 active:scale-[0.98]"
+            className="border-border bg-card mt-3 min-h-12 w-full rounded-xl border text-sm font-semibold press"
           >
             Nghe lại giọng bạn
           </button>
@@ -270,7 +270,7 @@ export function PronunciationSession({
           type="button"
           onClick={() => goTo(index - 1)}
           disabled={index === 0}
-          className="border-border text-muted min-h-12 flex-1 rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98] disabled:opacity-40"
+          className="border-border text-muted min-h-12 flex-1 rounded-xl border font-medium press disabled:opacity-40"
         >
           Từ trước
         </button>
@@ -278,7 +278,7 @@ export function PronunciationSession({
           type="button"
           onClick={() => goTo(index + 1)}
           disabled={index + 1 >= words.length}
-          className="bg-brand min-h-12 flex-1 rounded-xl font-semibold text-white transition-transform duration-100 active:scale-[0.98] disabled:opacity-40"
+          className="bg-brand min-h-12 flex-1 rounded-xl font-semibold text-white press disabled:opacity-40"
         >
           Từ tiếp theo
         </button>

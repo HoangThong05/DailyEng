@@ -107,13 +107,13 @@ export function QuizSession({ deckId, questions }: Props) {
         <div className="mt-8 flex flex-col gap-3">
           <Link
             href={`/quiz/${deckId}`}
-            className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white transition-transform duration-100 active:scale-[0.98]"
+            className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white press"
           >
             Làm lại
           </Link>
           <Link
             href="/quiz"
-            className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
+            className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
           >
             Chọn bộ khác
           </Link>
@@ -185,7 +185,7 @@ export function QuizSession({ deckId, questions }: Props) {
         <button
           type="button"
           onClick={next}
-          className="bg-brand mt-5 min-h-12 w-full rounded-xl font-semibold text-white transition-transform duration-100 active:scale-[0.98]"
+          className="bg-brand mt-5 min-h-12 w-full rounded-xl font-semibold text-white press"
         >
           {index + 1 >= questions.length ? "Xem kết quả" : "Câu tiếp theo"}
         </button>

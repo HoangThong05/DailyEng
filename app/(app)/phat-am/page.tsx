@@ -31,7 +31,7 @@ export default async function PhatAmPage() {
             <Link
               key={deck.id}
               href={`/phat-am/${deck.id}`}
-              className="border-border bg-card flex items-center gap-3 rounded-2xl border p-4 transition-transform duration-100 active:scale-[0.98]"
+              className="border-border bg-card flex items-center gap-3 rounded-2xl border p-4 press"
             >
               <span className="min-w-0 flex-1">
                 <span className="block truncate font-semibold">{deck.name}</span>

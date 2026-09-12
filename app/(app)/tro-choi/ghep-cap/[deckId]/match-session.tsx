@@ -171,13 +171,13 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
         <button
           type="button"
           onClick={replay}
-          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98]"
+          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press"
         >
           Chơi lại
         </button>
         <Link
           href="/tro-choi/ghep-cap"
-          className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
+          className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
         >
           Chọn bộ khác
         </Link>

@@ -66,7 +66,7 @@ export default async function HocPage() {
 
             <Link
               href="/hoc/tao"
-              className="border-border text-muted flex min-h-14 items-center justify-center rounded-2xl border border-dashed text-sm font-medium transition-transform duration-100 active:scale-[0.98]"
+              className="border-border text-muted flex min-h-14 items-center justify-center rounded-2xl border border-dashed text-sm font-medium press"
             >
               + Tạo bộ từ riêng
             </Link>

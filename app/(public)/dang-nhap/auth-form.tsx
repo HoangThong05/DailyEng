@@ -30,7 +30,7 @@ export function AuthForm({ next }: { next: string }) {
       <form action={signInWithGoogle}>
         <button
           type="submit"
-          className="border-border bg-card flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border text-base font-semibold transition-transform duration-100 active:scale-[0.98]"
+          className="border-border bg-card flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border text-base font-semibold press"
         >
           <GoogleIcon className="h-5 w-5" />
           Tiếp tục với Google
@@ -158,7 +158,7 @@ export function AuthForm({ next }: { next: string }) {
         <button
           type="submit"
           disabled={pending || mismatch}
-          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98] disabled:opacity-60"
+          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press disabled:opacity-60"
         >
           {pending ? "Đang xử lý…" : isSignup ? "Tạo tài khoản" : "Đăng nhập"}
         </button>

@@ -31,13 +31,16 @@ export function SideNav() {
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-11 items-center gap-3 rounded-xl px-3 font-medium transition-colors ${
+                className={`flex min-h-11 items-center gap-3 rounded-xl px-3 font-medium transition-[background-color,color,transform] duration-200 hover:translate-x-0.5 ${
                   active
                     ? "bg-brand-soft text-brand"
                     : "text-muted hover:bg-brand-soft/60 hover:text-fg"
                 }`}
               >
-                <Icon className="h-5 w-5" />
+                <Icon
+                  key={active ? "on" : "off"}
+                  className={`h-5 w-5 ${active ? "tab-pop" : ""}`}
+                />
                 {label}
               </Link>
             </li>

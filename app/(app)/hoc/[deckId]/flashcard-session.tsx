@@ -139,13 +139,13 @@ export function FlashcardSession({ deckName, cards }: Props) {
         <div className="mt-8 flex w-full flex-col gap-3">
           <Link
             href="/hoc"
-            className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white transition-transform duration-100 active:scale-[0.98]"
+            className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white press"
           >
             Chọn bộ khác
           </Link>
           <Link
             href="/"
-            className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
+            className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
           >
             Về trang chủ
           </Link>

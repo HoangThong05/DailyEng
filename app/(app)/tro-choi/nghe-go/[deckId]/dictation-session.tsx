@@ -102,7 +102,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
         <button
           type="button"
           onClick={start}
-          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98]"
+          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press"
         >
           Bắt đầu
         </button>
@@ -154,13 +154,13 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
 
         <Link
           href="/tro-choi/nghe-go"
-          className="bg-brand flex min-h-12 items-center justify-center rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98]"
+          className="bg-brand flex min-h-12 items-center justify-center rounded-xl text-base font-semibold text-white press"
         >
           Chơi bộ khác
         </Link>
         <Link
           href="/tro-choi"
-          className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
+          className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
         >
           Về trò chơi
         </Link>
@@ -243,7 +243,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
         <button
           type="button"
           onClick={next}
-          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98]"
+          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press"
         >
           {index + 1 >= words.length ? "Xem kết quả" : "Tiếp"}
         </button>
@@ -252,7 +252,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
           type="button"
           onClick={check}
           disabled={!answer.trim()}
-          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98] disabled:opacity-60"
+          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press disabled:opacity-60"
         >
           Kiểm tra
         </button>

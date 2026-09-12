@@ -13,7 +13,7 @@ export function ActionCard({ href, title, description, icon }: ActionCardProps) 
   return (
     <Link
       href={href}
-      className="border-border bg-card flex min-h-[72px] items-center gap-4 rounded-2xl border p-4 transition-transform duration-100 active:scale-[0.98]"
+      className="border-border bg-card flex min-h-[72px] items-center gap-4 rounded-2xl border p-4 press"
     >
       <span className="bg-brand-soft text-brand flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
         {icon}

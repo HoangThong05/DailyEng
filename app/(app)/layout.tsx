@@ -1,4 +1,5 @@
 import { BottomNav } from "@/app/_components/bottom-nav";
+import { PageTransition } from "@/app/_components/page-transition";
 import { SideNav } from "@/app/_components/side-nav";
 
 /**
@@ -11,7 +12,7 @@ export default function AppLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex min-h-[100dvh] flex-col md:pl-60">
       <main className="pb-nav mx-auto flex w-full max-w-md flex-1 flex-col md:max-w-3xl md:pb-10 lg:max-w-4xl">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </main>
       <BottomNav />
       <SideNav />

@@ -266,6 +266,134 @@
   animation: rain-shake 0.3s ease-in-out;
 }
 
+/* ---- Cảm giác chạm/hover ------------------------------------------------ */
+
+/*
+ * .press: mọi thứ bấm được. Chạm thì hơi co lại; trên thiết bị có chuột thì
+ * card nhấc lên + đổ bóng + viền chuyển màu, nút xanh sáng lên + toả sáng.
+ * Chỉ bật hover khi (hover: hover) để điện thoại không bị kẹt trạng thái hover.
+ */
+.press {
+  transition:
+    transform 0.16s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    filter 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.press:active {
+  transform: scale(0.98);
+  transition-duration: 0.08s;
+}
+
+@media (hover: hover) {
+  .press.bg-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--brand) 45%, var(--border));
+    box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--brand) 55%, transparent);
+  }
+
+  .press.bg-brand:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 10px 22px -10px var(--brand);
+    transform: translateY(-1px);
+  }
+
+  .press:hover:active {
+    transform: scale(0.98);
+    box-shadow: none;
+  }
+}
+
+/* Nội dung trang trượt nhẹ lên và hiện dần khi đổi route. */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Vịt nhún nhảy ở màn đang tải; bóng dưới chân co giãn theo. */
+@keyframes duck-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+  30% {
+    transform: translateY(-18px) scale(0.96, 1.04);
+  }
+  50% {
+    transform: translateY(-22px) scale(0.98, 1.02);
+  }
+  70% {
+    transform: translateY(0) scale(1.06, 0.94);
+  }
+}
+
+@keyframes duck-shadow {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleX(0.6);
+    opacity: 0.15;
+  }
+}
+
+.duck-bounce {
+  animation: duck-bounce 1.1s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+  transform-origin: 50% 100%;
+}
+
+.duck-shadow {
+  animation: duck-shadow 1.1s cubic-bezier(0.3, 0, 0.2, 1) infinite;
+}
+
+@keyframes dots {
+  0%,
+  20% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.loading-dot {
+  animation: dots 1.2s ease-in-out infinite;
+}
+
+/* Icon tab nảy lên một cái khi tab được chọn. */
+@keyframes tab-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25) translateY(-2px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tab-pop {
+  animation: tab-pop 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
 /* Người dùng bật "giảm chuyển động" thì tắt hết animation */
 @media (prefers-reduced-motion: reduce) {
   *,

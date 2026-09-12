@@ -100,7 +100,7 @@ export function CodeForm({ email }: { email: string }) {
         <button
           type="submit"
           disabled={verifying || code.length < CODE_LENGTH}
-          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white transition-transform duration-100 active:scale-[0.98] disabled:opacity-60"
+          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press disabled:opacity-60"
         >
           {verifying ? "Đang kiểm tra…" : "Xác nhận"}
         </button>

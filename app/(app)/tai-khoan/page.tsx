@@ -67,7 +67,7 @@ export default async function TaiKhoanPage() {
             <form action={signOut}>
               <button
                 type="submit"
-                className="border-border mt-4 min-h-11 w-full rounded-xl border text-sm font-semibold text-red-500 transition-transform duration-100 active:scale-[0.98]"
+                className="border-border mt-4 min-h-11 w-full rounded-xl border text-sm font-semibold text-red-500 press"
               >
                 Đăng xuất
               </button>

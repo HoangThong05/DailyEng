@@ -59,7 +59,7 @@ export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
           <div className="px-5">
             <Link
               href="/hoc"
-              className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium transition-transform duration-100 active:scale-[0.98]"
+              className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
             >
               Chọn bộ khác
             </Link>
