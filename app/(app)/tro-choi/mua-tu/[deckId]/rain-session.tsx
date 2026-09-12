@@ -57,6 +57,62 @@ function matchedPrefix(term: string, input: string) {
   return n;
 }
 
+/** Giới hạn x để tàu không chui ra ngoài mép sân. */
+const SHIP_MARGIN = 36;
+
+/**
+ * Tàu chiến vẽ bằng SVG: thân, cánh, buồng lái, nòng súng xoay được và
+ * lửa động cơ nhấp nháy bằng CSS. Nòng nằm trong <g> riêng để xoay quanh
+ * tâm tàu mà không kéo theo thân.
+ */
+function Ship({
+  shipRef,
+  turretRef,
+}: {
+  shipRef: React.RefObject<HTMLDivElement | null>;
+  turretRef: React.RefObject<SVGGElement | null>;
+}) {
+  return (
+    <div
+      ref={shipRef}
+      aria-hidden
+      className="rain-ship absolute bottom-1 h-16 w-16 -translate-x-1/2"
+      style={{ left: "50%" }}
+    >
+      <svg viewBox="0 0 64 64" className="h-full w-full overflow-visible">
+        {/* Lửa động cơ */}
+        <polygon
+          className="rain-flame"
+          points="26,50 32,64 38,50"
+          fill="#fb923c"
+        />
+        <polygon
+          className="rain-flame-core"
+          points="29,50 32,59 35,50"
+          fill="#fde68a"
+        />
+        {/* Cánh */}
+        <path d="M14 46 L26 30 L26 50 Z" fill="#334155" />
+        <path d="M50 46 L38 30 L38 50 Z" fill="#334155" />
+        {/* Thân */}
+        <path
+          d="M32 8 C40 16 42 30 42 50 L22 50 C22 30 24 16 32 8 Z"
+          fill="#cbd5e1"
+        />
+        <path d="M32 8 C36 16 37 30 37 50 L32 50 Z" fill="#94a3b8" />
+        {/* Buồng lái */}
+        <ellipse cx="32" cy="24" rx="4" ry="6" fill="#22d3ee" />
+        <ellipse cx="31" cy="22" rx="1.5" ry="2.5" fill="#ecfeff" opacity="0.8" />
+        {/* Nòng súng, xoay quanh (32,30) */}
+        <g ref={turretRef} className="rain-turret">
+          <rect x="30" y="4" width="4" height="26" rx="2" fill="#0ea5e9" />
+          <circle cx="32" cy="30" r="5" fill="#0369a1" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 /** Toạ độ tâm của một phần tử, tính theo sân chơi. */
 function centerOf(element: Element, field: Element): Point {
   const box = element.getBoundingClientRect();
@@ -83,8 +139,11 @@ export function RainSession({ words }: { words: GameWord[] }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const fieldRef = useRef<HTMLDivElement>(null);
   const shipRef = useRef<HTMLDivElement>(null);
+  const turretRef = useRef<SVGGElement>(null);
   const dropRefs = useRef(new Map<string, HTMLDivElement>());
   const effectId = useRef(0);
+  /** Giọt đang được ngắm, để vòng lặp rAF đọc mà không cần re-render. */
+  const aimRef = useRef<string | null>(null);
 
   // Thả giọt kế tiếp sau một khoảng nghỉ ngắn dần. Mỗi lần `spawned` đổi,
   // effect chạy lại và hẹn giọt sau.
@@ -103,6 +162,64 @@ export function RainSession({ words }: { words: GameWord[] }) {
 
     return () => clearTimeout(timer);
   }, [phase, spawned, words]);
+
+  // Vòng lặp lái tàu: mỗi khung hình tìm giọt đang ngắm (hoặc giọt thấp
+  // nhất), trượt tàu tới dưới nó và xoay nòng về phía nó. Ghi thẳng vào
+  // style qua ref, không qua state, để không render lại 60 lần/giây.
+  useEffect(() => {
+    if (phase !== "playing") return;
+
+    let frame = 0;
+    const tick = () => {
+      frame = requestAnimationFrame(tick);
+      const field = fieldRef.current;
+      const ship = shipRef.current;
+      const turret = turretRef.current;
+      if (!field || !ship || !turret) return;
+
+      let target: HTMLDivElement | undefined;
+      if (aimRef.current) target = dropRefs.current.get(aimRef.current);
+      if (!target) {
+        let lowest = -Infinity;
+        for (const node of dropRefs.current.values()) {
+          const top = node.getBoundingClientRect().top;
+          if (top > lowest) {
+            lowest = top;
+            target = node;
+          }
+        }
+      }
+
+      if (!target) {
+        turret.style.transform = "rotate(0deg)";
+        return;
+      }
+
+      const width = field.clientWidth;
+      const to = centerOf(target, field);
+      const x = Math.min(width - SHIP_MARGIN, Math.max(SHIP_MARGIN, to.x));
+      ship.style.left = `${x}px`;
+
+      const from = centerOf(ship, field);
+      // Nòng mặc định chỉ thẳng lên (-90°), nên cộng 90° để quy về hướng mục tiêu.
+      const degrees = (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI + 90;
+      turret.style.transform = `rotate(${degrees}deg)`;
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [phase]);
+
+  // Đồng bộ mục tiêu cho vòng lặp rAF. Tính lại ở đây (không phải trong
+  // render) vì ghi ref trong lúc render là điều React cấm.
+  useEffect(() => {
+    aimRef.current =
+      mode === "go" && input
+        ? (drops.find(
+            (drop) => matchedPrefix(drop.word.term, input) === input.length,
+          )?.id ?? null)
+        : null;
+  }, [mode, input, drops]);
 
   // Dọn hiệu ứng laser / nổ sau khi chúng chạy xong.
   useEffect(() => {
@@ -381,13 +498,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
 
         {/* Vạch đỏ nguy hiểm + tàu */}
         <div className="absolute inset-x-0 bottom-0 h-1 bg-red-500/80 shadow-[0_0_12px_2px_rgba(239,68,68,0.6)]" />
-        <div
-          ref={shipRef}
-          aria-hidden
-          className="absolute bottom-2 left-1/2 -translate-x-1/2 text-4xl leading-none select-none"
-        >
-          🚀
-        </div>
+        <Ship shipRef={shipRef} turretRef={turretRef} />
       </div>
 
       <input

@@ -156,6 +156,39 @@
   animation: rain-burst 0.35s ease-out forwards;
 }
 
+/* Tàu: trượt ngang mượt khi đổi mục tiêu, nòng xoay quanh tâm tàu. */
+.rain-ship {
+  transition: left 0.25s ease-out;
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.45));
+}
+
+.rain-turret {
+  transform-origin: 32px 30px;
+  transition: transform 0.12s linear;
+}
+
+@keyframes rain-flame {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scaleY(1.5);
+    opacity: 1;
+  }
+}
+
+.rain-flame,
+.rain-flame-core {
+  transform-origin: 32px 50px;
+  animation: rain-flame 0.18s ease-in-out infinite alternate;
+}
+
+.rain-flame-core {
+  animation-duration: 0.12s;
+}
+
 @keyframes rain-shake {
   0%,
   100% {
