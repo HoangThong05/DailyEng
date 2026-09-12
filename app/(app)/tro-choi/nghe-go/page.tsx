@@ -21,7 +21,7 @@ export default async function NgheGoPage() {
           description="Tạo hoặc chọn một bộ từ ở tab Học rồi quay lại đây."
         />
       ) : (
-        <div className="grid gap-3 px-5 pt-2 md:grid-cols-2">
+        <div className="stagger grid gap-3 px-5 pt-2 md:grid-cols-2">
           {decks.map((deck) => (
             <Link
               key={deck.id}

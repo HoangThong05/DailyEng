@@ -129,7 +129,7 @@ export default async function Home() {
 
         <section
           aria-labelledby="bat-dau"
-          className="grid gap-3 md:grid-cols-2 lg:grid-cols-4"
+          className="stagger grid gap-3 md:grid-cols-2 lg:grid-cols-4"
         >
           <h2
             id="bat-dau"

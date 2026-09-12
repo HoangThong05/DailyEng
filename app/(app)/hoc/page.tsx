@@ -35,7 +35,7 @@ export default async function HocPage() {
           {publicDecks.length > 0 ? (
             <section
               aria-labelledby="bo-co-san"
-              className="grid gap-3 md:grid-cols-2"
+              className="stagger grid gap-3 md:grid-cols-2"
             >
               <h2
                 id="bo-co-san"
@@ -51,7 +51,7 @@ export default async function HocPage() {
 
           <section
             aria-labelledby="bo-cua-toi"
-            className="grid gap-3 md:grid-cols-2"
+            className="stagger grid gap-3 md:grid-cols-2"
           >
             <h2
               id="bo-cua-toi"

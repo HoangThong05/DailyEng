@@ -27,7 +27,7 @@ export default async function TienDoPage() {
     <>
       <PageHeader title="Tiến độ" subtitle="Thống kê học tập" />
 
-      <div className="grid gap-6 px-5 pt-2 md:grid-cols-2">
+      <div className="stagger grid gap-6 px-5 pt-2 md:grid-cols-2">
         <section
           aria-labelledby="chuoi-ngay"
           className="border-border bg-card flex items-center gap-4 rounded-2xl border p-5 md:col-span-2"

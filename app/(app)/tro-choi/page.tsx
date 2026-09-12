@@ -20,7 +20,7 @@ export default function TroChoiPage() {
 
       <div className="px-5 pt-2 pb-4">
         <div className="border-border bg-card flex items-center gap-4 rounded-2xl border p-4">
-          <Mascot variant="nghe" size={88} className="shrink-0 rounded-2xl" />
+          <Mascot variant="choi" size={96} className="shrink-0 rounded-2xl" />
           <p className="text-muted text-sm leading-relaxed">
             Mỗi trò là một cách ôn khác nhau. Chơi xong, từ nào nhớ hay quên
             đều được ghi lại và tính XP như khi học flashcard.
@@ -28,7 +28,7 @@ export default function TroChoiPage() {
         </div>
       </div>
 
-      <div className="grid gap-3 px-5 md:grid-cols-2">
+      <div className="stagger grid gap-3 px-5 md:grid-cols-2">
         <ActionCard
           href="/tro-choi/ghep-cap"
           title="Ghép cặp"
