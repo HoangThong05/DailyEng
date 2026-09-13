@@ -46,8 +46,7 @@ app/
 │   ├── quiz/         #   Quiz trắc nghiệm
 │   ├── tro-choi/     #   Hub trò chơi: ghep-cap, nghe-go, mua-tu
 │   ├── phat-am/      #   Luyện phát âm
-│   ├── tien-do/      #   Chuỗi ngày, cấp độ, thống kê
-│   └── tai-khoan/    #   Hồ sơ, nhắc học, giao diện
+│   └── tai-khoan/    #   Hồ sơ, cấp độ, thống kê, nhắc học, giao diện
 ├── (public)/         # Đăng nhập, nhập mã xác nhận, trang offline
 ├── auth/             # Callback Google và link xác nhận email
 ├── api/cron/         # pg_cron của Supabase gọi mỗi giờ để gửi nhắc học

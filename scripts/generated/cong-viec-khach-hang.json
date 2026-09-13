@@ -1,0 +1,702 @@
+[
+  {
+    "term": "customer",
+    "phonetic": "/ˈkʌstəmə/",
+    "meaning_vi": "khách hàng (n)",
+    "example_en": "The customer is always right.",
+    "example_vi": "Khách hàng luôn đúng."
+  },
+  {
+    "term": "client",
+    "phonetic": "/ˈklaɪənt/",
+    "meaning_vi": "khách hàng (dịch vụ) (n)",
+    "example_en": "We have a call with the client at 3.",
+    "example_vi": "Chúng tôi có cuộc gọi với khách lúc 3 giờ."
+  },
+  {
+    "term": "customer service",
+    "phonetic": "/ˈkʌstəmə ˈsɜːvɪs/",
+    "meaning_vi": "dịch vụ khách hàng (n)",
+    "example_en": "Their customer service is excellent.",
+    "example_vi": "Dịch vụ khách hàng của họ rất tốt."
+  },
+  {
+    "term": "customer support",
+    "phonetic": "/ˈkʌstəmə səˈpɔːt/",
+    "meaning_vi": "hỗ trợ khách hàng (n)",
+    "example_en": "Contact customer support for help.",
+    "example_vi": "Liên hệ hỗ trợ khách hàng để được giúp."
+  },
+  {
+    "term": "how may I help you",
+    "phonetic": "/haʊ meɪ aɪ help juː/",
+    "meaning_vi": "tôi có thể giúp gì cho bạn",
+    "example_en": "Good morning, how may I help you?",
+    "example_vi": "Chào buổi sáng, tôi có thể giúp gì cho bạn?"
+  },
+  {
+    "term": "account",
+    "phonetic": "/əˈkaʊnt/",
+    "meaning_vi": "tài khoản (n)",
+    "example_en": "Could I have your account number?",
+    "example_vi": "Cho tôi xin số tài khoản của bạn?"
+  },
+  {
+    "term": "account manager",
+    "phonetic": "/əˈkaʊnt ˈmænɪdʒə/",
+    "meaning_vi": "quản lý khách hàng (n)",
+    "example_en": "Your account manager will call you.",
+    "example_vi": "Quản lý khách hàng sẽ gọi cho bạn."
+  },
+  {
+    "term": "inquiry",
+    "phonetic": "/ɪnˈkwaɪəri/",
+    "meaning_vi": "yêu cầu thông tin (n)",
+    "example_en": "We received your inquiry.",
+    "example_vi": "Chúng tôi đã nhận yêu cầu của bạn."
+  },
+  {
+    "term": "complaint",
+    "phonetic": "/kəmˈpleɪnt/",
+    "meaning_vi": "khiếu nại (n)",
+    "example_en": "We take every complaint seriously.",
+    "example_vi": "Chúng tôi xem trọng mọi khiếu nại."
+  },
+  {
+    "term": "I understand your frustration",
+    "phonetic": "/aɪ ˌʌndəˈstænd jɔː frʌˈstreɪʃn/",
+    "meaning_vi": "tôi hiểu sự bực bội của bạn",
+    "example_en": "I understand your frustration, and I'm here to help.",
+    "example_vi": "Tôi hiểu bạn bực bội, và tôi ở đây để giúp."
+  },
+  {
+    "term": "I apologize for the inconvenience",
+    "phonetic": "/aɪ əˈpɒlədʒaɪz fɔː ði ˌɪnkənˈviːniəns/",
+    "meaning_vi": "xin lỗi vì sự bất tiện",
+    "example_en": "I apologize for the inconvenience caused.",
+    "example_vi": "Tôi xin lỗi vì sự bất tiện đã gây ra."
+  },
+  {
+    "term": "resolve",
+    "phonetic": "/rɪˈzɒlv/",
+    "meaning_vi": "giải quyết (v)",
+    "example_en": "We'll resolve this today.",
+    "example_vi": "Chúng tôi sẽ giải quyết hôm nay."
+  },
+  {
+    "term": "resolution",
+    "phonetic": "/ˌrezəˈluːʃn/",
+    "meaning_vi": "cách giải quyết (n)",
+    "example_en": "We aim for a quick resolution.",
+    "example_vi": "Chúng tôi hướng tới giải quyết nhanh."
+  },
+  {
+    "term": "ticket",
+    "phonetic": "/ˈtɪkɪt/",
+    "meaning_vi": "phiếu yêu cầu hỗ trợ (n)",
+    "example_en": "I've opened a ticket for your issue.",
+    "example_vi": "Tôi đã mở phiếu hỗ trợ cho vấn đề của bạn."
+  },
+  {
+    "term": "case number",
+    "phonetic": "/keɪs ˈnʌmbə/",
+    "meaning_vi": "mã hồ sơ (n)",
+    "example_en": "Please quote your case number.",
+    "example_vi": "Vui lòng cung cấp mã hồ sơ."
+  },
+  {
+    "term": "escalation",
+    "phonetic": "/ˌeskəˈleɪʃn/",
+    "meaning_vi": "chuyển lên cấp cao hơn (n)",
+    "example_en": "This needs escalation to a manager.",
+    "example_vi": "Việc này cần chuyển lên quản lý."
+  },
+  {
+    "term": "refund",
+    "phonetic": "/ˈriːfʌnd/",
+    "meaning_vi": "hoàn tiền (n, v)",
+    "example_en": "You'll receive a full refund.",
+    "example_vi": "Bạn sẽ được hoàn tiền toàn bộ."
+  },
+  {
+    "term": "replacement",
+    "phonetic": "/rɪˈpleɪsmənt/",
+    "meaning_vi": "hàng thay thế (n)",
+    "example_en": "We'll send a replacement tomorrow.",
+    "example_vi": "Chúng tôi sẽ gửi hàng thay thế ngày mai."
+  },
+  {
+    "term": "exchange",
+    "phonetic": "/ɪksˈtʃeɪndʒ/",
+    "meaning_vi": "đổi hàng (v, n)",
+    "example_en": "Can I exchange this for a larger size?",
+    "example_vi": "Tôi đổi cái này sang cỡ lớn hơn được không?"
+  },
+  {
+    "term": "warranty",
+    "phonetic": "/ˈwɒrənti/",
+    "meaning_vi": "bảo hành (n)",
+    "example_en": "The laptop has a two-year warranty.",
+    "example_vi": "Máy tính có bảo hành hai năm."
+  },
+  {
+    "term": "return policy",
+    "phonetic": "/rɪˈtɜːn ˈpɒləsi/",
+    "meaning_vi": "chính sách đổi trả (n)",
+    "example_en": "Our return policy is 30 days.",
+    "example_vi": "Chính sách đổi trả là 30 ngày."
+  },
+  {
+    "term": "compensation",
+    "phonetic": "/ˌkɒmpenˈseɪʃn/",
+    "meaning_vi": "bồi thường (n)",
+    "example_en": "We offered a voucher as compensation.",
+    "example_vi": "Chúng tôi tặng phiếu quà làm bồi thường."
+  },
+  {
+    "term": "goodwill gesture",
+    "phonetic": "/ˌɡʊdˈwɪl ˈdʒestʃə/",
+    "meaning_vi": "cử chỉ thiện chí (n)",
+    "example_en": "As a goodwill gesture, shipping is free.",
+    "example_vi": "Để thể hiện thiện chí, miễn phí vận chuyển."
+  },
+  {
+    "term": "satisfaction",
+    "phonetic": "/ˌsætɪsˈfækʃn/",
+    "meaning_vi": "sự hài lòng (n)",
+    "example_en": "Customer satisfaction is our goal.",
+    "example_vi": "Sự hài lòng của khách là mục tiêu."
+  },
+  {
+    "term": "satisfied",
+    "phonetic": "/ˈsætɪsfaɪd/",
+    "meaning_vi": "hài lòng (adj)",
+    "example_en": "Are you satisfied with the solution?",
+    "example_vi": "Bạn hài lòng với giải pháp chứ?"
+  },
+  {
+    "term": "loyal customer",
+    "phonetic": "/ˈlɔɪəl ˈkʌstəmə/",
+    "meaning_vi": "khách hàng trung thành (n)",
+    "example_en": "Loyal customers get early access.",
+    "example_vi": "Khách trung thành được ưu tiên trước."
+  },
+  {
+    "term": "loyalty program",
+    "phonetic": "/ˈlɔɪəlti ˈprəʊɡræm/",
+    "meaning_vi": "chương trình khách hàng thân thiết (n)",
+    "example_en": "Join our loyalty program for points.",
+    "example_vi": "Tham gia chương trình thân thiết để tích điểm."
+  },
+  {
+    "term": "retention",
+    "phonetic": "/rɪˈtenʃn/",
+    "meaning_vi": "giữ chân khách (n)",
+    "example_en": "Retention improved after the update.",
+    "example_vi": "Tỷ lệ giữ chân khách tăng sau cập nhật."
+  },
+  {
+    "term": "churn",
+    "phonetic": "/tʃɜːn/",
+    "meaning_vi": "tỷ lệ rời bỏ (n)",
+    "example_en": "Churn is high among new users.",
+    "example_vi": "Tỷ lệ rời bỏ cao ở người dùng mới."
+  },
+  {
+    "term": "feedback survey",
+    "phonetic": "/ˈfiːdbæk ˈsɜːveɪ/",
+    "meaning_vi": "khảo sát ý kiến (n)",
+    "example_en": "Please complete the feedback survey.",
+    "example_vi": "Vui lòng hoàn thành khảo sát ý kiến."
+  },
+  {
+    "term": "rating",
+    "phonetic": "/ˈreɪtɪŋ/",
+    "meaning_vi": "đánh giá sao (n)",
+    "example_en": "We got a five-star rating.",
+    "example_vi": "Chúng tôi nhận đánh giá năm sao."
+  },
+  {
+    "term": "testimonial",
+    "phonetic": "/ˌtestɪˈməʊniəl/",
+    "meaning_vi": "lời chứng thực của khách (n)",
+    "example_en": "Add a testimonial to the website.",
+    "example_vi": "Thêm lời chứng thực lên website."
+  },
+  {
+    "term": "referral",
+    "phonetic": "/rɪˈfɜːrəl/",
+    "meaning_vi": "sự giới thiệu khách (n)",
+    "example_en": "Most new clients come from referrals.",
+    "example_vi": "Hầu hết khách mới đến từ giới thiệu."
+  },
+  {
+    "term": "word of mouth",
+    "phonetic": "/wɜːd əv maʊθ/",
+    "meaning_vi": "truyền miệng",
+    "example_en": "We grew by word of mouth.",
+    "example_vi": "Chúng tôi phát triển nhờ truyền miệng."
+  },
+  {
+    "term": "prospect",
+    "phonetic": "/ˈprɒspekt/",
+    "meaning_vi": "khách hàng tiềm năng (n)",
+    "example_en": "We have ten prospects this week.",
+    "example_vi": "Tuần này có mười khách tiềm năng."
+  },
+  {
+    "term": "lead",
+    "phonetic": "/liːd/",
+    "meaning_vi": "đầu mối khách hàng (n)",
+    "example_en": "Sales followed up on every lead.",
+    "example_vi": "Kinh doanh theo sát mọi đầu mối."
+  },
+  {
+    "term": "pitch",
+    "phonetic": "/pɪtʃ/",
+    "meaning_vi": "bài chào hàng (n); chào hàng (v)",
+    "example_en": "Keep your pitch under two minutes.",
+    "example_vi": "Giữ bài chào hàng dưới hai phút."
+  },
+  {
+    "term": "demo",
+    "phonetic": "/ˈdeməʊ/",
+    "meaning_vi": "bản trình diễn thử (n)",
+    "example_en": "Would you like a free demo?",
+    "example_vi": "Bạn muốn xem demo miễn phí không?"
+  },
+  {
+    "term": "quote",
+    "phonetic": "/kwəʊt/",
+    "meaning_vi": "báo giá (n, v)",
+    "example_en": "I'll send a quote by Friday.",
+    "example_vi": "Tôi sẽ gửi báo giá trước thứ Sáu."
+  },
+  {
+    "term": "sales proposal",
+    "phonetic": "/seɪlz prəˈpəʊzl/",
+    "meaning_vi": "hồ sơ chào bán (n)",
+    "example_en": "The client accepted our sales proposal.",
+    "example_vi": "Khách đã chấp nhận hồ sơ chào bán của chúng tôi."
+  },
+  {
+    "term": "negotiate",
+    "phonetic": "/nɪˈɡəʊʃieɪt/",
+    "meaning_vi": "đàm phán (v)",
+    "example_en": "We negotiated a better price.",
+    "example_vi": "Chúng tôi đàm phán được giá tốt hơn."
+  },
+  {
+    "term": "discount",
+    "phonetic": "/ˈdɪskaʊnt/",
+    "meaning_vi": "giảm giá (n)",
+    "example_en": "We can offer a 10% discount.",
+    "example_vi": "Chúng tôi có thể giảm 10%."
+  },
+  {
+    "term": "close a deal",
+    "phonetic": "/kləʊz ə diːl/",
+    "meaning_vi": "chốt hợp đồng",
+    "example_en": "We closed the deal yesterday.",
+    "example_vi": "Chúng tôi chốt hợp đồng hôm qua."
+  },
+  {
+    "term": "upsell",
+    "phonetic": "/ˈʌpsel/",
+    "meaning_vi": "bán gói cao hơn (v)",
+    "example_en": "Try to upsell the premium plan.",
+    "example_vi": "Thử bán thêm gói cao cấp."
+  },
+  {
+    "term": "cross-sell",
+    "phonetic": "/ˈkrɒs sel/",
+    "meaning_vi": "bán chéo (v)",
+    "example_en": "We cross-sell accessories at checkout.",
+    "example_vi": "Chúng tôi bán chéo phụ kiện lúc thanh toán."
+  },
+  {
+    "term": "subscription",
+    "phonetic": "/səbˈskrɪpʃn/",
+    "meaning_vi": "gói đăng ký (n)",
+    "example_en": "Your subscription renews monthly.",
+    "example_vi": "Gói đăng ký gia hạn hằng tháng."
+  },
+  {
+    "term": "renewal",
+    "phonetic": "/rɪˈnjuːəl/",
+    "meaning_vi": "gia hạn (n)",
+    "example_en": "The renewal is due next month.",
+    "example_vi": "Gia hạn đến hạn vào tháng sau."
+  },
+  {
+    "term": "cancel",
+    "phonetic": "/ˈkænsl/",
+    "meaning_vi": "huỷ (v)",
+    "example_en": "I'd like to cancel my order.",
+    "example_vi": "Tôi muốn huỷ đơn hàng."
+  },
+  {
+    "term": "order status",
+    "phonetic": "/ˈɔːdə ˈsteɪtəs/",
+    "meaning_vi": "tình trạng đơn hàng (n)",
+    "example_en": "Check your order status online.",
+    "example_vi": "Kiểm tra tình trạng đơn hàng trực tuyến."
+  },
+  {
+    "term": "tracking number",
+    "phonetic": "/ˈtrækɪŋ ˈnʌmbə/",
+    "meaning_vi": "mã vận đơn (n)",
+    "example_en": "Here is your tracking number.",
+    "example_vi": "Đây là mã vận đơn của bạn."
+  },
+  {
+    "term": "delivery",
+    "phonetic": "/dɪˈlɪvəri/",
+    "meaning_vi": "giao hàng (n)",
+    "example_en": "Delivery takes three days.",
+    "example_vi": "Giao hàng mất ba ngày."
+  },
+  {
+    "term": "damaged",
+    "phonetic": "/ˈdæmɪdʒd/",
+    "meaning_vi": "bị hư hỏng (adj)",
+    "example_en": "The package arrived damaged.",
+    "example_vi": "Gói hàng đến nơi bị hư hỏng."
+  },
+  {
+    "term": "defective",
+    "phonetic": "/dɪˈfektɪv/",
+    "meaning_vi": "bị lỗi (adj)",
+    "example_en": "The product is defective.",
+    "example_vi": "Sản phẩm bị lỗi."
+  },
+  {
+    "term": "invoice",
+    "phonetic": "/ˈɪnvɔɪs/",
+    "meaning_vi": "hoá đơn (n)",
+    "example_en": "The invoice is attached.",
+    "example_vi": "Hoá đơn được đính kèm."
+  },
+  {
+    "term": "billing",
+    "phonetic": "/ˈbɪlɪŋ/",
+    "meaning_vi": "thanh toán, tính phí (n)",
+    "example_en": "I have a billing question.",
+    "example_vi": "Tôi có câu hỏi về thanh toán."
+  },
+  {
+    "term": "overcharge",
+    "phonetic": "/ˌəʊvəˈtʃɑːdʒ/",
+    "meaning_vi": "tính phí quá cao (v)",
+    "example_en": "I think I was overcharged.",
+    "example_vi": "Tôi nghĩ tôi bị tính phí thừa."
+  },
+  {
+    "term": "payment method",
+    "phonetic": "/ˈpeɪmənt ˈmeθəd/",
+    "meaning_vi": "phương thức thanh toán (n)",
+    "example_en": "Update your payment method.",
+    "example_vi": "Cập nhật phương thức thanh toán."
+  },
+  {
+    "term": "verify",
+    "phonetic": "/ˈverɪfaɪ/",
+    "meaning_vi": "xác minh (v)",
+    "example_en": "Let me verify your identity.",
+    "example_vi": "Để tôi xác minh danh tính của bạn."
+  },
+  {
+    "term": "privacy",
+    "phonetic": "/ˈprɪvəsi/",
+    "meaning_vi": "quyền riêng tư (n)",
+    "example_en": "We respect your privacy.",
+    "example_vi": "Chúng tôi tôn trọng quyền riêng tư của bạn."
+  },
+  {
+    "term": "terms and conditions",
+    "phonetic": "/tɜːmz ənd kənˈdɪʃnz/",
+    "meaning_vi": "điều khoản và điều kiện",
+    "example_en": "Please read the terms and conditions.",
+    "example_vi": "Vui lòng đọc điều khoản và điều kiện."
+  },
+  {
+    "term": "FAQ",
+    "phonetic": "/ˌef eɪ ˈkjuː/",
+    "meaning_vi": "câu hỏi thường gặp (n)",
+    "example_en": "Check the FAQ page first.",
+    "example_vi": "Xem trang câu hỏi thường gặp trước."
+  },
+  {
+    "term": "help desk",
+    "phonetic": "/help desk/",
+    "meaning_vi": "bàn hỗ trợ (n)",
+    "example_en": "The help desk is open 24/7.",
+    "example_vi": "Bàn hỗ trợ mở 24/7."
+  },
+  {
+    "term": "live chat",
+    "phonetic": "/laɪv tʃæt/",
+    "meaning_vi": "chat trực tuyến (n)",
+    "example_en": "Use live chat for quick answers.",
+    "example_vi": "Dùng chat trực tuyến để được trả lời nhanh."
+  },
+  {
+    "term": "hotline",
+    "phonetic": "/ˈhɒtlaɪn/",
+    "meaning_vi": "đường dây nóng (n)",
+    "example_en": "Call our hotline anytime.",
+    "example_vi": "Gọi đường dây nóng bất cứ lúc nào."
+  },
+  {
+    "term": "on hold",
+    "phonetic": "/ɒn həʊld/",
+    "meaning_vi": "đang chờ máy",
+    "example_en": "I was on hold for twenty minutes.",
+    "example_vi": "Tôi chờ máy hai mươi phút."
+  },
+  {
+    "term": "transfer",
+    "phonetic": "/trænsˈfɜː/",
+    "meaning_vi": "chuyển máy (v)",
+    "example_en": "I'll transfer you to billing.",
+    "example_vi": "Tôi chuyển bạn sang bộ phận thanh toán."
+  },
+  {
+    "term": "response time",
+    "phonetic": "/rɪˈspɒns taɪm/",
+    "meaning_vi": "thời gian phản hồi (n)",
+    "example_en": "Our average response time is one hour.",
+    "example_vi": "Thời gian phản hồi trung bình là một giờ."
+  },
+  {
+    "term": "first-call resolution",
+    "phonetic": "/fɜːst kɔːl ˌrezəˈluːʃn/",
+    "meaning_vi": "giải quyết ngay cuộc gọi đầu (n)",
+    "example_en": "We aim for first-call resolution.",
+    "example_vi": "Chúng tôi hướng tới giải quyết ngay cuộc gọi đầu."
+  },
+  {
+    "term": "empathy",
+    "phonetic": "/ˈempəθi/",
+    "meaning_vi": "sự đồng cảm (n)",
+    "example_en": "Show empathy when customers are upset.",
+    "example_vi": "Thể hiện đồng cảm khi khách bực bội."
+  },
+  {
+    "term": "patient",
+    "phonetic": "/ˈpeɪʃnt/",
+    "meaning_vi": "kiên nhẫn (adj)",
+    "example_en": "Stay patient with angry callers.",
+    "example_vi": "Giữ kiên nhẫn với người gọi tức giận."
+  },
+  {
+    "term": "polite",
+    "phonetic": "/pəˈlaɪt/",
+    "meaning_vi": "lịch sự (adj)",
+    "example_en": "Always be polite, even when it's hard.",
+    "example_vi": "Luôn lịch sự, kể cả khi khó khăn."
+  },
+  {
+    "term": "active listening",
+    "phonetic": "/ˈæktɪv ˈlɪsnɪŋ/",
+    "meaning_vi": "lắng nghe chủ động (n)",
+    "example_en": "Active listening builds trust.",
+    "example_vi": "Lắng nghe chủ động tạo niềm tin."
+  },
+  {
+    "term": "reassure",
+    "phonetic": "/ˌriːəˈʃʊə/",
+    "meaning_vi": "trấn an (v)",
+    "example_en": "Reassure the customer that it's being fixed.",
+    "example_vi": "Trấn an khách rằng việc đang được xử lý."
+  },
+  {
+    "term": "rest assured",
+    "phonetic": "/rest əˈʃʊəd/",
+    "meaning_vi": "hãy yên tâm",
+    "example_en": "Rest assured, we'll handle it.",
+    "example_vi": "Hãy yên tâm, chúng tôi sẽ xử lý."
+  },
+  {
+    "term": "expectation",
+    "phonetic": "/ˌekspekˈteɪʃn/",
+    "meaning_vi": "kỳ vọng (n)",
+    "example_en": "Set clear expectations early.",
+    "example_vi": "Đặt kỳ vọng rõ ràng từ sớm."
+  },
+  {
+    "term": "exceed expectations",
+    "phonetic": "/ɪkˈsiːd ˌekspekˈteɪʃnz/",
+    "meaning_vi": "vượt kỳ vọng",
+    "example_en": "The team exceeded expectations.",
+    "example_vi": "Nhóm đã vượt kỳ vọng."
+  },
+  {
+    "term": "go the extra mile",
+    "phonetic": "/ɡəʊ ði ˈekstrə maɪl/",
+    "meaning_vi": "nỗ lực hơn mức yêu cầu",
+    "example_en": "Our staff go the extra mile.",
+    "example_vi": "Nhân viên chúng tôi luôn nỗ lực hơn mong đợi."
+  },
+  {
+    "term": "relationship",
+    "phonetic": "/rɪˈleɪʃnʃɪp/",
+    "meaning_vi": "mối quan hệ (n)",
+    "example_en": "Build long-term client relationships.",
+    "example_vi": "Xây dựng quan hệ khách hàng lâu dài."
+  },
+  {
+    "term": "rapport",
+    "phonetic": "/ræˈpɔː/",
+    "meaning_vi": "sự thân thiết, gắn kết (n)",
+    "example_en": "Build rapport before pitching.",
+    "example_vi": "Tạo gắn kết trước khi chào hàng."
+  },
+  {
+    "term": "trust",
+    "phonetic": "/trʌst/",
+    "meaning_vi": "niềm tin (n)",
+    "example_en": "Trust takes time to earn.",
+    "example_vi": "Niềm tin cần thời gian để có được."
+  },
+  {
+    "term": "follow-up call",
+    "phonetic": "/ˈfɒləʊ ʌp kɔːl/",
+    "meaning_vi": "cuộc gọi theo dõi (n)",
+    "example_en": "Schedule a follow-up call next week.",
+    "example_vi": "Lên lịch gọi theo dõi tuần sau."
+  },
+  {
+    "term": "check in",
+    "phonetic": "/tʃek ɪn/",
+    "meaning_vi": "hỏi thăm tình hình",
+    "example_en": "I'm just checking in to see how things are.",
+    "example_vi": "Tôi hỏi thăm xem mọi việc thế nào."
+  },
+  {
+    "term": "onboarding",
+    "phonetic": "/ˈɒnbɔːdɪŋ/",
+    "meaning_vi": "hướng dẫn khách mới (n)",
+    "example_en": "Onboarding takes about a week.",
+    "example_vi": "Hướng dẫn khách mới mất khoảng một tuần."
+  },
+  {
+    "term": "user guide",
+    "phonetic": "/ˈjuːzə ɡaɪd/",
+    "meaning_vi": "hướng dẫn sử dụng (n)",
+    "example_en": "The user guide is on our website.",
+    "example_vi": "Hướng dẫn sử dụng có trên website."
+  },
+  {
+    "term": "troubleshoot",
+    "phonetic": "/ˈtrʌblʃuːt/",
+    "meaning_vi": "khắc phục sự cố (v)",
+    "example_en": "Let's troubleshoot the connection.",
+    "example_vi": "Cùng khắc phục sự cố kết nối."
+  },
+  {
+    "term": "workaround",
+    "phonetic": "/ˈwɜːkəraʊnd/",
+    "meaning_vi": "cách xử lý tạm (n)",
+    "example_en": "Here's a workaround until the fix.",
+    "example_vi": "Đây là cách xử lý tạm cho đến khi sửa xong."
+  },
+  {
+    "term": "known issue",
+    "phonetic": "/nəʊn ˈɪʃuː/",
+    "meaning_vi": "lỗi đã biết (n)",
+    "example_en": "That's a known issue; a fix is coming.",
+    "example_vi": "Đó là lỗi đã biết; bản sửa sắp có."
+  },
+  {
+    "term": "outage",
+    "phonetic": "/ˈaʊtɪdʒ/",
+    "meaning_vi": "sự cố ngừng dịch vụ (n)",
+    "example_en": "We had a two-hour outage.",
+    "example_vi": "Dịch vụ bị gián đoạn hai giờ."
+  },
+  {
+    "term": "service level agreement",
+    "phonetic": "/ˈsɜːvɪs ˈlevl əˈɡriːmənt/",
+    "meaning_vi": "thoả thuận mức dịch vụ (SLA) (n)",
+    "example_en": "The service level agreement guarantees 99.9% uptime.",
+    "example_vi": "SLA cam kết 99,9% thời gian hoạt động."
+  },
+  {
+    "term": "key account",
+    "phonetic": "/kiː əˈkaʊnt/",
+    "meaning_vi": "khách hàng trọng yếu (n)",
+    "example_en": "This is a key account for us.",
+    "example_vi": "Đây là khách hàng trọng yếu của chúng tôi."
+  },
+  {
+    "term": "B2B",
+    "phonetic": "/ˌbiː tə ˈbiː/",
+    "meaning_vi": "doanh nghiệp với doanh nghiệp",
+    "example_en": "We mainly sell B2B.",
+    "example_vi": "Chúng tôi chủ yếu bán B2B."
+  },
+  {
+    "term": "B2C",
+    "phonetic": "/ˌbiː tə ˈsiː/",
+    "meaning_vi": "doanh nghiệp với người tiêu dùng",
+    "example_en": "The app targets the B2C market.",
+    "example_vi": "Ứng dụng nhắm đến thị trường B2C."
+  },
+  {
+    "term": "target audience",
+    "phonetic": "/ˈtɑːɡɪt ˈɔːdiəns/",
+    "meaning_vi": "đối tượng mục tiêu (n)",
+    "example_en": "Our target audience is young professionals.",
+    "example_vi": "Đối tượng mục tiêu là người trẻ đi làm."
+  },
+  {
+    "term": "customer journey",
+    "phonetic": "/ˈkʌstəmə ˈdʒɜːni/",
+    "meaning_vi": "hành trình khách hàng (n)",
+    "example_en": "Map the customer journey.",
+    "example_vi": "Vẽ sơ đồ hành trình khách hàng."
+  },
+  {
+    "term": "touchpoint",
+    "phonetic": "/ˈtʌtʃpɔɪnt/",
+    "meaning_vi": "điểm chạm (n)",
+    "example_en": "Every touchpoint should feel consistent.",
+    "example_vi": "Mọi điểm chạm nên nhất quán."
+  },
+  {
+    "term": "pain point",
+    "phonetic": "/peɪn pɔɪnt/",
+    "meaning_vi": "nỗi đau, vấn đề của khách (n)",
+    "example_en": "Slow checkout is a major pain point.",
+    "example_vi": "Thanh toán chậm là vấn đề lớn."
+  },
+  {
+    "term": "value proposition",
+    "phonetic": "/ˈvæljuː ˌprɒpəˈzɪʃn/",
+    "meaning_vi": "tuyên bố giá trị (n)",
+    "example_en": "State your value proposition clearly.",
+    "example_vi": "Nêu rõ tuyên bố giá trị của bạn."
+  },
+  {
+    "term": "is there anything else",
+    "phonetic": "/ɪz ðeər ˈeniθɪŋ els/",
+    "meaning_vi": "còn gì khác nữa không",
+    "example_en": "Is there anything else I can help with?",
+    "example_vi": "Tôi có thể giúp gì thêm không?"
+  },
+  {
+    "term": "thank you for calling",
+    "phonetic": "/θæŋk juː fɔː ˈkɔːlɪŋ/",
+    "meaning_vi": "cảm ơn bạn đã gọi",
+    "example_en": "Thank you for calling, have a nice day.",
+    "example_vi": "Cảm ơn bạn đã gọi, chúc một ngày tốt lành."
+  },
+  {
+    "term": "customer retention rate",
+    "phonetic": "/ˈkʌstəmə rɪˈtenʃn reɪt/",
+    "meaning_vi": "tỷ lệ giữ chân khách (n)",
+    "example_en": "Our customer retention rate is 85%.",
+    "example_vi": "Tỷ lệ giữ chân khách của chúng tôi là 85%."
+  }
+]

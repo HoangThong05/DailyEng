@@ -28,9 +28,8 @@ export function ProfileForm({ displayName, dailyGoal }: Props) {
           defaultValue={displayName}
           required
           maxLength={40}
-          className="border-border bg-card focus:border-brand min-h-12 w-full rounded-xl border px-4 text-base outline-none"
+          className="border-border bg-bg focus:border-brand min-h-12 w-full rounded-xl border px-4 text-base outline-none"
         />
-        <p className="text-muted text-sm">Tên này hiện ở lời chào trang chủ.</p>
       </div>
 
       <div className="space-y-1.5">
@@ -41,7 +40,7 @@ export function ProfileForm({ displayName, dailyGoal }: Props) {
           id="daily_goal"
           name="daily_goal"
           defaultValue={dailyGoal}
-          className="border-border bg-card focus:border-brand min-h-12 w-full rounded-xl border px-4 text-base outline-none"
+          className="border-border bg-bg focus:border-brand min-h-12 w-full rounded-xl border px-4 text-base outline-none"
         >
           {/* Giá trị đang lưu có thể không nằm trong danh sách gợi ý */}
           {(GOAL_OPTIONS.includes(dailyGoal)
@@ -53,9 +52,6 @@ export function ProfileForm({ displayName, dailyGoal }: Props) {
             </option>
           ))}
         </select>
-        <p className="text-muted text-sm">
-          Thanh tiến độ ở trang chủ tính theo con số này.
-        </p>
       </div>
 
       {state.error ? (

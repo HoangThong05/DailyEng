@@ -1,6 +1,5 @@
 import {
   CardsIcon,
-  ChartIcon,
   GamepadIcon,
   HomeIcon,
   UserIcon,
@@ -14,14 +13,14 @@ export const NAV_TABS = [
   { href: "/", label: "Trang chủ", Icon: HomeIcon },
   { href: "/hoc", label: "Học", Icon: CardsIcon },
   { href: "/tro-choi", label: "Trò chơi", Icon: GamepadIcon },
-  { href: "/tien-do", label: "Tiến độ", Icon: ChartIcon },
   { href: "/tai-khoan", label: "Cá nhân", Icon: UserIcon },
 ] as const;
 
-/** Quiz và luyện phát âm đứng dưới tab Trò chơi để tab bar không quá chật. */
+/** Quiz và luyện phát âm đứng dưới tab Trò chơi; tiến độ nằm trong Cá nhân. */
 const TAB_ALIASES: Record<string, string> = {
   "/quiz": "/tro-choi",
   "/phat-am": "/tro-choi",
+  "/tien-do": "/tai-khoan",
 };
 
 export function isTabActive(href: string, pathname: string) {

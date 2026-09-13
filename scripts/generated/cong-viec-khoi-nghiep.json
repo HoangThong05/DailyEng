@@ -1,0 +1,702 @@
+[
+  {
+    "term": "startup",
+    "phonetic": "/ˈstɑːtʌp/",
+    "meaning_vi": "công ty khởi nghiệp (n)",
+    "example_en": "She joined a fintech startup.",
+    "example_vi": "Cô ấy gia nhập một startup fintech."
+  },
+  {
+    "term": "founder",
+    "phonetic": "/ˈfaʊndə/",
+    "meaning_vi": "nhà sáng lập (n)",
+    "example_en": "The founder started the company at 22.",
+    "example_vi": "Nhà sáng lập lập công ty năm 22 tuổi."
+  },
+  {
+    "term": "co-founder",
+    "phonetic": "/ˌkəʊ ˈfaʊndə/",
+    "meaning_vi": "đồng sáng lập (n)",
+    "example_en": "My co-founder handles engineering.",
+    "example_vi": "Đồng sáng lập của tôi phụ trách kỹ thuật."
+  },
+  {
+    "term": "entrepreneur",
+    "phonetic": "/ˌɒntrəprəˈnɜː/",
+    "meaning_vi": "doanh nhân khởi nghiệp (n)",
+    "example_en": "Entrepreneurs take calculated risks.",
+    "example_vi": "Doanh nhân chấp nhận rủi ro có tính toán."
+  },
+  {
+    "term": "venture",
+    "phonetic": "/ˈventʃə/",
+    "meaning_vi": "dự án kinh doanh mạo hiểm (n)",
+    "example_en": "His new venture sells solar lamps.",
+    "example_vi": "Dự án mới của anh ấy bán đèn năng lượng mặt trời."
+  },
+  {
+    "term": "business model",
+    "phonetic": "/ˈbɪznəs ˈmɒdl/",
+    "meaning_vi": "mô hình kinh doanh (n)",
+    "example_en": "Our business model is subscription-based.",
+    "example_vi": "Mô hình kinh doanh dựa trên đăng ký."
+  },
+  {
+    "term": "business plan",
+    "phonetic": "/ˈbɪznəs plæn/",
+    "meaning_vi": "kế hoạch kinh doanh (n)",
+    "example_en": "Investors asked for a business plan.",
+    "example_vi": "Nhà đầu tư yêu cầu kế hoạch kinh doanh."
+  },
+  {
+    "term": "idea validation",
+    "phonetic": "/aɪˈdɪə ˌvælɪˈdeɪʃn/",
+    "meaning_vi": "kiểm chứng ý tưởng (n)",
+    "example_en": "Idea validation comes before building.",
+    "example_vi": "Kiểm chứng ý tưởng trước khi xây dựng."
+  },
+  {
+    "term": "market research",
+    "phonetic": "/ˈmɑːkɪt rɪˈsɜːtʃ/",
+    "meaning_vi": "nghiên cứu thị trường (n)",
+    "example_en": "Market research showed strong demand.",
+    "example_vi": "Nghiên cứu thị trường cho thấy nhu cầu mạnh."
+  },
+  {
+    "term": "target market",
+    "phonetic": "/ˈtɑːɡɪt ˈmɑːkɪt/",
+    "meaning_vi": "thị trường mục tiêu (n)",
+    "example_en": "Our target market is small cafés.",
+    "example_vi": "Thị trường mục tiêu là quán cà phê nhỏ."
+  },
+  {
+    "term": "niche",
+    "phonetic": "/niːʃ/",
+    "meaning_vi": "thị trường ngách (n)",
+    "example_en": "We found a profitable niche.",
+    "example_vi": "Chúng tôi tìm được ngách sinh lời."
+  },
+  {
+    "term": "product-market fit",
+    "phonetic": "/ˈprɒdʌkt ˈmɑːkɪt fɪt/",
+    "meaning_vi": "sự phù hợp sản phẩm–thị trường (n)",
+    "example_en": "We reached product-market fit last year.",
+    "example_vi": "Chúng tôi đạt product-market fit năm ngoái."
+  },
+  {
+    "term": "minimum viable product",
+    "phonetic": "/ˈmɪnɪməm ˈvaɪəbl ˈprɒdʌkt/",
+    "meaning_vi": "sản phẩm khả dụng tối thiểu (MVP) (n)",
+    "example_en": "Launch a minimum viable product first.",
+    "example_vi": "Ra mắt sản phẩm khả dụng tối thiểu trước."
+  },
+  {
+    "term": "proof of concept",
+    "phonetic": "/pruːf əv ˈkɒnsept/",
+    "meaning_vi": "bản chứng minh khái niệm (n)",
+    "example_en": "We built a proof of concept in two weeks.",
+    "example_vi": "Chúng tôi làm bản chứng minh khái niệm trong hai tuần."
+  },
+  {
+    "term": "beta",
+    "phonetic": "/ˈbiːtə/",
+    "meaning_vi": "bản thử nghiệm (n)",
+    "example_en": "The app is still in beta.",
+    "example_vi": "Ứng dụng vẫn đang ở bản thử nghiệm."
+  },
+  {
+    "term": "early adopter",
+    "phonetic": "/ˈɜːli əˈdɒptə/",
+    "meaning_vi": "người dùng tiên phong (n)",
+    "example_en": "Early adopters gave great feedback.",
+    "example_vi": "Người dùng tiên phong góp ý rất hữu ích."
+  },
+  {
+    "term": "traction",
+    "phonetic": "/ˈtrækʃn/",
+    "meaning_vi": "sức hút, đà tăng trưởng (n)",
+    "example_en": "We're gaining traction in Asia.",
+    "example_vi": "Chúng tôi đang có đà tăng trưởng ở châu Á."
+  },
+  {
+    "term": "growth",
+    "phonetic": "/ɡrəʊθ/",
+    "meaning_vi": "tăng trưởng (n)",
+    "example_en": "Monthly growth is 15%.",
+    "example_vi": "Tăng trưởng hằng tháng là 15%."
+  },
+  {
+    "term": "scale",
+    "phonetic": "/skeɪl/",
+    "meaning_vi": "mở rộng quy mô (v)",
+    "example_en": "Can the business scale?",
+    "example_vi": "Doanh nghiệp có thể mở rộng quy mô không?"
+  },
+  {
+    "term": "scalable",
+    "phonetic": "/ˈskeɪləbl/",
+    "meaning_vi": "có thể mở rộng (adj)",
+    "example_en": "Software businesses are highly scalable.",
+    "example_vi": "Doanh nghiệp phần mềm rất dễ mở rộng."
+  },
+  {
+    "term": "pivot",
+    "phonetic": "/ˈpɪvət/",
+    "meaning_vi": "xoay trục, đổi hướng (v, n)",
+    "example_en": "We pivoted from B2C to B2B.",
+    "example_vi": "Chúng tôi đổi hướng từ B2C sang B2B."
+  },
+  {
+    "term": "bootstrap",
+    "phonetic": "/ˈbuːtstræp/",
+    "meaning_vi": "tự lực bằng vốn riêng (v)",
+    "example_en": "We bootstrapped for two years.",
+    "example_vi": "Chúng tôi tự lực vốn hai năm."
+  },
+  {
+    "term": "funding",
+    "phonetic": "/ˈfʌndɪŋ/",
+    "meaning_vi": "vốn tài trợ (n)",
+    "example_en": "We need funding to hire.",
+    "example_vi": "Chúng tôi cần vốn để tuyển người."
+  },
+  {
+    "term": "raise capital",
+    "phonetic": "/reɪz ˈkæpɪtl/",
+    "meaning_vi": "gọi vốn",
+    "example_en": "They raised capital from three funds.",
+    "example_vi": "Họ gọi vốn từ ba quỹ."
+  },
+  {
+    "term": "investor",
+    "phonetic": "/ɪnˈvestə/",
+    "meaning_vi": "nhà đầu tư (n)",
+    "example_en": "An investor offered $500k.",
+    "example_vi": "Một nhà đầu tư đề nghị 500k đô."
+  },
+  {
+    "term": "angel investor",
+    "phonetic": "/ˈeɪndʒl ɪnˈvestə/",
+    "meaning_vi": "nhà đầu tư thiên thần (n)",
+    "example_en": "An angel investor funded our first year.",
+    "example_vi": "Nhà đầu tư thiên thần tài trợ năm đầu."
+  },
+  {
+    "term": "venture capital",
+    "phonetic": "/ˈventʃə ˈkæpɪtl/",
+    "meaning_vi": "vốn đầu tư mạo hiểm (n)",
+    "example_en": "Venture capital fuels fast growth.",
+    "example_vi": "Vốn mạo hiểm thúc đẩy tăng trưởng nhanh."
+  },
+  {
+    "term": "seed round",
+    "phonetic": "/siːd raʊnd/",
+    "meaning_vi": "vòng gọi vốn hạt giống (n)",
+    "example_en": "We closed a $1M seed round.",
+    "example_vi": "Chúng tôi chốt vòng hạt giống 1 triệu đô."
+  },
+  {
+    "term": "Series A",
+    "phonetic": "/ˈsɪəriːz eɪ/",
+    "meaning_vi": "vòng gọi vốn Series A (n)",
+    "example_en": "The Series A valued us at $20M.",
+    "example_vi": "Vòng Series A định giá chúng tôi 20 triệu đô."
+  },
+  {
+    "term": "valuation",
+    "phonetic": "/ˌvæljuˈeɪʃn/",
+    "meaning_vi": "định giá (n)",
+    "example_en": "The valuation doubled in a year.",
+    "example_vi": "Định giá tăng gấp đôi trong một năm."
+  },
+  {
+    "term": "equity",
+    "phonetic": "/ˈekwəti/",
+    "meaning_vi": "cổ phần (n)",
+    "example_en": "Early employees receive equity.",
+    "example_vi": "Nhân viên đầu tiên nhận cổ phần."
+  },
+  {
+    "term": "stake",
+    "phonetic": "/steɪk/",
+    "meaning_vi": "phần sở hữu (n)",
+    "example_en": "The fund took a 10% stake.",
+    "example_vi": "Quỹ nắm 10% cổ phần."
+  },
+  {
+    "term": "dilution",
+    "phonetic": "/daɪˈluːʃn/",
+    "meaning_vi": "pha loãng cổ phần (n)",
+    "example_en": "Each round causes dilution.",
+    "example_vi": "Mỗi vòng gọi vốn gây pha loãng."
+  },
+  {
+    "term": "cap table",
+    "phonetic": "/kæp ˈteɪbl/",
+    "meaning_vi": "bảng vốn hoá (n)",
+    "example_en": "Keep the cap table clean.",
+    "example_vi": "Giữ bảng vốn hoá gọn gàng."
+  },
+  {
+    "term": "term sheet",
+    "phonetic": "/tɜːm ʃiːt/",
+    "meaning_vi": "bản điều khoản đầu tư (n)",
+    "example_en": "We received a term sheet yesterday.",
+    "example_vi": "Chúng tôi nhận bản điều khoản hôm qua."
+  },
+  {
+    "term": "due diligence",
+    "phonetic": "/djuː ˈdɪlɪdʒəns/",
+    "meaning_vi": "thẩm định (n)",
+    "example_en": "Due diligence took six weeks.",
+    "example_vi": "Thẩm định mất sáu tuần."
+  },
+  {
+    "term": "pitch deck",
+    "phonetic": "/pɪtʃ dek/",
+    "meaning_vi": "bộ slide gọi vốn (n)",
+    "example_en": "Keep the pitch deck to 12 slides.",
+    "example_vi": "Giữ pitch deck trong 12 slide."
+  },
+  {
+    "term": "elevator pitch",
+    "phonetic": "/ˈelɪveɪtə pɪtʃ/",
+    "meaning_vi": "bài giới thiệu 30 giây (n)",
+    "example_en": "Prepare a 30-second elevator pitch.",
+    "example_vi": "Chuẩn bị bài giới thiệu 30 giây."
+  },
+  {
+    "term": "runway",
+    "phonetic": "/ˈrʌnweɪ/",
+    "meaning_vi": "thời gian còn tiền hoạt động (n)",
+    "example_en": "We have nine months of runway.",
+    "example_vi": "Chúng tôi còn chín tháng runway."
+  },
+  {
+    "term": "burn rate",
+    "phonetic": "/bɜːn reɪt/",
+    "meaning_vi": "tốc độ đốt tiền (n)",
+    "example_en": "Our burn rate is $40k a month.",
+    "example_vi": "Tốc độ đốt tiền là 40k đô/tháng."
+  },
+  {
+    "term": "cash flow",
+    "phonetic": "/kæʃ fləʊ/",
+    "meaning_vi": "dòng tiền (n)",
+    "example_en": "Cash flow turned positive in Q3.",
+    "example_vi": "Dòng tiền dương từ quý 3."
+  },
+  {
+    "term": "break even",
+    "phonetic": "/breɪk ˈiːvn/",
+    "meaning_vi": "hoà vốn",
+    "example_en": "We expect to break even next year.",
+    "example_vi": "Dự kiến hoà vốn năm sau."
+  },
+  {
+    "term": "profitable",
+    "phonetic": "/ˈprɒfɪtəbl/",
+    "meaning_vi": "có lãi (adj)",
+    "example_en": "The company is finally profitable.",
+    "example_vi": "Công ty cuối cùng đã có lãi."
+  },
+  {
+    "term": "revenue",
+    "phonetic": "/ˈrevənjuː/",
+    "meaning_vi": "doanh thu (n)",
+    "example_en": "Revenue tripled this year.",
+    "example_vi": "Doanh thu tăng gấp ba năm nay."
+  },
+  {
+    "term": "recurring revenue",
+    "phonetic": "/rɪˈkɜːrɪŋ ˈrevənjuː/",
+    "meaning_vi": "doanh thu định kỳ (n)",
+    "example_en": "Investors love recurring revenue.",
+    "example_vi": "Nhà đầu tư thích doanh thu định kỳ."
+  },
+  {
+    "term": "margin",
+    "phonetic": "/ˈmɑːdʒɪn/",
+    "meaning_vi": "biên lợi nhuận (n)",
+    "example_en": "Software has high margins.",
+    "example_vi": "Phần mềm có biên lợi nhuận cao."
+  },
+  {
+    "term": "unit economics",
+    "phonetic": "/ˈjuːnɪt ˌiːkəˈnɒmɪks/",
+    "meaning_vi": "kinh tế đơn vị (n)",
+    "example_en": "Fix the unit economics before scaling.",
+    "example_vi": "Tối ưu kinh tế đơn vị trước khi mở rộng."
+  },
+  {
+    "term": "customer acquisition cost",
+    "phonetic": "/ˈkʌstəmər ˌækwɪˈzɪʃn kɒst/",
+    "meaning_vi": "chi phí thu hút khách (CAC) (n)",
+    "example_en": "Customer acquisition cost is $12.",
+    "example_vi": "Chi phí thu hút khách là 12 đô."
+  },
+  {
+    "term": "lifetime value",
+    "phonetic": "/ˈlaɪftaɪm ˈvæljuː/",
+    "meaning_vi": "giá trị vòng đời khách (LTV) (n)",
+    "example_en": "Lifetime value should exceed CAC.",
+    "example_vi": "Giá trị vòng đời nên cao hơn CAC."
+  },
+  {
+    "term": "monetize",
+    "phonetic": "/ˈmʌnɪtaɪz/",
+    "meaning_vi": "kiếm tiền từ (v)",
+    "example_en": "How will you monetize the app?",
+    "example_vi": "Bạn sẽ kiếm tiền từ ứng dụng thế nào?"
+  },
+  {
+    "term": "pricing",
+    "phonetic": "/ˈpraɪsɪŋ/",
+    "meaning_vi": "định giá bán (n)",
+    "example_en": "We tested three pricing tiers.",
+    "example_vi": "Chúng tôi thử ba mức giá."
+  },
+  {
+    "term": "freemium",
+    "phonetic": "/ˈfriːmiəm/",
+    "meaning_vi": "miễn phí cơ bản, trả phí nâng cao (adj)",
+    "example_en": "We use a freemium model.",
+    "example_vi": "Chúng tôi dùng mô hình freemium."
+  },
+  {
+    "term": "go-to-market",
+    "phonetic": "/ˌɡəʊ tə ˈmɑːkɪt/",
+    "meaning_vi": "chiến lược đưa sản phẩm ra thị trường",
+    "example_en": "Our go-to-market plan focuses on Vietnam.",
+    "example_vi": "Kế hoạch ra thị trường tập trung vào Việt Nam."
+  },
+  {
+    "term": "competitor",
+    "phonetic": "/kəmˈpetɪtə/",
+    "meaning_vi": "đối thủ cạnh tranh (n)",
+    "example_en": "Study your competitors closely.",
+    "example_vi": "Nghiên cứu kỹ đối thủ cạnh tranh."
+  },
+  {
+    "term": "competitive advantage",
+    "phonetic": "/kəmˈpetətɪv ədˈvɑːntɪdʒ/",
+    "meaning_vi": "lợi thế cạnh tranh (n)",
+    "example_en": "Speed is our competitive advantage.",
+    "example_vi": "Tốc độ là lợi thế cạnh tranh của chúng tôi."
+  },
+  {
+    "term": "differentiate",
+    "phonetic": "/ˌdɪfəˈrenʃieɪt/",
+    "meaning_vi": "tạo sự khác biệt (v)",
+    "example_en": "We differentiate through design.",
+    "example_vi": "Chúng tôi khác biệt nhờ thiết kế."
+  },
+  {
+    "term": "disrupt",
+    "phonetic": "/dɪsˈrʌpt/",
+    "meaning_vi": "gây đột phá, phá vỡ (v)",
+    "example_en": "The app disrupted the taxi industry.",
+    "example_vi": "Ứng dụng đã phá vỡ ngành taxi."
+  },
+  {
+    "term": "innovation",
+    "phonetic": "/ˌɪnəˈveɪʃn/",
+    "meaning_vi": "sự đổi mới (n)",
+    "example_en": "Innovation keeps us ahead.",
+    "example_vi": "Đổi mới giúp chúng tôi dẫn đầu."
+  },
+  {
+    "term": "lean",
+    "phonetic": "/liːn/",
+    "meaning_vi": "tinh gọn (adj)",
+    "example_en": "Stay lean until revenue grows.",
+    "example_vi": "Giữ tinh gọn cho đến khi doanh thu tăng."
+  },
+  {
+    "term": "iterate",
+    "phonetic": "/ˈɪtəreɪt/",
+    "meaning_vi": "lặp lại cải tiến (v)",
+    "example_en": "Build, measure, iterate.",
+    "example_vi": "Xây dựng, đo lường, cải tiến."
+  },
+  {
+    "term": "fail fast",
+    "phonetic": "/feɪl fɑːst/",
+    "meaning_vi": "thất bại nhanh để học nhanh",
+    "example_en": "Fail fast and learn quickly.",
+    "example_vi": "Thất bại nhanh và học nhanh."
+  },
+  {
+    "term": "hypothesis",
+    "phonetic": "/haɪˈpɒθəsɪs/",
+    "meaning_vi": "giả thuyết (n)",
+    "example_en": "Test one hypothesis at a time.",
+    "example_vi": "Kiểm chứng từng giả thuyết một."
+  },
+  {
+    "term": "A/B testing",
+    "phonetic": "/ˌeɪ ˈbiː ˈtestɪŋ/",
+    "meaning_vi": "thử nghiệm A/B (n)",
+    "example_en": "A/B testing improved sign-ups by 20%.",
+    "example_vi": "Thử nghiệm A/B tăng 20% lượt đăng ký."
+  },
+  {
+    "term": "conversion rate",
+    "phonetic": "/kənˈvɜːʃn reɪt/",
+    "meaning_vi": "tỷ lệ chuyển đổi (n)",
+    "example_en": "Our conversion rate is 3%.",
+    "example_vi": "Tỷ lệ chuyển đổi là 3%."
+  },
+  {
+    "term": "user base",
+    "phonetic": "/ˈjuːzə beɪs/",
+    "meaning_vi": "tập người dùng (n)",
+    "example_en": "The user base passed one million.",
+    "example_vi": "Tập người dùng vượt một triệu."
+  },
+  {
+    "term": "active users",
+    "phonetic": "/ˈæktɪv ˈjuːzəz/",
+    "meaning_vi": "người dùng hoạt động",
+    "example_en": "We track daily active users.",
+    "example_vi": "Chúng tôi theo dõi người dùng hoạt động hằng ngày."
+  },
+  {
+    "term": "engagement",
+    "phonetic": "/ɪnˈɡeɪdʒmənt/",
+    "meaning_vi": "mức độ tương tác (n)",
+    "example_en": "Engagement dropped after the redesign.",
+    "example_vi": "Tương tác giảm sau khi thiết kế lại."
+  },
+  {
+    "term": "viral",
+    "phonetic": "/ˈvaɪrəl/",
+    "meaning_vi": "lan truyền mạnh (adj)",
+    "example_en": "The video went viral.",
+    "example_vi": "Video đã lan truyền mạnh."
+  },
+  {
+    "term": "brand",
+    "phonetic": "/brænd/",
+    "meaning_vi": "thương hiệu (n)",
+    "example_en": "Build a brand people trust.",
+    "example_vi": "Xây thương hiệu được tin cậy."
+  },
+  {
+    "term": "launch event",
+    "phonetic": "/lɔːntʃ ɪˈvent/",
+    "meaning_vi": "sự kiện ra mắt (n)",
+    "example_en": "The launch event drew 300 people.",
+    "example_vi": "Sự kiện ra mắt thu hút 300 người."
+  },
+  {
+    "term": "incubator",
+    "phonetic": "/ˈɪŋkjubeɪtə/",
+    "meaning_vi": "vườn ươm khởi nghiệp (n)",
+    "example_en": "We joined a university incubator.",
+    "example_vi": "Chúng tôi tham gia vườn ươm của trường."
+  },
+  {
+    "term": "accelerator",
+    "phonetic": "/əkˈseləreɪtə/",
+    "meaning_vi": "chương trình tăng tốc (n)",
+    "example_en": "The accelerator gave us mentors and cash.",
+    "example_vi": "Chương trình tăng tốc cho chúng tôi cố vấn và tiền."
+  },
+  {
+    "term": "mentor",
+    "phonetic": "/ˈmentɔː/",
+    "meaning_vi": "người cố vấn (n)",
+    "example_en": "Find a mentor who has done it before.",
+    "example_vi": "Tìm cố vấn đã từng làm việc đó."
+  },
+  {
+    "term": "networking",
+    "phonetic": "/ˈnetwɜːkɪŋ/",
+    "meaning_vi": "xây dựng quan hệ (n)",
+    "example_en": "Networking led to our first client.",
+    "example_vi": "Kết nối quan hệ mang lại khách hàng đầu tiên."
+  },
+  {
+    "term": "co-working space",
+    "phonetic": "/ˈkəʊ ˈwɜːkɪŋ speɪs/",
+    "meaning_vi": "không gian làm việc chung (n)",
+    "example_en": "We rent desks in a co-working space.",
+    "example_vi": "Chúng tôi thuê bàn ở không gian làm việc chung."
+  },
+  {
+    "term": "hire",
+    "phonetic": "/ˈhaɪə/",
+    "meaning_vi": "tuyển dụng (v)",
+    "example_en": "We hired our first engineer.",
+    "example_vi": "Chúng tôi tuyển kỹ sư đầu tiên."
+  },
+  {
+    "term": "talent",
+    "phonetic": "/ˈtælənt/",
+    "meaning_vi": "nhân tài (n)",
+    "example_en": "Top talent is hard to attract.",
+    "example_vi": "Nhân tài giỏi khó thu hút."
+  },
+  {
+    "term": "stock option",
+    "phonetic": "/stɒk ˈɒpʃn/",
+    "meaning_vi": "quyền chọn cổ phiếu (n)",
+    "example_en": "Stock options motivate early staff.",
+    "example_vi": "Quyền chọn cổ phiếu khích lệ nhân viên đầu."
+  },
+  {
+    "term": "culture",
+    "phonetic": "/ˈkʌltʃə/",
+    "meaning_vi": "văn hoá công ty (n)",
+    "example_en": "Culture matters as the team grows.",
+    "example_vi": "Văn hoá quan trọng khi nhóm lớn lên."
+  },
+  {
+    "term": "mission",
+    "phonetic": "/ˈmɪʃn/",
+    "meaning_vi": "sứ mệnh (n)",
+    "example_en": "Our mission is to make learning fun.",
+    "example_vi": "Sứ mệnh của chúng tôi là làm việc học vui hơn."
+  },
+  {
+    "term": "vision",
+    "phonetic": "/ˈvɪʒn/",
+    "meaning_vi": "tầm nhìn (n)",
+    "example_en": "Share your vision with the team.",
+    "example_vi": "Chia sẻ tầm nhìn với đội ngũ."
+  },
+  {
+    "term": "intellectual property",
+    "phonetic": "/ˌɪntəˈlektʃuəl ˈprɒpəti/",
+    "meaning_vi": "sở hữu trí tuệ (n)",
+    "example_en": "Protect your intellectual property.",
+    "example_vi": "Bảo vệ sở hữu trí tuệ của bạn."
+  },
+  {
+    "term": "patent",
+    "phonetic": "/ˈpætnt/",
+    "meaning_vi": "bằng sáng chế (n)",
+    "example_en": "We filed a patent for the sensor.",
+    "example_vi": "Chúng tôi nộp bằng sáng chế cho cảm biến."
+  },
+  {
+    "term": "trademark",
+    "phonetic": "/ˈtreɪdmɑːk/",
+    "meaning_vi": "nhãn hiệu (n)",
+    "example_en": "Register the name as a trademark.",
+    "example_vi": "Đăng ký tên làm nhãn hiệu."
+  },
+  {
+    "term": "incorporate",
+    "phonetic": "/ɪnˈkɔːpəreɪt/",
+    "meaning_vi": "thành lập công ty (v)",
+    "example_en": "We incorporated in Singapore.",
+    "example_vi": "Chúng tôi thành lập công ty ở Singapore."
+  },
+  {
+    "term": "license",
+    "phonetic": "/ˈlaɪsns/",
+    "meaning_vi": "giấy phép (n)",
+    "example_en": "You need a license to operate.",
+    "example_vi": "Bạn cần giấy phép để hoạt động."
+  },
+  {
+    "term": "regulation",
+    "phonetic": "/ˌreɡjuˈleɪʃn/",
+    "meaning_vi": "quy định (n)",
+    "example_en": "Fintech faces strict regulation.",
+    "example_vi": "Fintech chịu quy định nghiêm ngặt."
+  },
+  {
+    "term": "partnership",
+    "phonetic": "/ˈpɑːtnəʃɪp/",
+    "meaning_vi": "quan hệ đối tác (n)",
+    "example_en": "We signed a partnership with a bank.",
+    "example_vi": "Chúng tôi ký hợp tác với một ngân hàng."
+  },
+  {
+    "term": "exit",
+    "phonetic": "/ˈeksɪt/",
+    "meaning_vi": "thoái vốn (n)",
+    "example_en": "Investors expect an exit in five years.",
+    "example_vi": "Nhà đầu tư kỳ vọng thoái vốn trong năm năm."
+  },
+  {
+    "term": "acquisition",
+    "phonetic": "/ˌækwɪˈzɪʃn/",
+    "meaning_vi": "thương vụ mua lại (n)",
+    "example_en": "The acquisition was worth $50M.",
+    "example_vi": "Thương vụ mua lại trị giá 50 triệu đô."
+  },
+  {
+    "term": "IPO",
+    "phonetic": "/ˌaɪ piː ˈəʊ/",
+    "meaning_vi": "phát hành cổ phiếu lần đầu (n)",
+    "example_en": "The company plans an IPO next year.",
+    "example_vi": "Công ty dự định IPO năm sau."
+  },
+  {
+    "term": "unicorn",
+    "phonetic": "/ˈjuːnɪkɔːn/",
+    "meaning_vi": "kỳ lân (startup tỷ đô) (n)",
+    "example_en": "Vietnam has a few unicorns now.",
+    "example_vi": "Việt Nam giờ đã có vài kỳ lân."
+  },
+  {
+    "term": "sustainable",
+    "phonetic": "/səˈsteɪnəbl/",
+    "meaning_vi": "bền vững (adj)",
+    "example_en": "Build a sustainable business, not a hype.",
+    "example_vi": "Xây doanh nghiệp bền vững, không phải trào lưu."
+  },
+  {
+    "term": "milestone-based",
+    "phonetic": "/ˈmaɪlstəʊn beɪst/",
+    "meaning_vi": "theo cột mốc (adj)",
+    "example_en": "Funding is milestone-based.",
+    "example_vi": "Vốn giải ngân theo cột mốc."
+  },
+  {
+    "term": "forecast",
+    "phonetic": "/ˈfɔːkɑːst/",
+    "meaning_vi": "dự báo (n, v)",
+    "example_en": "Our forecast shows profit by 2027.",
+    "example_vi": "Dự báo cho thấy có lãi vào 2027."
+  },
+  {
+    "term": "risk-taking",
+    "phonetic": "/ˈrɪsk ˌteɪkɪŋ/",
+    "meaning_vi": "chấp nhận rủi ro (n)",
+    "example_en": "Smart risk-taking is essential.",
+    "example_vi": "Chấp nhận rủi ro khôn ngoan là cần thiết."
+  },
+  {
+    "term": "resilience",
+    "phonetic": "/rɪˈzɪliəns/",
+    "meaning_vi": "sức bền, khả năng phục hồi (n)",
+    "example_en": "Founders need resilience.",
+    "example_vi": "Nhà sáng lập cần sức bền."
+  },
+  {
+    "term": "side hustle",
+    "phonetic": "/saɪd ˈhʌsl/",
+    "meaning_vi": "việc làm thêm kiếm tiền (n)",
+    "example_en": "It started as a side hustle.",
+    "example_vi": "Nó bắt đầu như một việc làm thêm."
+  },
+  {
+    "term": "crowdfunding",
+    "phonetic": "/ˈkraʊdfʌndɪŋ/",
+    "meaning_vi": "gọi vốn cộng đồng (n)",
+    "example_en": "We raised $80k through crowdfunding.",
+    "example_vi": "Chúng tôi gọi được 80k đô từ cộng đồng."
+  },
+  {
+    "term": "grant",
+    "phonetic": "/ɡrɑːnt/",
+    "meaning_vi": "khoản tài trợ không hoàn lại (n)",
+    "example_en": "We won a government grant.",
+    "example_vi": "Chúng tôi nhận tài trợ của chính phủ."
+  }
+]
