@@ -29,7 +29,7 @@ export default async function ChepCauPage() {
           {decks.map((deck) => (
             <Link
               key={deck.id}
-              href={`/tro-choi/chep-cau/${deck.id}`}
+              href={`/ky-nang/chep-cau/${deck.id}`}
               className="border-border bg-card flex items-center gap-3 rounded-2xl border p-4 press"
             >
               <span className="min-w-0 flex-1">

@@ -159,16 +159,16 @@ export function SentenceSession({ items }: { items: SentenceItem[] }) {
 
         <div className="flex flex-col gap-3 pb-4">
           <Link
-            href="/tro-choi/chep-cau"
+            href="/ky-nang/chep-cau"
             className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white press"
           >
             Chọn bộ khác
           </Link>
           <Link
-            href="/tro-choi"
+            href="/ky-nang"
             className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
           >
-            Về trò chơi
+            Về luyện kỹ năng
           </Link>
         </div>
       </div>

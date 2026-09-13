@@ -6,7 +6,7 @@ import { SentenceSession } from "./sentence-session";
 
 export async function generateMetadata({
   params,
-}: PageProps<"/tro-choi/chep-cau/[deckId]">) {
+}: PageProps<"/ky-nang/chep-cau/[deckId]">) {
   const { deckId } = await params;
   const session = await getSentenceSession(deckId);
   return {
@@ -16,7 +16,7 @@ export async function generateMetadata({
 
 export default async function ChepCauDeckPage({
   params,
-}: PageProps<"/tro-choi/chep-cau/[deckId]">) {
+}: PageProps<"/ky-nang/chep-cau/[deckId]">) {
   const { deckId } = await params;
   const session = await getSentenceSession(deckId);
   if (!session) notFound();

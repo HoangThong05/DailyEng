@@ -11,15 +11,13 @@
 - Kho bộ từ theo nhóm: TOEIC (11 bộ theo chủ đề đề thi), Cốt lõi (8 bộ theo tần suất), Giao tiếp (7), Công việc (6), Học thuật (4) — hơn 3.300 từ kèm phiên âm và câu ví dụ, sinh bằng AI rồi duyệt lại
 - Tạo và sửa bộ từ riêng: dán hàng loạt từ Excel/Google Sheets/Quizlet (`word = nghĩa`, tab, `-`, `:`…), thêm/xoá/sửa từng từ kèm phiên âm và câu ví dụ
 
-**Luyện tập** (mọi lượt đều ghi vào hệ ôn tập và tính XP)
-
-Trò chơi:
+**Trò chơi** (mọi lượt đều ghi vào hệ ôn tập và tính XP)
 - **Mưa từ vựng** — từ rơi xuống, gõ để máy bay bắn hạ; 2 chế độ (gõ từ tiếng Anh đang rơi / nhìn nghĩa nhớ ra từ), đạn bắn theo từng chữ gõ đúng, hiệu ứng nổ và âm thanh tổng hợp bằng Web Audio
 - **Ghép cặp** — nối từ với nghĩa, đua với đồng hồ, lưu kỷ lục theo bộ
 - **Nghe & gõ** — máy đọc từ, gõ lại đúng chính tả
 - **Quiz** — trắc nghiệm 4 đáp án, xem lại từ sai
 
-Luyện kỹ năng:
+**Luyện kỹ năng**
 - **Nghe chép câu** — máy đọc cả câu ví dụ, gõ lại toàn bộ; chấm từng từ (căn LCS), nút đọc chậm, gợi ý từ khoá
 - **Luyện phát âm** — nghe mẫu, ghi âm nghe lại, chấm điểm bằng Web Speech API
 - **Mock test TOEIC Part 5** — 20 câu điền vào chỗ trống, 10 phút; nửa đề từ ngân hàng ngữ pháp/từ vựng viết tay, nửa sinh từ câu ví dụ các bộ TOEIC; giải thích từng câu, lưu lịch sử và điểm cao nhất
@@ -51,7 +49,8 @@ app/
 ├── (app)/            # Các trang cần đăng nhập
 │   ├── hoc/          #   Học theo chặng, tạo/sửa bộ từ
 │   ├── quiz/         #   Quiz trắc nghiệm
-│   ├── tro-choi/     #   Hub Luyện tập: ghep-cap, nghe-go, mua-tu, chep-cau, mock-test
+│   ├── tro-choi/     #   Hub trò chơi: ghep-cap, nghe-go, mua-tu
+│   ├── ky-nang/      #   Hub kỹ năng: chep-cau, mock-test (phat-am ở thư mục riêng)
 │   ├── phat-am/      #   Luyện phát âm
 │   └── tai-khoan/    #   Hồ sơ, cấp độ, thống kê, nhắc học, giao diện
 ├── (public)/         # Đăng nhập, nhập mã xác nhận, trang offline

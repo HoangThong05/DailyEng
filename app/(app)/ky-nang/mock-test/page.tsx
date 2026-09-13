@@ -49,7 +49,7 @@ export default async function MockTestPage() {
         </div>
 
         <Link
-          href="/tro-choi/mock-test/lam"
+          href="/ky-nang/mock-test/lam"
           className="bg-brand flex min-h-14 items-center justify-center rounded-2xl text-lg font-bold text-white press"
         >
           Bắt đầu làm bài

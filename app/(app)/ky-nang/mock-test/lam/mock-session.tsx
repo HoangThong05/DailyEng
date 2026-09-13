@@ -168,13 +168,13 @@ export function MockSession({ questions, seconds }: Props) {
 
         <div className="flex flex-col gap-3">
           <Link
-            href="/tro-choi/mock-test/lam"
+            href="/ky-nang/mock-test/lam"
             className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white press"
           >
             Làm đề khác
           </Link>
           <Link
-            href="/tro-choi/mock-test"
+            href="/ky-nang/mock-test"
             className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
           >
             Xem lịch sử

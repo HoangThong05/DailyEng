@@ -83,10 +83,12 @@ export default async function Home() {
     )[0];
   const totalDue = decks.reduce((sum, deck) => sum + deck.dueCount, 0);
 
-  const offset = dayOfYear() % GAMES.length;
+  // Chỉ xoay vòng trò chơi; kỹ năng có tab riêng.
+  const games = GAMES.filter((game) => game.kind === "game");
+  const offset = dayOfYear() % games.length;
   const featured = Array.from(
     { length: FEATURED_GAMES },
-    (_, i) => GAMES[(offset + i) % GAMES.length],
+    (_, i) => games[(offset + i) % games.length],
   );
 
   const mood = goalReached ? "an-mung" : learnedToday === 0 ? "ngu" : "chao";
@@ -231,7 +233,7 @@ export default async function Home() {
         <section aria-labelledby="choi-gi" className="space-y-3">
           <div className="flex items-baseline justify-between px-1">
             <h2 id="choi-gi" className="text-muted text-sm font-medium">
-              Luyện gì hôm nay
+              Chơi gì hôm nay
             </h2>
             <Link href="/tro-choi" className="text-brand text-sm font-semibold">
               Tất cả →

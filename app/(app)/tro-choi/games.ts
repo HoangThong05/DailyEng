@@ -27,7 +27,7 @@ export const GAMES: GameEntry[] = [
   {
     slug: "chep-cau",
     kind: "skill",
-    href: "/tro-choi/chep-cau",
+    href: "/ky-nang/chep-cau",
     title: "Nghe chép câu",
     description:
       "Máy đọc cả câu ví dụ, bạn gõ lại toàn bộ. Chấm từng từ, có nút đọc chậm và gợi ý từ khoá — luyện nghe hiểu thật sự.",
@@ -40,7 +40,7 @@ export const GAMES: GameEntry[] = [
   {
     slug: "mock-test",
     kind: "skill",
-    href: "/tro-choi/mock-test",
+    href: "/ky-nang/mock-test",
     title: "Mock test TOEIC Part 5",
     description:
       "20 câu điền vào chỗ trống như đề thật, có đồng hồ 10 phút. Chấm ngay, giải thích từng câu, lưu điểm cao nhất.",

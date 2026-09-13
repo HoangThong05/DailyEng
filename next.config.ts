@@ -3,7 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     // Trang Tiến độ đã gộp vào Cá nhân; giữ link cũ cho người đã bookmark.
-    return [{ source: "/tien-do", destination: "/tai-khoan", permanent: true }];
+    return [
+      { source: "/tien-do", destination: "/tai-khoan", permanent: true },
+      // Nghe chép câu và mock test chuyển sang tab Kỹ năng.
+      { source: "/tro-choi/chep-cau/:path*", destination: "/ky-nang/chep-cau/:path*", permanent: true },
+      { source: "/tro-choi/mock-test/:path*", destination: "/ky-nang/mock-test/:path*", permanent: true },
+    ];
   },
   async headers() {
     return [

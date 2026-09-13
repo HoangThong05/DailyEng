@@ -2,6 +2,7 @@ import {
   CardsIcon,
   GamepadIcon,
   HomeIcon,
+  MicIcon,
   UserIcon,
 } from "./icons";
 
@@ -12,14 +13,15 @@ import {
 export const NAV_TABS = [
   { href: "/", label: "Trang chủ", Icon: HomeIcon },
   { href: "/hoc", label: "Học", Icon: CardsIcon },
-  { href: "/tro-choi", label: "Luyện tập", Icon: GamepadIcon },
+  { href: "/tro-choi", label: "Trò chơi", Icon: GamepadIcon },
+  { href: "/ky-nang", label: "Kỹ năng", Icon: MicIcon },
   { href: "/tai-khoan", label: "Cá nhân", Icon: UserIcon },
 ] as const;
 
-/** Quiz và luyện phát âm đứng dưới tab Luyện tập; tiến độ, xếp hạng nằm trong Cá nhân. */
+/** Quiz thuộc Trò chơi, phát âm thuộc Kỹ năng; tiến độ, xếp hạng nằm trong Cá nhân. */
 const TAB_ALIASES: Record<string, string> = {
   "/quiz": "/tro-choi",
-  "/phat-am": "/tro-choi",
+  "/phat-am": "/ky-nang",
   "/tien-do": "/tai-khoan",
   "/xep-hang": "/tai-khoan",
 };

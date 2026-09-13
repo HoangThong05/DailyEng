@@ -58,7 +58,7 @@ export function GameCard({ game }: { game: GameEntry }) {
         <span
           className={`mt-auto flex min-h-11 items-center justify-center gap-2 rounded-xl text-sm font-bold text-white transition-colors ${game.button}`}
         >
-          Chơi ngay
+          {game.kind === "skill" ? "Luyện ngay" : "Chơi ngay"}
           <span aria-hidden className="transition-transform group-hover:translate-x-1">
             →
           </span>
