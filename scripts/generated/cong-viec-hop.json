@@ -1,0 +1,702 @@
+[
+  {
+    "term": "agenda",
+    "phonetic": "/əˈdʒendə/",
+    "meaning_vi": "chương trình họp (n)",
+    "example_en": "I've sent the agenda for tomorrow's meeting.",
+    "example_vi": "Tôi đã gửi chương trình cho cuộc họp ngày mai."
+  },
+  {
+    "term": "minutes",
+    "phonetic": "/ˈmɪnɪts/",
+    "meaning_vi": "biên bản họp (n)",
+    "example_en": "Who is taking the minutes today?",
+    "example_vi": "Hôm nay ai ghi biên bản?"
+  },
+  {
+    "term": "chair",
+    "phonetic": "/tʃeə/",
+    "meaning_vi": "chủ trì (v); người chủ trì (n)",
+    "example_en": "Linh will chair the meeting.",
+    "example_vi": "Linh sẽ chủ trì cuộc họp."
+  },
+  {
+    "term": "attendee",
+    "phonetic": "/əˌtenˈdiː/",
+    "meaning_vi": "người tham dự (n)",
+    "example_en": "There were twelve attendees.",
+    "example_vi": "Có mười hai người tham dự."
+  },
+  {
+    "term": "call the meeting to order",
+    "phonetic": "/kɔːl ðə ˈmiːtɪŋ tuː ˈɔːdə/",
+    "meaning_vi": "tuyên bố bắt đầu họp",
+    "example_en": "Let's call the meeting to order.",
+    "example_vi": "Chúng ta bắt đầu cuộc họp nhé."
+  },
+  {
+    "term": "kick off",
+    "phonetic": "/kɪk ɒf/",
+    "meaning_vi": "bắt đầu, khởi động",
+    "example_en": "Let's kick off with the sales update.",
+    "example_vi": "Bắt đầu với cập nhật doanh số nhé."
+  },
+  {
+    "term": "purpose of the meeting",
+    "phonetic": "/ˈpɜːpəs əv ðə ˈmiːtɪŋ/",
+    "meaning_vi": "mục đích cuộc họp",
+    "example_en": "The purpose of the meeting is to pick a vendor.",
+    "example_vi": "Mục đích cuộc họp là chọn nhà cung cấp."
+  },
+  {
+    "term": "item",
+    "phonetic": "/ˈaɪtəm/",
+    "meaning_vi": "mục, điểm (trong chương trình) (n)",
+    "example_en": "Let's move on to the next item.",
+    "example_vi": "Chuyển sang mục tiếp theo nhé."
+  },
+  {
+    "term": "move on",
+    "phonetic": "/muːv ɒn/",
+    "meaning_vi": "chuyển sang phần tiếp",
+    "example_en": "If there are no questions, let's move on.",
+    "example_vi": "Nếu không có câu hỏi, ta chuyển tiếp."
+  },
+  {
+    "term": "go around the table",
+    "phonetic": "/ɡəʊ əˈraʊnd ðə ˈteɪbl/",
+    "meaning_vi": "lần lượt từng người phát biểu",
+    "example_en": "Let's go around the table for quick updates.",
+    "example_vi": "Mỗi người lần lượt cập nhật nhanh nhé."
+  },
+  {
+    "term": "the floor is yours",
+    "phonetic": "/ðə flɔːr ɪz jɔːz/",
+    "meaning_vi": "mời bạn phát biểu",
+    "example_en": "Mai, the floor is yours.",
+    "example_vi": "Mai, mời bạn phát biểu."
+  },
+  {
+    "term": "interrupt",
+    "phonetic": "/ˌɪntəˈrʌpt/",
+    "meaning_vi": "ngắt lời (v)",
+    "example_en": "Sorry to interrupt, but we're out of time.",
+    "example_vi": "Xin lỗi ngắt lời, nhưng hết giờ rồi."
+  },
+  {
+    "term": "may I add",
+    "phonetic": "/meɪ aɪ æd/",
+    "meaning_vi": "cho tôi bổ sung",
+    "example_en": "May I add one point?",
+    "example_vi": "Cho tôi bổ sung một ý?"
+  },
+  {
+    "term": "in my opinion",
+    "phonetic": "/ɪn maɪ əˈpɪnjən/",
+    "meaning_vi": "theo ý tôi",
+    "example_en": "In my opinion, we should wait.",
+    "example_vi": "Theo ý tôi, chúng ta nên chờ."
+  },
+  {
+    "term": "from my perspective",
+    "phonetic": "/frəm maɪ pəˈspektɪv/",
+    "meaning_vi": "theo góc nhìn của tôi",
+    "example_en": "From my perspective, the risk is low.",
+    "example_vi": "Theo góc nhìn của tôi, rủi ro thấp."
+  },
+  {
+    "term": "I'd like to point out",
+    "phonetic": "/aɪd laɪk tuː pɔɪnt aʊt/",
+    "meaning_vi": "tôi muốn chỉ ra rằng",
+    "example_en": "I'd like to point out that costs have doubled.",
+    "example_vi": "Tôi muốn chỉ ra rằng chi phí đã tăng gấp đôi."
+  },
+  {
+    "term": "I agree with",
+    "phonetic": "/aɪ əˈɡriː wɪð/",
+    "meaning_vi": "tôi đồng ý với",
+    "example_en": "I agree with Tuan on this.",
+    "example_vi": "Tôi đồng ý với Tuấn về việc này."
+  },
+  {
+    "term": "I'm afraid I disagree",
+    "phonetic": "/aɪm əˈfreɪd aɪ ˌdɪsəˈɡriː/",
+    "meaning_vi": "e rằng tôi không đồng ý",
+    "example_en": "I'm afraid I disagree with that plan.",
+    "example_vi": "E rằng tôi không đồng ý với kế hoạch đó."
+  },
+  {
+    "term": "I see your point, but",
+    "phonetic": "/aɪ siː jɔː pɔɪnt bʌt/",
+    "meaning_vi": "tôi hiểu ý bạn, nhưng",
+    "example_en": "I see your point, but the budget is fixed.",
+    "example_vi": "Tôi hiểu ý bạn, nhưng ngân sách đã cố định."
+  },
+  {
+    "term": "fair enough",
+    "phonetic": "/feər ɪˈnʌf/",
+    "meaning_vi": "cũng hợp lý",
+    "example_en": "Fair enough, let's try it your way.",
+    "example_vi": "Cũng hợp lý, thử theo cách của bạn."
+  },
+  {
+    "term": "consensus",
+    "phonetic": "/kənˈsensəs/",
+    "meaning_vi": "sự đồng thuận (n)",
+    "example_en": "We reached a consensus quickly.",
+    "example_vi": "Chúng tôi đạt đồng thuận nhanh chóng."
+  },
+  {
+    "term": "vote",
+    "phonetic": "/vəʊt/",
+    "meaning_vi": "biểu quyết (v, n)",
+    "example_en": "Let's vote on the two options.",
+    "example_vi": "Chúng ta biểu quyết hai phương án nhé."
+  },
+  {
+    "term": "unanimous",
+    "phonetic": "/juˈnænɪməs/",
+    "meaning_vi": "nhất trí hoàn toàn (adj)",
+    "example_en": "The decision was unanimous.",
+    "example_vi": "Quyết định được nhất trí hoàn toàn."
+  },
+  {
+    "term": "objection",
+    "phonetic": "/əbˈdʒekʃn/",
+    "meaning_vi": "sự phản đối (n)",
+    "example_en": "Any objections to the proposal?",
+    "example_vi": "Có ai phản đối đề xuất không?"
+  },
+  {
+    "term": "postpone",
+    "phonetic": "/pəˈspəʊn/",
+    "meaning_vi": "hoãn lại (v)",
+    "example_en": "Let's postpone this until next week.",
+    "example_vi": "Hoãn việc này đến tuần sau nhé."
+  },
+  {
+    "term": "table the discussion",
+    "phonetic": "/ˈteɪbl ðə dɪˈskʌʃn/",
+    "meaning_vi": "gác lại thảo luận",
+    "example_en": "Let's table the discussion for now.",
+    "example_vi": "Tạm gác lại thảo luận này."
+  },
+  {
+    "term": "parking lot",
+    "phonetic": "/ˈpɑːkɪŋ lɒt/",
+    "meaning_vi": "danh sách ý để bàn sau (n)",
+    "example_en": "Put that idea in the parking lot.",
+    "example_vi": "Để ý đó vào danh sách bàn sau."
+  },
+  {
+    "term": "off topic",
+    "phonetic": "/ɒf ˈtɒpɪk/",
+    "meaning_vi": "lạc đề",
+    "example_en": "That's a bit off topic.",
+    "example_vi": "Cái đó hơi lạc đề."
+  },
+  {
+    "term": "get back on track",
+    "phonetic": "/ɡet bæk ɒn træk/",
+    "meaning_vi": "quay lại đúng hướng",
+    "example_en": "Let's get back on track.",
+    "example_vi": "Quay lại chủ đề chính nhé."
+  },
+  {
+    "term": "time check",
+    "phonetic": "/taɪm tʃek/",
+    "meaning_vi": "nhắc giờ",
+    "example_en": "Quick time check: ten minutes left.",
+    "example_vi": "Nhắc giờ: còn mười phút."
+  },
+  {
+    "term": "wrap up",
+    "phonetic": "/ræp ʌp/",
+    "meaning_vi": "kết thúc, tổng kết",
+    "example_en": "Let's wrap up in five minutes.",
+    "example_vi": "Kết thúc trong năm phút nữa nhé."
+  },
+  {
+    "term": "to sum up",
+    "phonetic": "/tuː sʌm ʌp/",
+    "meaning_vi": "tóm lại",
+    "example_en": "To sum up, we launch in June.",
+    "example_vi": "Tóm lại, chúng ta ra mắt vào tháng Sáu."
+  },
+  {
+    "term": "action item",
+    "phonetic": "/ˈækʃn ˈaɪtəm/",
+    "meaning_vi": "việc cần làm sau họp (n)",
+    "example_en": "I'll list the action items.",
+    "example_vi": "Tôi sẽ liệt kê các việc cần làm."
+  },
+  {
+    "term": "takeaway",
+    "phonetic": "/ˈteɪkəweɪ/",
+    "meaning_vi": "điểm rút ra (n)",
+    "example_en": "The key takeaway is to focus on retention.",
+    "example_vi": "Điểm rút ra chính là tập trung giữ khách."
+  },
+  {
+    "term": "next steps",
+    "phonetic": "/nekst steps/",
+    "meaning_vi": "các bước tiếp theo",
+    "example_en": "What are the next steps?",
+    "example_vi": "Các bước tiếp theo là gì?"
+  },
+  {
+    "term": "adjourn",
+    "phonetic": "/əˈdʒɜːn/",
+    "meaning_vi": "kết thúc, tạm nghỉ họp (v)",
+    "example_en": "The meeting was adjourned at noon.",
+    "example_vi": "Cuộc họp kết thúc lúc trưa."
+  },
+  {
+    "term": "stand-up",
+    "phonetic": "/ˈstænd ʌp/",
+    "meaning_vi": "họp đứng ngắn hằng ngày (n)",
+    "example_en": "Our stand-up is at 9 a.m.",
+    "example_vi": "Họp đứng của chúng tôi lúc 9 giờ sáng."
+  },
+  {
+    "term": "one-on-one",
+    "phonetic": "/ˌwʌn ɒn ˈwʌn/",
+    "meaning_vi": "họp riêng hai người (n)",
+    "example_en": "I have a one-on-one with my manager.",
+    "example_vi": "Tôi có buổi họp riêng với quản lý."
+  },
+  {
+    "term": "brainstorm",
+    "phonetic": "/ˈbreɪnstɔːm/",
+    "meaning_vi": "động não, nêu ý tưởng (v)",
+    "example_en": "Let's brainstorm names for the app.",
+    "example_vi": "Cùng động não đặt tên cho ứng dụng."
+  },
+  {
+    "term": "briefing",
+    "phonetic": "/ˈbriːfɪŋ/",
+    "meaning_vi": "buổi phổ biến ngắn (n)",
+    "example_en": "There's a briefing before the launch.",
+    "example_vi": "Có buổi phổ biến trước khi ra mắt."
+  },
+  {
+    "term": "conference call",
+    "phonetic": "/ˈkɒnfərəns kɔːl/",
+    "meaning_vi": "họp qua điện thoại (n)",
+    "example_en": "We have a conference call with Tokyo.",
+    "example_vi": "Chúng tôi họp qua điện thoại với Tokyo."
+  },
+  {
+    "term": "video call",
+    "phonetic": "/ˈvɪdiəʊ kɔːl/",
+    "meaning_vi": "gọi video (n)",
+    "example_en": "Let's switch to a video call.",
+    "example_vi": "Chuyển sang gọi video nhé."
+  },
+  {
+    "term": "you're on mute",
+    "phonetic": "/jɔːr ɒn mjuːt/",
+    "meaning_vi": "bạn đang tắt mic",
+    "example_en": "Sorry, you're on mute.",
+    "example_vi": "Xin lỗi, bạn đang tắt mic."
+  },
+  {
+    "term": "share your screen",
+    "phonetic": "/ʃeə jɔː skriːn/",
+    "meaning_vi": "chia sẻ màn hình",
+    "example_en": "Could you share your screen?",
+    "example_vi": "Bạn chia sẻ màn hình được không?"
+  },
+  {
+    "term": "can everyone see this",
+    "phonetic": "/kæn ˈevriwʌn siː ðɪs/",
+    "meaning_vi": "mọi người thấy chưa",
+    "example_en": "Can everyone see this slide?",
+    "example_vi": "Mọi người thấy slide này chưa?"
+  },
+  {
+    "term": "breakout room",
+    "phonetic": "/ˈbreɪkaʊt ruːm/",
+    "meaning_vi": "phòng thảo luận nhóm nhỏ (n)",
+    "example_en": "We'll split into breakout rooms.",
+    "example_vi": "Chúng ta sẽ chia vào phòng nhóm nhỏ."
+  },
+  {
+    "term": "presentation",
+    "phonetic": "/ˌpreznˈteɪʃn/",
+    "meaning_vi": "bài thuyết trình (n)",
+    "example_en": "Her presentation was excellent.",
+    "example_vi": "Bài thuyết trình của cô ấy rất tốt."
+  },
+  {
+    "term": "slide",
+    "phonetic": "/slaɪd/",
+    "meaning_vi": "trang trình chiếu (n)",
+    "example_en": "Go back to the previous slide.",
+    "example_vi": "Quay lại slide trước."
+  },
+  {
+    "term": "handout",
+    "phonetic": "/ˈhændaʊt/",
+    "meaning_vi": "tài liệu phát tay (n)",
+    "example_en": "The figures are in your handout.",
+    "example_vi": "Số liệu có trong tài liệu phát tay."
+  },
+  {
+    "term": "outline",
+    "phonetic": "/ˈaʊtlaɪn/",
+    "meaning_vi": "dàn ý (n); phác thảo (v)",
+    "example_en": "Let me outline the three parts.",
+    "example_vi": "Để tôi phác thảo ba phần."
+  },
+  {
+    "term": "I'll walk you through",
+    "phonetic": "/aɪl wɔːk juː θruː/",
+    "meaning_vi": "tôi sẽ dẫn bạn qua từng bước",
+    "example_en": "I'll walk you through the process.",
+    "example_vi": "Tôi sẽ dẫn bạn qua từng bước quy trình."
+  },
+  {
+    "term": "as you can see",
+    "phonetic": "/əz juː kæn siː/",
+    "meaning_vi": "như bạn thấy",
+    "example_en": "As you can see, sales rose in May.",
+    "example_vi": "Như bạn thấy, doanh số tăng vào tháng Năm."
+  },
+  {
+    "term": "this chart shows",
+    "phonetic": "/ðɪs tʃɑːt ʃəʊz/",
+    "meaning_vi": "biểu đồ này cho thấy",
+    "example_en": "This chart shows monthly revenue.",
+    "example_vi": "Biểu đồ này cho thấy doanh thu theo tháng."
+  },
+  {
+    "term": "highlight",
+    "phonetic": "/ˈhaɪlaɪt/",
+    "meaning_vi": "nhấn mạnh (v); điểm nổi bật (n)",
+    "example_en": "I want to highlight two results.",
+    "example_vi": "Tôi muốn nhấn mạnh hai kết quả."
+  },
+  {
+    "term": "key point",
+    "phonetic": "/kiː pɔɪnt/",
+    "meaning_vi": "điểm chính (n)",
+    "example_en": "The key point is speed.",
+    "example_vi": "Điểm chính là tốc độ."
+  },
+  {
+    "term": "in a nutshell",
+    "phonetic": "/ɪn ə ˈnʌtʃel/",
+    "meaning_vi": "nói ngắn gọn",
+    "example_en": "In a nutshell, we need more staff.",
+    "example_vi": "Nói ngắn gọn, chúng ta cần thêm người."
+  },
+  {
+    "term": "let's move to",
+    "phonetic": "/lets muːv tuː/",
+    "meaning_vi": "chuyển sang",
+    "example_en": "Let's move to the second part.",
+    "example_vi": "Chuyển sang phần thứ hai."
+  },
+  {
+    "term": "that brings me to",
+    "phonetic": "/ðæt brɪŋz miː tuː/",
+    "meaning_vi": "điều đó dẫn tôi đến",
+    "example_en": "That brings me to the budget.",
+    "example_vi": "Điều đó dẫn tôi đến phần ngân sách."
+  },
+  {
+    "term": "Q&A",
+    "phonetic": "/ˌkjuː ən ˈeɪ/",
+    "meaning_vi": "phần hỏi đáp (n)",
+    "example_en": "We'll have a Q&A at the end.",
+    "example_vi": "Sẽ có phần hỏi đáp ở cuối."
+  },
+  {
+    "term": "any questions",
+    "phonetic": "/ˈeni ˈkwestʃənz/",
+    "meaning_vi": "có câu hỏi nào không",
+    "example_en": "Any questions so far?",
+    "example_vi": "Đến đây có câu hỏi nào không?"
+  },
+  {
+    "term": "good question",
+    "phonetic": "/ɡʊd ˈkwestʃən/",
+    "meaning_vi": "câu hỏi hay",
+    "example_en": "Good question, let me check.",
+    "example_vi": "Câu hỏi hay, để tôi kiểm tra."
+  },
+  {
+    "term": "I'll get back to you on that",
+    "phonetic": "/aɪl ɡet bæk tuː juː ɒn ðæt/",
+    "meaning_vi": "tôi sẽ trả lời bạn sau về việc đó",
+    "example_en": "I'll get back to you on that after the meeting.",
+    "example_vi": "Tôi sẽ trả lời bạn việc đó sau cuộc họp."
+  },
+  {
+    "term": "rehearse",
+    "phonetic": "/rɪˈhɜːs/",
+    "meaning_vi": "tập dượt (v)",
+    "example_en": "Rehearse the pitch twice.",
+    "example_vi": "Tập dượt bài thuyết trình hai lần."
+  },
+  {
+    "term": "body language",
+    "phonetic": "/ˈbɒdi ˈlæŋɡwɪdʒ/",
+    "meaning_vi": "ngôn ngữ cơ thể (n)",
+    "example_en": "Confident body language helps.",
+    "example_vi": "Ngôn ngữ cơ thể tự tin rất hữu ích."
+  },
+  {
+    "term": "eye contact",
+    "phonetic": "/aɪ ˈkɒntækt/",
+    "meaning_vi": "giao tiếp bằng mắt (n)",
+    "example_en": "Keep eye contact with the audience.",
+    "example_vi": "Giữ giao tiếp bằng mắt với khán giả."
+  },
+  {
+    "term": "audience",
+    "phonetic": "/ˈɔːdiəns/",
+    "meaning_vi": "khán giả (n)",
+    "example_en": "Know your audience.",
+    "example_vi": "Hiểu khán giả của bạn."
+  },
+  {
+    "term": "projector",
+    "phonetic": "/prəˈdʒektə/",
+    "meaning_vi": "máy chiếu (n)",
+    "example_en": "The projector isn't working.",
+    "example_vi": "Máy chiếu không hoạt động."
+  },
+  {
+    "term": "whiteboard",
+    "phonetic": "/ˈwaɪtbɔːd/",
+    "meaning_vi": "bảng trắng (n)",
+    "example_en": "Let me draw it on the whiteboard.",
+    "example_vi": "Để tôi vẽ lên bảng trắng."
+  },
+  {
+    "term": "feedback",
+    "phonetic": "/ˈfiːdbæk/",
+    "meaning_vi": "phản hồi, góp ý (n)",
+    "example_en": "I'd love your feedback on the slides.",
+    "example_vi": "Tôi muốn nghe góp ý về slide."
+  },
+  {
+    "term": "constructive",
+    "phonetic": "/kənˈstrʌktɪv/",
+    "meaning_vi": "mang tính xây dựng (adj)",
+    "example_en": "Please keep the feedback constructive.",
+    "example_vi": "Vui lòng góp ý mang tính xây dựng."
+  },
+  {
+    "term": "suggestion",
+    "phonetic": "/səˈdʒestʃən/",
+    "meaning_vi": "gợi ý (n)",
+    "example_en": "I have a suggestion for the layout.",
+    "example_vi": "Tôi có gợi ý cho bố cục."
+  },
+  {
+    "term": "concern",
+    "phonetic": "/kənˈsɜːn/",
+    "meaning_vi": "mối lo ngại (n)",
+    "example_en": "My main concern is the timeline.",
+    "example_vi": "Lo ngại chính của tôi là tiến độ."
+  },
+  {
+    "term": "raise an issue",
+    "phonetic": "/reɪz ən ˈɪʃuː/",
+    "meaning_vi": "nêu vấn đề",
+    "example_en": "I'd like to raise an issue with delivery.",
+    "example_vi": "Tôi muốn nêu vấn đề về giao hàng."
+  },
+  {
+    "term": "clarification",
+    "phonetic": "/ˌklærəfɪˈkeɪʃn/",
+    "meaning_vi": "sự làm rõ (n)",
+    "example_en": "Can I ask for clarification?",
+    "example_vi": "Tôi xin hỏi để làm rõ được không?"
+  },
+  {
+    "term": "elaborate",
+    "phonetic": "/ɪˈlæbəreɪt/",
+    "meaning_vi": "nói rõ thêm (v)",
+    "example_en": "Could you elaborate on that?",
+    "example_vi": "Bạn nói rõ thêm được không?"
+  },
+  {
+    "term": "rephrase",
+    "phonetic": "/ˌriːˈfreɪz/",
+    "meaning_vi": "diễn đạt lại (v)",
+    "example_en": "Let me rephrase the question.",
+    "example_vi": "Để tôi diễn đạt lại câu hỏi."
+  },
+  {
+    "term": "if I understand correctly",
+    "phonetic": "/ɪf aɪ ˌʌndəˈstænd kəˈrektli/",
+    "meaning_vi": "nếu tôi hiểu đúng",
+    "example_en": "If I understand correctly, we start Monday.",
+    "example_vi": "Nếu tôi hiểu đúng, ta bắt đầu thứ Hai."
+  },
+  {
+    "term": "correct me if I'm wrong",
+    "phonetic": "/kəˈrekt miː ɪf aɪm rɒŋ/",
+    "meaning_vi": "sửa nếu tôi sai",
+    "example_en": "Correct me if I'm wrong, but the budget is 50k.",
+    "example_vi": "Sửa nếu tôi sai, nhưng ngân sách là 50k."
+  },
+  {
+    "term": "decision",
+    "phonetic": "/dɪˈsɪʒn/",
+    "meaning_vi": "quyết định (n)",
+    "example_en": "We need a decision by Friday.",
+    "example_vi": "Cần quyết định trước thứ Sáu."
+  },
+  {
+    "term": "proposal",
+    "phonetic": "/prəˈpəʊzl/",
+    "meaning_vi": "đề xuất (n)",
+    "example_en": "The proposal was approved.",
+    "example_vi": "Đề xuất đã được duyệt."
+  },
+  {
+    "term": "recommend",
+    "phonetic": "/ˌrekəˈmend/",
+    "meaning_vi": "đề nghị, khuyến nghị (v)",
+    "example_en": "I recommend option B.",
+    "example_vi": "Tôi khuyến nghị phương án B."
+  },
+  {
+    "term": "priority",
+    "phonetic": "/praɪˈɒrəti/",
+    "meaning_vi": "ưu tiên (n)",
+    "example_en": "Security is our top priority.",
+    "example_vi": "Bảo mật là ưu tiên hàng đầu."
+  },
+  {
+    "term": "trade-off",
+    "phonetic": "/ˈtreɪd ɒf/",
+    "meaning_vi": "sự đánh đổi (n)",
+    "example_en": "There's a trade-off between cost and speed.",
+    "example_vi": "Có sự đánh đổi giữa chi phí và tốc độ."
+  },
+  {
+    "term": "pros and cons",
+    "phonetic": "/prəʊz ənd kɒnz/",
+    "meaning_vi": "ưu và nhược điểm",
+    "example_en": "Let's weigh the pros and cons.",
+    "example_vi": "Cùng cân nhắc ưu và nhược điểm."
+  },
+  {
+    "term": "alternative",
+    "phonetic": "/ɔːlˈtɜːnətɪv/",
+    "meaning_vi": "phương án thay thế (n)",
+    "example_en": "Is there an alternative?",
+    "example_vi": "Có phương án thay thế không?"
+  },
+  {
+    "term": "compromise",
+    "phonetic": "/ˈkɒmprəmaɪz/",
+    "meaning_vi": "thoả hiệp (n, v)",
+    "example_en": "We found a compromise.",
+    "example_vi": "Chúng tôi tìm được thoả hiệp."
+  },
+  {
+    "term": "input",
+    "phonetic": "/ˈɪnpʊt/",
+    "meaning_vi": "ý kiến đóng góp (n)",
+    "example_en": "Thanks for your input.",
+    "example_vi": "Cảm ơn ý kiến đóng góp của bạn."
+  },
+  {
+    "term": "participate",
+    "phonetic": "/pɑːˈtɪsɪpeɪt/",
+    "meaning_vi": "tham gia (v)",
+    "example_en": "Everyone is welcome to participate.",
+    "example_vi": "Mọi người đều có thể tham gia."
+  },
+  {
+    "term": "punctual",
+    "phonetic": "/ˈpʌŋktʃuəl/",
+    "meaning_vi": "đúng giờ (adj)",
+    "example_en": "Please be punctual.",
+    "example_vi": "Vui lòng đúng giờ."
+  },
+  {
+    "term": "run late",
+    "phonetic": "/rʌn leɪt/",
+    "meaning_vi": "bị trễ giờ",
+    "example_en": "The meeting is running late.",
+    "example_vi": "Cuộc họp đang bị trễ giờ."
+  },
+  {
+    "term": "cut short",
+    "phonetic": "/kʌt ʃɔːt/",
+    "meaning_vi": "rút ngắn",
+    "example_en": "We had to cut the meeting short.",
+    "example_vi": "Chúng tôi phải rút ngắn cuộc họp."
+  },
+  {
+    "term": "book a room",
+    "phonetic": "/bʊk ə ruːm/",
+    "meaning_vi": "đặt phòng họp",
+    "example_en": "I'll book a room for 2 p.m.",
+    "example_vi": "Tôi sẽ đặt phòng lúc 2 giờ chiều."
+  },
+  {
+    "term": "meeting room",
+    "phonetic": "/ˈmiːtɪŋ ruːm/",
+    "meaning_vi": "phòng họp (n)",
+    "example_en": "The meeting room is on the third floor.",
+    "example_vi": "Phòng họp ở tầng ba."
+  },
+  {
+    "term": "invite",
+    "phonetic": "/ɪnˈvaɪt/",
+    "meaning_vi": "mời (v); lời mời họp (n)",
+    "example_en": "I'll send a calendar invite.",
+    "example_vi": "Tôi sẽ gửi lời mời trên lịch."
+  },
+  {
+    "term": "decline",
+    "phonetic": "/dɪˈklaɪn/",
+    "meaning_vi": "từ chối (v)",
+    "example_en": "I had to decline the invite.",
+    "example_vi": "Tôi phải từ chối lời mời."
+  },
+  {
+    "term": "sit in",
+    "phonetic": "/sɪt ɪn/",
+    "meaning_vi": "dự thính",
+    "example_en": "Can I sit in on the meeting?",
+    "example_vi": "Tôi dự thính cuộc họp được không?"
+  },
+  {
+    "term": "debrief",
+    "phonetic": "/ˌdiːˈbriːf/",
+    "meaning_vi": "họp rút kinh nghiệm (n, v)",
+    "example_en": "Let's debrief after the client call.",
+    "example_vi": "Rút kinh nghiệm sau cuộc gọi với khách nhé."
+  },
+  {
+    "term": "recap",
+    "phonetic": "/ˈriːkæp/",
+    "meaning_vi": "tóm tắt lại (n, v)",
+    "example_en": "Here's a quick recap of the meeting.",
+    "example_vi": "Đây là tóm tắt nhanh cuộc họp."
+  },
+  {
+    "term": "assign",
+    "phonetic": "/əˈsaɪn/",
+    "meaning_vi": "giao (việc) (v)",
+    "example_en": "I'll assign the task to Nam.",
+    "example_vi": "Tôi sẽ giao việc cho Nam."
+  },
+  {
+    "term": "owner",
+    "phonetic": "/ˈəʊnə/",
+    "meaning_vi": "người phụ trách (n)",
+    "example_en": "Who's the owner of this action item?",
+    "example_vi": "Ai phụ trách việc này?"
+  }
+]

@@ -1,0 +1,702 @@
+[
+  {
+    "term": "Dear",
+    "phonetic": "/dɪə/",
+    "meaning_vi": "Kính gửi, Thân gửi (mở đầu thư)",
+    "example_en": "Dear Ms. Tran, thank you for your email.",
+    "example_vi": "Kính gửi bà Trần, cảm ơn email của bà."
+  },
+  {
+    "term": "Hi there",
+    "phonetic": "/haɪ ðeə/",
+    "meaning_vi": "Chào bạn (thân mật)",
+    "example_en": "Hi there, just a quick question.",
+    "example_vi": "Chào bạn, tôi có câu hỏi nhanh."
+  },
+  {
+    "term": "I hope this email finds you well",
+    "phonetic": "/aɪ həʊp ðɪs ˈiːmeɪl faɪndz juː wel/",
+    "meaning_vi": "Hy vọng bạn vẫn khoẻ (câu mở đầu)",
+    "example_en": "I hope this email finds you well.",
+    "example_vi": "Hy vọng anh/chị vẫn khoẻ."
+  },
+  {
+    "term": "I am writing to",
+    "phonetic": "/aɪ æm ˈraɪtɪŋ tuː/",
+    "meaning_vi": "Tôi viết thư này để",
+    "example_en": "I am writing to confirm our meeting.",
+    "example_vi": "Tôi viết thư này để xác nhận cuộc họp."
+  },
+  {
+    "term": "regarding",
+    "phonetic": "/rɪˈɡɑːdɪŋ/",
+    "meaning_vi": "về việc (prep)",
+    "example_en": "I'm writing regarding your invoice.",
+    "example_vi": "Tôi viết về hoá đơn của bạn."
+  },
+  {
+    "term": "with reference to",
+    "phonetic": "/wɪð ˈrefrəns tuː/",
+    "meaning_vi": "liên quan đến, tham chiếu",
+    "example_en": "With reference to your email of May 3…",
+    "example_vi": "Liên quan đến email ngày 3/5 của bạn…"
+  },
+  {
+    "term": "further to",
+    "phonetic": "/ˈfɜːðə tuː/",
+    "meaning_vi": "tiếp theo (cuộc trao đổi trước)",
+    "example_en": "Further to our call, here are the details.",
+    "example_vi": "Tiếp theo cuộc gọi, đây là chi tiết."
+  },
+  {
+    "term": "as discussed",
+    "phonetic": "/əz dɪˈskʌst/",
+    "meaning_vi": "như đã trao đổi",
+    "example_en": "As discussed, I've attached the quote.",
+    "example_vi": "Như đã trao đổi, tôi đính kèm báo giá."
+  },
+  {
+    "term": "please find attached",
+    "phonetic": "/pliːz faɪnd əˈtætʃt/",
+    "meaning_vi": "vui lòng xem tệp đính kèm",
+    "example_en": "Please find attached the report.",
+    "example_vi": "Vui lòng xem báo cáo đính kèm."
+  },
+  {
+    "term": "attachment",
+    "phonetic": "/əˈtætʃmənt/",
+    "meaning_vi": "tệp đính kèm (n)",
+    "example_en": "I forgot the attachment, sorry!",
+    "example_vi": "Tôi quên tệp đính kèm, xin lỗi!"
+  },
+  {
+    "term": "cc",
+    "phonetic": "/ˌsiː ˈsiː/",
+    "meaning_vi": "gửi đồng thời (v)",
+    "example_en": "Please cc my manager.",
+    "example_vi": "Vui lòng cc quản lý của tôi."
+  },
+  {
+    "term": "subject line",
+    "phonetic": "/ˈsʌbdʒɪkt laɪn/",
+    "meaning_vi": "dòng tiêu đề (n)",
+    "example_en": "Use a clear subject line.",
+    "example_vi": "Dùng tiêu đề email rõ ràng."
+  },
+  {
+    "term": "recipient",
+    "phonetic": "/rɪˈsɪpiənt/",
+    "meaning_vi": "người nhận (n)",
+    "example_en": "Check the recipient before sending.",
+    "example_vi": "Kiểm tra người nhận trước khi gửi."
+  },
+  {
+    "term": "reply all",
+    "phonetic": "/rɪˈplaɪ ɔːl/",
+    "meaning_vi": "trả lời tất cả",
+    "example_en": "Don't reply all for personal notes.",
+    "example_vi": "Đừng trả lời tất cả cho việc cá nhân."
+  },
+  {
+    "term": "forward",
+    "phonetic": "/ˈfɔːwəd/",
+    "meaning_vi": "chuyển tiếp (v)",
+    "example_en": "I'll forward you the details.",
+    "example_vi": "Tôi sẽ chuyển tiếp chi tiết cho bạn."
+  },
+  {
+    "term": "follow up",
+    "phonetic": "/ˈfɒləʊ ʌp/",
+    "meaning_vi": "hỏi thăm tiếp, nhắc lại",
+    "example_en": "I'm following up on my last email.",
+    "example_vi": "Tôi nhắc lại email trước của mình."
+  },
+  {
+    "term": "just a reminder",
+    "phonetic": "/dʒʌst ə rɪˈmaɪndə/",
+    "meaning_vi": "chỉ nhắc nhẹ rằng",
+    "example_en": "Just a reminder that the report is due Friday.",
+    "example_vi": "Nhắc nhẹ là báo cáo đến hạn thứ Sáu."
+  },
+  {
+    "term": "could you please",
+    "phonetic": "/kʊd juː pliːz/",
+    "meaning_vi": "bạn vui lòng… được không",
+    "example_en": "Could you please send the file again?",
+    "example_vi": "Bạn vui lòng gửi lại tệp được không?"
+  },
+  {
+    "term": "I would appreciate it if",
+    "phonetic": "/aɪ wʊd əˈpriːʃieɪt ɪt ɪf/",
+    "meaning_vi": "tôi sẽ rất cảm kích nếu",
+    "example_en": "I would appreciate it if you could reply today.",
+    "example_vi": "Tôi rất cảm kích nếu bạn trả lời hôm nay."
+  },
+  {
+    "term": "at your earliest convenience",
+    "phonetic": "/ət jɔːr ˈɜːliɪst kənˈviːniəns/",
+    "meaning_vi": "sớm nhất khi bạn tiện",
+    "example_en": "Please reply at your earliest convenience.",
+    "example_vi": "Vui lòng trả lời sớm nhất khi tiện."
+  },
+  {
+    "term": "as soon as possible",
+    "phonetic": "/əz suːn əz ˈpɒsəbl/",
+    "meaning_vi": "càng sớm càng tốt",
+    "example_en": "Send the contract as soon as possible.",
+    "example_vi": "Gửi hợp đồng càng sớm càng tốt."
+  },
+  {
+    "term": "by the end of the day",
+    "phonetic": "/baɪ ði end əv ðə deɪ/",
+    "meaning_vi": "trước cuối ngày",
+    "example_en": "I need the numbers by the end of the day.",
+    "example_vi": "Tôi cần số liệu trước cuối ngày."
+  },
+  {
+    "term": "let me know",
+    "phonetic": "/let miː nəʊ/",
+    "meaning_vi": "cho tôi biết",
+    "example_en": "Let me know if you have questions.",
+    "example_vi": "Cho tôi biết nếu bạn có câu hỏi."
+  },
+  {
+    "term": "feel free to",
+    "phonetic": "/fiːl friː tuː/",
+    "meaning_vi": "cứ thoải mái",
+    "example_en": "Feel free to contact me anytime.",
+    "example_vi": "Cứ liên hệ tôi bất cứ lúc nào."
+  },
+  {
+    "term": "do not hesitate to",
+    "phonetic": "/duː nɒt ˈhezɪteɪt tuː/",
+    "meaning_vi": "đừng ngần ngại",
+    "example_en": "Do not hesitate to ask for help.",
+    "example_vi": "Đừng ngần ngại nhờ giúp đỡ."
+  },
+  {
+    "term": "I look forward to",
+    "phonetic": "/aɪ lʊk ˈfɔːwəd tuː/",
+    "meaning_vi": "tôi mong đợi",
+    "example_en": "I look forward to hearing from you.",
+    "example_vi": "Tôi mong nhận được phản hồi từ bạn."
+  },
+  {
+    "term": "Best regards",
+    "phonetic": "/best rɪˈɡɑːdz/",
+    "meaning_vi": "Trân trọng (kết thư)",
+    "example_en": "Best regards, Minh",
+    "example_vi": "Trân trọng, Minh"
+  },
+  {
+    "term": "Kind regards",
+    "phonetic": "/kaɪnd rɪˈɡɑːdz/",
+    "meaning_vi": "Trân trọng (kết thư)",
+    "example_en": "Kind regards, Anna Lee",
+    "example_vi": "Trân trọng, Anna Lee"
+  },
+  {
+    "term": "Sincerely",
+    "phonetic": "/sɪnˈsɪəli/",
+    "meaning_vi": "Trân trọng (trang trọng)",
+    "example_en": "Sincerely, David Park",
+    "example_vi": "Trân trọng, David Park"
+  },
+  {
+    "term": "Cheers",
+    "phonetic": "/tʃɪəz/",
+    "meaning_vi": "Cảm ơn nhé (kết thư thân mật)",
+    "example_en": "Cheers, Tom",
+    "example_vi": "Cảm ơn nhé, Tom"
+  },
+  {
+    "term": "acknowledge",
+    "phonetic": "/əkˈnɒlɪdʒ/",
+    "meaning_vi": "xác nhận đã nhận (v)",
+    "example_en": "Please acknowledge receipt of this email.",
+    "example_vi": "Vui lòng xác nhận đã nhận email này."
+  },
+  {
+    "term": "noted",
+    "phonetic": "/ˈnəʊtɪd/",
+    "meaning_vi": "đã ghi nhận",
+    "example_en": "Noted, thanks for the update.",
+    "example_vi": "Đã ghi nhận, cảm ơn cập nhật."
+  },
+  {
+    "term": "apologies for",
+    "phonetic": "/əˈpɒlədʒiz fɔː/",
+    "meaning_vi": "xin lỗi vì",
+    "example_en": "Apologies for the late reply.",
+    "example_vi": "Xin lỗi vì trả lời muộn."
+  },
+  {
+    "term": "thank you for your patience",
+    "phonetic": "/θæŋk juː fɔː jɔː ˈpeɪʃns/",
+    "meaning_vi": "cảm ơn bạn đã kiên nhẫn",
+    "example_en": "Thank you for your patience while we fix this.",
+    "example_vi": "Cảm ơn bạn đã kiên nhẫn trong lúc chúng tôi khắc phục."
+  },
+  {
+    "term": "out of office",
+    "phonetic": "/aʊt əv ˈɒfɪs/",
+    "meaning_vi": "vắng mặt (tự động trả lời)",
+    "example_en": "I'm out of office until Monday.",
+    "example_vi": "Tôi vắng mặt đến thứ Hai."
+  },
+  {
+    "term": "urgent",
+    "phonetic": "/ˈɜːdʒənt/",
+    "meaning_vi": "khẩn (adj)",
+    "example_en": "This is urgent; please call me.",
+    "example_vi": "Việc này khẩn; vui lòng gọi tôi."
+  },
+  {
+    "term": "FYI",
+    "phonetic": "/ˌef waɪ ˈaɪ/",
+    "meaning_vi": "để bạn biết (for your information)",
+    "example_en": "FYI, the office closes early Friday.",
+    "example_vi": "Để bạn biết, văn phòng đóng cửa sớm thứ Sáu."
+  },
+  {
+    "term": "ASAP",
+    "phonetic": "/ˌeɪ es eɪ ˈpiː/",
+    "meaning_vi": "càng sớm càng tốt (viết tắt)",
+    "example_en": "Please send it ASAP.",
+    "example_vi": "Vui lòng gửi càng sớm càng tốt."
+  },
+  {
+    "term": "TBD",
+    "phonetic": "/ˌtiː biː ˈdiː/",
+    "meaning_vi": "sẽ quyết định sau (to be decided)",
+    "example_en": "The venue is TBD.",
+    "example_vi": "Địa điểm sẽ quyết định sau."
+  },
+  {
+    "term": "EOD",
+    "phonetic": "/ˌiː əʊ ˈdiː/",
+    "meaning_vi": "cuối ngày (end of day)",
+    "example_en": "I'll have it ready by EOD.",
+    "example_vi": "Tôi sẽ xong trước cuối ngày."
+  },
+  {
+    "term": "draft",
+    "phonetic": "/drɑːft/",
+    "meaning_vi": "bản nháp (n)",
+    "example_en": "Here is the first draft of the proposal.",
+    "example_vi": "Đây là bản nháp đầu tiên của đề xuất."
+  },
+  {
+    "term": "proofread",
+    "phonetic": "/ˈpruːfriːd/",
+    "meaning_vi": "đọc soát lỗi (v)",
+    "example_en": "Please proofread before sending.",
+    "example_vi": "Vui lòng soát lỗi trước khi gửi."
+  },
+  {
+    "term": "typo",
+    "phonetic": "/ˈtaɪpəʊ/",
+    "meaning_vi": "lỗi đánh máy (n)",
+    "example_en": "There's a typo in the subject.",
+    "example_vi": "Có lỗi đánh máy ở tiêu đề."
+  },
+  {
+    "term": "formal",
+    "phonetic": "/ˈfɔːml/",
+    "meaning_vi": "trang trọng (adj)",
+    "example_en": "Use a formal tone with new clients.",
+    "example_vi": "Dùng giọng trang trọng với khách mới."
+  },
+  {
+    "term": "informal",
+    "phonetic": "/ɪnˈfɔːml/",
+    "meaning_vi": "thân mật (adj)",
+    "example_en": "An informal email is fine for colleagues.",
+    "example_vi": "Email thân mật thì ổn với đồng nghiệp."
+  },
+  {
+    "term": "tone",
+    "phonetic": "/təʊn/",
+    "meaning_vi": "giọng điệu (n)",
+    "example_en": "Keep the tone polite.",
+    "example_vi": "Giữ giọng điệu lịch sự."
+  },
+  {
+    "term": "concise",
+    "phonetic": "/kənˈsaɪs/",
+    "meaning_vi": "ngắn gọn (adj)",
+    "example_en": "Keep your emails concise.",
+    "example_vi": "Viết email ngắn gọn."
+  },
+  {
+    "term": "clarify",
+    "phonetic": "/ˈklærəfaɪ/",
+    "meaning_vi": "làm rõ (v)",
+    "example_en": "Could you clarify the deadline?",
+    "example_vi": "Bạn làm rõ hạn chót được không?"
+  },
+  {
+    "term": "confirm",
+    "phonetic": "/kənˈfɜːm/",
+    "meaning_vi": "xác nhận (v)",
+    "example_en": "Please confirm your attendance.",
+    "example_vi": "Vui lòng xác nhận tham dự."
+  },
+  {
+    "term": "reschedule",
+    "phonetic": "/ˌriːˈʃedjuːl/",
+    "meaning_vi": "dời lịch (v)",
+    "example_en": "Can we reschedule to Thursday?",
+    "example_vi": "Mình dời sang thứ Năm được không?"
+  },
+  {
+    "term": "availability",
+    "phonetic": "/əˌveɪləˈbɪləti/",
+    "meaning_vi": "lịch rảnh (n)",
+    "example_en": "Please share your availability next week.",
+    "example_vi": "Vui lòng cho biết lịch rảnh tuần sau."
+  },
+  {
+    "term": "phone call",
+    "phonetic": "/fəʊn kɔːl/",
+    "meaning_vi": "cuộc gọi (n)",
+    "example_en": "Let's set up a phone call.",
+    "example_vi": "Mình sắp xếp một cuộc gọi nhé."
+  },
+  {
+    "term": "this is … speaking",
+    "phonetic": "/ðɪs ɪz ˈspiːkɪŋ/",
+    "meaning_vi": "tôi là … đang nghe (khi nghe máy)",
+    "example_en": "Hello, this is Lan speaking.",
+    "example_vi": "Alo, Lan nghe đây."
+  },
+  {
+    "term": "may I speak to",
+    "phonetic": "/meɪ aɪ spiːk tuː/",
+    "meaning_vi": "cho tôi gặp",
+    "example_en": "May I speak to Mr. Hung, please?",
+    "example_vi": "Cho tôi gặp ông Hùng được không?"
+  },
+  {
+    "term": "hold the line",
+    "phonetic": "/həʊld ðə laɪn/",
+    "meaning_vi": "giữ máy",
+    "example_en": "Please hold the line.",
+    "example_vi": "Vui lòng giữ máy."
+  },
+  {
+    "term": "put through",
+    "phonetic": "/pʊt θruː/",
+    "meaning_vi": "nối máy",
+    "example_en": "I'll put you through to sales.",
+    "example_vi": "Tôi nối máy bạn sang phòng kinh doanh."
+  },
+  {
+    "term": "leave a message",
+    "phonetic": "/liːv ə ˈmesɪdʒ/",
+    "meaning_vi": "để lại lời nhắn",
+    "example_en": "Would you like to leave a message?",
+    "example_vi": "Bạn muốn để lại lời nhắn không?"
+  },
+  {
+    "term": "call back",
+    "phonetic": "/kɔːl bæk/",
+    "meaning_vi": "gọi lại",
+    "example_en": "I'll call you back in ten minutes.",
+    "example_vi": "Tôi gọi lại bạn sau mười phút."
+  },
+  {
+    "term": "bad connection",
+    "phonetic": "/bæd kəˈnekʃn/",
+    "meaning_vi": "sóng yếu, kết nối kém",
+    "example_en": "Sorry, we have a bad connection.",
+    "example_vi": "Xin lỗi, kết nối kém quá."
+  },
+  {
+    "term": "you're breaking up",
+    "phonetic": "/jɔː ˈbreɪkɪŋ ʌp/",
+    "meaning_vi": "tiếng bạn bị ngắt quãng",
+    "example_en": "You're breaking up; can you repeat that?",
+    "example_vi": "Tiếng bạn ngắt quãng; nhắc lại được không?"
+  },
+  {
+    "term": "speak up",
+    "phonetic": "/spiːk ʌp/",
+    "meaning_vi": "nói to lên",
+    "example_en": "Could you speak up a little?",
+    "example_vi": "Bạn nói to hơn chút được không?"
+  },
+  {
+    "term": "extension number",
+    "phonetic": "/ɪkˈstenʃn ˈnʌmbə/",
+    "meaning_vi": "số máy lẻ (n)",
+    "example_en": "What's your extension number?",
+    "example_vi": "Số máy lẻ của bạn là gì?"
+  },
+  {
+    "term": "voicemail",
+    "phonetic": "/ˈvɔɪsmeɪl/",
+    "meaning_vi": "hộp thư thoại (n)",
+    "example_en": "It went to voicemail.",
+    "example_vi": "Cuộc gọi chuyển vào hộp thư thoại."
+  },
+  {
+    "term": "text message",
+    "phonetic": "/tekst ˈmesɪdʒ/",
+    "meaning_vi": "tin nhắn (n)",
+    "example_en": "Send me a text message when you're free.",
+    "example_vi": "Nhắn tin cho tôi khi bạn rảnh."
+  },
+  {
+    "term": "group chat",
+    "phonetic": "/ɡruːp tʃæt/",
+    "meaning_vi": "nhóm chat (n)",
+    "example_en": "Post the update in the group chat.",
+    "example_vi": "Đăng cập nhật vào nhóm chat."
+  },
+  {
+    "term": "instant messaging",
+    "phonetic": "/ˈɪnstənt ˈmesɪdʒɪŋ/",
+    "meaning_vi": "nhắn tin tức thời (n)",
+    "example_en": "We use instant messaging for quick questions.",
+    "example_vi": "Chúng tôi nhắn tin nhanh cho câu hỏi ngắn."
+  },
+  {
+    "term": "notification",
+    "phonetic": "/ˌnəʊtɪfɪˈkeɪʃn/",
+    "meaning_vi": "thông báo (n)",
+    "example_en": "Turn off notifications during the meeting.",
+    "example_vi": "Tắt thông báo trong lúc họp."
+  },
+  {
+    "term": "inbox",
+    "phonetic": "/ˈɪnbɒks/",
+    "meaning_vi": "hộp thư đến (n)",
+    "example_en": "My inbox is full.",
+    "example_vi": "Hộp thư đến của tôi đầy rồi."
+  },
+  {
+    "term": "spam",
+    "phonetic": "/spæm/",
+    "meaning_vi": "thư rác (n)",
+    "example_en": "Check your spam folder.",
+    "example_vi": "Kiểm tra thư mục thư rác."
+  },
+  {
+    "term": "signature",
+    "phonetic": "/ˈsɪɡnətʃə/",
+    "meaning_vi": "chữ ký email (n)",
+    "example_en": "Add your phone number to your email signature.",
+    "example_vi": "Thêm số điện thoại vào chữ ký email."
+  },
+  {
+    "term": "template",
+    "phonetic": "/ˈtempleɪt/",
+    "meaning_vi": "mẫu có sẵn (n)",
+    "example_en": "Use the email template for quotes.",
+    "example_vi": "Dùng mẫu email cho báo giá."
+  },
+  {
+    "term": "greeting",
+    "phonetic": "/ˈɡriːtɪŋ/",
+    "meaning_vi": "lời chào (n)",
+    "example_en": "Start with a proper greeting.",
+    "example_vi": "Bắt đầu bằng lời chào đúng mực."
+  },
+  {
+    "term": "sign off",
+    "phonetic": "/saɪn ɒf/",
+    "meaning_vi": "kết thư",
+    "example_en": "Sign off with your full name.",
+    "example_vi": "Kết thư bằng tên đầy đủ."
+  },
+  {
+    "term": "request",
+    "phonetic": "/rɪˈkwest/",
+    "meaning_vi": "yêu cầu (n, v)",
+    "example_en": "I have a small request.",
+    "example_vi": "Tôi có một yêu cầu nhỏ."
+  },
+  {
+    "term": "enquiry",
+    "phonetic": "/ɪnˈkwaɪəri/",
+    "meaning_vi": "câu hỏi, yêu cầu thông tin (n)",
+    "example_en": "Thank you for your enquiry.",
+    "example_vi": "Cảm ơn yêu cầu của bạn."
+  },
+  {
+    "term": "response",
+    "phonetic": "/rɪˈspɒns/",
+    "meaning_vi": "phản hồi (n)",
+    "example_en": "Thanks for the quick response.",
+    "example_vi": "Cảm ơn phản hồi nhanh."
+  },
+  {
+    "term": "prompt",
+    "phonetic": "/prɒmpt/",
+    "meaning_vi": "nhanh chóng, kịp thời (adj)",
+    "example_en": "Thank you for your prompt reply.",
+    "example_vi": "Cảm ơn bạn đã trả lời nhanh."
+  },
+  {
+    "term": "in advance",
+    "phonetic": "/ɪn ədˈvɑːns/",
+    "meaning_vi": "trước",
+    "example_en": "Thank you in advance for your help.",
+    "example_vi": "Cảm ơn trước vì sự giúp đỡ của bạn."
+  },
+  {
+    "term": "keep me posted",
+    "phonetic": "/kiːp miː ˈpəʊstɪd/",
+    "meaning_vi": "cập nhật cho tôi nhé",
+    "example_en": "Keep me posted on the progress.",
+    "example_vi": "Cập nhật tiến độ cho tôi nhé."
+  },
+  {
+    "term": "touch base",
+    "phonetic": "/tʌtʃ beɪs/",
+    "meaning_vi": "liên hệ ngắn để trao đổi",
+    "example_en": "Let's touch base next week.",
+    "example_vi": "Tuần sau mình trao đổi nhanh nhé."
+  },
+  {
+    "term": "loop in",
+    "phonetic": "/luːp ɪn/",
+    "meaning_vi": "đưa (ai) vào cuộc trao đổi",
+    "example_en": "Let me loop in our designer.",
+    "example_vi": "Để tôi thêm designer vào cuộc trao đổi."
+  },
+  {
+    "term": "circle back",
+    "phonetic": "/ˈsɜːkl bæk/",
+    "meaning_vi": "quay lại bàn sau",
+    "example_en": "I'll circle back after the meeting.",
+    "example_vi": "Tôi sẽ quay lại việc này sau cuộc họp."
+  },
+  {
+    "term": "on the same page",
+    "phonetic": "/ɒn ðə seɪm peɪdʒ/",
+    "meaning_vi": "cùng hiểu một ý",
+    "example_en": "Let's make sure we're on the same page.",
+    "example_vi": "Hãy chắc là chúng ta hiểu giống nhau."
+  },
+  {
+    "term": "heads-up",
+    "phonetic": "/ˈhedz ʌp/",
+    "meaning_vi": "báo trước (n)",
+    "example_en": "Just a heads-up: the client is visiting tomorrow.",
+    "example_vi": "Báo trước: mai khách hàng đến thăm."
+  },
+  {
+    "term": "bear with me",
+    "phonetic": "/beə wɪð miː/",
+    "meaning_vi": "chịu khó chờ tôi chút",
+    "example_en": "Bear with me while I find the file.",
+    "example_vi": "Chờ tôi chút, tôi tìm tệp."
+  },
+  {
+    "term": "get back to",
+    "phonetic": "/ɡet bæk tuː/",
+    "meaning_vi": "trả lời lại (ai)",
+    "example_en": "I'll get back to you by Friday.",
+    "example_vi": "Tôi sẽ trả lời bạn trước thứ Sáu."
+  },
+  {
+    "term": "professional",
+    "phonetic": "/prəˈfeʃənl/",
+    "meaning_vi": "chuyên nghiệp (adj)",
+    "example_en": "Keep the email professional.",
+    "example_vi": "Giữ email chuyên nghiệp."
+  },
+  {
+    "term": "courtesy",
+    "phonetic": "/ˈkɜːtəsi/",
+    "meaning_vi": "sự lịch sự (n)",
+    "example_en": "A quick thank-you is basic courtesy.",
+    "example_vi": "Cảm ơn nhanh là phép lịch sự cơ bản."
+  },
+  {
+    "term": "misunderstanding",
+    "phonetic": "/ˌmɪsʌndəˈstændɪŋ/",
+    "meaning_vi": "sự hiểu lầm (n)",
+    "example_en": "Sorry, there was a misunderstanding.",
+    "example_vi": "Xin lỗi, có sự hiểu lầm."
+  },
+  {
+    "term": "correction",
+    "phonetic": "/kəˈrekʃn/",
+    "meaning_vi": "sự đính chính (n)",
+    "example_en": "Correction: the meeting is at 3, not 2.",
+    "example_vi": "Đính chính: họp lúc 3 giờ, không phải 2."
+  },
+  {
+    "term": "resend",
+    "phonetic": "/ˌriːˈsend/",
+    "meaning_vi": "gửi lại (v)",
+    "example_en": "Could you resend the invoice?",
+    "example_vi": "Bạn gửi lại hoá đơn được không?"
+  },
+  {
+    "term": "recall",
+    "phonetic": "/rɪˈkɔːl/",
+    "meaning_vi": "thu hồi (email) (v)",
+    "example_en": "I tried to recall the email.",
+    "example_vi": "Tôi đã cố thu hồi email."
+  },
+  {
+    "term": "bcc",
+    "phonetic": "/ˌbiː siː ˈsiː/",
+    "meaning_vi": "gửi ẩn (v)",
+    "example_en": "Bcc the whole list to protect privacy.",
+    "example_vi": "Gửi ẩn cho cả danh sách để bảo mật."
+  },
+  {
+    "term": "read receipt",
+    "phonetic": "/riːd rɪˈsiːt/",
+    "meaning_vi": "xác nhận đã đọc (n)",
+    "example_en": "Request a read receipt for important emails.",
+    "example_vi": "Yêu cầu xác nhận đã đọc với email quan trọng."
+  },
+  {
+    "term": "schedule send",
+    "phonetic": "/ˈʃedjuːl send/",
+    "meaning_vi": "hẹn giờ gửi",
+    "example_en": "Schedule send for 8 a.m. tomorrow.",
+    "example_vi": "Hẹn gửi lúc 8 giờ sáng mai."
+  },
+  {
+    "term": "unsubscribe",
+    "phonetic": "/ˌʌnsəbˈskraɪb/",
+    "meaning_vi": "huỷ đăng ký (v)",
+    "example_en": "Click here to unsubscribe.",
+    "example_vi": "Bấm vào đây để huỷ đăng ký."
+  },
+  {
+    "term": "internal",
+    "phonetic": "/ɪnˈtɜːnl/",
+    "meaning_vi": "nội bộ (adj)",
+    "example_en": "This is an internal memo.",
+    "example_vi": "Đây là thông báo nội bộ."
+  },
+  {
+    "term": "external",
+    "phonetic": "/ɪkˈstɜːnl/",
+    "meaning_vi": "bên ngoài (adj)",
+    "example_en": "Be careful with external emails.",
+    "example_vi": "Cẩn thận với email từ bên ngoài."
+  },
+  {
+    "term": "distribution list",
+    "phonetic": "/ˌdɪstrɪˈbjuːʃn lɪst/",
+    "meaning_vi": "danh sách người nhận chung (n)",
+    "example_en": "Add the new hire to the distribution list.",
+    "example_vi": "Thêm nhân viên mới vào danh sách nhận email."
+  },
+  {
+    "term": "quick question",
+    "phonetic": "/kwɪk ˈkwestʃən/",
+    "meaning_vi": "câu hỏi nhanh",
+    "example_en": "Quick question: is the office open Saturday?",
+    "example_vi": "Hỏi nhanh: thứ Bảy văn phòng có mở không?"
+  }
+]

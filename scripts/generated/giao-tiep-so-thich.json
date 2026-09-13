@@ -1,0 +1,562 @@
+[
+  {
+    "term": "football",
+    "phonetic": "/ˈfʊtbɔːl/",
+    "meaning_vi": "bóng đá (n)",
+    "example_en": "We play football every Saturday.",
+    "example_vi": "Chúng tôi đá bóng mỗi thứ Bảy."
+  },
+  {
+    "term": "badminton",
+    "phonetic": "/ˈbædmɪntən/",
+    "meaning_vi": "cầu lông (n)",
+    "example_en": "Badminton is popular in Vietnam.",
+    "example_vi": "Cầu lông phổ biến ở Việt Nam."
+  },
+  {
+    "term": "swimming",
+    "phonetic": "/ˈswɪmɪŋ/",
+    "meaning_vi": "bơi lội (n)",
+    "example_en": "I go swimming twice a week.",
+    "example_vi": "Tôi đi bơi hai lần một tuần."
+  },
+  {
+    "term": "running",
+    "phonetic": "/ˈrʌnɪŋ/",
+    "meaning_vi": "chạy bộ (n)",
+    "example_en": "Running keeps me fit.",
+    "example_vi": "Chạy bộ giúp tôi khoẻ."
+  },
+  {
+    "term": "gym",
+    "phonetic": "/dʒɪm/",
+    "meaning_vi": "phòng tập (n)",
+    "example_en": "I go to the gym after work.",
+    "example_vi": "Tôi đi tập gym sau giờ làm."
+  },
+  {
+    "term": "yoga",
+    "phonetic": "/ˈjəʊɡə/",
+    "meaning_vi": "yoga (n)",
+    "example_en": "Yoga helps me relax.",
+    "example_vi": "Yoga giúp tôi thư giãn."
+  },
+  {
+    "term": "cycling",
+    "phonetic": "/ˈsaɪklɪŋ/",
+    "meaning_vi": "đạp xe (n)",
+    "example_en": "Cycling by the lake is fun.",
+    "example_vi": "Đạp xe quanh hồ rất vui."
+  },
+  {
+    "term": "hiking",
+    "phonetic": "/ˈhaɪkɪŋ/",
+    "meaning_vi": "đi bộ đường dài (n)",
+    "example_en": "We went hiking in Sapa.",
+    "example_vi": "Chúng tôi đi trekking ở Sa Pa."
+  },
+  {
+    "term": "team",
+    "phonetic": "/tiːm/",
+    "meaning_vi": "đội (n)",
+    "example_en": "Which team do you support?",
+    "example_vi": "Bạn ủng hộ đội nào?"
+  },
+  {
+    "term": "match",
+    "phonetic": "/mætʃ/",
+    "meaning_vi": "trận đấu (n)",
+    "example_en": "The match starts at eight.",
+    "example_vi": "Trận đấu bắt đầu lúc tám giờ."
+  },
+  {
+    "term": "score",
+    "phonetic": "/skɔː/",
+    "meaning_vi": "tỉ số (n); ghi bàn (v)",
+    "example_en": "What's the score?",
+    "example_vi": "Tỉ số bao nhiêu rồi?"
+  },
+  {
+    "term": "fan",
+    "phonetic": "/fæn/",
+    "meaning_vi": "người hâm mộ (n)",
+    "example_en": "I'm a big fan of that singer.",
+    "example_vi": "Tôi là fan lớn của ca sĩ đó."
+  },
+  {
+    "term": "music",
+    "phonetic": "/ˈmjuːzɪk/",
+    "meaning_vi": "âm nhạc (n)",
+    "example_en": "What music do you like?",
+    "example_vi": "Bạn thích nhạc gì?"
+  },
+  {
+    "term": "song",
+    "phonetic": "/sɒŋ/",
+    "meaning_vi": "bài hát (n)",
+    "example_en": "I love this song!",
+    "example_vi": "Tôi thích bài này!"
+  },
+  {
+    "term": "singer",
+    "phonetic": "/ˈsɪŋə/",
+    "meaning_vi": "ca sĩ (n)",
+    "example_en": "Who is your favorite singer?",
+    "example_vi": "Ca sĩ yêu thích của bạn là ai?"
+  },
+  {
+    "term": "band",
+    "phonetic": "/bænd/",
+    "meaning_vi": "ban nhạc (n)",
+    "example_en": "My brother plays in a band.",
+    "example_vi": "Anh tôi chơi trong một ban nhạc."
+  },
+  {
+    "term": "concert",
+    "phonetic": "/ˈkɒnsət/",
+    "meaning_vi": "buổi hoà nhạc (n)",
+    "example_en": "We're going to a concert tonight.",
+    "example_vi": "Tối nay chúng tôi đi xem hoà nhạc."
+  },
+  {
+    "term": "guitar",
+    "phonetic": "/ɡɪˈtɑː/",
+    "meaning_vi": "đàn ghi-ta (n)",
+    "example_en": "I'm learning to play the guitar.",
+    "example_vi": "Tôi đang học chơi ghi-ta."
+  },
+  {
+    "term": "piano",
+    "phonetic": "/piˈænəʊ/",
+    "meaning_vi": "đàn piano (n)",
+    "example_en": "She plays the piano beautifully.",
+    "example_vi": "Cô ấy chơi piano rất hay."
+  },
+  {
+    "term": "karaoke",
+    "phonetic": "/ˌkæriˈəʊki/",
+    "meaning_vi": "karaoke (n)",
+    "example_en": "Let's go to karaoke after dinner.",
+    "example_vi": "Ăn tối xong đi hát karaoke nhé."
+  },
+  {
+    "term": "movie",
+    "phonetic": "/ˈmuːvi/",
+    "meaning_vi": "phim (n)",
+    "example_en": "What kind of movies do you like?",
+    "example_vi": "Bạn thích thể loại phim nào?"
+  },
+  {
+    "term": "comedy",
+    "phonetic": "/ˈkɒmədi/",
+    "meaning_vi": "phim hài (n)",
+    "example_en": "I prefer comedies to horror films.",
+    "example_vi": "Tôi thích phim hài hơn phim kinh dị."
+  },
+  {
+    "term": "action film",
+    "phonetic": "/ˈækʃn fɪlm/",
+    "meaning_vi": "phim hành động (n)",
+    "example_en": "My dad loves action films.",
+    "example_vi": "Bố tôi mê phim hành động."
+  },
+  {
+    "term": "cartoon",
+    "phonetic": "/kɑːˈtuːn/",
+    "meaning_vi": "phim hoạt hình (n)",
+    "example_en": "The kids are watching cartoons.",
+    "example_vi": "Bọn trẻ đang xem hoạt hình."
+  },
+  {
+    "term": "series",
+    "phonetic": "/ˈsɪəriːz/",
+    "meaning_vi": "phim bộ (n)",
+    "example_en": "I'm watching a Korean series.",
+    "example_vi": "Tôi đang xem phim bộ Hàn Quốc."
+  },
+  {
+    "term": "episode",
+    "phonetic": "/ˈepɪsəʊd/",
+    "meaning_vi": "tập phim (n)",
+    "example_en": "Did you see the last episode?",
+    "example_vi": "Bạn xem tập cuối chưa?"
+  },
+  {
+    "term": "actor",
+    "phonetic": "/ˈæktə/",
+    "meaning_vi": "diễn viên (n)",
+    "example_en": "He's a famous actor.",
+    "example_vi": "Anh ấy là diễn viên nổi tiếng."
+  },
+  {
+    "term": "book",
+    "phonetic": "/bʊk/",
+    "meaning_vi": "sách (n)",
+    "example_en": "I'm reading a great book.",
+    "example_vi": "Tôi đang đọc một cuốn sách hay."
+  },
+  {
+    "term": "novel",
+    "phonetic": "/ˈnɒvl/",
+    "meaning_vi": "tiểu thuyết (n)",
+    "example_en": "This novel is very long.",
+    "example_vi": "Cuốn tiểu thuyết này rất dài."
+  },
+  {
+    "term": "comic",
+    "phonetic": "/ˈkɒmɪk/",
+    "meaning_vi": "truyện tranh (n)",
+    "example_en": "I collected comics as a kid.",
+    "example_vi": "Hồi nhỏ tôi sưu tầm truyện tranh."
+  },
+  {
+    "term": "magazine",
+    "phonetic": "/ˌmæɡəˈziːn/",
+    "meaning_vi": "tạp chí (n)",
+    "example_en": "She reads fashion magazines.",
+    "example_vi": "Cô ấy đọc tạp chí thời trang."
+  },
+  {
+    "term": "video game",
+    "phonetic": "/ˈvɪdiəʊ ɡeɪm/",
+    "meaning_vi": "trò chơi điện tử (n)",
+    "example_en": "He plays video games all weekend.",
+    "example_vi": "Anh ấy chơi game cả cuối tuần."
+  },
+  {
+    "term": "board game",
+    "phonetic": "/bɔːd ɡeɪm/",
+    "meaning_vi": "trò chơi bàn cờ (n)",
+    "example_en": "Let's play a board game.",
+    "example_vi": "Chơi board game nào."
+  },
+  {
+    "term": "chess",
+    "phonetic": "/tʃes/",
+    "meaning_vi": "cờ vua (n)",
+    "example_en": "My grandpa taught me chess.",
+    "example_vi": "Ông dạy tôi chơi cờ vua."
+  },
+  {
+    "term": "photography",
+    "phonetic": "/fəˈtɒɡrəfi/",
+    "meaning_vi": "nhiếp ảnh (n)",
+    "example_en": "Photography is my hobby.",
+    "example_vi": "Nhiếp ảnh là sở thích của tôi."
+  },
+  {
+    "term": "painting",
+    "phonetic": "/ˈpeɪntɪŋ/",
+    "meaning_vi": "hội hoạ, bức tranh (n)",
+    "example_en": "I do painting on weekends.",
+    "example_vi": "Cuối tuần tôi vẽ tranh."
+  },
+  {
+    "term": "drawing",
+    "phonetic": "/ˈdrɔːɪŋ/",
+    "meaning_vi": "vẽ (n)",
+    "example_en": "She's good at drawing.",
+    "example_vi": "Cô ấy vẽ giỏi."
+  },
+  {
+    "term": "cooking",
+    "phonetic": "/ˈkʊkɪŋ/",
+    "meaning_vi": "nấu ăn (n)",
+    "example_en": "I enjoy cooking for friends.",
+    "example_vi": "Tôi thích nấu ăn cho bạn bè."
+  },
+  {
+    "term": "gardening",
+    "phonetic": "/ˈɡɑːdnɪŋ/",
+    "meaning_vi": "làm vườn (n)",
+    "example_en": "My mom loves gardening.",
+    "example_vi": "Mẹ tôi thích làm vườn."
+  },
+  {
+    "term": "fishing",
+    "phonetic": "/ˈfɪʃɪŋ/",
+    "meaning_vi": "câu cá (n)",
+    "example_en": "We go fishing at the lake.",
+    "example_vi": "Chúng tôi đi câu ở hồ."
+  },
+  {
+    "term": "camping",
+    "phonetic": "/ˈkæmpɪŋ/",
+    "meaning_vi": "cắm trại (n)",
+    "example_en": "Let's go camping this summer.",
+    "example_vi": "Hè này đi cắm trại nhé."
+  },
+  {
+    "term": "travel",
+    "phonetic": "/ˈtrævl/",
+    "meaning_vi": "du lịch (v, n)",
+    "example_en": "I want to travel to Japan.",
+    "example_vi": "Tôi muốn đi Nhật."
+  },
+  {
+    "term": "shopping",
+    "phonetic": "/ˈʃɒpɪŋ/",
+    "meaning_vi": "mua sắm (n)",
+    "example_en": "She loves shopping.",
+    "example_vi": "Cô ấy mê mua sắm."
+  },
+  {
+    "term": "dancing",
+    "phonetic": "/ˈdɑːnsɪŋ/",
+    "meaning_vi": "khiêu vũ, nhảy (n)",
+    "example_en": "Dancing is great exercise.",
+    "example_vi": "Nhảy là bài tập tuyệt vời."
+  },
+  {
+    "term": "social media",
+    "phonetic": "/ˈsəʊʃl ˈmiːdiə/",
+    "meaning_vi": "mạng xã hội (n)",
+    "example_en": "I spend too much time on social media.",
+    "example_vi": "Tôi tốn quá nhiều thời gian cho mạng xã hội."
+  },
+  {
+    "term": "hang out",
+    "phonetic": "/hæŋ aʊt/",
+    "meaning_vi": "đi chơi, tụ tập",
+    "example_en": "Let's hang out this weekend.",
+    "example_vi": "Cuối tuần đi chơi nhé."
+  },
+  {
+    "term": "weekend",
+    "phonetic": "/ˌwiːkˈend/",
+    "meaning_vi": "cuối tuần (n)",
+    "example_en": "What are you doing this weekend?",
+    "example_vi": "Cuối tuần này bạn làm gì?"
+  },
+  {
+    "term": "party",
+    "phonetic": "/ˈpɑːti/",
+    "meaning_vi": "bữa tiệc (n)",
+    "example_en": "Are you coming to the party?",
+    "example_vi": "Bạn có đến bữa tiệc không?"
+  },
+  {
+    "term": "invite",
+    "phonetic": "/ɪnˈvaɪt/",
+    "meaning_vi": "mời (v)",
+    "example_en": "I'd like to invite you to dinner.",
+    "example_vi": "Tôi muốn mời bạn ăn tối."
+  },
+  {
+    "term": "would you like to",
+    "phonetic": "/wʊd juː laɪk tuː/",
+    "meaning_vi": "bạn có muốn... không",
+    "example_en": "Would you like to see a movie?",
+    "example_vi": "Bạn có muốn đi xem phim không?"
+  },
+  {
+    "term": "I'd love to",
+    "phonetic": "/aɪd lʌv tuː/",
+    "meaning_vi": "tôi rất thích",
+    "example_en": "Come for coffee? — I'd love to!",
+    "example_vi": "Đi cà phê không? — Thích quá!"
+  },
+  {
+    "term": "sorry, I can't",
+    "phonetic": "/ˈsɒri aɪ kɑːnt/",
+    "meaning_vi": "xin lỗi, tôi không thể",
+    "example_en": "Sorry, I can't. I'm busy tonight.",
+    "example_vi": "Xin lỗi, tôi không đi được. Tối nay tôi bận."
+  },
+  {
+    "term": "maybe next time",
+    "phonetic": "/ˈmeɪbi nekst taɪm/",
+    "meaning_vi": "để lần sau nhé",
+    "example_en": "I'm tired today. Maybe next time.",
+    "example_vi": "Hôm nay tôi mệt. Để lần sau nhé."
+  },
+  {
+    "term": "free",
+    "phonetic": "/friː/",
+    "meaning_vi": "rảnh (adj)",
+    "example_en": "Are you free on Sunday?",
+    "example_vi": "Chủ nhật bạn rảnh không?"
+  },
+  {
+    "term": "busy",
+    "phonetic": "/ˈbɪzi/",
+    "meaning_vi": "bận (adj)",
+    "example_en": "I'm busy all week.",
+    "example_vi": "Cả tuần tôi bận."
+  },
+  {
+    "term": "plan",
+    "phonetic": "/plæn/",
+    "meaning_vi": "kế hoạch (n)",
+    "example_en": "Do you have any plans tonight?",
+    "example_vi": "Tối nay bạn có kế hoạch gì không?"
+  },
+  {
+    "term": "interested in",
+    "phonetic": "/ˈɪntrəstɪd ɪn/",
+    "meaning_vi": "quan tâm, hứng thú với",
+    "example_en": "I'm interested in history.",
+    "example_vi": "Tôi hứng thú với lịch sử."
+  },
+  {
+    "term": "keen on",
+    "phonetic": "/kiːn ɒn/",
+    "meaning_vi": "thích, mê",
+    "example_en": "He's keen on football.",
+    "example_vi": "Anh ấy mê bóng đá."
+  },
+  {
+    "term": "crazy about",
+    "phonetic": "/ˈkreɪzi əˈbaʊt/",
+    "meaning_vi": "phát cuồng vì",
+    "example_en": "She's crazy about K-pop.",
+    "example_vi": "Cô ấy phát cuồng vì K-pop."
+  },
+  {
+    "term": "can't stand",
+    "phonetic": "/kɑːnt stænd/",
+    "meaning_vi": "không chịu nổi",
+    "example_en": "I can't stand horror movies.",
+    "example_vi": "Tôi không chịu nổi phim kinh dị."
+  },
+  {
+    "term": "favorite",
+    "phonetic": "/ˈfeɪvərɪt/",
+    "meaning_vi": "yêu thích nhất (adj)",
+    "example_en": "What's your favorite sport?",
+    "example_vi": "Môn thể thao bạn thích nhất là gì?"
+  },
+  {
+    "term": "boring",
+    "phonetic": "/ˈbɔːrɪŋ/",
+    "meaning_vi": "chán (adj)",
+    "example_en": "The film was really boring.",
+    "example_vi": "Bộ phim chán thật."
+  },
+  {
+    "term": "exciting",
+    "phonetic": "/ɪkˈsaɪtɪŋ/",
+    "meaning_vi": "hào hứng, thú vị (adj)",
+    "example_en": "The match was so exciting!",
+    "example_vi": "Trận đấu hấp dẫn quá!"
+  },
+  {
+    "term": "relaxing",
+    "phonetic": "/rɪˈlæksɪŋ/",
+    "meaning_vi": "thư giãn (adj)",
+    "example_en": "Reading is relaxing.",
+    "example_vi": "Đọc sách rất thư giãn."
+  },
+  {
+    "term": "fun",
+    "phonetic": "/fʌn/",
+    "meaning_vi": "vui (adj, n)",
+    "example_en": "The party was fun.",
+    "example_vi": "Bữa tiệc rất vui."
+  },
+  {
+    "term": "pastime",
+    "phonetic": "/ˈpɑːstaɪm/",
+    "meaning_vi": "thú tiêu khiển (n)",
+    "example_en": "Fishing is a popular pastime here.",
+    "example_vi": "Câu cá là thú tiêu khiển phổ biến ở đây."
+  },
+  {
+    "term": "collect",
+    "phonetic": "/kəˈlekt/",
+    "meaning_vi": "sưu tầm (v)",
+    "example_en": "I collect old coins.",
+    "example_vi": "Tôi sưu tầm tiền xu cổ."
+  },
+  {
+    "term": "practice",
+    "phonetic": "/ˈpræktɪs/",
+    "meaning_vi": "luyện tập (v)",
+    "example_en": "I practice guitar every evening.",
+    "example_vi": "Tôi tập ghi-ta mỗi tối."
+  },
+  {
+    "term": "join a club",
+    "phonetic": "/dʒɔɪn ə klʌb/",
+    "meaning_vi": "tham gia câu lạc bộ",
+    "example_en": "I joined a chess club.",
+    "example_vi": "Tôi tham gia câu lạc bộ cờ vua."
+  },
+  {
+    "term": "member",
+    "phonetic": "/ˈmembə/",
+    "meaning_vi": "thành viên (n)",
+    "example_en": "I'm a member of the gym.",
+    "example_vi": "Tôi là hội viên phòng gym."
+  },
+  {
+    "term": "ticket",
+    "phonetic": "/ˈtɪkɪt/",
+    "meaning_vi": "vé (n)",
+    "example_en": "I got two tickets for the show.",
+    "example_vi": "Tôi có hai vé xem buổi diễn."
+  },
+  {
+    "term": "festival",
+    "phonetic": "/ˈfestɪvl/",
+    "meaning_vi": "lễ hội (n)",
+    "example_en": "There's a music festival in July.",
+    "example_vi": "Có lễ hội âm nhạc vào tháng Bảy."
+  },
+  {
+    "term": "picnic",
+    "phonetic": "/ˈpɪknɪk/",
+    "meaning_vi": "dã ngoại (n)",
+    "example_en": "Let's have a picnic in the park.",
+    "example_vi": "Đi dã ngoại ở công viên nhé."
+  },
+  {
+    "term": "photo",
+    "phonetic": "/ˈfəʊtəʊ/",
+    "meaning_vi": "ảnh (n)",
+    "example_en": "Let's take a photo together.",
+    "example_vi": "Chụp ảnh chung nào."
+  },
+  {
+    "term": "selfie",
+    "phonetic": "/ˈselfi/",
+    "meaning_vi": "ảnh tự chụp (n)",
+    "example_en": "She takes selfies everywhere.",
+    "example_vi": "Cô ấy chụp selfie khắp nơi."
+  },
+  {
+    "term": "podcast",
+    "phonetic": "/ˈpɒdkɑːst/",
+    "meaning_vi": "podcast (n)",
+    "example_en": "I listen to podcasts on the bus.",
+    "example_vi": "Tôi nghe podcast trên xe buýt."
+  },
+  {
+    "term": "headphones",
+    "phonetic": "/ˈhedfəʊnz/",
+    "meaning_vi": "tai nghe (n)",
+    "example_en": "I forgot my headphones.",
+    "example_vi": "Tôi quên tai nghe rồi."
+  },
+  {
+    "term": "stay up late",
+    "phonetic": "/steɪ ʌp leɪt/",
+    "meaning_vi": "thức khuya",
+    "example_en": "I stayed up late watching a series.",
+    "example_vi": "Tôi thức khuya xem phim bộ."
+  },
+  {
+    "term": "have a good time",
+    "phonetic": "/hæv ə ɡʊd taɪm/",
+    "meaning_vi": "vui vẻ, tận hưởng",
+    "example_en": "Have a good time at the concert!",
+    "example_vi": "Chúc bạn xem hoà nhạc vui vẻ!"
+  },
+  {
+    "term": "can't wait",
+    "phonetic": "/kɑːnt weɪt/",
+    "meaning_vi": "nóng lòng mong đợi",
+    "example_en": "I can't wait for the weekend!",
+    "example_vi": "Tôi nóng lòng chờ cuối tuần!"
+  }
+]

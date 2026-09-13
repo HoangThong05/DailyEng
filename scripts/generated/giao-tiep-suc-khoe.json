@@ -1,0 +1,562 @@
+[
+  {
+    "term": "head",
+    "phonetic": "/hed/",
+    "meaning_vi": "đầu (n)",
+    "example_en": "My head hurts.",
+    "example_vi": "Đầu tôi đau."
+  },
+  {
+    "term": "stomach",
+    "phonetic": "/ˈstʌmək/",
+    "meaning_vi": "bụng, dạ dày (n)",
+    "example_en": "I have a stomach ache.",
+    "example_vi": "Tôi bị đau bụng."
+  },
+  {
+    "term": "throat",
+    "phonetic": "/θrəʊt/",
+    "meaning_vi": "cổ họng (n)",
+    "example_en": "I have a sore throat.",
+    "example_vi": "Tôi bị đau họng."
+  },
+  {
+    "term": "back",
+    "phonetic": "/bæk/",
+    "meaning_vi": "lưng (n)",
+    "example_en": "My back aches from sitting all day.",
+    "example_vi": "Lưng tôi đau vì ngồi cả ngày."
+  },
+  {
+    "term": "arm",
+    "phonetic": "/ɑːm/",
+    "meaning_vi": "cánh tay (n)",
+    "example_en": "He broke his arm playing football.",
+    "example_vi": "Anh ấy gãy tay khi đá bóng."
+  },
+  {
+    "term": "leg",
+    "phonetic": "/leɡ/",
+    "meaning_vi": "chân (n)",
+    "example_en": "My legs are tired after the hike.",
+    "example_vi": "Chân tôi mỏi sau chuyến đi bộ."
+  },
+  {
+    "term": "knee",
+    "phonetic": "/niː/",
+    "meaning_vi": "đầu gối (n)",
+    "example_en": "I hurt my knee.",
+    "example_vi": "Tôi bị đau đầu gối."
+  },
+  {
+    "term": "tooth",
+    "phonetic": "/tuːθ/",
+    "meaning_vi": "răng (n)",
+    "example_en": "I have a bad tooth.",
+    "example_vi": "Tôi có một cái răng hỏng."
+  },
+  {
+    "term": "skin",
+    "phonetic": "/skɪn/",
+    "meaning_vi": "da (n)",
+    "example_en": "My skin is dry.",
+    "example_vi": "Da tôi khô."
+  },
+  {
+    "term": "sick",
+    "phonetic": "/sɪk/",
+    "meaning_vi": "ốm (adj)",
+    "example_en": "I feel sick today.",
+    "example_vi": "Hôm nay tôi thấy không khoẻ."
+  },
+  {
+    "term": "fever",
+    "phonetic": "/ˈfiːvə/",
+    "meaning_vi": "sốt (n)",
+    "example_en": "She has a high fever.",
+    "example_vi": "Cô ấy sốt cao."
+  },
+  {
+    "term": "cold",
+    "phonetic": "/kəʊld/",
+    "meaning_vi": "cảm lạnh (n)",
+    "example_en": "I've caught a cold.",
+    "example_vi": "Tôi bị cảm lạnh."
+  },
+  {
+    "term": "flu",
+    "phonetic": "/fluː/",
+    "meaning_vi": "cúm (n)",
+    "example_en": "Half the class has the flu.",
+    "example_vi": "Nửa lớp bị cúm."
+  },
+  {
+    "term": "cough",
+    "phonetic": "/kɒf/",
+    "meaning_vi": "ho (n, v)",
+    "example_en": "I've had a cough for a week.",
+    "example_vi": "Tôi ho cả tuần rồi."
+  },
+  {
+    "term": "headache",
+    "phonetic": "/ˈhedeɪk/",
+    "meaning_vi": "đau đầu (n)",
+    "example_en": "I have a terrible headache.",
+    "example_vi": "Tôi đau đầu kinh khủng."
+  },
+  {
+    "term": "runny nose",
+    "phonetic": "/ˈrʌni nəʊz/",
+    "meaning_vi": "sổ mũi (n)",
+    "example_en": "I have a runny nose and a cough.",
+    "example_vi": "Tôi bị sổ mũi và ho."
+  },
+  {
+    "term": "sore",
+    "phonetic": "/sɔː/",
+    "meaning_vi": "đau, nhức (adj)",
+    "example_en": "My eyes are sore.",
+    "example_vi": "Mắt tôi nhức."
+  },
+  {
+    "term": "pain",
+    "phonetic": "/peɪn/",
+    "meaning_vi": "cơn đau (n)",
+    "example_en": "I have a pain in my chest.",
+    "example_vi": "Tôi bị đau ngực."
+  },
+  {
+    "term": "dizzy",
+    "phonetic": "/ˈdɪzi/",
+    "meaning_vi": "chóng mặt (adj)",
+    "example_en": "I feel dizzy when I stand up.",
+    "example_vi": "Tôi chóng mặt khi đứng dậy."
+  },
+  {
+    "term": "tired",
+    "phonetic": "/ˈtaɪəd/",
+    "meaning_vi": "mệt (adj)",
+    "example_en": "I'm tired all the time.",
+    "example_vi": "Lúc nào tôi cũng thấy mệt."
+  },
+  {
+    "term": "allergy",
+    "phonetic": "/ˈælədʒi/",
+    "meaning_vi": "dị ứng (n)",
+    "example_en": "I have a seafood allergy.",
+    "example_vi": "Tôi dị ứng hải sản."
+  },
+  {
+    "term": "injury",
+    "phonetic": "/ˈɪndʒəri/",
+    "meaning_vi": "chấn thương (n)",
+    "example_en": "It's a minor injury.",
+    "example_vi": "Đó là chấn thương nhẹ."
+  },
+  {
+    "term": "doctor",
+    "phonetic": "/ˈdɒktə/",
+    "meaning_vi": "bác sĩ (n)",
+    "example_en": "I need to see a doctor.",
+    "example_vi": "Tôi cần đi khám bác sĩ."
+  },
+  {
+    "term": "dentist",
+    "phonetic": "/ˈdentɪst/",
+    "meaning_vi": "nha sĩ (n)",
+    "example_en": "I have a dentist appointment tomorrow.",
+    "example_vi": "Mai tôi có hẹn nha sĩ."
+  },
+  {
+    "term": "nurse",
+    "phonetic": "/nɜːs/",
+    "meaning_vi": "y tá (n)",
+    "example_en": "The nurse took my temperature.",
+    "example_vi": "Y tá đo nhiệt độ cho tôi."
+  },
+  {
+    "term": "hospital",
+    "phonetic": "/ˈhɒspɪtl/",
+    "meaning_vi": "bệnh viện (n)",
+    "example_en": "He's in hospital.",
+    "example_vi": "Anh ấy đang nằm viện."
+  },
+  {
+    "term": "medicine",
+    "phonetic": "/ˈmedsn/",
+    "meaning_vi": "thuốc (n)",
+    "example_en": "Take this medicine after meals.",
+    "example_vi": "Uống thuốc này sau bữa ăn."
+  },
+  {
+    "term": "pill",
+    "phonetic": "/pɪl/",
+    "meaning_vi": "viên thuốc (n)",
+    "example_en": "Take two pills a day.",
+    "example_vi": "Uống hai viên mỗi ngày."
+  },
+  {
+    "term": "painkiller",
+    "phonetic": "/ˈpeɪnkɪlə/",
+    "meaning_vi": "thuốc giảm đau (n)",
+    "example_en": "Do you have any painkillers?",
+    "example_vi": "Bạn có thuốc giảm đau không?"
+  },
+  {
+    "term": "prescription",
+    "phonetic": "/prɪˈskrɪpʃn/",
+    "meaning_vi": "đơn thuốc (n)",
+    "example_en": "The doctor gave me a prescription.",
+    "example_vi": "Bác sĩ kê đơn cho tôi."
+  },
+  {
+    "term": "check-up",
+    "phonetic": "/ˈtʃek ʌp/",
+    "meaning_vi": "khám sức khoẻ (n)",
+    "example_en": "I have a check-up every year.",
+    "example_vi": "Tôi khám sức khoẻ hằng năm."
+  },
+  {
+    "term": "temperature",
+    "phonetic": "/ˈtemprətʃə/",
+    "meaning_vi": "nhiệt độ (cơ thể) (n)",
+    "example_en": "Let me take your temperature.",
+    "example_vi": "Để tôi đo nhiệt độ cho bạn."
+  },
+  {
+    "term": "blood pressure",
+    "phonetic": "/blʌd ˈpreʃə/",
+    "meaning_vi": "huyết áp (n)",
+    "example_en": "My blood pressure is a bit high.",
+    "example_vi": "Huyết áp tôi hơi cao."
+  },
+  {
+    "term": "rest",
+    "phonetic": "/rest/",
+    "meaning_vi": "nghỉ ngơi (v, n)",
+    "example_en": "You need to rest for a few days.",
+    "example_vi": "Bạn cần nghỉ vài ngày."
+  },
+  {
+    "term": "get better",
+    "phonetic": "/ɡet ˈbetə/",
+    "meaning_vi": "khoẻ lại",
+    "example_en": "I hope you get better soon.",
+    "example_vi": "Mong bạn sớm khoẻ lại."
+  },
+  {
+    "term": "recover",
+    "phonetic": "/rɪˈkʌvə/",
+    "meaning_vi": "hồi phục (v)",
+    "example_en": "He recovered quickly.",
+    "example_vi": "Anh ấy hồi phục nhanh."
+  },
+  {
+    "term": "healthy",
+    "phonetic": "/ˈhelθi/",
+    "meaning_vi": "khoẻ mạnh (adj)",
+    "example_en": "Stay healthy!",
+    "example_vi": "Giữ gìn sức khoẻ nhé!"
+  },
+  {
+    "term": "unhealthy",
+    "phonetic": "/ʌnˈhelθi/",
+    "meaning_vi": "không lành mạnh (adj)",
+    "example_en": "Fast food is unhealthy.",
+    "example_vi": "Đồ ăn nhanh không lành mạnh."
+  },
+  {
+    "term": "diet",
+    "phonetic": "/ˈdaɪət/",
+    "meaning_vi": "chế độ ăn; ăn kiêng (n)",
+    "example_en": "I'm on a diet.",
+    "example_vi": "Tôi đang ăn kiêng."
+  },
+  {
+    "term": "exercise",
+    "phonetic": "/ˈeksəsaɪz/",
+    "meaning_vi": "tập thể dục (v, n)",
+    "example_en": "I exercise every morning.",
+    "example_vi": "Tôi tập thể dục mỗi sáng."
+  },
+  {
+    "term": "lose weight",
+    "phonetic": "/luːz weɪt/",
+    "meaning_vi": "giảm cân",
+    "example_en": "I want to lose weight.",
+    "example_vi": "Tôi muốn giảm cân."
+  },
+  {
+    "term": "gain weight",
+    "phonetic": "/ɡeɪn weɪt/",
+    "meaning_vi": "tăng cân",
+    "example_en": "I gained weight over Tet.",
+    "example_vi": "Tôi tăng cân sau Tết."
+  },
+  {
+    "term": "sleep",
+    "phonetic": "/sliːp/",
+    "meaning_vi": "ngủ (v, n)",
+    "example_en": "Did you sleep well?",
+    "example_vi": "Bạn ngủ ngon không?"
+  },
+  {
+    "term": "wake up",
+    "phonetic": "/weɪk ʌp/",
+    "meaning_vi": "thức dậy",
+    "example_en": "I wake up at six.",
+    "example_vi": "Tôi thức dậy lúc sáu giờ."
+  },
+  {
+    "term": "get up",
+    "phonetic": "/ɡet ʌp/",
+    "meaning_vi": "ra khỏi giường, dậy",
+    "example_en": "I get up late on Sundays.",
+    "example_vi": "Chủ nhật tôi dậy muộn."
+  },
+  {
+    "term": "brush your teeth",
+    "phonetic": "/brʌʃ jɔː tiːθ/",
+    "meaning_vi": "đánh răng",
+    "example_en": "Brush your teeth twice a day.",
+    "example_vi": "Đánh răng hai lần mỗi ngày."
+  },
+  {
+    "term": "take a shower",
+    "phonetic": "/teɪk ə ˈʃaʊə/",
+    "meaning_vi": "tắm",
+    "example_en": "I take a shower before bed.",
+    "example_vi": "Tôi tắm trước khi ngủ."
+  },
+  {
+    "term": "routine",
+    "phonetic": "/ruːˈtiːn/",
+    "meaning_vi": "thói quen hằng ngày (n)",
+    "example_en": "What's your morning routine?",
+    "example_vi": "Buổi sáng bạn thường làm gì?"
+  },
+  {
+    "term": "stress",
+    "phonetic": "/stres/",
+    "meaning_vi": "căng thẳng (n)",
+    "example_en": "I'm under a lot of stress.",
+    "example_vi": "Tôi đang rất căng thẳng."
+  },
+  {
+    "term": "stressed",
+    "phonetic": "/strest/",
+    "meaning_vi": "bị căng thẳng (adj)",
+    "example_en": "I feel stressed about exams.",
+    "example_vi": "Tôi căng thẳng vì thi cử."
+  },
+  {
+    "term": "relax",
+    "phonetic": "/rɪˈlæks/",
+    "meaning_vi": "thư giãn (v)",
+    "example_en": "Relax and take a deep breath.",
+    "example_vi": "Thư giãn và hít thở sâu."
+  },
+  {
+    "term": "happy",
+    "phonetic": "/ˈhæpi/",
+    "meaning_vi": "vui, hạnh phúc (adj)",
+    "example_en": "I'm so happy for you!",
+    "example_vi": "Tôi mừng cho bạn quá!"
+  },
+  {
+    "term": "sad",
+    "phonetic": "/sæd/",
+    "meaning_vi": "buồn (adj)",
+    "example_en": "Why do you look so sad?",
+    "example_vi": "Sao bạn trông buồn thế?"
+  },
+  {
+    "term": "angry",
+    "phonetic": "/ˈæŋɡri/",
+    "meaning_vi": "tức giận (adj)",
+    "example_en": "Don't be angry with me.",
+    "example_vi": "Đừng giận tôi."
+  },
+  {
+    "term": "upset",
+    "phonetic": "/ʌpˈset/",
+    "meaning_vi": "buồn bực (adj)",
+    "example_en": "She's upset about the news.",
+    "example_vi": "Cô ấy buồn vì tin đó."
+  },
+  {
+    "term": "worried",
+    "phonetic": "/ˈwʌrid/",
+    "meaning_vi": "lo lắng (adj)",
+    "example_en": "I'm worried about my exam.",
+    "example_vi": "Tôi lo về kỳ thi."
+  },
+  {
+    "term": "scared",
+    "phonetic": "/skeəd/",
+    "meaning_vi": "sợ (adj)",
+    "example_en": "I'm scared of dogs.",
+    "example_vi": "Tôi sợ chó."
+  },
+  {
+    "term": "nervous",
+    "phonetic": "/ˈnɜːvəs/",
+    "meaning_vi": "hồi hộp (adj)",
+    "example_en": "I'm nervous before the interview.",
+    "example_vi": "Tôi hồi hộp trước buổi phỏng vấn."
+  },
+  {
+    "term": "excited",
+    "phonetic": "/ɪkˈsaɪtɪd/",
+    "meaning_vi": "háo hức (adj)",
+    "example_en": "I'm excited about the trip.",
+    "example_vi": "Tôi háo hức về chuyến đi."
+  },
+  {
+    "term": "bored",
+    "phonetic": "/bɔːd/",
+    "meaning_vi": "chán (adj)",
+    "example_en": "I'm bored. Let's do something.",
+    "example_vi": "Tôi chán quá. Làm gì đó đi."
+  },
+  {
+    "term": "surprised",
+    "phonetic": "/səˈpraɪzd/",
+    "meaning_vi": "ngạc nhiên (adj)",
+    "example_en": "I was surprised to see you here.",
+    "example_vi": "Tôi ngạc nhiên khi gặp bạn ở đây."
+  },
+  {
+    "term": "proud",
+    "phonetic": "/praʊd/",
+    "meaning_vi": "tự hào (adj)",
+    "example_en": "My parents are proud of me.",
+    "example_vi": "Bố mẹ tự hào về tôi."
+  },
+  {
+    "term": "lonely",
+    "phonetic": "/ˈləʊnli/",
+    "meaning_vi": "cô đơn (adj)",
+    "example_en": "I felt lonely in the new city.",
+    "example_vi": "Tôi thấy cô đơn ở thành phố mới."
+  },
+  {
+    "term": "calm",
+    "phonetic": "/kɑːm/",
+    "meaning_vi": "bình tĩnh (adj)",
+    "example_en": "Stay calm and think.",
+    "example_vi": "Bình tĩnh và suy nghĩ."
+  },
+  {
+    "term": "comfortable",
+    "phonetic": "/ˈkʌmftəbl/",
+    "meaning_vi": "thoải mái (adj)",
+    "example_en": "This chair is comfortable.",
+    "example_vi": "Ghế này thoải mái."
+  },
+  {
+    "term": "appetite",
+    "phonetic": "/ˈæpɪtaɪt/",
+    "meaning_vi": "cảm giác thèm ăn (n)",
+    "example_en": "I've lost my appetite.",
+    "example_vi": "Tôi chẳng thấy thèm ăn."
+  },
+  {
+    "term": "sleepy",
+    "phonetic": "/ˈsliːpi/",
+    "meaning_vi": "buồn ngủ (adj)",
+    "example_en": "I'm sleepy after lunch.",
+    "example_vi": "Ăn trưa xong tôi buồn ngủ."
+  },
+  {
+    "term": "feel",
+    "phonetic": "/fiːl/",
+    "meaning_vi": "cảm thấy (v)",
+    "example_en": "How do you feel today?",
+    "example_vi": "Hôm nay bạn thấy thế nào?"
+  },
+  {
+    "term": "mood",
+    "phonetic": "/muːd/",
+    "meaning_vi": "tâm trạng (n)",
+    "example_en": "I'm in a good mood today.",
+    "example_vi": "Hôm nay tâm trạng tôi tốt."
+  },
+  {
+    "term": "cheer up",
+    "phonetic": "/tʃɪər ʌp/",
+    "meaning_vi": "vui lên",
+    "example_en": "Cheer up! It's not so bad.",
+    "example_vi": "Vui lên! Không tệ đến thế đâu."
+  },
+  {
+    "term": "calm down",
+    "phonetic": "/kɑːm daʊn/",
+    "meaning_vi": "bình tĩnh lại",
+    "example_en": "Calm down and tell me what happened.",
+    "example_vi": "Bình tĩnh và kể tôi nghe chuyện gì."
+  },
+  {
+    "term": "take it easy",
+    "phonetic": "/teɪk ɪt ˈiːzi/",
+    "meaning_vi": "cứ từ từ, thư thả",
+    "example_en": "Take it easy this weekend.",
+    "example_vi": "Cuối tuần này thư thả nhé."
+  },
+  {
+    "term": "get well soon",
+    "phonetic": "/ɡet wel suːn/",
+    "meaning_vi": "chóng khoẻ nhé",
+    "example_en": "Get well soon, Mai!",
+    "example_vi": "Chóng khoẻ nhé, Mai!"
+  },
+  {
+    "term": "what's wrong",
+    "phonetic": "/wɒts rɒŋ/",
+    "meaning_vi": "có chuyện gì vậy",
+    "example_en": "What's wrong? You look pale.",
+    "example_vi": "Có chuyện gì thế? Trông bạn nhợt nhạt."
+  },
+  {
+    "term": "I don't feel well",
+    "phonetic": "/aɪ dəʊnt fiːl wel/",
+    "meaning_vi": "tôi thấy không khoẻ",
+    "example_en": "I don't feel well; I'm going home.",
+    "example_vi": "Tôi thấy không khoẻ, tôi về nhà đây."
+  },
+  {
+    "term": "mask",
+    "phonetic": "/mɑːsk/",
+    "meaning_vi": "khẩu trang (n)",
+    "example_en": "Wear a mask on the bus.",
+    "example_vi": "Đeo khẩu trang trên xe buýt."
+  },
+  {
+    "term": "wash your hands",
+    "phonetic": "/wɒʃ jɔː hændz/",
+    "meaning_vi": "rửa tay",
+    "example_en": "Wash your hands before eating.",
+    "example_vi": "Rửa tay trước khi ăn."
+  },
+  {
+    "term": "vitamin",
+    "phonetic": "/ˈvɪtəmɪn/",
+    "meaning_vi": "vitamin (n)",
+    "example_en": "Oranges are full of vitamin C.",
+    "example_vi": "Cam chứa nhiều vitamin C."
+  },
+  {
+    "term": "water",
+    "phonetic": "/ˈwɔːtə/",
+    "meaning_vi": "nước (n)",
+    "example_en": "Drink two liters of water a day.",
+    "example_vi": "Uống hai lít nước mỗi ngày."
+  },
+  {
+    "term": "in shape",
+    "phonetic": "/ɪn ʃeɪp/",
+    "meaning_vi": "có thể lực tốt",
+    "example_en": "I want to get in shape before summer.",
+    "example_vi": "Tôi muốn lấy lại vóc dáng trước mùa hè."
+  }
+]

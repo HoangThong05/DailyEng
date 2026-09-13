@@ -1,0 +1,702 @@
+[
+  {
+    "term": "project",
+    "phonetic": "/ˈprɒdʒekt/",
+    "meaning_vi": "dự án (n)",
+    "example_en": "The project starts next month.",
+    "example_vi": "Dự án bắt đầu vào tháng sau."
+  },
+  {
+    "term": "project manager",
+    "phonetic": "/ˈprɒdʒekt ˈmænɪdʒə/",
+    "meaning_vi": "quản lý dự án (n)",
+    "example_en": "The project manager set the schedule.",
+    "example_vi": "Quản lý dự án lập lịch trình."
+  },
+  {
+    "term": "scope",
+    "phonetic": "/skəʊp/",
+    "meaning_vi": "phạm vi (n)",
+    "example_en": "Let's define the scope clearly.",
+    "example_vi": "Hãy xác định phạm vi rõ ràng."
+  },
+  {
+    "term": "scope creep",
+    "phonetic": "/skəʊp kriːp/",
+    "meaning_vi": "phình phạm vi (n)",
+    "example_en": "Scope creep delayed the launch.",
+    "example_vi": "Phình phạm vi làm chậm ra mắt."
+  },
+  {
+    "term": "deliverable",
+    "phonetic": "/dɪˈlɪvərəbl/",
+    "meaning_vi": "sản phẩm bàn giao (n)",
+    "example_en": "The first deliverable is a prototype.",
+    "example_vi": "Sản phẩm bàn giao đầu tiên là bản mẫu."
+  },
+  {
+    "term": "milestone",
+    "phonetic": "/ˈmaɪlstəʊn/",
+    "meaning_vi": "cột mốc (n)",
+    "example_en": "We hit the first milestone on time.",
+    "example_vi": "Chúng tôi đạt cột mốc đầu tiên đúng hạn."
+  },
+  {
+    "term": "timeline",
+    "phonetic": "/ˈtaɪmlaɪn/",
+    "meaning_vi": "dòng thời gian, tiến độ (n)",
+    "example_en": "The timeline is very tight.",
+    "example_vi": "Tiến độ rất gấp."
+  },
+  {
+    "term": "deadline",
+    "phonetic": "/ˈdedlaɪn/",
+    "meaning_vi": "hạn chót (n)",
+    "example_en": "The deadline is March 31.",
+    "example_vi": "Hạn chót là ngày 31/3."
+  },
+  {
+    "term": "kick-off meeting",
+    "phonetic": "/ˈkɪk ɒf ˈmiːtɪŋ/",
+    "meaning_vi": "họp khởi động dự án (n)",
+    "example_en": "The kick-off meeting is on Monday.",
+    "example_vi": "Họp khởi động vào thứ Hai."
+  },
+  {
+    "term": "planning",
+    "phonetic": "/ˈplænɪŋ/",
+    "meaning_vi": "lập kế hoạch (n)",
+    "example_en": "Good planning saves time later.",
+    "example_vi": "Lập kế hoạch tốt tiết kiệm thời gian sau này."
+  },
+  {
+    "term": "roadmap",
+    "phonetic": "/ˈrəʊdmæp/",
+    "meaning_vi": "lộ trình (n)",
+    "example_en": "The roadmap covers the next year.",
+    "example_vi": "Lộ trình bao gồm năm tới."
+  },
+  {
+    "term": "phase",
+    "phonetic": "/feɪz/",
+    "meaning_vi": "giai đoạn (n)",
+    "example_en": "We're in the testing phase.",
+    "example_vi": "Chúng tôi đang ở giai đoạn kiểm thử."
+  },
+  {
+    "term": "task",
+    "phonetic": "/tɑːsk/",
+    "meaning_vi": "nhiệm vụ (n)",
+    "example_en": "Break the work into small tasks.",
+    "example_vi": "Chia công việc thành các nhiệm vụ nhỏ."
+  },
+  {
+    "term": "subtask",
+    "phonetic": "/ˈsʌbtɑːsk/",
+    "meaning_vi": "nhiệm vụ con (n)",
+    "example_en": "Each task has three subtasks.",
+    "example_vi": "Mỗi nhiệm vụ có ba nhiệm vụ con."
+  },
+  {
+    "term": "dependency",
+    "phonetic": "/dɪˈpendənsi/",
+    "meaning_vi": "sự phụ thuộc (n)",
+    "example_en": "Design is a dependency for development.",
+    "example_vi": "Thiết kế là điều kiện phụ thuộc cho phát triển."
+  },
+  {
+    "term": "critical path",
+    "phonetic": "/ˈkrɪtɪkl pɑːθ/",
+    "meaning_vi": "đường găng (n)",
+    "example_en": "Testing is on the critical path.",
+    "example_vi": "Kiểm thử nằm trên đường găng."
+  },
+  {
+    "term": "Gantt chart",
+    "phonetic": "/ɡænt tʃɑːt/",
+    "meaning_vi": "biểu đồ Gantt (n)",
+    "example_en": "The Gantt chart shows all phases.",
+    "example_vi": "Biểu đồ Gantt hiển thị mọi giai đoạn."
+  },
+  {
+    "term": "resource",
+    "phonetic": "/rɪˈzɔːs/",
+    "meaning_vi": "nguồn lực (n)",
+    "example_en": "We lack resources for phase two.",
+    "example_vi": "Chúng tôi thiếu nguồn lực cho giai đoạn hai."
+  },
+  {
+    "term": "allocate",
+    "phonetic": "/ˈæləkeɪt/",
+    "meaning_vi": "phân bổ (v)",
+    "example_en": "Allocate two developers to the app.",
+    "example_vi": "Phân bổ hai lập trình viên cho ứng dụng."
+  },
+  {
+    "term": "budget",
+    "phonetic": "/ˈbʌdʒɪt/",
+    "meaning_vi": "ngân sách (n)",
+    "example_en": "We're under budget so far.",
+    "example_vi": "Đến giờ ta vẫn dưới ngân sách."
+  },
+  {
+    "term": "over budget",
+    "phonetic": "/ˈəʊvə ˈbʌdʒɪt/",
+    "meaning_vi": "vượt ngân sách",
+    "example_en": "The project went over budget.",
+    "example_vi": "Dự án vượt ngân sách."
+  },
+  {
+    "term": "estimate",
+    "phonetic": "/ˈestɪmeɪt/",
+    "meaning_vi": "ước tính (v, n)",
+    "example_en": "Estimate the effort for each task.",
+    "example_vi": "Ước tính công sức cho mỗi nhiệm vụ."
+  },
+  {
+    "term": "effort",
+    "phonetic": "/ˈefət/",
+    "meaning_vi": "công sức, khối lượng (n)",
+    "example_en": "This feature takes a lot of effort.",
+    "example_vi": "Tính năng này tốn nhiều công sức."
+  },
+  {
+    "term": "workload",
+    "phonetic": "/ˈwɜːkləʊd/",
+    "meaning_vi": "khối lượng công việc (n)",
+    "example_en": "Our workload is heavy this month.",
+    "example_vi": "Khối lượng việc tháng này nặng."
+  },
+  {
+    "term": "capacity",
+    "phonetic": "/kəˈpæsəti/",
+    "meaning_vi": "năng lực, sức chứa (n)",
+    "example_en": "The team is at full capacity.",
+    "example_vi": "Nhóm đã hết công suất."
+  },
+  {
+    "term": "stakeholder",
+    "phonetic": "/ˈsteɪkhəʊldə/",
+    "meaning_vi": "bên liên quan (n)",
+    "example_en": "Keep stakeholders informed.",
+    "example_vi": "Giữ các bên liên quan được cập nhật."
+  },
+  {
+    "term": "sponsor",
+    "phonetic": "/ˈspɒnsə/",
+    "meaning_vi": "nhà bảo trợ dự án (n)",
+    "example_en": "The sponsor approved the budget.",
+    "example_vi": "Nhà bảo trợ đã duyệt ngân sách."
+  },
+  {
+    "term": "requirement",
+    "phonetic": "/rɪˈkwaɪəmənt/",
+    "meaning_vi": "yêu cầu (n)",
+    "example_en": "Gather the requirements first.",
+    "example_vi": "Thu thập yêu cầu trước."
+  },
+  {
+    "term": "specification",
+    "phonetic": "/ˌspesɪfɪˈkeɪʃn/",
+    "meaning_vi": "bản đặc tả (n)",
+    "example_en": "Read the specification carefully.",
+    "example_vi": "Đọc kỹ bản đặc tả."
+  },
+  {
+    "term": "risk",
+    "phonetic": "/rɪsk/",
+    "meaning_vi": "rủi ro (n)",
+    "example_en": "List every risk in the register.",
+    "example_vi": "Liệt kê mọi rủi ro vào sổ."
+  },
+  {
+    "term": "mitigate",
+    "phonetic": "/ˈmɪtɪɡeɪt/",
+    "meaning_vi": "giảm thiểu (v)",
+    "example_en": "How can we mitigate this risk?",
+    "example_vi": "Làm sao giảm thiểu rủi ro này?"
+  },
+  {
+    "term": "contingency plan",
+    "phonetic": "/kənˈtɪndʒənsi plæn/",
+    "meaning_vi": "kế hoạch dự phòng (n)",
+    "example_en": "We need a contingency plan.",
+    "example_vi": "Chúng ta cần kế hoạch dự phòng."
+  },
+  {
+    "term": "assumption",
+    "phonetic": "/əˈsʌmpʃn/",
+    "meaning_vi": "giả định (n)",
+    "example_en": "Document your assumptions.",
+    "example_vi": "Ghi lại các giả định của bạn."
+  },
+  {
+    "term": "constraint",
+    "phonetic": "/kənˈstreɪnt/",
+    "meaning_vi": "ràng buộc (n)",
+    "example_en": "Time is the main constraint.",
+    "example_vi": "Thời gian là ràng buộc chính."
+  },
+  {
+    "term": "issue",
+    "phonetic": "/ˈɪʃuː/",
+    "meaning_vi": "vấn đề (n)",
+    "example_en": "We found an issue with the login.",
+    "example_vi": "Chúng tôi phát hiện vấn đề ở đăng nhập."
+  },
+  {
+    "term": "blocker",
+    "phonetic": "/ˈblɒkə/",
+    "meaning_vi": "trở ngại chặn tiến độ (n)",
+    "example_en": "Any blockers today?",
+    "example_vi": "Hôm nay có trở ngại gì không?"
+  },
+  {
+    "term": "escalate",
+    "phonetic": "/ˈeskəleɪt/",
+    "meaning_vi": "báo lên cấp trên (v)",
+    "example_en": "Escalate the issue to the director.",
+    "example_vi": "Báo vấn đề lên giám đốc."
+  },
+  {
+    "term": "status update",
+    "phonetic": "/ˈsteɪtəs ˈʌpdeɪt/",
+    "meaning_vi": "cập nhật tình trạng (n)",
+    "example_en": "Send a weekly status update.",
+    "example_vi": "Gửi cập nhật tình trạng hằng tuần."
+  },
+  {
+    "term": "progress report",
+    "phonetic": "/ˈprəʊɡres rɪˈpɔːt/",
+    "meaning_vi": "báo cáo tiến độ (n)",
+    "example_en": "The progress report is due Friday.",
+    "example_vi": "Báo cáo tiến độ đến hạn thứ Sáu."
+  },
+  {
+    "term": "on track",
+    "phonetic": "/ɒn træk/",
+    "meaning_vi": "đúng tiến độ",
+    "example_en": "The project is on track.",
+    "example_vi": "Dự án đang đúng tiến độ."
+  },
+  {
+    "term": "behind schedule",
+    "phonetic": "/bɪˈhaɪnd ˈʃedjuːl/",
+    "meaning_vi": "chậm tiến độ",
+    "example_en": "We're two weeks behind schedule.",
+    "example_vi": "Chúng tôi chậm tiến độ hai tuần."
+  },
+  {
+    "term": "ahead of schedule",
+    "phonetic": "/əˈhed əv ˈʃedjuːl/",
+    "meaning_vi": "vượt tiến độ",
+    "example_en": "Design finished ahead of schedule.",
+    "example_vi": "Thiết kế hoàn thành vượt tiến độ."
+  },
+  {
+    "term": "delay",
+    "phonetic": "/dɪˈleɪ/",
+    "meaning_vi": "sự chậm trễ (n); trì hoãn (v)",
+    "example_en": "The delay cost us a week.",
+    "example_vi": "Sự chậm trễ khiến ta mất một tuần."
+  },
+  {
+    "term": "bottleneck",
+    "phonetic": "/ˈbɒtlnek/",
+    "meaning_vi": "nút thắt cổ chai (n)",
+    "example_en": "Approval is the bottleneck.",
+    "example_vi": "Khâu phê duyệt là nút thắt."
+  },
+  {
+    "term": "bandwidth",
+    "phonetic": "/ˈbændwɪdθ/",
+    "meaning_vi": "thời gian/sức lực rảnh (n)",
+    "example_en": "I don't have bandwidth this week.",
+    "example_vi": "Tuần này tôi không có thời gian."
+  },
+  {
+    "term": "prioritize",
+    "phonetic": "/praɪˈɒrətaɪz/",
+    "meaning_vi": "ưu tiên (v)",
+    "example_en": "Prioritize the bug fixes.",
+    "example_vi": "Ưu tiên sửa lỗi."
+  },
+  {
+    "term": "backlog",
+    "phonetic": "/ˈbæklɒɡ/",
+    "meaning_vi": "danh sách việc tồn (n)",
+    "example_en": "Add the idea to the backlog.",
+    "example_vi": "Thêm ý tưởng vào backlog."
+  },
+  {
+    "term": "sprint",
+    "phonetic": "/sprɪnt/",
+    "meaning_vi": "chu kỳ sprint (n)",
+    "example_en": "Each sprint lasts two weeks.",
+    "example_vi": "Mỗi sprint kéo dài hai tuần."
+  },
+  {
+    "term": "sprint planning",
+    "phonetic": "/sprɪnt ˈplænɪŋ/",
+    "meaning_vi": "họp lập kế hoạch sprint (n)",
+    "example_en": "Sprint planning is on Monday morning.",
+    "example_vi": "Họp kế hoạch sprint vào sáng thứ Hai."
+  },
+  {
+    "term": "retrospective",
+    "phonetic": "/ˌretrəˈspektɪv/",
+    "meaning_vi": "họp nhìn lại (n)",
+    "example_en": "We hold a retrospective after each sprint.",
+    "example_vi": "Chúng tôi họp nhìn lại sau mỗi sprint."
+  },
+  {
+    "term": "agile",
+    "phonetic": "/ˈædʒaɪl/",
+    "meaning_vi": "linh hoạt (phương pháp) (adj)",
+    "example_en": "Our team uses agile methods.",
+    "example_vi": "Nhóm chúng tôi dùng phương pháp agile."
+  },
+  {
+    "term": "scrum",
+    "phonetic": "/skrʌm/",
+    "meaning_vi": "khung Scrum (n)",
+    "example_en": "Scrum has short daily meetings.",
+    "example_vi": "Scrum có họp ngắn hằng ngày."
+  },
+  {
+    "term": "user story",
+    "phonetic": "/ˈjuːzə ˈstɔːri/",
+    "meaning_vi": "câu chuyện người dùng (n)",
+    "example_en": "Write a user story for login.",
+    "example_vi": "Viết user story cho đăng nhập."
+  },
+  {
+    "term": "iteration",
+    "phonetic": "/ˌɪtəˈreɪʃn/",
+    "meaning_vi": "vòng lặp, lần lặp (n)",
+    "example_en": "Each iteration adds new features.",
+    "example_vi": "Mỗi vòng lặp thêm tính năng mới."
+  },
+  {
+    "term": "increment",
+    "phonetic": "/ˈɪŋkrəmənt/",
+    "meaning_vi": "phần tăng thêm (n)",
+    "example_en": "Deliver a working increment each sprint.",
+    "example_vi": "Bàn giao phần tăng thêm hoạt động được mỗi sprint."
+  },
+  {
+    "term": "velocity",
+    "phonetic": "/vəˈlɒsəti/",
+    "meaning_vi": "tốc độ hoàn thành (n)",
+    "example_en": "Our velocity is 30 points per sprint.",
+    "example_vi": "Velocity của nhóm là 30 điểm mỗi sprint."
+  },
+  {
+    "term": "kanban board",
+    "phonetic": "/ˈkænbæn bɔːd/",
+    "meaning_vi": "bảng Kanban (n)",
+    "example_en": "Move the card on the kanban board.",
+    "example_vi": "Di chuyển thẻ trên bảng Kanban."
+  },
+  {
+    "term": "in progress",
+    "phonetic": "/ɪn ˈprəʊɡres/",
+    "meaning_vi": "đang thực hiện",
+    "example_en": "Three tasks are in progress.",
+    "example_vi": "Ba nhiệm vụ đang thực hiện."
+  },
+  {
+    "term": "done",
+    "phonetic": "/dʌn/",
+    "meaning_vi": "hoàn thành",
+    "example_en": "Mark the task as done.",
+    "example_vi": "Đánh dấu nhiệm vụ hoàn thành."
+  },
+  {
+    "term": "definition of done",
+    "phonetic": "/ˌdefɪˈnɪʃn əv dʌn/",
+    "meaning_vi": "tiêu chí hoàn thành (n)",
+    "example_en": "Tests are part of our definition of done.",
+    "example_vi": "Kiểm thử là một phần tiêu chí hoàn thành."
+  },
+  {
+    "term": "acceptance criteria",
+    "phonetic": "/əkˈseptəns kraɪˈtɪəriə/",
+    "meaning_vi": "tiêu chí nghiệm thu (n)",
+    "example_en": "Write clear acceptance criteria.",
+    "example_vi": "Viết tiêu chí nghiệm thu rõ ràng."
+  },
+  {
+    "term": "sign-off",
+    "phonetic": "/ˈsaɪn ɒf/",
+    "meaning_vi": "sự phê duyệt cuối (n)",
+    "example_en": "We need client sign-off.",
+    "example_vi": "Chúng ta cần khách hàng phê duyệt."
+  },
+  {
+    "term": "approve",
+    "phonetic": "/əˈpruːv/",
+    "meaning_vi": "phê duyệt (v)",
+    "example_en": "The board approved the plan.",
+    "example_vi": "Ban lãnh đạo đã phê duyệt kế hoạch."
+  },
+  {
+    "term": "review",
+    "phonetic": "/rɪˈvjuː/",
+    "meaning_vi": "xem xét, rà soát (v, n)",
+    "example_en": "Please review the design by Tuesday.",
+    "example_vi": "Vui lòng rà soát thiết kế trước thứ Ba."
+  },
+  {
+    "term": "handover",
+    "phonetic": "/ˈhændəʊvə/",
+    "meaning_vi": "bàn giao (n)",
+    "example_en": "The handover is next week.",
+    "example_vi": "Bàn giao vào tuần sau."
+  },
+  {
+    "term": "launch",
+    "phonetic": "/lɔːntʃ/",
+    "meaning_vi": "ra mắt (v, n)",
+    "example_en": "We launch the app in May.",
+    "example_vi": "Chúng tôi ra mắt ứng dụng vào tháng Năm."
+  },
+  {
+    "term": "rollout",
+    "phonetic": "/ˈrəʊlaʊt/",
+    "meaning_vi": "triển khai dần (n)",
+    "example_en": "The rollout starts with two cities.",
+    "example_vi": "Triển khai bắt đầu với hai thành phố."
+  },
+  {
+    "term": "pilot",
+    "phonetic": "/ˈpaɪlət/",
+    "meaning_vi": "thử nghiệm quy mô nhỏ (n)",
+    "example_en": "We ran a pilot with 50 users.",
+    "example_vi": "Chúng tôi thử nghiệm với 50 người dùng."
+  },
+  {
+    "term": "prototype",
+    "phonetic": "/ˈprəʊtətaɪp/",
+    "meaning_vi": "bản mẫu (n)",
+    "example_en": "The prototype is ready for testing.",
+    "example_vi": "Bản mẫu đã sẵn sàng thử nghiệm."
+  },
+  {
+    "term": "feasibility",
+    "phonetic": "/ˌfiːzəˈbɪləti/",
+    "meaning_vi": "tính khả thi (n)",
+    "example_en": "We did a feasibility study.",
+    "example_vi": "Chúng tôi làm nghiên cứu khả thi."
+  },
+  {
+    "term": "lessons learned",
+    "phonetic": "/ˈlesnz lɜːnd/",
+    "meaning_vi": "bài học rút ra",
+    "example_en": "Record lessons learned at the end.",
+    "example_vi": "Ghi lại bài học rút ra ở cuối dự án."
+  },
+  {
+    "term": "post-mortem",
+    "phonetic": "/ˌpəʊst ˈmɔːtəm/",
+    "meaning_vi": "họp mổ xẻ sau sự cố (n)",
+    "example_en": "We held a post-mortem after the outage.",
+    "example_vi": "Chúng tôi họp mổ xẻ sau sự cố."
+  },
+  {
+    "term": "KPI",
+    "phonetic": "/ˌkeɪ piː ˈaɪ/",
+    "meaning_vi": "chỉ số hiệu suất chính (n)",
+    "example_en": "Set KPIs for the project.",
+    "example_vi": "Đặt KPI cho dự án."
+  },
+  {
+    "term": "metric",
+    "phonetic": "/ˈmetrɪk/",
+    "meaning_vi": "chỉ số đo lường (n)",
+    "example_en": "Which metrics do we track?",
+    "example_vi": "Chúng ta theo dõi chỉ số nào?"
+  },
+  {
+    "term": "outcome",
+    "phonetic": "/ˈaʊtkʌm/",
+    "meaning_vi": "kết quả (n)",
+    "example_en": "Focus on outcomes, not outputs.",
+    "example_vi": "Tập trung vào kết quả, không phải sản lượng."
+  },
+  {
+    "term": "objective",
+    "phonetic": "/əbˈdʒektɪv/",
+    "meaning_vi": "mục tiêu (n)",
+    "example_en": "The project has three objectives.",
+    "example_vi": "Dự án có ba mục tiêu."
+  },
+  {
+    "term": "goal",
+    "phonetic": "/ɡəʊl/",
+    "meaning_vi": "mục đích (n)",
+    "example_en": "The goal is to cut costs by 10%.",
+    "example_vi": "Mục đích là giảm 10% chi phí."
+  },
+  {
+    "term": "team lead",
+    "phonetic": "/tiːm liːd/",
+    "meaning_vi": "trưởng nhóm (n)",
+    "example_en": "Ask the team lead for access.",
+    "example_vi": "Hỏi trưởng nhóm để được cấp quyền."
+  },
+  {
+    "term": "cross-functional",
+    "phonetic": "/ˌkrɒs ˈfʌŋkʃənl/",
+    "meaning_vi": "liên phòng ban (adj)",
+    "example_en": "It's a cross-functional team.",
+    "example_vi": "Đây là nhóm liên phòng ban."
+  },
+  {
+    "term": "collaborate",
+    "phonetic": "/kəˈlæbəreɪt/",
+    "meaning_vi": "cộng tác (v)",
+    "example_en": "Design and dev collaborate daily.",
+    "example_vi": "Thiết kế và lập trình cộng tác hằng ngày."
+  },
+  {
+    "term": "coordinate",
+    "phonetic": "/kəʊˈɔːdɪneɪt/",
+    "meaning_vi": "điều phối (v)",
+    "example_en": "She coordinates the three vendors.",
+    "example_vi": "Cô ấy điều phối ba nhà cung cấp."
+  },
+  {
+    "term": "delegate",
+    "phonetic": "/ˈdelɪɡeɪt/",
+    "meaning_vi": "uỷ quyền, giao việc (v)",
+    "example_en": "Delegate routine tasks.",
+    "example_vi": "Giao các việc thường ngày cho người khác."
+  },
+  {
+    "term": "accountable",
+    "phonetic": "/əˈkaʊntəbl/",
+    "meaning_vi": "chịu trách nhiệm (adj)",
+    "example_en": "Who is accountable for quality?",
+    "example_vi": "Ai chịu trách nhiệm về chất lượng?"
+  },
+  {
+    "term": "responsibility",
+    "phonetic": "/rɪˌspɒnsəˈbɪləti/",
+    "meaning_vi": "trách nhiệm (n)",
+    "example_en": "Clarify each person's responsibility.",
+    "example_vi": "Làm rõ trách nhiệm từng người."
+  },
+  {
+    "term": "workflow",
+    "phonetic": "/ˈwɜːkfləʊ/",
+    "meaning_vi": "quy trình làm việc (n)",
+    "example_en": "We simplified the approval workflow.",
+    "example_vi": "Chúng tôi đơn giản hoá quy trình duyệt."
+  },
+  {
+    "term": "track",
+    "phonetic": "/træk/",
+    "meaning_vi": "theo dõi (v)",
+    "example_en": "Track progress in the tool.",
+    "example_vi": "Theo dõi tiến độ trong công cụ."
+  },
+  {
+    "term": "monitor",
+    "phonetic": "/ˈmɒnɪtə/",
+    "meaning_vi": "giám sát (v)",
+    "example_en": "Monitor spending every week.",
+    "example_vi": "Giám sát chi tiêu mỗi tuần."
+  },
+  {
+    "term": "adjust",
+    "phonetic": "/əˈdʒʌst/",
+    "meaning_vi": "điều chỉnh (v)",
+    "example_en": "We adjusted the plan after feedback.",
+    "example_vi": "Chúng tôi điều chỉnh kế hoạch sau phản hồi."
+  },
+  {
+    "term": "change request",
+    "phonetic": "/tʃeɪndʒ rɪˈkwest/",
+    "meaning_vi": "yêu cầu thay đổi (n)",
+    "example_en": "Submit a change request for new features.",
+    "example_vi": "Gửi yêu cầu thay đổi cho tính năng mới."
+  },
+  {
+    "term": "trade show",
+    "phonetic": "/treɪd ʃəʊ/",
+    "meaning_vi": "hội chợ triển lãm (n)",
+    "example_en": "The demo is due before the trade show.",
+    "example_vi": "Bản demo phải xong trước hội chợ."
+  },
+  {
+    "term": "vendor",
+    "phonetic": "/ˈvendə/",
+    "meaning_vi": "nhà cung cấp (n)",
+    "example_en": "We chose a new vendor for hosting.",
+    "example_vi": "Chúng tôi chọn nhà cung cấp hosting mới."
+  },
+  {
+    "term": "outsource",
+    "phonetic": "/ˈaʊtsɔːs/",
+    "meaning_vi": "thuê ngoài (v)",
+    "example_en": "We outsource the testing.",
+    "example_vi": "Chúng tôi thuê ngoài phần kiểm thử."
+  },
+  {
+    "term": "in-house",
+    "phonetic": "/ˌɪn ˈhaʊs/",
+    "meaning_vi": "làm nội bộ (adj, adv)",
+    "example_en": "Design is done in-house.",
+    "example_vi": "Thiết kế được làm nội bộ."
+  },
+  {
+    "term": "quality assurance",
+    "phonetic": "/ˈkwɒləti əˈʃʊərəns/",
+    "meaning_vi": "đảm bảo chất lượng (n)",
+    "example_en": "Quality assurance found ten bugs.",
+    "example_vi": "Đảm bảo chất lượng phát hiện mười lỗi."
+  },
+  {
+    "term": "documentation",
+    "phonetic": "/ˌdɒkjumenˈteɪʃn/",
+    "meaning_vi": "tài liệu hướng dẫn (n)",
+    "example_en": "Update the documentation after changes.",
+    "example_vi": "Cập nhật tài liệu sau khi thay đổi."
+  },
+  {
+    "term": "lead time",
+    "phonetic": "/liːd taɪm/",
+    "meaning_vi": "thời gian chờ thực hiện (n)",
+    "example_en": "Lead time for parts is six weeks.",
+    "example_vi": "Thời gian chờ linh kiện là sáu tuần."
+  },
+  {
+    "term": "buffer",
+    "phonetic": "/ˈbʌfə/",
+    "meaning_vi": "khoảng đệm (n)",
+    "example_en": "Add a two-day buffer to the schedule.",
+    "example_vi": "Thêm hai ngày đệm vào lịch."
+  },
+  {
+    "term": "go live",
+    "phonetic": "/ɡəʊ laɪv/",
+    "meaning_vi": "đưa vào vận hành",
+    "example_en": "We go live on Friday.",
+    "example_vi": "Chúng tôi vận hành chính thức thứ Sáu."
+  },
+  {
+    "term": "close out",
+    "phonetic": "/kləʊz aʊt/",
+    "meaning_vi": "kết thúc, đóng dự án",
+    "example_en": "We'll close out the project this month.",
+    "example_vi": "Chúng tôi sẽ đóng dự án tháng này."
+  },
+  {
+    "term": "work breakdown structure",
+    "phonetic": "/wɜːk ˈbreɪkdaʊn ˈstrʌktʃə/",
+    "meaning_vi": "cấu trúc phân rã công việc (n)",
+    "example_en": "Build a work breakdown structure before estimating.",
+    "example_vi": "Lập cấu trúc phân rã công việc trước khi ước tính."
+  }
+]
