@@ -1,17 +1,12 @@
-import Image, { type StaticImageData } from "next/image";
-import coverCongViec from "@/public/decks/cong-viec-van-phong.png";
-import coverGiaoTiep from "@/public/decks/giao-tiep-hang-ngay.png";
-import coverToeic from "@/public/decks/toeic-co-ban.png";
+import Image from "next/image";
 import type { DeckCategory } from "@/lib/database.types";
 import { categoryOf } from "@/lib/deck-categories";
+import {
+  categoryCoverUrl,
+  COVERS_WITH_TITLE,
+  deckCoverUrl,
+} from "@/lib/deck-covers";
 import { CardsIcon } from "./icons";
-
-/** Ảnh bìa vẽ riêng cho bộ có sẵn, tìm theo slug trong bảng decks. */
-const COVERS: Record<string, StaticImageData> = {
-  "giao-tiep-hang-ngay": coverGiaoTiep,
-  "cong-viec-van-phong": coverCongViec,
-  "toeic-co-ban": coverToeic,
-};
 
 /**
  * Bảng màu cho bìa bộ từ tự tạo. Chọn theo id nên cùng một bộ luôn cùng
@@ -46,23 +41,28 @@ type Props = {
   className?: string;
 };
 
+/** Tên bộ bỏ tiền tố nhóm ("TOEIC · Văn phòng" → "Văn phòng"). */
+function shortName(name: string) {
+  return name.includes("·") ? name.slice(name.indexOf("·") + 1).trim() : name;
+}
+
 /**
  * Bìa bộ từ, theo thứ tự ưu tiên:
  *  1. ảnh vẽ riêng theo slug (đã có tên bộ trong tranh);
- *  2. bộ thuộc nhóm có sẵn: gradient của nhóm + tên bộ (bỏ tiền tố "TOEIC ·");
- *  3. bộ tự tạo: gradient theo id + chữ cái đầu.
+ *  2. ảnh nền của nhóm + tên bộ đè lên;
+ *  3. bộ thuộc nhóm có sẵn: gradient của nhóm + tên bộ;
+ *  4. bộ tự tạo: gradient theo id + chữ cái đầu.
  */
 export function DeckCover({ deck, sizes = "100vw", className = "" }: Props) {
-  const cover = deck.slug ? COVERS[deck.slug] : undefined;
-
-  if (cover) {
+  const own = deckCoverUrl(deck.slug);
+  if (own && deck.slug && COVERS_WITH_TITLE.has(deck.slug)) {
     return (
       <div
         aria-hidden
         className={`relative overflow-hidden bg-slate-800 ${className}`}
       >
         <Image
-          src={cover}
+          src={own}
           alt=""
           fill
           sizes={sizes}
@@ -73,10 +73,35 @@ export function DeckCover({ deck, sizes = "100vw", className = "" }: Props) {
   }
 
   const category = categoryOf(deck.category);
+  const photo = own ?? categoryCoverUrl(deck.category);
+  if (photo) {
+    return (
+      <div
+        aria-hidden
+        className={`relative flex flex-col items-start justify-end overflow-hidden bg-slate-800 p-4 text-white ${className}`}
+      >
+        <Image
+          src={photo}
+          alt=""
+          fill
+          sizes={sizes}
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        />
+        {/* Phủ tối phía dưới để chữ đọc được trên mọi ảnh */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        {category ? (
+          <span className="relative text-[11px] font-bold tracking-wide uppercase opacity-90">
+            {category.label}
+          </span>
+        ) : null}
+        <span className="relative line-clamp-2 text-xl leading-tight font-bold drop-shadow">
+          {shortName(deck.name)}
+        </span>
+      </div>
+    );
+  }
+
   if (category) {
-    const title = deck.name.includes("·")
-      ? deck.name.slice(deck.name.indexOf("·") + 1).trim()
-      : deck.name;
     return (
       <div
         aria-hidden
@@ -87,7 +112,7 @@ export function DeckCover({ deck, sizes = "100vw", className = "" }: Props) {
           {category.label}
         </span>
         <span className="line-clamp-2 text-xl leading-tight font-bold drop-shadow">
-          {title}
+          {shortName(deck.name)}
         </span>
       </div>
     );
