@@ -19,6 +19,22 @@ export const DECK_COVER_SLUGS = new Set([
   "toeic-nha-hang-khach-san",
   "toeic-san-xuat",
   "toeic-suc-khoe",
+  "cong-viec-du-an",
+  "cong-viec-email",
+  "cong-viec-hop",
+  "cong-viec-khach-hang",
+  "cong-viec-khoi-nghiep",
+  "giao-tiep-chao-hoi",
+  "giao-tiep-di-lai",
+  "giao-tiep-gia-dinh",
+  "giao-tiep-mua-sam",
+  "giao-tiep-so-thich",
+  "giao-tiep-suc-khoe",
+  "hoc-thuat-lap-luan",
+  "hoc-thuat-nghien-cuu",
+  "hoc-thuat-so-lieu",
+  "hoc-thuat-xa-hoi",
+  "toeic-van-phong",
 ]);
 
 /**
