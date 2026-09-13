@@ -2,10 +2,18 @@ import Image from "next/image";
 import type { GameEntry } from "./games";
 
 /**
- * Trò nào đã có ảnh bìa vẽ riêng ở public/games/<slug>.png (đã có tiêu đề
+ * Trò nào đã có ảnh bìa vẽ riêng ở public/games/<slug>.webp (đã có tiêu đề
  * trong tranh). Trò chưa có ảnh hiện gradient màu game.
  */
-const COVERED = new Set(["mua-tu", "ghep-cap", "nghe-go", "quiz", "phat-am"]);
+const COVERED = new Set([
+  "mua-tu",
+  "ghep-cap",
+  "nghe-go",
+  "quiz",
+  "phat-am",
+  "chep-cau",
+  "mock-test",
+]);
 
 type Props = {
   game: GameEntry;
@@ -19,7 +27,7 @@ type Props = {
  * tranh). Dùng chung cho thẻ ở hub và thẻ nhỏ ở trang chủ.
  */
 export function GameCover({ game, sizes, className = "" }: Props) {
-  const cover = COVERED.has(game.slug) ? `/games/${game.slug}.png` : null;
+  const cover = COVERED.has(game.slug) ? `/games/${game.slug}.webp` : null;
   return (
     <div
       className={`relative overflow-hidden bg-gradient-to-br ${game.gradient} ${className}`}

@@ -231,7 +231,7 @@ export default async function Home() {
         <section aria-labelledby="choi-gi" className="space-y-3">
           <div className="flex items-baseline justify-between px-1">
             <h2 id="choi-gi" className="text-muted text-sm font-medium">
-              Chơi gì hôm nay
+              Luyện gì hôm nay
             </h2>
             <Link href="/tro-choi" className="text-brand text-sm font-semibold">
               Tất cả →

@@ -8,6 +8,8 @@ import type { MascotVariant } from "@/app/_components/mascot";
  */
 export type GameEntry = {
   slug: string;
+  /** game: chơi cho vui để nhớ từ; skill: luyện kỹ năng / thi thử. */
+  kind: "game" | "skill";
   href: string;
   title: string;
   description: string;
@@ -24,6 +26,7 @@ export type GameEntry = {
 export const GAMES: GameEntry[] = [
   {
     slug: "chep-cau",
+    kind: "skill",
     href: "/tro-choi/chep-cau",
     title: "Nghe chép câu",
     description:
@@ -36,6 +39,7 @@ export const GAMES: GameEntry[] = [
   },
   {
     slug: "mock-test",
+    kind: "skill",
     href: "/tro-choi/mock-test",
     title: "Mock test TOEIC Part 5",
     description:
@@ -48,6 +52,7 @@ export const GAMES: GameEntry[] = [
   },
   {
     slug: "mua-tu",
+    kind: "game",
     href: "/tro-choi/mua-tu",
     title: "Mưa từ vựng",
     description:
@@ -60,6 +65,7 @@ export const GAMES: GameEntry[] = [
   },
   {
     slug: "ghep-cap",
+    kind: "game",
     href: "/tro-choi/ghep-cap",
     title: "Ghép cặp",
     description:
@@ -72,6 +78,7 @@ export const GAMES: GameEntry[] = [
   },
   {
     slug: "nghe-go",
+    kind: "game",
     href: "/tro-choi/nghe-go",
     title: "Nghe & gõ",
     description:
@@ -84,6 +91,7 @@ export const GAMES: GameEntry[] = [
   },
   {
     slug: "quiz",
+    kind: "game",
     href: "/quiz",
     title: "Quiz trắc nghiệm",
     description:
@@ -96,6 +104,7 @@ export const GAMES: GameEntry[] = [
   },
   {
     slug: "phat-am",
+    kind: "skill",
     href: "/phat-am",
     title: "Luyện phát âm",
     description:

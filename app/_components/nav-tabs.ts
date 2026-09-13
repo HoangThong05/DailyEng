@@ -12,11 +12,11 @@ import {
 export const NAV_TABS = [
   { href: "/", label: "Trang chủ", Icon: HomeIcon },
   { href: "/hoc", label: "Học", Icon: CardsIcon },
-  { href: "/tro-choi", label: "Trò chơi", Icon: GamepadIcon },
+  { href: "/tro-choi", label: "Luyện tập", Icon: GamepadIcon },
   { href: "/tai-khoan", label: "Cá nhân", Icon: UserIcon },
 ] as const;
 
-/** Quiz và luyện phát âm đứng dưới tab Trò chơi; tiến độ nằm trong Cá nhân. */
+/** Quiz và luyện phát âm đứng dưới tab Luyện tập; tiến độ, xếp hạng nằm trong Cá nhân. */
 const TAB_ALIASES: Record<string, string> = {
   "/quiz": "/tro-choi",
   "/phat-am": "/tro-choi",
