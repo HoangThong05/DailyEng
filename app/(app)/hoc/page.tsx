@@ -2,18 +2,68 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
-import { listDecks } from "@/lib/decks";
+import { DECK_CATEGORIES } from "@/lib/deck-categories";
+import { listDecks, type DeckSummary } from "@/lib/decks";
 import { DeckCard } from "./deck-card";
 
 export const metadata: Metadata = { title: "Học từ vựng" };
 
-const GRID = "stagger grid gap-4 md:grid-cols-2 lg:grid-cols-3";
+function SectionTitle({
+  id,
+  title,
+  count,
+  description,
+}: {
+  id: string;
+  title: string;
+  count: number;
+  description?: string;
+}) {
+  return (
+    <div className="px-1">
+      <div className="flex items-center gap-2">
+        <h2 id={id} className="font-semibold">
+          {title}
+        </h2>
+        <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
+          {count}
+        </span>
+      </div>
+      {description ? (
+        <p className="text-muted mt-0.5 text-sm">{description}</p>
+      ) : null}
+    </div>
+  );
+}
+
+/** Một hàng bộ từ cuộn ngang có snap; trên màn rộng vẫn cuộn để hàng không quá cao. */
+function DeckRow({ decks }: { decks: DeckSummary[] }) {
+  return (
+    <div className="stagger -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:px-0">
+      {decks.map((deck) => (
+        <div key={deck.id} className="w-[76%] shrink-0 snap-start sm:w-72">
+          <DeckCard deck={deck} />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default async function HocPage() {
   const decks = await listDecks();
-  const publicDecks = decks.filter((deck) => !deck.isOwn);
   const ownDecks = decks.filter((deck) => deck.isOwn);
   const totalDue = decks.reduce((sum, deck) => sum + deck.dueCount, 0);
+
+  // Nhóm có bộ mới hiện; bộ công khai không thuộc nhóm nào thì gom vào "Khác".
+  const groups = DECK_CATEGORIES.map((category) => ({
+    ...category,
+    decks: decks.filter(
+      (deck) => !deck.isOwn && deck.category === category.key,
+    ),
+  })).filter((group) => group.decks.length > 0);
+  const otherPublic = decks.filter(
+    (deck) => !deck.isOwn && !groups.some((g) => g.key === deck.category),
+  );
 
   return (
     <>
@@ -30,42 +80,20 @@ export default async function HocPage() {
         <EmptyState
           mascot="hoc"
           title="Chưa có bộ thẻ nào"
-          description="Chạy file supabase/schema-02-flashcard.sql trong SQL Editor để nạp các bộ từ có sẵn."
+          description="Chạy các file trong supabase/ (schema rồi seed) ở SQL Editor để nạp bộ từ có sẵn."
         />
       ) : (
         <div className="space-y-8 px-5 pt-2 pb-4">
-          {publicDecks.length > 0 ? (
-            <section aria-labelledby="bo-co-san" className="space-y-3">
-              <div className="flex items-center gap-2 px-1">
-                <h2 id="bo-co-san" className="font-semibold">
-                  Bộ có sẵn
-                </h2>
-                <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
-                  {publicDecks.length}
-                </span>
-              </div>
-              <div className={GRID}>
-                {publicDecks.map((deck) => (
-                  <DeckCard key={deck.id} deck={deck} />
-                ))}
-              </div>
-            </section>
-          ) : null}
-
           <section aria-labelledby="bo-cua-toi" className="space-y-3">
-            <div className="flex items-center gap-2 px-1">
-              <h2 id="bo-cua-toi" className="font-semibold">
-                Bộ của tôi
-              </h2>
-              <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
-                {ownDecks.length}
-              </span>
-            </div>
-            <div className={GRID}>
+            <SectionTitle
+              id="bo-cua-toi"
+              title="Bộ của tôi"
+              count={ownDecks.length}
+            />
+            <div className="stagger grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {ownDecks.map((deck) => (
                 <DeckCard key={deck.id} deck={deck} />
               ))}
-
               <Link
                 href="/hoc/tao"
                 className="border-border text-muted hover:border-brand hover:text-brand flex min-h-40 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-6 text-center transition-colors press"
@@ -80,6 +108,33 @@ export default async function HocPage() {
               </Link>
             </div>
           </section>
+
+          {groups.map((group) => (
+            <section
+              key={group.key}
+              aria-labelledby={`nhom-${group.key}`}
+              className="space-y-3"
+            >
+              <SectionTitle
+                id={`nhom-${group.key}`}
+                title={group.label}
+                count={group.decks.length}
+                description={group.description}
+              />
+              <DeckRow decks={group.decks} />
+            </section>
+          ))}
+
+          {otherPublic.length > 0 ? (
+            <section aria-labelledby="nhom-khac" className="space-y-3">
+              <SectionTitle
+                id="nhom-khac"
+                title="Bộ khác"
+                count={otherPublic.length}
+              />
+              <DeckRow decks={otherPublic} />
+            </section>
+          ) : null}
         </div>
       )}
     </>

@@ -1,0 +1,842 @@
+[
+  {
+    "term": "agree",
+    "phonetic": "/əˈɡriː/",
+    "meaning_vi": "đồng ý (v)",
+    "example_en": "I agree with you.",
+    "example_vi": "Tôi đồng ý với bạn."
+  },
+  {
+    "term": "arrive",
+    "phonetic": "/əˈraɪv/",
+    "meaning_vi": "đến nơi (v)",
+    "example_en": "What time did you arrive?",
+    "example_vi": "Bạn đến lúc mấy giờ?"
+  },
+  {
+    "term": "avoid",
+    "phonetic": "/əˈvɔɪd/",
+    "meaning_vi": "tránh (v)",
+    "example_en": "Avoid sugar if you can.",
+    "example_vi": "Tránh đường nếu có thể."
+  },
+  {
+    "term": "check",
+    "phonetic": "/tʃek/",
+    "meaning_vi": "kiểm tra (v)",
+    "example_en": "Check your email.",
+    "example_vi": "Kiểm tra email đi."
+  },
+  {
+    "term": "clean",
+    "phonetic": "/kliːn/",
+    "meaning_vi": "dọn dẹp (v); sạch (adj)",
+    "example_en": "I clean my room on Sundays.",
+    "example_vi": "Tôi dọn phòng vào Chủ nhật."
+  },
+  {
+    "term": "climb",
+    "phonetic": "/klaɪm/",
+    "meaning_vi": "leo, trèo (v)",
+    "example_en": "We climbed the mountain.",
+    "example_vi": "Chúng tôi leo núi."
+  },
+  {
+    "term": "collect",
+    "phonetic": "/kəˈlekt/",
+    "meaning_vi": "thu thập, sưu tầm (v)",
+    "example_en": "He collects old coins.",
+    "example_vi": "Anh ấy sưu tầm tiền xu cổ."
+  },
+  {
+    "term": "compare",
+    "phonetic": "/kəmˈpeə/",
+    "meaning_vi": "so sánh (v)",
+    "example_en": "Compare prices before you buy.",
+    "example_vi": "So sánh giá trước khi mua."
+  },
+  {
+    "term": "complain",
+    "phonetic": "/kəmˈpleɪn/",
+    "meaning_vi": "phàn nàn (v)",
+    "example_en": "Stop complaining about the weather.",
+    "example_vi": "Đừng phàn nàn về thời tiết nữa."
+  },
+  {
+    "term": "cook",
+    "phonetic": "/kʊk/",
+    "meaning_vi": "nấu ăn (v)",
+    "example_en": "My dad cooks dinner every night.",
+    "example_vi": "Bố tôi nấu bữa tối mỗi tối."
+  },
+  {
+    "term": "count",
+    "phonetic": "/kaʊnt/",
+    "meaning_vi": "đếm (v)",
+    "example_en": "Count to ten.",
+    "example_vi": "Đếm đến mười."
+  },
+  {
+    "term": "cover",
+    "phonetic": "/ˈkʌvə/",
+    "meaning_vi": "che phủ (v); bìa (n)",
+    "example_en": "Cover the pot with a lid.",
+    "example_vi": "Đậy nắp nồi lại."
+  },
+  {
+    "term": "cry",
+    "phonetic": "/kraɪ/",
+    "meaning_vi": "khóc (v)",
+    "example_en": "The baby is crying.",
+    "example_vi": "Em bé đang khóc."
+  },
+  {
+    "term": "dance",
+    "phonetic": "/dɑːns/",
+    "meaning_vi": "nhảy, khiêu vũ (v, n)",
+    "example_en": "Let's dance!",
+    "example_vi": "Nhảy nào!"
+  },
+  {
+    "term": "deliver",
+    "phonetic": "/dɪˈlɪvə/",
+    "meaning_vi": "giao (hàng) (v)",
+    "example_en": "They deliver pizza for free.",
+    "example_vi": "Họ giao pizza miễn phí."
+  },
+  {
+    "term": "describe",
+    "phonetic": "/dɪˈskraɪb/",
+    "meaning_vi": "mô tả (v)",
+    "example_en": "Describe your best friend.",
+    "example_vi": "Hãy mô tả người bạn thân nhất."
+  },
+  {
+    "term": "develop",
+    "phonetic": "/dɪˈveləp/",
+    "meaning_vi": "phát triển (v)",
+    "example_en": "The city has developed quickly.",
+    "example_vi": "Thành phố phát triển nhanh."
+  },
+  {
+    "term": "discover",
+    "phonetic": "/dɪˈskʌvə/",
+    "meaning_vi": "khám phá (v)",
+    "example_en": "We discovered a small café.",
+    "example_vi": "Chúng tôi phát hiện một quán cà phê nhỏ."
+  },
+  {
+    "term": "enjoy",
+    "phonetic": "/ɪnˈdʒɔɪ/",
+    "meaning_vi": "thích, tận hưởng (v)",
+    "example_en": "Enjoy your meal!",
+    "example_vi": "Chúc ngon miệng!"
+  },
+  {
+    "term": "enter",
+    "phonetic": "/ˈentə/",
+    "meaning_vi": "đi vào; nhập (v)",
+    "example_en": "Enter your password.",
+    "example_vi": "Nhập mật khẩu."
+  },
+  {
+    "term": "fail",
+    "phonetic": "/feɪl/",
+    "meaning_vi": "thất bại, trượt (v)",
+    "example_en": "I failed my driving test.",
+    "example_vi": "Tôi trượt thi lái xe."
+  },
+  {
+    "term": "fill",
+    "phonetic": "/fɪl/",
+    "meaning_vi": "đổ đầy, điền (v)",
+    "example_en": "Fill in the form, please.",
+    "example_vi": "Vui lòng điền vào mẫu."
+  },
+  {
+    "term": "fit",
+    "phonetic": "/fɪt/",
+    "meaning_vi": "vừa (v); khoẻ mạnh (adj)",
+    "example_en": "These shoes don't fit.",
+    "example_vi": "Đôi giày này không vừa."
+  },
+  {
+    "term": "fix",
+    "phonetic": "/fɪks/",
+    "meaning_vi": "sửa (v)",
+    "example_en": "Can you fix my bike?",
+    "example_vi": "Bạn sửa xe đạp giúp tôi được không?"
+  },
+  {
+    "term": "guess",
+    "phonetic": "/ɡes/",
+    "meaning_vi": "đoán (v)",
+    "example_en": "Guess how old I am.",
+    "example_vi": "Đoán xem tôi bao nhiêu tuổi."
+  },
+  {
+    "term": "hate",
+    "phonetic": "/heɪt/",
+    "meaning_vi": "ghét (v)",
+    "example_en": "I hate waiting in line.",
+    "example_vi": "Tôi ghét xếp hàng chờ."
+  },
+  {
+    "term": "hide",
+    "phonetic": "/haɪd/",
+    "meaning_vi": "giấu, trốn (v)",
+    "example_en": "Where did you hide the gift?",
+    "example_vi": "Bạn giấu quà ở đâu?"
+  },
+  {
+    "term": "hit",
+    "phonetic": "/hɪt/",
+    "meaning_vi": "đánh, đụng (v)",
+    "example_en": "The car hit a tree.",
+    "example_vi": "Chiếc xe đâm vào cây."
+  },
+  {
+    "term": "hurt",
+    "phonetic": "/hɜːt/",
+    "meaning_vi": "đau, làm đau (v)",
+    "example_en": "My back hurts.",
+    "example_vi": "Lưng tôi đau."
+  },
+  {
+    "term": "imagine",
+    "phonetic": "/ɪˈmædʒɪn/",
+    "meaning_vi": "tưởng tượng (v)",
+    "example_en": "Imagine living on the beach.",
+    "example_vi": "Tưởng tượng được sống ở bãi biển."
+  },
+  {
+    "term": "improve",
+    "phonetic": "/ɪmˈpruːv/",
+    "meaning_vi": "cải thiện (v)",
+    "example_en": "Your English is improving.",
+    "example_vi": "Tiếng Anh của bạn đang tiến bộ."
+  },
+  {
+    "term": "increase",
+    "phonetic": "/ɪnˈkriːs/",
+    "meaning_vi": "tăng (v, n)",
+    "example_en": "Prices increased last month.",
+    "example_vi": "Giá tăng vào tháng trước."
+  },
+  {
+    "term": "introduce",
+    "phonetic": "/ˌɪntrəˈdjuːs/",
+    "meaning_vi": "giới thiệu (v)",
+    "example_en": "Let me introduce my sister.",
+    "example_vi": "Để tôi giới thiệu chị tôi."
+  },
+  {
+    "term": "invite",
+    "phonetic": "/ɪnˈvaɪt/",
+    "meaning_vi": "mời (v)",
+    "example_en": "She invited me to her party.",
+    "example_vi": "Cô ấy mời tôi dự tiệc."
+  },
+  {
+    "term": "join",
+    "phonetic": "/dʒɔɪn/",
+    "meaning_vi": "tham gia (v)",
+    "example_en": "Would you like to join us?",
+    "example_vi": "Bạn muốn tham gia cùng chúng tôi không?"
+  },
+  {
+    "term": "jump",
+    "phonetic": "/dʒʌmp/",
+    "meaning_vi": "nhảy (v)",
+    "example_en": "The cat jumped onto the table.",
+    "example_vi": "Con mèo nhảy lên bàn."
+  },
+  {
+    "term": "laugh",
+    "phonetic": "/lɑːf/",
+    "meaning_vi": "cười to (v)",
+    "example_en": "They laughed at the joke.",
+    "example_vi": "Họ cười vì câu chuyện đùa."
+  },
+  {
+    "term": "lift",
+    "phonetic": "/lɪft/",
+    "meaning_vi": "nâng lên (v); thang máy (n)",
+    "example_en": "Can you lift this box?",
+    "example_vi": "Bạn nâng cái hộp này được không?"
+  },
+  {
+    "term": "marry",
+    "phonetic": "/ˈmæri/",
+    "meaning_vi": "kết hôn (v)",
+    "example_en": "They got married last year.",
+    "example_vi": "Họ kết hôn năm ngoái."
+  },
+  {
+    "term": "mention",
+    "phonetic": "/ˈmenʃn/",
+    "meaning_vi": "đề cập (v)",
+    "example_en": "He didn't mention the price.",
+    "example_vi": "Anh ấy không đề cập đến giá."
+  },
+  {
+    "term": "miss",
+    "phonetic": "/mɪs/",
+    "meaning_vi": "nhớ; lỡ (v)",
+    "example_en": "I miss my family.",
+    "example_vi": "Tôi nhớ gia đình."
+  },
+  {
+    "term": "notice",
+    "phonetic": "/ˈnəʊtɪs/",
+    "meaning_vi": "chú ý, nhận thấy (v)",
+    "example_en": "Did you notice her new haircut?",
+    "example_vi": "Bạn có để ý kiểu tóc mới của cô ấy không?"
+  },
+  {
+    "term": "paint",
+    "phonetic": "/peɪnt/",
+    "meaning_vi": "sơn, vẽ (v)",
+    "example_en": "We painted the wall blue.",
+    "example_vi": "Chúng tôi sơn tường màu xanh."
+  },
+  {
+    "term": "practice",
+    "phonetic": "/ˈpræktɪs/",
+    "meaning_vi": "luyện tập (v, n)",
+    "example_en": "Practice English every day.",
+    "example_vi": "Luyện tiếng Anh mỗi ngày."
+  },
+  {
+    "term": "prefer",
+    "phonetic": "/prɪˈfɜː/",
+    "meaning_vi": "thích hơn (v)",
+    "example_en": "I prefer tea to coffee.",
+    "example_vi": "Tôi thích trà hơn cà phê."
+  },
+  {
+    "term": "prepare",
+    "phonetic": "/prɪˈpeə/",
+    "meaning_vi": "chuẩn bị (v)",
+    "example_en": "I'm preparing for the exam.",
+    "example_vi": "Tôi đang chuẩn bị cho kỳ thi."
+  },
+  {
+    "term": "promise",
+    "phonetic": "/ˈprɒmɪs/",
+    "meaning_vi": "hứa (v, n)",
+    "example_en": "I promise to be on time.",
+    "example_vi": "Tôi hứa sẽ đúng giờ."
+  },
+  {
+    "term": "protect",
+    "phonetic": "/prəˈtekt/",
+    "meaning_vi": "bảo vệ (v)",
+    "example_en": "Sunscreen protects your skin.",
+    "example_vi": "Kem chống nắng bảo vệ da."
+  },
+  {
+    "term": "pull",
+    "phonetic": "/pʊl/",
+    "meaning_vi": "kéo (v)",
+    "example_en": "Pull the door to open it.",
+    "example_vi": "Kéo cửa để mở."
+  },
+  {
+    "term": "push",
+    "phonetic": "/pʊʃ/",
+    "meaning_vi": "đẩy (v)",
+    "example_en": "Push the button.",
+    "example_vi": "Ấn nút đi."
+  },
+  {
+    "term": "realize",
+    "phonetic": "/ˈrɪəlaɪz/",
+    "meaning_vi": "nhận ra (v)",
+    "example_en": "I realized I had left my phone.",
+    "example_vi": "Tôi nhận ra đã để quên điện thoại."
+  },
+  {
+    "term": "reduce",
+    "phonetic": "/rɪˈdjuːs/",
+    "meaning_vi": "giảm (v)",
+    "example_en": "We need to reduce costs.",
+    "example_vi": "Chúng ta cần giảm chi phí."
+  },
+  {
+    "term": "refuse",
+    "phonetic": "/rɪˈfjuːz/",
+    "meaning_vi": "từ chối (v)",
+    "example_en": "He refused to help.",
+    "example_vi": "Anh ấy từ chối giúp."
+  },
+  {
+    "term": "relax",
+    "phonetic": "/rɪˈlæks/",
+    "meaning_vi": "thư giãn (v)",
+    "example_en": "Relax, everything is fine.",
+    "example_vi": "Thư giãn đi, mọi thứ ổn mà."
+  },
+  {
+    "term": "repeat",
+    "phonetic": "/rɪˈpiːt/",
+    "meaning_vi": "lặp lại (v)",
+    "example_en": "Could you repeat that?",
+    "example_vi": "Bạn nhắc lại được không?"
+  },
+  {
+    "term": "reply",
+    "phonetic": "/rɪˈplaɪ/",
+    "meaning_vi": "trả lời (v, n)",
+    "example_en": "She didn't reply to my text.",
+    "example_vi": "Cô ấy không trả lời tin nhắn của tôi."
+  },
+  {
+    "term": "report",
+    "phonetic": "/rɪˈpɔːt/",
+    "meaning_vi": "báo cáo (v, n)",
+    "example_en": "Report any problems to me.",
+    "example_vi": "Báo cho tôi mọi vấn đề."
+  },
+  {
+    "term": "require",
+    "phonetic": "/rɪˈkwaɪə/",
+    "meaning_vi": "yêu cầu, đòi hỏi (v)",
+    "example_en": "This job requires experience.",
+    "example_vi": "Công việc này đòi hỏi kinh nghiệm."
+  },
+  {
+    "term": "rise",
+    "phonetic": "/raɪz/",
+    "meaning_vi": "tăng lên, mọc (v)",
+    "example_en": "The sun rises at six.",
+    "example_vi": "Mặt trời mọc lúc sáu giờ."
+  },
+  {
+    "term": "share",
+    "phonetic": "/ʃeə/",
+    "meaning_vi": "chia sẻ (v)",
+    "example_en": "Let's share the pizza.",
+    "example_vi": "Mình chia nhau pizza nhé."
+  },
+  {
+    "term": "shout",
+    "phonetic": "/ʃaʊt/",
+    "meaning_vi": "hét, la (v)",
+    "example_en": "Don't shout at me.",
+    "example_vi": "Đừng hét vào mặt tôi."
+  },
+  {
+    "term": "sign",
+    "phonetic": "/saɪn/",
+    "meaning_vi": "ký; biển hiệu (v, n)",
+    "example_en": "Sign here, please.",
+    "example_vi": "Vui lòng ký vào đây."
+  },
+  {
+    "term": "sing",
+    "phonetic": "/sɪŋ/",
+    "meaning_vi": "hát (v)",
+    "example_en": "She sings beautifully.",
+    "example_vi": "Cô ấy hát rất hay."
+  },
+  {
+    "term": "smell",
+    "phonetic": "/smel/",
+    "meaning_vi": "ngửi; có mùi (v)",
+    "example_en": "This soup smells good.",
+    "example_vi": "Món súp này thơm quá."
+  },
+  {
+    "term": "solve",
+    "phonetic": "/sɒlv/",
+    "meaning_vi": "giải quyết (v)",
+    "example_en": "We solved the problem together.",
+    "example_vi": "Chúng tôi cùng giải quyết vấn đề."
+  },
+  {
+    "term": "support",
+    "phonetic": "/səˈpɔːt/",
+    "meaning_vi": "ủng hộ, hỗ trợ (v, n)",
+    "example_en": "Thank you for your support.",
+    "example_vi": "Cảm ơn sự hỗ trợ của bạn."
+  },
+  {
+    "term": "surprise",
+    "phonetic": "/səˈpraɪz/",
+    "meaning_vi": "làm ngạc nhiên (v); bất ngờ (n)",
+    "example_en": "What a nice surprise!",
+    "example_vi": "Thật là bất ngờ thú vị!"
+  },
+  {
+    "term": "swim",
+    "phonetic": "/swɪm/",
+    "meaning_vi": "bơi (v)",
+    "example_en": "Can you swim?",
+    "example_vi": "Bạn biết bơi không?"
+  },
+  {
+    "term": "taste",
+    "phonetic": "/teɪst/",
+    "meaning_vi": "nếm; có vị (v); vị (n)",
+    "example_en": "This tastes sweet.",
+    "example_vi": "Cái này có vị ngọt."
+  },
+  {
+    "term": "touch",
+    "phonetic": "/tʌtʃ/",
+    "meaning_vi": "chạm (v)",
+    "example_en": "Don't touch the screen.",
+    "example_vi": "Đừng chạm vào màn hình."
+  },
+  {
+    "term": "trust",
+    "phonetic": "/trʌst/",
+    "meaning_vi": "tin tưởng (v, n)",
+    "example_en": "I trust my doctor.",
+    "example_vi": "Tôi tin tưởng bác sĩ của mình."
+  },
+  {
+    "term": "visit",
+    "phonetic": "/ˈvɪzɪt/",
+    "meaning_vi": "thăm (v, n)",
+    "example_en": "We visited my grandparents.",
+    "example_vi": "Chúng tôi đến thăm ông bà."
+  },
+  {
+    "term": "warn",
+    "phonetic": "/wɔːn/",
+    "meaning_vi": "cảnh báo (v)",
+    "example_en": "I warned you about the traffic.",
+    "example_vi": "Tôi đã cảnh báo bạn về kẹt xe."
+  },
+  {
+    "term": "waste",
+    "phonetic": "/weɪst/",
+    "meaning_vi": "lãng phí (v, n)",
+    "example_en": "Don't waste water.",
+    "example_vi": "Đừng lãng phí nước."
+  },
+  {
+    "term": "wonder",
+    "phonetic": "/ˈwʌndə/",
+    "meaning_vi": "tự hỏi (v)",
+    "example_en": "I wonder where she is.",
+    "example_vi": "Tôi tự hỏi cô ấy đang ở đâu."
+  },
+  {
+    "term": "wish",
+    "phonetic": "/wɪʃ/",
+    "meaning_vi": "ước (v); lời chúc (n)",
+    "example_en": "I wish I could fly.",
+    "example_vi": "Ước gì tôi biết bay."
+  },
+  {
+    "term": "borrow",
+    "phonetic": "/ˈbɒrəʊ/",
+    "meaning_vi": "mượn (v)",
+    "example_en": "Can I borrow your pen?",
+    "example_vi": "Tôi mượn bút của bạn được không?"
+  },
+  {
+    "term": "lend",
+    "phonetic": "/lend/",
+    "meaning_vi": "cho mượn (v)",
+    "example_en": "Could you lend me ten dollars?",
+    "example_vi": "Bạn cho tôi mượn mười đô được không?"
+  },
+  {
+    "term": "throw",
+    "phonetic": "/θrəʊ/",
+    "meaning_vi": "ném (v)",
+    "example_en": "Throw the ball to me.",
+    "example_vi": "Ném bóng cho tôi."
+  },
+  {
+    "term": "catch",
+    "phonetic": "/kætʃ/",
+    "meaning_vi": "bắt (v)",
+    "example_en": "I need to catch the last bus.",
+    "example_vi": "Tôi phải bắt kịp chuyến xe cuối."
+  },
+  {
+    "term": "break",
+    "phonetic": "/breɪk/",
+    "meaning_vi": "làm vỡ, gãy (v); giờ nghỉ (n)",
+    "example_en": "Be careful, don't break it.",
+    "example_vi": "Cẩn thận, đừng làm vỡ."
+  },
+  {
+    "term": "fly",
+    "phonetic": "/flaɪ/",
+    "meaning_vi": "bay (v)",
+    "example_en": "We fly to Bangkok tomorrow.",
+    "example_vi": "Ngày mai chúng tôi bay đi Bangkok."
+  },
+  {
+    "term": "draw",
+    "phonetic": "/drɔː/",
+    "meaning_vi": "vẽ (v)",
+    "example_en": "She draws very well.",
+    "example_vi": "Cô ấy vẽ rất đẹp."
+  },
+  {
+    "term": "pick",
+    "phonetic": "/pɪk/",
+    "meaning_vi": "chọn, hái; nhặt (v)",
+    "example_en": "Pick a card.",
+    "example_vi": "Chọn một lá bài."
+  },
+  {
+    "term": "suggest",
+    "phonetic": "/səˈdʒest/",
+    "meaning_vi": "gợi ý, đề nghị (v)",
+    "example_en": "I suggest we leave early.",
+    "example_vi": "Tôi đề nghị đi sớm."
+  },
+  {
+    "term": "argue",
+    "phonetic": "/ˈɑːɡjuː/",
+    "meaning_vi": "tranh cãi (v)",
+    "example_en": "They argued about money.",
+    "example_vi": "Họ cãi nhau về tiền."
+  },
+  {
+    "term": "belong",
+    "phonetic": "/bɪˈlɒŋ/",
+    "meaning_vi": "thuộc về (v)",
+    "example_en": "This bag belongs to me.",
+    "example_vi": "Cái túi này là của tôi."
+  },
+  {
+    "term": "celebrate",
+    "phonetic": "/ˈselɪbreɪt/",
+    "meaning_vi": "ăn mừng (v)",
+    "example_en": "Let's celebrate your birthday.",
+    "example_vi": "Ăn mừng sinh nhật bạn thôi."
+  },
+  {
+    "term": "depend",
+    "phonetic": "/dɪˈpend/",
+    "meaning_vi": "phụ thuộc (v)",
+    "example_en": "It depends on the weather.",
+    "example_vi": "Còn tuỳ thời tiết."
+  },
+  {
+    "term": "exist",
+    "phonetic": "/ɪɡˈzɪst/",
+    "meaning_vi": "tồn tại (v)",
+    "example_en": "Does life exist on other planets?",
+    "example_vi": "Có sự sống trên hành tinh khác không?"
+  },
+  {
+    "term": "manage",
+    "phonetic": "/ˈmænɪdʒ/",
+    "meaning_vi": "quản lý; xoay xở (v)",
+    "example_en": "She manages a team of ten.",
+    "example_vi": "Cô ấy quản lý một nhóm mười người."
+  },
+  {
+    "term": "matter",
+    "phonetic": "/ˈmætə/",
+    "meaning_vi": "quan trọng (v); vấn đề (n)",
+    "example_en": "It doesn't matter.",
+    "example_vi": "Không sao đâu."
+  },
+  {
+    "term": "affect",
+    "phonetic": "/əˈfekt/",
+    "meaning_vi": "ảnh hưởng (v)",
+    "example_en": "The weather affects my mood.",
+    "example_vi": "Thời tiết ảnh hưởng đến tâm trạng tôi."
+  },
+  {
+    "term": "apply",
+    "phonetic": "/əˈplaɪ/",
+    "meaning_vi": "nộp đơn; áp dụng (v)",
+    "example_en": "I applied for the job.",
+    "example_vi": "Tôi đã nộp đơn xin việc."
+  },
+  {
+    "term": "attend",
+    "phonetic": "/əˈtend/",
+    "meaning_vi": "tham dự (v)",
+    "example_en": "I attended the meeting.",
+    "example_vi": "Tôi dự cuộc họp."
+  },
+  {
+    "term": "cause",
+    "phonetic": "/kɔːz/",
+    "meaning_vi": "gây ra (v); nguyên nhân (n)",
+    "example_en": "Smoking causes cancer.",
+    "example_vi": "Hút thuốc gây ung thư."
+  },
+  {
+    "term": "contain",
+    "phonetic": "/kənˈteɪn/",
+    "meaning_vi": "chứa (v)",
+    "example_en": "This drink contains sugar.",
+    "example_vi": "Đồ uống này chứa đường."
+  },
+  {
+    "term": "control",
+    "phonetic": "/kənˈtrəʊl/",
+    "meaning_vi": "kiểm soát (v, n)",
+    "example_en": "Keep your temper under control.",
+    "example_vi": "Kiềm chế cơn nóng giận."
+  },
+  {
+    "term": "cost",
+    "phonetic": "/kɒst/",
+    "meaning_vi": "có giá, tốn (v); chi phí (n)",
+    "example_en": "How much does it cost?",
+    "example_vi": "Cái này giá bao nhiêu?"
+  },
+  {
+    "term": "damage",
+    "phonetic": "/ˈdæmɪdʒ/",
+    "meaning_vi": "làm hỏng (v); thiệt hại (n)",
+    "example_en": "The storm damaged the roof.",
+    "example_vi": "Cơn bão làm hỏng mái nhà."
+  },
+  {
+    "term": "design",
+    "phonetic": "/dɪˈzaɪn/",
+    "meaning_vi": "thiết kế (v, n)",
+    "example_en": "She designs clothes.",
+    "example_vi": "Cô ấy thiết kế quần áo."
+  },
+  {
+    "term": "doubt",
+    "phonetic": "/daʊt/",
+    "meaning_vi": "nghi ngờ (v, n)",
+    "example_en": "I doubt he will come.",
+    "example_vi": "Tôi ngờ rằng anh ấy sẽ không đến."
+  },
+  {
+    "term": "earn",
+    "phonetic": "/ɜːn/",
+    "meaning_vi": "kiếm (tiền) (v)",
+    "example_en": "He earns a good salary.",
+    "example_vi": "Anh ấy kiếm được lương khá."
+  },
+  {
+    "term": "encourage",
+    "phonetic": "/ɪnˈkʌrɪdʒ/",
+    "meaning_vi": "khuyến khích (v)",
+    "example_en": "My teacher encouraged me to read.",
+    "example_vi": "Giáo viên khuyến khích tôi đọc sách."
+  },
+  {
+    "term": "examine",
+    "phonetic": "/ɪɡˈzæmɪn/",
+    "meaning_vi": "kiểm tra, khám (v)",
+    "example_en": "The doctor examined my eyes.",
+    "example_vi": "Bác sĩ khám mắt cho tôi."
+  },
+  {
+    "term": "express",
+    "phonetic": "/ɪkˈspres/",
+    "meaning_vi": "bày tỏ (v)",
+    "example_en": "It's hard to express my feelings.",
+    "example_vi": "Thật khó bày tỏ cảm xúc của tôi."
+  },
+  {
+    "term": "gain",
+    "phonetic": "/ɡeɪn/",
+    "meaning_vi": "đạt được, tăng (v)",
+    "example_en": "I gained two kilos on holiday.",
+    "example_vi": "Tôi tăng hai cân trong kỳ nghỉ."
+  },
+  {
+    "term": "handle",
+    "phonetic": "/ˈhændl/",
+    "meaning_vi": "xử lý (v); tay cầm (n)",
+    "example_en": "I can handle it.",
+    "example_vi": "Tôi xử lý được."
+  },
+  {
+    "term": "influence",
+    "phonetic": "/ˈɪnfluəns/",
+    "meaning_vi": "ảnh hưởng (n, v)",
+    "example_en": "Friends influence our choices.",
+    "example_vi": "Bạn bè ảnh hưởng đến lựa chọn của chúng ta."
+  },
+  {
+    "term": "measure",
+    "phonetic": "/ˈmeʒə/",
+    "meaning_vi": "đo (v)",
+    "example_en": "Measure the table before buying a cloth.",
+    "example_vi": "Đo bàn trước khi mua khăn trải."
+  },
+  {
+    "term": "obtain",
+    "phonetic": "/əbˈteɪn/",
+    "meaning_vi": "có được, thu được (v)",
+    "example_en": "You must obtain a permit first.",
+    "example_vi": "Bạn phải xin giấy phép trước."
+  },
+  {
+    "term": "perform",
+    "phonetic": "/pəˈfɔːm/",
+    "meaning_vi": "biểu diễn; thực hiện (v)",
+    "example_en": "The band performed for two hours.",
+    "example_vi": "Ban nhạc biểu diễn hai tiếng."
+  },
+  {
+    "term": "produce",
+    "phonetic": "/prəˈdjuːs/",
+    "meaning_vi": "sản xuất (v)",
+    "example_en": "This farm produces rice.",
+    "example_vi": "Nông trại này sản xuất gạo."
+  },
+  {
+    "term": "publish",
+    "phonetic": "/ˈpʌblɪʃ/",
+    "meaning_vi": "xuất bản (v)",
+    "example_en": "Her book was published in May.",
+    "example_vi": "Sách của cô ấy xuất bản vào tháng Năm."
+  },
+  {
+    "term": "recommend",
+    "phonetic": "/ˌrekəˈmend/",
+    "meaning_vi": "giới thiệu, khuyên (v)",
+    "example_en": "Can you recommend a good restaurant?",
+    "example_vi": "Bạn giới thiệu nhà hàng ngon được không?"
+  },
+  {
+    "term": "search",
+    "phonetic": "/sɜːtʃ/",
+    "meaning_vi": "tìm kiếm (v, n)",
+    "example_en": "I searched everywhere for my keys.",
+    "example_vi": "Tôi tìm chìa khoá khắp nơi."
+  },
+  {
+    "term": "succeed",
+    "phonetic": "/səkˈsiːd/",
+    "meaning_vi": "thành công (v)",
+    "example_en": "If you try, you will succeed.",
+    "example_vi": "Nếu cố gắng, bạn sẽ thành công."
+  },
+  {
+    "term": "suppose",
+    "phonetic": "/səˈpəʊz/",
+    "meaning_vi": "cho rằng (v)",
+    "example_en": "I suppose you're right.",
+    "example_vi": "Tôi cho là bạn đúng."
+  },
+  {
+    "term": "treat",
+    "phonetic": "/triːt/",
+    "meaning_vi": "đối xử; đãi; điều trị (v)",
+    "example_en": "Treat others kindly.",
+    "example_vi": "Đối xử tử tế với người khác."
+  },
+  {
+    "term": "explore",
+    "phonetic": "/ɪkˈsplɔː/",
+    "meaning_vi": "khám phá (v)",
+    "example_en": "Let's explore the old town.",
+    "example_vi": "Mình đi khám phá phố cổ nhé."
+  }
+]

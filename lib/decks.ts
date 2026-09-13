@@ -1,4 +1,4 @@
-import type { Word } from "@/lib/database.types";
+import type { DeckCategory, Word } from "@/lib/database.types";
 import { todayInAppZone } from "@/lib/leitner";
 import { createClient } from "@/lib/supabase/server";
 
@@ -12,6 +12,7 @@ export type DeckSummary = {
   name: string;
   description: string | null;
   level: string | null;
+  category: DeckCategory;
   isOwn: boolean;
   wordCount: number;
   /** Số từ đã học ít nhất một lần. */
@@ -22,63 +23,28 @@ export type DeckSummary = {
 export type StudyCard = Word & { box: number };
 
 /**
- * Danh sách bộ thẻ kèm số từ đến hạn hôm nay.
- *
- * Số "đến hạn" được gộp ở phía JS chứ không phải trong SQL: PostgREST không
- * biểu diễn gọn được phép đếm "từ chưa từng học HOẶC đã tới hạn". Với vài trăm
- * từ thì hoàn toàn ổn — khi kho từ lớn lên thì chuyển sang view hoặc RPC.
+ * Danh sách bộ thẻ kèm số từ / đã học / đến hạn hôm nay.
+ * Đếm bằng hàm SQL deck_summaries (schema-07) — RLS vẫn áp dụng vì hàm chạy
+ * dưới quyền người gọi, nên chỉ thấy bộ công khai và bộ của chính mình.
  */
 export async function listDecks(): Promise<DeckSummary[]> {
   const supabase = await createClient();
-  const today = todayInAppZone();
-
-  // RLS đã lọc sẵn: chỉ trả về bộ công khai và bộ của chính người dùng.
-  const [decksResult, wordsResult, progressResult] = await Promise.all([
-    supabase
-      .from("decks")
-      .select("id, slug, name, description, level, owner_id, position")
-      .order("owner_id", { nullsFirst: true })
-      .order("position"),
-    supabase.from("words").select("id, deck_id"),
-    supabase.from("word_progress").select("word_id, due_on"),
-  ]);
-
-  const decks = decksResult.data ?? [];
-  const words = wordsResult.data ?? [];
-  const progress = progressResult.data ?? [];
-
-  const dueByWordId = new Map(progress.map((row) => [row.word_id, row.due_on]));
-
-  const counts = new Map<
-    string,
-    { total: number; learned: number; due: number }
-  >();
-  for (const word of words) {
-    const entry = counts.get(word.deck_id) ?? { total: 0, learned: 0, due: 0 };
-    entry.total += 1;
-
-    const dueOn = dueByWordId.get(word.id);
-    if (dueOn !== undefined) entry.learned += 1;
-    // Chưa có tiến độ nghĩa là từ mới, luôn tính là đến hạn.
-    if (dueOn === undefined || dueOn <= today) entry.due += 1;
-
-    counts.set(word.deck_id, entry);
-  }
-
-  return decks.map((deck) => {
-    const entry = counts.get(deck.id) ?? { total: 0, learned: 0, due: 0 };
-    return {
-      id: deck.id,
-      slug: deck.slug,
-      name: deck.name,
-      description: deck.description,
-      level: deck.level,
-      isOwn: deck.owner_id !== null,
-      wordCount: entry.total,
-      learnedCount: entry.learned,
-      dueCount: entry.due,
-    };
+  const { data } = await supabase.rpc("deck_summaries", {
+    today: todayInAppZone(),
   });
+
+  return (data ?? []).map((row) => ({
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    description: row.description,
+    level: row.level,
+    category: row.category,
+    isOwn: row.is_own,
+    wordCount: row.word_count,
+    learnedCount: row.learned_count,
+    dueCount: row.due_count,
+  }));
 }
 
 /**

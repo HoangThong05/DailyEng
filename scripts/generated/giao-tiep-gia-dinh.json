@@ -1,0 +1,569 @@
+[
+  {
+    "term": "grandfather",
+    "phonetic": "/ˈɡrænfɑːðə/",
+    "meaning_vi": "ông (n)",
+    "example_en": "My grandfather is 80 years old.",
+    "example_vi": "Ông tôi 80 tuổi."
+  },
+  {
+    "term": "grandmother",
+    "phonetic": "/ˈɡrænmʌðə/",
+    "meaning_vi": "bà (n)",
+    "example_en": "My grandmother makes the best soup.",
+    "example_vi": "Bà tôi nấu súp ngon nhất."
+  },
+  {
+    "term": "grandparents",
+    "phonetic": "/ˈɡrænpeərənts/",
+    "meaning_vi": "ông bà (n)",
+    "example_en": "We visit our grandparents every Sunday.",
+    "example_vi": "Chúng tôi thăm ông bà mỗi Chủ nhật."
+  },
+  {
+    "term": "husband",
+    "phonetic": "/ˈhʌzbənd/",
+    "meaning_vi": "chồng (n)",
+    "example_en": "Her husband is a chef.",
+    "example_vi": "Chồng cô ấy là đầu bếp."
+  },
+  {
+    "term": "wife",
+    "phonetic": "/waɪf/",
+    "meaning_vi": "vợ (n)",
+    "example_en": "My wife works at a school.",
+    "example_vi": "Vợ tôi làm ở trường học."
+  },
+  {
+    "term": "son",
+    "phonetic": "/sʌn/",
+    "meaning_vi": "con trai (n)",
+    "example_en": "Their son is ten.",
+    "example_vi": "Con trai họ mười tuổi."
+  },
+  {
+    "term": "daughter",
+    "phonetic": "/ˈdɔːtə/",
+    "meaning_vi": "con gái (n)",
+    "example_en": "My daughter loves drawing.",
+    "example_vi": "Con gái tôi thích vẽ."
+  },
+  {
+    "term": "brother",
+    "phonetic": "/ˈbrʌðə/",
+    "meaning_vi": "anh/em trai (n)",
+    "example_en": "I have two brothers.",
+    "example_vi": "Tôi có hai anh em trai."
+  },
+  {
+    "term": "sister",
+    "phonetic": "/ˈsɪstə/",
+    "meaning_vi": "chị/em gái (n)",
+    "example_en": "My sister lives in Saigon.",
+    "example_vi": "Chị tôi sống ở Sài Gòn."
+  },
+  {
+    "term": "sibling",
+    "phonetic": "/ˈsɪblɪŋ/",
+    "meaning_vi": "anh chị em ruột (n)",
+    "example_en": "Do you have any siblings?",
+    "example_vi": "Bạn có anh chị em không?"
+  },
+  {
+    "term": "uncle",
+    "phonetic": "/ˈʌŋkl/",
+    "meaning_vi": "chú, bác, cậu (n)",
+    "example_en": "My uncle lives in Canada.",
+    "example_vi": "Chú tôi sống ở Canada."
+  },
+  {
+    "term": "aunt",
+    "phonetic": "/ɑːnt/",
+    "meaning_vi": "cô, dì, bác gái (n)",
+    "example_en": "My aunt is a nurse.",
+    "example_vi": "Dì tôi là y tá."
+  },
+  {
+    "term": "cousin",
+    "phonetic": "/ˈkʌzn/",
+    "meaning_vi": "anh chị em họ (n)",
+    "example_en": "I have lots of cousins.",
+    "example_vi": "Tôi có nhiều anh chị em họ."
+  },
+  {
+    "term": "nephew",
+    "phonetic": "/ˈnefjuː/",
+    "meaning_vi": "cháu trai (n)",
+    "example_en": "My nephew just started school.",
+    "example_vi": "Cháu trai tôi vừa đi học."
+  },
+  {
+    "term": "niece",
+    "phonetic": "/niːs/",
+    "meaning_vi": "cháu gái (n)",
+    "example_en": "My niece is very cute.",
+    "example_vi": "Cháu gái tôi rất dễ thương."
+  },
+  {
+    "term": "relative",
+    "phonetic": "/ˈrelətɪv/",
+    "meaning_vi": "họ hàng (n)",
+    "example_en": "All our relatives came to the wedding.",
+    "example_vi": "Tất cả họ hàng đến dự đám cưới."
+  },
+  {
+    "term": "twin",
+    "phonetic": "/twɪn/",
+    "meaning_vi": "sinh đôi (n)",
+    "example_en": "They are twins.",
+    "example_vi": "Họ là anh em sinh đôi."
+  },
+  {
+    "term": "baby",
+    "phonetic": "/ˈbeɪbi/",
+    "meaning_vi": "em bé (n)",
+    "example_en": "The baby is sleeping.",
+    "example_vi": "Em bé đang ngủ."
+  },
+  {
+    "term": "teenager",
+    "phonetic": "/ˈtiːneɪdʒə/",
+    "meaning_vi": "thiếu niên (n)",
+    "example_en": "Teenagers love social media.",
+    "example_vi": "Thanh thiếu niên thích mạng xã hội."
+  },
+  {
+    "term": "only child",
+    "phonetic": "/ˈəʊnli tʃaɪld/",
+    "meaning_vi": "con một (n)",
+    "example_en": "I'm an only child.",
+    "example_vi": "Tôi là con một."
+  },
+  {
+    "term": "eldest",
+    "phonetic": "/ˈeldɪst/",
+    "meaning_vi": "lớn nhất (trong nhà) (adj)",
+    "example_en": "She is the eldest of three.",
+    "example_vi": "Cô ấy là chị cả trong ba chị em."
+  },
+  {
+    "term": "youngest",
+    "phonetic": "/ˈjʌŋɡɪst/",
+    "meaning_vi": "út (adj)",
+    "example_en": "I'm the youngest in my family.",
+    "example_vi": "Tôi là con út trong nhà."
+  },
+  {
+    "term": "close",
+    "phonetic": "/kləʊs/",
+    "meaning_vi": "thân thiết (adj)",
+    "example_en": "I'm very close to my mom.",
+    "example_vi": "Tôi rất thân với mẹ."
+  },
+  {
+    "term": "get along",
+    "phonetic": "/ɡet əˈlɒŋ/",
+    "meaning_vi": "hoà thuận",
+    "example_en": "I get along well with my brother.",
+    "example_vi": "Tôi hoà thuận với anh trai."
+  },
+  {
+    "term": "look after",
+    "phonetic": "/lʊk ˈɑːftə/",
+    "meaning_vi": "chăm sóc",
+    "example_en": "She looks after her grandmother.",
+    "example_vi": "Cô ấy chăm sóc bà."
+  },
+  {
+    "term": "take after",
+    "phonetic": "/teɪk ˈɑːftə/",
+    "meaning_vi": "giống (ai trong nhà)",
+    "example_en": "He takes after his father.",
+    "example_vi": "Cậu ấy giống bố."
+  },
+  {
+    "term": "grow up",
+    "phonetic": "/ɡrəʊ ʌp/",
+    "meaning_vi": "lớn lên",
+    "example_en": "I grew up in a small village.",
+    "example_vi": "Tôi lớn lên ở một ngôi làng nhỏ."
+  },
+  {
+    "term": "bring up",
+    "phonetic": "/brɪŋ ʌp/",
+    "meaning_vi": "nuôi dạy",
+    "example_en": "She brought up three children alone.",
+    "example_vi": "Cô ấy một mình nuôi ba đứa con."
+  },
+  {
+    "term": "best friend",
+    "phonetic": "/best frend/",
+    "meaning_vi": "bạn thân nhất (n)",
+    "example_en": "Hoa is my best friend.",
+    "example_vi": "Hoa là bạn thân nhất của tôi."
+  },
+  {
+    "term": "classmate",
+    "phonetic": "/ˈklɑːsmeɪt/",
+    "meaning_vi": "bạn cùng lớp (n)",
+    "example_en": "We were classmates in high school.",
+    "example_vi": "Chúng tôi học cùng lớp thời cấp ba."
+  },
+  {
+    "term": "roommate",
+    "phonetic": "/ˈruːmmeɪt/",
+    "meaning_vi": "bạn cùng phòng (n)",
+    "example_en": "My roommate is from Japan.",
+    "example_vi": "Bạn cùng phòng của tôi là người Nhật."
+  },
+  {
+    "term": "colleague",
+    "phonetic": "/ˈkɒliːɡ/",
+    "meaning_vi": "đồng nghiệp (n)",
+    "example_en": "I had lunch with a colleague.",
+    "example_vi": "Tôi ăn trưa với đồng nghiệp."
+  },
+  {
+    "term": "boyfriend",
+    "phonetic": "/ˈbɔɪfrend/",
+    "meaning_vi": "bạn trai (n)",
+    "example_en": "Her boyfriend is a musician.",
+    "example_vi": "Bạn trai cô ấy là nhạc sĩ."
+  },
+  {
+    "term": "girlfriend",
+    "phonetic": "/ˈɡɜːlfrend/",
+    "meaning_vi": "bạn gái (n)",
+    "example_en": "He bought flowers for his girlfriend.",
+    "example_vi": "Anh ấy mua hoa cho bạn gái."
+  },
+  {
+    "term": "partner",
+    "phonetic": "/ˈpɑːtnə/",
+    "meaning_vi": "bạn đời, đối tác (n)",
+    "example_en": "Bring your partner to the party.",
+    "example_vi": "Đưa bạn đời đến dự tiệc nhé."
+  },
+  {
+    "term": "couple",
+    "phonetic": "/ˈkʌpl/",
+    "meaning_vi": "cặp đôi (n)",
+    "example_en": "They are a lovely couple.",
+    "example_vi": "Họ là một cặp đôi đáng yêu."
+  },
+  {
+    "term": "date",
+    "phonetic": "/deɪt/",
+    "meaning_vi": "buổi hẹn hò (n); hẹn hò (v)",
+    "example_en": "We went on our first date last week.",
+    "example_vi": "Chúng tôi hẹn hò lần đầu tuần trước."
+  },
+  {
+    "term": "fall in love",
+    "phonetic": "/fɔːl ɪn lʌv/",
+    "meaning_vi": "yêu",
+    "example_en": "They fell in love at university.",
+    "example_vi": "Họ yêu nhau thời đại học."
+  },
+  {
+    "term": "engaged",
+    "phonetic": "/ɪnˈɡeɪdʒd/",
+    "meaning_vi": "đã đính hôn (adj)",
+    "example_en": "We got engaged in June.",
+    "example_vi": "Chúng tôi đính hôn vào tháng Sáu."
+  },
+  {
+    "term": "wedding",
+    "phonetic": "/ˈwedɪŋ/",
+    "meaning_vi": "đám cưới (n)",
+    "example_en": "The wedding is next month.",
+    "example_vi": "Đám cưới vào tháng sau."
+  },
+  {
+    "term": "anniversary",
+    "phonetic": "/ˌænɪˈvɜːsəri/",
+    "meaning_vi": "ngày kỷ niệm (n)",
+    "example_en": "Today is our tenth anniversary.",
+    "example_vi": "Hôm nay là kỷ niệm mười năm của chúng tôi."
+  },
+  {
+    "term": "divorced",
+    "phonetic": "/dɪˈvɔːst/",
+    "meaning_vi": "đã ly hôn (adj)",
+    "example_en": "Her parents are divorced.",
+    "example_vi": "Bố mẹ cô ấy đã ly hôn."
+  },
+  {
+    "term": "pregnant",
+    "phonetic": "/ˈpreɡnənt/",
+    "meaning_vi": "mang thai (adj)",
+    "example_en": "My sister is pregnant.",
+    "example_vi": "Chị tôi đang mang thai."
+  },
+  {
+    "term": "born",
+    "phonetic": "/bɔːn/",
+    "meaning_vi": "được sinh ra (adj)",
+    "example_en": "I was born in 1998.",
+    "example_vi": "Tôi sinh năm 1998."
+  },
+  {
+    "term": "funeral",
+    "phonetic": "/ˈfjuːnərəl/",
+    "meaning_vi": "đám tang (n)",
+    "example_en": "The funeral is on Friday.",
+    "example_vi": "Đám tang vào thứ Sáu."
+  },
+  {
+    "term": "move house",
+    "phonetic": "/muːv haʊs/",
+    "meaning_vi": "chuyển nhà",
+    "example_en": "We're moving house next week.",
+    "example_vi": "Tuần sau chúng tôi chuyển nhà."
+  },
+  {
+    "term": "household",
+    "phonetic": "/ˈhaʊshəʊld/",
+    "meaning_vi": "hộ gia đình (n)",
+    "example_en": "There are five people in our household.",
+    "example_vi": "Nhà tôi có năm người."
+  },
+  {
+    "term": "reunion",
+    "phonetic": "/ˌriːˈjuːniən/",
+    "meaning_vi": "buổi đoàn tụ, họp mặt (n)",
+    "example_en": "We have a family reunion every year.",
+    "example_vi": "Gia đình tôi họp mặt hằng năm."
+  },
+  {
+    "term": "generation",
+    "phonetic": "/ˌdʒenəˈreɪʃn/",
+    "meaning_vi": "thế hệ (n)",
+    "example_en": "Three generations live in our house.",
+    "example_vi": "Nhà tôi có ba thế hệ cùng sống."
+  },
+  {
+    "term": "kind",
+    "phonetic": "/kaɪnd/",
+    "meaning_vi": "tốt bụng (adj)",
+    "example_en": "My grandma is very kind.",
+    "example_vi": "Bà tôi rất tốt bụng."
+  },
+  {
+    "term": "generous",
+    "phonetic": "/ˈdʒenərəs/",
+    "meaning_vi": "hào phóng (adj)",
+    "example_en": "He's generous with his time.",
+    "example_vi": "Anh ấy hào phóng về thời gian."
+  },
+  {
+    "term": "honest",
+    "phonetic": "/ˈɒnɪst/",
+    "meaning_vi": "trung thực (adj)",
+    "example_en": "Be honest with your friends.",
+    "example_vi": "Hãy trung thực với bạn bè."
+  },
+  {
+    "term": "patient",
+    "phonetic": "/ˈpeɪʃnt/",
+    "meaning_vi": "kiên nhẫn (adj)",
+    "example_en": "Teachers must be patient.",
+    "example_vi": "Giáo viên phải kiên nhẫn."
+  },
+  {
+    "term": "lazy",
+    "phonetic": "/ˈleɪzi/",
+    "meaning_vi": "lười (adj)",
+    "example_en": "My cat is so lazy.",
+    "example_vi": "Con mèo của tôi lười lắm."
+  },
+  {
+    "term": "hard-working",
+    "phonetic": "/ˌhɑːd ˈwɜːkɪŋ/",
+    "meaning_vi": "chăm chỉ (adj)",
+    "example_en": "She is a hard-working student.",
+    "example_vi": "Cô ấy là học sinh chăm chỉ."
+  },
+  {
+    "term": "funny",
+    "phonetic": "/ˈfʌni/",
+    "meaning_vi": "hài hước (adj)",
+    "example_en": "My uncle is really funny.",
+    "example_vi": "Chú tôi rất hài hước."
+  },
+  {
+    "term": "serious",
+    "phonetic": "/ˈsɪəriəs/",
+    "meaning_vi": "nghiêm túc (adj)",
+    "example_en": "My dad is quite serious.",
+    "example_vi": "Bố tôi khá nghiêm túc."
+  },
+  {
+    "term": "talkative",
+    "phonetic": "/ˈtɔːkətɪv/",
+    "meaning_vi": "nói nhiều (adj)",
+    "example_en": "My little sister is very talkative.",
+    "example_vi": "Em gái tôi nói rất nhiều."
+  },
+  {
+    "term": "outgoing",
+    "phonetic": "/ˈaʊtɡəʊɪŋ/",
+    "meaning_vi": "hướng ngoại (adj)",
+    "example_en": "He's outgoing and makes friends easily.",
+    "example_vi": "Anh ấy hướng ngoại và dễ kết bạn."
+  },
+  {
+    "term": "confident",
+    "phonetic": "/ˈkɒnfɪdənt/",
+    "meaning_vi": "tự tin (adj)",
+    "example_en": "She's confident on stage.",
+    "example_vi": "Cô ấy tự tin trên sân khấu."
+  },
+  {
+    "term": "caring",
+    "phonetic": "/ˈkeərɪŋ/",
+    "meaning_vi": "quan tâm, chu đáo (adj)",
+    "example_en": "Nurses are caring people.",
+    "example_vi": "Y tá là những người chu đáo."
+  },
+  {
+    "term": "stubborn",
+    "phonetic": "/ˈstʌbən/",
+    "meaning_vi": "bướng bỉnh (adj)",
+    "example_en": "My brother is stubborn.",
+    "example_vi": "Em trai tôi bướng lắm."
+  },
+  {
+    "term": "selfish",
+    "phonetic": "/ˈselfɪʃ/",
+    "meaning_vi": "ích kỷ (adj)",
+    "example_en": "Don't be selfish; share your toys.",
+    "example_vi": "Đừng ích kỷ, chia sẻ đồ chơi đi."
+  },
+  {
+    "term": "cheerful",
+    "phonetic": "/ˈtʃɪəfl/",
+    "meaning_vi": "vui vẻ (adj)",
+    "example_en": "She is always cheerful in the morning.",
+    "example_vi": "Cô ấy luôn vui vẻ vào buổi sáng."
+  },
+  {
+    "term": "sensitive",
+    "phonetic": "/ˈsensətɪv/",
+    "meaning_vi": "nhạy cảm (adj)",
+    "example_en": "He is sensitive to criticism.",
+    "example_vi": "Anh ấy nhạy cảm với lời phê bình."
+  },
+  {
+    "term": "reliable",
+    "phonetic": "/rɪˈlaɪəbl/",
+    "meaning_vi": "đáng tin cậy (adj)",
+    "example_en": "A good friend is reliable.",
+    "example_vi": "Bạn tốt là người đáng tin cậy."
+  },
+  {
+    "term": "personality",
+    "phonetic": "/ˌpɜːsəˈnæləti/",
+    "meaning_vi": "tính cách (n)",
+    "example_en": "She has a warm personality.",
+    "example_vi": "Cô ấy có tính cách ấm áp."
+  },
+  {
+    "term": "look like",
+    "phonetic": "/lʊk laɪk/",
+    "meaning_vi": "trông giống",
+    "example_en": "You look like your mother.",
+    "example_vi": "Bạn trông giống mẹ."
+  },
+  {
+    "term": "tall",
+    "phonetic": "/tɔːl/",
+    "meaning_vi": "cao (adj)",
+    "example_en": "My dad is tall and thin.",
+    "example_vi": "Bố tôi cao và gầy."
+  },
+  {
+    "term": "short hair",
+    "phonetic": "/ʃɔːt heə/",
+    "meaning_vi": "tóc ngắn (n)",
+    "example_en": "She has short black hair.",
+    "example_vi": "Cô ấy tóc đen ngắn."
+  },
+  {
+    "term": "curly",
+    "phonetic": "/ˈkɜːli/",
+    "meaning_vi": "xoăn (adj)",
+    "example_en": "My daughter has curly hair.",
+    "example_vi": "Con gái tôi tóc xoăn."
+  },
+  {
+    "term": "glasses",
+    "phonetic": "/ˈɡlɑːsɪz/",
+    "meaning_vi": "kính mắt (n)",
+    "example_en": "My brother wears glasses.",
+    "example_vi": "Anh tôi đeo kính."
+  },
+  {
+    "term": "beard",
+    "phonetic": "/bɪəd/",
+    "meaning_vi": "râu (n)",
+    "example_en": "My uncle has a grey beard.",
+    "example_vi": "Chú tôi có râu bạc."
+  },
+  {
+    "term": "handsome",
+    "phonetic": "/ˈhænsəm/",
+    "meaning_vi": "đẹp trai (adj)",
+    "example_en": "Her husband is very handsome.",
+    "example_vi": "Chồng cô ấy rất đẹp trai."
+  },
+  {
+    "term": "pretty",
+    "phonetic": "/ˈprɪti/",
+    "meaning_vi": "xinh (adj)",
+    "example_en": "Your sister is pretty.",
+    "example_vi": "Chị bạn xinh quá."
+  },
+  {
+    "term": "housework",
+    "phonetic": "/ˈhaʊswɜːk/",
+    "meaning_vi": "việc nhà (n)",
+    "example_en": "We share the housework.",
+    "example_vi": "Chúng tôi chia nhau làm việc nhà."
+  },
+  {
+    "term": "argue",
+    "phonetic": "/ˈɑːɡjuː/",
+    "meaning_vi": "cãi nhau (v)",
+    "example_en": "My parents rarely argue.",
+    "example_vi": "Bố mẹ tôi hiếm khi cãi nhau."
+  },
+  {
+    "term": "hug",
+    "phonetic": "/hʌɡ/",
+    "meaning_vi": "ôm (v, n)",
+    "example_en": "Give your mom a hug.",
+    "example_vi": "Ôm mẹ một cái đi."
+  },
+  {
+    "term": "miss",
+    "phonetic": "/mɪs/",
+    "meaning_vi": "nhớ (v)",
+    "example_en": "I miss my hometown.",
+    "example_vi": "Tôi nhớ quê."
+  },
+  {
+    "term": "support",
+    "phonetic": "/səˈpɔːt/",
+    "meaning_vi": "ủng hộ (v, n)",
+    "example_en": "My family supports my dream.",
+    "example_vi": "Gia đình ủng hộ ước mơ của tôi."
+  },
+  {
+    "term": "trust",
+    "phonetic": "/trʌst/",
+    "meaning_vi": "tin tưởng (v, n)",
+    "example_en": "I trust my best friend completely.",
+    "example_vi": "Tôi hoàn toàn tin tưởng bạn thân."
+  }
+]

@@ -14,6 +14,15 @@ export type Json =
 
 export type DeckLevel = "beginner" | "intermediate" | "advanced";
 
+/** Nhóm bộ từ, khớp constraint decks_category_check trong schema-07. */
+export type DeckCategory =
+  | "giao-tiep"
+  | "cong-viec"
+  | "toeic"
+  | "cot-loi"
+  | "hoc-thuat"
+  | "khac";
+
 export type Database = {
   public: {
     Tables: {
@@ -52,6 +61,7 @@ export type Database = {
           name: string;
           description: string | null;
           level: DeckLevel | null;
+          category: DeckCategory;
           position: number;
           created_at: string;
         };
@@ -62,6 +72,7 @@ export type Database = {
           name: string;
           description?: string | null;
           level?: DeckLevel | null;
+          category?: DeckCategory;
           position?: number;
           created_at?: string;
         };
@@ -72,6 +83,7 @@ export type Database = {
           name?: string;
           description?: string | null;
           level?: DeckLevel | null;
+          category?: DeckCategory;
           position?: number;
           created_at?: string;
         };
@@ -208,7 +220,25 @@ export type Database = {
         Relationships: [];
       };
     };
-    Functions: Record<never, never>;
+    Functions: {
+      /** Mỗi bộ một hàng kèm tổng từ / đã học / đến hạn của người gọi. */
+      deck_summaries: {
+        Args: { today: string };
+        Returns: {
+          id: string;
+          slug: string | null;
+          name: string;
+          description: string | null;
+          level: DeckLevel | null;
+          category: DeckCategory;
+          position: number;
+          is_own: boolean;
+          word_count: number;
+          learned_count: number;
+          due_count: number;
+        }[];
+      };
+    };
     Enums: Record<never, never>;
     CompositeTypes: Record<never, never>;
   };

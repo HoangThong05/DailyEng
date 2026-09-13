@@ -2,6 +2,8 @@ import Image, { type StaticImageData } from "next/image";
 import coverCongViec from "@/public/decks/cong-viec-van-phong.png";
 import coverGiaoTiep from "@/public/decks/giao-tiep-hang-ngay.png";
 import coverToeic from "@/public/decks/toeic-co-ban.png";
+import type { DeckCategory } from "@/lib/database.types";
+import { categoryOf } from "@/lib/deck-categories";
 import { CardsIcon } from "./icons";
 
 /** Ảnh bìa vẽ riêng cho bộ có sẵn, tìm theo slug trong bảng decks. */
@@ -33,15 +35,22 @@ export function deckGradient(id: string) {
 }
 
 type Props = {
-  deck: { id: string; name: string; slug?: string | null };
+  deck: {
+    id: string;
+    name: string;
+    slug?: string | null;
+    category?: DeckCategory | null;
+  };
   /** Gợi ý cho next/image biết ảnh chiếm bao nhiêu bề ngang. */
   sizes?: string;
   className?: string;
 };
 
 /**
- * Bìa bộ từ. Bộ có sẵn: ảnh vẽ riêng (đã có tên bộ trong tranh). Bộ tự tạo:
- * gradient theo id + chữ cái đầu tên bộ + icon thẻ mờ.
+ * Bìa bộ từ, theo thứ tự ưu tiên:
+ *  1. ảnh vẽ riêng theo slug (đã có tên bộ trong tranh);
+ *  2. bộ thuộc nhóm có sẵn: gradient của nhóm + tên bộ (bỏ tiền tố "TOEIC ·");
+ *  3. bộ tự tạo: gradient theo id + chữ cái đầu.
  */
 export function DeckCover({ deck, sizes = "100vw", className = "" }: Props) {
   const cover = deck.slug ? COVERS[deck.slug] : undefined;
@@ -59,6 +68,27 @@ export function DeckCover({ deck, sizes = "100vw", className = "" }: Props) {
           sizes={sizes}
           className="object-cover object-[50%_70%] transition-transform duration-500 group-hover:scale-[1.04]"
         />
+      </div>
+    );
+  }
+
+  const category = deck.category ? categoryOf(deck.category) : undefined;
+  if (category) {
+    const title = deck.name.includes("·")
+      ? deck.name.slice(deck.name.indexOf("·") + 1).trim()
+      : deck.name;
+    return (
+      <div
+        aria-hidden
+        className={`relative flex flex-col items-start justify-end overflow-hidden bg-gradient-to-br p-4 text-white ${category.gradient} ${className}`}
+      >
+        <CardsIcon className="absolute -top-4 -right-4 h-28 w-28 text-white/15 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110" />
+        <span className="text-[11px] font-bold tracking-wide uppercase opacity-80">
+          {category.label}
+        </span>
+        <span className="line-clamp-2 text-xl leading-tight font-bold drop-shadow">
+          {title}
+        </span>
       </div>
     );
   }

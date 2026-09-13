@@ -8,6 +8,7 @@
 
 **Học**
 - Flashcard theo bộ thẻ có sẵn hoặc tự tạo, ôn tập giãn cách (hệ hộp Leitner) — chỉ hiện từ tới hạn ôn
+- Kho bộ từ theo nhóm: TOEIC (11 bộ theo chủ đề đề thi), Cốt lõi (8 bộ theo tần suất), Giao tiếp (7), Công việc (6), Học thuật (4) — hơn 3.300 từ kèm phiên âm và câu ví dụ, sinh bằng AI rồi duyệt lại
 - Tạo và sửa bộ từ riêng: dán hàng loạt từ Excel/Google Sheets/Quizlet (`word = nghĩa`, tab, `-`, `:`…), thêm/xoá/sửa từng từ kèm phiên âm và câu ví dụ
 - Quiz trắc nghiệm 4 đáp án, chấm điểm, xem lại từ sai
 - Luyện phát âm: nghe mẫu, ghi âm nghe lại, chấm điểm bằng Web Speech API
@@ -64,7 +65,7 @@ lib/
 ├── push.ts, reminder.ts               # Web Push, giờ nhắc
 └── word-import.ts    # Tách văn bản dán vào thành danh sách từ
 
-scripts/              # render-icons.mjs: sinh bộ icon PNG/ICO từ ảnh linh vật
+scripts/              # render-icons.mjs (icon), generate-decks.mts + deck-specs.json (sinh bộ từ bằng AI), generated/ (JSON đã sinh)
 supabase/             # Schema SQL, chạy theo thứ tự
 proxy.ts              # Middleware: làm mới session, chặn chưa đăng nhập
 public/               # Icon PWA, ảnh linh vật (mascot/), bìa trò chơi (games/), bìa bộ từ (decks/), service worker
@@ -88,6 +89,8 @@ Trong SQL Editor chạy lần lượt:
 4. `supabase/schema-04-ten-tu-google.sql` — lấy tên từ tài khoản Google
 5. `supabase/schema-05-nhac-hoc.sql` — đăng ký thông báo đẩy
 6. `supabase/schema-06-gio-nhac.sql` — giờ nhắc + lịch pg_cron (đọc chú thích đầu file: nạp 2 secret vào Vault trước)
+7. `supabase/schema-07-nhom-bo-tu.sql` — nhóm bộ từ + hàm đếm tiến độ bằng SQL
+8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:
 
@@ -117,3 +120,5 @@ Push lên GitHub, import vào Vercel, thêm biến môi trường ở **Settings
 | `npm run start` | Chạy bản đã build |
 | `npm run lint` | ESLint |
 | `node scripts/render-icons.mjs` | Sinh lại icon PWA/favicon từ `public/mascot/vit-tot-nghiep.png` (cần Python + Pillow) |
+| `node --env-file=.env.local scripts/generate-decks.mts` | Sinh nội dung các bộ từ còn thiếu bằng Claude theo `scripts/deck-specs.json`, xuất `supabase/seed/*.sql` (cần `ANTHROPIC_API_KEY`) |
+| `node scripts/generate-decks.mts --sql-only` | Chỉ dựng lại SQL từ JSON đã có, không gọi API |
