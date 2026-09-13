@@ -104,7 +104,7 @@ export default async function HocPage() {
               title="Bộ của tôi"
               count={ownDecks.length}
             />
-            <div className="stagger grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="stagger grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {ownDecks.map((deck) => (
                 <DeckCard key={deck.id} deck={deck} />
               ))}

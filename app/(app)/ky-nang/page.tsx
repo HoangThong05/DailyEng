@@ -35,7 +35,7 @@ export default function KyNangPage() {
         </span>
       </div>
 
-      <div className="stagger grid gap-4 px-5 pb-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="stagger grid gap-4 px-5 pb-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {skills.map((game) => (
           <GameCard key={game.slug} game={game} />
         ))}

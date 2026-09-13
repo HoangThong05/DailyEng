@@ -23,7 +23,7 @@ export default async function QuizPage() {
           description="Bộ thẻ cần ít nhất 2 từ mới dựng được câu hỏi trắc nghiệm."
         />
       ) : (
-        <div className="stagger grid gap-3 px-5 pt-2 md:grid-cols-2">
+        <div className="stagger grid gap-3 px-5 pt-2 md:grid-cols-2 xl:grid-cols-3">
           {playable.map((deck) => (
             <Link
               key={deck.id}

@@ -24,7 +24,7 @@ export default async function GhepCapPage() {
           description={`Bộ thẻ cần ít nhất ${MATCH_MIN_WORDS} từ để chơi ghép cặp.`}
         />
       ) : (
-        <div className="stagger grid gap-3 px-5 pt-2 md:grid-cols-2">
+        <div className="stagger grid gap-3 px-5 pt-2 md:grid-cols-2 xl:grid-cols-3">
           {decks.map((deck) => (
             <Link
               key={deck.id}

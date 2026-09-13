@@ -25,7 +25,7 @@ export default async function ChepCauPage() {
           description="Tạo hoặc chọn một bộ từ ở tab Học rồi quay lại đây."
         />
       ) : (
-        <div className="stagger grid gap-3 px-5 pt-2 md:grid-cols-2">
+        <div className="stagger grid gap-3 px-5 pt-2 md:grid-cols-2 xl:grid-cols-3">
           {decks.map((deck) => (
             <Link
               key={deck.id}
