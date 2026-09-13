@@ -20,10 +20,36 @@ export type GameEntry = {
   gradient: string;
   button: string;
   /** Tên icon trong _components/icons, map ở game-card.tsx. */
-  icon: "rain" | "gamepad" | "speaker" | "quiz" | "mic" | "pencil" | "clock";
+  icon: "rain" | "gamepad" | "speaker" | "quiz" | "mic" | "pencil" | "clock" | "image";
 };
 
 export const GAMES: GameEntry[] = [
+  {
+    slug: "nghe-hinh",
+    kind: "game",
+    href: "/tro-choi/nghe-hinh",
+    title: "Nghe chọn hình",
+    description:
+      "Máy đọc một từ, bạn chạm đúng hình trong bốn hình — không có chữ, luyện phản xạ nghe hiểu như Part 1. Có combo.",
+    badge: "Mới",
+    mascot: "nghe",
+    gradient: "from-lime-400 via-green-500 to-emerald-700",
+    button: "bg-green-600 hover:bg-green-500",
+    icon: "image",
+  },
+  {
+    slug: "shadowing",
+    kind: "skill",
+    href: "/ky-nang/shadowing",
+    title: "Shadowing",
+    description:
+      "Nghe câu mẫu, bấm micro nói theo ngay. Máy tô từng từ nghe được, chấm điểm, ghi âm để bạn so với mẫu.",
+    badge: "Nghe · nói",
+    mascot: "noi",
+    gradient: "from-violet-500 via-purple-600 to-indigo-800",
+    button: "bg-violet-600 hover:bg-violet-500",
+    icon: "mic",
+  },
   {
     slug: "chep-cau",
     kind: "skill",

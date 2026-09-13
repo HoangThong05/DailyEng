@@ -7,6 +7,14 @@ import {
 } from "@/lib/dictation-game";
 import { todayInAppZone } from "@/lib/leitner";
 import { MATCH_MIN_WORDS, MATCH_PAIRS, shuffle, type MatchPair } from "@/lib/match-game";
+import {
+  emojiFor,
+  PICTURE_MIN_WORDS,
+  PICTURE_POOL,
+  PICTURE_SIZE,
+  type PictureOption,
+  type PictureQuestion,
+} from "@/lib/picture-game";
 import { createClient } from "@/lib/supabase/server";
 
 export { MATCH_MIN_WORDS, MATCH_PAIRS, buildMatchTiles } from "@/lib/match-game";
@@ -192,4 +200,98 @@ export async function getSentenceSession(deckId: string) {
     }));
 
   return { deck, items, sentenceCount: withSentence.length };
+}
+
+/** Bộ nào có đủ từ có hình để chơi Nghe chọn hình, kèm số từ đó. */
+export async function listPictureDecks() {
+  const supabase = await createClient();
+  const { data: words } = await supabase
+    .from("words")
+    .select("deck_id, term")
+    .limit(5000);
+
+  const counts = new Map<string, number>();
+  for (const word of words ?? []) {
+    if (emojiFor(word.term)) {
+      counts.set(word.deck_id, (counts.get(word.deck_id) ?? 0) + 1);
+    }
+  }
+  return counts;
+}
+
+/**
+ * Nghe chọn hình: nghe từ, chọn đúng emoji trong 4 hình. Ưu tiên từ đến hạn;
+ * đáp án nhiễu lấy từ cùng bộ, thiếu thì mượn kho chung. Không trùng emoji.
+ */
+export async function getPictureSession(deckId: string) {
+  const supabase = await createClient();
+  const today = todayInAppZone();
+
+  const { data: deck } = await supabase
+    .from("decks")
+    .select("id, name")
+    .eq("id", deckId)
+    .maybeSingle();
+  if (!deck) return null;
+
+  const { data: words } = await supabase
+    .from("words")
+    .select("id, term, meaning_vi, phonetic")
+    .eq("deck_id", deckId);
+
+  const pictured = (words ?? []).filter((word) => emojiFor(word.term));
+  if (pictured.length < PICTURE_MIN_WORDS) {
+    return { deck, questions: [] as PictureQuestion[], pictured: pictured.length };
+  }
+
+  const { data: progress } = await supabase
+    .from("word_progress")
+    .select("word_id, due_on")
+    .in(
+      "word_id",
+      pictured.map((word) => word.id),
+    );
+  const dueByWordId = new Map(
+    (progress ?? []).map((row) => [row.word_id, row.due_on]),
+  );
+  const due = pictured.filter((word) => {
+    const dueOn = dueByWordId.get(word.id);
+    return dueOn === undefined || dueOn <= today;
+  });
+  const rest = pictured.filter((word) => !due.includes(word));
+
+  const deckOptions: PictureOption[] = pictured.map((word) => ({
+    emoji: emojiFor(word.term)!,
+    term: word.term,
+  }));
+  const globalOptions: PictureOption[] = PICTURE_POOL.map(([term, emoji]) => ({
+    emoji,
+    term,
+  }));
+
+  const questions: PictureQuestion[] = [...shuffle(due), ...shuffle(rest)]
+    .slice(0, PICTURE_SIZE)
+    .map((word) => {
+      const answer: PictureOption = { emoji: emojiFor(word.term)!, term: word.term };
+      const used = new Set([answer.emoji]);
+      const distractors: PictureOption[] = [];
+      for (const option of [...shuffle(deckOptions), ...shuffle(globalOptions)]) {
+        if (distractors.length === 3) break;
+        if (used.has(option.emoji)) continue;
+        if (option.term.toLowerCase() === word.term.toLowerCase()) continue;
+        used.add(option.emoji);
+        distractors.push(option);
+      }
+      const options = shuffle([answer, ...distractors]);
+      return {
+        wordId: word.id,
+        term: word.term,
+        meaning: word.meaning_vi,
+        phonetic: word.phonetic,
+        options,
+        correctIndex: options.indexOf(answer),
+      };
+    });
+
+  return { deck, questions, pictured: pictured.length };
 }

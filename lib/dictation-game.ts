@@ -66,7 +66,12 @@ export type TokenMark = { text: string; hit: boolean };
  * Trả về từng từ gốc kèm cờ đúng/sai, tỉ lệ đúng và từ khoá có trúng không.
  */
 export function gradeSentence(answer: string, item: SentenceItem) {
-  const target = normalizeAnswer(item.sentence).split(" ").filter(Boolean);
+  return gradeAgainst(answer, item.sentence, item.term);
+}
+
+/** Lõi chấm: câu gõ/nói `answer` so với `sentence`, kèm từ khoá `term`. */
+export function gradeAgainst(answer: string, sentence: string, term: string) {
+  const target = normalizeAnswer(sentence).split(" ").filter(Boolean);
   const typed = normalizeAnswer(answer).split(" ").filter(Boolean);
 
   // LCS theo bảng động; câu ví dụ ngắn (< 30 từ) nên không lo tốn.
@@ -97,7 +102,7 @@ export function gradeSentence(answer: string, item: SentenceItem) {
   }
 
   // Giữ nguyên chữ gốc (hoa/thường, dấu câu) để hiện lại, chỉ chấm theo bản chuẩn hoá.
-  const originalTokens = item.sentence.split(/\s+/).filter(Boolean);
+  const originalTokens = sentence.split(/\s+/).filter(Boolean);
   const marks: TokenMark[] = originalTokens.map((text, index) => ({
     text,
     hit: hits[index] ?? false,
@@ -105,7 +110,7 @@ export function gradeSentence(answer: string, item: SentenceItem) {
 
   const correctCount = hits.filter(Boolean).length;
   const accuracy = n > 0 ? correctCount / n : 0;
-  const termTokens = normalizeAnswer(item.term).split(" ");
+  const termTokens = normalizeAnswer(term).split(" ");
   const termHit = termTokens.every((token) => typed.includes(token));
 
   return { marks, accuracy, termHit };

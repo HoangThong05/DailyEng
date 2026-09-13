@@ -3,6 +3,7 @@ import {
   ClockIcon,
   CloudRainIcon,
   GamepadIcon,
+  ImageIcon,
   MicIcon,
   PencilIcon,
   QuizIcon,
@@ -19,6 +20,7 @@ const ICONS = {
   mic: MicIcon,
   pencil: PencilIcon,
   clock: ClockIcon,
+  image: ImageIcon,
 } as const;
 
 /**
