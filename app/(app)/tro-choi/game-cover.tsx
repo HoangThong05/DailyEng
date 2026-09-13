@@ -1,19 +1,11 @@
-import Image, { type StaticImageData } from "next/image";
-import coverGhepCap from "@/public/games/ghep-cap.png";
-import coverMuaTu from "@/public/games/mua-tu.png";
-import coverNgheGo from "@/public/games/nghe-go.png";
-import coverPhatAm from "@/public/games/phat-am.png";
-import coverQuiz from "@/public/games/quiz.png";
+import Image from "next/image";
 import type { GameEntry } from "./games";
 
-/** Ảnh bìa vẽ riêng cho từng trò, đã có tiêu đề trong tranh. */
-const COVERS: Record<string, StaticImageData> = {
-  "mua-tu": coverMuaTu,
-  "ghep-cap": coverGhepCap,
-  "nghe-go": coverNgheGo,
-  quiz: coverQuiz,
-  "phat-am": coverPhatAm,
-};
+/**
+ * Trò nào đã có ảnh bìa vẽ riêng ở public/games/<slug>.png (đã có tiêu đề
+ * trong tranh). Trò chưa có ảnh hiện gradient màu game.
+ */
+const COVERED = new Set(["mua-tu", "ghep-cap", "nghe-go", "quiz", "phat-am"]);
 
 type Props = {
   game: GameEntry;
@@ -27,7 +19,7 @@ type Props = {
  * tranh). Dùng chung cho thẻ ở hub và thẻ nhỏ ở trang chủ.
  */
 export function GameCover({ game, sizes, className = "" }: Props) {
-  const cover = COVERS[game.slug];
+  const cover = COVERED.has(game.slug) ? `/games/${game.slug}.png` : null;
   return (
     <div
       className={`relative overflow-hidden bg-gradient-to-br ${game.gradient} ${className}`}
@@ -40,7 +32,11 @@ export function GameCover({ game, sizes, className = "" }: Props) {
           sizes={sizes}
           className="object-cover object-[50%_70%] transition-transform duration-500 group-hover:scale-[1.04]"
         />
-      ) : null}
+      ) : (
+        <span className="absolute inset-0 flex items-end p-4 text-2xl font-bold text-white drop-shadow">
+          {game.title}
+        </span>
+      )}
     </div>
   );
 }

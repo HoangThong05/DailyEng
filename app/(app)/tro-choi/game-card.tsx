@@ -1,8 +1,10 @@
 import Link from "next/link";
 import {
+  ClockIcon,
   CloudRainIcon,
   GamepadIcon,
   MicIcon,
+  PencilIcon,
   QuizIcon,
   SpeakerIcon,
 } from "@/app/_components/icons";
@@ -15,6 +17,8 @@ const ICONS = {
   speaker: SpeakerIcon,
   quiz: QuizIcon,
   mic: MicIcon,
+  pencil: PencilIcon,
+  clock: ClockIcon,
 } as const;
 
 /**

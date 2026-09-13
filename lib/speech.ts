@@ -149,7 +149,7 @@ export async function startRecording(): Promise<Recorder | null> {
 }
 
 /** Đọc to một từ. Trả về false nếu trình duyệt không đọc được. */
-export function speak(text: string, lang = "en-US"): boolean {
+export function speak(text: string, lang = "en-US", rate = 0.85): boolean {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) {
     return false;
   }
@@ -159,8 +159,9 @@ export function speak(text: string, lang = "en-US"): boolean {
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = lang;
-  // Chậm hơn bình thường một chút cho người học nghe rõ.
-  utterance.rate = 0.85;
+  // Mặc định chậm hơn bình thường một chút cho người học nghe rõ;
+  // nút "Đọc chậm" truyền rate thấp hơn nữa.
+  utterance.rate = rate;
 
   // getVoices() có thể rỗng ở lần gọi đầu vì giọng nạp bất đồng bộ;
   // lúc đó cứ để trình duyệt tự chọn theo lang.

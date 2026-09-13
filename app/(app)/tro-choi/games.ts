@@ -11,17 +11,41 @@ export type GameEntry = {
   href: string;
   title: string;
   description: string;
-  badge: "Mới" | "Chơi đơn" | "Nghe · nói";
+  badge: "Mới" | "Chơi đơn" | "Nghe · nói" | "TOEIC";
   /** Tư thế linh vật đại diện (dùng ở nơi khác, ví dụ màn intro). */
   mascot: MascotVariant;
   /** Tailwind class cho nền bìa và nút. */
   gradient: string;
   button: string;
   /** Tên icon trong _components/icons, map ở game-card.tsx. */
-  icon: "rain" | "gamepad" | "speaker" | "quiz" | "mic";
+  icon: "rain" | "gamepad" | "speaker" | "quiz" | "mic" | "pencil" | "clock";
 };
 
 export const GAMES: GameEntry[] = [
+  {
+    slug: "chep-cau",
+    href: "/tro-choi/chep-cau",
+    title: "Nghe chép câu",
+    description:
+      "Máy đọc cả câu ví dụ, bạn gõ lại toàn bộ. Chấm từng từ, có nút đọc chậm và gợi ý từ khoá — luyện nghe hiểu thật sự.",
+    badge: "Mới",
+    mascot: "nghe",
+    gradient: "from-rose-500 via-pink-600 to-fuchsia-800",
+    button: "bg-rose-600 hover:bg-rose-500",
+    icon: "pencil",
+  },
+  {
+    slug: "mock-test",
+    href: "/tro-choi/mock-test",
+    title: "Mock test TOEIC Part 5",
+    description:
+      "20 câu điền vào chỗ trống như đề thật, có đồng hồ 10 phút. Chấm ngay, giải thích từng câu, lưu điểm cao nhất.",
+    badge: "TOEIC",
+    mascot: "tot-nghiep",
+    gradient: "from-orange-500 via-red-500 to-rose-700",
+    button: "bg-orange-600 hover:bg-orange-500",
+    icon: "clock",
+  },
   {
     slug: "mua-tu",
     href: "/tro-choi/mua-tu",

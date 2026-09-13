@@ -16,10 +16,13 @@
 **Trò chơi** (mọi lượt chơi đều ghi vào hệ ôn tập và tính XP)
 - **Ghép cặp** — nối từ với nghĩa, đua với đồng hồ, lưu kỷ lục theo bộ
 - **Nghe & gõ** — máy đọc từ, gõ lại đúng chính tả
+- **Nghe chép câu** — máy đọc cả câu ví dụ, gõ lại toàn bộ; chấm từng từ (căn LCS), nút đọc chậm, gợi ý từ khoá
+- **Mock test TOEIC Part 5** — 20 câu điền vào chỗ trống, 10 phút; nửa đề từ ngân hàng ngữ pháp/từ vựng viết tay, nửa sinh từ câu ví dụ các bộ TOEIC; giải thích từng câu, lưu lịch sử và điểm cao nhất
 - **Mưa từ vựng** — từ rơi xuống, gõ để máy bay bắn hạ; 2 chế độ (gõ từ tiếng Anh đang rơi / nhìn nghĩa nhớ ra từ), đạn bắn theo từng chữ gõ đúng, hiệu ứng nổ và âm thanh tổng hợp bằng Web Audio
 
 **Động lực**
 - XP và cấp độ (Người mới → Huyền thoại) tính từ mọi hoạt động học
+- Bảng xếp hạng XP 7 ngày / toàn thời gian giữa người dùng (hàm SQL `leaderboard`, chỉ lộ tên hiển thị và điểm)
 - Chuỗi ngày học, biểu đồ tuần, phân bố hộp ôn, độ chính xác theo bộ, từ hay sai nhất
 - Nhắc học qua thông báo đẩy (Web Push) vào giờ tự chọn (07:00 / 12:00 / 20:00), chỉ khi hôm đó chưa học
 
@@ -89,6 +92,7 @@ Trong SQL Editor chạy lần lượt:
 5. `supabase/schema-05-nhac-hoc.sql` — đăng ký thông báo đẩy
 6. `supabase/schema-06-gio-nhac.sql` — giờ nhắc + lịch pg_cron (đọc chú thích đầu file: nạp 2 secret vào Vault trước)
 7. `supabase/schema-07-nhom-bo-tu.sql` — nhóm bộ từ + hàm đếm tiến độ bằng SQL
+8. `supabase/schema-08-xep-hang-mock.sql` — hàm bảng xếp hạng XP, bảng kết quả mock test
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

@@ -5,6 +5,7 @@ import { InstallPrompt } from "@/app/_components/install-prompt";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
 import { listDecks } from "@/lib/decks";
+import { getLeaderboard } from "@/lib/leaderboard";
 import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
 import { GameCover } from "./tro-choi/game-cover";
@@ -59,11 +60,14 @@ export default async function Home() {
 
   // RLS chỉ trả về đúng hàng của người đang đăng nhập nên khỏi lọc theo id.
   // maybeSingle() để không ném lỗi nếu trigger tạo profile chưa chạy xong.
-  const [{ data: profile }, stats, decks] = await Promise.all([
+  const [{ data: profile }, stats, decks, board] = await Promise.all([
     supabase.from("profiles").select("display_name, daily_goal").maybeSingle(),
     getStudyStats(),
     listDecks(),
+    getLeaderboard("week", 3),
   ]);
+  const topThree = board.filter((row) => row.rank <= 3);
+  const myRank = board.find((row) => row.isMe);
 
   const name = profile?.display_name ?? "bạn";
   const dailyGoal = profile?.daily_goal ?? 10;
@@ -255,6 +259,53 @@ export default async function Home() {
             ))}
           </div>
         </section>
+
+        {/* Bảng xếp hạng tuần: top 3 + vị trí của mình */}
+        {topThree.length > 0 ? (
+          <section aria-labelledby="xep-hang" className="space-y-3">
+            <div className="flex items-baseline justify-between px-1">
+              <h2 id="xep-hang" className="text-muted text-sm font-medium">
+                Xếp hạng 7 ngày
+              </h2>
+              <Link href="/xep-hang" className="text-brand text-sm font-semibold">
+                Xem bảng →
+              </Link>
+            </div>
+            <Link
+              href="/xep-hang"
+              className="border-border bg-card block rounded-2xl border p-4 press"
+            >
+              <ol className="space-y-2">
+                {topThree.map((row) => (
+                  <li
+                    key={row.rank}
+                    className="flex items-center gap-3 text-sm"
+                  >
+                    <span className="w-7 text-lg">
+                      {["🥇", "🥈", "🥉"][row.rank - 1]}
+                    </span>
+                    <span className="min-w-0 flex-1 truncate font-semibold">
+                      {row.displayName}
+                      {row.isMe ? (
+                        <span className="text-brand ml-2 text-xs">Bạn</span>
+                      ) : null}
+                    </span>
+                    <span className="text-brand font-bold tabular-nums">
+                      {row.xp} XP
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              {myRank && myRank.rank > 3 ? (
+                <p className="text-muted border-border mt-3 border-t pt-3 text-sm">
+                  Bạn đang hạng{" "}
+                  <span className="text-fg font-bold">#{myRank.rank}</span> với{" "}
+                  {myRank.xp} XP tuần này.
+                </p>
+              ) : null}
+            </Link>
+          </section>
+        ) : null}
 
         <InstallPrompt />
       </div>

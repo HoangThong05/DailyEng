@@ -46,3 +46,72 @@ export function normalizeAnswer(text: string) {
 export function isCorrectAnswer(answer: string, term: string) {
   return normalizeAnswer(answer) === normalizeAnswer(term);
 }
+
+/** Số câu mỗi lượt Nghe chép câu. */
+export const SENTENCE_SIZE = 8;
+
+export type SentenceItem = {
+  wordId: string;
+  term: string;
+  meaning: string;
+  sentence: string;
+  translation: string | null;
+};
+
+export type TokenMark = { text: string; hit: boolean };
+
+/**
+ * Chấm bài chép câu: so từng từ của câu gốc với câu gõ, thứ tự có thể lệch
+ * chút (thiếu/thừa từ) nhờ căn theo chuỗi con chung dài nhất (LCS).
+ * Trả về từng từ gốc kèm cờ đúng/sai, tỉ lệ đúng và từ khoá có trúng không.
+ */
+export function gradeSentence(answer: string, item: SentenceItem) {
+  const target = normalizeAnswer(item.sentence).split(" ").filter(Boolean);
+  const typed = normalizeAnswer(answer).split(" ").filter(Boolean);
+
+  // LCS theo bảng động; câu ví dụ ngắn (< 30 từ) nên không lo tốn.
+  const n = target.length;
+  const m = typed.length;
+  const dp: number[][] = Array.from({ length: n + 1 }, () =>
+    new Array<number>(m + 1).fill(0),
+  );
+  for (let i = n - 1; i >= 0; i--) {
+    for (let j = m - 1; j >= 0; j--) {
+      dp[i][j] =
+        target[i] === typed[j]
+          ? dp[i + 1][j + 1] + 1
+          : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    }
+  }
+
+  const hits = new Array<boolean>(n).fill(false);
+  let i = 0;
+  let j = 0;
+  while (i < n && j < m) {
+    if (target[i] === typed[j]) {
+      hits[i] = true;
+      i++;
+      j++;
+    } else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+    else j++;
+  }
+
+  // Giữ nguyên chữ gốc (hoa/thường, dấu câu) để hiện lại, chỉ chấm theo bản chuẩn hoá.
+  const originalTokens = item.sentence.split(/\s+/).filter(Boolean);
+  const marks: TokenMark[] = originalTokens.map((text, index) => ({
+    text,
+    hit: hits[index] ?? false,
+  }));
+
+  const correctCount = hits.filter(Boolean).length;
+  const accuracy = n > 0 ? correctCount / n : 0;
+  const termTokens = normalizeAnswer(item.term).split(" ");
+  const termHit = termTokens.every((token) => typed.includes(token));
+
+  return { marks, accuracy, termHit };
+}
+
+/** Đạt khi gõ đúng từ khoá và ít nhất 70% câu. */
+export function passesSentence(grade: { accuracy: number; termHit: boolean }) {
+  return grade.termHit && grade.accuracy >= 0.7;
+}

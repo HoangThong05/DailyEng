@@ -21,6 +21,7 @@ const TAB_ALIASES: Record<string, string> = {
   "/quiz": "/tro-choi",
   "/phat-am": "/tro-choi",
   "/tien-do": "/tai-khoan",
+  "/xep-hang": "/tai-khoan",
 };
 
 export function isTabActive(href: string, pathname: string) {

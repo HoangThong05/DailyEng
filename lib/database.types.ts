@@ -206,6 +206,36 @@ export type Database = {
         };
         Relationships: [];
       };
+      mock_results: {
+        Row: {
+          id: string;
+          user_id: string;
+          kind: string;
+          score: number;
+          total: number;
+          seconds: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          kind?: string;
+          score: number;
+          total: number;
+          seconds: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          kind?: string;
+          score?: number;
+          total?: number;
+          seconds?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       /** Gộp review_log theo ngày. Chỉ đọc. */
@@ -236,6 +266,16 @@ export type Database = {
           word_count: number;
           learned_count: number;
           due_count: number;
+        }[];
+      };
+      /** Top XP (tuần hoặc toàn thời gian) + hàng của chính mình nếu ngoài top. */
+      leaderboard: {
+        Args: { period: "week" | "all"; top_n: number };
+        Returns: {
+          display_name: string;
+          xp: number;
+          rank: number;
+          is_me: boolean;
         }[];
       };
     };
