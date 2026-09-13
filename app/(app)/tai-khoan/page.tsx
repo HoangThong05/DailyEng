@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { signOut } from "@/app/_actions/auth";
+import { CountUp } from "@/app/_components/count-up";
 import { FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
@@ -14,10 +15,21 @@ import { WeekChart } from "./week-chart";
 
 export const metadata: Metadata = { title: "Cá nhân" };
 
-function StatTile({ value, label }: { value: string; label: string }) {
+function StatTile({
+  value,
+  suffix,
+  label,
+}: {
+  /** null = chưa có dữ liệu, hiện gạch ngang. */
+  value: number | null;
+  suffix?: string;
+  label: string;
+}) {
   return (
     <div className="border-border bg-card rounded-2xl border p-4 text-center">
-      <p className="text-2xl font-bold tabular-nums">{value}</p>
+      <p className="text-2xl font-bold tabular-nums">
+        {value === null ? "—" : <CountUp value={value} suffix={suffix} />}
+      </p>
       <p className="text-muted mt-0.5 text-xs">{label}</p>
     </div>
   );
@@ -53,7 +65,7 @@ export default async function TaiKhoanPage() {
 
   return (
     <>
-      <PageHeader title="Cá nhân" />
+      <PageHeader title="Cá nhân" mascot="tot-nghiep" />
 
       <div className="stagger space-y-6 px-5 pt-2 pb-4">
         {/* Thẻ hồ sơ: tên, cấp, XP, chuỗi — thay cho tiêu đề trang Tiến độ cũ */}
@@ -103,7 +115,7 @@ export default async function TaiKhoanPage() {
               />
             </div>
             <span className="shrink-0 tabular-nums">
-              {level.current}/{level.needed} XP
+              <CountUp value={level.current} />/{level.needed} XP
             </span>
           </div>
         </section>
@@ -114,14 +126,15 @@ export default async function TaiKhoanPage() {
             <section aria-labelledby="hom-nay" className="space-y-3">
               <SectionTitle id="hom-nay">Hôm nay</SectionTitle>
               <div className="grid grid-cols-3 gap-3">
-                <StatTile value={String(today.words)} label="từ đã ôn" />
-                <StatTile value={String(today.reviews)} label="lượt ôn" />
+                <StatTile value={today.words} label="từ đã ôn" />
+                <StatTile value={today.reviews} label="lượt ôn" />
                 <StatTile
                   value={
                     today.reviews > 0
-                      ? `${Math.round((today.correct / today.reviews) * 100)}%`
-                      : "—"
+                      ? Math.round((today.correct / today.reviews) * 100)
+                      : null
                   }
+                  suffix="%"
                   label="nhớ được"
                 />
               </div>
@@ -130,13 +143,14 @@ export default async function TaiKhoanPage() {
             <section aria-labelledby="tong-ket" className="space-y-3">
               <SectionTitle id="tong-ket">Tổng kết</SectionTitle>
               <div className="grid grid-cols-3 gap-3">
-                <StatTile value={String(totals.wordsSeen)} label="từ đã học" />
+                <StatTile value={totals.wordsSeen} label="từ đã học" />
                 <StatTile
-                  value={String(totals.wordsMastered)}
+                  value={totals.wordsMastered}
                   label="từ đã thuộc"
                 />
                 <StatTile
-                  value={totals.accuracy === null ? "—" : `${totals.accuracy}%`}
+                  value={totals.accuracy}
+                  suffix="%"
                   label="tỉ lệ nhớ"
                 />
               </div>

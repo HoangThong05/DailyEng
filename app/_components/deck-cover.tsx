@@ -72,7 +72,7 @@ export function DeckCover({ deck, sizes = "100vw", className = "" }: Props) {
     );
   }
 
-  const category = deck.category ? categoryOf(deck.category) : undefined;
+  const category = categoryOf(deck.category);
   if (category) {
     const title = deck.name.includes("·")
       ? deck.name.slice(deck.name.indexOf("·") + 1).trim()

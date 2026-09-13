@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DeckCover } from "@/app/_components/deck-cover";
 import { ChevronRightIcon } from "@/app/_components/icons";
+import { categoryOf } from "@/lib/deck-categories";
 import type { DeckSummary } from "@/lib/decks";
 
 const LEVEL_LABEL: Record<string, string> = {
@@ -15,6 +16,12 @@ const LEVEL_LABEL: Record<string, string> = {
  */
 export function DeckCard({ deck }: { deck: DeckSummary }) {
   const hasDue = deck.dueCount > 0;
+  // Bộ có sẵn lấy màu của nhóm; bộ tự tạo dùng màu thương hiệu.
+  const category = categoryOf(deck.category);
+  const solid = category?.solid ?? "bg-brand text-white";
+  const soft = category?.soft ?? "bg-brand-soft text-brand";
+  const track = category?.track ?? "bg-brand-soft";
+  const bar = category?.solid ?? "bg-brand";
   const percent =
     deck.wordCount > 0
       ? Math.round((deck.learnedCount / deck.wordCount) * 100)
@@ -32,7 +39,9 @@ export function DeckCard({ deck }: { deck: DeckSummary }) {
           className="aspect-[4/3]"
         />
         {hasDue ? (
-          <span className="bg-brand absolute top-3 right-3 rounded-full px-2.5 py-1 text-[11px] font-bold text-white shadow-md">
+          <span
+            className={`absolute top-3 right-3 rounded-full px-2.5 py-1 text-[11px] font-bold shadow-md ${solid}`}
+          >
             {deck.dueCount} đến hạn
           </span>
         ) : deck.wordCount > 0 ? (
@@ -66,10 +75,10 @@ export function DeckCard({ deck }: { deck: DeckSummary }) {
             aria-valuemin={0}
             aria-valuemax={deck.wordCount}
             aria-label={`Đã học ${deck.learnedCount} trên ${deck.wordCount} từ`}
-            className="bg-brand-soft mt-1.5 h-1.5 overflow-hidden rounded-full"
+            className={`mt-1.5 h-1.5 overflow-hidden rounded-full ${track}`}
           >
             <div
-              className="bg-brand h-full rounded-full"
+              className={`h-full rounded-full ${bar}`}
               style={{ width: `${percent}%` }}
             />
           </div>
@@ -77,9 +86,7 @@ export function DeckCard({ deck }: { deck: DeckSummary }) {
 
         <span
           className={`mt-auto flex min-h-11 items-center justify-center gap-1 rounded-xl text-sm font-bold transition-colors ${
-            hasDue
-              ? "bg-brand text-white"
-              : "bg-brand-soft text-brand"
+            hasDue ? solid : soft
           }`}
         >
           {hasDue ? "Ôn ngay" : deck.wordCount === 0 ? "Thêm từ" : "Học lại"}

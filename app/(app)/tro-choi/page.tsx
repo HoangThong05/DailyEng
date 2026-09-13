@@ -10,7 +10,11 @@ export const metadata: Metadata = { title: "Trò chơi" };
 export default function TroChoiPage() {
   return (
     <>
-      <PageHeader title="Trò chơi" subtitle="Chơi 5 phút, nhớ từ cả tuần" />
+      <PageHeader
+        title="Trò chơi"
+        subtitle="Chơi 5 phút, nhớ từ cả tuần"
+        mascot="choi"
+      />
 
       <div className="px-5 pt-2 pb-4">
         <div className="border-border bg-card flex items-center gap-4 rounded-2xl border p-4">

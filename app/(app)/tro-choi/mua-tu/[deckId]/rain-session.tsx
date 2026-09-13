@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
 import { CloudRainIcon } from "@/app/_components/icons";
+import { Celebration } from "@/app/_components/celebration";
+import { CountUp } from "@/app/_components/count-up";
 import { Mascot } from "@/app/_components/mascot";
 import {
   fallDuration,
@@ -410,6 +412,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
     const survived = lives > 0;
     return (
       <div className="mx-auto max-w-md space-y-5 px-5 pt-2">
+        <Celebration />
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
           <Mascot
             variant={survived && hits.length >= misses.length ? "an-mung" : "buon"}
@@ -420,7 +423,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
             {survived ? "Hết mưa!" : "Ướt hết rồi…"}
           </p>
           <p className="mt-1 text-5xl font-bold tabular-nums">
-            {hits.length}/{words.length}
+            <CountUp value={hits.length} />/{words.length}
           </p>
           <p className="text-muted mt-3 text-sm">
             {survived
@@ -428,7 +431,11 @@ export function RainSession({ words }: { words: GameWord[] }) {
               : `Thua sau ${hits.length + misses.length} từ. Chơi lại để đi xa hơn nhé.`}
           </p>
           <p className="text-brand mt-3 text-sm font-semibold tabular-nums">
-            +{xpForAnswers(hits.length, misses.length)} XP
+            <CountUp
+              prefix="+"
+              value={xpForAnswers(hits.length, misses.length)}
+              suffix=" XP"
+            />
           </p>
         </div>
 

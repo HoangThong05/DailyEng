@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { nextReviewState, todayInAppZone } from "@/lib/leitner";
+import { getStudyStats } from "@/lib/stats";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 export type ReviewResult = { ok: true } | { ok: false; error: string };
@@ -75,4 +76,21 @@ export async function refreshStudyViews() {
   revalidatePath("/");
   revalidatePath("/hoc");
   revalidatePath("/quiz");
+}
+
+/** Mốc hiện tại để màn kết quả quyết định có ăn mừng hay không. */
+export async function getMilestones() {
+  const supabase = await createClient();
+  const [{ data: profile }, stats] = await Promise.all([
+    supabase.from("profiles").select("daily_goal").maybeSingle(),
+    getStudyStats(),
+  ]);
+  const dailyGoal = profile?.daily_goal ?? 10;
+  return {
+    today: todayInAppZone(),
+    dailyGoal,
+    goalReached: stats.today.words >= dailyGoal,
+    level: stats.level.level,
+    title: stats.level.title,
+  };
 }

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { Celebration } from "@/app/_components/celebration";
+import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import type { QuizQuestion } from "@/lib/quiz";
 import { xpForAnswers } from "@/lib/xp";
@@ -63,13 +65,14 @@ export function QuizSession({ deckId, questions }: Props) {
 
     return (
       <div className="px-5 py-10">
+        <Celebration />
         <div className="flex flex-col items-center text-center">
           <Mascot
             variant={resultMascot(correctCount, questions.length)}
             size={128}
           />
           <span className="bg-brand-soft text-brand mt-2 flex h-14 w-20 items-center justify-center rounded-2xl text-2xl font-bold tabular-nums">
-            {percent}%
+            <CountUp value={percent} suffix="%" />
           </span>
           <h2 className="mt-5 text-xl font-bold">
             Đúng {correctCount}/{questions.length} câu
@@ -80,7 +83,11 @@ export function QuizSession({ deckId, questions }: Props) {
               : "Những từ sai sẽ sớm quay lại để bạn ôn thêm."}
           </p>
           <p className="text-brand mt-3 text-sm font-semibold tabular-nums">
-            +{xpForAnswers(correctCount, questions.length - correctCount)} XP
+            <CountUp
+              prefix="+"
+              value={xpForAnswers(correctCount, questions.length - correctCount)}
+              suffix=" XP"
+            />
           </p>
         </div>
 

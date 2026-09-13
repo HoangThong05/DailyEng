@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { Celebration } from "@/app/_components/celebration";
+import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { buildMatchTiles, type MatchPair, type MatchTile } from "@/lib/match-game";
 import { xpForAnswers } from "@/lib/xp";
@@ -130,6 +132,7 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
 
     return (
       <div className="space-y-5 px-5 pt-2">
+        <Celebration />
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
           <Mascot
             variant={resultMascot(clean, pairs.length)}
@@ -148,7 +151,7 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
               : ` · kỷ lục ${formatTime(previousBest)}`}
           </p>
           <p className="text-brand mt-3 text-sm font-semibold tabular-nums">
-            +{xpForAnswers(clean, pairs.length - clean)} XP
+            <CountUp prefix="+" value={xpForAnswers(clean, pairs.length - clean)} suffix=" XP" />
           </p>
         </div>
 

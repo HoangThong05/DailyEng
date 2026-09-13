@@ -1,12 +1,8 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
-import {
-  applyTheme,
-  readThemePreference,
-  THEME_STORAGE_KEY,
-  type ThemePreference,
-} from "@/lib/theme";
+import { useEffect } from "react";
+import { applyTheme, type ThemePreference } from "@/lib/theme";
+import { setThemePreference, useThemePreference } from "@/lib/theme-store";
 
 const OPTIONS: { value: ThemePreference; label: string }[] = [
   { value: "light", label: "Sáng" },
@@ -14,37 +10,8 @@ const OPTIONS: { value: ThemePreference; label: string }[] = [
   { value: "system", label: "Theo máy" },
 ];
 
-const listeners = new Set<() => void>();
-
-function subscribe(onChange: () => void) {
-  listeners.add(onChange);
-  // Đổi giao diện ở tab khác thì tab này cũng phải cập nhật theo.
-  window.addEventListener("storage", onChange);
-  return () => {
-    listeners.delete(onChange);
-    window.removeEventListener("storage", onChange);
-  };
-}
-
-function emit() {
-  for (const listener of listeners) listener();
-}
-
-function getServerSnapshot(): ThemePreference {
-  return "system";
-}
-
 export function ThemeToggle() {
-  /*
-   * Server không đọc được localStorage nên render "system", client đọc ra giá
-   * trị thật. useSyncExternalStore là cách chính thống để hai bên khác nhau mà
-   * React không báo lệch hydrate.
-   */
-  const preference = useSyncExternalStore(
-    subscribe,
-    readThemePreference,
-    getServerSnapshot,
-  );
+  const preference = useThemePreference();
 
   useEffect(() => {
     // Ở dev, StrictMode remount xoá mất attribute do script inline đặt.
@@ -60,16 +27,6 @@ export function ThemeToggle() {
     return () => media.removeEventListener("change", onChange);
   }, [preference]);
 
-  function choose(next: ThemePreference) {
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next);
-    } catch {
-      // Chế độ riêng tư có thể chặn ghi. Vẫn đổi giao diện cho phiên này.
-    }
-    applyTheme(next);
-    emit();
-  }
-
   return (
     <div
       role="radiogroup"
@@ -84,7 +41,7 @@ export function ThemeToggle() {
             type="button"
             role="radio"
             aria-checked={active}
-            onClick={() => choose(option.value)}
+            onClick={() => setThemePreference(option.value)}
             className={`min-h-11 flex-1 rounded-lg text-sm font-semibold transition-colors ${
               active ? "bg-card text-fg shadow-sm" : "text-muted"
             }`}

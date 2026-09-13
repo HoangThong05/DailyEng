@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
 import { SpeakerIcon } from "@/app/_components/icons";
+import { Celebration } from "@/app/_components/celebration";
+import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { useHydrated } from "@/app/_components/use-hydrated";
 import { isCorrectAnswer, type DictationWord } from "@/lib/dictation-game";
@@ -115,6 +117,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
     const wrong = results.filter((r) => !r.correct);
     return (
       <div className="space-y-5 px-5 pt-2">
+        <Celebration />
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
           <Mascot
             variant={resultMascot(correctCount, words.length)}
@@ -123,7 +126,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
           />
           <p className="text-muted mt-2 text-sm">Đúng</p>
           <p className="mt-1 text-5xl font-bold tabular-nums">
-            {correctCount}/{words.length}
+            <CountUp value={correctCount} />/{words.length}
           </p>
           <p className="text-muted mt-3 text-sm">
             {wrong.length === 0
@@ -131,7 +134,11 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
               : `${wrong.length} từ gõ chưa đúng, xem lại bên dưới.`}
           </p>
           <p className="text-brand mt-3 text-sm font-semibold tabular-nums">
-            +{xpForAnswers(correctCount, wrong.length)} XP
+            <CountUp
+              prefix="+"
+              value={xpForAnswers(correctCount, wrong.length)}
+              suffix=" XP"
+            />
           </p>
         </div>
 

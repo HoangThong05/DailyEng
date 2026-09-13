@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { Celebration } from "@/app/_components/celebration";
+import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import type { StudyCard } from "@/lib/decks";
 import { xpForAnswers } from "@/lib/xp";
@@ -112,13 +114,18 @@ export function FlashcardSession({ deckName, cards }: Props) {
 
     return (
       <div className="flex flex-col items-center px-6 py-14 text-center">
+        <Celebration />
         <Mascot
           variant={resultMascot(rememberedIds.size, cards.length)}
           size={128}
         />
         <h2 className="mt-3 text-xl font-bold">Xong phiên học</h2>
         <p className="text-brand mt-2 text-sm font-semibold tabular-nums">
-          +{xpForAnswers(rememberedIds.size, forgot)} XP
+          <CountUp
+            prefix="+"
+            value={xpForAnswers(rememberedIds.size, forgot)}
+            suffix=" XP"
+          />
         </p>
         <p className="text-muted mt-2 text-sm">
           Thuộc <span className="text-fg font-semibold">{rememberedIds.size}</span>

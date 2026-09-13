@@ -14,7 +14,7 @@ export default async function QuizPage() {
 
   return (
     <>
-      <PageHeader title="Quiz" subtitle="Chọn bộ để kiểm tra lại" />
+      <PageHeader title="Quiz" subtitle="Chọn bộ để kiểm tra lại" mascot="hoc" />
 
       {playable.length === 0 ? (
         <EmptyState

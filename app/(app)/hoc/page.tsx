@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
-import { DECK_CATEGORIES } from "@/lib/deck-categories";
+import { DECK_CATEGORIES, type CategoryStyle } from "@/lib/deck-categories";
 import { listDecks, type DeckSummary } from "@/lib/decks";
 import { DeckCard } from "./deck-card";
 
@@ -13,19 +13,32 @@ function SectionTitle({
   title,
   count,
   description,
+  category,
 }: {
   id: string;
   title: string;
   count: number;
   description?: string;
+  /** Có nhóm thì tiêu đề mang màu nhóm: vạch màu bên trái + chip đếm. */
+  category?: CategoryStyle;
 }) {
   return (
     <div className="px-1">
       <div className="flex items-center gap-2">
+        {category ? (
+          <span
+            aria-hidden
+            className={`h-5 w-1.5 rounded-full bg-gradient-to-b ${category.gradient}`}
+          />
+        ) : null}
         <h2 id={id} className="font-semibold">
           {title}
         </h2>
-        <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
+        <span
+          className={`rounded-full px-2 py-0.5 text-xs font-bold tabular-nums ${
+            category?.soft ?? "bg-brand-soft text-brand"
+          }`}
+        >
           {count}
         </span>
       </div>
@@ -69,6 +82,7 @@ export default async function HocPage() {
     <>
       <PageHeader
         title="Học từ vựng"
+        mascot="hoc"
         subtitle={
           totalDue > 0
             ? `${totalDue} từ đến hạn ôn hôm nay`
@@ -120,6 +134,7 @@ export default async function HocPage() {
                 title={group.label}
                 count={group.decks.length}
                 description={group.description}
+                category={group}
               />
               <DeckRow decks={group.decks} />
             </section>

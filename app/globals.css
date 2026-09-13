@@ -484,6 +484,84 @@
     nav-glow 2.8s ease-in-out infinite;
 }
 
+/* Icon sáng/tối xoay vào khi đổi giao diện. */
+@keyframes theme-swap {
+  from {
+    transform: rotate(-90deg) scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.theme-swap {
+  animation: theme-swap 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Vịt ở header lơ lửng lên xuống rất nhẹ. */
+@keyframes header-duck {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(2deg);
+  }
+}
+
+.header-duck {
+  animation: header-duck 3s ease-in-out infinite;
+}
+
+/* Ăn mừng: nền mờ hiện dần, thẻ bật lên, pháo giấy rơi xoay. */
+@keyframes celebrate-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.celebrate-in {
+  animation: celebrate-in 0.25s ease-out;
+}
+
+@keyframes celebrate-card {
+  from {
+    transform: translateY(24px) scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-6px) scale(1.02);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.celebrate-card {
+  animation: celebrate-card 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s both;
+}
+
+@keyframes confetti {
+  from {
+    transform: translateY(-10vh) rotate(var(--r));
+    opacity: 1;
+  }
+  to {
+    transform: translateY(110vh) rotate(calc(var(--r) + 540deg));
+    opacity: 0.6;
+  }
+}
+
+.confetti {
+  animation: confetti linear infinite both;
+}
+
 /* Icon tab nảy lên một cái khi tab được chọn. */
 @keyframes tab-pop {
   0% {
