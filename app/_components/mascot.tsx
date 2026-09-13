@@ -2,6 +2,7 @@ import Image from "next/image";
 import vitAnMung from "@/public/mascot/vit-an-mung.png";
 import vitBuon from "@/public/mascot/vit-buon.png";
 import vitChao from "@/public/mascot/vit-chao.png";
+import vitChaoTrong from "@/public/mascot/vit-chao-trong.png";
 import vitChoi from "@/public/mascot/vit-choi.png";
 import vitHoc from "@/public/mascot/vit-hoc.png";
 import vitNghe from "@/public/mascot/vit-nghe.png";
@@ -15,6 +16,7 @@ import vitTotNghiep from "@/public/mascot/vit-tot-nghiep.png";
  * Bốn tư thế có ô nền xanh bo góc (dùng như logo/ảnh bìa):
  *  - tot-nghiep: đội mũ cử nhân ôm sách "English" — logo, icon app
  *  - chao:       nháy mắt vẫy "HELLO!"           — chào ở đăng nhập, trang chủ
+ *  - chao-trong: bản chao đã bỏ ô nền xanh        — màn đang tải (vẫy tay)
  *  - nghe:       đeo tai nghe đọc sách ABC       — trò chơi, nghe & gõ
  *  - hoc:        đeo kính, cắm cúi viết          — tạo bộ từ, màn chưa có dữ liệu
  *  - choi:       cầm tay cầm, "GAME ON!"          — hub trò chơi
@@ -30,6 +32,7 @@ import vitTotNghiep from "@/public/mascot/vit-tot-nghiep.png";
 export type MascotVariant =
   | "tot-nghiep"
   | "chao"
+  | "chao-trong"
   | "nghe"
   | "hoc"
   | "choi"
@@ -41,6 +44,7 @@ export type MascotVariant =
 const SOURCES = {
   "tot-nghiep": vitTotNghiep,
   chao: vitChao,
+  "chao-trong": vitChaoTrong,
   nghe: vitNghe,
   hoc: vitHoc,
   choi: vitChoi,
