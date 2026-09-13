@@ -13,6 +13,8 @@ const COVERED = new Set([
   "phat-am",
   "chep-cau",
   "mock-test",
+  "nghe-hinh",
+  "shadowing",
 ]);
 
 type Props = {
