@@ -3,8 +3,9 @@
 :root {
   /* Bảng sáng — dùng khi không có gì ghi đè */
   --bg: #f3f6fc;
-  /* Card hơi trong để quầng sáng nền ánh qua, tạo cảm giác kính mờ */
-  --card: rgba(255, 255, 255, 0.86);
+  /* Card hơi trong để quầng sáng nền ánh qua. Không dùng backdrop-filter:
+     Chrome vẽ lệch viền khi thẻ bo góc đang chạy animation. */
+  --card: rgba(255, 255, 255, 0.9);
   --fg: #0f172a;
   --muted: #64748b;
   --border: #e4e9f2;
@@ -17,7 +18,7 @@
 
   /* Bảng tối — khai báo đúng một lần, hai khối bên dưới chỉ trỏ vào đây */
   --dark-bg: #0a0f1f;
-  --dark-card: rgba(20, 29, 50, 0.82);
+  --dark-card: rgba(20, 29, 50, 0.88);
   --dark-fg: #e8edf7;
   --dark-muted: #93a3bd;
   --dark-border: #23304a;
@@ -127,12 +128,6 @@
       100% 100%,
       26px 26px;
     animation: ambient-drift 22s ease-in-out infinite alternate;
-  }
-
-  /* Card kính mờ: nền hơi trong + làm mờ thứ phía sau */
-  .bg-card {
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
   }
 
   /* Chặn long-press hiện menu chọn text trên nút bấm */
