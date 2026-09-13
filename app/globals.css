@@ -562,6 +562,38 @@
   animation: confetti linear infinite both;
 }
 
+/* Học theo chặng: bước mới trượt vào từ phải; nhãn combo phồng lên. */
+@keyframes step-enter {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.step-enter {
+  animation: step-enter 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes combo-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.combo-pop {
+  animation: combo-pop 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
 /* Icon tab nảy lên một cái khi tab được chọn. */
 @keyframes tab-pop {
   0% {

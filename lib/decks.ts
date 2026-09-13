@@ -100,7 +100,10 @@ export async function getStudySession(deckId: string) {
     .eq("deck_id", deckId)
     .order("position");
 
-  if (!words?.length) return { deck, cards: [] as StudyCard[], totalWords: 0 };
+  const empty = { terms: [] as string[], meanings: [] as string[] };
+  if (!words?.length) {
+    return { deck, cards: [] as StudyCard[], totalWords: 0, pool: empty };
+  }
 
   const { data: progress } = await supabase
     .from("word_progress")
@@ -125,7 +128,24 @@ export async function getStudySession(deckId: string) {
     .sort((a, b) => a.box - b.box || a.position - b.position)
     .slice(0, SESSION_SIZE);
 
-  return { deck, cards, totalWords: words.length };
+  // Đáp án nhiễu lấy trong cùng bộ cho khó; bộ nhỏ quá thì mượn bộ khác.
+  const pool = {
+    terms: words.map((word) => word.term),
+    meanings: words.map((word) => word.meaning_vi),
+  };
+  if (words.length < 8) {
+    const { data: extra } = await supabase
+      .from("words")
+      .select("term, meaning_vi")
+      .neq("deck_id", deckId)
+      .limit(40);
+    for (const row of extra ?? []) {
+      pool.terms.push(row.term);
+      pool.meanings.push(row.meaning_vi);
+    }
+  }
+
+  return { deck, cards, totalWords: words.length, pool };
 }
 /**
  * Bộ thẻ của chính người dùng kèm toàn bộ từ, cho trang sửa bộ.

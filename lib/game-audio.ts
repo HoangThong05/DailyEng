@@ -165,3 +165,31 @@ export function playMiss() {
     volume: 0.12,
   });
 }
+
+/** Trả lời đúng: hai nốt chuông ngắn đi lên (C5 → G5). */
+export function playCorrect() {
+  tone({ type: "sine", fromHz: 523, seconds: 0.12, volume: 0.08, lowpassHz: 3000 });
+  tone({
+    type: "sine",
+    fromHz: 784,
+    seconds: 0.18,
+    volume: 0.08,
+    delay: 0.1,
+    lowpassHz: 3000,
+  });
+}
+
+/** Combo: ba nốt đi lên, cao dần theo mức combo (tối đa +1 quãng). */
+export function playCombo(level: number) {
+  const base = 523 * Math.min(2, 1 + (level - 2) * 0.12);
+  [1, 1.25, 1.5].forEach((ratio, i) => {
+    tone({
+      type: "triangle",
+      fromHz: base * ratio,
+      seconds: 0.11,
+      volume: 0.07,
+      delay: i * 0.08,
+      lowpassHz: 3500,
+    });
+  });
+}

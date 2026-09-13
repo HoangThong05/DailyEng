@@ -1,13 +1,13 @@
 # 📘 DailyEng
 
-Ứng dụng học tiếng Anh mỗi ngày: flashcard, quiz, trò chơi từ vựng, luyện phát âm và theo dõi tiến độ. Chạy như PWA, cài được lên điện thoại; trên máy tính có sidebar và giao diện rộng.
+Ứng dụng học tiếng Anh mỗi ngày: học từ theo chặng, quiz, trò chơi từ vựng, luyện phát âm và theo dõi tiến độ. Chạy như PWA, cài được lên điện thoại; trên máy tính có sidebar và giao diện rộng.
 
 🌐 **Live demo:** https://daily-eng-omega.vercel.app
 
 ## Tính năng
 
 **Học**
-- Flashcard theo bộ thẻ có sẵn hoặc tự tạo, ôn tập giãn cách (hệ hộp Leitner) — chỉ hiện từ tới hạn ôn
+- Học theo chặng: mỗi 5 từ là một chặng, từ mới đi qua gặp từ → trắc nghiệm (Anh→Việt, Việt→Anh, nghe→chọn) → gõ lại / điền vào câu; combo, âm thanh, từ sai làm lại ngay. Ôn tập giãn cách (hệ hộp Leitner) — chỉ hiện từ tới hạn ôn
 - Kho bộ từ theo nhóm: TOEIC (11 bộ theo chủ đề đề thi), Cốt lõi (8 bộ theo tần suất), Giao tiếp (7), Công việc (6), Học thuật (4) — hơn 3.300 từ kèm phiên âm và câu ví dụ, sinh bằng AI rồi duyệt lại
 - Tạo và sửa bộ từ riêng: dán hàng loạt từ Excel/Google Sheets/Quizlet (`word = nghĩa`, tab, `-`, `:`…), thêm/xoá/sửa từng từ kèm phiên âm và câu ví dụ
 - Quiz trắc nghiệm 4 đáp án, chấm điểm, xem lại từ sai
@@ -42,7 +42,7 @@
 ```
 app/
 ├── (app)/            # Các trang cần đăng nhập
-│   ├── hoc/          #   Flashcard, tạo/sửa bộ từ
+│   ├── hoc/          #   Học theo chặng, tạo/sửa bộ từ
 │   ├── quiz/         #   Quiz trắc nghiệm
 │   ├── tro-choi/     #   Hub trò chơi: ghep-cap, nghe-go, mua-tu
 │   ├── phat-am/      #   Luyện phát âm

@@ -4,7 +4,8 @@ import { EmptyState } from "@/app/_components/empty-state";
 import { CardsIcon, PencilIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { getStudySession } from "@/lib/decks";
-import { FlashcardSession } from "./flashcard-session";
+import { buildStages } from "@/lib/study-path";
+import { PathSession } from "./path-session";
 
 export async function generateMetadata({ params }: PageProps<"/hoc/[deckId]">) {
   const { deckId } = await params;
@@ -19,7 +20,9 @@ export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
   // Không tìm thấy, hoặc RLS chặn vì đây là bộ riêng của người khác.
   if (!session) notFound();
 
-  const { deck, cards, totalWords } = session;
+  const { deck, cards, totalWords, pool } = session;
+  // Trộn ở server một lần; client đi theo, không tự trộn lúc render.
+  const stages = buildStages(cards, pool);
 
   return (
     <>
@@ -67,7 +70,7 @@ export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
         </>
       ) : (
         <div className="mx-auto w-full max-w-md">
-          <FlashcardSession deckName={deck.name} cards={cards} />
+          <PathSession deckName={deck.name} stages={stages} pool={pool} />
         </div>
       )}
     </>
