@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
+import { ScrollRow } from "@/app/_components/scroll-row";
 import { DECK_CATEGORIES, type CategoryStyle } from "@/lib/deck-categories";
 import { listDecks, type DeckSummary } from "@/lib/decks";
 import { DeckCard } from "./deck-card";
@@ -49,22 +49,21 @@ function SectionTitle({
   );
 }
 
-/** Một hàng bộ từ cuộn ngang có snap; trên màn rộng vẫn cuộn để hàng không quá cao. */
-function DeckRow({ decks }: { decks: DeckSummary[] }) {
+/** Một hàng bộ từ cuộn ngang có snap và nút mũi tên; trên màn rộng vẫn cuộn để hàng không quá cao. */
+function DeckRow({ decks, label }: { decks: DeckSummary[]; label: string }) {
   return (
-    <div className="stagger -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:px-0">
+    <ScrollRow label={label} className="stagger -mx-5 px-5 pb-2 md:mx-0 md:px-0">
       {decks.map((deck) => (
         <div key={deck.id} className="w-[76%] shrink-0 snap-start sm:w-72">
           <DeckCard deck={deck} />
         </div>
       ))}
-    </div>
+    </ScrollRow>
   );
 }
 
 export default async function HocPage() {
   const decks = await listDecks();
-  const ownDecks = decks.filter((deck) => deck.isOwn);
   const totalDue = decks.reduce((sum, deck) => sum + deck.dueCount, 0);
 
   // Nhóm có bộ mới hiện; bộ công khai không thuộc nhóm nào thì gom vào "Khác".
@@ -90,39 +89,14 @@ export default async function HocPage() {
         }
       />
 
-      {decks.length === 0 ? (
+      {decks.filter((deck) => !deck.isOwn).length === 0 ? (
         <EmptyState
           mascot="hoc"
           title="Chưa có bộ thẻ nào"
-          description="Chạy các file trong supabase/ (schema rồi seed) ở SQL Editor để nạp bộ từ có sẵn."
+          description="Chạy các file trong supabase/ (schema rồi seed) ở SQL Editor để nạp bộ từ có sẵn. Bộ tự tạo nằm ở tab Cá nhân."
         />
       ) : (
         <div className="space-y-8 px-5 pt-2 pb-4">
-          <section aria-labelledby="bo-cua-toi" className="space-y-3">
-            <SectionTitle
-              id="bo-cua-toi"
-              title="Bộ của tôi"
-              count={ownDecks.length}
-            />
-            <div className="stagger grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {ownDecks.map((deck) => (
-                <DeckCard key={deck.id} deck={deck} />
-              ))}
-              <Link
-                href="/hoc/tao"
-                className="border-border text-muted hover:border-brand hover:text-brand flex min-h-40 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-6 text-center transition-colors press"
-              >
-                <span className="bg-brand-soft text-brand flex h-12 w-12 items-center justify-center rounded-full text-2xl font-bold">
-                  +
-                </span>
-                <span className="font-semibold">Tạo bộ từ riêng</span>
-                <span className="text-xs">
-                  Dán danh sách từ Excel, Sheets hay Quizlet
-                </span>
-              </Link>
-            </div>
-          </section>
-
           {groups.map((group) => (
             <section
               key={group.key}
@@ -136,7 +110,7 @@ export default async function HocPage() {
                 description={group.description}
                 category={group}
               />
-              <DeckRow decks={group.decks} />
+              <DeckRow decks={group.decks} label={`bộ ${group.label}`} />
             </section>
           ))}
 
@@ -147,7 +121,7 @@ export default async function HocPage() {
                 title="Bộ khác"
                 count={otherPublic.length}
               />
-              <DeckRow decks={otherPublic} />
+              <DeckRow decks={otherPublic} label="bộ khác" />
             </section>
           ) : null}
         </div>

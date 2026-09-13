@@ -90,6 +90,14 @@
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* Ẩn thanh cuộn ngang nhưng vẫn cuộn được (hàng thẻ có nút mũi tên riêng). */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Chừa chỗ cho bottom tab bar (64px) + safe area */
 @utility pb-nav {
   padding-bottom: calc(4rem + 1.5rem + env(safe-area-inset-bottom));

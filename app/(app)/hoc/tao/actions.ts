@@ -70,5 +70,6 @@ export async function createDeck(
   }
 
   revalidatePath("/hoc");
+  revalidatePath("/tai-khoan");
   redirect(`/hoc/${deck.id}`);
 }

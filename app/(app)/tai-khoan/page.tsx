@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { signOut } from "@/app/_actions/auth";
 import { CountUp } from "@/app/_components/count-up";
 import { FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
+import { DeckCard } from "@/app/(app)/hoc/deck-card";
+import { listDecks } from "@/lib/decks";
 import { BOX_INTERVAL_DAYS } from "@/lib/leitner";
 import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
 import { getDetailedStats, getStudyStats } from "@/lib/stats";
@@ -47,16 +50,22 @@ export default async function TaiKhoanPage() {
   const user = await getCurrentUser();
   const supabase = await createClient();
 
-  const [{ data: profile }, { streak, today, week, totals, level }, detail] =
-    await Promise.all([
-      supabase
-        .from("profiles")
-        .select("display_name, daily_goal, reminder_hour")
-        .eq("id", user?.id ?? "")
-        .maybeSingle(),
-      getStudyStats(),
-      getDetailedStats(),
-    ]);
+  const [
+    { data: profile },
+    { streak, today, week, totals, level },
+    detail,
+    decks,
+  ] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("display_name, daily_goal, reminder_hour")
+      .eq("id", user?.id ?? "")
+      .maybeSingle(),
+    getStudyStats(),
+    getDetailedStats(),
+    listDecks(),
+  ]);
+  const ownDecks = decks.filter((deck) => deck.isOwn);
 
   const displayName =
     profile?.display_name ?? user?.email?.split("@")[0] ?? "Bạn";
@@ -117,6 +126,33 @@ export default async function TaiKhoanPage() {
             <span className="shrink-0 tabular-nums">
               <CountUp value={level.current} />/{level.needed} XP
             </span>
+          </div>
+        </section>
+
+        {/* Bộ từ tự tạo: của riêng mình nên nằm ở đây, tab Học chỉ còn bộ có sẵn */}
+        <section aria-labelledby="bo-cua-toi" className="space-y-3">
+          <div className="flex items-center gap-2">
+            <SectionTitle id="bo-cua-toi">Bộ của tôi</SectionTitle>
+            <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
+              {ownDecks.length}
+            </span>
+          </div>
+          <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {ownDecks.map((deck) => (
+              <DeckCard key={deck.id} deck={deck} />
+            ))}
+            <Link
+              href="/hoc/tao"
+              className="border-border text-muted hover:border-brand hover:text-brand flex min-h-40 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-6 text-center transition-colors press"
+            >
+              <span className="bg-brand-soft text-brand flex h-12 w-12 items-center justify-center rounded-full text-2xl font-bold">
+                +
+              </span>
+              <span className="font-semibold">Tạo bộ từ riêng</span>
+              <span className="text-xs">
+                Dán danh sách từ Excel, Sheets hay Quizlet
+              </span>
+            </Link>
           </div>
         </section>
 
