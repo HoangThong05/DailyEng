@@ -155,7 +155,7 @@ export function QuizSession({ deckId, questions }: Props) {
           {question.term}
         </p>
         {question.phonetic ? (
-          <p className="text-muted mt-1 text-lg">{question.phonetic}</p>
+          <p className="ipa text-muted mt-1 text-lg">{question.phonetic}</p>
         ) : null}
       </div>
 

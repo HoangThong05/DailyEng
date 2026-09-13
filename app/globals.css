@@ -75,6 +75,12 @@
   --font-sans: var(--font-app-sans);
 }
 
+/* Phiên âm IPA: font có đủ ký tự ngữ âm, hơi giãn chữ cho dễ đọc. */
+@utility ipa {
+  font-family: var(--font-ipa), "Segoe UI", "Noto Sans", sans-serif;
+  letter-spacing: 0.02em;
+}
+
 /* Safe area cho iPhone tai thỏ / thanh gesture */
 @utility pt-safe {
   padding-top: env(safe-area-inset-top);
@@ -104,30 +110,32 @@
   }
 
   /*
-   * Nền có chiều sâu: ba quầng sáng lớn trôi chậm + lưới chấm rất mờ.
-   * Đặt ở ::before cố định, z-index âm để nằm sau toàn bộ nội dung,
-   * không ảnh hưởng bố cục hay vùng chạm.
+   * Nền có chiều sâu: lưới chấm rất mờ (tĩnh, trên body) + ba quầng sáng lớn
+   * ở ::before cố định, trôi chậm bằng transform. Không animate
+   * background-position: Chrome phải vẽ lại cả màn hình mỗi frame, vẽ không
+   * kịp thì mép các thẻ hiện dở dang trông như bị méo.
    */
+  body {
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--fg) 6%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 26px 26px;
+  }
+
   body::before {
     content: "";
     position: fixed;
-    inset: 0;
+    /* Rộng hơn màn hình để trôi qua lại không lộ mép */
+    inset: -12%;
     z-index: -1;
     pointer-events: none;
     background-image:
-      radial-gradient(60vmax 60vmax at 8% -8%, var(--glow-1), transparent 62%),
-      radial-gradient(52vmax 52vmax at 104% 18%, var(--glow-2), transparent 62%),
-      radial-gradient(48vmax 48vmax at 42% 112%, var(--glow-3), transparent 62%),
-      radial-gradient(
-        color-mix(in srgb, var(--fg) 6%, transparent) 1px,
-        transparent 1px
-      );
-    background-size:
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      26px 26px;
-    animation: ambient-drift 22s ease-in-out infinite alternate;
+      radial-gradient(60vmax 60vmax at 14% 4%, var(--glow-1), transparent 62%),
+      radial-gradient(52vmax 52vmax at 92% 22%, var(--glow-2), transparent 62%),
+      radial-gradient(48vmax 48vmax at 46% 100%, var(--glow-3), transparent 62%);
+    will-change: transform;
+    animation: ambient-drift 26s ease-in-out infinite alternate;
   }
 
   /* Chặn long-press hiện menu chọn text trên nút bấm */
@@ -434,18 +442,10 @@
 /* Quầng sáng nền trôi qua lại rất chậm; mắt chỉ thấy nền "sống" chứ không thấy chuyển động. */
 @keyframes ambient-drift {
   from {
-    background-position:
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0 0;
+    transform: translate3d(-3%, -2%, 0);
   }
   to {
-    background-position:
-      6% 4%,
-      -5% 6%,
-      4% -6%,
-      0 0;
+    transform: translate3d(3%, 2%, 0);
   }
 }
 

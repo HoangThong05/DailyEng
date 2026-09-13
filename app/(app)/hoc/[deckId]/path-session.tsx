@@ -495,7 +495,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
               <SpeakButton text={word.term} />
             </div>
             {word.phonetic ? (
-              <p className="text-muted mt-1 text-lg">{word.phonetic}</p>
+              <p className="ipa text-muted mt-1 text-lg">{word.phonetic}</p>
             ) : null}
             <p className="mt-5 text-xl font-semibold">{word.meaning_vi}</p>
             {word.example_en ? (
@@ -535,7 +535,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
                   <SpeakButton text={word.term} />
                 </div>
                 {word.phonetic ? (
-                  <p className="text-muted mt-1">{word.phonetic}</p>
+                  <p className="ipa text-muted mt-1">{word.phonetic}</p>
                 ) : null}
               </>
             ) : (
@@ -617,13 +617,14 @@ export function PathSession({ deckName, stages, pool }: Props) {
             ) : null}
             {feedback === "correct" ? (
               <p className="mt-4 font-semibold text-emerald-500">
-                Chính xác! {word.phonetic ?? ""}
+                Chính xác!{" "}
+                <span className="ipa font-normal">{word.phonetic ?? ""}</span>
               </p>
             ) : null}
             {feedback === "wrong" ? (
               <p className="mt-4 text-sm">
                 Đáp án: <span className="font-bold">{word.term}</span>{" "}
-                <span className="text-muted">{word.phonetic ?? ""}</span>
+                <span className="ipa text-muted">{word.phonetic ?? ""}</span>
               </p>
             ) : null}
           </div>

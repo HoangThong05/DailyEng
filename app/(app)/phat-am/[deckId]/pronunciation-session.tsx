@@ -179,7 +179,7 @@ export function PronunciationSession({
       <div className="border-border bg-card mt-5 rounded-3xl border p-6 text-center">
         <p className="text-3xl font-bold tracking-tight">{word.term}</p>
         {word.phonetic ? (
-          <p className="text-muted mt-1 text-lg">{word.phonetic}</p>
+          <p className="ipa text-muted mt-1 text-lg">{word.phonetic}</p>
         ) : null}
         <p className="text-muted mt-3 text-sm">{word.meaning_vi}</p>
       </div>

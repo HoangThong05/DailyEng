@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/app/_components/service-worker-register";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
@@ -8,6 +8,15 @@ import { THEME_INIT_SCRIPT } from "@/lib/theme";
 const inter = Inter({
   variable: "--font-app-sans",
   subsets: ["latin", "vietnamese"],
+  display: "swap",
+});
+
+// Inter thiếu ký tự IPA (ɪ ˈ iː ə ʃ…) nên phiên âm bị vá bằng font khác, chữ
+// lệch nhau. Noto Sans có đủ; chỉ dùng cho dòng phiên âm qua class .ipa.
+const notoSans = Noto_Sans({
+  variable: "--font-ipa",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -45,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // suppressHydrationWarning vì script bên dưới gắn thêm data-theme vào <html>
     // trước khi React hydrate — React phải chấp nhận DOM thay vì ghi đè lại.
-    <html lang="vi" className={`${inter.variable} h-full`} suppressHydrationWarning>
+    <html lang="vi" className={`${inter.variable} ${notoSans.variable} h-full`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>

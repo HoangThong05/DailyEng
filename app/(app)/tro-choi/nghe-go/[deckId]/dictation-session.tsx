@@ -203,7 +203,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
               {current?.correct ? "Chính xác!" : word.term}
             </p>
             {word.phonetic ? (
-              <p className="text-muted mt-1 text-sm">{word.phonetic}</p>
+              <p className="ipa text-muted mt-1 text-sm">{word.phonetic}</p>
             ) : null}
             <p className="mt-2 text-sm">{word.meaning}</p>
           </div>
