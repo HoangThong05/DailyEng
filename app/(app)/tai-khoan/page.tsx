@@ -14,6 +14,7 @@ import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { ProfileForm } from "./profile-form";
 import { ReminderToggle } from "./reminder-toggle";
 import { ThemeToggle } from "./theme-toggle";
+import { VoicePicker } from "./voice-picker";
 import { WeekChart } from "./week-chart";
 
 export const metadata: Metadata = { title: "Cá nhân" };
@@ -337,6 +338,11 @@ export default async function TaiKhoanPage() {
             <section aria-labelledby="giao-dien" className="space-y-3">
               <SectionTitle id="giao-dien">Giao diện</SectionTitle>
               <ThemeToggle />
+            </section>
+
+            <section aria-labelledby="giong-doc" className="space-y-3">
+              <SectionTitle id="giong-doc">Giọng đọc</SectionTitle>
+              <VoicePicker />
             </section>
 
             <form action={signOut}>

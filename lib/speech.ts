@@ -148,8 +148,69 @@ export async function startRecording(): Promise<Recorder | null> {
   }
 }
 
-/** Đọc to một từ. Trả về false nếu trình duyệt không đọc được. */
-export function speak(text: string, lang = "en-US", rate = 0.85): boolean {
+const VOICE_KEY = "dailyeng:voice";
+
+/** Tên giọng người dùng đã chọn ở tab Cá nhân; null = để app tự chọn. */
+export function readVoicePreference(): string | null {
+  try {
+    return localStorage.getItem(VOICE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function saveVoicePreference(name: string | null) {
+  try {
+    if (name) localStorage.setItem(VOICE_KEY, name);
+    else localStorage.removeItem(VOICE_KEY);
+  } catch {
+    // Chế độ riêng tư có thể chặn; chỉ mất ghi nhớ giữa các lần mở.
+  }
+}
+
+function isEnglish(voice: SpeechSynthesisVoice) {
+  return voice.lang.replace("_", "-").toLowerCase().startsWith("en");
+}
+
+/**
+ * Điểm chất lượng ước lượng theo tên: giọng "Natural"/"Online" của Edge,
+ * "Google" của Chrome, Samantha/Karen của Apple nghe tự nhiên; giọng
+ * Microsoft David/Zira cũ nghe như robot nên xếp cuối.
+ */
+function voiceQuality(voice: SpeechSynthesisVoice) {
+  const name = voice.name.toLowerCase();
+  const lang = voice.lang.replace("_", "-").toLowerCase();
+  let score = 0;
+  if (name.includes("natural") || name.includes("online")) score += 50;
+  if (name.includes("google")) score += 40;
+  if (/aria|jenny|guy|samantha|karen|daniel|moira|ava|allison/.test(name)) score += 30;
+  if (name.includes("premium") || name.includes("enhanced")) score += 20;
+  if (lang === "en-us") score += 10;
+  else if (lang === "en-gb") score += 6;
+  if (/david|zira|mark|hazel|george/.test(name) && !name.includes("natural")) score -= 20;
+  if (!voice.localService) score += 5; // giọng đám mây thường tốt hơn
+  return score;
+}
+
+/** Giọng tiếng Anh máy có, tốt nhất xếp trước. Rỗng nếu chưa nạp xong. */
+export function listEnglishVoices(): SpeechSynthesisVoice[] {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return [];
+  return window.speechSynthesis
+    .getVoices()
+    .filter(isEnglish)
+    .sort((a, b) => voiceQuality(b) - voiceQuality(a));
+}
+
+/** Giọng sẽ dùng: giọng người dùng chọn nếu còn, không thì giọng tốt nhất. */
+export function pickVoice(): SpeechSynthesisVoice | null {
+  const voices = listEnglishVoices();
+  if (voices.length === 0) return null;
+  const preferred = readVoicePreference();
+  return voices.find((voice) => voice.name === preferred) ?? voices[0];
+}
+
+/** Đọc to một đoạn tiếng Anh. Trả về false nếu trình duyệt không đọc được. */
+export function speak(text: string, lang = "en-US", rate = 0.92): boolean {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) {
     return false;
   }
@@ -159,16 +220,17 @@ export function speak(text: string, lang = "en-US", rate = 0.85): boolean {
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = lang;
-  // Mặc định chậm hơn bình thường một chút cho người học nghe rõ;
-  // nút "Đọc chậm" truyền rate thấp hơn nữa.
+  // Hơi chậm hơn bình thường cho người học nghe rõ; nút "Đọc chậm" truyền
+  // rate thấp hơn nữa. Giọng tự nhiên đọc 0.92 nghe vẫn trôi chảy.
   utterance.rate = rate;
 
   // getVoices() có thể rỗng ở lần gọi đầu vì giọng nạp bất đồng bộ;
   // lúc đó cứ để trình duyệt tự chọn theo lang.
-  const voice = window.speechSynthesis
-    .getVoices()
-    .find((item) => item.lang.replace("_", "-").toLowerCase().startsWith("en"));
-  if (voice) utterance.voice = voice;
+  const voice = pickVoice();
+  if (voice) {
+    utterance.voice = voice;
+    utterance.lang = voice.lang;
+  }
 
   window.speechSynthesis.speak(utterance);
   return true;

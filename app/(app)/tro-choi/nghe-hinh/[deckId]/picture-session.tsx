@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { recordReview } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
+import { EmojiImage } from "@/app/_components/emoji-image";
 import { SpeakerIcon } from "@/app/_components/icons";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import {
@@ -132,15 +133,16 @@ export function PictureSession({ questions }: { questions: PictureQuestion[] }) 
             <ul className="space-y-2">
               {wrong.map((r) => (
                 <li key={r.question.wordId} className="flex items-center gap-3 text-sm">
-                  <span className="text-2xl">
-                    {r.question.options[r.question.correctIndex].emoji}
-                  </span>
+                  <EmojiImage
+                    emoji={r.question.options[r.question.correctIndex].emoji}
+                    size={36}
+                  />
                   <span className="min-w-0 flex-1">
                     <span className="font-semibold">{r.question.term}</span>
                     <span className="text-muted"> · {r.question.meaning}</span>
                   </span>
-                  <span className="text-muted text-xl" aria-label="bạn chọn">
-                    ✗ {r.question.options[r.picked].emoji}
+                  <span className="text-muted flex items-center gap-1 text-sm" aria-label="bạn chọn">
+                    ✗ <EmojiImage emoji={r.question.options[r.picked].emoji} size={28} />
                   </span>
                 </li>
               ))}
@@ -238,9 +240,9 @@ export function PictureSession({ questions }: { questions: PictureQuestion[] }) 
                 disabled={answered}
                 onClick={() => choose(optionIndex)}
                 aria-label={answered ? option.term : `Hình ${optionIndex + 1}`}
-                className={`flex aspect-square items-center justify-center rounded-3xl border-2 text-6xl transition-colors press sm:text-7xl ${look}`}
+                className={`flex aspect-square items-center justify-center rounded-3xl border-2 p-6 transition-colors press ${look}`}
               >
-                <span aria-hidden>{option.emoji}</span>
+                <EmojiImage emoji={option.emoji} size={128} className="h-full w-full object-contain" />
               </button>
             );
           })}
