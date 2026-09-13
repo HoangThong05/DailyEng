@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { recordReview } from "@/app/_actions/study";
 import { CloudRainIcon } from "@/app/_components/icons";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
@@ -242,7 +242,6 @@ export function RainSession({ words }: { words: GameWord[] }) {
 
   function finish() {
     setPhase("finished");
-    void refreshStudyViews();
   }
 
   function start(chosen: Mode) {

@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { nextReviewState, todayInAppZone } from "@/lib/leitner";
 import { getStudyStats } from "@/lib/stats";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
@@ -71,12 +70,12 @@ export async function recordReview(
   return { ok: true };
 }
 
-/** Gọi khi kết thúc phiên, để các màn hình hiện số liệu mới. */
-export async function refreshStudyViews() {
-  revalidatePath("/");
-  revalidatePath("/hoc");
-  revalidatePath("/quiz");
-}
+/*
+ * Không revalidatePath khi kết thúc phiên: làm vậy Next render lại ngay trang
+ * đang mở, server thấy bộ đã ôn xong nên thay màn kết quả bằng màn trống.
+ * Các trang số liệu đều là dynamic (đọc cookie) nên khi chuyển sang đã tự
+ * lấy dữ liệu mới, không cần làm mới thủ công.
+ */
 
 /** Mốc hiện tại để màn kết quả quyết định có ăn mừng hay không. */
 export async function getMilestones() {

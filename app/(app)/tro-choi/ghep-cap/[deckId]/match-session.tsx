@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { recordReview } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
@@ -72,9 +72,7 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
       pairs.map((pair) =>
         recordReview(pair.wordId, (finalMistakes.get(pair.wordId) ?? 0) === 0),
       ),
-    )
-      .catch(() => {})
-      .finally(() => void refreshStudyViews());
+    ).catch(() => {});
   }
 
   function tap(tile: MatchTile) {

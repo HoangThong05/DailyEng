@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { recordReview } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
@@ -53,7 +53,6 @@ export function QuizSession({ deckId, questions }: Props) {
   function next() {
     if (index + 1 >= questions.length) {
       setFinished(true);
-      void refreshStudyViews();
       return;
     }
     setIndex((value) => value + 1);

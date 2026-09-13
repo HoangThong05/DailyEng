@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { recordReview } from "@/app/_actions/study";
 import { SpeakerIcon } from "@/app/_components/icons";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
@@ -61,7 +61,6 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
   function next() {
     if (index + 1 >= words.length) {
       setPhase("finished");
-      void refreshStudyViews();
       return;
     }
     setIndex((value) => value + 1);

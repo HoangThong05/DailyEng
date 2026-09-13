@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { recordReview, refreshStudyViews } from "@/app/_actions/study";
+import { recordReview } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
@@ -68,7 +68,6 @@ export function FlashcardSession({ deckName, cards }: Props) {
     const nextIndex = index + 1;
     setIndex(nextIndex);
 
-    if (nextIndex >= nextQueue.length) void refreshStudyViews();
   }
 
   function handlePointerDown(event: React.PointerEvent<HTMLDivElement>) {
