@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { warmUpVoices } from "@/lib/speech";
 
 /**
  * Đăng ký service worker để app chạy được offline.
@@ -9,6 +10,9 @@ import { useEffect } from "react";
  */
 export function ServiceWorkerRegister() {
   useEffect(() => {
+    // Nạp sẵn danh sách giọng đọc để lần bấm loa đầu tiên đã đúng giọng.
+    warmUpVoices();
+
     if (!("serviceWorker" in navigator)) return;
 
     if (process.env.NODE_ENV !== "production") {

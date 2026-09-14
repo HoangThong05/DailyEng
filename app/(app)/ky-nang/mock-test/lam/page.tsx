@@ -1,5 +1,5 @@
 import { PageHeader } from "@/app/_components/page-header";
-import { buildMockTest, MOCK_SECONDS } from "@/lib/mock-test";
+import { buildMockTest, MOCK_SECONDS, signMockKey } from "@/lib/mock-test";
 import { MockSession } from "./mock-session";
 
 export const metadata = { title: "Đang làm mock test" };
@@ -9,12 +9,13 @@ export const dynamic = "force-dynamic";
 
 export default async function MockTestRunPage() {
   const questions = await buildMockTest();
+  const token = signMockKey(questions);
 
   return (
     <>
       <PageHeader title="Part 5" subtitle={`${questions.length} câu · ${MOCK_SECONDS / 60} phút`} />
       <div className="mx-auto w-full max-w-md">
-        <MockSession questions={questions} seconds={MOCK_SECONDS} />
+        <MockSession questions={questions} token={token} seconds={MOCK_SECONDS} />
       </div>
     </>
   );

@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { saveMockResult } from "@/app/_actions/mock-test";
-import { recordReview } from "@/app/_actions/study";
+import { submitMockTest } from "@/app/_actions/mock-test";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
@@ -11,7 +10,7 @@ import type { MockQuestion } from "@/lib/mock-test";
 
 const LETTERS = ["A", "B", "C", "D"];
 
-type Props = { questions: MockQuestion[]; seconds: number };
+type Props = { questions: MockQuestion[]; token: string; seconds: number };
 
 function formatClock(total: number) {
   const m = Math.floor(total / 60);
@@ -37,7 +36,7 @@ function Blank({ sentence, filled }: { sentence: string; filled?: string }) {
   );
 }
 
-export function MockSession({ questions, seconds }: Props) {
+export function MockSession({ questions, token, seconds }: Props) {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() =>
     questions.map(() => null),
@@ -77,20 +76,11 @@ export function MockSession({ questions, seconds }: Props) {
     if (submitted) return;
     setSubmitted(true);
 
-    const finalScore = questions.filter((q, i) => answers[i] === q.answer).length;
-    const used = seconds - left;
-
-    void saveMockResult(finalScore, questions.length, used).then((result) => {
+    // Server kiểm đề đã ký, tự chấm và lưu; màn kết quả hiện điểm tính tại chỗ
+    // (giống hệt vì cùng đáp án), lỗi lưu thì báo.
+    void submitMockTest(token, answers, seconds - left).then((result) => {
       if (!result.ok) setSaveError(result.error);
     });
-
-    // Câu sinh từ bộ từ: đúng = nhớ từ đó, ghi vào hệ ôn tập như các trò khác.
-    for (const [i, question] of questions.entries()) {
-      if (!question.wordId || answers[i] === null) continue;
-      void recordReview(question.wordId, answers[i] === question.answer).catch(
-        () => {},
-      );
-    }
   }
 
   /* ---------- Kết quả ---------- */

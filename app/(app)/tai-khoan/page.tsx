@@ -12,6 +12,7 @@ import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
 import { getDetailedStats, getStudyStats } from "@/lib/stats";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { ProfileForm } from "./profile-form";
+import { RankToggle } from "./rank-toggle";
 import { ReminderToggle } from "./reminder-toggle";
 import { ThemeToggle } from "./theme-toggle";
 import { VoicePicker } from "./voice-picker";
@@ -59,7 +60,7 @@ export default async function TaiKhoanPage() {
   ] = await Promise.all([
     supabase
       .from("profiles")
-      .select("display_name, daily_goal, reminder_hour")
+      .select("display_name, daily_goal, reminder_hour, hide_rank")
       .eq("id", user?.id ?? "")
       .maybeSingle(),
     getStudyStats(),
@@ -333,6 +334,11 @@ export default async function TaiKhoanPage() {
                 }
                 reminderHour={profile?.reminder_hour ?? DEFAULT_REMINDER_HOUR}
               />
+            </section>
+
+            <section aria-labelledby="xep-hang" className="space-y-3">
+              <SectionTitle id="xep-hang">Bảng xếp hạng</SectionTitle>
+              <RankToggle hidden={profile?.hide_rank ?? false} />
             </section>
 
             <section aria-labelledby="giao-dien" className="space-y-3">

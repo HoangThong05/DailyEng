@@ -32,6 +32,9 @@ export type Database = {
           display_name: string | null;
           daily_goal: number;
           reminder_hour: number;
+          hide_rank: boolean;
+          celebrated_goal_on: string | null;
+          celebrated_level: number;
           created_at: string;
           updated_at: string;
         };
@@ -40,6 +43,9 @@ export type Database = {
           display_name?: string | null;
           daily_goal?: number;
           reminder_hour?: number;
+          hide_rank?: boolean;
+          celebrated_goal_on?: string | null;
+          celebrated_level?: number;
           created_at?: string;
           updated_at?: string;
         };
@@ -48,6 +54,9 @@ export type Database = {
           display_name?: string | null;
           daily_goal?: number;
           reminder_hour?: number;
+          hide_rank?: boolean;
+          celebrated_goal_on?: string | null;
+          celebrated_level?: number;
           created_at?: string;
           updated_at?: string;
         };

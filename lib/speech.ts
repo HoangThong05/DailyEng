@@ -224,14 +224,36 @@ export function speak(text: string, lang = "en-US", rate = 0.92): boolean {
   // rate thấp hơn nữa. Giọng tự nhiên đọc 0.92 nghe vẫn trôi chảy.
   utterance.rate = rate;
 
-  // getVoices() có thể rỗng ở lần gọi đầu vì giọng nạp bất đồng bộ;
-  // lúc đó cứ để trình duyệt tự chọn theo lang.
-  const voice = pickVoice();
-  if (voice) {
-    utterance.voice = voice;
-    utterance.lang = voice.lang;
-  }
+  const say = () => {
+    const voice = pickVoice();
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    }
+    window.speechSynthesis.speak(utterance);
+  };
 
-  window.speechSynthesis.speak(utterance);
+  // Chrome nạp danh sách giọng bất đồng bộ: lần gọi đầu getVoices() có thể
+  // rỗng → chờ voiceschanged (tối đa 400ms) rồi mới đọc, để ngay câu đầu
+  // đã đúng giọng đã chọn thay vì giọng mặc định.
+  if (window.speechSynthesis.getVoices().length === 0) {
+    let done = false;
+    const go = () => {
+      if (done) return;
+      done = true;
+      window.speechSynthesis.removeEventListener("voiceschanged", go);
+      say();
+    };
+    window.speechSynthesis.addEventListener("voiceschanged", go);
+    setTimeout(go, 400);
+  } else {
+    say();
+  }
   return true;
+}
+
+/** Gọi sớm khi app mở để trình duyệt bắt đầu nạp danh sách giọng. */
+export function warmUpVoices() {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  window.speechSynthesis.getVoices();
 }

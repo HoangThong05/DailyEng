@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getMilestones } from "@/app/_actions/study";
+import { getMilestones, markCelebrated } from "@/app/_actions/study";
 import { Mascot } from "./mascot";
-
-const GOAL_KEY = "dailyeng:celebrated-goal";
-const LEVEL_KEY = "dailyeng:celebrated-level";
 
 const COLORS = ["#3b82f6", "#8b5cf6", "#f59e0b", "#10b981", "#ec4899", "#22d3ee"];
 
@@ -24,26 +21,11 @@ type Reason =
   | { kind: "goal"; goal: number }
   | { kind: "level"; level: number; title: string };
 
-function read(key: string) {
-  try {
-    return localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
-
-function write(key: string, value: string) {
-  try {
-    localStorage.setItem(key, value);
-  } catch {
-    // Chế độ riêng tư chặn ghi thì thôi, cùng lắm ăn mừng lại lần sau.
-  }
-}
-
 /**
  * Đặt ở màn kết quả cuối phiên. Sau một nhịp (để lượt lưu cuối kịp lên máy
  * chủ) hỏi máy chủ mốc hiện tại; đạt mục tiêu ngày lần đầu trong ngày hoặc
- * vừa lên cấp thì bung pháo giấy toàn màn.
+ * vừa lên cấp thì bung pháo giấy toàn màn. Mốc đã ăn mừng lưu ở profile nên
+ * đổi máy / xoá dữ liệu trình duyệt cũng không ăn mừng lại.
  */
 export function Celebration() {
   const [reason, setReason] = useState<Reason | null>(null);
@@ -54,18 +36,17 @@ export function Celebration() {
       const m = await getMilestones().catch(() => null);
       if (!m || cancelled) return;
 
-      const seenLevel = Number(read(LEVEL_KEY) ?? "0");
-      if (seenLevel === 0) {
-        // Lần đầu dùng: ghi nhận cấp hiện tại, không ăn mừng cấp cũ.
-        write(LEVEL_KEY, String(m.level));
-      } else if (m.level > seenLevel) {
-        write(LEVEL_KEY, String(m.level));
+      if (m.celebratedLevel === 0) {
+        // Lần đầu: ghi nhận cấp hiện tại, không ăn mừng cấp đã có từ trước.
+        void markCelebrated("level", m.level);
+      } else if (m.level > m.celebratedLevel) {
+        void markCelebrated("level", m.level);
         setReason({ kind: "level", level: m.level, title: m.title });
         return;
       }
 
-      if (m.goalReached && read(GOAL_KEY) !== m.today) {
-        write(GOAL_KEY, m.today);
+      if (m.goalReached && m.celebratedGoalOn !== m.today) {
+        void markCelebrated("goal", m.today);
         setReason({ kind: "goal", goal: m.dailyGoal });
       }
     }, 700);

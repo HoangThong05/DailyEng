@@ -62,6 +62,10 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
 
   const item = items[index];
   const canRecord = hydrated && supportsRecognition();
+  // Không nhận dạng được (Firefox, Safari iOS) thì vẫn ghi âm để tự so với mẫu.
+  const canRecordOnly =
+    hydrated && !supportsRecognition() && typeof MediaRecorder !== "undefined";
+  const [recordingOnly, setRecordingOnly] = useState(false);
 
   function replaceRecording(url: string | null) {
     if (recordingUrlRef.current) URL.revokeObjectURL(recordingUrlRef.current);
@@ -138,6 +142,25 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
     }
   }
 
+  /** Chỉ ghi âm (không chấm) cho trình duyệt thiếu nhận dạng giọng nói. */
+  async function toggleRecordOnly() {
+    if (recordingOnly) {
+      setRecordingOnly(false);
+      await finishRecording();
+      return;
+    }
+    window.speechSynthesis?.cancel();
+    setError(null);
+    replaceRecording(null);
+    const recorder = await startRecording();
+    if (!recorder) {
+      setError("Không mở được micro. Kiểm tra quyền micro của trình duyệt.");
+      return;
+    }
+    recorderRef.current = recorder;
+    setRecordingOnly(true);
+  }
+
   /** Nghe mẫu rồi nghe ngay giọng mình để so. */
   function compare() {
     if (!recordingUrl) return;
@@ -162,6 +185,7 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
     recorderRef.current = null;
     commit(index);
     setListening(false);
+    setRecordingOnly(false);
     setAttempt(null);
     setError(null);
     replaceRecording(null);
@@ -183,9 +207,9 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
           ghi âm để bạn nghe lại và so với mẫu. Không giới hạn số lần thử.
         </p>
         {hydrated && !supportsRecognition() ? (
-          <p className="mt-4 rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-500">
-            Trình duyệt này không hỗ trợ nhận dạng giọng nói. Dùng Chrome hoặc
-            Edge nhé.
+          <p className="bg-brand-soft mt-4 rounded-xl px-4 py-3 text-sm">
+            Trình duyệt này không chấm điểm được (cần Chrome hoặc Edge), nhưng
+            bạn vẫn ghi âm và nghe so với mẫu được.
           </p>
         ) : null}
         <button
@@ -379,10 +403,21 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
           <MicIcon className="h-6 w-6" />
           {listening ? "Đang nghe… bấm để dừng" : attempt ? "Nói lại" : "Nói theo"}
         </button>
+      ) : canRecordOnly ? (
+        <button
+          type="button"
+          onClick={toggleRecordOnly}
+          aria-pressed={recordingOnly}
+          className={`mt-3 flex min-h-16 w-full items-center justify-center gap-2 rounded-2xl text-lg font-bold text-white press ${
+            recordingOnly ? "animate-pulse bg-red-500" : "bg-brand"
+          }`}
+        >
+          <MicIcon className="h-6 w-6" />
+          {recordingOnly ? "Đang ghi… bấm để dừng" : "Ghi âm để tự so"}
+        </button>
       ) : hydrated ? (
         <p className="text-muted mt-3 text-center text-sm">
-          Trình duyệt này không nhận dạng được giọng nói; vẫn nghe mẫu và tự đọc
-          theo được.
+          Trình duyệt này không dùng được micro; vẫn nghe mẫu và tự đọc theo.
         </p>
       ) : null}
 

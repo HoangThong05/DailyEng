@@ -77,11 +77,17 @@ export async function recordReview(
  * lấy dữ liệu mới, không cần làm mới thủ công.
  */
 
-/** Mốc hiện tại để màn kết quả quyết định có ăn mừng hay không. */
+/**
+ * Mốc hiện tại để màn kết quả quyết định có ăn mừng hay không.
+ * Mốc đã ăn mừng lưu trong profile (server) nên đổi máy không ăn mừng lại.
+ */
 export async function getMilestones() {
   const supabase = await createClient();
   const [{ data: profile }, stats] = await Promise.all([
-    supabase.from("profiles").select("daily_goal").maybeSingle(),
+    supabase
+      .from("profiles")
+      .select("daily_goal, celebrated_goal_on, celebrated_level")
+      .maybeSingle(),
     getStudyStats(),
   ]);
   const dailyGoal = profile?.daily_goal ?? 10;
@@ -91,5 +97,25 @@ export async function getMilestones() {
     goalReached: stats.today.words >= dailyGoal,
     level: stats.level.level,
     title: stats.level.title,
+    celebratedGoalOn: profile?.celebrated_goal_on ?? null,
+    celebratedLevel: profile?.celebrated_level ?? 0,
   };
+}
+
+/** Ghi lại đã ăn mừng mốc nào, để không bung pháo lần hai. */
+export async function markCelebrated(
+  kind: "goal" | "level",
+  value: string | number,
+): Promise<void> {
+  const user = await getCurrentUser();
+  if (!user) return;
+  const supabase = await createClient();
+  await supabase
+    .from("profiles")
+    .update(
+      kind === "goal"
+        ? { celebrated_goal_on: String(value) }
+        : { celebrated_level: Number(value) },
+    )
+    .eq("id", user.id);
 }

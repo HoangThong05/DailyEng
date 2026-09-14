@@ -22,11 +22,11 @@
 - **Nghe chép câu** — máy đọc cả câu ví dụ, gõ lại toàn bộ; chấm từng từ (căn LCS), nút đọc chậm, gợi ý từ khoá
 - **Luyện phát âm** — nghe mẫu, ghi âm nghe lại, chấm điểm bằng Web Speech API
 - **Shadowing** — nghe câu mẫu, nói theo; máy tô từng từ nghe được, chấm %, ghi âm và phát nối tiếp với mẫu để so
-- **Mock test TOEIC Part 5** — 20 câu điền vào chỗ trống, 10 phút; nửa đề từ ngân hàng ngữ pháp/từ vựng viết tay, nửa sinh từ câu ví dụ các bộ TOEIC; giải thích từng câu, lưu lịch sử và điểm cao nhất
+- **Mock test TOEIC Part 5** — 20 câu điền vào chỗ trống, 10 phút; nửa đề từ ngân hàng 200 câu ngữ pháp/từ vựng viết tay (`content/toeic-part5.json`), nửa sinh từ câu ví dụ các bộ TOEIC; đề được ký HMAC và chấm ở server; giải thích từng câu, lưu lịch sử và điểm cao nhất
 
 **Động lực**
 - XP và cấp độ (Người mới → Huyền thoại) tính từ mọi hoạt động học
-- Bảng xếp hạng XP 7 ngày / toàn thời gian giữa người dùng (hàm SQL `leaderboard`, chỉ lộ tên hiển thị và điểm)
+- Bảng xếp hạng XP 7 ngày / toàn thời gian giữa người dùng (hàm SQL `leaderboard`, chỉ lộ tên hiển thị và điểm; có nút ẩn mình khỏi bảng)
 - Chuỗi ngày học, biểu đồ tuần, phân bố hộp ôn, độ chính xác theo bộ, từ hay sai nhất
 - Nhắc học qua thông báo đẩy (Web Push) vào giờ tự chọn (07:00 / 12:00 / 20:00), chỉ khi hôm đó chưa học
 
@@ -98,6 +98,7 @@ Trong SQL Editor chạy lần lượt:
 6. `supabase/schema-06-gio-nhac.sql` — giờ nhắc + lịch pg_cron (đọc chú thích đầu file: nạp 2 secret vào Vault trước)
 7. `supabase/schema-07-nhom-bo-tu.sql` — nhóm bộ từ + hàm đếm tiến độ bằng SQL
 8. `supabase/schema-08-xep-hang-mock.sql` — hàm bảng xếp hạng XP, bảng kết quả mock test
+9. `supabase/schema-09-an-xep-hang-an-mung.sql` — ẩn khỏi bảng xếp hạng, lưu mốc đã ăn mừng
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

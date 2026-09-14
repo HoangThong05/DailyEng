@@ -1,62 +1,2602 @@
 [
-  { "id": "g01", "tag": "grammar", "sentence": "The manager ____ the report before the meeting started.", "options": ["review", "reviewed", "reviewing", "reviews"], "answer": 1, "explain": "Hành động xảy ra trước một mốc quá khứ (the meeting started) → quá khứ đơn 'reviewed'." },
-  { "id": "g02", "tag": "grammar", "sentence": "All employees must submit ____ timesheets by Friday.", "options": ["they", "them", "their", "theirs"], "answer": 2, "explain": "Trước danh từ 'timesheets' cần tính từ sở hữu 'their'." },
-  { "id": "g03", "tag": "grammar", "sentence": "The new software is ____ easier to use than the old version.", "options": ["much", "very", "more", "most"], "answer": 0, "explain": "'much' nhấn mạnh so sánh hơn (much easier). 'very' không đi với so sánh hơn." },
-  { "id": "g04", "tag": "grammar", "sentence": "Ms. Park has worked at the company ____ 2015.", "options": ["for", "since", "during", "from"], "answer": 1, "explain": "Hiện tại hoàn thành + mốc thời gian → 'since 2015'." },
-  { "id": "g05", "tag": "grammar", "sentence": "Please contact the front desk ____ you need assistance.", "options": ["if", "so", "but", "or"], "answer": 0, "explain": "Mệnh đề điều kiện: 'if you need assistance'." },
-  { "id": "g06", "tag": "grammar", "sentence": "The shipment will arrive ____ Monday morning.", "options": ["in", "at", "on", "by"], "answer": 2, "explain": "Ngày trong tuần đi với giới từ 'on'." },
-  { "id": "g07", "tag": "grammar", "sentence": "Neither the director nor the assistants ____ available today.", "options": ["is", "are", "be", "been"], "answer": 1, "explain": "Với 'neither… nor', động từ chia theo chủ ngữ gần nhất (the assistants) → 'are'." },
-  { "id": "g08", "tag": "grammar", "sentence": "The company ____ its annual sales conference in Singapore next month.", "options": ["holds", "held", "will hold", "has held"], "answer": 2, "explain": "'next month' → tương lai đơn 'will hold'." },
-  { "id": "g09", "tag": "grammar", "sentence": "Applicants are required to have ____ three years of experience.", "options": ["at least", "at most", "at last", "at once"], "answer": 0, "explain": "'at least three years' = ít nhất ba năm — yêu cầu tối thiểu." },
-  { "id": "g10", "tag": "grammar", "sentence": "The office will be closed ____ the renovation.", "options": ["while", "during", "when", "as"], "answer": 1, "explain": "'during' + danh từ (the renovation). 'while' phải đi với mệnh đề." },
-  { "id": "g11", "tag": "grammar", "sentence": "The ____ of the new branch has been delayed until spring.", "options": ["open", "opened", "opening", "openly"], "answer": 2, "explain": "Sau 'The' và trước 'of' cần danh từ → 'opening'." },
-  { "id": "g12", "tag": "grammar", "sentence": "Customers who purchase online can ____ return items in store.", "options": ["easy", "easily", "ease", "easier"], "answer": 1, "explain": "Bổ nghĩa cho động từ 'return' cần trạng từ 'easily'." },
-  { "id": "g13", "tag": "grammar", "sentence": "The results were ____ than we had expected.", "options": ["good", "better", "best", "the best"], "answer": 1, "explain": "Có 'than' → so sánh hơn 'better'." },
-  { "id": "g14", "tag": "grammar", "sentence": "Employees ____ in the training session should register by Tuesday.", "options": ["interest", "interested", "interesting", "interests"], "answer": 1, "explain": "Rút gọn mệnh đề quan hệ bị động: employees (who are) interested in…" },
-  { "id": "g15", "tag": "grammar", "sentence": "The technician fixed the printer ____.", "options": ["himself", "him", "his", "he"], "answer": 0, "explain": "Đại từ phản thân nhấn mạnh 'tự mình' → 'himself'." },
-  { "id": "g16", "tag": "grammar", "sentence": "We look forward to ____ from you soon.", "options": ["hear", "hearing", "heard", "be heard"], "answer": 1, "explain": "'look forward to' + V-ing." },
-  { "id": "g17", "tag": "grammar", "sentence": "____ the heavy rain, the outdoor event went ahead as planned.", "options": ["Although", "Despite", "Because", "Even"], "answer": 1, "explain": "'Despite' + cụm danh từ (the heavy rain). 'Although' cần mệnh đề." },
-  { "id": "g18", "tag": "grammar", "sentence": "The invoice must be paid ____ 30 days of receipt.", "options": ["within", "until", "among", "between"], "answer": 0, "explain": "'within 30 days' = trong vòng 30 ngày." },
-  { "id": "g19", "tag": "grammar", "sentence": "Ms. Lee is responsible ____ coordinating the marketing campaign.", "options": ["of", "to", "for", "with"], "answer": 2, "explain": "Cụm cố định 'responsible for'." },
-  { "id": "g20", "tag": "grammar", "sentence": "The board ____ to approve the merger at yesterday's meeting.", "options": ["decide", "decides", "decided", "deciding"], "answer": 2, "explain": "'yesterday' → quá khứ đơn 'decided'." },
-  { "id": "g21", "tag": "grammar", "sentence": "If the package ____ damaged, please contact customer service.", "options": ["arrive", "arrives", "arrived", "arriving"], "answer": 1, "explain": "Câu điều kiện loại 1: If + hiện tại đơn; chủ ngữ số ít → 'arrives'." },
-  { "id": "g22", "tag": "grammar", "sentence": "The hotel offers free breakfast to ____ guest.", "options": ["all", "every", "most", "many"], "answer": 1, "explain": "'guest' số ít → 'every guest'. 'all/most/many' đi với danh từ số nhiều." },
-  { "id": "g23", "tag": "grammar", "sentence": "Sales have increased ____ since the new store opened.", "options": ["steady", "steadily", "steadiness", "steadier"], "answer": 1, "explain": "Bổ nghĩa cho 'have increased' cần trạng từ 'steadily'." },
-  { "id": "g24", "tag": "grammar", "sentence": "The seminar was ____ well attended that extra chairs were needed.", "options": ["so", "such", "too", "very"], "answer": 0, "explain": "'so + adj/adv + that' = quá… đến nỗi." },
-  { "id": "g25", "tag": "grammar", "sentence": "Please make sure that the documents ____ before you leave.", "options": ["sign", "signed", "are signed", "signing"], "answer": 2, "explain": "Tài liệu 'được ký' → bị động 'are signed'." },
-  { "id": "g26", "tag": "grammar", "sentence": "The CEO, ____ founded the company in 1998, will retire next year.", "options": ["who", "whom", "which", "whose"], "answer": 0, "explain": "Đại từ quan hệ chỉ người, làm chủ ngữ của 'founded' → 'who'." },
-  { "id": "g27", "tag": "grammar", "sentence": "We have ____ received the samples from the supplier.", "options": ["yet", "still", "already", "ever"], "answer": 2, "explain": "'already' trong câu khẳng định hiện tại hoàn thành. 'yet' dùng phủ định/nghi vấn." },
-  { "id": "g28", "tag": "grammar", "sentence": "The safety inspection is conducted ____ six months.", "options": ["all", "every", "each of", "any"], "answer": 1, "explain": "'every six months' = sáu tháng một lần." },
-  { "id": "g29", "tag": "grammar", "sentence": "The new policy applies to full-time employees ____.", "options": ["only", "just", "alone", "single"], "answer": 0, "explain": "'only' đứng cuối câu nhấn mạnh 'chỉ' nhân viên toàn thời gian." },
-  { "id": "g30", "tag": "grammar", "sentence": "By the time the guests arrive, the caterers ____ the tables.", "options": ["set", "will have set", "have set", "had set"], "answer": 1, "explain": "'By the time + hiện tại' → tương lai hoàn thành 'will have set'." },
-  { "id": "v01", "tag": "vocab", "sentence": "The hotel is ____ located near the airport and the city center.", "options": ["conveniently", "originally", "financially", "rarely"], "answer": 0, "explain": "'conveniently located' = ở vị trí thuận tiện." },
-  { "id": "v02", "tag": "vocab", "sentence": "Please ____ your seat belt while the sign is on.", "options": ["attach", "fasten", "connect", "hold"], "answer": 1, "explain": "Cụm cố định 'fasten your seat belt' = thắt dây an toàn." },
-  { "id": "v03", "tag": "vocab", "sentence": "The company reported a 12 percent ____ in profits last quarter.", "options": ["increase", "expense", "estimate", "attempt"], "answer": 0, "explain": "'increase in profits' = mức tăng lợi nhuận; đi với số phần trăm." },
-  { "id": "v04", "tag": "vocab", "sentence": "Ms. Tran will ____ the meeting because the director is away.", "options": ["chair", "sit", "hold", "stand"], "answer": 0, "explain": "'chair the meeting' = chủ trì cuộc họp." },
-  { "id": "v05", "tag": "vocab", "sentence": "All products come with a two-year ____.", "options": ["receipt", "warranty", "invoice", "discount"], "answer": 1, "explain": "'warranty' = bảo hành; đi với thời hạn (two-year)." },
-  { "id": "v06", "tag": "vocab", "sentence": "Employees must ____ with the new security regulations.", "options": ["comply", "agree", "obey", "accept"], "answer": 0, "explain": "'comply with' = tuân thủ. 'obey/accept' không đi với 'with'." },
-  { "id": "v07", "tag": "vocab", "sentence": "The flight was ____ due to bad weather.", "options": ["delayed", "reserved", "boarded", "arrived"], "answer": 0, "explain": "'delayed due to' = bị hoãn vì." },
-  { "id": "v08", "tag": "vocab", "sentence": "We ____ your patience while we resolve the issue.", "options": ["appreciate", "apologize", "approve", "apply"], "answer": 0, "explain": "'appreciate your patience' = cảm ơn bạn đã kiên nhẫn." },
-  { "id": "v09", "tag": "vocab", "sentence": "The ____ for the position must be submitted online.", "options": ["application", "appointment", "applicant", "appliance"], "answer": 0, "explain": "'application' = hồ sơ ứng tuyển. 'applicant' là người, 'appliance' là thiết bị." },
-  { "id": "v10", "tag": "vocab", "sentence": "The restaurant can ____ up to 200 guests for private events.", "options": ["accommodate", "reserve", "participate", "recommend"], "answer": 0, "explain": "'accommodate' = chứa được (số người)." },
-  { "id": "v11", "tag": "vocab", "sentence": "Please keep your ____ as proof of purchase.", "options": ["receipt", "recipe", "record", "review"], "answer": 0, "explain": "'receipt' = biên lai. Đừng nhầm với 'recipe' (công thức nấu ăn)." },
-  { "id": "v12", "tag": "vocab", "sentence": "The factory has ____ its production capacity by 30 percent.", "options": ["expanded", "extended", "exceeded", "excluded"], "answer": 0, "explain": "'expand capacity' = mở rộng công suất." },
-  { "id": "v13", "tag": "vocab", "sentence": "Our team will ____ a survey to measure customer satisfaction.", "options": ["conduct", "make", "take", "build"], "answer": 0, "explain": "'conduct a survey' = tiến hành khảo sát." },
-  { "id": "v14", "tag": "vocab", "sentence": "The contract will ____ at the end of December unless renewed.", "options": ["expire", "extend", "expand", "explore"], "answer": 0, "explain": "'expire' = hết hạn." },
-  { "id": "v15", "tag": "vocab", "sentence": "The new intern is very ____ and always meets her deadlines.", "options": ["reliable", "relative", "relevant", "reluctant"], "answer": 0, "explain": "'reliable' = đáng tin cậy — hợp với 'always meets her deadlines'." },
-  { "id": "v16", "tag": "vocab", "sentence": "Please ____ the attached form and return it to HR.", "options": ["complete", "compete", "compose", "compare"], "answer": 0, "explain": "'complete the form' = điền đầy đủ biểu mẫu." },
-  { "id": "v17", "tag": "vocab", "sentence": "The museum offers a 20% ____ to students with a valid ID.", "options": ["discount", "deposit", "budget", "balance"], "answer": 0, "explain": "'discount' = giảm giá." },
-  { "id": "v18", "tag": "vocab", "sentence": "The meeting has been ____ to next Thursday.", "options": ["postponed", "canceled", "attended", "reminded"], "answer": 0, "explain": "'postponed to' = dời sang (một thời điểm)." },
-  { "id": "v19", "tag": "vocab", "sentence": "All visitors must ____ at the reception desk upon arrival.", "options": ["register", "recruit", "reject", "retire"], "answer": 0, "explain": "'register at reception' = đăng ký tại quầy lễ tân." },
-  { "id": "v20", "tag": "vocab", "sentence": "The quarterly report ____ a summary of all regional sales.", "options": ["includes", "involves", "invites", "informs"], "answer": 0, "explain": "'includes a summary' = bao gồm phần tóm tắt." },
-  { "id": "v21", "tag": "vocab", "sentence": "Because of high demand, the item is temporarily out of ____.", "options": ["stock", "store", "shop", "order"], "answer": 0, "explain": "'out of stock' = hết hàng." },
-  { "id": "v22", "tag": "vocab", "sentence": "The supplier agreed to ____ the price by five percent.", "options": ["reduce", "refund", "remove", "replace"], "answer": 0, "explain": "'reduce the price' = giảm giá bán." },
-  { "id": "v23", "tag": "vocab", "sentence": "Ms. Kim was ____ to regional manager last month.", "options": ["promoted", "provided", "produced", "protected"], "answer": 0, "explain": "'promoted to' = được thăng chức lên." },
-  { "id": "v24", "tag": "vocab", "sentence": "The bank charges a small ____ for international transfers.", "options": ["fee", "fare", "fine", "toll"], "answer": 0, "explain": "'fee' = phí dịch vụ. 'fare' là tiền vé, 'fine' là tiền phạt." },
-  { "id": "v25", "tag": "vocab", "sentence": "We need to ____ a venue for the year-end party.", "options": ["book", "buy", "bring", "build"], "answer": 0, "explain": "'book a venue' = đặt địa điểm." },
-  { "id": "v26", "tag": "vocab", "sentence": "The manual provides step-by-step ____ for installing the software.", "options": ["instructions", "inspections", "impressions", "interruptions"], "answer": 0, "explain": "'instructions' = hướng dẫn." },
-  { "id": "v27", "tag": "vocab", "sentence": "Our customer service team is ____ 24 hours a day.", "options": ["available", "affordable", "acceptable", "accurate"], "answer": 0, "explain": "'available 24 hours' = sẵn sàng phục vụ 24 giờ." },
-  { "id": "v28", "tag": "vocab", "sentence": "The new machine will help us ____ waste and save energy.", "options": ["minimize", "maximize", "memorize", "modernize"], "answer": 0, "explain": "'minimize waste' = giảm thiểu lãng phí." },
-  { "id": "v29", "tag": "vocab", "sentence": "Please ____ me know if the delivery date changes.", "options": ["let", "make", "get", "have"], "answer": 0, "explain": "'let me know' = cho tôi biết." },
-  { "id": "v30", "tag": "vocab", "sentence": "The hotel received excellent ____ from guests for its friendly staff.", "options": ["feedback", "feature", "figure", "fashion"], "answer": 0, "explain": "'feedback' = phản hồi, nhận xét." }
+  {
+    "id": "g01",
+    "tag": "grammar",
+    "sentence": "The manager ____ the report before the meeting started.",
+    "options": [
+      "review",
+      "reviewed",
+      "reviewing",
+      "reviews"
+    ],
+    "answer": 1,
+    "explain": "Hành động xảy ra trước một mốc quá khứ (the meeting started) → quá khứ đơn 'reviewed'."
+  },
+  {
+    "id": "g02",
+    "tag": "grammar",
+    "sentence": "All employees must submit ____ timesheets by Friday.",
+    "options": [
+      "they",
+      "them",
+      "their",
+      "theirs"
+    ],
+    "answer": 2,
+    "explain": "Trước danh từ 'timesheets' cần tính từ sở hữu 'their'."
+  },
+  {
+    "id": "g03",
+    "tag": "grammar",
+    "sentence": "The new software is ____ easier to use than the old version.",
+    "options": [
+      "much",
+      "very",
+      "more",
+      "most"
+    ],
+    "answer": 0,
+    "explain": "'much' nhấn mạnh so sánh hơn (much easier). 'very' không đi với so sánh hơn."
+  },
+  {
+    "id": "g04",
+    "tag": "grammar",
+    "sentence": "Ms. Park has worked at the company ____ 2015.",
+    "options": [
+      "for",
+      "since",
+      "during",
+      "from"
+    ],
+    "answer": 1,
+    "explain": "Hiện tại hoàn thành + mốc thời gian → 'since 2015'."
+  },
+  {
+    "id": "g05",
+    "tag": "grammar",
+    "sentence": "Please contact the front desk ____ you need assistance.",
+    "options": [
+      "if",
+      "so",
+      "but",
+      "or"
+    ],
+    "answer": 0,
+    "explain": "Mệnh đề điều kiện: 'if you need assistance'."
+  },
+  {
+    "id": "g06",
+    "tag": "grammar",
+    "sentence": "The shipment will arrive ____ Monday morning.",
+    "options": [
+      "in",
+      "at",
+      "on",
+      "by"
+    ],
+    "answer": 2,
+    "explain": "Ngày trong tuần đi với giới từ 'on'."
+  },
+  {
+    "id": "g07",
+    "tag": "grammar",
+    "sentence": "Neither the director nor the assistants ____ available today.",
+    "options": [
+      "is",
+      "are",
+      "be",
+      "been"
+    ],
+    "answer": 1,
+    "explain": "Với 'neither… nor', động từ chia theo chủ ngữ gần nhất (the assistants) → 'are'."
+  },
+  {
+    "id": "g08",
+    "tag": "grammar",
+    "sentence": "The company ____ its annual sales conference in Singapore next month.",
+    "options": [
+      "holds",
+      "held",
+      "will hold",
+      "has held"
+    ],
+    "answer": 2,
+    "explain": "'next month' → tương lai đơn 'will hold'."
+  },
+  {
+    "id": "g09",
+    "tag": "grammar",
+    "sentence": "Applicants are required to have ____ three years of experience.",
+    "options": [
+      "at least",
+      "at most",
+      "at last",
+      "at once"
+    ],
+    "answer": 0,
+    "explain": "'at least three years' = ít nhất ba năm — yêu cầu tối thiểu."
+  },
+  {
+    "id": "g10",
+    "tag": "grammar",
+    "sentence": "The office will be closed ____ the renovation.",
+    "options": [
+      "while",
+      "during",
+      "when",
+      "as"
+    ],
+    "answer": 1,
+    "explain": "'during' + danh từ (the renovation). 'while' phải đi với mệnh đề."
+  },
+  {
+    "id": "g11",
+    "tag": "grammar",
+    "sentence": "The ____ of the new branch has been delayed until spring.",
+    "options": [
+      "open",
+      "opened",
+      "opening",
+      "openly"
+    ],
+    "answer": 2,
+    "explain": "Sau 'The' và trước 'of' cần danh từ → 'opening'."
+  },
+  {
+    "id": "g12",
+    "tag": "grammar",
+    "sentence": "Customers who purchase online can ____ return items in store.",
+    "options": [
+      "easy",
+      "easily",
+      "ease",
+      "easier"
+    ],
+    "answer": 1,
+    "explain": "Bổ nghĩa cho động từ 'return' cần trạng từ 'easily'."
+  },
+  {
+    "id": "g13",
+    "tag": "grammar",
+    "sentence": "The results were ____ than we had expected.",
+    "options": [
+      "good",
+      "better",
+      "best",
+      "the best"
+    ],
+    "answer": 1,
+    "explain": "Có 'than' → so sánh hơn 'better'."
+  },
+  {
+    "id": "g14",
+    "tag": "grammar",
+    "sentence": "Employees ____ in the training session should register by Tuesday.",
+    "options": [
+      "interest",
+      "interested",
+      "interesting",
+      "interests"
+    ],
+    "answer": 1,
+    "explain": "Rút gọn mệnh đề quan hệ bị động: employees (who are) interested in…"
+  },
+  {
+    "id": "g15",
+    "tag": "grammar",
+    "sentence": "The technician fixed the printer ____.",
+    "options": [
+      "himself",
+      "him",
+      "his",
+      "he"
+    ],
+    "answer": 0,
+    "explain": "Đại từ phản thân nhấn mạnh 'tự mình' → 'himself'."
+  },
+  {
+    "id": "g16",
+    "tag": "grammar",
+    "sentence": "We look forward to ____ from you soon.",
+    "options": [
+      "hear",
+      "hearing",
+      "heard",
+      "be heard"
+    ],
+    "answer": 1,
+    "explain": "'look forward to' + V-ing."
+  },
+  {
+    "id": "g17",
+    "tag": "grammar",
+    "sentence": "____ the heavy rain, the outdoor event went ahead as planned.",
+    "options": [
+      "Although",
+      "Despite",
+      "Because",
+      "Even"
+    ],
+    "answer": 1,
+    "explain": "'Despite' + cụm danh từ (the heavy rain). 'Although' cần mệnh đề."
+  },
+  {
+    "id": "g18",
+    "tag": "grammar",
+    "sentence": "The invoice must be paid ____ 30 days of receipt.",
+    "options": [
+      "within",
+      "until",
+      "among",
+      "between"
+    ],
+    "answer": 0,
+    "explain": "'within 30 days' = trong vòng 30 ngày."
+  },
+  {
+    "id": "g19",
+    "tag": "grammar",
+    "sentence": "Ms. Lee is responsible ____ coordinating the marketing campaign.",
+    "options": [
+      "of",
+      "to",
+      "for",
+      "with"
+    ],
+    "answer": 2,
+    "explain": "Cụm cố định 'responsible for'."
+  },
+  {
+    "id": "g20",
+    "tag": "grammar",
+    "sentence": "The board ____ to approve the merger at yesterday's meeting.",
+    "options": [
+      "decide",
+      "decides",
+      "decided",
+      "deciding"
+    ],
+    "answer": 2,
+    "explain": "'yesterday' → quá khứ đơn 'decided'."
+  },
+  {
+    "id": "g21",
+    "tag": "grammar",
+    "sentence": "If the package ____ damaged, please contact customer service.",
+    "options": [
+      "arrive",
+      "arrives",
+      "arrived",
+      "arriving"
+    ],
+    "answer": 1,
+    "explain": "Câu điều kiện loại 1: If + hiện tại đơn; chủ ngữ số ít → 'arrives'."
+  },
+  {
+    "id": "g22",
+    "tag": "grammar",
+    "sentence": "The hotel offers free breakfast to ____ guest.",
+    "options": [
+      "all",
+      "every",
+      "most",
+      "many"
+    ],
+    "answer": 1,
+    "explain": "'guest' số ít → 'every guest'. 'all/most/many' đi với danh từ số nhiều."
+  },
+  {
+    "id": "g23",
+    "tag": "grammar",
+    "sentence": "Sales have increased ____ since the new store opened.",
+    "options": [
+      "steady",
+      "steadily",
+      "steadiness",
+      "steadier"
+    ],
+    "answer": 1,
+    "explain": "Bổ nghĩa cho 'have increased' cần trạng từ 'steadily'."
+  },
+  {
+    "id": "g24",
+    "tag": "grammar",
+    "sentence": "The seminar was ____ well attended that extra chairs were needed.",
+    "options": [
+      "so",
+      "such",
+      "too",
+      "very"
+    ],
+    "answer": 0,
+    "explain": "'so + adj/adv + that' = quá… đến nỗi."
+  },
+  {
+    "id": "g25",
+    "tag": "grammar",
+    "sentence": "Please make sure that the documents ____ before you leave.",
+    "options": [
+      "sign",
+      "signed",
+      "are signed",
+      "signing"
+    ],
+    "answer": 2,
+    "explain": "Tài liệu 'được ký' → bị động 'are signed'."
+  },
+  {
+    "id": "g26",
+    "tag": "grammar",
+    "sentence": "The CEO, ____ founded the company in 1998, will retire next year.",
+    "options": [
+      "who",
+      "whom",
+      "which",
+      "whose"
+    ],
+    "answer": 0,
+    "explain": "Đại từ quan hệ chỉ người, làm chủ ngữ của 'founded' → 'who'."
+  },
+  {
+    "id": "g27",
+    "tag": "grammar",
+    "sentence": "We have ____ received the samples from the supplier.",
+    "options": [
+      "yet",
+      "still",
+      "already",
+      "ever"
+    ],
+    "answer": 2,
+    "explain": "'already' trong câu khẳng định hiện tại hoàn thành. 'yet' dùng phủ định/nghi vấn."
+  },
+  {
+    "id": "g28",
+    "tag": "grammar",
+    "sentence": "The safety inspection is conducted ____ six months.",
+    "options": [
+      "all",
+      "every",
+      "each of",
+      "any"
+    ],
+    "answer": 1,
+    "explain": "'every six months' = sáu tháng một lần."
+  },
+  {
+    "id": "g29",
+    "tag": "grammar",
+    "sentence": "The new policy applies to full-time employees ____.",
+    "options": [
+      "only",
+      "just",
+      "alone",
+      "single"
+    ],
+    "answer": 0,
+    "explain": "'only' đứng cuối câu nhấn mạnh 'chỉ' nhân viên toàn thời gian."
+  },
+  {
+    "id": "g30",
+    "tag": "grammar",
+    "sentence": "By the time the guests arrive, the caterers ____ the tables.",
+    "options": [
+      "set",
+      "will have set",
+      "have set",
+      "had set"
+    ],
+    "answer": 1,
+    "explain": "'By the time + hiện tại' → tương lai hoàn thành 'will have set'."
+  },
+  {
+    "id": "v01",
+    "tag": "vocab",
+    "sentence": "The hotel is ____ located near the airport and the city center.",
+    "options": [
+      "conveniently",
+      "originally",
+      "financially",
+      "rarely"
+    ],
+    "answer": 0,
+    "explain": "'conveniently located' = ở vị trí thuận tiện."
+  },
+  {
+    "id": "v02",
+    "tag": "vocab",
+    "sentence": "Please ____ your seat belt while the sign is on.",
+    "options": [
+      "attach",
+      "fasten",
+      "connect",
+      "hold"
+    ],
+    "answer": 1,
+    "explain": "Cụm cố định 'fasten your seat belt' = thắt dây an toàn."
+  },
+  {
+    "id": "v03",
+    "tag": "vocab",
+    "sentence": "The company reported a 12 percent ____ in profits last quarter.",
+    "options": [
+      "increase",
+      "expense",
+      "estimate",
+      "attempt"
+    ],
+    "answer": 0,
+    "explain": "'increase in profits' = mức tăng lợi nhuận; đi với số phần trăm."
+  },
+  {
+    "id": "v04",
+    "tag": "vocab",
+    "sentence": "Ms. Tran will ____ the meeting because the director is away.",
+    "options": [
+      "chair",
+      "sit",
+      "hold",
+      "stand"
+    ],
+    "answer": 0,
+    "explain": "'chair the meeting' = chủ trì cuộc họp."
+  },
+  {
+    "id": "v05",
+    "tag": "vocab",
+    "sentence": "All products come with a two-year ____.",
+    "options": [
+      "receipt",
+      "warranty",
+      "invoice",
+      "discount"
+    ],
+    "answer": 1,
+    "explain": "'warranty' = bảo hành; đi với thời hạn (two-year)."
+  },
+  {
+    "id": "v06",
+    "tag": "vocab",
+    "sentence": "Employees must ____ with the new security regulations.",
+    "options": [
+      "comply",
+      "agree",
+      "obey",
+      "accept"
+    ],
+    "answer": 0,
+    "explain": "'comply with' = tuân thủ. 'obey/accept' không đi với 'with'."
+  },
+  {
+    "id": "v07",
+    "tag": "vocab",
+    "sentence": "The flight was ____ due to bad weather.",
+    "options": [
+      "delayed",
+      "reserved",
+      "boarded",
+      "arrived"
+    ],
+    "answer": 0,
+    "explain": "'delayed due to' = bị hoãn vì."
+  },
+  {
+    "id": "v08",
+    "tag": "vocab",
+    "sentence": "We ____ your patience while we resolve the issue.",
+    "options": [
+      "appreciate",
+      "apologize",
+      "approve",
+      "apply"
+    ],
+    "answer": 0,
+    "explain": "'appreciate your patience' = cảm ơn bạn đã kiên nhẫn."
+  },
+  {
+    "id": "v09",
+    "tag": "vocab",
+    "sentence": "The ____ for the position must be submitted online.",
+    "options": [
+      "application",
+      "appointment",
+      "applicant",
+      "appliance"
+    ],
+    "answer": 0,
+    "explain": "'application' = hồ sơ ứng tuyển. 'applicant' là người, 'appliance' là thiết bị."
+  },
+  {
+    "id": "v10",
+    "tag": "vocab",
+    "sentence": "The restaurant can ____ up to 200 guests for private events.",
+    "options": [
+      "accommodate",
+      "reserve",
+      "participate",
+      "recommend"
+    ],
+    "answer": 0,
+    "explain": "'accommodate' = chứa được (số người)."
+  },
+  {
+    "id": "v11",
+    "tag": "vocab",
+    "sentence": "Please keep your ____ as proof of purchase.",
+    "options": [
+      "receipt",
+      "recipe",
+      "record",
+      "review"
+    ],
+    "answer": 0,
+    "explain": "'receipt' = biên lai. Đừng nhầm với 'recipe' (công thức nấu ăn)."
+  },
+  {
+    "id": "v12",
+    "tag": "vocab",
+    "sentence": "The factory has ____ its production capacity by 30 percent.",
+    "options": [
+      "expanded",
+      "extended",
+      "exceeded",
+      "excluded"
+    ],
+    "answer": 0,
+    "explain": "'expand capacity' = mở rộng công suất."
+  },
+  {
+    "id": "v13",
+    "tag": "vocab",
+    "sentence": "Our team will ____ a survey to measure customer satisfaction.",
+    "options": [
+      "conduct",
+      "make",
+      "take",
+      "build"
+    ],
+    "answer": 0,
+    "explain": "'conduct a survey' = tiến hành khảo sát."
+  },
+  {
+    "id": "v14",
+    "tag": "vocab",
+    "sentence": "The contract will ____ at the end of December unless renewed.",
+    "options": [
+      "expire",
+      "extend",
+      "expand",
+      "explore"
+    ],
+    "answer": 0,
+    "explain": "'expire' = hết hạn."
+  },
+  {
+    "id": "v15",
+    "tag": "vocab",
+    "sentence": "The new intern is very ____ and always meets her deadlines.",
+    "options": [
+      "reliable",
+      "relative",
+      "relevant",
+      "reluctant"
+    ],
+    "answer": 0,
+    "explain": "'reliable' = đáng tin cậy — hợp với 'always meets her deadlines'."
+  },
+  {
+    "id": "v16",
+    "tag": "vocab",
+    "sentence": "Please ____ the attached form and return it to HR.",
+    "options": [
+      "complete",
+      "compete",
+      "compose",
+      "compare"
+    ],
+    "answer": 0,
+    "explain": "'complete the form' = điền đầy đủ biểu mẫu."
+  },
+  {
+    "id": "v17",
+    "tag": "vocab",
+    "sentence": "The museum offers a 20% ____ to students with a valid ID.",
+    "options": [
+      "discount",
+      "deposit",
+      "budget",
+      "balance"
+    ],
+    "answer": 0,
+    "explain": "'discount' = giảm giá."
+  },
+  {
+    "id": "v18",
+    "tag": "vocab",
+    "sentence": "The meeting has been ____ to next Thursday.",
+    "options": [
+      "postponed",
+      "canceled",
+      "attended",
+      "reminded"
+    ],
+    "answer": 0,
+    "explain": "'postponed to' = dời sang (một thời điểm)."
+  },
+  {
+    "id": "v19",
+    "tag": "vocab",
+    "sentence": "All visitors must ____ at the reception desk upon arrival.",
+    "options": [
+      "register",
+      "recruit",
+      "reject",
+      "retire"
+    ],
+    "answer": 0,
+    "explain": "'register at reception' = đăng ký tại quầy lễ tân."
+  },
+  {
+    "id": "v20",
+    "tag": "vocab",
+    "sentence": "The quarterly report ____ a summary of all regional sales.",
+    "options": [
+      "includes",
+      "involves",
+      "invites",
+      "informs"
+    ],
+    "answer": 0,
+    "explain": "'includes a summary' = bao gồm phần tóm tắt."
+  },
+  {
+    "id": "v21",
+    "tag": "vocab",
+    "sentence": "Because of high demand, the item is temporarily out of ____.",
+    "options": [
+      "stock",
+      "store",
+      "shop",
+      "order"
+    ],
+    "answer": 0,
+    "explain": "'out of stock' = hết hàng."
+  },
+  {
+    "id": "v22",
+    "tag": "vocab",
+    "sentence": "The supplier agreed to ____ the price by five percent.",
+    "options": [
+      "reduce",
+      "refund",
+      "remove",
+      "replace"
+    ],
+    "answer": 0,
+    "explain": "'reduce the price' = giảm giá bán."
+  },
+  {
+    "id": "v23",
+    "tag": "vocab",
+    "sentence": "Ms. Kim was ____ to regional manager last month.",
+    "options": [
+      "promoted",
+      "provided",
+      "produced",
+      "protected"
+    ],
+    "answer": 0,
+    "explain": "'promoted to' = được thăng chức lên."
+  },
+  {
+    "id": "v24",
+    "tag": "vocab",
+    "sentence": "The bank charges a small ____ for international transfers.",
+    "options": [
+      "fee",
+      "fare",
+      "fine",
+      "toll"
+    ],
+    "answer": 0,
+    "explain": "'fee' = phí dịch vụ. 'fare' là tiền vé, 'fine' là tiền phạt."
+  },
+  {
+    "id": "v25",
+    "tag": "vocab",
+    "sentence": "We need to ____ a venue for the year-end party.",
+    "options": [
+      "book",
+      "buy",
+      "bring",
+      "build"
+    ],
+    "answer": 0,
+    "explain": "'book a venue' = đặt địa điểm."
+  },
+  {
+    "id": "v26",
+    "tag": "vocab",
+    "sentence": "The manual provides step-by-step ____ for installing the software.",
+    "options": [
+      "instructions",
+      "inspections",
+      "impressions",
+      "interruptions"
+    ],
+    "answer": 0,
+    "explain": "'instructions' = hướng dẫn."
+  },
+  {
+    "id": "v27",
+    "tag": "vocab",
+    "sentence": "Our customer service team is ____ 24 hours a day.",
+    "options": [
+      "available",
+      "affordable",
+      "acceptable",
+      "accurate"
+    ],
+    "answer": 0,
+    "explain": "'available 24 hours' = sẵn sàng phục vụ 24 giờ."
+  },
+  {
+    "id": "v28",
+    "tag": "vocab",
+    "sentence": "The new machine will help us ____ waste and save energy.",
+    "options": [
+      "minimize",
+      "maximize",
+      "memorize",
+      "modernize"
+    ],
+    "answer": 0,
+    "explain": "'minimize waste' = giảm thiểu lãng phí."
+  },
+  {
+    "id": "v29",
+    "tag": "vocab",
+    "sentence": "Please ____ me know if the delivery date changes.",
+    "options": [
+      "let",
+      "make",
+      "get",
+      "have"
+    ],
+    "answer": 0,
+    "explain": "'let me know' = cho tôi biết."
+  },
+  {
+    "id": "v30",
+    "tag": "vocab",
+    "sentence": "The hotel received excellent ____ from guests for its friendly staff.",
+    "options": [
+      "feedback",
+      "feature",
+      "figure",
+      "fashion"
+    ],
+    "answer": 0,
+    "explain": "'feedback' = phản hồi, nhận xét."
+  },
+  {
+    "id": "g31",
+    "tag": "grammar",
+    "sentence": "The report ____ by the finance team every Friday.",
+    "options": [
+      "prepares",
+      "is prepared",
+      "prepared",
+      "preparing"
+    ],
+    "answer": 1,
+    "explain": "Báo cáo 'được chuẩn bị' → bị động hiện tại đơn 'is prepared'."
+  },
+  {
+    "id": "g32",
+    "tag": "grammar",
+    "sentence": "Ms. Cho ____ the client when the power went out.",
+    "options": [
+      "calls",
+      "was calling",
+      "has called",
+      "will call"
+    ],
+    "answer": 1,
+    "explain": "Hành động đang diễn ra thì bị chen ngang → quá khứ tiếp diễn 'was calling'."
+  },
+  {
+    "id": "g33",
+    "tag": "grammar",
+    "sentence": "Please return the signed form ____ Wednesday.",
+    "options": [
+      "until",
+      "by",
+      "since",
+      "at"
+    ],
+    "answer": 1,
+    "explain": "'by + mốc thời gian' = trước hoặc đúng hạn. 'until' chỉ kéo dài tới."
+  },
+  {
+    "id": "g34",
+    "tag": "grammar",
+    "sentence": "The hotel is ____ the train station, so guests can walk there.",
+    "options": [
+      "next",
+      "near",
+      "close",
+      "beside of"
+    ],
+    "answer": 1,
+    "explain": "'near + danh từ' không cần giới từ. 'next to', 'close to', 'beside' mới đúng."
+  },
+  {
+    "id": "g35",
+    "tag": "grammar",
+    "sentence": "Employees ____ wish to attend must register in advance.",
+    "options": [
+      "who",
+      "which",
+      "whose",
+      "whom"
+    ],
+    "answer": 0,
+    "explain": "Đại từ quan hệ chỉ người làm chủ ngữ của 'wish' → 'who'."
+  },
+  {
+    "id": "g36",
+    "tag": "grammar",
+    "sentence": "The new printer works much more ____ than the old one.",
+    "options": [
+      "efficient",
+      "efficiently",
+      "efficiency",
+      "efficiencies"
+    ],
+    "answer": 1,
+    "explain": "Bổ nghĩa cho động từ 'works' cần trạng từ; 'more efficiently' là so sánh hơn."
+  },
+  {
+    "id": "g37",
+    "tag": "grammar",
+    "sentence": "____ of the two proposals was accepted by the board.",
+    "options": [
+      "Neither",
+      "None",
+      "Every",
+      "Each other"
+    ],
+    "answer": 0,
+    "explain": "Hai lựa chọn → 'Neither of the two'. 'None' dùng cho từ ba trở lên."
+  },
+  {
+    "id": "g38",
+    "tag": "grammar",
+    "sentence": "Mr. Okafor has ____ finished the quarterly analysis.",
+    "options": [
+      "already",
+      "yet",
+      "still",
+      "ago"
+    ],
+    "answer": 0,
+    "explain": "Hiện tại hoàn thành khẳng định → 'already'."
+  },
+  {
+    "id": "g39",
+    "tag": "grammar",
+    "sentence": "The manager asked us ____ the meeting room after use.",
+    "options": [
+      "clean",
+      "cleaning",
+      "to clean",
+      "cleaned"
+    ],
+    "answer": 2,
+    "explain": "'ask + someone + to V'."
+  },
+  {
+    "id": "g40",
+    "tag": "grammar",
+    "sentence": "Sales figures for March were ____ higher than expected.",
+    "options": [
+      "slight",
+      "slightly",
+      "slighter",
+      "slightest"
+    ],
+    "answer": 1,
+    "explain": "Bổ nghĩa cho tính từ so sánh 'higher' cần trạng từ 'slightly'."
+  },
+  {
+    "id": "g41",
+    "tag": "grammar",
+    "sentence": "The warehouse ____ renovated at the moment, so deliveries are delayed.",
+    "options": [
+      "is being",
+      "has been",
+      "was",
+      "will be"
+    ],
+    "answer": 0,
+    "explain": "'at the moment' → hiện tại tiếp diễn bị động 'is being renovated'."
+  },
+  {
+    "id": "g42",
+    "tag": "grammar",
+    "sentence": "We will refund the full amount ____ the item is returned unused.",
+    "options": [
+      "unless",
+      "provided that",
+      "in spite of",
+      "whereas"
+    ],
+    "answer": 1,
+    "explain": "'provided that' = với điều kiện là. 'unless' = trừ khi (ngược nghĩa)."
+  },
+  {
+    "id": "g43",
+    "tag": "grammar",
+    "sentence": "The keynote speech was ____ by more than 500 attendees.",
+    "options": [
+      "hear",
+      "heard",
+      "hearing",
+      "hears"
+    ],
+    "answer": 1,
+    "explain": "Bị động 'was heard by'."
+  },
+  {
+    "id": "g44",
+    "tag": "grammar",
+    "sentence": "Ms. Ito is one of the ____ experienced engineers in the company.",
+    "options": [
+      "more",
+      "most",
+      "much",
+      "many"
+    ],
+    "answer": 1,
+    "explain": "'one of the most + adj' = một trong những … nhất."
+  },
+  {
+    "id": "g45",
+    "tag": "grammar",
+    "sentence": "Our office will be closed on Monday ____ the national holiday.",
+    "options": [
+      "because",
+      "because of",
+      "since",
+      "as"
+    ],
+    "answer": 1,
+    "explain": "'because of + cụm danh từ'. 'because/since/as' cần mệnh đề."
+  },
+  {
+    "id": "g46",
+    "tag": "grammar",
+    "sentence": "The technician recommended ____ the software before installing updates.",
+    "options": [
+      "to back up",
+      "backing up",
+      "back up",
+      "backed up"
+    ],
+    "answer": 1,
+    "explain": "'recommend + V-ing'."
+  },
+  {
+    "id": "g47",
+    "tag": "grammar",
+    "sentence": "The candidate ____ we interviewed yesterday has accepted the offer.",
+    "options": [
+      "who",
+      "whose",
+      "which",
+      "what"
+    ],
+    "answer": 0,
+    "explain": "Chỉ người, làm tân ngữ của 'interviewed' → 'who' (hoặc 'whom')."
+  },
+  {
+    "id": "g48",
+    "tag": "grammar",
+    "sentence": "Prices are expected to rise ____ 5 percent next year.",
+    "options": [
+      "in",
+      "by",
+      "with",
+      "to"
+    ],
+    "answer": 1,
+    "explain": "'rise by + mức tăng'. 'rise to' = tăng tới mức."
+  },
+  {
+    "id": "g49",
+    "tag": "grammar",
+    "sentence": "____ arriving at the airport, please proceed to the check-in counter.",
+    "options": [
+      "Upon",
+      "During",
+      "While",
+      "Until"
+    ],
+    "answer": 0,
+    "explain": "'Upon + V-ing' = ngay khi. 'While' cần mệnh đề đầy đủ."
+  },
+  {
+    "id": "g50",
+    "tag": "grammar",
+    "sentence": "The company has grown ____ over the past decade.",
+    "options": [
+      "consider",
+      "considerable",
+      "considerably",
+      "consideration"
+    ],
+    "answer": 2,
+    "explain": "Bổ nghĩa cho 'has grown' cần trạng từ 'considerably'."
+  },
+  {
+    "id": "g51",
+    "tag": "grammar",
+    "sentence": "Had the shipment arrived on time, we ____ the deadline.",
+    "options": [
+      "would meet",
+      "would have met",
+      "met",
+      "will meet"
+    ],
+    "answer": 1,
+    "explain": "Câu điều kiện loại 3 đảo ngữ 'Had + S + V3' → 'would have met'."
+  },
+  {
+    "id": "g52",
+    "tag": "grammar",
+    "sentence": "Please keep this document ____ for your records.",
+    "options": [
+      "safe",
+      "safely",
+      "safety",
+      "safest"
+    ],
+    "answer": 0,
+    "explain": "'keep + O + adj' (keep it safe)."
+  },
+  {
+    "id": "g53",
+    "tag": "grammar",
+    "sentence": "The new branch will open ____ the end of the year.",
+    "options": [
+      "in",
+      "at",
+      "on",
+      "since"
+    ],
+    "answer": 1,
+    "explain": "'at the end of + thời gian'."
+  },
+  {
+    "id": "g54",
+    "tag": "grammar",
+    "sentence": "Mr. Reyes ____ to Berlin twice this year for trade shows.",
+    "options": [
+      "travels",
+      "has traveled",
+      "traveled",
+      "is traveling"
+    ],
+    "answer": 1,
+    "explain": "'this year' chưa kết thúc + số lần → hiện tại hoàn thành."
+  },
+  {
+    "id": "g55",
+    "tag": "grammar",
+    "sentence": "Visitors are not allowed to enter the laboratory ____ an escort.",
+    "options": [
+      "without",
+      "except",
+      "besides",
+      "unless"
+    ],
+    "answer": 0,
+    "explain": "'without + danh từ' = mà không có."
+  },
+  {
+    "id": "g56",
+    "tag": "grammar",
+    "sentence": "The larger the order, ____ the discount.",
+    "options": [
+      "the bigger",
+      "bigger",
+      "the biggest",
+      "big"
+    ],
+    "answer": 0,
+    "explain": "So sánh kép 'The + so sánh hơn, the + so sánh hơn'."
+  },
+  {
+    "id": "g57",
+    "tag": "grammar",
+    "sentence": "Ms. Alvarez will be out of the office ____ next Friday.",
+    "options": [
+      "until",
+      "by",
+      "for",
+      "in"
+    ],
+    "answer": 0,
+    "explain": "'until + mốc' = cho đến (thứ Sáu tuần sau mới về)."
+  },
+  {
+    "id": "g58",
+    "tag": "grammar",
+    "sentence": "All staff are required to wear ____ identification badges.",
+    "options": [
+      "they",
+      "them",
+      "their",
+      "themselves"
+    ],
+    "answer": 2,
+    "explain": "Tính từ sở hữu trước danh từ 'badges'."
+  },
+  {
+    "id": "g59",
+    "tag": "grammar",
+    "sentence": "The seminar on digital marketing was ____ informative.",
+    "options": [
+      "high",
+      "highly",
+      "height",
+      "higher"
+    ],
+    "answer": 1,
+    "explain": "'highly + adj' = rất; 'highly informative'."
+  },
+  {
+    "id": "g60",
+    "tag": "grammar",
+    "sentence": "Once the contract ____, work can begin immediately.",
+    "options": [
+      "signs",
+      "is signed",
+      "signed",
+      "will sign"
+    ],
+    "answer": 1,
+    "explain": "Mệnh đề thời gian 'once' dùng hiện tại; hợp đồng 'được ký' → bị động."
+  },
+  {
+    "id": "g61",
+    "tag": "grammar",
+    "sentence": "The museum offers guided tours ____ English and Japanese.",
+    "options": [
+      "both",
+      "either",
+      "in both",
+      "neither"
+    ],
+    "answer": 2,
+    "explain": "'tours in + ngôn ngữ'; 'in both A and B'."
+  },
+  {
+    "id": "g62",
+    "tag": "grammar",
+    "sentence": "We apologize for ____ inconvenience this may cause.",
+    "options": [
+      "any",
+      "some",
+      "every",
+      "much"
+    ],
+    "answer": 0,
+    "explain": "Câu xin lỗi chuẩn: 'any inconvenience this may cause'."
+  },
+  {
+    "id": "g63",
+    "tag": "grammar",
+    "sentence": "The product launch, ____ was scheduled for May, has been moved to July.",
+    "options": [
+      "that",
+      "which",
+      "who",
+      "when"
+    ],
+    "answer": 1,
+    "explain": "Mệnh đề quan hệ không xác định (có dấu phẩy) chỉ vật → 'which', không dùng 'that'."
+  },
+  {
+    "id": "g64",
+    "tag": "grammar",
+    "sentence": "Employees should submit expense reports ____ a month.",
+    "options": [
+      "once",
+      "one",
+      "first",
+      "single"
+    ],
+    "answer": 0,
+    "explain": "'once a month' = mỗi tháng một lần."
+  },
+  {
+    "id": "g65",
+    "tag": "grammar",
+    "sentence": "The factory produces ____ 2,000 units per day.",
+    "options": [
+      "approximate",
+      "approximately",
+      "approximation",
+      "approximated"
+    ],
+    "answer": 1,
+    "explain": "Bổ nghĩa cho số lượng cần trạng từ 'approximately'."
+  },
+  {
+    "id": "g66",
+    "tag": "grammar",
+    "sentence": "Mr. Dubois is ____ for his attention to detail.",
+    "options": [
+      "know",
+      "knew",
+      "known",
+      "knowing"
+    ],
+    "answer": 2,
+    "explain": "'be known for' = nổi tiếng vì."
+  },
+  {
+    "id": "g67",
+    "tag": "grammar",
+    "sentence": "There ____ several complaints about the new parking policy.",
+    "options": [
+      "has been",
+      "have been",
+      "is",
+      "was"
+    ],
+    "answer": 1,
+    "explain": "'several complaints' số nhiều → 'have been'."
+  },
+  {
+    "id": "g68",
+    "tag": "grammar",
+    "sentence": "The team worked ____ to finish the project ahead of schedule.",
+    "options": [
+      "hard",
+      "hardly",
+      "harder",
+      "hardness"
+    ],
+    "answer": 0,
+    "explain": "'work hard' = chăm chỉ. 'hardly' = hầu như không (nghĩa khác)."
+  },
+  {
+    "id": "g69",
+    "tag": "grammar",
+    "sentence": "____ the new regulations, all vehicles must be inspected annually.",
+    "options": [
+      "According to",
+      "Due to",
+      "Instead of",
+      "As well as"
+    ],
+    "answer": 0,
+    "explain": "'According to + nguồn' = theo (quy định)."
+  },
+  {
+    "id": "g70",
+    "tag": "grammar",
+    "sentence": "She would rather ____ from home than commute two hours a day.",
+    "options": [
+      "work",
+      "working",
+      "to work",
+      "worked"
+    ],
+    "answer": 0,
+    "explain": "'would rather + V nguyên mẫu'."
+  },
+  {
+    "id": "g71",
+    "tag": "grammar",
+    "sentence": "The auditor found ____ errors in the financial statements.",
+    "options": [
+      "few",
+      "little",
+      "much",
+      "a little"
+    ],
+    "answer": 0,
+    "explain": "'errors' đếm được số nhiều → 'few'. 'little/much' đi với không đếm được."
+  },
+  {
+    "id": "g72",
+    "tag": "grammar",
+    "sentence": "The reception desk is staffed ____ the day and night.",
+    "options": [
+      "through",
+      "throughout",
+      "along",
+      "across"
+    ],
+    "answer": 1,
+    "explain": "'throughout the day' = suốt cả ngày."
+  },
+  {
+    "id": "g73",
+    "tag": "grammar",
+    "sentence": "Ms. Nakamura ____ as head of the department since January.",
+    "options": [
+      "serves",
+      "served",
+      "has served",
+      "is serving"
+    ],
+    "answer": 2,
+    "explain": "'since January' → hiện tại hoàn thành."
+  },
+  {
+    "id": "g74",
+    "tag": "grammar",
+    "sentence": "Please let us know ____ you will attend the banquet.",
+    "options": [
+      "whether",
+      "that",
+      "what",
+      "which"
+    ],
+    "answer": 0,
+    "explain": "'let us know whether' = cho biết có … hay không."
+  },
+  {
+    "id": "g75",
+    "tag": "grammar",
+    "sentence": "The city council voted ____ the new bridge.",
+    "options": [
+      "approve",
+      "to approve",
+      "approving",
+      "approval"
+    ],
+    "answer": 1,
+    "explain": "'vote to + V' = biểu quyết để."
+  },
+  {
+    "id": "g76",
+    "tag": "grammar",
+    "sentence": "Customers can track ____ orders online at any time.",
+    "options": [
+      "they",
+      "their",
+      "theirs",
+      "them"
+    ],
+    "answer": 1,
+    "explain": "Tính từ sở hữu 'their orders'."
+  },
+  {
+    "id": "g77",
+    "tag": "grammar",
+    "sentence": "The elevator is ____ of order; please use the stairs.",
+    "options": [
+      "off",
+      "out",
+      "away",
+      "over"
+    ],
+    "answer": 1,
+    "explain": "'out of order' = hỏng."
+  },
+  {
+    "id": "g78",
+    "tag": "grammar",
+    "sentence": "Mr. Patel speaks Spanish ____ than anyone else on the team.",
+    "options": [
+      "fluent",
+      "more fluently",
+      "most fluently",
+      "fluently"
+    ],
+    "answer": 1,
+    "explain": "Có 'than' → so sánh hơn của trạng từ: 'more fluently'."
+  },
+  {
+    "id": "g79",
+    "tag": "grammar",
+    "sentence": "The new policy will take effect ____ immediately.",
+    "options": [
+      "almost",
+      "nearly",
+      "hardly",
+      "quite"
+    ],
+    "answer": 0,
+    "explain": "'almost immediately' = gần như ngay lập tức."
+  },
+  {
+    "id": "g80",
+    "tag": "grammar",
+    "sentence": "____ he is new to the company, Mr. Lim already leads a team.",
+    "options": [
+      "Although",
+      "Despite",
+      "However",
+      "Because of"
+    ],
+    "answer": 0,
+    "explain": "'Although + mệnh đề'. 'Despite' cần danh từ."
+  },
+  {
+    "id": "g81",
+    "tag": "grammar",
+    "sentence": "The supplier ____ us a discount if we order in bulk.",
+    "options": [
+      "gives",
+      "will give",
+      "gave",
+      "giving"
+    ],
+    "answer": 1,
+    "explain": "Điều kiện loại 1: 'if + hiện tại' → mệnh đề chính 'will give'."
+  },
+  {
+    "id": "g82",
+    "tag": "grammar",
+    "sentence": "The document must be signed by ____ the tenant and the landlord.",
+    "options": [
+      "either",
+      "both",
+      "each",
+      "every"
+    ],
+    "answer": 1,
+    "explain": "'both A and B'."
+  },
+  {
+    "id": "g83",
+    "tag": "grammar",
+    "sentence": "This offer is valid ____ 31 December only.",
+    "options": [
+      "until",
+      "since",
+      "by",
+      "from"
+    ],
+    "answer": 0,
+    "explain": "'valid until' = có hiệu lực đến."
+  },
+  {
+    "id": "g84",
+    "tag": "grammar",
+    "sentence": "The training materials are available ____ from the HR portal.",
+    "options": [
+      "direct",
+      "directly",
+      "direction",
+      "directed"
+    ],
+    "answer": 1,
+    "explain": "Bổ nghĩa cho 'available … from' cần trạng từ 'directly'."
+  },
+  {
+    "id": "g85",
+    "tag": "grammar",
+    "sentence": "Nobody ____ the office until the security check is complete.",
+    "options": [
+      "may leave",
+      "may leaves",
+      "may leaving",
+      "may left"
+    ],
+    "answer": 0,
+    "explain": "'may + V nguyên mẫu'."
+  },
+  {
+    "id": "g86",
+    "tag": "grammar",
+    "sentence": "The plant manager insisted that every worker ____ safety goggles.",
+    "options": [
+      "wears",
+      "wear",
+      "wore",
+      "wearing"
+    ],
+    "answer": 1,
+    "explain": "'insist that + S + V nguyên mẫu' (giả định cách)."
+  },
+  {
+    "id": "g87",
+    "tag": "grammar",
+    "sentence": "The survey results will be shared ____ all department heads.",
+    "options": [
+      "with",
+      "to",
+      "for",
+      "at"
+    ],
+    "answer": 0,
+    "explain": "'share something with someone'."
+  },
+  {
+    "id": "g88",
+    "tag": "grammar",
+    "sentence": "____ of the applicants had the required certification.",
+    "options": [
+      "Almost",
+      "Most",
+      "Every",
+      "Much"
+    ],
+    "answer": 1,
+    "explain": "'Most of the + danh từ'. 'Almost' là trạng từ, không đứng một mình."
+  },
+  {
+    "id": "g89",
+    "tag": "grammar",
+    "sentence": "The order was shipped ____ the customer requested express delivery.",
+    "options": [
+      "as soon as",
+      "so that",
+      "even though",
+      "in order to"
+    ],
+    "answer": 0,
+    "explain": "'as soon as' = ngay khi; ship ngay khi khách yêu cầu."
+  },
+  {
+    "id": "g90",
+    "tag": "grammar",
+    "sentence": "We look forward to ____ you at the conference next month.",
+    "options": [
+      "see",
+      "seeing",
+      "saw",
+      "be seen"
+    ],
+    "answer": 1,
+    "explain": "'look forward to + V-ing'."
+  },
+  {
+    "id": "g91",
+    "tag": "grammar",
+    "sentence": "The manager wants the presentation ____ by noon tomorrow.",
+    "options": [
+      "finish",
+      "finished",
+      "finishing",
+      "to finish"
+    ],
+    "answer": 1,
+    "explain": "'want + O + V3' = muốn cái gì được hoàn thành."
+  },
+  {
+    "id": "g92",
+    "tag": "grammar",
+    "sentence": "____ the CEO nor the CFO was available for comment.",
+    "options": [
+      "Either",
+      "Neither",
+      "Both",
+      "Not only"
+    ],
+    "answer": 1,
+    "explain": "'Neither … nor …'."
+  },
+  {
+    "id": "g93",
+    "tag": "grammar",
+    "sentence": "The rent is due on the first day of ____ month.",
+    "options": [
+      "each",
+      "all",
+      "some",
+      "any"
+    ],
+    "answer": 0,
+    "explain": "'each month' với danh từ số ít."
+  },
+  {
+    "id": "g94",
+    "tag": "grammar",
+    "sentence": "Our sales representatives are trained ____ handle customer complaints.",
+    "options": [
+      "for",
+      "to",
+      "with",
+      "about"
+    ],
+    "answer": 1,
+    "explain": "'be trained to + V'."
+  },
+  {
+    "id": "g95",
+    "tag": "grammar",
+    "sentence": "The article was written ____ that even beginners could understand it.",
+    "options": [
+      "so simply",
+      "such simply",
+      "simply so",
+      "as simple"
+    ],
+    "answer": 0,
+    "explain": "'so + adv + that'."
+  },
+  {
+    "id": "g96",
+    "tag": "grammar",
+    "sentence": "Mr. Brown ____ retire next year after 30 years of service.",
+    "options": [
+      "is going to",
+      "goes to",
+      "went to",
+      "has gone to"
+    ],
+    "answer": 0,
+    "explain": "'next year' → 'is going to retire'."
+  },
+  {
+    "id": "g97",
+    "tag": "grammar",
+    "sentence": "The room was too small ____ all the participants.",
+    "options": [
+      "accommodating",
+      "to accommodate",
+      "accommodate",
+      "accommodated"
+    ],
+    "answer": 1,
+    "explain": "'too + adj + to V'."
+  },
+  {
+    "id": "g98",
+    "tag": "grammar",
+    "sentence": "The company's profits have doubled ____ the last two years.",
+    "options": [
+      "over",
+      "since",
+      "from",
+      "at"
+    ],
+    "answer": 0,
+    "explain": "'over the last two years' = trong hai năm qua."
+  },
+  {
+    "id": "g99",
+    "tag": "grammar",
+    "sentence": "Ms. Wu was ____ to hear that her proposal had been accepted.",
+    "options": [
+      "delight",
+      "delighted",
+      "delighting",
+      "delightful"
+    ],
+    "answer": 1,
+    "explain": "Cảm xúc của người → 'delighted' (V3)."
+  },
+  {
+    "id": "g100",
+    "tag": "grammar",
+    "sentence": "The safety manual explains ____ to operate the machine correctly.",
+    "options": [
+      "how",
+      "what",
+      "that",
+      "why"
+    ],
+    "answer": 0,
+    "explain": "'explain how to + V' = giải thích cách."
+  },
+  {
+    "id": "v31",
+    "tag": "vocab",
+    "sentence": "The new employee orientation will ____ at 9 a.m. in Room B.",
+    "options": [
+      "take place",
+      "take part",
+      "take off",
+      "take over"
+    ],
+    "answer": 0,
+    "explain": "'take place' = diễn ra."
+  },
+  {
+    "id": "v32",
+    "tag": "vocab",
+    "sentence": "Please ____ the enclosed questionnaire and return it by mail.",
+    "options": [
+      "fill out",
+      "fill up",
+      "find out",
+      "figure out"
+    ],
+    "answer": 0,
+    "explain": "'fill out a form/questionnaire' = điền vào."
+  },
+  {
+    "id": "v33",
+    "tag": "vocab",
+    "sentence": "The company will ____ 50 new staff members next quarter.",
+    "options": [
+      "recruit",
+      "resign",
+      "retire",
+      "refuse"
+    ],
+    "answer": 0,
+    "explain": "'recruit' = tuyển dụng."
+  },
+  {
+    "id": "v34",
+    "tag": "vocab",
+    "sentence": "All passengers must present a valid ____ at the boarding gate.",
+    "options": [
+      "boarding pass",
+      "luggage",
+      "departure",
+      "aisle"
+    ],
+    "answer": 0,
+    "explain": "'boarding pass' = thẻ lên máy bay."
+  },
+  {
+    "id": "v35",
+    "tag": "vocab",
+    "sentence": "Ms. Garcia was ____ for her outstanding sales performance.",
+    "options": [
+      "recognized",
+      "realized",
+      "recalled",
+      "recovered"
+    ],
+    "answer": 0,
+    "explain": "'be recognized for' = được ghi nhận/khen thưởng vì."
+  },
+  {
+    "id": "v36",
+    "tag": "vocab",
+    "sentence": "The hotel offers a complimentary ____ service to the airport.",
+    "options": [
+      "shuttle",
+      "shelter",
+      "shift",
+      "shipment"
+    ],
+    "answer": 0,
+    "explain": "'shuttle service' = xe đưa đón."
+  },
+  {
+    "id": "v37",
+    "tag": "vocab",
+    "sentence": "Due to a scheduling ____, the meeting has been moved to Tuesday.",
+    "options": [
+      "conflict",
+      "contract",
+      "content",
+      "contest"
+    ],
+    "answer": 0,
+    "explain": "'scheduling conflict' = trùng lịch."
+  },
+  {
+    "id": "v38",
+    "tag": "vocab",
+    "sentence": "We need to ____ the budget before we can approve the project.",
+    "options": [
+      "review",
+      "remind",
+      "remain",
+      "repair"
+    ],
+    "answer": 0,
+    "explain": "'review the budget' = xem xét lại ngân sách."
+  },
+  {
+    "id": "v39",
+    "tag": "vocab",
+    "sentence": "The printer is ____ with most operating systems.",
+    "options": [
+      "compatible",
+      "comparable",
+      "competitive",
+      "comprehensive"
+    ],
+    "answer": 0,
+    "explain": "'compatible with' = tương thích với."
+  },
+  {
+    "id": "v40",
+    "tag": "vocab",
+    "sentence": "Employees may ____ up to five days of unused vacation to next year.",
+    "options": [
+      "carry over",
+      "carry out",
+      "carry on",
+      "carry away"
+    ],
+    "answer": 0,
+    "explain": "'carry over' = chuyển sang (kỳ sau)."
+  },
+  {
+    "id": "v41",
+    "tag": "vocab",
+    "sentence": "The store's annual ____ sale starts on Friday.",
+    "options": [
+      "clearance",
+      "clearly",
+      "clarity",
+      "cleaning"
+    ],
+    "answer": 0,
+    "explain": "'clearance sale' = xả hàng."
+  },
+  {
+    "id": "v42",
+    "tag": "vocab",
+    "sentence": "Please ____ this email to anyone who might be interested.",
+    "options": [
+      "forward",
+      "follow",
+      "found",
+      "fold"
+    ],
+    "answer": 0,
+    "explain": "'forward an email' = chuyển tiếp."
+  },
+  {
+    "id": "v43",
+    "tag": "vocab",
+    "sentence": "The construction project is ____ to be completed by March.",
+    "options": [
+      "expected",
+      "excepted",
+      "expensive",
+      "extended"
+    ],
+    "answer": 0,
+    "explain": "'be expected to' = dự kiến."
+  },
+  {
+    "id": "v44",
+    "tag": "vocab",
+    "sentence": "The restaurant received a positive ____ in the local newspaper.",
+    "options": [
+      "review",
+      "reserve",
+      "revenue",
+      "receipt"
+    ],
+    "answer": 0,
+    "explain": "'review' = bài đánh giá."
+  },
+  {
+    "id": "v45",
+    "tag": "vocab",
+    "sentence": "Our technicians are available to ____ any technical issues.",
+    "options": [
+      "resolve",
+      "revolve",
+      "remove",
+      "release"
+    ],
+    "answer": 0,
+    "explain": "'resolve an issue' = giải quyết vấn đề."
+  },
+  {
+    "id": "v46",
+    "tag": "vocab",
+    "sentence": "The company aims to ____ its market share in Asia.",
+    "options": [
+      "expand",
+      "expend",
+      "expel",
+      "expire"
+    ],
+    "answer": 0,
+    "explain": "'expand market share' = mở rộng thị phần."
+  },
+  {
+    "id": "v47",
+    "tag": "vocab",
+    "sentence": "Tickets are non-refundable and must be used on the ____ date.",
+    "options": [
+      "specified",
+      "specific",
+      "special",
+      "specialty"
+    ],
+    "answer": 0,
+    "explain": "'the specified date' = ngày đã ghi rõ."
+  },
+  {
+    "id": "v48",
+    "tag": "vocab",
+    "sentence": "Ms. Osman will ____ the sales team while Mr. Lee is on leave.",
+    "options": [
+      "supervise",
+      "surprise",
+      "survive",
+      "surround"
+    ],
+    "answer": 0,
+    "explain": "'supervise' = giám sát, quản lý."
+  },
+  {
+    "id": "v49",
+    "tag": "vocab",
+    "sentence": "The bank offers a competitive interest ____ on savings accounts.",
+    "options": [
+      "rate",
+      "ratio",
+      "rank",
+      "range"
+    ],
+    "answer": 0,
+    "explain": "'interest rate' = lãi suất."
+  },
+  {
+    "id": "v50",
+    "tag": "vocab",
+    "sentence": "Employees must ____ their supervisor if they will be late.",
+    "options": [
+      "notify",
+      "notice",
+      "note",
+      "nominate"
+    ],
+    "answer": 0,
+    "explain": "'notify someone' = thông báo cho ai."
+  },
+  {
+    "id": "v51",
+    "tag": "vocab",
+    "sentence": "The hotel's ____ include a fitness center and a rooftop pool.",
+    "options": [
+      "amenities",
+      "abilities",
+      "activities",
+      "authorities"
+    ],
+    "answer": 0,
+    "explain": "'amenities' = tiện nghi."
+  },
+  {
+    "id": "v52",
+    "tag": "vocab",
+    "sentence": "We were ____ with the quality of the catering service.",
+    "options": [
+      "impressed",
+      "improved",
+      "imported",
+      "implied"
+    ],
+    "answer": 0,
+    "explain": "'be impressed with' = ấn tượng với."
+  },
+  {
+    "id": "v53",
+    "tag": "vocab",
+    "sentence": "Please ____ a copy of your ID with the application form.",
+    "options": [
+      "enclose",
+      "enroll",
+      "encourage",
+      "engage"
+    ],
+    "answer": 0,
+    "explain": "'enclose' = đính kèm (thư từ)."
+  },
+  {
+    "id": "v54",
+    "tag": "vocab",
+    "sentence": "The delivery ____ depend on the size and weight of the package.",
+    "options": [
+      "charges",
+      "changes",
+      "chances",
+      "channels"
+    ],
+    "answer": 0,
+    "explain": "'delivery charges' = phí giao hàng."
+  },
+  {
+    "id": "v55",
+    "tag": "vocab",
+    "sentence": "The manager gave a brief ____ of the new safety procedures.",
+    "options": [
+      "overview",
+      "overtime",
+      "overlook",
+      "oversight"
+    ],
+    "answer": 0,
+    "explain": "'overview' = tổng quan."
+  },
+  {
+    "id": "v56",
+    "tag": "vocab",
+    "sentence": "The company car must be ____ to the garage by 6 p.m.",
+    "options": [
+      "returned",
+      "reminded",
+      "retired",
+      "retained"
+    ],
+    "answer": 0,
+    "explain": "'return' = trả lại."
+  },
+  {
+    "id": "v57",
+    "tag": "vocab",
+    "sentence": "All complaints are handled ____ by our customer care team.",
+    "options": [
+      "promptly",
+      "properly",
+      "probably",
+      "privately"
+    ],
+    "answer": 0,
+    "explain": "'promptly' = nhanh chóng, kịp thời."
+  },
+  {
+    "id": "v58",
+    "tag": "vocab",
+    "sentence": "The meeting agenda was ____ to all participants yesterday.",
+    "options": [
+      "distributed",
+      "disturbed",
+      "displayed",
+      "disposed"
+    ],
+    "answer": 0,
+    "explain": "'distribute' = phân phát."
+  },
+  {
+    "id": "v59",
+    "tag": "vocab",
+    "sentence": "The lease ____ that the tenant pay for utilities.",
+    "options": [
+      "stipulates",
+      "stimulates",
+      "stabilizes",
+      "stands"
+    ],
+    "answer": 0,
+    "explain": "'stipulate' = quy định (trong hợp đồng)."
+  },
+  {
+    "id": "v60",
+    "tag": "vocab",
+    "sentence": "Because of a ____ of staff, the café closes early on Sundays.",
+    "options": [
+      "shortage",
+      "storage",
+      "shortcut",
+      "shortlist"
+    ],
+    "answer": 0,
+    "explain": "'shortage of staff' = thiếu nhân viên."
+  },
+  {
+    "id": "v61",
+    "tag": "vocab",
+    "sentence": "The ____ for the design competition is 30 April.",
+    "options": [
+      "deadline",
+      "headline",
+      "outline",
+      "guideline"
+    ],
+    "answer": 0,
+    "explain": "'deadline' = hạn chót."
+  },
+  {
+    "id": "v62",
+    "tag": "vocab",
+    "sentence": "Our products are ____ tested to ensure quality.",
+    "options": [
+      "thoroughly",
+      "thoughtfully",
+      "throughout",
+      "though"
+    ],
+    "answer": 0,
+    "explain": "'thoroughly tested' = kiểm tra kỹ lưỡng."
+  },
+  {
+    "id": "v63",
+    "tag": "vocab",
+    "sentence": "Mr. Silva has been ____ to the Tokyo office for two years.",
+    "options": [
+      "assigned",
+      "designed",
+      "resigned",
+      "signed"
+    ],
+    "answer": 0,
+    "explain": "'be assigned to' = được phân công tới."
+  },
+  {
+    "id": "v64",
+    "tag": "vocab",
+    "sentence": "Please keep your personal ____ in the lockers provided.",
+    "options": [
+      "belongings",
+      "longings",
+      "beings",
+      "buildings"
+    ],
+    "answer": 0,
+    "explain": "'personal belongings' = đồ đạc cá nhân."
+  },
+  {
+    "id": "v65",
+    "tag": "vocab",
+    "sentence": "The seminar will ____ topics such as leadership and teamwork.",
+    "options": [
+      "cover",
+      "close",
+      "count",
+      "climb"
+    ],
+    "answer": 0,
+    "explain": "'cover a topic' = đề cập, bao gồm."
+  },
+  {
+    "id": "v66",
+    "tag": "vocab",
+    "sentence": "The new packaging is made from ____ materials.",
+    "options": [
+      "recycled",
+      "recalled",
+      "rewarded",
+      "reduced"
+    ],
+    "answer": 0,
+    "explain": "'recycled materials' = vật liệu tái chế."
+  },
+  {
+    "id": "v67",
+    "tag": "vocab",
+    "sentence": "A ____ of 20 percent is required to confirm the booking.",
+    "options": [
+      "deposit",
+      "depot",
+      "deputy",
+      "deport"
+    ],
+    "answer": 0,
+    "explain": "'deposit' = tiền đặt cọc."
+  },
+  {
+    "id": "v68",
+    "tag": "vocab",
+    "sentence": "The consultant made several ____ to improve efficiency.",
+    "options": [
+      "recommendations",
+      "reservations",
+      "regulations",
+      "relations"
+    ],
+    "answer": 0,
+    "explain": "'make recommendations' = đưa ra đề xuất."
+  },
+  {
+    "id": "v69",
+    "tag": "vocab",
+    "sentence": "Sales have ____ by 8 percent since the advertising campaign began.",
+    "options": [
+      "risen",
+      "raised",
+      "arisen",
+      "rose"
+    ],
+    "answer": 0,
+    "explain": "'rise' (nội động từ) → hiện tại hoàn thành 'have risen'. 'raise' cần tân ngữ."
+  },
+  {
+    "id": "v70",
+    "tag": "vocab",
+    "sentence": "The event was ____ due to unforeseen circumstances.",
+    "options": [
+      "called off",
+      "called on",
+      "called in",
+      "called up"
+    ],
+    "answer": 0,
+    "explain": "'call off' = huỷ bỏ."
+  },
+  {
+    "id": "v71",
+    "tag": "vocab",
+    "sentence": "Ms. Kaur is highly ____ in international trade law.",
+    "options": [
+      "knowledgeable",
+      "knowing",
+      "known",
+      "knowledge"
+    ],
+    "answer": 0,
+    "explain": "'knowledgeable in/about' = am hiểu về."
+  },
+  {
+    "id": "v72",
+    "tag": "vocab",
+    "sentence": "Please ____ to the attached chart for detailed figures.",
+    "options": [
+      "refer",
+      "reflect",
+      "relate",
+      "reply"
+    ],
+    "answer": 0,
+    "explain": "'refer to' = tham khảo."
+  },
+  {
+    "id": "v73",
+    "tag": "vocab",
+    "sentence": "The factory has ____ strict quality-control measures.",
+    "options": [
+      "implemented",
+      "implicated",
+      "imported",
+      "impressed"
+    ],
+    "answer": 0,
+    "explain": "'implement measures' = triển khai biện pháp."
+  },
+  {
+    "id": "v74",
+    "tag": "vocab",
+    "sentence": "The airline offers a 10 kg baggage ____ for economy passengers.",
+    "options": [
+      "allowance",
+      "alliance",
+      "allocation",
+      "ambition"
+    ],
+    "answer": 0,
+    "explain": "'baggage allowance' = hạn mức hành lý."
+  },
+  {
+    "id": "v75",
+    "tag": "vocab",
+    "sentence": "The road will be closed ____ while repairs are carried out.",
+    "options": [
+      "temporarily",
+      "permanently",
+      "eventually",
+      "rarely"
+    ],
+    "answer": 0,
+    "explain": "'temporarily' = tạm thời (trong lúc sửa)."
+  },
+  {
+    "id": "v76",
+    "tag": "vocab",
+    "sentence": "The board ____ approved the merger last week.",
+    "options": [
+      "unanimously",
+      "uniformly",
+      "unusually",
+      "unfortunately"
+    ],
+    "answer": 0,
+    "explain": "'unanimously approved' = nhất trí thông qua."
+  },
+  {
+    "id": "v77",
+    "tag": "vocab",
+    "sentence": "Our new office is ____ located in the city center.",
+    "options": [
+      "centrally",
+      "central",
+      "centrality",
+      "centralize"
+    ],
+    "answer": 0,
+    "explain": "'centrally located' = nằm ở vị trí trung tâm."
+  },
+  {
+    "id": "v78",
+    "tag": "vocab",
+    "sentence": "Customers who are not satisfied may request a full ____.",
+    "options": [
+      "refund",
+      "reform",
+      "refuse",
+      "refill"
+    ],
+    "answer": 0,
+    "explain": "'refund' = hoàn tiền."
+  },
+  {
+    "id": "v79",
+    "tag": "vocab",
+    "sentence": "The manager will ____ the new intern to the team this morning.",
+    "options": [
+      "introduce",
+      "induce",
+      "instruct",
+      "invest"
+    ],
+    "answer": 0,
+    "explain": "'introduce someone to' = giới thiệu."
+  },
+  {
+    "id": "v80",
+    "tag": "vocab",
+    "sentence": "Please ____ that all windows are locked before leaving.",
+    "options": [
+      "ensure",
+      "insure",
+      "assure",
+      "endure"
+    ],
+    "answer": 0,
+    "explain": "'ensure that' = đảm bảo rằng."
+  },
+  {
+    "id": "v81",
+    "tag": "vocab",
+    "sentence": "The company has a strong ____ for reliable service.",
+    "options": [
+      "reputation",
+      "repetition",
+      "reproduction",
+      "representation"
+    ],
+    "answer": 0,
+    "explain": "'reputation for' = danh tiếng về."
+  },
+  {
+    "id": "v82",
+    "tag": "vocab",
+    "sentence": "The keynote speaker will ____ the audience with a short video.",
+    "options": [
+      "address",
+      "admit",
+      "adopt",
+      "adjust"
+    ],
+    "answer": 0,
+    "explain": "'address the audience' = phát biểu trước khán giả."
+  },
+  {
+    "id": "v83",
+    "tag": "vocab",
+    "sentence": "Employees are entitled ____ 15 days of paid leave per year.",
+    "options": [
+      "to",
+      "for",
+      "with",
+      "at"
+    ],
+    "answer": 0,
+    "explain": "'be entitled to' = được hưởng."
+  },
+  {
+    "id": "v84",
+    "tag": "vocab",
+    "sentence": "The new smartphone features a ____ battery that lasts two days.",
+    "options": [
+      "durable",
+      "dual",
+      "durational",
+      "during"
+    ],
+    "answer": 0,
+    "explain": "'durable' = bền."
+  },
+  {
+    "id": "v85",
+    "tag": "vocab",
+    "sentence": "The quarterly ____ will be held in the main conference room.",
+    "options": [
+      "meeting",
+      "greeting",
+      "seating",
+      "heating"
+    ],
+    "answer": 0,
+    "explain": "'quarterly meeting' = họp hằng quý."
+  },
+  {
+    "id": "v86",
+    "tag": "vocab",
+    "sentence": "The manager ____ the team on their successful product launch.",
+    "options": [
+      "congratulated",
+      "contributed",
+      "concentrated",
+      "constructed"
+    ],
+    "answer": 0,
+    "explain": "'congratulate someone on' = chúc mừng ai về."
+  },
+  {
+    "id": "v87",
+    "tag": "vocab",
+    "sentence": "Payment must be made within 30 days of the invoice ____.",
+    "options": [
+      "date",
+      "data",
+      "debt",
+      "deal"
+    ],
+    "answer": 0,
+    "explain": "'invoice date' = ngày lập hoá đơn."
+  },
+  {
+    "id": "v88",
+    "tag": "vocab",
+    "sentence": "The city has invested heavily in public ____.",
+    "options": [
+      "transportation",
+      "translation",
+      "transaction",
+      "transition"
+    ],
+    "answer": 0,
+    "explain": "'public transportation' = giao thông công cộng."
+  },
+  {
+    "id": "v89",
+    "tag": "vocab",
+    "sentence": "Ms. Torres ____ a leading role in negotiating the contract.",
+    "options": [
+      "played",
+      "paid",
+      "placed",
+      "planned"
+    ],
+    "answer": 0,
+    "explain": "'play a role in' = đóng vai trò."
+  },
+  {
+    "id": "v90",
+    "tag": "vocab",
+    "sentence": "The software update ____ several security problems.",
+    "options": [
+      "addresses",
+      "attends",
+      "approaches",
+      "attaches"
+    ],
+    "answer": 0,
+    "explain": "'address a problem' = xử lý vấn đề."
+  },
+  {
+    "id": "v91",
+    "tag": "vocab",
+    "sentence": "The hotel restaurant is open to guests and the general ____.",
+    "options": [
+      "public",
+      "publish",
+      "publicity",
+      "publication"
+    ],
+    "answer": 0,
+    "explain": "'the general public' = công chúng."
+  },
+  {
+    "id": "v92",
+    "tag": "vocab",
+    "sentence": "Employees can ____ their timesheets through the online portal.",
+    "options": [
+      "access",
+      "assess",
+      "excess",
+      "accent"
+    ],
+    "answer": 0,
+    "explain": "'access' = truy cập."
+  },
+  {
+    "id": "v93",
+    "tag": "vocab",
+    "sentence": "The fair will ____ over 200 exhibitors from 30 countries.",
+    "options": [
+      "feature",
+      "future",
+      "figure",
+      "fixture"
+    ],
+    "answer": 0,
+    "explain": "'feature' = có sự góp mặt của."
+  },
+  {
+    "id": "v94",
+    "tag": "vocab",
+    "sentence": "We ____ our valued customers for their continued support.",
+    "options": [
+      "thank",
+      "think",
+      "thought",
+      "thick"
+    ],
+    "answer": 0,
+    "explain": "'thank someone for' = cảm ơn ai vì."
+  },
+  {
+    "id": "v95",
+    "tag": "vocab",
+    "sentence": "Owing to high ____, the seminar has been moved to a larger hall.",
+    "options": [
+      "demand",
+      "command",
+      "remand",
+      "deman"
+    ],
+    "answer": 0,
+    "explain": "'high demand' = nhu cầu cao."
+  },
+  {
+    "id": "v96",
+    "tag": "vocab",
+    "sentence": "The company offers flexible working ____ to all employees.",
+    "options": [
+      "arrangements",
+      "agreements",
+      "announcements",
+      "achievements"
+    ],
+    "answer": 0,
+    "explain": "'flexible working arrangements' = chế độ làm việc linh hoạt."
+  },
+  {
+    "id": "v97",
+    "tag": "vocab",
+    "sentence": "The auditor will ____ the accounts next week.",
+    "options": [
+      "examine",
+      "example",
+      "exempt",
+      "exchange"
+    ],
+    "answer": 0,
+    "explain": "'examine the accounts' = kiểm tra sổ sách."
+  },
+  {
+    "id": "v98",
+    "tag": "vocab",
+    "sentence": "All electrical equipment must be ____ by a qualified technician.",
+    "options": [
+      "installed",
+      "instilled",
+      "insulted",
+      "inspired"
+    ],
+    "answer": 0,
+    "explain": "'install' = lắp đặt."
+  },
+  {
+    "id": "v99",
+    "tag": "vocab",
+    "sentence": "The bakery is famous for its freshly ____ bread.",
+    "options": [
+      "baked",
+      "boiled",
+      "fried",
+      "frozen"
+    ],
+    "answer": 0,
+    "explain": "'freshly baked bread' = bánh mì mới nướng."
+  },
+  {
+    "id": "v100",
+    "tag": "vocab",
+    "sentence": "Please ____ the meeting minutes to everyone who attended.",
+    "options": [
+      "circulate",
+      "calculate",
+      "celebrate",
+      "cultivate"
+    ],
+    "answer": 0,
+    "explain": "'circulate' = phát/lưu hành (tài liệu)."
+  }
 ]

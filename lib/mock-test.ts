@@ -1,3 +1,4 @@
+import { createHmac, timingSafeEqual } from "node:crypto";
 import bank from "@/content/toeic-part5.json";
 import { shuffle } from "@/lib/match-game";
 import { findTermInSentence } from "@/lib/study-path";
@@ -89,6 +90,49 @@ export async function buildMockTest(): Promise<MockQuestion[]> {
   const picked = [...grammar.slice(0, half), ...vocab.slice(0, bankCount - half)];
 
   return shuffle([...picked.map(fromBank), ...generated]).slice(0, MOCK_SIZE);
+}
+
+/**
+ * Đề được "ký" khi dựng: token = base64(đáp án) + chữ ký HMAC. Client nộp
+ * token cùng lựa chọn, server ký lại để kiểm rồi tự chấm — client không tự
+ * báo điểm được. Khoá lấy từ CRON_SECRET (đã có sẵn trên Vercel).
+ */
+export type MockKey = { ids: string[]; answers: number[]; wordIds: (string | null)[] };
+
+function secret() {
+  return process.env.CRON_SECRET ?? process.env.SUPABASE_SERVICE_ROLE_KEY ?? "dailyeng";
+}
+
+function sign(payload: string) {
+  return createHmac("sha256", secret()).update(payload).digest("base64url");
+}
+
+export function signMockKey(questions: MockQuestion[]): string {
+  const key: MockKey = {
+    ids: questions.map((q) => q.id),
+    answers: questions.map((q) => q.answer),
+    wordIds: questions.map((q) => q.wordId ?? null),
+  };
+  const payload = Buffer.from(JSON.stringify(key)).toString("base64url");
+  return `${payload}.${sign(payload)}`;
+}
+
+/** Giải token; sai chữ ký thì null. */
+export function verifyMockKey(token: string): MockKey | null {
+  const [payload, signature] = token.split(".");
+  if (!payload || !signature) return null;
+  const expected = sign(payload);
+  if (
+    expected.length !== signature.length ||
+    !timingSafeEqual(Buffer.from(expected), Buffer.from(signature))
+  ) {
+    return null;
+  }
+  try {
+    return JSON.parse(Buffer.from(payload, "base64url").toString()) as MockKey;
+  } catch {
+    return null;
+  }
 }
 
 export type MockResultRow = {

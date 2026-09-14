@@ -3,6 +3,7 @@ import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
 import { getLeaderboard, type LeaderboardPeriod } from "@/lib/leaderboard";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Bảng xếp hạng" };
 
@@ -19,7 +20,12 @@ export default async function XepHangPage({
 }: PageProps<"/xep-hang">) {
   const params = await searchParams;
   const period: LeaderboardPeriod = params.ky === "all" ? "all" : "week";
-  const rows = await getLeaderboard(period, TOP_N);
+  const supabase = await createClient();
+  const [rows, { data: profile }] = await Promise.all([
+    getLeaderboard(period, TOP_N),
+    supabase.from("profiles").select("hide_rank").maybeSingle(),
+  ]);
+  const hidden = profile?.hide_rank ?? false;
 
   const top = rows.filter((row) => row.rank <= TOP_N);
   const me = rows.find((row) => row.isMe);
@@ -106,8 +112,18 @@ export default async function XepHangPage({
           </div>
         ) : null}
 
+        {hidden ? (
+          <p className="bg-brand-soft mt-4 rounded-2xl px-4 py-3 text-center text-sm">
+            Bạn đang ẩn khỏi bảng xếp hạng.{" "}
+            <Link href="/tai-khoan" className="text-brand font-semibold">
+              Bật lại ở Cá nhân
+            </Link>
+          </p>
+        ) : null}
+
         <p className="text-muted mt-6 text-center text-xs">
-          Tên hiển thị lấy từ tab Cá nhân. Nhớ +10 XP, quên +3 XP.
+          Tên hiển thị lấy từ tab Cá nhân. Nhớ +10 XP, quên +3 XP. Muốn ẩn tên,
+          bật “Ẩn tôi khỏi bảng xếp hạng” ở Cá nhân.
         </p>
       </div>
     </>

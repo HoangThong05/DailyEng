@@ -49,3 +49,22 @@ export async function updateProfile(
 
   return { notice: "Đã lưu thay đổi." };
 }
+/** Bật/tắt ẩn khỏi bảng xếp hạng. */
+export async function setHideRank(
+  hide: boolean,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "Phiên đăng nhập đã hết hạn." };
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("profiles")
+    .update({ hide_rank: hide })
+    .eq("id", user.id);
+  if (error) return { ok: false, error: error.message };
+
+  revalidatePath("/");
+  revalidatePath("/xep-hang");
+  revalidatePath("/tai-khoan");
+  return { ok: true };
+}
