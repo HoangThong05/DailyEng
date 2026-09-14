@@ -95,6 +95,18 @@ export function PictureSession({ questions }: { questions: PictureQuestion[] }) 
         >
           Bắt đầu
         </button>
+        {/* Điều kiện dùng API Pixabay: ghi rõ nguồn ảnh */}
+        <p className="text-muted mt-6 text-xs">
+          Ảnh minh hoạ từ{" "}
+          <a
+            href="https://pixabay.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="underline"
+          >
+            Pixabay
+          </a>
+        </p>
       </div>
     );
   }
