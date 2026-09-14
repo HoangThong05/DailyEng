@@ -490,9 +490,13 @@ export function PathSession({ deckName, stages, pool }: Props) {
       {step.kind === "meet" ? (
         <div key={`meet-${word.id}`} className="step-enter mt-3">
           <div className="border-border bg-card rounded-3xl border p-6 text-center">
-            <div className="flex items-center justify-center gap-3">
+            {/* Nút loa treo bên phải, không tính vào căn giữa để chữ và phiên âm thẳng hàng */}
+            <div className="relative mx-auto w-fit">
               <p className="text-3xl font-bold tracking-tight">{word.term}</p>
-              <SpeakButton text={word.term} />
+              <SpeakButton
+                text={word.term}
+                className="absolute top-1/2 left-full ml-3 -translate-y-1/2"
+              />
             </div>
             {word.phonetic ? (
               <p className="ipa text-muted mt-1 text-lg">{word.phonetic}</p>
@@ -530,9 +534,12 @@ export function PathSession({ deckName, stages, pool }: Props) {
               </>
             ) : step.prompt === "term" ? (
               <>
-                <div className="flex items-center gap-3">
+                <div className="relative mx-auto w-fit">
                   <p className="text-3xl font-bold tracking-tight">{word.term}</p>
-                  <SpeakButton text={word.term} />
+                  <SpeakButton
+                    text={word.term}
+                    className="absolute top-1/2 left-full ml-3 -translate-y-1/2"
+                  />
                 </div>
                 {word.phonetic ? (
                   <p className="ipa text-muted mt-1">{word.phonetic}</p>
