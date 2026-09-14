@@ -16,7 +16,7 @@
 - **Ghép cặp** — nối từ với nghĩa, đua với đồng hồ, lưu kỷ lục theo bộ
 - **Nghe & gõ** — máy đọc từ, gõ lại đúng chính tả
 - **Quiz** — trắc nghiệm 4 đáp án, xem lại từ sai
-- **Nghe chọn hình** — nghe từ, chạm đúng hình trong 4 emoji (kiểu Part 1); chỉ bộ có ≥4 từ vẽ được (`content/emoji-words.json`)
+- **Nghe chọn hình** — nghe từ, chạm đúng hình trong 4 ảnh thật (Pixabay, `public/photos/`), thiếu ảnh thì dùng Twemoji; chỉ bộ có ≥4 từ vẽ được (`content/emoji-words.json`)
 
 **Luyện kỹ năng**
 - **Nghe chép câu** — máy đọc cả câu ví dụ, gõ lại toàn bộ; chấm từng từ (căn LCS), nút đọc chậm, gợi ý từ khoá
@@ -72,7 +72,7 @@ lib/
 ├── push.ts, reminder.ts               # Web Push, giờ nhắc
 └── word-import.ts    # Tách văn bản dán vào thành danh sách từ
 
-scripts/              # render-icons.mjs (icon), generate-decks.mts + deck-specs.json (sinh bộ từ bằng AI), generated/ (JSON đã sinh)
+scripts/              # render-icons.mjs (icon), generate-decks.mts + deck-specs.json (sinh bộ từ bằng AI), generated/ (JSON đã sinh), fetch-photos.py (ảnh Pixabay cho Nghe chọn hình)
 supabase/             # Schema SQL, chạy theo thứ tự
 proxy.ts              # Middleware: làm mới session, chặn chưa đăng nhập
 public/               # Icon PWA, ảnh linh vật (mascot/), bìa trò chơi (games/), bìa bộ từ (decks/), service worker
@@ -128,5 +128,6 @@ Push lên GitHub, import vào Vercel, thêm biến môi trường ở **Settings
 | `npm run start` | Chạy bản đã build |
 | `npm run lint` | ESLint |
 | `node scripts/render-icons.mjs` | Sinh lại icon PWA/favicon từ `public/mascot/vit-tot-nghiep.png` (cần Python + Pillow) |
+| `python scripts/fetch-photos.py` | Tải ảnh thật (Pixabay) cho từng từ trong `content/emoji-words.json` vào `public/photos/`, ghi `content/photo-words.json` (cần `PIXABAY_KEY`) |
 | `node --env-file=.env.local scripts/generate-decks.mts` | Sinh nội dung các bộ từ còn thiếu bằng Claude theo `scripts/deck-specs.json`, xuất `supabase/seed/*.sql` (cần `ANTHROPIC_API_KEY`) |
 | `node scripts/generate-decks.mts --sql-only` | Chỉ dựng lại SQL từ JSON đã có, không gọi API |

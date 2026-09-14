@@ -57,3 +57,38 @@ export function EmojiImage({ emoji, size, className = "" }: Props) {
     />
   );
 }
+
+/**
+ * Hình minh hoạ cho từ: ảnh thật (public/photos) nếu có, không thì Twemoji.
+ * Ảnh thật vẽ kín khung 4:3; emoji đặt giữa với lề.
+ */
+export function WordPicture({
+  photo,
+  emoji,
+  className = "",
+}: {
+  photo?: string;
+  emoji: string;
+  className?: string;
+}) {
+  const [broken, setBroken] = useState(false);
+
+  if (photo && !broken) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element -- ảnh tĩnh đã tối ưu sẵn (WebP 480px)
+      <img
+        src={photo}
+        alt=""
+        loading="lazy"
+        draggable={false}
+        onError={() => setBroken(true)}
+        className={`h-full w-full object-cover select-none ${className}`}
+      />
+    );
+  }
+  return (
+    <div className={`flex h-full w-full items-center justify-center p-6 ${className}`}>
+      <EmojiImage emoji={emoji} size={128} className="h-full w-full object-contain" />
+    </div>
+  );
+}

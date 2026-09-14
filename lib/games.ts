@@ -9,6 +9,7 @@ import { todayInAppZone } from "@/lib/leitner";
 import { MATCH_MIN_WORDS, MATCH_PAIRS, shuffle, type MatchPair } from "@/lib/match-game";
 import {
   emojiFor,
+  photoFor,
   PICTURE_MIN_WORDS,
   PICTURE_POOL,
   PICTURE_SIZE,
@@ -263,16 +264,22 @@ export async function getPictureSession(deckId: string) {
   const deckOptions: PictureOption[] = pictured.map((word) => ({
     emoji: emojiFor(word.term)!,
     term: word.term,
+    photo: photoFor(word.term),
   }));
   const globalOptions: PictureOption[] = PICTURE_POOL.map(([term, emoji]) => ({
     emoji,
     term,
+    photo: photoFor(term),
   }));
 
   const questions: PictureQuestion[] = [...shuffle(due), ...shuffle(rest)]
     .slice(0, PICTURE_SIZE)
     .map((word) => {
-      const answer: PictureOption = { emoji: emojiFor(word.term)!, term: word.term };
+      const answer: PictureOption = {
+        emoji: emojiFor(word.term)!,
+        term: word.term,
+        photo: photoFor(word.term),
+      };
       const used = new Set([answer.emoji]);
       const distractors: PictureOption[] = [];
       for (const option of [...shuffle(deckOptions), ...shuffle(globalOptions)]) {

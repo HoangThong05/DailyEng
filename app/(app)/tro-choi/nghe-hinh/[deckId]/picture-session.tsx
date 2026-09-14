@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { recordReview } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
-import { EmojiImage } from "@/app/_components/emoji-image";
+import { EmojiImage, WordPicture } from "@/app/_components/emoji-image";
 import { SpeakerIcon } from "@/app/_components/icons";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import {
@@ -240,9 +240,9 @@ export function PictureSession({ questions }: { questions: PictureQuestion[] }) 
                 disabled={answered}
                 onClick={() => choose(optionIndex)}
                 aria-label={answered ? option.term : `Hình ${optionIndex + 1}`}
-                className={`flex aspect-square items-center justify-center rounded-3xl border-2 p-6 transition-colors press ${look}`}
+                className={`aspect-[4/3] overflow-hidden rounded-3xl border-2 transition-colors press ${look}`}
               >
-                <EmojiImage emoji={option.emoji} size={128} className="h-full w-full object-contain" />
+                <WordPicture photo={option.photo} emoji={option.emoji} />
               </button>
             );
           })}
