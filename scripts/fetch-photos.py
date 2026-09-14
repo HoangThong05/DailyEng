@@ -8,6 +8,7 @@ Chạy lại thì bỏ qua ảnh đã có. Cần PIXABAY_KEY trong .env.local
 
     python scripts/fetch-photos.py            # tải từ còn thiếu
     python scripts/fetch-photos.py --redo run # tải lại ảnh cho từ "run"
+    python scripts/fetch-photos.py --redo-all # tải lại toàn bộ
 """
 
 import io
@@ -30,6 +31,10 @@ SIZE = (480, 360)
 
 # Từ mơ hồ hoặc trừu tượng: mô tả rõ hơn để ảnh đúng ý.
 QUERY_HINTS = {
+    "toilet": "toilet bowl bathroom white",
+    "orange": "orange fruit slices",
+    "knife": "kitchen knife blade",
+    "receipt": "receipt paper cash register",
     "whisky": "whisky glass",
     "wheelchair": "wheelchair disabled person",
     "wallet": "leather wallet",
@@ -64,7 +69,7 @@ QUERY_HINTS = {
     "fridge": "refrigerator open kitchen",
     "gas station": "gas station pump",
     "football": "soccer ball football field",
-    "fork": "silver fork",
+    "fork": "fork spoon cutlery table",
     "desk": "office desk chair",
     "bike": "bicycle",
     "bacon": "bacon strips",
@@ -87,7 +92,7 @@ QUERY_HINTS = {
     "read": "person reading book",
     "write": "hand writing pen paper",
     "cook": "chef cooking kitchen",
-    "sleep": "person sleeping bed",
+    "sleep": "woman sleeping bed pillow",
     "cold": "cold winter person scarf snow",
     "hot": "hot sun heat summer",
     "happy": "happy smiling person",
@@ -163,7 +168,7 @@ QUERY_HINTS = {
     "school": "school classroom desks",
     "gym": "gym fitness weights",
     "park": "city park trees bench",
-    "menu": "restaurant menu card",
+    "menu": "restaurant menu food list",
     "meeting": "business meeting people",
     "presentation": "business presentation screen",
     "contract": "signing contract document",
@@ -223,7 +228,7 @@ QUERY_HINTS = {
     "graduation": "graduation cap students",
     "christmas": "christmas tree lights",
     "concert": "concert crowd stage",
-    "festival": "music festival colorful",
+    "festival": "lantern festival crowd night",
     "theater": "theater stage curtain",
     "alarm": "alarm clock",
     "flag": "flag waving",
@@ -232,6 +237,9 @@ QUERY_HINTS = {
     "storm": "storm lightning",
     "candle": "candle flame",
 }
+
+# Từ mà ảnh Pixabay nào cũng lệch nghĩa → không tải, game dùng emoji.
+NO_PHOTO = {"bill", "head", "price", "black", "white", "receipt", "menu"}
 
 SLUG_RE = re.compile(r"[^a-z0-9]+")
 
@@ -252,9 +260,7 @@ def load_env_key() -> str:
     sys.exit("Thiếu PIXABAY_KEY trong .env.local (xem https://pixabay.com/api/docs/)")
 
 
-def search(key: str, query: str, term: str) -> dict | None:
-    """Lấy 20 ảnh, ưu tiên ảnh có tag chứa đúng từ — Pixabay xếp ảnh "hot" lên
-    đầu nên kết quả đầu tiên hay lệch (angry → lego, screwdriver → khoan)."""
+def _hits(key: str, query: str) -> list[dict]:
     params = urllib.parse.urlencode(
         {
             "key": key,
@@ -262,19 +268,31 @@ def search(key: str, query: str, term: str) -> dict | None:
             "image_type": "photo",
             "orientation": "horizontal",
             "safesearch": "true",
-            "per_page": 20,
+            "per_page": 30,
             "lang": "en",
         }
     )
     with urllib.request.urlopen(f"https://pixabay.com/api/?{params}", timeout=20) as res:
-        data = json.load(res)
-    hits = data.get("hits") or []
-    needle = term.lower().split()[0]
-    for hit in hits:
-        tags = [t.strip() for t in hit.get("tags", "").lower().split(",")]
-        if any(needle == t or needle in t.split() for t in tags):
-            return hit
-    return hits[0] if hits else None
+        return json.load(res).get("hits") or []
+
+
+def _tag_match(hit: dict, words: list[str]) -> bool:
+    tags = [t.strip() for t in hit.get("tags", "").lower().split(",")]
+    return any(w == t or w in t.split() for t in tags for w in words)
+
+
+def search(key: str, query: str, term: str) -> dict | None:
+    """Chỉ nhận ảnh có tag chứa đúng từ (Pixabay tìm mờ: "receipt" ra lúa,
+    "bill" ra chim). Thử câu gợi ý trước, rồi từ trần; không có tag khớp thì
+    trả None để bỏ ảnh — thà hiện emoji còn hơn ảnh sai."""
+    needles = [w for w in term.lower().split() if len(w) > 2] or [term.lower()]
+    queries = [query] if query == term else [query, term]
+    for q in queries:
+        for hit in _hits(key, q):
+            if _tag_match(hit, needles):
+                return hit
+        time.sleep(0.7)
+    return None
 
 
 def download(url: str) -> Image.Image:
@@ -301,6 +319,7 @@ def fit_cover(img: Image.Image) -> Image.Image:
 def main() -> None:
     key = load_env_key()
     redo = set(sys.argv[2:]) if len(sys.argv) > 2 and sys.argv[1] == "--redo" else set()
+    redo_all = len(sys.argv) > 1 and sys.argv[1] == "--redo-all"
 
     emoji = json.loads(EMOJI_FILE.read_text(encoding="utf-8"))
     terms = [t for t in emoji if not t.startswith("_")]
@@ -313,14 +332,23 @@ def main() -> None:
     for term in terms:
         slug = slugify(term)
         out = OUT_DIR / f"{slug}.webp"
-        if term in photos and out.exists() and term not in redo:
+        if term in NO_PHOTO:
+            photos.pop(term, None)
+            if out.exists():
+                out.unlink()
+            continue
+        if term in photos and out.exists() and term not in redo and not redo_all:
             continue
 
         query = QUERY_HINTS.get(term, term)
         try:
             hit = search(key, query, term)
             if not hit:
-                print(f"  (không có ảnh) {term}")
+                # Không có ảnh nào gắn tag đúng từ → bỏ, game sẽ dùng emoji.
+                photos.pop(term, None)
+                if out.exists():
+                    out.unlink()
+                print(f"  (không có ảnh khớp) {term}")
                 continue
             img = fit_cover(download(hit["webformatURL"]))
             img.save(out, "WEBP", quality=82, method=6)
