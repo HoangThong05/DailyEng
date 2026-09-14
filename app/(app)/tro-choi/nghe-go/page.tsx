@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
-import { ChevronRightIcon, SpeakerIcon } from "@/app/_components/icons";
+import { SpeakerIcon } from "@/app/_components/icons";
+import { DeckPickCard } from "@/app/_components/deck-pick-card";
 import { PageHeader } from "@/app/_components/page-header";
 import { listDecks } from "@/lib/decks";
 
@@ -23,20 +23,12 @@ export default async function NgheGoPage() {
       ) : (
         <div className="stagger grid gap-3 px-5 pt-2 md:grid-cols-2 xl:grid-cols-3">
           {decks.map((deck) => (
-            <Link
+            <DeckPickCard
               key={deck.id}
+              deck={deck}
               href={`/tro-choi/nghe-go/${deck.id}`}
-              className="border-border bg-card flex items-center gap-3 rounded-2xl border p-4 press"
-            >
-              <span className="min-w-0 flex-1">
-                <span className="block truncate font-semibold">{deck.name}</span>
-                <span className="text-muted mt-0.5 block text-sm">
-                  {deck.wordCount} từ
-                  {deck.dueCount > 0 ? ` · ${deck.dueCount} đến hạn` : ""}
-                </span>
-              </span>
-              <ChevronRightIcon className="text-muted h-5 w-5 shrink-0" />
-            </Link>
+              action="Chơi"
+            />
           ))}
         </div>
       )}
