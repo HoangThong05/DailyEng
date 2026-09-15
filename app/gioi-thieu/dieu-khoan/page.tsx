@@ -49,7 +49,7 @@ export default function DieuKhoanPage() {
       <h2>Liên hệ</h2>
       <p>
         Câu hỏi về điều khoản hay quyền riêng tư: xem{" "}
-        <Link href="/gioi-thieu/bao-mat">Chính sách bảo mật</Link> hoặc gửi{" "}
+        <Link href="/gioi-thieu/bao-mat">Chính sách quyền riêng tư</Link> hoặc gửi{" "}
         <Link href="/gioi-thieu/gop-y">Góp ý</Link>.
       </p>
 

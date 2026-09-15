@@ -57,7 +57,7 @@ const SOCIAL_LABELS: Record<SocialKey, string> = {
 const INFO_LINKS = [
   { href: "/gioi-thieu/ve-dailyeng", label: "Về DailyEng" },
   { href: "/gioi-thieu/tac-gia", label: "Tác giả" },
-  { href: "/gioi-thieu/bao-mat", label: "Chính sách bảo mật" },
+  { href: "/gioi-thieu/bao-mat", label: "Chính sách quyền riêng tư" },
   { href: "/gioi-thieu/dieu-khoan", label: "Điều khoản sử dụng" },
   { href: "/gioi-thieu/gop-y", label: "Góp ý" },
 ];
