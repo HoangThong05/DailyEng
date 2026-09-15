@@ -12,10 +12,10 @@ export const SITE = {
   },
   social: {
     github: "https://github.com/HoangThong05",
-    facebook: "",
+    facebook: "https://www.facebook.com/phanhoangthong.1508/",
     linkedin: "",
-    tiktok: "",
-    youtube: "",
+    tiktok: "https://www.tiktok.com/@hthong.05",
+    youtube: "https://www.youtube.com/@padoithong05",
   },
   repo: "https://github.com/HoangThong05/DailyEng",
 };
