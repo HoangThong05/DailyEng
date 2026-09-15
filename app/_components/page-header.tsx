@@ -1,5 +1,6 @@
 import { Mascot, type MascotVariant } from "./mascot";
 import { ThemeButton } from "./theme-button";
+import { UserBar } from "./user-bar";
 
 type PageHeaderProps = {
   title: string;
@@ -11,7 +12,8 @@ type PageHeaderProps = {
 
 /**
  * Header dính trên đầu màn hình, tự chừa safe-area cho iPhone tai thỏ.
- * Có dải gradient mờ phía sau tiêu đề, vịt nhỏ và nút sáng/tối ở bên phải.
+ * Có dải gradient mờ phía sau tiêu đề; bên phải: vịt nhỏ, chuỗi/điểm danh,
+ * chuông, avatar và nút sáng/tối (điện thoại giấu vịt và nút sáng/tối cho gọn).
  */
 export function PageHeader({ title, subtitle, trailing, mascot }: PageHeaderProps) {
   return (
@@ -34,10 +36,12 @@ export function PageHeader({ title, subtitle, trailing, mascot }: PageHeaderProp
             <Mascot
               variant={mascot}
               size={48}
-              className="header-duck rounded-xl"
+              className="header-duck hidden rounded-xl sm:block"
             />
           ) : null}
-          <ThemeButton />
+          {/* Có dữ liệu (trong app) mới hiện; trang giới thiệu tự truyền riêng */}
+          <UserBar />
+          <ThemeButton className="hidden sm:flex" />
         </div>
       </div>
     </header>

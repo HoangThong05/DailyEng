@@ -247,3 +247,22 @@ export function LogoutIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function BellIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5H4.5L6 16.5Z" />
+      <path d="M10 20a2 2 0 0 0 4 0" />
+    </svg>
+  );
+}
+
+export function GiftIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M4 11.5h16v9H4z" />
+      <path d="M3 7.5h18v4H3zM12 7.5v13" />
+      <path d="M12 7.5c-1.5-3.5-5.5-3.5-5.5-1.5S9.5 7.5 12 7.5Zm0 0c1.5-3.5 5.5-3.5 5.5-1.5S14.5 7.5 12 7.5Z" />
+    </svg>
+  );
+}

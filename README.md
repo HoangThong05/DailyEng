@@ -27,6 +27,7 @@
 **Động lực**
 - XP và cấp độ (Người mới → Huyền thoại) tính từ mọi hoạt động học
 - Bảng xếp hạng XP 7 ngày / toàn thời gian giữa người dùng (hàm SQL `leaderboard`, chỉ lộ tên hiển thị và điểm; có nút ẩn mình khỏi bảng)
+- Điểm danh mỗi ngày ở thanh trên (+10 XP, ngày thứ 7 liên tiếp +50), chuông việc đang chờ, mốc chuỗi ngày học 3/7/14/30/60/100 thưởng một lần; trang Phần thưởng (`/phan-thuong`) ghi rõ quy định và tình hình của mình
 - Nhiệm vụ hằng ngày: 3 việc nhỏ (học 10 từ + 2 việc xoay vòng: trò chơi, nghe chép, shadowing, mock test…), xong được XP thưởng, xong cả ba thưởng thêm
 - Ôn tập hôm nay: gom từ đã học tới hạn từ mọi bộ vào một phiên (`/on-tap`)
 - Chuỗi ngày học, biểu đồ tuần, phân bố hộp ôn, độ chính xác theo bộ, từ hay sai nhất

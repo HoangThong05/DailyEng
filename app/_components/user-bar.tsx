@@ -1,0 +1,249 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { checkIn } from "@/app/_actions/checkin";
+import { playCorrect, unlockAudio } from "@/lib/game-audio";
+import type { CheckinState } from "@/lib/rewards";
+import type { UserBarData } from "@/lib/user-bar";
+import { Avatar } from "./avatar";
+import { BellIcon, FlameIcon } from "./icons";
+import { useUserBar } from "./user-bar-context";
+
+type Panel = "streak" | "bell" | null;
+
+/**
+ * Cụm nút góc trên: chuỗi ngày (mở bảng điểm danh), chuông (việc đang chờ),
+ * avatar (tới Cá nhân). Không có dữ liệu (chưa đăng nhập) thì không hiện gì.
+ * Dữ liệu lấy từ prop, không có thì từ context của layout app.
+ */
+export function UserBar({ data: dataProp }: { data?: UserBarData }) {
+  const fromContext = useUserBar();
+  const data = dataProp ?? fromContext;
+  const [open, setOpen] = useState<Panel>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Bấm ra ngoài hoặc Esc thì đóng.
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (event: MouseEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(null);
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(null);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  if (!data) return null;
+
+  const toggle = (panel: Panel) => setOpen((current) => (current === panel ? null : panel));
+  const pending = data.notices.length;
+  const chip =
+    "border-border bg-card hover:border-brand/50 flex h-10 shrink-0 items-center justify-center rounded-full border shadow-sm press";
+
+  return (
+    <div ref={rootRef} className="relative flex shrink-0 items-center gap-2">
+      <button
+        type="button"
+        onClick={() => toggle("streak")}
+        aria-expanded={open === "streak"}
+        aria-label={`Chuỗi ${data.streak} ngày, mở điểm danh`}
+        className={`${chip} gap-1 px-3 ${data.checkin.checkedToday ? "" : "ring-2 ring-amber-400/70"}`}
+      >
+        <FlameIcon className={`h-5 w-5 ${data.streak > 0 ? "text-orange-500" : "text-muted"}`} />
+        <span className="text-sm font-bold tabular-nums">{data.streak}</span>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => toggle("bell")}
+        aria-expanded={open === "bell"}
+        aria-label={pending > 0 ? `${pending} việc đang chờ` : "Không có việc chờ"}
+        className={`${chip} relative w-10`}
+      >
+        <BellIcon className="text-muted h-5 w-5" />
+        {pending > 0 ? (
+          <span className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[11px] font-bold text-white">
+            {pending}
+          </span>
+        ) : null}
+      </button>
+
+      <Link href="/tai-khoan" aria-label="Trang cá nhân" className="relative shrink-0 press">
+        <Avatar url={data.avatarUrl} name={data.name} size={40} className="border-border border shadow-sm" />
+        <span className="bg-brand absolute -right-1 -bottom-1 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
+          Lv.{data.level}
+        </span>
+      </Link>
+
+      {open === "streak" ? (
+        <CheckinPanel initial={data.checkin} streak={data.streak} onClose={() => setOpen(null)} />
+      ) : null}
+      {open === "bell" ? (
+        <NoticePanel
+          notices={data.notices}
+          onClose={() => setOpen(null)}
+          onOpenCheckin={() => setOpen("streak")}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+const noticeClass =
+  "hover:bg-brand-soft flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left text-sm";
+
+const panelClass =
+  "border-border bg-card page-enter absolute top-12 right-0 z-50 w-[min(20rem,calc(100vw-2.5rem))] rounded-2xl border p-4 shadow-xl shadow-black/10";
+
+function CheckinPanel({
+  initial,
+  streak,
+  onClose,
+}: {
+  initial: CheckinState;
+  streak: number;
+  onClose: () => void;
+}) {
+  const [state, setState] = useState(initial);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+
+  async function handleCheckIn() {
+    if (state.checkedToday || busy) return;
+    setBusy(true);
+    unlockAudio();
+    const result = await checkIn();
+    setBusy(false);
+    if (!result.ok) {
+      setMessage(result.error);
+      return;
+    }
+    setState(result.state);
+    if (result.xp > 0) {
+      playCorrect();
+      setMessage(`Điểm danh thành công, +${result.xp} XP đã cộng vào cấp độ.`);
+    }
+  }
+
+  return (
+    <div role="dialog" aria-label="Điểm danh" className={panelClass}>
+      <div className="text-center">
+        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/15">
+          <FlameIcon className="h-8 w-8 text-orange-500" />
+        </span>
+        <p className="mt-2 text-3xl font-extrabold tabular-nums">{streak}</p>
+        <p className="text-muted text-xs font-semibold uppercase">ngày học liên tiếp</p>
+      </div>
+
+      <p className="mt-4 text-center text-sm font-semibold">
+        Điểm danh tuần này
+        {state.consecutive > 0 ? (
+          <span className="text-muted font-normal"> · {state.consecutive} ngày liền</span>
+        ) : null}
+      </p>
+      <ol className="mt-2 flex justify-between">
+        {state.week.map((day) => (
+          <li key={day.day} className="flex flex-col items-center gap-1">
+            <span className={`text-[11px] font-semibold ${day.isToday ? "text-brand" : "text-muted"}`}>
+              {day.label}
+            </span>
+            <span
+              aria-label={day.checked ? "Đã điểm danh" : undefined}
+              className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
+                day.checked
+                  ? "bg-brand text-white"
+                  : day.isToday
+                    ? "border-brand border-2 border-dashed"
+                    : "bg-brand-soft"
+              }`}
+            >
+              {day.checked ? "✓" : ""}
+            </span>
+          </li>
+        ))}
+      </ol>
+
+      <button
+        type="button"
+        onClick={handleCheckIn}
+        disabled={state.checkedToday || busy}
+        className={`mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-bold press ${
+          state.checkedToday
+            ? "bg-emerald-500/15 text-emerald-600"
+            : "bg-brand text-white shadow-md shadow-blue-500/30"
+        }`}
+      >
+        {state.checkedToday
+          ? "✓ Đã điểm danh hôm nay"
+          : busy
+            ? "Đang ghi…"
+            : `Điểm danh · +${state.nextXp} XP`}
+      </button>
+
+      {message ? (
+        <p role="status" className="text-brand mt-2 text-center text-xs font-semibold">
+          {message}
+        </p>
+      ) : null}
+
+      <Link
+        href="/phan-thuong"
+        onClick={onClose}
+        className="text-muted hover:text-brand mt-3 block text-center text-xs font-semibold"
+      >
+        Xem quy định thưởng →
+      </Link>
+    </div>
+  );
+}
+
+function NoticePanel({
+  notices,
+  onClose,
+  onOpenCheckin,
+}: {
+  notices: UserBarData["notices"];
+  onClose: () => void;
+  /** Mục "chưa điểm danh" mở bảng điểm danh ngay tại chỗ. */
+  onOpenCheckin: () => void;
+}) {
+  return (
+    <div role="dialog" aria-label="Việc đang chờ" className={`${panelClass} p-2`}>
+      <p className="text-muted px-2 pt-1 pb-2 text-xs font-bold tracking-wide uppercase">
+        Hôm nay
+      </p>
+      {notices.length === 0 ? (
+        <p className="text-muted px-2 pb-2 text-sm">Không còn gì chờ. Tuyệt! 🎉</p>
+      ) : (
+        <ul className="space-y-1">
+          {notices.map((notice) => (
+            <li key={notice.text}>
+              {notice.href === "#diem-danh" ? (
+                <button type="button" onClick={onOpenCheckin} className={noticeClass}>
+                  <span className="text-lg" aria-hidden>
+                    {notice.emoji}
+                  </span>
+                  <span className="font-medium">{notice.text}</span>
+                </button>
+              ) : (
+                <Link href={notice.href} onClick={onClose} className={noticeClass}>
+                  <span className="text-lg" aria-hidden>
+                    {notice.emoji}
+                  </span>
+                  <span className="font-medium">{notice.text}</span>
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}

@@ -7,6 +7,7 @@ import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
 import { countDueReviews, listDecks } from "@/lib/decks";
 import { getLeaderboard } from "@/lib/leaderboard";
+import { awardStreakMilestones } from "@/lib/rewards";
 import { getStudyStats } from "@/lib/stats";
 import { getDailyTasks } from "@/lib/tasks";
 import { createClient } from "@/lib/supabase/server";
@@ -71,6 +72,8 @@ export default async function Home() {
     countDueReviews(),
     getDailyTasks(),
   ]);
+  // Mốc chuỗi 3/7/14… ngày: thưởng một lần, ghi ngay khi ghé trang chủ.
+  await awardStreakMilestones(stats.streak.current);
   const topThree = board.filter((row) => row.rank <= 3);
   const myRank = board.find((row) => row.isMe);
 

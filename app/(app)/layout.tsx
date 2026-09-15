@@ -2,8 +2,10 @@ import { redirect } from "next/navigation";
 import { BottomNav } from "@/app/_components/bottom-nav";
 import { PageTransition } from "@/app/_components/page-transition";
 import { SideNav } from "@/app/_components/side-nav";
+import { UserBarProvider } from "@/app/_components/user-bar-context";
 import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
+import { getUserBarData } from "@/lib/user-bar";
 
 /**
  * Khung cho các màn cần đăng nhập.
@@ -23,6 +25,8 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
     supabase.from("profiles").select("display_name, avatar_url").maybeSingle(),
     getStudyStats(),
   ]);
+  // Cụm nút góc trên (chuỗi, điểm danh, chuông, avatar) ở mọi PageHeader.
+  const userBar = await getUserBarData(profile, stats);
   const sideProfile = {
     name: profile?.display_name ?? "Bạn",
     avatarUrl: profile?.avatar_url ?? null,
@@ -35,7 +39,9 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex min-h-[100dvh] flex-col md:pl-60">
       <main className="pb-nav mx-auto flex w-full max-w-md flex-1 flex-col md:max-w-3xl md:pb-10 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
-        <PageTransition>{children}</PageTransition>
+        <UserBarProvider value={userBar}>
+          <PageTransition>{children}</PageTransition>
+        </UserBarProvider>
       </main>
       <BottomNav />
       <SideNav profile={sideProfile} />
