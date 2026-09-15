@@ -8,6 +8,7 @@
 
 **Học**
 - Học theo chặng: mỗi 5 từ là một chặng, từ mới đi qua gặp từ → trắc nghiệm (Anh→Việt, Việt→Anh, nghe→chọn) → gõ lại / điền vào câu; combo, âm thanh, từ sai làm lại ngay. Ôn tập giãn cách (hệ hộp Leitner) — chỉ hiện từ tới hạn ôn
+- Kiểm tra đầu vào (`/kiem-tra-dau-vao`): 20 câu chọn nghĩa từ dễ tới khó, ước mức nên học và gợi ý 3 bộ theo mục tiêu (TOEIC / giao tiếp / công việc / học thuật); kết quả lưu ở hồ sơ, trang Học hiện hàng "Gợi ý cho bạn"
 - Kho bộ từ theo nhóm: TOEIC (11 bộ theo chủ đề đề thi), Cốt lõi (8 bộ theo tần suất), Giao tiếp (7), Công việc (6), Học thuật (4) — hơn 3.300 từ kèm phiên âm và câu ví dụ, sinh bằng AI rồi duyệt lại
 - Tạo và sửa bộ từ riêng: dán hàng loạt từ Excel/Google Sheets/Quizlet (`word = nghĩa`, tab, `-`, `:`…), thêm/xoá/sửa từng từ kèm phiên âm và câu ví dụ
 
@@ -110,6 +111,7 @@ Trong SQL Editor chạy lần lượt:
 13. `supabase/schema-13-admin-khong-hoc.sql` — admin không lên bảng xếp hạng, không tính là người học; đăng nhập là vào thẳng khu quản trị
 14. `supabase/schema-14-ho-so.sql` — ảnh đại diện, tiểu sử, ảnh bìa (bucket `avatars`), xếp hạng kèm avatar
 15. `supabase/schema-15-nhiem-vu.sql` — nhiệm vụ hằng ngày: `review_log.source`, bảng `task_completions`, xếp hạng cộng XP thưởng
+16. `supabase/schema-16-dau-vao.sql` — cột `profiles.placement` lưu kết quả kiểm tra đầu vào
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

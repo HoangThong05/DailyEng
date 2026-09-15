@@ -6,6 +6,8 @@ import { PageHeader } from "@/app/_components/page-header";
 import { ScrollRow } from "@/app/_components/scroll-row";
 import { DECK_CATEGORIES, type CategoryStyle } from "@/lib/deck-categories";
 import { countDueReviews, listDecks, type DeckSummary } from "@/lib/decks";
+import { LEVEL_LABEL, parsePlacement, recommendDecks } from "@/lib/placement";
+import { createClient } from "@/lib/supabase/server";
 import { DeckCard } from "./deck-card";
 
 export const metadata: Metadata = { title: "Học từ vựng" };
@@ -65,7 +67,14 @@ function DeckRow({ decks, label }: { decks: DeckSummary[]; label: string }) {
 }
 
 export default async function HocPage() {
-  const [decks, dueReviews] = await Promise.all([listDecks(), countDueReviews()]);
+  const supabase = await createClient();
+  const [decks, dueReviews, { data: profile }] = await Promise.all([
+    listDecks(),
+    countDueReviews(),
+    supabase.from("profiles").select("placement").maybeSingle(),
+  ]);
+  const placement = parsePlacement(profile?.placement);
+  const suggested = placement ? recommendDecks(decks, placement.level, placement.goal) : [];
 
   // Nhóm có bộ mới hiện; bộ công khai không thuộc nhóm nào thì gom vào "Khác".
   const groups = DECK_CATEGORIES.map((category) => ({
@@ -116,6 +125,44 @@ export default async function HocPage() {
               </span>
             </Link>
           ) : null}
+
+          {/* Kiểm tra đầu vào: chưa làm thì mời; làm rồi thì gợi ý bộ theo kết quả */}
+          {placement && suggested.length > 0 ? (
+            <section aria-labelledby="goi-y" className="space-y-3">
+              <div className="flex items-baseline justify-between px-1">
+                <div>
+                  <h2 id="goi-y" className="font-semibold">
+                    Gợi ý cho bạn
+                  </h2>
+                  <p className="text-muted mt-0.5 text-sm">
+                    Theo kiểm tra đầu vào: mức {LEVEL_LABEL[placement.level]} · đúng{" "}
+                    {placement.score}/{placement.total}
+                  </p>
+                </div>
+                <Link href="/kiem-tra-dau-vao" className="text-brand shrink-0 text-sm font-semibold">
+                  Làm lại →
+                </Link>
+              </div>
+              <DeckRow decks={suggested} label="bộ gợi ý" />
+            </section>
+          ) : (
+            <Link
+              href="/kiem-tra-dau-vao"
+              className="group flex items-center gap-3 rounded-2xl border border-violet-300/60 bg-gradient-to-r from-violet-50 to-blue-50 p-3 pr-4 press dark:border-violet-500/30 dark:from-violet-500/10 dark:to-blue-500/10"
+            >
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet-500 text-xl text-white shadow-md shadow-violet-500/30">
+                📋
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold">Chưa biết bắt đầu từ bộ nào?</span>
+                <span className="text-muted block text-sm">Kiểm tra đầu vào 20 câu, 3 phút — app gợi ý bộ vừa sức</span>
+              </span>
+              <span className="flex min-h-10 shrink-0 items-center gap-1 rounded-xl bg-violet-500 px-4 text-sm font-bold text-white">
+                Làm ngay
+                <ChevronRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          )}
 
           {groups.map((group) => (
             <section

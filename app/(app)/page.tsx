@@ -65,7 +65,7 @@ export default async function Home() {
   // RLS chỉ trả về đúng hàng của người đang đăng nhập nên khỏi lọc theo id.
   // maybeSingle() để không ném lỗi nếu trigger tạo profile chưa chạy xong.
   const [{ data: profile }, stats, decks, board, dueReviews, tasks] = await Promise.all([
-    supabase.from("profiles").select("display_name, daily_goal").maybeSingle(),
+    supabase.from("profiles").select("display_name, daily_goal, placement").maybeSingle(),
     getStudyStats(),
     listDecks(),
     getLeaderboard("week", 3),
@@ -235,6 +235,20 @@ export default async function Home() {
                 Ôn ngay
                 <ChevronRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </span>
+            </Link>
+          ) : stats.totals.wordsSeen === 0 && !profile?.placement ? (
+            <Link
+              href="/kiem-tra-dau-vao"
+              className="border-border bg-card flex items-center gap-4 rounded-2xl border p-4 press"
+            >
+              <Mascot variant="hoc" size={64} className="rounded-xl" />
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold">Bắt đầu bằng kiểm tra đầu vào</span>
+                <span className="text-muted block text-sm">
+                  20 câu, 3 phút — app gợi ý bộ vừa sức với bạn.
+                </span>
+              </span>
+              <ChevronRightIcon className="text-muted h-5 w-5 shrink-0" />
             </Link>
           ) : decks.length === 0 ? (
             <Link
