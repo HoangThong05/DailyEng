@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/app/_components/service-worker-register";
+import { SIDEBAR_INIT_SCRIPT } from "@/lib/sidebar-store";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 
 // Inter có subset "vietnamese" nên dấu tiếng Việt hiển thị đúng.
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="vi" className={`${inter.variable} ${notoSans.variable} h-full`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: SIDEBAR_INIT_SCRIPT }} />
       </head>
       <body className="bg-bg text-fg min-h-[100dvh] font-sans antialiased">
         {children}

@@ -37,7 +37,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   };
 
   return (
-    <div className="flex min-h-[100dvh] flex-col md:pl-60">
+    <div className="app-shell flex min-h-[100dvh] flex-col">
       <main className="pb-nav mx-auto flex w-full max-w-md flex-1 flex-col md:max-w-3xl md:pb-10 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
         <UserBarProvider value={userBar}>
           <PageTransition>{children}</PageTransition>

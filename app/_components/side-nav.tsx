@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FlameIcon } from "./icons";
+import { setSidebarCollapsed, useSidebarCollapsed } from "@/lib/sidebar-store";
+import { ChevronRightIcon, FlameIcon } from "./icons";
 import { Avatar } from "./avatar";
 import { Mascot } from "./mascot";
 import { isSideActive, NAV_TABS, SIDE_EXTRAS } from "./nav-tabs";
@@ -19,13 +20,14 @@ export type SideProfile = {
 
 type Item = { href: string; label: string; Icon: (p: { className?: string }) => React.JSX.Element };
 
-function NavItem({ item, active }: { item: Item; active: boolean }) {
+function NavItem({ item, active, collapsed }: { item: Item; active: boolean; collapsed: boolean }) {
   const Icon = item.Icon;
   return (
     <Link
       href={item.href}
       aria-current={active ? "page" : undefined}
-      className={`group flex min-h-11 items-center gap-3 rounded-2xl px-3 font-semibold transition-[background-color,color,transform] duration-200 ${
+      title={collapsed ? item.label : undefined}
+      className={`side-item group flex min-h-11 items-center gap-3 rounded-2xl px-3 font-semibold transition-[background-color,color,transform] duration-200 ${
         active ? "nav-active" : "text-muted hover:bg-brand-soft hover:text-fg hover:translate-x-1"
       }`}
     >
@@ -36,37 +38,39 @@ function NavItem({ item, active }: { item: Item; active: boolean }) {
       >
         <Icon key={active ? "on" : "off"} className={`h-5 w-5 ${active ? "tab-pop" : ""}`} />
       </span>
-      {item.label}
+      <span className="side-label truncate">{item.label}</span>
     </Link>
   );
 }
 
 /**
  * Sidebar bên trái cho màn hình từ md trở lên; điện thoại dùng BottomNav.
- * Trên: logo. Giữa: 4 tab học + mục phụ. Dưới: đăng xuất và thẻ hồ sơ
- * (bấm vào là tới Cá nhân).
+ * Trên: logo. Giữa: 4 tab học + mục phụ. Dưới: thẻ hồ sơ (bấm vào là tới
+ * Cá nhân) và nút thu gọn / mở rộng. Thu gọn thì chỉ còn icon, có tooltip.
  */
 export function SideNav({ profile }: { profile: SideProfile }) {
   const pathname = usePathname();
+  const collapsed = useSidebarCollapsed();
   const mainTabs = NAV_TABS.filter((tab) => tab.href !== "/tai-khoan");
   const profileActive = isSideActive("/tai-khoan", pathname);
 
   return (
     <nav
       aria-label="Điều hướng chính"
-      className="border-border bg-card/70 fixed inset-y-0 left-0 z-50 hidden w-60 flex-col border-r backdrop-blur-xl md:flex"
+      className="side-nav border-border bg-card/70 fixed inset-y-0 left-0 z-50 hidden flex-col overflow-hidden border-r backdrop-blur-xl md:flex"
     >
       <Link
         href="/gioi-thieu"
-        className="group flex items-center gap-3 px-5 pt-6 pb-4"
+        className="group flex items-center gap-3 px-[18px] pt-6 pb-4"
         aria-label="Trang giới thiệu DailyEng"
+        title={collapsed ? "DailyEng" : undefined}
       >
         <Mascot
           variant="tot-nghiep"
           size={40}
           className="shrink-0 rounded-xl shadow-md shadow-blue-500/30 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
         />
-        <span className="from-brand bg-gradient-to-r to-violet-500 bg-clip-text text-xl font-extrabold tracking-tight text-transparent">
+        <span className="side-label from-brand bg-gradient-to-r to-violet-500 bg-clip-text text-xl font-extrabold tracking-tight text-transparent">
           DailyEng
         </span>
       </Link>
@@ -74,16 +78,18 @@ export function SideNav({ profile }: { profile: SideProfile }) {
       <ul className="flex flex-col gap-1 px-3">
         {mainTabs.map((item) => (
           <li key={item.href}>
-            <NavItem item={item} active={isSideActive(item.href, pathname)} />
+            <NavItem item={item} active={isSideActive(item.href, pathname)} collapsed={collapsed} />
           </li>
         ))}
       </ul>
 
-      <p className="text-muted mt-5 px-6 text-[11px] font-bold tracking-wide uppercase">Của tôi</p>
+      <p className="side-label text-muted mt-5 px-6 text-[11px] font-bold tracking-wide uppercase">Của tôi</p>
+      {/* Thu gọn: thay chữ "Của tôi" bằng một vạch ngăn */}
+      <div aria-hidden className="side-divider border-border mx-4 mt-4 hidden border-t" />
       <ul className="mt-1 flex flex-col gap-1 px-3">
         {SIDE_EXTRAS.map((item) => (
           <li key={item.href}>
-            <NavItem item={item} active={isSideActive(item.href, pathname)} />
+            <NavItem item={item} active={isSideActive(item.href, pathname)} collapsed={collapsed} />
           </li>
         ))}
       </ul>
@@ -92,17 +98,18 @@ export function SideNav({ profile }: { profile: SideProfile }) {
       <Link
         href="/tai-khoan"
         aria-current={profileActive ? "page" : undefined}
-        className={`border-border mx-3 mt-auto mb-4 flex items-center gap-3 rounded-2xl border p-3 transition-colors ${
+        title={collapsed ? `${profile.name} · Cấp ${profile.level}` : undefined}
+        className={`border-border mx-3 mt-auto mb-2 flex items-center gap-3 rounded-2xl border p-3 transition-colors ${
           profileActive ? "border-brand bg-brand-soft" : "bg-card hover:border-brand/50"
-        }`}
+        } ${collapsed ? "justify-center px-0" : ""}`}
       >
         <span className="relative shrink-0">
-          <Avatar url={profile.avatarUrl} name={profile.name} size={44} />
+          <Avatar url={profile.avatarUrl} name={profile.name} size={collapsed ? 36 : 44} />
           <span className="bg-brand absolute -right-1.5 -bottom-1.5 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
             Lv.{profile.level}
           </span>
         </span>
-        <span className="min-w-0">
+        <span className="side-label min-w-0">
           <span className="block truncate text-sm font-bold">{profile.name}</span>
           <span className="text-muted flex items-center gap-1 text-xs">
             {profile.title}
@@ -115,6 +122,17 @@ export function SideNav({ profile }: { profile: SideProfile }) {
           </span>
         </span>
       </Link>
+
+      <button
+        type="button"
+        onClick={() => setSidebarCollapsed(!collapsed)}
+        aria-label={collapsed ? "Mở rộng thanh bên" : "Thu gọn thanh bên"}
+        title={collapsed ? "Mở rộng" : undefined}
+        className="side-item text-muted hover:bg-brand-soft hover:text-fg mx-3 mb-4 flex min-h-10 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-colors press"
+      >
+        <ChevronRightIcon className={`h-4 w-4 transition-transform ${collapsed ? "" : "rotate-180"}`} />
+        <span className="side-label">Thu gọn</span>
+      </button>
     </nav>
   );
 }

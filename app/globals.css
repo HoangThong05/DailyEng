@@ -800,3 +800,38 @@
     animation-duration: var(--fall) !important;
   }
 }
+
+/* ---- Sidebar máy tính: mở rộng / thu gọn ---------------------------------
+   Bề rộng nằm trong --side-w; data-sidebar="collapsed" trên <html> (đặt từ
+   localStorage trước khi vẽ) đổi sang bản chỉ icon. Chữ ẩn bằng CSS nên không
+   nháy lúc tải. */
+:root {
+  --side-w: 15rem;
+}
+html[data-sidebar="collapsed"] {
+  --side-w: 4.75rem;
+}
+@media (min-width: 768px) {
+  .app-shell {
+    padding-left: var(--side-w);
+    transition: padding-left 0.22s ease;
+  }
+  .side-nav {
+    width: var(--side-w);
+    transition: width 0.22s ease;
+  }
+}
+html[data-sidebar="collapsed"] .side-label {
+  display: none;
+}
+html[data-sidebar="collapsed"] .side-item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+html[data-sidebar="collapsed"] .side-item:hover {
+  transform: none;
+}
+html[data-sidebar="collapsed"] .side-divider {
+  display: block;
+}
