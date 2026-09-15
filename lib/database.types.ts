@@ -312,6 +312,51 @@ export type Database = {
       };
       /** Người gọi có phải admin không (đặt bằng SQL, schema-11). */
       is_admin: { Args: Record<string, never>; Returns: boolean };
+      admin_overview: {
+        Args: Record<string, never>;
+        Returns: {
+          users_total: number;
+          users_new_7d: number;
+          users_active_7d: number;
+          users_active_today: number;
+          reviews_total: number;
+          reviews_7d: number;
+          mock_tests_total: number;
+          feedback_pending: number;
+          decks_public: number;
+          words_public: number;
+        }[];
+      };
+      admin_signups_daily: {
+        Args: { days: number };
+        Returns: { day: string; signups: number; active: number }[];
+      };
+      admin_users: {
+        Args: { top_n: number };
+        Returns: {
+          id: string;
+          email: string;
+          display_name: string | null;
+          created_at: string;
+          last_day: string | null;
+          reviews: number;
+          xp: number;
+          is_admin: boolean;
+          hide_rank: boolean;
+        }[];
+      };
+      admin_set_admin: { Args: { target: string; flag: boolean }; Returns: undefined };
+      admin_decks: {
+        Args: Record<string, never>;
+        Returns: {
+          id: string;
+          slug: string | null;
+          name: string;
+          category: string;
+          words: number;
+          learners: number;
+        }[];
+      };
       /** Top XP (tuần hoặc toàn thời gian) + hàng của chính mình nếu ngoài top. */
       leaderboard: {
         Args: { period: "week" | "all"; top_n: number };

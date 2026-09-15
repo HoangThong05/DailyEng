@@ -52,6 +52,7 @@ app/
 │   ├── hoc/          #   Học theo chặng, tạo/sửa bộ từ
 │   ├── quiz/         #   Quiz trắc nghiệm
 │   ├── tro-choi/     #   Hub trò chơi: ghep-cap, nghe-go, mua-tu
+│   ├── quan-tri/     #   Khu quản trị (admin): tổng quan, góp ý, người dùng, nội dung
 │   ├── gioi-thieu/   #   Trang giới thiệu công khai + Về DailyEng, Tác giả, Bảo mật, Điều khoản, Góp ý
 │   ├── ky-nang/      #   Hub kỹ năng: chep-cau, shadowing, mock-test (phat-am ở thư mục riêng)
 │   ├── phat-am/      #   Luyện phát âm
@@ -102,6 +103,7 @@ Trong SQL Editor chạy lần lượt:
 9. `supabase/schema-09-an-xep-hang-an-mung.sql` — ẩn khỏi bảng xếp hạng, lưu mốc đã ăn mừng
 10. `supabase/schema-10-gop-y.sql` — bảng góp ý
 11. `supabase/schema-11-admin.sql` — cờ admin, trang quản trị xem góp ý; gán admin bằng lệnh `update` ghi trong file (chạy tay, không commit email)
+12. `supabase/schema-12-quan-tri.sql` — hàm số liệu cho khu quản trị (tổng quan, người dùng, nội dung)
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

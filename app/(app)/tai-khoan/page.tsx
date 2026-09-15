@@ -356,7 +356,7 @@ export default async function TaiKhoanPage() {
                 href="/quan-tri"
                 className="border-brand bg-brand-soft text-brand flex min-h-11 items-center justify-center rounded-xl border text-sm font-semibold press"
               >
-                Quản trị · Góp ý người dùng
+                Vào khu quản trị
               </Link>
             ) : null}
 
