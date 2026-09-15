@@ -20,6 +20,7 @@ import {
   type RecognitionErrorCode,
   type SpeechRecognitionLike,
 } from "@/lib/speech";
+import { playCorrect, playMiss, readSoundPreference } from "@/lib/game-audio";
 import { xpForAnswers } from "@/lib/xp";
 
 type Phase = "intro" | "practice" | "finished";
@@ -118,6 +119,7 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
         readAlternatives(event.results),
       );
       setAttempt(result);
+      if (readSoundPreference()) (result.score >= SHADOW_PASS ? playCorrect : playMiss)();
       setBest((list) => {
         const next = [...list];
         next[index] = Math.max(next[index], result.score);

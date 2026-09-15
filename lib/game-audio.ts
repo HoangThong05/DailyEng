@@ -61,17 +61,25 @@ type ToneOptions = {
  * Một nốt: âm lượng lên nhanh (vài ms, tránh tiếng "tách" lúc bắt đầu) rồi
  * tắt dần theo hàm mũ, tần số trượt từ fromHz tới toHz.
  */
-function tone({
-  type,
-  fromHz,
-  toHz = fromHz,
-  seconds,
-  volume,
-  delay = 0,
-  lowpassHz,
-}: ToneOptions) {
+function tone(options: ToneOptions) {
   const ctx = getContext();
-  if (!ctx || ctx.state !== "running") return;
+  if (!ctx) return;
+  // Màn không có nút "Bắt đầu" (quiz, ghép cặp) thì tiếng đầu tiên phát ngay
+  // trong cú bấm đầu: context còn suspended → mở khoá rồi phát tiếp.
+  if (ctx.state === "suspended") {
+    void ctx.resume().then(() => {
+      if (ctx.state === "running") play(ctx, options);
+    });
+    return;
+  }
+  if (ctx.state !== "running") return;
+  play(ctx, options);
+}
+
+function play(
+  ctx: AudioContext,
+  { type, fromHz, toHz = fromHz, seconds, volume, delay = 0, lowpassHz }: ToneOptions,
+) {
 
   const start = ctx.currentTime + delay;
   const osc = ctx.createOscillator();

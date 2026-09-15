@@ -6,6 +6,7 @@ import { recordReview } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
+import { playCorrect, playMiss, readSoundPreference } from "@/lib/game-audio";
 import { buildMatchTiles, type MatchPair, type MatchTile } from "@/lib/match-game";
 import { xpForAnswers } from "@/lib/xp";
 
@@ -93,6 +94,7 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
       const nextMatched = new Set(matched).add(tile.wordId);
       setMatched(nextMatched);
       setSelected(null);
+      if (readSoundPreference()) playCorrect();
       if (nextMatched.size === pairs.length) finish(mistakes);
       return;
     }
@@ -104,6 +106,7 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
     }
     setMistakes(nextMistakes);
     setWrong([selected.id, tile.id]);
+    if (readSoundPreference()) playMiss();
     setTimeout(() => {
       setWrong(null);
       setSelected(null);

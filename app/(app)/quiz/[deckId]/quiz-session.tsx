@@ -6,6 +6,7 @@ import { recordReview } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
+import { playCorrect, playMiss, readSoundPreference } from "@/lib/game-audio";
 import type { QuizQuestion } from "@/lib/quiz";
 import { xpForAnswers } from "@/lib/xp";
 
@@ -31,6 +32,7 @@ export function QuizSession({ deckId, questions }: Props) {
 
     const isCorrect = option === question.correctIndex;
     setPicked(option);
+    if (readSoundPreference()) (isCorrect ? playCorrect : playMiss)();
 
     if (isCorrect) {
       setCorrectCount((count) => count + 1);

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { MicIcon, SpeakerIcon } from "@/app/_components/icons";
 import { useHydrated } from "@/app/_components/use-hydrated";
 import type { Word } from "@/lib/database.types";
+import { playCorrect, playMiss, readSoundPreference } from "@/lib/game-audio";
 import { assessAttempt, type Attempt } from "@/lib/pronunciation";
 import {
   createRecognition,
@@ -132,7 +133,9 @@ export function PronunciationSession({
     replaceRecording(null);
 
     recognition.onresult = (event) => {
-      setResult(assessAttempt(word.term, readAlternatives(event.results)));
+      const attempt = assessAttempt(word.term, readAlternatives(event.results));
+      setResult(attempt);
+      if (readSoundPreference()) (attempt.verdict === "good" ? playCorrect : playMiss)();
     };
     recognition.onerror = (event) => setError(errorMessage(event.error));
     recognition.onend = () => {
