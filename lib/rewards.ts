@@ -1,7 +1,7 @@
 import { addDays, todayInAppZone } from "@/lib/leitner";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { ALL_DONE_XP } from "@/lib/tasks";
-import { XP_FORGOT, XP_REMEMBERED } from "@/lib/xp";
+import { DAILY_ANSWER_XP_CAP, XP_FORGOT, XP_REMEMBERED } from "@/lib/xp";
 
 /**
  * Quy định thưởng của cả app. Mọi khoản thưởng đều ghi vào task_completions
@@ -9,7 +9,7 @@ import { XP_FORGOT, XP_REMEMBERED } from "@/lib/xp";
  *
  *  - Điểm danh mỗi ngày         +10 XP, ngày thứ 7 liên tiếp +50 XP (rồi lặp)
  *  - Nhiệm vụ ngày              +20–30 XP mỗi việc, xong cả ba +30 XP
- *  - Mỗi lượt trả lời           nhớ +10, quên +3 (tính thẳng từ review_log)
+ *  - Mỗi lượt trả lời           nhớ +5, quên +1, trần 300 XP/ngày (từ review_log)
  *  - Mốc chuỗi ngày học         3/7/14/30/60/100 ngày → thưởng một lần
  */
 
@@ -176,6 +176,7 @@ export const REWARD_RULES = [
     lines: [
       `Nhớ: +${XP_REMEMBERED} XP · Quên: +${XP_FORGOT} XP`,
       "Học, ôn tập, trò chơi, kỹ năng đều tính",
+      `Tối đa ${DAILY_ANSWER_XP_CAP} XP/ngày từ trả lời — quá mốc vẫn tính chuỗi và thống kê, chỉ không thêm XP`,
     ],
   },
   {

@@ -27,7 +27,7 @@
 - **Mock test TOEIC Part 5** — 20 câu điền vào chỗ trống, 10 phút; nửa đề từ ngân hàng 200 câu ngữ pháp/từ vựng viết tay (`content/toeic-part5.json`), nửa sinh từ câu ví dụ các bộ TOEIC; đề được ký HMAC và chấm ở server; giải thích từng câu, lưu lịch sử và điểm cao nhất
 
 **Động lực**
-- XP và cấp độ (Người mới → Huyền thoại) tính từ mọi hoạt động học
+- XP và cấp độ (Người mới → Huyền thoại): nhớ +5 / quên +1 mỗi lượt, trần 300 XP/ngày từ trả lời; thưởng nhiệm vụ, điểm danh, mốc chuỗi không áp trần; cấp L cần 100·(L−1)·L XP
 - Bảng xếp hạng XP 7 ngày / toàn thời gian giữa người dùng (hàm SQL `leaderboard`, chỉ lộ tên hiển thị và điểm; có nút ẩn mình khỏi bảng)
 - Điểm danh mỗi ngày ở thanh trên (+10 XP, ngày thứ 7 liên tiếp +50), chuông việc đang chờ, mốc chuỗi ngày học 3/7/14/30/60/100 thưởng một lần; trang Phần thưởng (`/phan-thuong`) ghi rõ quy định và tình hình của mình
 - Trang cá nhân công khai (`/nguoi-dung/<id>`): bấm tên trên bảng xếp hạng xem bìa, avatar, tiểu sử, cấp, XP, chuỗi, số tổng và huy hiệu của người khác (hàm `public_profile`, không lộ email; ai ẩn khỏi bảng xếp hạng thì không xem được)
@@ -117,6 +117,7 @@ Trong SQL Editor chạy lần lượt:
 16. `supabase/schema-16-dau-vao.sql` — cột `profiles.placement` lưu kết quả kiểm tra đầu vào
 17. `supabase/schema-17-huy-hieu.sql` — cột `profiles.badges`, bảng xếp hạng trả thêm huy hiệu
 18. `supabase/schema-18-ho-so-cong-khai.sql` — hàm `public_profile`, bảng xếp hạng trả `user_id` để mở trang cá nhân người khác
+19. `supabase/schema-19-xp-cham-lai.sql` — XP chậm lại: nhớ +5 / quên +1, trần 300 XP/ngày (view `answer_xp_by_day`), cập nhật `leaderboard` và `public_profile`
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

@@ -6,8 +6,14 @@
  * và mọi hoạt động (flashcard, quiz, trò chơi) đều tự động có điểm.
  */
 
-export const XP_REMEMBERED = 10;
-export const XP_FORGOT = 3;
+export const XP_REMEMBERED = 5;
+export const XP_FORGOT = 1;
+/**
+ * Trần XP từ trả lời trong một ngày (≈60 lượt đúng). Quá mốc này vẫn được
+ * ghi nhật ký, tính chuỗi và thống kê, chỉ không cộng thêm XP — để không
+ * cày game một buổi là lên vài cấp. Đổi ở đây thì đổi cả hàm SQL (schema-19).
+ */
+export const DAILY_ANSWER_XP_CAP = 300;
 
 export type LevelInfo = {
   level: number;
@@ -34,9 +40,14 @@ export function xpForAnswers(correct: number, wrong: number) {
   return correct * XP_REMEMBERED + wrong * XP_FORGOT;
 }
 
-/** Tổng XP cần có để đạt cấp `level`: 0, 100, 300, 600, 1000, … */
+/** XP trả lời của một ngày, đã áp trần. */
+export function dailyAnswerXp(correct: number, wrong: number) {
+  return Math.min(DAILY_ANSWER_XP_CAP, xpForAnswers(correct, wrong));
+}
+
+/** Tổng XP cần có để đạt cấp `level`: 0, 200, 600, 1.200, 2.000, … (cấp 10: 9.000). */
 export function xpToReach(level: number) {
-  return 50 * (level - 1) * level;
+  return 100 * (level - 1) * level;
 }
 
 export function titleForLevel(level: number) {
