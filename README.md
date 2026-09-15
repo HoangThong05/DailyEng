@@ -23,6 +23,7 @@
 - **Nghe chép câu** — máy đọc cả câu ví dụ, gõ lại toàn bộ; chấm từng từ (căn LCS), nút đọc chậm, gợi ý từ khoá
 - **Luyện phát âm** — nghe mẫu, ghi âm nghe lại, chấm điểm bằng Web Speech API
 - **Shadowing** — nghe câu mẫu, nói theo; máy tô từng từ nghe được, chấm %, ghi âm và phát nối tiếp với mẫu để so
+- **Mock test TOEIC Part 2** — nghe câu hỏi và ba câu đáp A/B/C (TTS), không có chữ trên màn hình, mỗi câu nghe lại 1 lần; ngân hàng 70 câu viết tay đủ dạng Wh-/Yes-No/lựa chọn/trần thuật/câu hỏi đuôi (`content/toeic-part2.json`), nộp bài mới thấy lời thoại và giải thích
 - **Mock test TOEIC Part 5** — 20 câu điền vào chỗ trống, 10 phút; nửa đề từ ngân hàng 200 câu ngữ pháp/từ vựng viết tay (`content/toeic-part5.json`), nửa sinh từ câu ví dụ các bộ TOEIC; đề được ký HMAC và chấm ở server; giải thích từng câu, lưu lịch sử và điểm cao nhất
 
 **Động lực**

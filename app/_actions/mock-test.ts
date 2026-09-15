@@ -1,7 +1,7 @@
 "use server";
 
 import { nextReviewState, todayInAppZone } from "@/lib/leitner";
-import { MOCK_SECONDS, verifyMockKey } from "@/lib/mock-test";
+import { MOCK_KINDS, MOCK_LIMIT_SECONDS, type MockKind, verifyMockKey } from "@/lib/mock-test";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 export type SubmitResult =
@@ -16,9 +16,11 @@ export async function submitMockTest(
   token: string,
   picks: (number | null)[],
   seconds: number,
+  kind: MockKind = "toeic-part5",
 ): Promise<SubmitResult> {
   const user = await getCurrentUser();
   if (!user) return { ok: false, error: "Phiên đăng nhập đã hết hạn." };
+  if (!MOCK_KINDS.includes(kind)) return { ok: false, error: "Loại đề không hợp lệ." };
 
   const key = verifyMockKey(token);
   if (!key || picks.length !== key.answers.length) {
@@ -27,12 +29,12 @@ export async function submitMockTest(
 
   const score = key.answers.filter((answer, i) => picks[i] === answer).length;
   const total = key.answers.length;
-  const used = Math.max(0, Math.min(MOCK_SECONDS, Math.round(seconds)));
+  const used = Math.max(0, Math.min(MOCK_LIMIT_SECONDS[kind], Math.round(seconds)));
 
   const supabase = await createClient();
   const { error } = await supabase.from("mock_results").insert({
     user_id: user.id,
-    kind: "toeic-part5",
+    kind,
     score,
     total,
     seconds: used,

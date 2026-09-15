@@ -31,7 +31,7 @@ export default function VeDailyEngPage() {
         <li>
           <strong>Trò chơi và kỹ năng:</strong> Mưa từ vựng, Ghép cặp, Nghe &
           gõ, Nghe chọn hình, Quiz; Nghe chép câu, Shadowing, Luyện phát âm,
-          Mock test TOEIC Part 5.
+          Mock test TOEIC Part 2 và Part 5.
         </li>
         <li>
           <strong>Động lực:</strong> XP, cấp độ, chuỗi ngày, bảng xếp hạng, và

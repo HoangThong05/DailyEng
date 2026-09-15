@@ -89,8 +89,8 @@ const ROTATING: TaskDef[] = [
   },
   {
     key: "mock",
-    title: "Làm 1 đề Part 5 mini",
-    hint: "Kỹ năng → Mock test",
+    title: "Làm 1 đề mock test",
+    hint: "Part 2 nghe hoặc Part 5 đọc",
     target: 1,
     xp: 30,
     href: "/ky-nang/mock-test",

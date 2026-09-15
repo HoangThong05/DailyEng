@@ -257,3 +257,43 @@ export function warmUpVoices() {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
   window.speechSynthesis.getVoices();
 }
+
+/**
+ * Đọc một đoạn và chờ đọc xong (để nối tiếp nhiều đoạn, ví dụ Part 2:
+ * câu hỏi rồi A, B, C). Bị huỷ giữa chừng cũng resolve, không treo.
+ */
+export function speakAsync(text: string, rate = 0.92): Promise<void> {
+  return new Promise((resolve) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      resolve();
+      return;
+    }
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = rate;
+    const voice = pickVoice();
+    utterance.lang = voice?.lang ?? "en-US";
+    if (voice) utterance.voice = voice;
+    let settled = false;
+    const done = () => {
+      if (settled) return;
+      settled = true;
+      resolve();
+    };
+    utterance.onend = done;
+    utterance.onerror = done;
+    window.speechSynthesis.speak(utterance);
+    // Vài trình duyệt không bắn onend khi bị cancel — chốt chặn theo độ dài.
+    setTimeout(done, 1500 + (text.length * 90) / rate);
+  });
+}
+
+export function stopSpeaking() {
+  if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+}
+
+/** Nghỉ một nhịp giữa các đoạn đọc. */
+export function pause(ms: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
+}

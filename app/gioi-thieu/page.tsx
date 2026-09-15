@@ -48,7 +48,7 @@ const FEATURES = [
     mascot: "tot-nghiep",
     href: "/ky-nang/mock-test",
     title: "Thi thử & tiến độ",
-    text: "Mock test TOEIC Part 5 có đồng hồ, chấm ngay kèm giải thích. Chuỗi ngày, XP, cấp độ và bảng xếp hạng giữ bạn đi đều.",
+    text: "Mock test TOEIC Part 2 (nghe) và Part 5 (đọc) có đồng hồ, chấm ngay kèm giải thích. Chuỗi ngày, XP, cấp độ và bảng xếp hạng giữ bạn đi đều.",
   },
 ] as const;
 

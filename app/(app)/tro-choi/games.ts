@@ -67,9 +67,9 @@ export const GAMES: GameEntry[] = [
     slug: "mock-test",
     kind: "skill",
     href: "/ky-nang/mock-test",
-    title: "Mock test TOEIC Part 5",
+    title: "Mock test TOEIC",
     description:
-      "20 câu điền vào chỗ trống như đề thật, có đồng hồ 10 phút. Chấm ngay, giải thích từng câu, lưu điểm cao nhất.",
+      "Part 2 nghe hỏi–đáp (15 câu, không có chữ) và Part 5 điền vào chỗ trống (20 câu). Có đồng hồ, chấm ngay, giải thích từng câu, lưu điểm cao nhất.",
     badge: "TOEIC",
     mascot: "tot-nghiep",
     gradient: "from-orange-500 via-red-500 to-rose-700",
