@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { checkIn } from "@/app/_actions/checkin";
 import { playCorrect, unlockAudio } from "@/lib/game-audio";
 import type { CheckinState } from "@/lib/rewards";
@@ -12,16 +12,47 @@ import { useUserBar } from "./user-bar-context";
 
 type Panel = "streak" | "bell" | null;
 
-/** Mục chuông đã xem, lưu theo ngày ở trình duyệt; mục mới phát sinh vẫn hiện số. */
+/**
+ * Mục chuông đã xem, lưu theo ngày ở trình duyệt; mục mới phát sinh vẫn hiện số.
+ * Đọc đồng bộ qua useSyncExternalStore: server không biết nên không vẽ số,
+ * client vẽ ngay đúng số sau hydrate — không chớp số rồi mất.
+ */
 const SEEN_KEY = "dailyeng-bell-seen";
+const seenListeners = new Set<() => void>();
 
-function readSeen(): { day: string; items: string[] } | null {
+function subscribeSeen(onChange: () => void) {
+  seenListeners.add(onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    seenListeners.delete(onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+function readSeenRaw(): string {
   try {
-    const raw = localStorage.getItem(SEEN_KEY);
-    return raw ? (JSON.parse(raw) as { day: string; items: string[] }) : null;
+    return localStorage.getItem(SEEN_KEY) ?? "";
   } catch {
-    return null;
+    return "";
   }
+}
+
+function parseSeen(raw: string, today: string): Set<string> {
+  try {
+    const stored = raw ? (JSON.parse(raw) as { day: string; items: string[] }) : null;
+    return stored && stored.day === today ? new Set(stored.items) : new Set();
+  } catch {
+    return new Set();
+  }
+}
+
+function writeSeen(today: string, items: Set<string>) {
+  try {
+    localStorage.setItem(SEEN_KEY, JSON.stringify({ day: today, items: [...items] }));
+  } catch {
+    // Chế độ ẩn danh chặn localStorage — chỉ mất dấu "đã xem", không sao.
+  }
+  for (const listener of seenListeners) listener();
 }
 
 /**
@@ -33,27 +64,14 @@ export function UserBar({ data: dataProp }: { data?: UserBarData }) {
   const fromContext = useUserBar();
   const data = dataProp ?? fromContext;
   const [open, setOpen] = useState<Panel>(null);
-  const [seen, setSeen] = useState<Set<string>>(() => new Set());
   const rootRef = useRef<HTMLDivElement>(null);
   const today = data?.checkin.week.find((day) => day.isToday)?.day ?? "";
-
-  // Đọc danh sách đã xem sau khi hydrate (localStorage chỉ có ở trình duyệt).
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      const stored = readSeen();
-      if (stored && stored.day === today) setSeen(new Set(stored.items));
-    });
-    return () => cancelAnimationFrame(frame);
-  }, [today]);
+  // null = đang ở server / chưa hydrate → chưa vẽ số trên chuông.
+  const seenRaw = useSyncExternalStore(subscribeSeen, readSeenRaw, () => null);
+  const seen = seenRaw === null ? null : parseSeen(seenRaw, today);
 
   function markSeen(texts: string[]) {
-    const next = new Set([...seen, ...texts]);
-    setSeen(next);
-    try {
-      localStorage.setItem(SEEN_KEY, JSON.stringify({ day: today, items: [...next] }));
-    } catch {
-      // Chế độ ẩn danh chặn localStorage — chỉ mất dấu "đã xem", không sao.
-    }
+    writeSeen(today, new Set([...(seen ?? []), ...texts]));
   }
 
   // Bấm ra ngoài hoặc Esc thì đóng.
@@ -80,7 +98,7 @@ export function UserBar({ data: dataProp }: { data?: UserBarData }) {
     if (panel === "bell" && open !== "bell") markSeen(data.notices.map((n) => n.text));
     setOpen((current) => (current === panel ? null : panel));
   };
-  const pending = data.notices.filter((n) => !seen.has(n.text)).length;
+  const pending = seen === null ? 0 : data.notices.filter((n) => !seen.has(n.text)).length;
   const chip =
     "border-border bg-card hover:border-brand/50 flex h-10 shrink-0 items-center justify-center rounded-full border shadow-sm press";
 
@@ -137,7 +155,7 @@ const noticeClass =
   "hover:bg-brand-soft flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left text-sm";
 
 const panelClass =
-  "border-border bg-card page-enter absolute top-12 right-0 z-50 w-[min(20rem,calc(100vw-2.5rem))] rounded-2xl border p-4 shadow-xl shadow-black/10";
+  "border-border bg-card pop-in absolute top-12 right-0 z-50 w-[min(20rem,calc(100vw-2.5rem))] rounded-2xl border p-4 shadow-xl shadow-black/10";
 
 function CheckinPanel({
   initial,
@@ -171,20 +189,27 @@ function CheckinPanel({
 
   return (
     <div role="dialog" aria-label="Điểm danh" className={panelClass}>
-      <div className="text-center">
-        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/15">
-          <FlameIcon className="h-8 w-8 text-orange-500" />
-        </span>
-        <p className="mt-2 text-3xl font-extrabold tabular-nums">{streak}</p>
-        <p className="text-muted text-xs font-semibold uppercase">ngày học liên tiếp</p>
+      {/* Hai chuỗi khác nhau, đặt cạnh nhau cho khỏi lẫn: học ≠ điểm danh */}
+      <div className="grid grid-cols-2 gap-2">
+        <div className="rounded-2xl bg-orange-500/10 p-3 text-center">
+          <FlameIcon className="mx-auto h-6 w-6 text-orange-500" />
+          <p className="mt-1 text-2xl font-extrabold tabular-nums">{streak}</p>
+          <p className="text-muted text-[11px] font-semibold uppercase">ngày học liền</p>
+        </div>
+        <div className="bg-brand-soft rounded-2xl p-3 text-center">
+          <span className="block text-2xl leading-6" aria-hidden>
+            📅
+          </span>
+          <p className="mt-1 text-2xl font-extrabold tabular-nums">{state.consecutive}</p>
+          <p className="text-muted text-[11px] font-semibold uppercase">ngày điểm danh liền</p>
+        </div>
       </div>
-
-      <p className="mt-4 text-center text-sm font-semibold">
-        Điểm danh tuần này
-        {state.consecutive > 0 ? (
-          <span className="text-muted font-normal"> · {state.consecutive} ngày liền</span>
-        ) : null}
+      <p className="text-muted mt-2 text-center text-[11px] leading-snug">
+        Chuỗi học tính theo ngày có trả lời ít nhất một từ. Điểm danh chỉ để nhận XP,
+        không thay được việc học.
       </p>
+
+      <p className="mt-4 text-center text-sm font-semibold">Điểm danh tuần này</p>
       <ol className="mt-2 flex justify-between">
         {state.week.map((day) => (
           <li key={day.day} className="flex flex-col items-center gap-1">
