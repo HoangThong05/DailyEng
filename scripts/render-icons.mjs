@@ -10,7 +10,9 @@
  *   public/icon-maskable-512.png        — tô nền xanh tràn viền, thu hình vào
  *                                         vùng an toàn để hệ điều hành tự cắt
  *   app/apple-icon.png (180)            — nền tràn viền, iOS tự bo góc
- *   app/icon.png (64), app/favicon.ico  — favicon
+ *   app/icon.png (64), app/favicon.ico  — favicon: chỉ con vịt, không khung
+ *                                         xanh (từ public/mascot/vit-tot-nghiep-trong.png,
+ *                                         là ảnh gốc đã tách nền bằng flood-fill)
  */
 import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
@@ -75,8 +77,9 @@ rounded(512).save(f"{root}/public/icon-512.png")
 rounded(192).save(f"{root}/public/icon-192.png")
 flat(512, 0.8).save(f"{root}/public/icon-maskable-512.png")
 flat(180).convert("RGB").save(f"{root}/app/apple-icon.png")
-rounded(64).save(f"{root}/app/icon.png")
-rounded(256).save(f"{root}/app/favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+fav = Image.open(f"{root}/public/mascot/vit-tot-nghiep-trong.png").convert("RGBA")
+fav.resize((64, 64), Image.LANCZOS).save(f"{root}/app/icon.png")
+fav.resize((256, 256), Image.LANCZOS).save(f"{root}/app/favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
 print("icons written")
 `;
 execFileSync("python", ["-c", python], { stdio: "inherit" });
