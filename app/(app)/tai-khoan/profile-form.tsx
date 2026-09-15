@@ -22,6 +22,8 @@ export function ProfileForm({ displayName, dailyGoal, bio, cover, coverIsImage }
   const [state, formAction, pending] = useActionState(updateProfile, EMPTY);
   const [bioText, setBioText] = useState(bio);
   const [chosenCover, setChosenCover] = useState<CoverKey | "">(coverIsImage ? "" : cover);
+  /** Chỉ gửi màu bìa khi người dùng bấm chọn trong lần mở form này; không thì server giữ nguyên. */
+  const [coverTouched, setCoverTouched] = useState(false);
 
   return (
     <form action={formAction} className="space-y-4">
@@ -61,7 +63,7 @@ export function ProfileForm({ displayName, dailyGoal, bio, cover, coverIsImage }
 
       <div className="space-y-1.5">
         <span className="block text-sm font-medium">Màu bìa</span>
-        <input type="hidden" name="cover" value={chosenCover} />
+        <input type="hidden" name="cover" value={coverTouched ? chosenCover : ""} />
         <div className="flex flex-wrap gap-2">
           {(Object.keys(COVER_PRESETS) as CoverKey[]).map((key) => {
             const preset = COVER_PRESETS[key];
@@ -70,7 +72,10 @@ export function ProfileForm({ displayName, dailyGoal, bio, cover, coverIsImage }
               <button
                 key={key}
                 type="button"
-                onClick={() => setChosenCover(key)}
+                onClick={() => {
+                  setChosenCover(key);
+                  setCoverTouched(true);
+                }}
                 aria-pressed={active}
                 title={preset.label}
                 className={`h-10 w-14 rounded-xl bg-gradient-to-br ${preset.className} transition-transform ${

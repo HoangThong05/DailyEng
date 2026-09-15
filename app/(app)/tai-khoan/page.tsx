@@ -263,7 +263,9 @@ export default async function TaiKhoanPage() {
                   />
                   <ImagePicker kind="cover" hasImage={!!coverInfo.url} />
                 </div>
+                {/* key theo bìa: tải/bỏ ảnh xong thì form nạp lại, không giữ màu cũ rồi ghi đè mất ảnh */}
                 <ProfileForm
+                  key={coverInfo.url ?? coverInfo.preset}
                   displayName={displayName}
                   dailyGoal={profile?.daily_goal ?? 10}
                   bio={profile?.bio ?? ""}
