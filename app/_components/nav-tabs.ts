@@ -1,7 +1,6 @@
 import {
   CardsIcon,
   ChartIcon,
-  FolderIcon,
   GamepadIcon,
   HomeIcon,
   MicIcon,
@@ -25,7 +24,6 @@ export const NAV_TABS = [
 export const SIDE_EXTRAS = [
   { href: "/tien-do", label: "Thống kê", Icon: ChartIcon },
   { href: "/xep-hang", label: "Bảng xếp hạng", Icon: TrophyIcon },
-  { href: "/bo-cua-toi", label: "Bộ của tôi", Icon: FolderIcon },
 ] as const;
 
 /** Trang con thuộc tab nào (để tab bar điện thoại sáng đúng chỗ). */
@@ -34,7 +32,6 @@ const TAB_ALIASES: Record<string, string> = {
   "/phat-am": "/ky-nang",
   "/tien-do": "/tai-khoan",
   "/xep-hang": "/tai-khoan",
-  "/bo-cua-toi": "/tai-khoan",
 };
 
 export function isTabActive(href: string, pathname: string) {

@@ -16,7 +16,6 @@ const MAX_TEXT = 200;
 function revalidateDeck(deckId: string) {
   revalidatePath("/hoc");
   revalidatePath("/tai-khoan");
-  revalidatePath("/bo-cua-toi");
   revalidatePath(`/hoc/${deckId}`);
   revalidatePath(`/hoc/${deckId}/sua`);
   revalidatePath("/quiz");
@@ -111,7 +110,7 @@ export async function deleteDeck(deckId: string) {
   if (error) return;
 
   revalidateDeck(deckId);
-  redirect("/bo-cua-toi");
+  redirect("/tai-khoan");
 }
 
 /** Đọc một ô text, cắt khoảng trắng; rỗng thì trả null để lưu NULL thay vì "". */

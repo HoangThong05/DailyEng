@@ -6,6 +6,7 @@ import { Avatar } from "@/app/_components/avatar";
 import { ChevronRightIcon, FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { OpenDetailsOnHash } from "@/app/_components/open-details-on-hash";
+import { DeckCard } from "@/app/(app)/hoc/deck-card";
 import { PageHeader } from "@/app/_components/page-header";
 import { listDecks } from "@/lib/decks";
 import { COVER_PRESETS, parseCover } from "@/lib/profile";
@@ -143,7 +144,7 @@ export default async function TaiKhoanPage() {
           <StatTile value={streak.longest} label="chuỗi dài nhất" />
         </div>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3">
           <Link
             href="/tien-do"
             className="border-border bg-card flex min-h-12 items-center justify-between rounded-xl border px-4 text-sm font-semibold press"
@@ -152,21 +153,40 @@ export default async function TaiKhoanPage() {
             <ChevronRightIcon className="text-muted h-4 w-4" />
           </Link>
           <Link
-            href="/bo-cua-toi"
-            className="border-border bg-card flex min-h-12 items-center justify-between rounded-xl border px-4 text-sm font-semibold press md:hidden"
-          >
-            Bộ của tôi ({ownDecks.length})
-            <ChevronRightIcon className="text-muted h-4 w-4" />
-          </Link>
-          <Link
             href="/xep-hang"
-            className="border-border bg-card flex min-h-12 items-center justify-between rounded-xl border px-4 text-sm font-semibold press md:hidden"
+            className="border-border bg-card flex min-h-12 items-center justify-between rounded-xl border px-4 text-sm font-semibold press"
           >
             Bảng xếp hạng
             <ChevronRightIcon className="text-muted h-4 w-4" />
           </Link>
         </div>
 
+        {/* Bộ từ tự tạo */}
+        <section aria-labelledby="bo-cua-toi" className="space-y-3">
+          <div className="flex items-center gap-2 px-1">
+            <h2 id="bo-cua-toi" className="text-muted text-sm font-medium">
+              Bộ của tôi
+            </h2>
+            <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
+              {ownDecks.length}
+            </span>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {ownDecks.map((deck) => (
+              <DeckCard key={deck.id} deck={deck} />
+            ))}
+            <Link
+              href="/hoc/tao"
+              className="border-border text-muted hover:border-brand hover:text-brand flex min-h-36 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-6 text-center transition-colors press"
+            >
+              <span className="bg-brand-soft text-brand flex h-12 w-12 items-center justify-center rounded-full text-2xl font-bold">
+                +
+              </span>
+              <span className="font-semibold">Tạo bộ từ riêng</span>
+              <span className="text-xs">Dán danh sách từ Excel, Sheets hay Quizlet</span>
+            </Link>
+          </div>
+        </section>
         </div>
 
         {/* Cột phải: cài đặt */}
