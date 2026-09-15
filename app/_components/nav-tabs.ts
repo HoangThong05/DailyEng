@@ -1,14 +1,16 @@
 import {
   CardsIcon,
+  FolderIcon,
   GamepadIcon,
   HomeIcon,
   MicIcon,
+  TrophyIcon,
   UserIcon,
 } from "./icons";
 
 /**
- * Các tab điều hướng chính, dùng chung cho tab bar (điện thoại) và
- * sidebar (màn hình lớn) để hai bên không bao giờ lệch nhau.
+ * Năm tab chính, dùng cho tab bar điện thoại. Sidebar máy tính hiện thêm
+ * SIDE_EXTRAS (những trang trên điện thoại gộp dưới Cá nhân).
  */
 export const NAV_TABS = [
   { href: "/", label: "Trang chủ", Icon: HomeIcon },
@@ -18,12 +20,19 @@ export const NAV_TABS = [
   { href: "/tai-khoan", label: "Cá nhân", Icon: UserIcon },
 ] as const;
 
-/** Quiz thuộc Trò chơi, phát âm thuộc Kỹ năng; tiến độ, xếp hạng nằm trong Cá nhân. */
+/** Mục chỉ có ở sidebar: có chỗ thì tách ra cho dễ với, điện thoại vẫn gộp. */
+export const SIDE_EXTRAS = [
+  { href: "/xep-hang", label: "Bảng xếp hạng", Icon: TrophyIcon },
+  { href: "/bo-cua-toi", label: "Bộ của tôi", Icon: FolderIcon },
+] as const;
+
+/** Trang con thuộc tab nào (để tab bar điện thoại sáng đúng chỗ). */
 const TAB_ALIASES: Record<string, string> = {
   "/quiz": "/tro-choi",
   "/phat-am": "/ky-nang",
   "/tien-do": "/tai-khoan",
   "/xep-hang": "/tai-khoan",
+  "/bo-cua-toi": "/tai-khoan",
 };
 
 export function isTabActive(href: string, pathname: string) {
@@ -32,4 +41,15 @@ export function isTabActive(href: string, pathname: string) {
   return Object.entries(TAB_ALIASES).some(
     ([alias, target]) => target === href && pathname.startsWith(alias),
   );
+}
+
+/**
+ * Sidebar: mục phụ tự sáng khi đúng đường dẫn; lúc đó tab Cá nhân không sáng
+ * theo (khác tab bar điện thoại, nơi mục phụ gộp dưới Cá nhân).
+ */
+export function isSideActive(href: string, pathname: string) {
+  const extraHit = SIDE_EXTRAS.some((item) => pathname.startsWith(item.href));
+  if (SIDE_EXTRAS.some((item) => item.href === href)) return pathname.startsWith(href);
+  if (extraHit && href === "/tai-khoan") return false;
+  return isTabActive(href, pathname);
 }

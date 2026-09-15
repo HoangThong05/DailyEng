@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { BottomNav } from "@/app/_components/bottom-nav";
 import { PageTransition } from "@/app/_components/page-transition";
 import { SideNav } from "@/app/_components/side-nav";
+import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
 
 /**
@@ -17,13 +18,26 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   const { data: isAdmin } = await supabase.rpc("is_admin");
   if (isAdmin) redirect("/quan-tri");
 
+  // Thẻ hồ sơ dưới sidebar: tên, cấp, chuỗi ngày.
+  const [{ data: profile }, stats] = await Promise.all([
+    supabase.from("profiles").select("display_name").maybeSingle(),
+    getStudyStats(),
+  ]);
+  const sideProfile = {
+    name: profile?.display_name ?? "Bạn",
+    level: stats.level.level,
+    title: stats.level.title,
+    streak: stats.streak.current,
+    percent: stats.level.percent,
+  };
+
   return (
     <div className="flex min-h-[100dvh] flex-col md:pl-60">
       <main className="pb-nav mx-auto flex w-full max-w-md flex-1 flex-col md:max-w-3xl md:pb-10 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
         <PageTransition>{children}</PageTransition>
       </main>
       <BottomNav />
-      <SideNav />
+      <SideNav profile={sideProfile} />
     </div>
   );
 }

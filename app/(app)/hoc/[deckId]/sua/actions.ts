@@ -16,6 +16,7 @@ const MAX_TEXT = 200;
 function revalidateDeck(deckId: string) {
   revalidatePath("/hoc");
   revalidatePath("/tai-khoan");
+  revalidatePath("/bo-cua-toi");
   revalidatePath(`/hoc/${deckId}`);
   revalidatePath(`/hoc/${deckId}/sua`);
   revalidatePath("/quiz");
@@ -110,8 +111,7 @@ export async function deleteDeck(deckId: string) {
   if (error) return;
 
   revalidateDeck(deckId);
-  // Bộ của mình nằm ở tab Cá nhân.
-  redirect("/tai-khoan");
+  redirect("/bo-cua-toi");
 }
 
 /** Đọc một ô text, cắt khoảng trắng; rỗng thì trả null để lưu NULL thay vì "". */

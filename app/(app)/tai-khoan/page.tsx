@@ -5,7 +5,6 @@ import { CountUp } from "@/app/_components/count-up";
 import { FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
-import { DeckCard } from "@/app/(app)/hoc/deck-card";
 import { listDecks } from "@/lib/decks";
 import { BOX_INTERVAL_DAYS } from "@/lib/leitner";
 import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
@@ -131,32 +130,21 @@ export default async function TaiKhoanPage() {
           </div>
         </section>
 
-        {/* Bộ từ tự tạo: của riêng mình nên nằm ở đây, tab Học chỉ còn bộ có sẵn */}
-        <section aria-labelledby="bo-cua-toi" className="space-y-3">
-          <div className="flex items-center gap-2">
-            <SectionTitle id="bo-cua-toi">Bộ của tôi</SectionTitle>
-            <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
-              {ownDecks.length}
-            </span>
-          </div>
-          <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {ownDecks.map((deck) => (
-              <DeckCard key={deck.id} deck={deck} />
-            ))}
-            <Link
-              href="/hoc/tao"
-              className="border-border text-muted hover:border-brand hover:text-brand flex min-h-40 flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed p-6 text-center transition-colors press"
-            >
-              <span className="bg-brand-soft text-brand flex h-12 w-12 items-center justify-center rounded-full text-2xl font-bold">
-                +
-              </span>
-              <span className="font-semibold">Tạo bộ từ riêng</span>
-              <span className="text-xs">
-                Dán danh sách từ Excel, Sheets hay Quizlet
-              </span>
-            </Link>
-          </div>
-        </section>
+        {/* Lối tắt tới bộ tự tạo và bảng xếp hạng (điện thoại không có sidebar) */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+          <Link
+            href="/bo-cua-toi"
+            className="border-border bg-card flex min-h-12 items-center justify-center rounded-xl border text-sm font-semibold press"
+          >
+            Bộ của tôi ({ownDecks.length})
+          </Link>
+          <Link
+            href="/xep-hang"
+            className="border-border bg-card flex min-h-12 items-center justify-center rounded-xl border text-sm font-semibold press"
+          >
+            Bảng xếp hạng
+          </Link>
+        </div>
 
         <div className="grid gap-6 md:grid-cols-2">
           {/* Cột trái: tiến độ học */}

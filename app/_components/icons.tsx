@@ -220,3 +220,30 @@ export function ImageIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function TrophyIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M8 4h8v5a4 4 0 0 1-8 0V4Z" />
+      <path d="M8 6H5.5a1 1 0 0 0-1 1c0 2.2 1.6 3.5 3.5 3.8M16 6h2.5a1 1 0 0 1 1 1c0 2.2-1.6 3.5-3.5 3.8" />
+      <path d="M12 13v3.5M9 20h6M10 17h4l.5 3h-5l.5-3Z" />
+    </svg>
+  );
+}
+
+export function FolderIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M3.5 7.5A1.5 1.5 0 0 1 5 6h4.2l2 2H19a1.5 1.5 0 0 1 1.5 1.5v8A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5v-10Z" />
+    </svg>
+  );
+}
+
+export function LogoutIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M10 4.5H6.5A1.5 1.5 0 0 0 5 6v12a1.5 1.5 0 0 0 1.5 1.5H10" />
+      <path d="M14 8l4 4-4 4M18 12H9.5" />
+    </svg>
+  );
+}
