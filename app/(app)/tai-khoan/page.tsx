@@ -5,6 +5,7 @@ import { CountUp } from "@/app/_components/count-up";
 import { Avatar } from "@/app/_components/avatar";
 import { ChevronRightIcon, FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
+import { OpenDetailsOnHash } from "@/app/_components/open-details-on-hash";
 import { PageHeader } from "@/app/_components/page-header";
 import { listDecks } from "@/lib/decks";
 import { COVER_PRESETS, parseCover } from "@/lib/profile";
@@ -61,6 +62,7 @@ export default async function TaiKhoanPage() {
   return (
     <>
       <PageHeader title="Cá nhân" mascot="tot-nghiep" />
+      <OpenDetailsOnHash />
 
       <div className="stagger grid gap-6 px-5 pt-2 pb-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start">
         {/* Cột trái: hồ sơ, số liệu, lối tắt */}
@@ -90,6 +92,12 @@ export default async function TaiKhoanPage() {
                 </h2>
                 <p className="text-muted truncate text-xs">{user?.email}</p>
               </div>
+              <a
+                href="#chinh-sua"
+                className="border-border bg-card mb-1 hidden min-h-10 shrink-0 items-center rounded-xl border px-4 text-sm font-semibold press sm:flex"
+              >
+                Chỉnh sửa
+              </a>
             </div>
             {profile?.bio ? (
               <p className="mt-3 text-sm leading-relaxed">{profile.bio}</p>
@@ -163,10 +171,14 @@ export default async function TaiKhoanPage() {
 
         {/* Cột phải: cài đặt */}
         <div className="space-y-5">
-            <section className="space-y-3">
-              <h2 className="text-muted px-1 text-sm font-medium">Chỉnh sửa hồ sơ</h2>
-              <div className="border-border bg-card rounded-2xl border p-4">
-              <div className="space-y-5">
+            {/* Gập lại mặc định; id để nút "Chỉnh sửa" trên thẻ hồ sơ nhảy tới và mở */}
+            <details id="chinh-sua" className="border-border bg-card group rounded-2xl border">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
+                Chỉnh sửa hồ sơ
+                <span className="text-muted text-xs font-normal group-open:hidden">Ảnh, bìa, tiểu sử, mục tiêu</span>
+                <span className="text-muted hidden text-xs font-normal group-open:inline">Thu gọn</span>
+              </summary>
+              <div className="border-border space-y-5 border-t p-4">
                 <div className="flex flex-wrap items-center gap-4">
                   <Avatar url={profile?.avatar_url} name={displayName} size={56} />
                   <ImagePicker kind="avatar" hasImage={!!profile?.avatar_url} />
@@ -186,8 +198,7 @@ export default async function TaiKhoanPage() {
                   coverIsImage={!!coverInfo.url}
                 />
               </div>
-              </div>
-            </section>
+            </details>
 
             <section className="space-y-3">
               <h2 className="text-muted px-1 text-sm font-medium">Nhắc học</h2>
