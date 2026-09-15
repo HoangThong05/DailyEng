@@ -215,6 +215,33 @@ export type Database = {
         };
         Relationships: [];
       };
+      feedback: {
+        Row: {
+          id: string;
+          user_id: string | null;
+          email: string | null;
+          message: string;
+          page: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id?: string | null;
+          email?: string | null;
+          message: string;
+          page?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string | null;
+          email?: string | null;
+          message?: string;
+          page?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       mock_results: {
         Row: {
           id: string;

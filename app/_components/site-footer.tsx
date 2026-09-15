@@ -54,6 +54,14 @@ const SOCIAL_LABELS: Record<SocialKey, string> = {
   youtube: "YouTube",
 };
 
+const INFO_LINKS = [
+  { href: "/gioi-thieu/ve-dailyeng", label: "Về DailyEng" },
+  { href: "/gioi-thieu/tac-gia", label: "Tác giả" },
+  { href: "/gioi-thieu/bao-mat", label: "Chính sách bảo mật" },
+  { href: "/gioi-thieu/dieu-khoan", label: "Điều khoản sử dụng" },
+  { href: "/gioi-thieu/gop-y", label: "Góp ý" },
+];
+
 const FEATURE_LINKS = [
   { href: "/hoc", label: "Học từ vựng" },
   { href: "/tro-choi", label: "Trò chơi" },
@@ -130,28 +138,13 @@ export function SiteFooter() {
         <div>
           <p className="text-sm font-bold tracking-wide uppercase">Thông tin</p>
           <ul className="text-muted mt-3 space-y-2 text-sm">
-            <li>
-              <Link href="/gioi-thieu" className="hover:text-fg hover:underline">
-                Giới thiệu
-              </Link>
-            </li>
-            <li>
-              <Link href="/dang-nhap" className="hover:text-fg hover:underline">
-                Đăng nhập
-              </Link>
-            </li>
-            <li>
-              <a href={SITE.repo} target="_blank" rel="noreferrer" className="hover:text-fg hover:underline">
-                Mã nguồn trên GitHub
-              </a>
-            </li>
-            {SITE.author.email ? (
-              <li>
-                <a href={`mailto:${SITE.author.email}`} className="hover:text-fg hover:underline">
-                  Góp ý
-                </a>
+            {INFO_LINKS.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-fg hover:underline">
+                  {item.label}
+                </Link>
               </li>
-            ) : null}
+            ))}
           </ul>
         </div>
       </div>

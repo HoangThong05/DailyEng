@@ -622,20 +622,20 @@
 /* Trang giới thiệu: bong bóng trong suốt lấp lánh bay ngang qua vịt, chỉ một lượt khi mở trang. */
 @keyframes bubble-drift {
   0% {
-    transform: translateX(-10vw) translateY(0) scale(0.6);
+    transform: translateX(-8vw) translateY(0) scale(0.7);
     opacity: 0;
   }
-  10% {
+  8% {
     opacity: 1;
   }
   50% {
-    transform: translateX(28vw) translateY(-18px) scale(1);
+    transform: translateX(50vw) translateY(-30px) scale(1);
   }
-  90% {
+  92% {
     opacity: 0.9;
   }
   100% {
-    transform: translateX(60vw) translateY(-40px) scale(1.1);
+    transform: translateX(108vw) translateY(-60px) scale(1.1);
     opacity: 0;
   }
 }
@@ -660,12 +660,12 @@
   left: 0;
   background: radial-gradient(
     circle at 30% 30%,
-    rgba(255, 255, 255, 0.55),
-    rgba(255, 255, 255, 0.08) 45%,
-    rgba(147, 197, 253, 0.15) 70%,
-    rgba(255, 255, 255, 0.05)
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.12) 40%,
+    rgba(147, 197, 253, 0.22) 70%,
+    rgba(196, 181, 253, 0.12)
   );
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   animation:
     bubble-drift 8s ease-in-out both,
     bubble-shine 1.4s ease-in-out infinite;
@@ -681,6 +681,28 @@
 .hero-duck:hover {
   transform: scale(1.06) rotate(-3deg);
   filter: drop-shadow(0 0 28px rgba(96, 165, 250, 0.55)) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+}
+
+/* Trang thông tin: kiểu chữ cho bài viết dài. */
+.doc h2 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.doc p,
+.doc li {
+  color: var(--muted);
+}
+.doc strong {
+  color: var(--fg);
+}
+.doc ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.doc a {
+  color: var(--brand);
+  text-decoration: underline;
 }
 
 /* Icon tab nảy lên một cái khi tab được chọn. */

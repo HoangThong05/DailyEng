@@ -6,7 +6,7 @@ import { GameCover } from "@/app/(app)/tro-choi/game-cover";
 import { FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { SiteFooter } from "@/app/_components/site-footer";
-import { ThemeButton } from "@/app/_components/theme-button";
+import { LandingHeader } from "./_components/landing-header";
 import { DECK_CATEGORIES } from "@/lib/deck-categories";
 import vitHero from "@/public/mascot/vit-hero.png";
 import { getCurrentUser } from "@/lib/supabase/server";
@@ -53,11 +53,11 @@ const FEATURES = [
 ] as const;
 
 /* Bong bóng bay ngang qua vịt lúc mở trang: vị trí/cỡ cố định theo chỉ số để render ổn định. */
-const BUBBLES = Array.from({ length: 14 }, (_, i) => ({
-  top: (i * 37 + 5) % 90,
-  size: 10 + ((i * 7) % 26),
-  delay: (i % 7) * 0.35,
-  duration: 6 + (i % 5) * 1.1,
+const BUBBLES = Array.from({ length: 22 }, (_, i) => ({
+  top: (i * 41 + 7) % 92,
+  size: 14 + ((i * 11) % 46),
+  delay: (i % 9) * 0.45,
+  duration: 9 + (i % 6) * 1.3,
 }));
 
 const STEPS = [
@@ -73,31 +73,24 @@ export default async function GioiThieuPage() {
 
   return (
     <div className="min-h-[100dvh]">
-      {/* Thanh trên */}
-      <header className="bg-bg/80 sticky top-0 z-40 backdrop-blur-lg">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-          <Link href="/gioi-thieu" className="flex items-center gap-3">
-            <Mascot variant="tot-nghiep" size={40} className="rounded-xl shadow-md shadow-blue-500/30" />
-            <span className="from-brand bg-gradient-to-r to-violet-500 bg-clip-text text-xl font-extrabold tracking-tight text-transparent">
-              DailyEng
-            </span>
-          </Link>
-          <nav className="text-muted hidden items-center gap-6 text-sm font-semibold md:flex">
-            <a href="#tinh-nang" className="hover:text-fg">Tính năng</a>
-            <a href="#tro-choi" className="hover:text-fg">Trò chơi</a>
-            <a href="#bo-tu" className="hover:text-fg">Bộ từ</a>
-          </nav>
-          <div className="flex items-center gap-2">
-            <ThemeButton />
-            <Link
-              href={ctaHref}
-              className="bg-brand flex min-h-10 items-center rounded-full px-4 text-sm font-bold text-white press"
-            >
-              {user ? "Vào học" : "Đăng nhập"}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <LandingHeader showAnchors />
+
+      {/* Bong bóng bay ngang toàn màn hình một lượt khi mở trang; nằm dưới header, không chặn chuột */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 z-30 overflow-hidden">
+        {BUBBLES.map((bubble, i) => (
+          <span
+            key={i}
+            className="bubble absolute rounded-full"
+            style={{
+              top: `${bubble.top}%`,
+              width: bubble.size,
+              height: bubble.size,
+              animationDelay: `${bubble.delay}s`,
+              animationDuration: `${bubble.duration}s`,
+            }}
+          />
+        ))}
+      </div>
 
       <main className="mx-auto max-w-6xl px-5">
         {/* Hero */}
@@ -141,21 +134,6 @@ export default async function GioiThieuPage() {
           {/* Vịt hero (nền trong suốt) lơ lửng trên quầng sáng; bong bóng bay ngang lúc mở trang */}
           <div className="relative mx-auto w-full max-w-md">
             <div className="from-brand/30 absolute inset-[8%] rounded-full bg-gradient-to-br via-violet-500/20 to-fuchsia-500/10 blur-3xl" />
-            <div aria-hidden className="pointer-events-none absolute -inset-x-16 -inset-y-10 overflow-hidden">
-              {BUBBLES.map((bubble, i) => (
-                <span
-                  key={i}
-                  className="bubble absolute rounded-full"
-                  style={{
-                    top: `${bubble.top}%`,
-                    width: bubble.size,
-                    height: bubble.size,
-                    animationDelay: `${bubble.delay}s`,
-                    animationDuration: `${bubble.duration}s`,
-                  }}
-                />
-              ))}
-            </div>
             <div className="header-duck relative">
               <Image
                 src={vitHero}

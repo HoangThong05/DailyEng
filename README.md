@@ -52,7 +52,7 @@ app/
 │   ├── hoc/          #   Học theo chặng, tạo/sửa bộ từ
 │   ├── quiz/         #   Quiz trắc nghiệm
 │   ├── tro-choi/     #   Hub trò chơi: ghep-cap, nghe-go, mua-tu
-│   ├── gioi-thieu/   #   Trang giới thiệu công khai (landing)
+│   ├── gioi-thieu/   #   Trang giới thiệu công khai + Về DailyEng, Tác giả, Bảo mật, Điều khoản, Góp ý
 │   ├── ky-nang/      #   Hub kỹ năng: chep-cau, shadowing, mock-test (phat-am ở thư mục riêng)
 │   ├── phat-am/      #   Luyện phát âm
 │   └── tai-khoan/    #   Hồ sơ, cấp độ, thống kê, nhắc học, giao diện
@@ -100,6 +100,7 @@ Trong SQL Editor chạy lần lượt:
 7. `supabase/schema-07-nhom-bo-tu.sql` — nhóm bộ từ + hàm đếm tiến độ bằng SQL
 8. `supabase/schema-08-xep-hang-mock.sql` — hàm bảng xếp hạng XP, bảng kết quả mock test
 9. `supabase/schema-09-an-xep-hang-an-mung.sql` — ẩn khỏi bảng xếp hạng, lưu mốc đã ăn mừng
+10. `supabase/schema-10-gop-y.sql` — bảng góp ý
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:
