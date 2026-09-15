@@ -20,11 +20,12 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
 
   // Thẻ hồ sơ dưới sidebar: tên, cấp, chuỗi ngày.
   const [{ data: profile }, stats] = await Promise.all([
-    supabase.from("profiles").select("display_name").maybeSingle(),
+    supabase.from("profiles").select("display_name, avatar_url").maybeSingle(),
     getStudyStats(),
   ]);
   const sideProfile = {
     name: profile?.display_name ?? "Bạn",
+    avatarUrl: profile?.avatar_url ?? null,
     level: stats.level.level,
     title: stats.level.title,
     streak: stats.streak.current,

@@ -3,13 +3,16 @@ import Link from "next/link";
 import { signOut } from "@/app/_actions/auth";
 import { CountUp } from "@/app/_components/count-up";
 import { FlameIcon } from "@/app/_components/icons";
+import { Avatar } from "@/app/_components/avatar";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
 import { listDecks } from "@/lib/decks";
 import { BOX_INTERVAL_DAYS } from "@/lib/leitner";
+import { COVER_PRESETS, parseCover } from "@/lib/profile";
 import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
 import { getDetailedStats, getStudyStats } from "@/lib/stats";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
+import { ImagePicker } from "./image-picker";
 import { ProfileForm } from "./profile-form";
 import { RankToggle } from "./rank-toggle";
 import { ReminderToggle } from "./reminder-toggle";
@@ -59,7 +62,7 @@ export default async function TaiKhoanPage() {
   ] = await Promise.all([
     supabase
       .from("profiles")
-      .select("display_name, daily_goal, reminder_hour, hide_rank")
+      .select("display_name, daily_goal, reminder_hour, hide_rank, bio, avatar_url, cover")
       .eq("id", user?.id ?? "")
       .maybeSingle(),
     getStudyStats(),
@@ -71,62 +74,72 @@ export default async function TaiKhoanPage() {
   const displayName =
     profile?.display_name ?? user?.email?.split("@")[0] ?? "Bạn";
   const boxTotal = detail.boxes.reduce((sum, count) => sum + count, 0);
-  const mood = streak.current > 0 ? "an-mung" : "chao";
+  const coverInfo = parseCover(profile?.cover);
 
   return (
     <>
       <PageHeader title="Cá nhân" mascot="tot-nghiep" />
 
       <div className="stagger space-y-6 px-5 pt-2 pb-4">
-        {/* Thẻ hồ sơ: tên, cấp, XP, chuỗi — thay cho tiêu đề trang Tiến độ cũ */}
-        <section
-          aria-labelledby="ho-so"
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 to-indigo-700 p-5 text-white shadow-lg shadow-blue-500/20"
-        >
-          <div className="flex items-center gap-4">
-            <Mascot
-              variant={mood}
-              size={96}
-              priority
-              className="shrink-0 rounded-2xl"
-            />
-            <div className="min-w-0 flex-1">
-              <h2 id="ho-so" className="truncate text-xl font-bold">
-                {displayName}
-              </h2>
-              <p className="truncate text-sm text-white/80">{user?.email}</p>
-              <div className="mt-3 flex flex-wrap gap-2 text-sm font-semibold">
-                <span className="rounded-full bg-white/20 px-2.5 py-1">
-                  Cấp {level.level} · {level.title}
-                </span>
-                <span className="flex items-center gap-1 rounded-full bg-white/20 px-2.5 py-1">
-                  <FlameIcon className="h-4 w-4" />
-                  {streak.current} ngày
-                  {streak.longest > streak.current
-                    ? ` · kỷ lục ${streak.longest}`
-                    : ""}
-                </span>
+        {/* Thẻ hồ sơ: ảnh bìa (màu hoặc ảnh tải lên), avatar chồng lên mép, tên, tiểu sử, cấp, chuỗi */}
+        <section aria-labelledby="ho-so" className="border-border bg-card overflow-hidden rounded-3xl border">
+          <div
+            className={`relative h-32 bg-gradient-to-br sm:h-40 ${COVER_PRESETS[coverInfo.preset].className}`}
+          >
+            {coverInfo.url ? (
+              // eslint-disable-next-line @next/next/no-img-element -- ảnh người dùng tải lên, kích thước đã cố định
+              <img src={coverInfo.url} alt="" className="h-full w-full object-cover" />
+            ) : null}
+            <Mascot variant="chao-trong" size={72} className="absolute right-4 bottom-2 h-auto w-16 opacity-90 sm:w-20" />
+          </div>
+          <div className="px-5 pb-5">
+            <div className="-mt-10 flex items-end gap-4">
+              <Avatar
+                url={profile?.avatar_url}
+                name={displayName}
+                size={88}
+                className="border-card shrink-0 border-4 shadow-lg"
+              />
+              <div className="min-w-0 flex-1 pb-1">
+                <h2 id="ho-so" className="truncate text-xl font-bold">
+                  {displayName}
+                </h2>
+                <p className="text-muted truncate text-xs">{user?.email}</p>
               </div>
             </div>
-          </div>
-
-          <div className="mt-4 flex items-center gap-3 text-xs text-white/85">
-            <div
-              role="progressbar"
-              aria-valuenow={level.current}
-              aria-valuemin={0}
-              aria-valuemax={level.needed}
-              aria-label="Tiến độ lên cấp"
-              className="h-2 flex-1 overflow-hidden rounded-full bg-white/25"
-            >
-              <div
-                className="h-full rounded-full bg-white transition-[width] duration-500"
-                style={{ width: `${level.percent}%` }}
-              />
+            {profile?.bio ? (
+              <p className="mt-3 text-sm leading-relaxed">{profile.bio}</p>
+            ) : (
+              <p className="text-muted mt-3 text-sm">Chưa có tiểu sử — viết vài chữ ở phần Hồ sơ bên dưới.</p>
+            )}
+            <div className="mt-3 flex flex-wrap gap-2 text-sm font-semibold">
+              <span className="bg-brand-soft text-brand rounded-full px-2.5 py-1">
+                Cấp {level.level} · {level.title}
+              </span>
+              <span className="bg-brand-soft text-brand flex items-center gap-1 rounded-full px-2.5 py-1">
+                <FlameIcon className="h-4 w-4 text-orange-500" />
+                {streak.current} ngày
+                {streak.longest > streak.current ? ` · kỷ lục ${streak.longest}` : ""}
+              </span>
             </div>
-            <span className="shrink-0 tabular-nums">
-              <CountUp value={level.current} />/{level.needed} XP
-            </span>
+            <div className="mt-4 flex items-center gap-3 text-xs">
+              <div
+                role="progressbar"
+                aria-valuenow={level.current}
+                aria-valuemin={0}
+                aria-valuemax={level.needed}
+                aria-label="Tiến độ lên cấp"
+                className="bg-brand-soft h-2 flex-1 overflow-hidden rounded-full"
+              >
+                <div
+                  className="bg-brand h-full rounded-full transition-[width] duration-500"
+                  style={{ width: `${level.percent}%` }}
+                />
+              </div>
+              <span className="text-muted shrink-0 tabular-nums">
+                <CountUp value={level.current} />/{level.needed} XP
+              </span>
+            </div>
           </div>
         </section>
 
@@ -305,11 +318,25 @@ export default async function TaiKhoanPage() {
           {/* Cột phải: cài đặt */}
           <div className="space-y-6">
             <section aria-labelledby="cai-dat" className="space-y-3">
-              <SectionTitle id="cai-dat">Hồ sơ & mục tiêu</SectionTitle>
-              <div className="border-border bg-card rounded-2xl border p-4">
+              <SectionTitle id="cai-dat">Hồ sơ</SectionTitle>
+              <div className="border-border bg-card space-y-5 rounded-2xl border p-4">
+                <div className="flex flex-wrap items-center gap-4">
+                  <Avatar url={profile?.avatar_url} name={displayName} size={56} />
+                  <ImagePicker kind="avatar" hasImage={!!profile?.avatar_url} />
+                </div>
+                <div className="flex flex-wrap items-center gap-4">
+                  <span
+                    className={`h-10 w-16 shrink-0 rounded-xl bg-gradient-to-br ${COVER_PRESETS[coverInfo.preset].className}`}
+                    style={coverInfo.url ? { backgroundImage: `url(${coverInfo.url})`, backgroundSize: "cover" } : undefined}
+                  />
+                  <ImagePicker kind="cover" hasImage={!!coverInfo.url} />
+                </div>
                 <ProfileForm
                   displayName={displayName}
                   dailyGoal={profile?.daily_goal ?? 10}
+                  bio={profile?.bio ?? ""}
+                  cover={coverInfo.preset}
+                  coverIsImage={!!coverInfo.url}
                 />
               </div>
             </section>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Avatar } from "@/app/_components/avatar";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
 import { getLeaderboard, type LeaderboardPeriod } from "@/lib/leaderboard";
@@ -83,6 +84,7 @@ export default async function XepHangPage({
                 <span className="w-9 shrink-0 text-center text-lg font-bold tabular-nums">
                   {MEDALS[row.rank - 1] ?? row.rank}
                 </span>
+                <Avatar url={row.avatarUrl} name={row.displayName} size={36} />
                 <span className="min-w-0 flex-1 truncate font-semibold">
                   {row.displayName}
                   {row.isMe ? (

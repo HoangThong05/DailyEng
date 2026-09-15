@@ -34,7 +34,7 @@
 
 **Tài khoản & giao diện**
 - Đăng nhập bằng email/mật khẩu (xác nhận bằng mã 6 số) hoặc Google
-- Đổi tên hiển thị, mục tiêu từ/ngày, giao diện sáng/tối/theo máy
+- Hồ sơ: ảnh đại diện và ảnh bìa tải lên (thu nhỏ trên trình duyệt, lưu Supabase Storage), tiểu sử, màu bìa, tên hiển thị, mục tiêu từ/ngày; giao diện sáng/tối/theo máy
 - PWA: offline, cài lên màn hình chính; responsive: tab bar trên điện thoại, sidebar trên màn hình lớn
 
 ## Công nghệ
@@ -105,6 +105,7 @@ Trong SQL Editor chạy lần lượt:
 11. `supabase/schema-11-admin.sql` — cờ admin, trang quản trị xem góp ý; gán admin bằng lệnh `update` ghi trong file (chạy tay, không commit email)
 12. `supabase/schema-12-quan-tri.sql` — hàm số liệu cho khu quản trị (tổng quan, người dùng, nội dung)
 13. `supabase/schema-13-admin-khong-hoc.sql` — admin không lên bảng xếp hạng, không tính là người học; đăng nhập là vào thẳng khu quản trị
+14. `supabase/schema-14-ho-so.sql` — ảnh đại diện, tiểu sử, ảnh bìa (bucket `avatars`), xếp hạng kèm avatar
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

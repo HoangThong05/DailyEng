@@ -36,6 +36,9 @@ export type Database = {
           celebrated_goal_on: string | null;
           celebrated_level: number;
           is_admin: boolean;
+          avatar_url: string | null;
+          bio: string | null;
+          cover: string;
           created_at: string;
           updated_at: string;
         };
@@ -48,6 +51,9 @@ export type Database = {
           celebrated_goal_on?: string | null;
           celebrated_level?: number;
           is_admin?: boolean;
+          avatar_url?: string | null;
+          bio?: string | null;
+          cover?: string;
           created_at?: string;
           updated_at?: string;
         };
@@ -60,6 +66,9 @@ export type Database = {
           celebrated_goal_on?: string | null;
           celebrated_level?: number;
           is_admin?: boolean;
+          avatar_url?: string | null;
+          bio?: string | null;
+          cover?: string;
           created_at?: string;
           updated_at?: string;
         };
@@ -362,6 +371,7 @@ export type Database = {
         Args: { period: "week" | "all"; top_n: number };
         Returns: {
           display_name: string;
+          avatar_url: string | null;
           xp: number;
           rank: number;
           is_me: boolean;

@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut } from "@/app/_actions/auth";
-import { FlameIcon, LogoutIcon } from "./icons";
+import { FlameIcon } from "./icons";
+import { Avatar } from "./avatar";
 import { Mascot } from "./mascot";
 import { isSideActive, NAV_TABS, SIDE_EXTRAS } from "./nav-tabs";
 
 export type SideProfile = {
   name: string;
+  avatarUrl: string | null;
   level: number;
   title: string;
   streak: number;
@@ -85,19 +86,6 @@ export function SideNav({ profile }: { profile: SideProfile }) {
             <NavItem item={item} active={isSideActive(item.href, pathname)} />
           </li>
         ))}
-        <li>
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="group flex min-h-11 w-full items-center gap-3 rounded-2xl px-3 font-semibold text-red-500 transition-[background-color,transform] duration-200 hover:translate-x-1 hover:bg-red-500/10"
-            >
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
-                <LogoutIcon className="h-5 w-5" />
-              </span>
-              Đăng xuất
-            </button>
-          </form>
-        </li>
       </ul>
 
       {/* Thẻ hồ sơ dưới cùng: tên, cấp, chuỗi; bấm vào tới Cá nhân */}
@@ -109,7 +97,7 @@ export function SideNav({ profile }: { profile: SideProfile }) {
         }`}
       >
         <span className="relative shrink-0">
-          <Mascot variant="tot-nghiep" size={44} className="rounded-xl" />
+          <Avatar url={profile.avatarUrl} name={profile.name} size={44} />
           <span className="bg-brand absolute -right-1.5 -bottom-1.5 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
             Lv.{profile.level}
           </span>

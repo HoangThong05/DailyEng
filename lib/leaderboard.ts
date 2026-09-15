@@ -4,6 +4,7 @@ export type LeaderboardPeriod = "week" | "all";
 
 export type LeaderboardRow = {
   displayName: string;
+  avatarUrl: string | null;
   xp: number;
   rank: number;
   isMe: boolean;
@@ -29,6 +30,7 @@ export async function getLeaderboard(
   }
   return (data ?? []).map((row) => ({
     displayName: row.display_name,
+    avatarUrl: row.avatar_url,
     xp: row.xp,
     rank: row.rank,
     isMe: row.is_me,

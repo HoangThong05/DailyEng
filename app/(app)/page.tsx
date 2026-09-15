@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Avatar } from "@/app/_components/avatar";
 import { DeckCover } from "@/app/_components/deck-cover";
 import { ChevronRightIcon, FlameIcon } from "@/app/_components/icons";
 import { InstallPrompt } from "@/app/_components/install-prompt";
@@ -286,6 +287,7 @@ export default async function Home() {
                     <span className="w-7 text-lg">
                       {["🥇", "🥈", "🥉"][row.rank - 1]}
                     </span>
+                    <Avatar url={row.avatarUrl} name={row.displayName} size={28} />
                     <span className="min-w-0 flex-1 truncate font-semibold">
                       {row.displayName}
                       {row.isMe ? (
