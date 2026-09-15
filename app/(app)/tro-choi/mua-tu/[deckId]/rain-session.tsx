@@ -73,6 +73,20 @@ const MODES: { value: Mode; title: string; description: string }[] = [
   },
 ];
 
+/**
+ * Bỏ dấu tiếng Việt do bộ gõ (Unikey/Telex) chèn vào. Gõ lặp "a a" thành "â",
+ * gõ nhầm "s" sau "a" thành "á" — nếu để nguyên thì bộ lọc thấy không khớp từ
+ * nào và xoá luôn chữ "a" đúng trước đó. Bỏ dấu thì "â"/"á" về "a", chữ đúng
+ * vẫn còn, phím thừa coi như không gõ.
+ */
+function stripVietnameseMarks(text: string) {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D");
+}
+
 /** Số chữ đầu của `term` khớp với `input` (không phân biệt hoa thường). */
 function matchedPrefix(term: string, input: string) {
   const a = term.toLowerCase();
@@ -321,7 +335,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
     if (phase !== "playing") return;
 
     const alive = drops.filter((drop) => !drop.dead);
-    const next = acceptedPrefix(value, alive);
+    const next = acceptedPrefix(stripVietnameseMarks(value), alive);
     setInput(next);
     if (next === input) return;
 
