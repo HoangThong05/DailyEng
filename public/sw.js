@@ -5,11 +5,14 @@
  *    xuất, mở offline vẫn thấy dữ liệu cá nhân của phiên trước. Mất mạng thì
  *    trả về trang /offline đã lưu sẵn.
  *  - Asset build của Next (/_next/static): cache-first vì tên file có hash, không bao giờ đổi nội dung
- *  - Còn lại (ảnh, icon...): stale-while-revalidate
+ *  - Ảnh, icon, manifest: stale-while-revalidate
+ *  - Mọi thứ khác (RSC payload, server action, prefetch của Next…): KHÔNG
+ *    đụng vào — để trình duyệt tự lo. Chen vào đây từng làm router của Next
+ *    nhận phản hồi lỗi/cũ và kẹt điều hướng.
  *  - Push: hiện thông báo nhắc học, bấm vào thì mở app
  * Tăng VERSION mỗi lần đổi logic để cache cũ bị dọn.
  */
-const VERSION = "dailyeng-v7";
+const VERSION = "dailyeng-v8";
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 const OFFLINE_URL = "/offline";
@@ -50,7 +53,11 @@ async function navigate(request) {
   try {
     // Cố tình không cache: HTML ở đây luôn gắn với người đang đăng nhập.
     return await fetch(request);
-  } catch {
+  } catch (error) {
+    // Người dùng bấm link khác khi trang chưa tải xong → yêu cầu cũ bị huỷ.
+    // Đó không phải mất mạng; ném lại để trình duyệt bỏ qua như bình thường.
+    if (error && error.name === "AbortError") throw error;
+
     const offline = await caches.match(OFFLINE_URL);
     if (offline) return offline;
 
@@ -98,10 +105,6 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  // API và RSC payload luôn phải lấy mới — cache lại sẽ ra dữ liệu cũ.
-  if (url.pathname.startsWith("/api/")) return;
-  if (url.searchParams.has("_rsc")) return;
-
   if (request.mode === "navigate") {
     event.respondWith(navigate(request));
     return;
@@ -111,6 +114,12 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(cacheFirst(request));
     return;
   }
+
+  // Chỉ cache file tĩnh của mình; RSC payload, prefetch, API, font… để yên.
+  const isStaticAsset =
+    /^\/(photos|decks|games|mascot)\//.test(url.pathname) ||
+    /^\/(icon-|apple-icon|favicon|manifest\.webmanifest)/.test(url.pathname);
+  if (!isStaticAsset) return;
 
   event.respondWith(staleWhileRevalidate(request));
 });
