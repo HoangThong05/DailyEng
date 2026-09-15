@@ -17,7 +17,7 @@ export default async function GopYPage() {
       <FeedbackForm defaultEmail={user?.email ?? ""} />
       <p className="text-sm">
         Hoặc gửi email thẳng tới{" "}
-        <a href={`mailto:${SITE.author.email}`}>{SITE.author.email}</a>.
+        <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
       </p>
     </DocPage>
   );

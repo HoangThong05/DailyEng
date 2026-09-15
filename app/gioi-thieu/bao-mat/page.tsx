@@ -204,7 +204,7 @@ export default function BaoMatPage() {
       <h2>Liên hệ</h2>
       <p>
         Mọi câu hỏi về quyền riêng tư hoặc yêu cầu về dữ liệu, gửi tới{" "}
-        <a href={`mailto:${SITE.author.email}`}>{SITE.author.email}</a> hoặc qua
+        <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a> hoặc qua
         trang <Link href="/gioi-thieu/gop-y">Góp ý</Link>.
       </p>
 

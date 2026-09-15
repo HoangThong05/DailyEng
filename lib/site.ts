@@ -5,6 +5,8 @@
 export const SITE = {
   name: "DailyEng",
   tagline: "Học tiếng Anh mỗi ngày: từ vựng, nghe, nói và luyện thi.",
+  /** Email của app: liên hệ, góp ý, yêu cầu dữ liệu. Khác với email cá nhân của tác giả. */
+  contactEmail: "dailyenglish78@gmail.com",
   author: {
     name: "Phan Hoàng Thông",
     role: "Sinh viên · tự xây DailyEng để học tiếng Anh mỗi ngày",

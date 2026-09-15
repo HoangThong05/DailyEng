@@ -147,7 +147,7 @@ export default function DieuKhoanPage() {
       <h2>Liên hệ</h2>
       <p>
         Câu hỏi về điều khoản, yêu cầu xoá tài khoản hay báo vi phạm: gửi tới{" "}
-        <a href={`mailto:${SITE.author.email}`}>{SITE.author.email}</a> hoặc
+        <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a> hoặc
         trang <Link href="/gioi-thieu/gop-y">Góp ý</Link>.
       </p>
 

@@ -132,7 +132,7 @@ export default function VeDailyEngPage() {
               </li>
             ))}
             <li>
-              <a href={`mailto:${SITE.author.email}`}>{SITE.author.email}</a>
+              Email: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
             </li>
           </ul>
         </>

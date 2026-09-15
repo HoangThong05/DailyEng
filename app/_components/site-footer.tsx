@@ -90,6 +90,12 @@ export function SiteFooter() {
           <p className="text-muted mt-3 max-w-sm text-sm leading-relaxed">
             {SITE.tagline}
           </p>
+          <a
+            href={`mailto:${SITE.contactEmail}`}
+            className="text-brand mt-2 block text-sm hover:underline"
+          >
+            {SITE.contactEmail}
+          </a>
 
           <p className="mt-6 text-sm font-semibold">Tác giả</p>
           <p className="mt-1 font-bold">{SITE.author.name}</p>
