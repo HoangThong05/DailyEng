@@ -9,12 +9,19 @@ import { CountUp } from "@/app/_components/count-up";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { useHydrated } from "@/app/_components/use-hydrated";
 import { isCorrectAnswer, type DictationWord } from "@/lib/dictation-game";
+import { playCorrect, playMiss, readSoundPreference, unlockAudio } from "@/lib/game-audio";
 import { speak } from "@/lib/speech";
 import { xpForAnswers } from "@/lib/xp";
 
 type Phase = "intro" | "typing" | "checked" | "finished";
 
-type Result = { word: DictationWord; answer: string; correct: boolean };
+type Result = {
+  word: DictationWord;
+  answer: string;
+  correct: boolean;
+  /** Bỏ qua / xem đáp án: tính là chưa nhớ. */
+  skipped?: boolean;
+};
 
 function supportsSpeech() {
   return typeof window !== "undefined" && "speechSynthesis" in window;
@@ -27,6 +34,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
   const [answer, setAnswer] = useState("");
   const [results, setResults] = useState<Result[]>([]);
   const [showHint, setShowHint] = useState(false);
+  const [sound, setSound] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const word = words[index];
@@ -41,6 +49,8 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
   }, [phase, index, words]);
 
   function start() {
+    unlockAudio();
+    setSound(readSoundPreference());
     speak(words[0].term);
     setPhase("typing");
     // Ô nhập chưa mount ở render này; đợi một nhịp rồi focus.
@@ -53,9 +63,18 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
     const correct = isCorrectAnswer(answer, word.term);
     setResults((list) => [...list, { word, answer, correct }]);
     setPhase("checked");
+    if (sound) (correct ? playCorrect : playMiss)();
 
     // Không chờ mạng: giao diện phản hồi ngay, kết quả lưu chạy nền.
     void recordReview(word.wordId, correct).catch(() => {});
+  }
+
+  /** Không biết thì xem đáp án: tính như trả lời sai, không có tiếng "sai". */
+  function reveal() {
+    if (phase !== "typing") return;
+    setResults((list) => [...list, { word, answer, correct: false, skipped: true }]);
+    setPhase("checked");
+    void recordReview(word.wordId, false).catch(() => {});
   }
 
   function next() {
@@ -143,15 +162,19 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
 
         {wrong.length > 0 ? (
           <div className="border-border bg-card rounded-2xl border p-4">
-            <p className="mb-2 text-sm font-semibold">Từ gõ sai</p>
+            <p className="mb-2 text-sm font-semibold">Từ chưa thuộc</p>
             <ul className="space-y-2">
               {wrong.map((r) => (
                 <li key={r.word.wordId} className="text-sm">
                   <span className="font-medium">{r.word.term}</span>
                   <span className="text-muted"> · {r.word.meaning}</span>
-                  <span className="block text-red-500 line-through">
-                    {r.answer}
-                  </span>
+                  {r.skipped ? (
+                    <span className="text-muted block text-xs">đã xem đáp án</span>
+                  ) : (
+                    <span className="block text-red-500 line-through">
+                      {r.answer}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -197,7 +220,11 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
           <div className="mt-5">
             <p
               className={`text-2xl font-bold ${
-                current?.correct ? "text-green-600" : "text-red-500"
+                current?.correct
+                  ? "text-green-600"
+                  : current?.skipped
+                    ? "text-brand"
+                    : "text-red-500"
               }`}
             >
               {current?.correct ? "Chính xác!" : word.term}
@@ -240,7 +267,9 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
           checked
             ? current?.correct
               ? "border-green-600 bg-green-600/10"
-              : "border-red-500 bg-red-500/10 line-through"
+              : current?.skipped
+                ? "border-border bg-card opacity-60"
+                : "border-red-500 bg-red-500/10 line-through"
             : "border-border bg-card focus:border-brand"
         }`}
       />
@@ -254,14 +283,23 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
           {index + 1 >= words.length ? "Xem kết quả" : "Tiếp"}
         </button>
       ) : (
-        <button
-          type="button"
-          onClick={check}
-          disabled={!answer.trim()}
-          className="bg-brand min-h-12 w-full rounded-xl text-base font-semibold text-white press disabled:opacity-60"
-        >
-          Kiểm tra
-        </button>
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={reveal}
+            className="border-border text-muted min-h-12 flex-1 rounded-xl border text-sm font-semibold press"
+          >
+            Xem đáp án
+          </button>
+          <button
+            type="button"
+            onClick={check}
+            disabled={!answer.trim()}
+            className="bg-brand min-h-12 flex-[2] rounded-xl text-base font-semibold text-white press disabled:opacity-60"
+          >
+            Kiểm tra
+          </button>
+        </div>
       )}
     </div>
   );
