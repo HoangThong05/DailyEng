@@ -12,6 +12,18 @@ import { useUserBar } from "./user-bar-context";
 
 type Panel = "streak" | "bell" | null;
 
+/** Mục chuông đã xem, lưu theo ngày ở trình duyệt; mục mới phát sinh vẫn hiện số. */
+const SEEN_KEY = "dailyeng-bell-seen";
+
+function readSeen(): { day: string; items: string[] } | null {
+  try {
+    const raw = localStorage.getItem(SEEN_KEY);
+    return raw ? (JSON.parse(raw) as { day: string; items: string[] }) : null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Cụm nút góc trên: chuỗi ngày (mở bảng điểm danh), chuông (việc đang chờ),
  * avatar (tới Cá nhân). Không có dữ liệu (chưa đăng nhập) thì không hiện gì.
@@ -21,7 +33,28 @@ export function UserBar({ data: dataProp }: { data?: UserBarData }) {
   const fromContext = useUserBar();
   const data = dataProp ?? fromContext;
   const [open, setOpen] = useState<Panel>(null);
+  const [seen, setSeen] = useState<Set<string>>(() => new Set());
   const rootRef = useRef<HTMLDivElement>(null);
+  const today = data?.checkin.week.find((day) => day.isToday)?.day ?? "";
+
+  // Đọc danh sách đã xem sau khi hydrate (localStorage chỉ có ở trình duyệt).
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const stored = readSeen();
+      if (stored && stored.day === today) setSeen(new Set(stored.items));
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [today]);
+
+  function markSeen(texts: string[]) {
+    const next = new Set([...seen, ...texts]);
+    setSeen(next);
+    try {
+      localStorage.setItem(SEEN_KEY, JSON.stringify({ day: today, items: [...next] }));
+    } catch {
+      // Chế độ ẩn danh chặn localStorage — chỉ mất dấu "đã xem", không sao.
+    }
+  }
 
   // Bấm ra ngoài hoặc Esc thì đóng.
   useEffect(() => {
@@ -42,8 +75,12 @@ export function UserBar({ data: dataProp }: { data?: UserBarData }) {
 
   if (!data) return null;
 
-  const toggle = (panel: Panel) => setOpen((current) => (current === panel ? null : panel));
-  const pending = data.notices.length;
+  const toggle = (panel: Panel) => {
+    // Mở chuông là coi như đã xem hết mục đang có.
+    if (panel === "bell" && open !== "bell") markSeen(data.notices.map((n) => n.text));
+    setOpen((current) => (current === panel ? null : panel));
+  };
+  const pending = data.notices.filter((n) => !seen.has(n.text)).length;
   const chip =
     "border-border bg-card hover:border-brand/50 flex h-10 shrink-0 items-center justify-center rounded-full border shadow-sm press";
 
@@ -64,7 +101,7 @@ export function UserBar({ data: dataProp }: { data?: UserBarData }) {
         type="button"
         onClick={() => toggle("bell")}
         aria-expanded={open === "bell"}
-        aria-label={pending > 0 ? `${pending} việc đang chờ` : "Không có việc chờ"}
+        aria-label={pending > 0 ? `${pending} việc mới` : "Việc đang chờ"}
         className={`${chip} relative w-10`}
       >
         <BellIcon className="text-muted h-5 w-5" />
