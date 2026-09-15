@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Ảnh bìa tải lên qua server action (đã thu nhỏ ở client, thường < 500 KB);
+  // nới giới hạn mặc định 1 MB để ảnh nhiều chi tiết không bị chặn.
+  experimental: { serverActions: { bodySizeLimit: "2mb" } },
   async redirects() {
     return [
       { source: "/bo-cua-toi", destination: "/tai-khoan", permanent: true },

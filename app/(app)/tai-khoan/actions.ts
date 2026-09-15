@@ -78,7 +78,7 @@ export async function uploadProfileImage(
   if (!(file instanceof File) || file.size === 0) {
     return { ok: false, error: "Chưa chọn ảnh." };
   }
-  if (file.size > 900_000) return { ok: false, error: "Ảnh quá lớn, thử ảnh khác." };
+  if (file.size > 1_500_000) return { ok: false, error: "Ảnh quá lớn, thử ảnh khác." };
   if (!["image/webp", "image/jpeg", "image/png"].includes(file.type)) {
     return { ok: false, error: "Chỉ nhận ảnh JPG, PNG hoặc WebP." };
   }
@@ -89,7 +89,7 @@ export async function uploadProfileImage(
   const { error } = await supabase.storage
     .from("avatars")
     .upload(path, file, { upsert: true, contentType: file.type, cacheControl: "3600" });
-  if (error) return { ok: false, error: error.message };
+  if (error) return { ok: false, error: `Không tải lên được: ${error.message}` };
 
   // Thêm ?v= để trình duyệt không dùng ảnh cũ trong cache sau khi đổi.
   const { data } = supabase.storage.from("avatars").getPublicUrl(path);
@@ -99,11 +99,9 @@ export async function uploadProfileImage(
     .from("profiles")
     .update(kind === "avatar" ? { avatar_url: url } : { cover: `url:${url}` })
     .eq("id", user.id);
-  if (saveError) return { ok: false, error: saveError.message };
+  if (saveError) return { ok: false, error: `Không lưu được hồ sơ: ${saveError.message}` };
 
-  revalidatePath("/");
-  revalidatePath("/tai-khoan");
-  revalidatePath("/xep-hang");
+  revalidatePath("/", "layout");
   return { ok: true, url };
 }
 

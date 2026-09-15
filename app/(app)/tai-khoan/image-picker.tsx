@@ -13,8 +13,37 @@ type Props = {
  * Avatar: vuông 256px. Bìa: 1200×400. Ra WebP nhẹ nên upload nhanh và
  * không vướng giới hạn kích thước body của server action.
  */
+/** Giải mã ảnh: createImageBitmap nhanh nhưng vài trình duyệt/định dạng không hỗ trợ → thử <img>. */
+async function decode(file: File): Promise<ImageBitmap | HTMLImageElement> {
+  try {
+    return await createImageBitmap(file);
+  } catch {
+    const url = URL.createObjectURL(file);
+    try {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = url;
+      await img.decode();
+      return img;
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+}
+
+function toBlob(canvas: HTMLCanvasElement, type: string, quality: number) {
+  return new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, type, quality));
+}
+
+/** Server action nhận tối đa ~1 MB; chừa dư cho phần bao FormData. */
+const MAX_BYTES = 800_000;
+
 async function shrink(file: File, kind: "avatar" | "cover"): Promise<Blob> {
-  const bitmap = await createImageBitmap(file);
+  const source = await decode(file);
+  const bitmap = {
+    width: source.width,
+    height: source.height,
+  };
   const target = kind === "avatar" ? { w: 256, h: 256 } : { w: 1200, h: 400 };
   const scale = Math.max(target.w / bitmap.width, target.h / bitmap.height);
   const sw = target.w / scale;
@@ -25,16 +54,26 @@ async function shrink(file: File, kind: "avatar" | "cover"): Promise<Blob> {
   const canvas = document.createElement("canvas");
   canvas.width = target.w;
   canvas.height = target.h;
-  canvas.getContext("2d")!.drawImage(bitmap, sx, sy, sw, sh, 0, 0, target.w, target.h);
-  bitmap.close();
+  canvas.getContext("2d")!.drawImage(source, sx, sy, sw, sh, 0, 0, target.w, target.h);
+  if ("close" in source) source.close();
 
-  return new Promise((resolve, reject) => {
-    canvas.toBlob(
-      (blob) => (blob ? resolve(blob) : reject(new Error("Không xử lý được ảnh"))),
-      "image/webp",
-      0.86,
-    );
-  });
+  // WebP trước; trình duyệt không xuất được WebP (trả PNG to) hoặc file vẫn
+  // nặng thì hạ chất lượng rồi chuyển JPEG cho chắc dưới giới hạn.
+  const attempts: [string, number][] = [
+    ["image/webp", 0.86],
+    ["image/webp", 0.7],
+    ["image/jpeg", 0.85],
+    ["image/jpeg", 0.7],
+  ];
+  let last: Blob | null = null;
+  for (const [type, quality] of attempts) {
+    const blob = await toBlob(canvas, type, quality);
+    if (!blob || blob.type !== type) continue;
+    last = blob;
+    if (blob.size <= MAX_BYTES) return blob;
+  }
+  if (last) return last;
+  throw new Error("Không xử lý được ảnh");
 }
 
 export function ImagePicker({ kind, hasImage }: Props) {
@@ -58,8 +97,9 @@ export function ImagePicker({ kind, hasImage }: Props) {
       setError("Không đọc được ảnh này.");
       return;
     }
+    const ext = blob.type === "image/jpeg" ? "jpg" : "webp";
     const formData = new FormData();
-    formData.set("file", new File([blob], `${kind}.webp`, { type: "image/webp" }));
+    formData.set("file", new File([blob], `${kind}.${ext}`, { type: blob.type }));
     startTransition(async () => {
       const result = await uploadProfileImage(kind, formData);
       if (!result.ok) setError(result.error);
