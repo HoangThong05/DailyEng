@@ -36,6 +36,7 @@ const TAB_ALIASES: Record<string, string> = {
   "/phat-am": "/ky-nang",
   "/tien-do": "/tai-khoan",
   "/xep-hang": "/tai-khoan",
+  "/nguoi-dung": "/tai-khoan",
   "/phan-thuong": "/tai-khoan",
 };
 

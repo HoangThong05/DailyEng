@@ -368,7 +368,13 @@ export default async function Home() {
                     </span>
                     <Avatar url={row.avatarUrl} name={row.displayName} size={28} />
                     <span className="min-w-0 flex-1 truncate font-semibold">
-                      {row.displayName}
+                      {row.userId && !row.isMe ? (
+                        <Link href={`/nguoi-dung/${row.userId}`} className="hover:text-brand hover:underline">
+                          {row.displayName}
+                        </Link>
+                      ) : (
+                        row.displayName
+                      )}
                       {row.isMe ? (
                         <span className="text-brand ml-2 text-xs">Bạn</span>
                       ) : null}

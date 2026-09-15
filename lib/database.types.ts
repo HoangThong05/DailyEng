@@ -403,9 +403,27 @@ export type Database = {
         }[];
       };
       /** Top XP (tuần hoặc toàn thời gian) + hàng của chính mình nếu ngoài top. */
+      public_profile: {
+        Args: { target: string };
+        Returns: {
+          user_id: string;
+          display_name: string;
+          avatar_url: string | null;
+          cover: string | null;
+          bio: string | null;
+          badges: Json;
+          xp: number;
+          words_seen: number;
+          words_mastered: number;
+          reviews: number;
+          recent_days: string[];
+          joined_at: string;
+        }[];
+      };
       leaderboard: {
         Args: { period: "week" | "all"; top_n: number };
         Returns: {
+          user_id?: string;
           display_name: string;
           avatar_url: string | null;
           xp: number;

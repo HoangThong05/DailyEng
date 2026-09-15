@@ -30,6 +30,7 @@
 - XP và cấp độ (Người mới → Huyền thoại) tính từ mọi hoạt động học
 - Bảng xếp hạng XP 7 ngày / toàn thời gian giữa người dùng (hàm SQL `leaderboard`, chỉ lộ tên hiển thị và điểm; có nút ẩn mình khỏi bảng)
 - Điểm danh mỗi ngày ở thanh trên (+10 XP, ngày thứ 7 liên tiếp +50), chuông việc đang chờ, mốc chuỗi ngày học 3/7/14/30/60/100 thưởng một lần; trang Phần thưởng (`/phan-thuong`) ghi rõ quy định và tình hình của mình
+- Trang cá nhân công khai (`/nguoi-dung/<id>`): bấm tên trên bảng xếp hạng xem bìa, avatar, tiểu sử, cấp, XP, chuỗi, số tổng và huy hiệu của người khác (hàm `public_profile`, không lộ email; ai ẩn khỏi bảng xếp hạng thì không xem được)
 - Huy hiệu: 22 mốc thành tích (chuỗi ngày, từ vựng, siêng năng, kỹ năng) tính từ dữ liệu học, lưu `profiles.badges`; hiện ở Cá nhân, huy hiệu nổi bật hiện cạnh tên trên bảng xếp hạng, trang chủ báo huy hiệu mới
 - Nhiệm vụ hằng ngày: 3 việc nhỏ (học 10 từ + 2 việc xoay vòng: trò chơi, nghe chép, shadowing, mock test…), xong được XP thưởng, xong cả ba thưởng thêm
 - Ôn tập hôm nay: gom từ đã học tới hạn từ mọi bộ vào một phiên (`/on-tap`)
@@ -115,6 +116,7 @@ Trong SQL Editor chạy lần lượt:
 15. `supabase/schema-15-nhiem-vu.sql` — nhiệm vụ hằng ngày: `review_log.source`, bảng `task_completions`, xếp hạng cộng XP thưởng
 16. `supabase/schema-16-dau-vao.sql` — cột `profiles.placement` lưu kết quả kiểm tra đầu vào
 17. `supabase/schema-17-huy-hieu.sql` — cột `profiles.badges`, bảng xếp hạng trả thêm huy hiệu
+18. `supabase/schema-18-ho-so-cong-khai.sql` — hàm `public_profile`, bảng xếp hạng trả `user_id` để mở trang cá nhân người khác
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

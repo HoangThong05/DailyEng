@@ -83,7 +83,13 @@ export default async function XepHangPage({
                 <Avatar url={row.avatarUrl} name={row.displayName} size={36} />
                 <span className="min-w-0 flex-1">
                   <span className="block truncate font-semibold">
-                    {row.displayName}
+                    {row.userId && !row.isMe ? (
+                      <Link href={`/nguoi-dung/${row.userId}`} className="hover:text-brand hover:underline">
+                        {row.displayName}
+                      </Link>
+                    ) : (
+                      row.displayName
+                    )}
                     {row.isMe ? (
                       <span className="text-brand ml-2 text-xs font-bold">Bạn</span>
                     ) : null}

@@ -4,6 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 export type LeaderboardPeriod = "week" | "all";
 
 export type LeaderboardRow = {
+  /** Có từ schema-18; null thì không bấm mở trang cá nhân được. */
+  userId: string | null;
   displayName: string;
   avatarUrl: string | null;
   /** Khoá huy hiệu đã đạt (schema-17); chưa chạy thì rỗng. */
@@ -32,6 +34,7 @@ export async function getLeaderboard(
     return [];
   }
   return (data ?? []).map((row) => ({
+    userId: row.user_id ?? null,
     displayName: row.display_name,
     avatarUrl: row.avatar_url,
     badges: parseBadgeKeys(row.badges),
