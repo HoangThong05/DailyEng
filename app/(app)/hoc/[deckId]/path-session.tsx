@@ -89,6 +89,62 @@ function SpeakButton({
   );
 }
 
+/**
+ * Câu ví dụ: từ được tô sáng, bản dịch, hai nút nghe (thường / chậm).
+ * Nghe cả câu giúp nhớ từ trong ngữ cảnh và quen ngữ điệu, không chỉ từ lẻ.
+ */
+function ExampleCard({
+  word,
+  className = "",
+  onListen,
+}: {
+  word: PathWord;
+  className?: string;
+  /** Gọi khi bấm nghe, để phiên học dừng tự chuyển bước. */
+  onListen?: () => void;
+}) {
+  if (!word.example_en) return null;
+  const sentence = word.example_en;
+  const listen = (rate: number) => {
+    onListen?.();
+    speak(sentence, "en-US", rate);
+  };
+  return (
+    <div className={`bg-brand-soft/60 rounded-2xl p-4 text-left ${className}`}>
+      <div className="flex items-start gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="text-sm leading-relaxed">
+            <Highlighted sentence={sentence} term={word.term} />
+          </p>
+          {word.example_vi ? (
+            <p className="text-muted mt-1 text-sm">{word.example_vi}</p>
+          ) : null}
+        </div>
+        <div className="flex shrink-0 flex-col gap-1.5">
+          <button
+            type="button"
+            aria-label="Nghe cả câu"
+            title="Nghe cả câu"
+            onClick={() => listen(0.95)}
+            className="bg-card text-brand border-border flex h-9 w-9 items-center justify-center rounded-full border press"
+          >
+            <SpeakerIcon className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Nghe chậm"
+            title="Nghe chậm"
+            onClick={() => listen(0.65)}
+            className="bg-card text-muted border-border flex h-9 w-9 items-center justify-center rounded-full border text-sm press"
+          >
+            🐢
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function PathSession({ deckName, stages, pool }: Props) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [stageIndex, setStageIndex] = useState(0);
@@ -107,6 +163,21 @@ export function PathSession({ deckName, stages, pool }: Props) {
   // Âm hiệu đúng/sai theo cài đặt chung của các trò chơi (tắt/bật ở trò chơi).
   const [sound, setSound] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
+  /** Hẹn giờ tự qua bước khi đúng; bấm nghe câu thì huỷ để nghe cho hết. */
+  const autoTimer = useRef<number | null>(null);
+  const [held, setHeld] = useState(false);
+
+  function scheduleAdvance(ms: number) {
+    autoTimer.current = window.setTimeout(advance, ms);
+  }
+
+  function holdForListening() {
+    if (autoTimer.current !== null) {
+      clearTimeout(autoTimer.current);
+      autoTimer.current = null;
+    }
+    setHeld(true);
+  }
 
   const step = steps[stepIndex];
   const totalWords = stages.reduce((sum, stage) => sum + stage.words.length, 0);
@@ -169,6 +240,8 @@ export function PathSession({ deckName, stages, pool }: Props) {
   }
 
   function advance() {
+    autoTimer.current = null;
+    setHeld(false);
     setFeedback("none");
     setPicked(null);
     setTyped("");
@@ -229,7 +302,8 @@ export function PathSession({ deckName, stages, pool }: Props) {
     setFeedback(correct ? "correct" : "wrong");
     if (correct) {
       bumpCombo();
-      setTimeout(advance, AUTO_NEXT_MS);
+      // Có câu ví dụ thì nán thêm chút để kịp liếc từ trong câu.
+      scheduleAdvance(step.word.example_en ? AUTO_NEXT_MS + 600 : AUTO_NEXT_MS);
     } else {
       breakCombo();
       markFailed(step.word);
@@ -245,7 +319,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
       bumpCombo();
       speak(step.word.term);
       commit(step.word, attempts === 0);
-      setTimeout(advance, AUTO_NEXT_MS + 300);
+      scheduleAdvance(AUTO_NEXT_MS + 300);
       return;
     }
 
@@ -487,16 +561,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
               <p className="ipa text-muted mt-1 text-lg">{word.phonetic}</p>
             ) : null}
             <p className="mt-5 text-xl font-semibold">{word.meaning_vi}</p>
-            {word.example_en ? (
-              <div className="bg-brand-soft/60 mt-5 rounded-2xl p-4 text-left">
-                <p className="text-sm leading-relaxed">
-                  <Highlighted sentence={word.example_en} term={word.term} />
-                </p>
-                {word.example_vi ? (
-                  <p className="text-muted mt-1 text-sm">{word.example_vi}</p>
-                ) : null}
-              </div>
-            ) : null}
+            <ExampleCard word={word} className="mt-5" />
           </div>
           <button
             type="button"
@@ -562,7 +627,21 @@ export function PathSession({ deckName, stages, pool }: Props) {
             })}
           </div>
 
-          {feedback === "wrong" ? (
+          {/* Trả lời xong (đúng hay sai) đều thấy từ trong câu để nhớ ngữ cảnh */}
+          {feedback !== "none" ? (
+            <div className="step-enter">
+              {step.prompt !== "term" ? (
+                <p className="mt-4 text-center">
+                  <span className="text-xl font-bold">{word.term}</span>{" "}
+                  <span className="ipa text-muted">{word.phonetic ?? ""}</span>
+                  <span className="text-muted"> · {word.meaning_vi}</span>
+                </p>
+              ) : null}
+              <ExampleCard word={word} className="mt-3" onListen={holdForListening} />
+            </div>
+          ) : null}
+
+          {feedback === "wrong" || held ? (
             <button
               type="button"
               onClick={advance}
@@ -619,6 +698,35 @@ export function PathSession({ deckName, stages, pool }: Props) {
                 <span className="ipa text-muted">{word.phonetic ?? ""}</span>
               </p>
             ) : null}
+            {feedback !== "none" ? (
+              step.mode === "blank" && word.example_en ? (
+                <div className="mt-4 flex justify-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      holdForListening();
+                      speak(word.example_en ?? "", "en-US", 0.95);
+                    }}
+                    className="bg-brand-soft text-brand flex min-h-10 items-center gap-2 rounded-full px-4 text-sm font-semibold press"
+                  >
+                    <SpeakerIcon className="h-4 w-4" /> Nghe cả câu
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Nghe chậm"
+                    onClick={() => {
+                      holdForListening();
+                      speak(word.example_en ?? "", "en-US", 0.65);
+                    }}
+                    className="bg-brand-soft text-muted flex h-10 w-10 items-center justify-center rounded-full press"
+                  >
+                    🐢
+                  </button>
+                </div>
+              ) : (
+                <ExampleCard word={word} className="step-enter mt-4" onListen={holdForListening} />
+              )
+            ) : null}
           </div>
 
           <form
@@ -627,7 +735,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
               event.preventDefault();
               // Đúng thì bộ đếm tự chuyển bước; chỉ sai mới cần bấm Tiếp.
               if (feedback === "none") check();
-              else if (feedback === "wrong") advance();
+              else if (feedback === "wrong" || held) advance();
             }}
           >
             <input
