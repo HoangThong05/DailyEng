@@ -3,11 +3,13 @@ import Link from "next/link";
 import { signOut } from "@/app/_actions/auth";
 import { CountUp } from "@/app/_components/count-up";
 import { Avatar } from "@/app/_components/avatar";
+import { BadgeChip } from "@/app/_components/badge-chip";
 import { ChevronRightIcon, FlameIcon, PencilIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { OpenDetailsOnHash } from "@/app/_components/open-details-on-hash";
 import { DeckCard } from "@/app/(app)/hoc/deck-card";
 import { PageHeader } from "@/app/_components/page-header";
+import { BADGE_GROUPS, BADGES, syncBadges } from "@/lib/badges";
 import { listDecks } from "@/lib/decks";
 import { COVER_PRESETS, parseCover } from "@/lib/profile";
 import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
@@ -45,7 +47,7 @@ export default async function TaiKhoanPage() {
   const user = await getCurrentUser();
   const supabase = await createClient();
 
-  const [{ data: profile }, { streak, totals, level }, decks] = await Promise.all([
+  const [{ data: profile }, stats, decks] = await Promise.all([
     supabase
       .from("profiles")
       .select("display_name, daily_goal, reminder_hour, hide_rank, bio, avatar_url, cover")
@@ -54,7 +56,10 @@ export default async function TaiKhoanPage() {
     getStudyStats(),
     listDecks(),
   ]);
+  const { streak, totals, level } = stats;
   const ownDecks = decks.filter((deck) => deck.isOwn);
+  const badgeState = await syncBadges(stats);
+  const earnedBadges = new Set(badgeState.earnedKeys);
 
   const displayName =
     profile?.display_name ?? user?.email?.split("@")[0] ?? "Bạn";
@@ -160,6 +165,42 @@ export default async function TaiKhoanPage() {
             <ChevronRightIcon className="text-muted h-4 w-4" />
           </Link>
         </div>
+
+        {/* Huy hiệu: tất cả, đạt rồi thì sáng */}
+        <section aria-labelledby="huy-hieu" className="border-border bg-card rounded-2xl border p-4">
+          <div className="flex items-center gap-2">
+            <h2 id="huy-hieu" className="font-semibold">
+              Huy hiệu
+            </h2>
+            <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
+              {earnedBadges.size}/{BADGES.length}
+            </span>
+          </div>
+          {BADGE_GROUPS.map((group) => (
+            <div key={group.key} className="mt-3">
+              <p className="text-muted text-xs font-semibold tracking-wide uppercase">{group.label}</p>
+              <ul className="mt-1.5 grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
+                {BADGES.filter((badge) => badge.group === group.key).map((badge) => {
+                  const earned = earnedBadges.has(badge.key);
+                  return (
+                    <li
+                      key={badge.key}
+                      className={`flex items-center gap-2 rounded-xl p-1.5 ${earned ? "" : "opacity-70"}`}
+                    >
+                      <BadgeChip badge={badge} earned={earned} size={36} />
+                      <span className="min-w-0">
+                        <span className={`block truncate text-xs font-semibold ${earned ? "" : "text-muted"}`}>
+                          {badge.title}
+                        </span>
+                        <span className="text-muted block truncate text-[11px]">{badge.description}</span>
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </section>
 
         {/* Bộ từ tự tạo */}
         <section aria-labelledby="bo-cua-toi" className="space-y-3">

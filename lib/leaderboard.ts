@@ -1,3 +1,4 @@
+import { parseBadgeKeys } from "@/lib/badges";
 import { createClient } from "@/lib/supabase/server";
 
 export type LeaderboardPeriod = "week" | "all";
@@ -5,6 +6,8 @@ export type LeaderboardPeriod = "week" | "all";
 export type LeaderboardRow = {
   displayName: string;
   avatarUrl: string | null;
+  /** Khoá huy hiệu đã đạt (schema-17); chưa chạy thì rỗng. */
+  badges: string[];
   xp: number;
   rank: number;
   isMe: boolean;
@@ -31,6 +34,7 @@ export async function getLeaderboard(
   return (data ?? []).map((row) => ({
     displayName: row.display_name,
     avatarUrl: row.avatar_url,
+    badges: parseBadgeKeys(row.badges),
     xp: row.xp,
     rank: row.rank,
     isMe: row.is_me,

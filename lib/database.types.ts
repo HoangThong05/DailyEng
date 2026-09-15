@@ -43,6 +43,7 @@ export type Database = {
           bio: string | null;
           cover: string;
           placement: Json | null;
+          badges: Json;
           created_at: string;
           updated_at: string;
         };
@@ -59,6 +60,7 @@ export type Database = {
           bio?: string | null;
           cover?: string;
           placement?: Json | null;
+          badges?: Json;
           created_at?: string;
           updated_at?: string;
         };
@@ -75,6 +77,7 @@ export type Database = {
           bio?: string | null;
           cover?: string;
           placement?: Json | null;
+          badges?: Json;
           created_at?: string;
           updated_at?: string;
         };
@@ -408,6 +411,7 @@ export type Database = {
           xp: number;
           rank: number;
           is_me: boolean;
+          badges?: Json;
         }[];
       };
     };

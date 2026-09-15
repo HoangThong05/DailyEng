@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { Avatar } from "@/app/_components/avatar";
+import { BadgeChip } from "@/app/_components/badge-chip";
+import { badgeByKey } from "@/lib/badges";
+import { syncBadges } from "@/lib/badges";
 import { DeckCover } from "@/app/_components/deck-cover";
 import { ChevronRightIcon, FlameIcon } from "@/app/_components/icons";
 import { InstallPrompt } from "@/app/_components/install-prompt";
@@ -74,6 +77,9 @@ export default async function Home() {
   ]);
   // Mốc chuỗi 3/7/14… ngày: thưởng một lần, ghi ngay khi ghé trang chủ.
   await awardStreakMilestones(stats.streak.current);
+  // Huy hiệu vừa đạt: khoe một lần ở trang chủ, chi tiết ở Cá nhân.
+  const { freshKeys } = await syncBadges(stats);
+  const freshBadges = freshKeys.map(badgeByKey).filter((b) => b !== null);
   const topThree = board.filter((row) => row.rank <= 3);
   const myRank = board.find((row) => row.isMe);
 
@@ -168,6 +174,26 @@ export default async function Home() {
             className="absolute -right-1 -bottom-1 rounded-2xl sm:hidden"
           />
         </section>
+
+        {freshBadges.length > 0 ? (
+          <Link
+            href="/tai-khoan#huy-hieu"
+            className="flex items-center gap-3 rounded-2xl border border-amber-300/60 bg-gradient-to-r from-amber-50 to-yellow-50 p-4 press dark:border-amber-500/30 dark:from-amber-500/10 dark:to-yellow-500/10"
+          >
+            <span className="flex items-center -space-x-2">
+              {freshBadges.slice(0, 3).map((badge) => (
+                <BadgeChip key={badge.key} badge={badge} size={40} className="border-card border-2" />
+              ))}
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-semibold">
+                Huy hiệu mới: {freshBadges.map((b) => b.title).join(", ")}
+              </span>
+              <span className="text-muted block text-sm">Xem bộ sưu tập ở trang Cá nhân</span>
+            </span>
+            <ChevronRightIcon className="text-muted h-5 w-5 shrink-0" />
+          </Link>
+        ) : null}
 
         <DailyTaskList data={tasks} />
 

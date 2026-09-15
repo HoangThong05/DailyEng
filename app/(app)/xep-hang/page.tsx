@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Avatar } from "@/app/_components/avatar";
+import { BadgeChip } from "@/app/_components/badge-chip";
+import { topBadges } from "@/lib/badges";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
 import { getLeaderboard, type LeaderboardPeriod } from "@/lib/leaderboard";
@@ -79,10 +81,22 @@ export default async function XepHangPage({
                   {MEDALS[row.rank - 1] ?? row.rank}
                 </span>
                 <Avatar url={row.avatarUrl} name={row.displayName} size={36} />
-                <span className="min-w-0 flex-1 truncate font-semibold">
-                  {row.displayName}
-                  {row.isMe ? (
-                    <span className="text-brand ml-2 text-xs font-bold">Bạn</span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate font-semibold">
+                    {row.displayName}
+                    {row.isMe ? (
+                      <span className="text-brand ml-2 text-xs font-bold">Bạn</span>
+                    ) : null}
+                  </span>
+                  {row.badges.length > 0 ? (
+                    <span className="mt-1 flex items-center gap-1">
+                      {topBadges(row.badges).map((badge) => (
+                        <BadgeChip key={badge.key} badge={badge} size={22} />
+                      ))}
+                      {row.badges.length > 3 ? (
+                        <span className="text-muted text-[11px] font-semibold">+{row.badges.length - 3}</span>
+                      ) : null}
+                    </span>
                   ) : null}
                 </span>
                 <span className="text-brand shrink-0 font-bold tabular-nums">
