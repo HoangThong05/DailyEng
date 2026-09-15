@@ -168,7 +168,7 @@ export default function BaoMatPage() {
       <ul>
         <li>Dữ liệu tài khoản và học tập được giữ chừng nào tài khoản còn tồn tại, để chuỗi ngày và lịch ôn tập của bạn không mất.</li>
         <li>Địa chỉ thông báo đẩy bị xoá ngay khi bạn tắt nhắc học hoặc khi trình duyệt báo không còn hợp lệ.</li>
-        <li>Ảnh đại diện/ảnh bìa bị thay thế khi bạn tải ảnh mới hoặc chọn "Dùng vịt" / "Dùng màu".</li>
+        <li>Ảnh đại diện/ảnh bìa bị thay thế khi bạn tải ảnh mới hoặc chọn “Dùng vịt” / “Dùng màu”.</li>
         <li>Phản hồi được giữ cho tới khi xử lý xong.</li>
       </ul>
 
