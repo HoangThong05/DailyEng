@@ -41,7 +41,7 @@ export async function LandingHeader({ showAnchors = false }: { showAnchors?: boo
         <div className="flex items-center gap-2">
           <ThemeButton className={userBar ? "hidden sm:flex" : ""} />
           {userBar ? (
-            <UserBar data={userBar} />
+            <UserBar data={userBar} showAvatar />
           ) : (
             <Link
               href={isAdmin ? "/quan-tri" : "/dang-nhap"}

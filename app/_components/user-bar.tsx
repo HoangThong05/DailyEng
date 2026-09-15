@@ -60,7 +60,14 @@ function writeSeen(today: string, items: Set<string>) {
  * avatar (tới Cá nhân). Không có dữ liệu (chưa đăng nhập) thì không hiện gì.
  * Dữ liệu lấy từ prop, không có thì từ context của layout app.
  */
-export function UserBar({ data: dataProp }: { data?: UserBarData }) {
+export function UserBar({
+  data: dataProp,
+  showAvatar = false,
+}: {
+  data?: UserBarData;
+  /** Trang giới thiệu bật; trong app tắt vì sidebar / tab Cá nhân đã có sẵn. */
+  showAvatar?: boolean;
+}) {
   const fromContext = useUserBar();
   const data = dataProp ?? fromContext;
   const [open, setOpen] = useState<Panel>(null);
@@ -104,13 +111,15 @@ export function UserBar({ data: dataProp }: { data?: UserBarData }) {
 
   return (
     <div ref={rootRef} className="relative flex shrink-0 items-center gap-2">
-      {/* Avatar đứng đầu cụm; chuỗi ngày kèm chữ trên màn rộng; chuông cuối */}
-      <Link href="/tai-khoan" aria-label="Trang cá nhân" className="relative shrink-0 press">
-        <Avatar url={data.avatarUrl} name={data.name} size={40} className="border-border border shadow-sm" />
-        <span className="bg-brand absolute -right-1 -bottom-1 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
-          Lv.{data.level}
-        </span>
-      </Link>
+      {/* Avatar đứng đầu cụm (chỉ trang giới thiệu); chuỗi ngày kèm chữ trên màn rộng; chuông cuối */}
+      {showAvatar ? (
+        <Link href="/tai-khoan" aria-label="Trang cá nhân" className="relative shrink-0 press">
+          <Avatar url={data.avatarUrl} name={data.name} size={40} className="border-border border shadow-sm" />
+          <span className="bg-brand absolute -right-1 -bottom-1 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
+            Lv.{data.level}
+          </span>
+        </Link>
+      ) : null}
 
       <button
         type="button"
