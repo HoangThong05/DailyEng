@@ -619,6 +619,70 @@
   animation: combo-pop 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* Trang giới thiệu: bong bóng trong suốt lấp lánh bay ngang qua vịt, chỉ một lượt khi mở trang. */
+@keyframes bubble-drift {
+  0% {
+    transform: translateX(-10vw) translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(28vw) translateY(-18px) scale(1);
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(60vw) translateY(-40px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes bubble-shine {
+  0%,
+  100% {
+    box-shadow:
+      inset -2px -2px 6px rgba(255, 255, 255, 0.25),
+      inset 2px 2px 4px rgba(255, 255, 255, 0.6),
+      0 0 6px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    box-shadow:
+      inset -2px -2px 6px rgba(255, 255, 255, 0.35),
+      inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+      0 0 14px rgba(255, 255, 255, 0.6);
+  }
+}
+
+.bubble {
+  left: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(147, 197, 253, 0.15) 70%,
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  animation:
+    bubble-drift 8s ease-in-out both,
+    bubble-shine 1.4s ease-in-out infinite;
+}
+
+/* Vịt hero: rê chuột thì phồng lên, nghiêng nhẹ và toả sáng. */
+.hero-duck {
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.35s ease;
+}
+
+.hero-duck:hover {
+  transform: scale(1.06) rotate(-3deg);
+  filter: drop-shadow(0 0 28px rgba(96, 165, 250, 0.55)) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+}
+
 /* Icon tab nảy lên một cái khi tab được chọn. */
 @keyframes tab-pop {
   0% {

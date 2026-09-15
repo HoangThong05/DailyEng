@@ -52,6 +52,14 @@ const FEATURES = [
   },
 ] as const;
 
+/* Bong bóng bay ngang qua vịt lúc mở trang: vị trí/cỡ cố định theo chỉ số để render ổn định. */
+const BUBBLES = Array.from({ length: 14 }, (_, i) => ({
+  top: (i * 37 + 5) % 90,
+  size: 10 + ((i * 7) % 26),
+  delay: (i % 7) * 0.35,
+  duration: 6 + (i % 5) * 1.1,
+}));
+
 const STEPS = [
   { n: 1, title: "Chọn bộ từ", text: "TOEIC, giao tiếp, công việc… hoặc dán danh sách từ của riêng bạn." },
   { n: 2, title: "Học 10 phút mỗi ngày", text: "Đi qua chặng, chơi một ván, nói theo vài câu. Đủ mục tiêu là vịt ăn mừng." },
@@ -130,28 +138,33 @@ export default async function GioiThieuPage() {
             </p>
           </div>
 
-          {/* Vịt hero (nền trong suốt) lơ lửng trên quầng sáng + chip số liệu */}
+          {/* Vịt hero (nền trong suốt) lơ lửng trên quầng sáng; bong bóng bay ngang lúc mở trang */}
           <div className="relative mx-auto w-full max-w-md">
             <div className="from-brand/30 absolute inset-[8%] rounded-full bg-gradient-to-br via-violet-500/20 to-fuchsia-500/10 blur-3xl" />
-            <Image
-              src={vitHero}
-              alt="Vịt DailyEng đeo tai nghe học với laptop"
-              priority
-              sizes="(min-width: 768px) 448px, 90vw"
-              className="header-duck relative h-auto w-full drop-shadow-2xl"
-            />
-            <span className="bg-card border-border absolute top-[14%] left-0 flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-bold shadow-lg">
-              <FlameIcon className="h-4 w-4 text-orange-500" /> 12 ngày liên tiếp
-            </span>
-            <span className="from-brand absolute top-[8%] right-0 rounded-full bg-gradient-to-r to-violet-500 px-3 py-1.5 text-sm font-bold text-white shadow-lg">
-              Combo ×5
-            </span>
-            <span className="bg-card border-border absolute bottom-[10%] right-[4%] rounded-full border px-3 py-1.5 text-sm font-bold shadow-lg">
-              +70 XP
-            </span>
-            <span className="bg-card border-border absolute bottom-[18%] left-0 rounded-full border px-3 py-1.5 text-sm font-bold text-emerald-500 shadow-lg">
-              Cấp 6 · Chăm chỉ
-            </span>
+            <div aria-hidden className="pointer-events-none absolute -inset-x-16 -inset-y-10 overflow-hidden">
+              {BUBBLES.map((bubble, i) => (
+                <span
+                  key={i}
+                  className="bubble absolute rounded-full"
+                  style={{
+                    top: `${bubble.top}%`,
+                    width: bubble.size,
+                    height: bubble.size,
+                    animationDelay: `${bubble.delay}s`,
+                    animationDuration: `${bubble.duration}s`,
+                  }}
+                />
+              ))}
+            </div>
+            <div className="header-duck relative">
+              <Image
+                src={vitHero}
+                alt="Vịt DailyEng đeo tai nghe học với laptop"
+                priority
+                sizes="(min-width: 768px) 448px, 90vw"
+                className="hero-duck h-auto w-full cursor-pointer drop-shadow-2xl"
+              />
+            </div>
           </div>
         </section>
 
