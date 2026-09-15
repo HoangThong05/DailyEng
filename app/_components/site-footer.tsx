@@ -62,43 +62,12 @@ const FEATURE_LINKS = [
   { href: "/xep-hang", label: "Bảng xếp hạng" },
 ];
 
-/**
- * Footer dùng chung. `compact` cho các trang trong app (một dòng gọn dưới
- * nội dung); mặc định là footer đầy đủ cho trang giới thiệu.
- */
-export function SiteFooter({ compact = false }: { compact?: boolean }) {
+/** Footer đầy đủ, chỉ dùng ở trang giới thiệu. */
+export function SiteFooter() {
   const socials = (Object.keys(SITE.social) as SocialKey[]).filter(
     (key) => SITE.social[key],
   );
   const year = new Date().getFullYear();
-
-  if (compact) {
-    return (
-      <footer className="text-muted border-border mt-10 flex flex-wrap items-center justify-between gap-3 border-t px-5 py-5 text-xs">
-        <span>
-          © {year} {SITE.name} · Tác giả{" "}
-          <span className="text-fg font-semibold">{SITE.author.name}</span>
-        </span>
-        <span className="flex items-center gap-3">
-          <Link href="/gioi-thieu" className="hover:text-fg">
-            Giới thiệu
-          </Link>
-          {socials.map((key) => (
-            <a
-              key={key}
-              href={SITE.social[key]}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={SOCIAL_LABELS[key]}
-              className="hover:text-fg"
-            >
-              <SocialIcon name={key} className="h-4 w-4" />
-            </a>
-          ))}
-        </span>
-      </footer>
-    );
-  }
 
   return (
     <footer className="border-border mt-16 border-t">
@@ -150,7 +119,7 @@ export function SiteFooter({ compact = false }: { compact?: boolean }) {
           <ul className="text-muted mt-3 space-y-2 text-sm">
             {FEATURE_LINKS.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-fg">
+                <Link href={item.href} className="hover:text-fg hover:underline">
                   {item.label}
                 </Link>
               </li>
@@ -162,23 +131,23 @@ export function SiteFooter({ compact = false }: { compact?: boolean }) {
           <p className="text-sm font-bold tracking-wide uppercase">Thông tin</p>
           <ul className="text-muted mt-3 space-y-2 text-sm">
             <li>
-              <Link href="/gioi-thieu" className="hover:text-fg">
+              <Link href="/gioi-thieu" className="hover:text-fg hover:underline">
                 Giới thiệu
               </Link>
             </li>
             <li>
-              <Link href="/dang-nhap" className="hover:text-fg">
+              <Link href="/dang-nhap" className="hover:text-fg hover:underline">
                 Đăng nhập
               </Link>
             </li>
             <li>
-              <a href={SITE.repo} target="_blank" rel="noreferrer" className="hover:text-fg">
+              <a href={SITE.repo} target="_blank" rel="noreferrer" className="hover:text-fg hover:underline">
                 Mã nguồn trên GitHub
               </a>
             </li>
             {SITE.author.email ? (
               <li>
-                <a href={`mailto:${SITE.author.email}`} className="hover:text-fg">
+                <a href={`mailto:${SITE.author.email}`} className="hover:text-fg hover:underline">
                   Góp ý
                 </a>
               </li>
@@ -188,9 +157,7 @@ export function SiteFooter({ compact = false }: { compact?: boolean }) {
       </div>
       <div className="border-border text-muted border-t">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-5 py-4 text-xs">
-          <span>
-            © {year} {SITE.name}. Làm với ❤️ bởi {SITE.author.name}.
-          </span>
+          <span>© {year} {SITE.name}</span>
           <span>Ảnh minh hoạ trò Nghe chọn hình từ Pixabay.</span>
         </div>
       </div>

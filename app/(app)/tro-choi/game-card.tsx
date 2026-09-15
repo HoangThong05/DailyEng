@@ -40,7 +40,7 @@ export function GameCard({ game }: { game: GameEntry }) {
         <GameCover
           game={game}
           sizes="(min-width: 1024px) 300px, (min-width: 768px) 50vw, 100vw"
-          className="aspect-[4/3]"
+          className="aspect-square"
         />
         <span className="absolute top-3 right-3 rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-bold tracking-wide text-white uppercase backdrop-blur-sm">
           {game.badge}

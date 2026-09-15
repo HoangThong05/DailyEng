@@ -40,7 +40,7 @@ export function GameCover({ game, sizes, className = "" }: Props) {
           alt=""
           fill
           sizes={sizes}
-          className="object-cover object-[50%_70%] transition-transform duration-500 group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
       ) : (
         <span className="absolute inset-0 flex items-end p-4 text-2xl font-bold text-white drop-shadow">

@@ -251,7 +251,7 @@ export default async function Home() {
                 <GameCover
                   game={game}
                   sizes="(min-width: 768px) 33vw, 68vw"
-                  className="aspect-[4/3]"
+                  className="aspect-square"
                 />
                 <span className="flex items-center justify-between gap-2 p-3">
                   <span className="truncate font-semibold">{game.title}</span>
