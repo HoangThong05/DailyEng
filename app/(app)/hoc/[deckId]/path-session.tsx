@@ -13,7 +13,6 @@ import {
   playCorrect,
   playMiss,
   readSoundPreference,
-  saveSoundPreference,
   unlockAudio,
 } from "@/lib/game-audio";
 import { speak } from "@/lib/speech";
@@ -105,6 +104,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
   const [results, setResults] = useState<Map<string, WordResult>>(new Map());
   const [failedInStage, setFailedInStage] = useState<Set<string>>(new Set());
   const [failedSaves, setFailedSaves] = useState(0);
+  // Âm hiệu đúng/sai theo cài đặt chung của các trò chơi (tắt/bật ở trò chơi).
   const [sound, setSound] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -122,12 +122,6 @@ export function PathSession({ deckName, stages, pool }: Props) {
 
   function play(fn: () => void) {
     if (sound) fn();
-  }
-
-  function toggleSound() {
-    const next = !sound;
-    setSound(next);
-    saveSoundPreference(next);
   }
 
   function start() {
@@ -450,15 +444,6 @@ export function PathSession({ deckName, stages, pool }: Props) {
             style={{ width: `${stageProgress}%` }}
           />
         </div>
-        <button
-          type="button"
-          onClick={toggleSound}
-          aria-pressed={sound}
-          aria-label={sound ? "Tắt âm thanh" : "Bật âm thanh"}
-          className={`text-xs font-semibold ${sound ? "text-brand" : "text-muted"}`}
-        >
-          {sound ? "🔊" : "🔇"}
-        </button>
       </div>
 
       {/* Nhãn bước + combo */}
