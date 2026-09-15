@@ -1,0 +1,702 @@
+[
+  {
+    "term": "society",
+    "phonetic": "/səˈsaɪəti/",
+    "meaning_vi": "xã hội (n)",
+    "example_en": "Technology has transformed society.",
+    "example_vi": "Công nghệ đã biến đổi xã hội."
+  },
+  {
+    "term": "community",
+    "phonetic": "/kəˈmjuːnəti/",
+    "meaning_vi": "cộng đồng (n)",
+    "example_en": "Local communities need support.",
+    "example_vi": "Cộng đồng địa phương cần hỗ trợ."
+  },
+  {
+    "term": "citizen",
+    "phonetic": "/ˈsɪtɪzn/",
+    "meaning_vi": "công dân (n)",
+    "example_en": "Every citizen has the right to vote.",
+    "example_vi": "Mọi công dân đều có quyền bầu cử."
+  },
+  {
+    "term": "government",
+    "phonetic": "/ˈɡʌvənmənt/",
+    "meaning_vi": "chính phủ (n)",
+    "example_en": "The government raised taxes.",
+    "example_vi": "Chính phủ tăng thuế."
+  },
+  {
+    "term": "policy",
+    "phonetic": "/ˈpɒləsi/",
+    "meaning_vi": "chính sách (n)",
+    "example_en": "The new policy targets pollution.",
+    "example_vi": "Chính sách mới nhắm vào ô nhiễm."
+  },
+  {
+    "term": "legislation",
+    "phonetic": "/ˌledʒɪsˈleɪʃn/",
+    "meaning_vi": "luật pháp, đạo luật (n)",
+    "example_en": "New legislation bans plastic bags.",
+    "example_vi": "Đạo luật mới cấm túi nhựa."
+  },
+  {
+    "term": "regulation",
+    "phonetic": "/ˌreɡjuˈleɪʃn/",
+    "meaning_vi": "quy định (n)",
+    "example_en": "Stricter regulations are needed.",
+    "example_vi": "Cần quy định nghiêm ngặt hơn."
+  },
+  {
+    "term": "authority",
+    "phonetic": "/ɔːˈθɒrəti/",
+    "meaning_vi": "cơ quan chức năng (n)",
+    "example_en": "Local authorities manage schools.",
+    "example_vi": "Cơ quan địa phương quản lý trường học."
+  },
+  {
+    "term": "public sector",
+    "phonetic": "/ˈpʌblɪk ˈsektə/",
+    "meaning_vi": "khu vực công (n)",
+    "example_en": "The public sector employs millions.",
+    "example_vi": "Khu vực công tuyển dụng hàng triệu người."
+  },
+  {
+    "term": "private sector",
+    "phonetic": "/ˈpraɪvət ˈsektə/",
+    "meaning_vi": "khu vực tư nhân (n)",
+    "example_en": "The private sector drives innovation.",
+    "example_vi": "Khu vực tư nhân thúc đẩy đổi mới."
+  },
+  {
+    "term": "funding",
+    "phonetic": "/ˈfʌndɪŋ/",
+    "meaning_vi": "nguồn tài trợ (n)",
+    "example_en": "Schools need more funding.",
+    "example_vi": "Trường học cần thêm kinh phí."
+  },
+  {
+    "term": "subsidy",
+    "phonetic": "/ˈsʌbsədi/",
+    "meaning_vi": "trợ cấp (n)",
+    "example_en": "Farmers receive subsidies.",
+    "example_vi": "Nông dân nhận trợ cấp."
+  },
+  {
+    "term": "tax",
+    "phonetic": "/tæks/",
+    "meaning_vi": "thuế (n)",
+    "example_en": "A sugar tax could reduce obesity.",
+    "example_vi": "Thuế đường có thể giảm béo phì."
+  },
+  {
+    "term": "welfare",
+    "phonetic": "/ˈwelfeə/",
+    "meaning_vi": "phúc lợi (n)",
+    "example_en": "Welfare programs help the poor.",
+    "example_vi": "Chương trình phúc lợi giúp người nghèo."
+  },
+  {
+    "term": "infrastructure",
+    "phonetic": "/ˈɪnfrəstrʌktʃə/",
+    "meaning_vi": "cơ sở hạ tầng (n)",
+    "example_en": "Good infrastructure attracts investors.",
+    "example_vi": "Hạ tầng tốt thu hút nhà đầu tư."
+  },
+  {
+    "term": "economy",
+    "phonetic": "/ɪˈkɒnəmi/",
+    "meaning_vi": "nền kinh tế (n)",
+    "example_en": "The economy grew by 6%.",
+    "example_vi": "Nền kinh tế tăng trưởng 6%."
+  },
+  {
+    "term": "economic growth",
+    "phonetic": "/ˌiːkəˈnɒmɪk ɡrəʊθ/",
+    "meaning_vi": "tăng trưởng kinh tế (n)",
+    "example_en": "Economic growth creates jobs.",
+    "example_vi": "Tăng trưởng kinh tế tạo việc làm."
+  },
+  {
+    "term": "unemployment",
+    "phonetic": "/ˌʌnɪmˈplɔɪmənt/",
+    "meaning_vi": "thất nghiệp (n)",
+    "example_en": "Youth unemployment is high.",
+    "example_vi": "Thất nghiệp ở giới trẻ cao."
+  },
+  {
+    "term": "inflation",
+    "phonetic": "/ɪnˈfleɪʃn/",
+    "meaning_vi": "lạm phát (n)",
+    "example_en": "Inflation reduces purchasing power.",
+    "example_vi": "Lạm phát làm giảm sức mua."
+  },
+  {
+    "term": "poverty",
+    "phonetic": "/ˈpɒvəti/",
+    "meaning_vi": "nghèo đói (n)",
+    "example_en": "Millions still live in poverty.",
+    "example_vi": "Hàng triệu người vẫn sống trong nghèo đói."
+  },
+  {
+    "term": "inequality",
+    "phonetic": "/ˌɪnɪˈkwɒləti/",
+    "meaning_vi": "bất bình đẳng (n)",
+    "example_en": "Income inequality is widening.",
+    "example_vi": "Bất bình đẳng thu nhập đang nới rộng."
+  },
+  {
+    "term": "wealth gap",
+    "phonetic": "/welθ ɡæp/",
+    "meaning_vi": "khoảng cách giàu nghèo (n)",
+    "example_en": "The wealth gap has grown.",
+    "example_vi": "Khoảng cách giàu nghèo đã tăng."
+  },
+  {
+    "term": "standard of living",
+    "phonetic": "/ˈstændəd əv ˈlɪvɪŋ/",
+    "meaning_vi": "mức sống (n)",
+    "example_en": "The standard of living has improved.",
+    "example_vi": "Mức sống đã cải thiện."
+  },
+  {
+    "term": "quality of life",
+    "phonetic": "/ˈkwɒləti əv laɪf/",
+    "meaning_vi": "chất lượng cuộc sống (n)",
+    "example_en": "Parks improve quality of life.",
+    "example_vi": "Công viên cải thiện chất lượng cuộc sống."
+  },
+  {
+    "term": "globalisation",
+    "phonetic": "/ˌɡləʊbəlaɪˈzeɪʃn/",
+    "meaning_vi": "toàn cầu hoá (n)",
+    "example_en": "Globalisation connects markets.",
+    "example_vi": "Toàn cầu hoá kết nối các thị trường."
+  },
+  {
+    "term": "urbanisation",
+    "phonetic": "/ˌɜːbənaɪˈzeɪʃn/",
+    "meaning_vi": "đô thị hoá (n)",
+    "example_en": "Rapid urbanisation strains cities.",
+    "example_vi": "Đô thị hoá nhanh gây áp lực lên thành phố."
+  },
+  {
+    "term": "migration",
+    "phonetic": "/maɪˈɡreɪʃn/",
+    "meaning_vi": "di cư (n)",
+    "example_en": "Migration to cities continues.",
+    "example_vi": "Di cư vào thành phố vẫn tiếp diễn."
+  },
+  {
+    "term": "population",
+    "phonetic": "/ˌpɒpjuˈleɪʃn/",
+    "meaning_vi": "dân số (n)",
+    "example_en": "The population is ageing.",
+    "example_vi": "Dân số đang già đi."
+  },
+  {
+    "term": "ageing population",
+    "phonetic": "/ˈeɪdʒɪŋ ˌpɒpjuˈleɪʃn/",
+    "meaning_vi": "dân số già (n)",
+    "example_en": "An ageing population raises health costs.",
+    "example_vi": "Dân số già làm tăng chi phí y tế."
+  },
+  {
+    "term": "overpopulation",
+    "phonetic": "/ˌəʊvəˌpɒpjuˈleɪʃn/",
+    "meaning_vi": "quá tải dân số (n)",
+    "example_en": "Overpopulation strains resources.",
+    "example_vi": "Quá tải dân số gây áp lực lên tài nguyên."
+  },
+  {
+    "term": "birth rate",
+    "phonetic": "/bɜːθ reɪt/",
+    "meaning_vi": "tỉ lệ sinh (n)",
+    "example_en": "The birth rate is falling.",
+    "example_vi": "Tỉ lệ sinh đang giảm."
+  },
+  {
+    "term": "life expectancy",
+    "phonetic": "/laɪf ɪkˈspektənsi/",
+    "meaning_vi": "tuổi thọ trung bình (n)",
+    "example_en": "Life expectancy has risen to 80.",
+    "example_vi": "Tuổi thọ trung bình tăng lên 80."
+  },
+  {
+    "term": "education",
+    "phonetic": "/ˌedʒuˈkeɪʃn/",
+    "meaning_vi": "giáo dục (n)",
+    "example_en": "Education should be free for all.",
+    "example_vi": "Giáo dục nên miễn phí cho mọi người."
+  },
+  {
+    "term": "curriculum",
+    "phonetic": "/kəˈrɪkjələm/",
+    "meaning_vi": "chương trình học (n)",
+    "example_en": "The curriculum includes coding.",
+    "example_vi": "Chương trình học bao gồm lập trình."
+  },
+  {
+    "term": "literacy",
+    "phonetic": "/ˈlɪtərəsi/",
+    "meaning_vi": "biết chữ, năng lực đọc viết (n)",
+    "example_en": "Literacy rates have improved.",
+    "example_vi": "Tỉ lệ biết chữ đã cải thiện."
+  },
+  {
+    "term": "tuition fees",
+    "phonetic": "/tjuˈɪʃn fiːz/",
+    "meaning_vi": "học phí (n)",
+    "example_en": "Tuition fees have doubled.",
+    "example_vi": "Học phí đã tăng gấp đôi."
+  },
+  {
+    "term": "scholarship",
+    "phonetic": "/ˈskɒləʃɪp/",
+    "meaning_vi": "học bổng (n)",
+    "example_en": "She won a scholarship abroad.",
+    "example_vi": "Cô ấy giành học bổng du học."
+  },
+  {
+    "term": "vocational training",
+    "phonetic": "/vəʊˈkeɪʃənl ˈtreɪnɪŋ/",
+    "meaning_vi": "đào tạo nghề (n)",
+    "example_en": "Vocational training suits many students.",
+    "example_vi": "Đào tạo nghề phù hợp với nhiều học sinh."
+  },
+  {
+    "term": "lifelong learning",
+    "phonetic": "/ˈlaɪflɒŋ ˈlɜːnɪŋ/",
+    "meaning_vi": "học tập suốt đời (n)",
+    "example_en": "Lifelong learning keeps skills current.",
+    "example_vi": "Học tập suốt đời giữ kỹ năng luôn cập nhật."
+  },
+  {
+    "term": "environment",
+    "phonetic": "/ɪnˈvaɪrənmənt/",
+    "meaning_vi": "môi trường (n)",
+    "example_en": "We must protect the environment.",
+    "example_vi": "Chúng ta phải bảo vệ môi trường."
+  },
+  {
+    "term": "climate change",
+    "phonetic": "/ˈklaɪmət tʃeɪndʒ/",
+    "meaning_vi": "biến đổi khí hậu (n)",
+    "example_en": "Climate change threatens coastal cities.",
+    "example_vi": "Biến đổi khí hậu đe doạ các thành phố ven biển."
+  },
+  {
+    "term": "global warming",
+    "phonetic": "/ˈɡləʊbl ˈwɔːmɪŋ/",
+    "meaning_vi": "nóng lên toàn cầu (n)",
+    "example_en": "Global warming melts the ice caps.",
+    "example_vi": "Nóng lên toàn cầu làm tan băng."
+  },
+  {
+    "term": "pollution",
+    "phonetic": "/pəˈluːʃn/",
+    "meaning_vi": "ô nhiễm (n)",
+    "example_en": "Air pollution harms health.",
+    "example_vi": "Ô nhiễm không khí gây hại sức khoẻ."
+  },
+  {
+    "term": "emissions",
+    "phonetic": "/ɪˈmɪʃnz/",
+    "meaning_vi": "khí thải (n)",
+    "example_en": "Carbon emissions must fall.",
+    "example_vi": "Khí thải carbon phải giảm."
+  },
+  {
+    "term": "renewable energy",
+    "phonetic": "/rɪˈnjuːəbl ˈenədʒi/",
+    "meaning_vi": "năng lượng tái tạo (n)",
+    "example_en": "Renewable energy is getting cheaper.",
+    "example_vi": "Năng lượng tái tạo ngày càng rẻ."
+  },
+  {
+    "term": "fossil fuels",
+    "phonetic": "/ˈfɒsl fjuːəlz/",
+    "meaning_vi": "nhiên liệu hoá thạch (n)",
+    "example_en": "We rely too much on fossil fuels.",
+    "example_vi": "Chúng ta phụ thuộc quá nhiều vào nhiên liệu hoá thạch."
+  },
+  {
+    "term": "sustainable",
+    "phonetic": "/səˈsteɪnəbl/",
+    "meaning_vi": "bền vững (adj)",
+    "example_en": "Sustainable farming protects soil.",
+    "example_vi": "Canh tác bền vững bảo vệ đất."
+  },
+  {
+    "term": "sustainability",
+    "phonetic": "/səˌsteɪnəˈbɪləti/",
+    "meaning_vi": "tính bền vững (n)",
+    "example_en": "Sustainability is a priority.",
+    "example_vi": "Tính bền vững là ưu tiên."
+  },
+  {
+    "term": "conservation",
+    "phonetic": "/ˌkɒnsəˈveɪʃn/",
+    "meaning_vi": "bảo tồn (n)",
+    "example_en": "Wildlife conservation needs funding.",
+    "example_vi": "Bảo tồn động vật hoang dã cần kinh phí."
+  },
+  {
+    "term": "deforestation",
+    "phonetic": "/ˌdiːˌfɒrɪˈsteɪʃn/",
+    "meaning_vi": "phá rừng (n)",
+    "example_en": "Deforestation destroys habitats.",
+    "example_vi": "Phá rừng huỷ hoại môi trường sống."
+  },
+  {
+    "term": "biodiversity",
+    "phonetic": "/ˌbaɪəʊdaɪˈvɜːsəti/",
+    "meaning_vi": "đa dạng sinh học (n)",
+    "example_en": "Biodiversity is declining fast.",
+    "example_vi": "Đa dạng sinh học đang suy giảm nhanh."
+  },
+  {
+    "term": "waste",
+    "phonetic": "/weɪst/",
+    "meaning_vi": "rác thải (n)",
+    "example_en": "Cities produce tonnes of waste.",
+    "example_vi": "Thành phố tạo ra hàng tấn rác thải."
+  },
+  {
+    "term": "recycle",
+    "phonetic": "/ˌriːˈsaɪkl/",
+    "meaning_vi": "tái chế (v)",
+    "example_en": "Only 30% of plastic is recycled.",
+    "example_vi": "Chỉ 30% nhựa được tái chế."
+  },
+  {
+    "term": "natural resources",
+    "phonetic": "/ˈnætʃrəl rɪˈzɔːsɪz/",
+    "meaning_vi": "tài nguyên thiên nhiên (n)",
+    "example_en": "Natural resources are limited.",
+    "example_vi": "Tài nguyên thiên nhiên có hạn."
+  },
+  {
+    "term": "technology",
+    "phonetic": "/tekˈnɒlədʒi/",
+    "meaning_vi": "công nghệ (n)",
+    "example_en": "Technology changes how we work.",
+    "example_vi": "Công nghệ thay đổi cách ta làm việc."
+  },
+  {
+    "term": "innovation",
+    "phonetic": "/ˌɪnəˈveɪʃn/",
+    "meaning_vi": "đổi mới sáng tạo (n)",
+    "example_en": "Innovation drives the economy.",
+    "example_vi": "Đổi mới sáng tạo thúc đẩy kinh tế."
+  },
+  {
+    "term": "automation",
+    "phonetic": "/ˌɔːtəˈmeɪʃn/",
+    "meaning_vi": "tự động hoá (n)",
+    "example_en": "Automation may replace some jobs.",
+    "example_vi": "Tự động hoá có thể thay thế một số việc làm."
+  },
+  {
+    "term": "artificial intelligence",
+    "phonetic": "/ˌɑːtɪfɪʃl ɪnˈtelɪdʒəns/",
+    "meaning_vi": "trí tuệ nhân tạo (n)",
+    "example_en": "Artificial intelligence raises ethical questions.",
+    "example_vi": "Trí tuệ nhân tạo đặt ra câu hỏi đạo đức."
+  },
+  {
+    "term": "digital divide",
+    "phonetic": "/ˈdɪdʒɪtl dɪˈvaɪd/",
+    "meaning_vi": "khoảng cách số (n)",
+    "example_en": "The digital divide affects rural areas.",
+    "example_vi": "Khoảng cách số ảnh hưởng vùng nông thôn."
+  },
+  {
+    "term": "social media",
+    "phonetic": "/ˈsəʊʃl ˈmiːdiə/",
+    "meaning_vi": "mạng xã hội (n)",
+    "example_en": "Social media shapes public opinion.",
+    "example_vi": "Mạng xã hội định hình dư luận."
+  },
+  {
+    "term": "privacy",
+    "phonetic": "/ˈprɪvəsi/",
+    "meaning_vi": "quyền riêng tư (n)",
+    "example_en": "Data collection threatens privacy.",
+    "example_vi": "Thu thập dữ liệu đe doạ quyền riêng tư."
+  },
+  {
+    "term": "cybersecurity",
+    "phonetic": "/ˌsaɪbəsɪˈkjʊərəti/",
+    "meaning_vi": "an ninh mạng (n)",
+    "example_en": "Cybersecurity is a growing concern.",
+    "example_vi": "An ninh mạng là mối lo ngày càng lớn."
+  },
+  {
+    "term": "public health",
+    "phonetic": "/ˈpʌblɪk helθ/",
+    "meaning_vi": "y tế công cộng (n)",
+    "example_en": "Vaccination is a public health success.",
+    "example_vi": "Tiêm chủng là thành công của y tế công cộng."
+  },
+  {
+    "term": "healthcare",
+    "phonetic": "/ˈhelθkeə/",
+    "meaning_vi": "chăm sóc sức khoẻ (n)",
+    "example_en": "Healthcare should be affordable.",
+    "example_vi": "Chăm sóc sức khoẻ nên vừa túi tiền."
+  },
+  {
+    "term": "obesity",
+    "phonetic": "/əʊˈbiːsəti/",
+    "meaning_vi": "béo phì (n)",
+    "example_en": "Childhood obesity is rising.",
+    "example_vi": "Béo phì ở trẻ em đang tăng."
+  },
+  {
+    "term": "epidemic",
+    "phonetic": "/ˌepɪˈdemɪk/",
+    "meaning_vi": "dịch bệnh (n)",
+    "example_en": "The epidemic spread quickly.",
+    "example_vi": "Dịch bệnh lan nhanh."
+  },
+  {
+    "term": "mental health",
+    "phonetic": "/ˈmentl helθ/",
+    "meaning_vi": "sức khoẻ tinh thần (n)",
+    "example_en": "Mental health services are underfunded.",
+    "example_vi": "Dịch vụ sức khoẻ tinh thần thiếu kinh phí."
+  },
+  {
+    "term": "prevention",
+    "phonetic": "/prɪˈvenʃn/",
+    "meaning_vi": "phòng ngừa (n)",
+    "example_en": "Prevention is cheaper than cure.",
+    "example_vi": "Phòng ngừa rẻ hơn chữa trị."
+  },
+  {
+    "term": "crime",
+    "phonetic": "/kraɪm/",
+    "meaning_vi": "tội phạm (n)",
+    "example_en": "Crime rates fell last year.",
+    "example_vi": "Tỉ lệ tội phạm giảm năm ngoái."
+  },
+  {
+    "term": "punishment",
+    "phonetic": "/ˈpʌnɪʃmənt/",
+    "meaning_vi": "hình phạt (n)",
+    "example_en": "Harsh punishment does not always deter crime.",
+    "example_vi": "Hình phạt nặng không phải lúc nào cũng ngăn tội phạm."
+  },
+  {
+    "term": "justice",
+    "phonetic": "/ˈdʒʌstɪs/",
+    "meaning_vi": "công lý (n)",
+    "example_en": "Everyone deserves equal justice.",
+    "example_vi": "Ai cũng xứng đáng được công lý bình đẳng."
+  },
+  {
+    "term": "human rights",
+    "phonetic": "/ˈhjuːmən raɪts/",
+    "meaning_vi": "quyền con người (n)",
+    "example_en": "Human rights must be protected.",
+    "example_vi": "Quyền con người phải được bảo vệ."
+  },
+  {
+    "term": "gender equality",
+    "phonetic": "/ˈdʒendə ɪˈkwɒləti/",
+    "meaning_vi": "bình đẳng giới (n)",
+    "example_en": "Gender equality benefits everyone.",
+    "example_vi": "Bình đẳng giới có lợi cho mọi người."
+  },
+  {
+    "term": "discrimination",
+    "phonetic": "/dɪˌskrɪmɪˈneɪʃn/",
+    "meaning_vi": "phân biệt đối xử (n)",
+    "example_en": "Laws prohibit discrimination at work.",
+    "example_vi": "Luật cấm phân biệt đối xử nơi làm việc."
+  },
+  {
+    "term": "culture",
+    "phonetic": "/ˈkʌltʃə/",
+    "meaning_vi": "văn hoá (n)",
+    "example_en": "Culture shapes our values.",
+    "example_vi": "Văn hoá định hình giá trị của chúng ta."
+  },
+  {
+    "term": "tradition",
+    "phonetic": "/trəˈdɪʃn/",
+    "meaning_vi": "truyền thống (n)",
+    "example_en": "Traditions are fading in cities.",
+    "example_vi": "Truyền thống đang phai nhạt ở thành phố."
+  },
+  {
+    "term": "heritage",
+    "phonetic": "/ˈherɪtɪdʒ/",
+    "meaning_vi": "di sản (n)",
+    "example_en": "We should preserve cultural heritage.",
+    "example_vi": "Chúng ta nên gìn giữ di sản văn hoá."
+  },
+  {
+    "term": "generation",
+    "phonetic": "/ˌdʒenəˈreɪʃn/",
+    "meaning_vi": "thế hệ (n)",
+    "example_en": "Each generation faces new challenges.",
+    "example_vi": "Mỗi thế hệ đối mặt thách thức mới."
+  },
+  {
+    "term": "consumerism",
+    "phonetic": "/kənˈsjuːmərɪzəm/",
+    "meaning_vi": "chủ nghĩa tiêu dùng (n)",
+    "example_en": "Consumerism fuels waste.",
+    "example_vi": "Chủ nghĩa tiêu dùng thúc đẩy lãng phí."
+  },
+  {
+    "term": "advertising",
+    "phonetic": "/ˈædvətaɪzɪŋ/",
+    "meaning_vi": "quảng cáo (n)",
+    "example_en": "Advertising targets children.",
+    "example_vi": "Quảng cáo nhắm vào trẻ em."
+  },
+  {
+    "term": "tourism",
+    "phonetic": "/ˈtʊərɪzəm/",
+    "meaning_vi": "du lịch (ngành) (n)",
+    "example_en": "Tourism boosts local incomes.",
+    "example_vi": "Du lịch tăng thu nhập địa phương."
+  },
+  {
+    "term": "transport",
+    "phonetic": "/ˈtrænspɔːt/",
+    "meaning_vi": "giao thông vận tải (n)",
+    "example_en": "Public transport reduces traffic.",
+    "example_vi": "Giao thông công cộng giảm kẹt xe."
+  },
+  {
+    "term": "congestion",
+    "phonetic": "/kənˈdʒestʃən/",
+    "meaning_vi": "tắc nghẽn (n)",
+    "example_en": "Congestion costs the city billions.",
+    "example_vi": "Tắc nghẽn khiến thành phố tốn hàng tỉ."
+  },
+  {
+    "term": "housing",
+    "phonetic": "/ˈhaʊzɪŋ/",
+    "meaning_vi": "nhà ở (n)",
+    "example_en": "Affordable housing is scarce.",
+    "example_vi": "Nhà ở giá phải chăng rất khan hiếm."
+  },
+  {
+    "term": "employment",
+    "phonetic": "/ɪmˈplɔɪmənt/",
+    "meaning_vi": "việc làm (n)",
+    "example_en": "Employment rose in the service sector.",
+    "example_vi": "Việc làm tăng ở khu vực dịch vụ."
+  },
+  {
+    "term": "workforce",
+    "phonetic": "/ˈwɜːkfɔːs/",
+    "meaning_vi": "lực lượng lao động (n)",
+    "example_en": "The workforce is becoming more diverse.",
+    "example_vi": "Lực lượng lao động ngày càng đa dạng."
+  },
+  {
+    "term": "productivity",
+    "phonetic": "/ˌprɒdʌkˈtɪvəti/",
+    "meaning_vi": "năng suất (n)",
+    "example_en": "Remote work can raise productivity.",
+    "example_vi": "Làm việc từ xa có thể tăng năng suất."
+  },
+  {
+    "term": "work-life balance",
+    "phonetic": "/ˌwɜːk laɪf ˈbæləns/",
+    "meaning_vi": "cân bằng công việc – cuộc sống (n)",
+    "example_en": "Flexible hours improve work-life balance.",
+    "example_vi": "Giờ linh hoạt cải thiện cân bằng công việc – cuộc sống."
+  },
+  {
+    "term": "investment",
+    "phonetic": "/ɪnˈvestmənt/",
+    "meaning_vi": "đầu tư (n)",
+    "example_en": "Investment in education pays off.",
+    "example_vi": "Đầu tư vào giáo dục sinh lợi."
+  },
+  {
+    "term": "developing country",
+    "phonetic": "/dɪˈveləpɪŋ ˈkʌntri/",
+    "meaning_vi": "nước đang phát triển (n)",
+    "example_en": "Developing countries need fair trade.",
+    "example_vi": "Các nước đang phát triển cần thương mại công bằng."
+  },
+  {
+    "term": "developed country",
+    "phonetic": "/dɪˈveləpt ˈkʌntri/",
+    "meaning_vi": "nước phát triển (n)",
+    "example_en": "Developed countries emit more carbon per person.",
+    "example_vi": "Các nước phát triển thải nhiều carbon trên đầu người hơn."
+  },
+  {
+    "term": "international cooperation",
+    "phonetic": "/ˌɪntəˈnæʃnəl kəʊˌɒpəˈreɪʃn/",
+    "meaning_vi": "hợp tác quốc tế (n)",
+    "example_en": "Climate change requires international cooperation.",
+    "example_vi": "Biến đổi khí hậu đòi hỏi hợp tác quốc tế."
+  },
+  {
+    "term": "raise awareness",
+    "phonetic": "/reɪz əˈweənəs/",
+    "meaning_vi": "nâng cao nhận thức",
+    "example_en": "Campaigns raise awareness of recycling.",
+    "example_vi": "Chiến dịch nâng cao nhận thức về tái chế."
+  },
+  {
+    "term": "impose",
+    "phonetic": "/ɪmˈpəʊz/",
+    "meaning_vi": "áp đặt (v)",
+    "example_en": "The city imposed a congestion charge.",
+    "example_vi": "Thành phố áp phí tắc nghẽn."
+  },
+  {
+    "term": "ban",
+    "phonetic": "/bæn/",
+    "meaning_vi": "cấm (v, n)",
+    "example_en": "Some cities ban cars downtown.",
+    "example_vi": "Một số thành phố cấm ô tô ở trung tâm."
+  },
+  {
+    "term": "invest in",
+    "phonetic": "/ɪnˈvest ɪn/",
+    "meaning_vi": "đầu tư vào",
+    "example_en": "Governments should invest in public transport.",
+    "example_vi": "Chính phủ nên đầu tư vào giao thông công cộng."
+  },
+  {
+    "term": "encourage",
+    "phonetic": "/ɪnˈkʌrɪdʒ/",
+    "meaning_vi": "khuyến khích (v)",
+    "example_en": "Tax breaks encourage green energy.",
+    "example_vi": "Ưu đãi thuế khuyến khích năng lượng xanh."
+  },
+  {
+    "term": "priority",
+    "phonetic": "/praɪˈɒrəti/",
+    "meaning_vi": "ưu tiên (n)",
+    "example_en": "Health must be a national priority.",
+    "example_vi": "Y tế phải là ưu tiên quốc gia."
+  },
+  {
+    "term": "challenge",
+    "phonetic": "/ˈtʃælɪndʒ/",
+    "meaning_vi": "thách thức (n)",
+    "example_en": "Ageing is a major challenge.",
+    "example_vi": "Già hoá là một thách thức lớn."
+  },
+  {
+    "term": "civic",
+    "phonetic": "/ˈsɪvɪk/",
+    "meaning_vi": "thuộc về công dân (adj)",
+    "example_en": "Voting is a civic duty.",
+    "example_vi": "Bầu cử là nghĩa vụ công dân."
+  }
+]

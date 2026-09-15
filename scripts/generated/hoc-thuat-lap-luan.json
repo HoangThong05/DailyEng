@@ -1,0 +1,702 @@
+[
+  {
+    "term": "argument",
+    "phonetic": "/ˈɑːɡjumənt/",
+    "meaning_vi": "luận điểm, lập luận (n)",
+    "example_en": "The essay presents a clear argument.",
+    "example_vi": "Bài luận trình bày một lập luận rõ ràng."
+  },
+  {
+    "term": "argue",
+    "phonetic": "/ˈɑːɡjuː/",
+    "meaning_vi": "lập luận, cho rằng (v)",
+    "example_en": "Some argue that tests are unfair.",
+    "example_vi": "Một số người cho rằng các kỳ thi không công bằng."
+  },
+  {
+    "term": "claim",
+    "phonetic": "/kleɪm/",
+    "meaning_vi": "khẳng định (n, v)",
+    "example_en": "This claim is not supported by facts.",
+    "example_vi": "Khẳng định này không có dữ kiện ủng hộ."
+  },
+  {
+    "term": "opinion",
+    "phonetic": "/əˈpɪnjən/",
+    "meaning_vi": "ý kiến (n)",
+    "example_en": "In my opinion, the policy works.",
+    "example_vi": "Theo ý tôi, chính sách này hiệu quả."
+  },
+  {
+    "term": "viewpoint",
+    "phonetic": "/ˈvjuːpɔɪnt/",
+    "meaning_vi": "quan điểm (n)",
+    "example_en": "Both viewpoints deserve attention.",
+    "example_vi": "Cả hai quan điểm đều đáng chú ý."
+  },
+  {
+    "term": "perspective",
+    "phonetic": "/pəˈspektɪv/",
+    "meaning_vi": "góc nhìn (n)",
+    "example_en": "From an economic perspective, it makes sense.",
+    "example_vi": "Từ góc nhìn kinh tế, điều đó hợp lý."
+  },
+  {
+    "term": "thesis statement",
+    "phonetic": "/ˈθiːsɪs ˈsteɪtmənt/",
+    "meaning_vi": "câu luận đề (n)",
+    "example_en": "Put the thesis statement at the end of the introduction.",
+    "example_vi": "Đặt câu luận đề ở cuối mở bài."
+  },
+  {
+    "term": "introduction",
+    "phonetic": "/ˌɪntrəˈdʌkʃn/",
+    "meaning_vi": "mở bài (n)",
+    "example_en": "The introduction outlines the topic.",
+    "example_vi": "Mở bài phác thảo chủ đề."
+  },
+  {
+    "term": "body paragraph",
+    "phonetic": "/ˈbɒdi ˈpærəɡrɑːf/",
+    "meaning_vi": "đoạn thân bài (n)",
+    "example_en": "Each body paragraph has one main idea.",
+    "example_vi": "Mỗi đoạn thân bài có một ý chính."
+  },
+  {
+    "term": "topic sentence",
+    "phonetic": "/ˈtɒpɪk ˈsentəns/",
+    "meaning_vi": "câu chủ đề (n)",
+    "example_en": "Start with a strong topic sentence.",
+    "example_vi": "Bắt đầu bằng một câu chủ đề mạnh."
+  },
+  {
+    "term": "supporting detail",
+    "phonetic": "/səˈpɔːtɪŋ ˈdiːteɪl/",
+    "meaning_vi": "chi tiết hỗ trợ (n)",
+    "example_en": "Add supporting details and examples.",
+    "example_vi": "Thêm chi tiết hỗ trợ và ví dụ."
+  },
+  {
+    "term": "firstly",
+    "phonetic": "/ˈfɜːstli/",
+    "meaning_vi": "thứ nhất (adv)",
+    "example_en": "Firstly, cost is a major concern.",
+    "example_vi": "Thứ nhất, chi phí là mối lo lớn."
+  },
+  {
+    "term": "secondly",
+    "phonetic": "/ˈsekəndli/",
+    "meaning_vi": "thứ hai (adv)",
+    "example_en": "Secondly, time is limited.",
+    "example_vi": "Thứ hai, thời gian có hạn."
+  },
+  {
+    "term": "finally",
+    "phonetic": "/ˈfaɪnəli/",
+    "meaning_vi": "cuối cùng (adv)",
+    "example_en": "Finally, safety must be considered.",
+    "example_vi": "Cuối cùng, phải cân nhắc sự an toàn."
+  },
+  {
+    "term": "furthermore",
+    "phonetic": "/ˌfɜːðəˈmɔː/",
+    "meaning_vi": "hơn nữa (adv)",
+    "example_en": "Furthermore, the plan is affordable.",
+    "example_vi": "Hơn nữa, kế hoạch này vừa túi tiền."
+  },
+  {
+    "term": "moreover",
+    "phonetic": "/mɔːrˈəʊvə/",
+    "meaning_vi": "hơn thế nữa (adv)",
+    "example_en": "Moreover, it saves energy.",
+    "example_vi": "Hơn thế nữa, nó tiết kiệm năng lượng."
+  },
+  {
+    "term": "in addition",
+    "phonetic": "/ɪn əˈdɪʃn/",
+    "meaning_vi": "ngoài ra",
+    "example_en": "In addition, staff need training.",
+    "example_vi": "Ngoài ra, nhân viên cần được đào tạo."
+  },
+  {
+    "term": "however",
+    "phonetic": "/haʊˈevə/",
+    "meaning_vi": "tuy nhiên (adv)",
+    "example_en": "However, there are drawbacks.",
+    "example_vi": "Tuy nhiên, có những nhược điểm."
+  },
+  {
+    "term": "nevertheless",
+    "phonetic": "/ˌnevəðəˈles/",
+    "meaning_vi": "dù vậy (adv)",
+    "example_en": "Nevertheless, the idea has merit.",
+    "example_vi": "Dù vậy, ý tưởng này có giá trị."
+  },
+  {
+    "term": "on the other hand",
+    "phonetic": "/ɒn ði ˈʌðə hænd/",
+    "meaning_vi": "mặt khác",
+    "example_en": "On the other hand, costs may rise.",
+    "example_vi": "Mặt khác, chi phí có thể tăng."
+  },
+  {
+    "term": "whereas",
+    "phonetic": "/weərˈæz/",
+    "meaning_vi": "trong khi (đối lập) (conj)",
+    "example_en": "Cities grow, whereas villages shrink.",
+    "example_vi": "Thành phố lớn lên, trong khi làng quê thu hẹp."
+  },
+  {
+    "term": "although",
+    "phonetic": "/ɔːlˈðəʊ/",
+    "meaning_vi": "mặc dù (conj)",
+    "example_en": "Although expensive, it is worth it.",
+    "example_vi": "Mặc dù đắt, nó xứng đáng."
+  },
+  {
+    "term": "despite",
+    "phonetic": "/dɪˈspaɪt/",
+    "meaning_vi": "bất chấp (prep)",
+    "example_en": "Despite the risks, many agree.",
+    "example_vi": "Bất chấp rủi ro, nhiều người đồng ý."
+  },
+  {
+    "term": "in contrast",
+    "phonetic": "/ɪn ˈkɒntrɑːst/",
+    "meaning_vi": "ngược lại",
+    "example_en": "In contrast, rural areas lack services.",
+    "example_vi": "Ngược lại, nông thôn thiếu dịch vụ."
+  },
+  {
+    "term": "similarly",
+    "phonetic": "/ˈsɪmələli/",
+    "meaning_vi": "tương tự (adv)",
+    "example_en": "Similarly, Japan faces an ageing population.",
+    "example_vi": "Tương tự, Nhật Bản đối mặt với dân số già."
+  },
+  {
+    "term": "likewise",
+    "phonetic": "/ˈlaɪkwaɪz/",
+    "meaning_vi": "cũng vậy (adv)",
+    "example_en": "Likewise, teachers need support.",
+    "example_vi": "Giáo viên cũng vậy, cần được hỗ trợ."
+  },
+  {
+    "term": "therefore",
+    "phonetic": "/ˈðeəfɔː/",
+    "meaning_vi": "do đó (adv)",
+    "example_en": "Therefore, action is needed now.",
+    "example_vi": "Do đó, cần hành động ngay."
+  },
+  {
+    "term": "consequently",
+    "phonetic": "/ˈkɒnsɪkwəntli/",
+    "meaning_vi": "hệ quả là (adv)",
+    "example_en": "Consequently, prices fell.",
+    "example_vi": "Hệ quả là giá giảm."
+  },
+  {
+    "term": "as a result",
+    "phonetic": "/əz ə rɪˈzʌlt/",
+    "meaning_vi": "kết quả là",
+    "example_en": "As a result, fewer people drive.",
+    "example_vi": "Kết quả là ít người lái xe hơn."
+  },
+  {
+    "term": "thus",
+    "phonetic": "/ðʌs/",
+    "meaning_vi": "vì vậy (adv)",
+    "example_en": "Thus, the theory holds.",
+    "example_vi": "Vì vậy, lý thuyết đứng vững."
+  },
+  {
+    "term": "hence",
+    "phonetic": "/hens/",
+    "meaning_vi": "do vậy (adv)",
+    "example_en": "Hence, demand rose sharply.",
+    "example_vi": "Do vậy, nhu cầu tăng mạnh."
+  },
+  {
+    "term": "due to",
+    "phonetic": "/djuː tuː/",
+    "meaning_vi": "do, bởi vì",
+    "example_en": "Sales fell due to the recession.",
+    "example_vi": "Doanh số giảm do suy thoái."
+  },
+  {
+    "term": "owing to",
+    "phonetic": "/ˈəʊɪŋ tuː/",
+    "meaning_vi": "vì (trang trọng)",
+    "example_en": "Owing to rain, the event was cancelled.",
+    "example_vi": "Vì mưa, sự kiện bị huỷ."
+  },
+  {
+    "term": "lead to",
+    "phonetic": "/liːd tuː/",
+    "meaning_vi": "dẫn đến",
+    "example_en": "Stress can lead to illness.",
+    "example_vi": "Căng thẳng có thể dẫn đến bệnh tật."
+  },
+  {
+    "term": "result in",
+    "phonetic": "/rɪˈzʌlt ɪn/",
+    "meaning_vi": "gây ra, dẫn đến",
+    "example_en": "Poor planning results in delays.",
+    "example_vi": "Lập kế hoạch kém gây ra chậm trễ."
+  },
+  {
+    "term": "stem from",
+    "phonetic": "/stem frɒm/",
+    "meaning_vi": "bắt nguồn từ",
+    "example_en": "Many problems stem from poverty.",
+    "example_vi": "Nhiều vấn đề bắt nguồn từ nghèo đói."
+  },
+  {
+    "term": "give rise to",
+    "phonetic": "/ɡɪv raɪz tuː/",
+    "meaning_vi": "làm nảy sinh",
+    "example_en": "Automation gives rise to new jobs.",
+    "example_vi": "Tự động hoá làm nảy sinh việc làm mới."
+  },
+  {
+    "term": "cause",
+    "phonetic": "/kɔːz/",
+    "meaning_vi": "nguyên nhân (n); gây ra (v)",
+    "example_en": "The main cause is traffic.",
+    "example_vi": "Nguyên nhân chính là giao thông."
+  },
+  {
+    "term": "effect",
+    "phonetic": "/ɪˈfekt/",
+    "meaning_vi": "hiệu quả, tác động (n)",
+    "example_en": "The effect on health is clear.",
+    "example_vi": "Tác động lên sức khoẻ là rõ ràng."
+  },
+  {
+    "term": "consequence",
+    "phonetic": "/ˈkɒnsɪkwəns/",
+    "meaning_vi": "hậu quả (n)",
+    "example_en": "One consequence is higher rent.",
+    "example_vi": "Một hậu quả là tiền thuê nhà cao hơn."
+  },
+  {
+    "term": "for example",
+    "phonetic": "/fɔːr ɪɡˈzɑːmpl/",
+    "meaning_vi": "ví dụ",
+    "example_en": "For example, Norway taxes cars heavily.",
+    "example_vi": "Ví dụ, Na Uy đánh thuế ô tô rất nặng."
+  },
+  {
+    "term": "for instance",
+    "phonetic": "/fɔːr ˈɪnstəns/",
+    "meaning_vi": "chẳng hạn",
+    "example_en": "For instance, many cities ban plastic bags.",
+    "example_vi": "Chẳng hạn, nhiều thành phố cấm túi nhựa."
+  },
+  {
+    "term": "such as",
+    "phonetic": "/sʌtʃ æz/",
+    "meaning_vi": "như là",
+    "example_en": "Skills such as coding are in demand.",
+    "example_vi": "Các kỹ năng như lập trình đang được cần."
+  },
+  {
+    "term": "namely",
+    "phonetic": "/ˈneɪmli/",
+    "meaning_vi": "cụ thể là (adv)",
+    "example_en": "Two issues remain, namely cost and time.",
+    "example_vi": "Còn hai vấn đề, cụ thể là chi phí và thời gian."
+  },
+  {
+    "term": "in other words",
+    "phonetic": "/ɪn ˈʌðə wɜːdz/",
+    "meaning_vi": "nói cách khác",
+    "example_en": "In other words, the plan failed.",
+    "example_vi": "Nói cách khác, kế hoạch đã thất bại."
+  },
+  {
+    "term": "that is to say",
+    "phonetic": "/ðæt ɪz tuː seɪ/",
+    "meaning_vi": "tức là",
+    "example_en": "It is cheap, that is to say, under $10.",
+    "example_vi": "Nó rẻ, tức là dưới 10 đô."
+  },
+  {
+    "term": "in conclusion",
+    "phonetic": "/ɪn kənˈkluːʒn/",
+    "meaning_vi": "tóm lại, kết luận",
+    "example_en": "In conclusion, both sides have a point.",
+    "example_vi": "Kết luận, cả hai bên đều có lý."
+  },
+  {
+    "term": "to sum up",
+    "phonetic": "/tuː sʌm ʌp/",
+    "meaning_vi": "tóm lại",
+    "example_en": "To sum up, education is the key.",
+    "example_vi": "Tóm lại, giáo dục là chìa khoá."
+  },
+  {
+    "term": "overall",
+    "phonetic": "/ˌəʊvərˈɔːl/",
+    "meaning_vi": "nhìn chung (adv)",
+    "example_en": "Overall, the benefits outweigh the costs.",
+    "example_vi": "Nhìn chung, lợi ích vượt trội chi phí."
+  },
+  {
+    "term": "outweigh",
+    "phonetic": "/ˌaʊtˈweɪ/",
+    "meaning_vi": "vượt trội hơn (v)",
+    "example_en": "The advantages outweigh the disadvantages.",
+    "example_vi": "Ưu điểm vượt trội nhược điểm."
+  },
+  {
+    "term": "advantage",
+    "phonetic": "/ədˈvɑːntɪdʒ/",
+    "meaning_vi": "ưu điểm (n)",
+    "example_en": "A key advantage is speed.",
+    "example_vi": "Một ưu điểm then chốt là tốc độ."
+  },
+  {
+    "term": "disadvantage",
+    "phonetic": "/ˌdɪsədˈvɑːntɪdʒ/",
+    "meaning_vi": "nhược điểm (n)",
+    "example_en": "The main disadvantage is cost.",
+    "example_vi": "Nhược điểm chính là chi phí."
+  },
+  {
+    "term": "benefit",
+    "phonetic": "/ˈbenɪfɪt/",
+    "meaning_vi": "lợi ích (n)",
+    "example_en": "The benefits are widely known.",
+    "example_vi": "Lợi ích đã được biết rộng rãi."
+  },
+  {
+    "term": "drawback",
+    "phonetic": "/ˈdrɔːbæk/",
+    "meaning_vi": "mặt hạn chế (n)",
+    "example_en": "One drawback is the noise.",
+    "example_vi": "Một hạn chế là tiếng ồn."
+  },
+  {
+    "term": "agree",
+    "phonetic": "/əˈɡriː/",
+    "meaning_vi": "đồng ý (v)",
+    "example_en": "I strongly agree with this view.",
+    "example_vi": "Tôi hoàn toàn đồng ý với quan điểm này."
+  },
+  {
+    "term": "disagree",
+    "phonetic": "/ˌdɪsəˈɡriː/",
+    "meaning_vi": "không đồng ý (v)",
+    "example_en": "I disagree for two reasons.",
+    "example_vi": "Tôi không đồng ý vì hai lý do."
+  },
+  {
+    "term": "to some extent",
+    "phonetic": "/tuː sʌm ɪkˈstent/",
+    "meaning_vi": "ở mức độ nào đó",
+    "example_en": "To some extent, this is true.",
+    "example_vi": "Ở mức độ nào đó, điều này đúng."
+  },
+  {
+    "term": "partly",
+    "phonetic": "/ˈpɑːtli/",
+    "meaning_vi": "một phần (adv)",
+    "example_en": "I partly agree with the statement.",
+    "example_vi": "Tôi đồng ý một phần với nhận định."
+  },
+  {
+    "term": "convincing",
+    "phonetic": "/kənˈvɪnsɪŋ/",
+    "meaning_vi": "thuyết phục (adj)",
+    "example_en": "The evidence is convincing.",
+    "example_vi": "Bằng chứng rất thuyết phục."
+  },
+  {
+    "term": "persuasive",
+    "phonetic": "/pəˈsweɪsɪv/",
+    "meaning_vi": "có sức thuyết phục (adj)",
+    "example_en": "She made a persuasive case.",
+    "example_vi": "Cô ấy đưa ra lập luận có sức thuyết phục."
+  },
+  {
+    "term": "justify",
+    "phonetic": "/ˈdʒʌstɪfaɪ/",
+    "meaning_vi": "biện minh, chứng minh hợp lý (v)",
+    "example_en": "Can higher taxes be justified?",
+    "example_vi": "Thuế cao hơn có biện minh được không?"
+  },
+  {
+    "term": "support",
+    "phonetic": "/səˈpɔːt/",
+    "meaning_vi": "ủng hộ, làm cơ sở (v)",
+    "example_en": "Statistics support this argument.",
+    "example_vi": "Số liệu thống kê ủng hộ lập luận này."
+  },
+  {
+    "term": "refute",
+    "phonetic": "/rɪˈfjuːt/",
+    "meaning_vi": "bác bỏ (v)",
+    "example_en": "New data refute the old theory.",
+    "example_vi": "Dữ liệu mới bác bỏ lý thuyết cũ."
+  },
+  {
+    "term": "counterargument",
+    "phonetic": "/ˈkaʊntərɑːɡjumənt/",
+    "meaning_vi": "phản biện (n)",
+    "example_en": "Address the main counterargument.",
+    "example_vi": "Hãy xử lý phản biện chính."
+  },
+  {
+    "term": "critics",
+    "phonetic": "/ˈkrɪtɪks/",
+    "meaning_vi": "những người chỉ trích (n)",
+    "example_en": "Critics say the plan is unrealistic.",
+    "example_vi": "Những người chỉ trích nói kế hoạch phi thực tế."
+  },
+  {
+    "term": "proponent",
+    "phonetic": "/prəˈpəʊnənt/",
+    "meaning_vi": "người ủng hộ (n)",
+    "example_en": "Proponents highlight the savings.",
+    "example_vi": "Người ủng hộ nhấn mạnh khoản tiết kiệm."
+  },
+  {
+    "term": "opponent",
+    "phonetic": "/əˈpəʊnənt/",
+    "meaning_vi": "người phản đối (n)",
+    "example_en": "Opponents fear job losses.",
+    "example_vi": "Người phản đối lo mất việc làm."
+  },
+  {
+    "term": "controversial",
+    "phonetic": "/ˌkɒntrəˈvɜːʃl/",
+    "meaning_vi": "gây tranh cãi (adj)",
+    "example_en": "Nuclear power remains controversial.",
+    "example_vi": "Điện hạt nhân vẫn gây tranh cãi."
+  },
+  {
+    "term": "debate",
+    "phonetic": "/dɪˈbeɪt/",
+    "meaning_vi": "cuộc tranh luận (n)",
+    "example_en": "The debate continues today.",
+    "example_vi": "Cuộc tranh luận vẫn tiếp diễn."
+  },
+  {
+    "term": "issue",
+    "phonetic": "/ˈɪʃuː/",
+    "meaning_vi": "vấn đề (n)",
+    "example_en": "This is a complex issue.",
+    "example_vi": "Đây là một vấn đề phức tạp."
+  },
+  {
+    "term": "aspect",
+    "phonetic": "/ˈæspekt/",
+    "meaning_vi": "khía cạnh (n)",
+    "example_en": "Consider the financial aspect.",
+    "example_vi": "Hãy xem xét khía cạnh tài chính."
+  },
+  {
+    "term": "assume",
+    "phonetic": "/əˈsjuːm/",
+    "meaning_vi": "giả định (v)",
+    "example_en": "We cannot assume everyone agrees.",
+    "example_vi": "Không thể giả định ai cũng đồng ý."
+  },
+  {
+    "term": "assumption",
+    "phonetic": "/əˈsʌmpʃn/",
+    "meaning_vi": "giả định (n)",
+    "example_en": "This rests on a false assumption.",
+    "example_vi": "Điều này dựa trên một giả định sai."
+  },
+  {
+    "term": "arguably",
+    "phonetic": "/ˈɑːɡjuəbli/",
+    "meaning_vi": "có thể nói rằng (adv)",
+    "example_en": "It is arguably the best option.",
+    "example_vi": "Có thể nói đó là lựa chọn tốt nhất."
+  },
+  {
+    "term": "undoubtedly",
+    "phonetic": "/ʌnˈdaʊtɪdli/",
+    "meaning_vi": "chắc chắn (adv)",
+    "example_en": "Technology has undoubtedly changed work.",
+    "example_vi": "Công nghệ chắc chắn đã thay đổi công việc."
+  },
+  {
+    "term": "it is widely believed",
+    "phonetic": "/ɪt ɪz ˈwaɪdli bɪˈliːvd/",
+    "meaning_vi": "người ta tin rộng rãi rằng",
+    "example_en": "It is widely believed that exercise helps.",
+    "example_vi": "Người ta tin rộng rãi rằng tập thể dục có ích."
+  },
+  {
+    "term": "tend to",
+    "phonetic": "/tend tuː/",
+    "meaning_vi": "có xu hướng",
+    "example_en": "Young people tend to prefer apps.",
+    "example_vi": "Người trẻ có xu hướng thích ứng dụng."
+  },
+  {
+    "term": "likely",
+    "phonetic": "/ˈlaɪkli/",
+    "meaning_vi": "có khả năng (adj)",
+    "example_en": "Prices are likely to rise.",
+    "example_vi": "Giá có khả năng tăng."
+  },
+  {
+    "term": "may",
+    "phonetic": "/meɪ/",
+    "meaning_vi": "có thể (modal, giảm nhẹ)",
+    "example_en": "This may not apply everywhere.",
+    "example_vi": "Điều này có thể không đúng ở mọi nơi."
+  },
+  {
+    "term": "appear",
+    "phonetic": "/əˈpɪə/",
+    "meaning_vi": "dường như (v)",
+    "example_en": "The policy appears to work.",
+    "example_vi": "Chính sách dường như hiệu quả."
+  },
+  {
+    "term": "seem",
+    "phonetic": "/siːm/",
+    "meaning_vi": "có vẻ (v)",
+    "example_en": "It seems reasonable to wait.",
+    "example_vi": "Có vẻ hợp lý khi chờ."
+  },
+  {
+    "term": "generally",
+    "phonetic": "/ˈdʒenrəli/",
+    "meaning_vi": "nhìn chung (adv)",
+    "example_en": "Generally, rents are higher in cities.",
+    "example_vi": "Nhìn chung, tiền thuê nhà ở thành phố cao hơn."
+  },
+  {
+    "term": "particularly",
+    "phonetic": "/pəˈtɪkjələli/",
+    "meaning_vi": "đặc biệt là (adv)",
+    "example_en": "This is particularly true for students.",
+    "example_vi": "Điều này đặc biệt đúng với sinh viên."
+  },
+  {
+    "term": "essential",
+    "phonetic": "/ɪˈsenʃl/",
+    "meaning_vi": "thiết yếu (adj)",
+    "example_en": "Clean water is essential.",
+    "example_vi": "Nước sạch là thiết yếu."
+  },
+  {
+    "term": "crucial",
+    "phonetic": "/ˈkruːʃl/",
+    "meaning_vi": "then chốt (adj)",
+    "example_en": "Timing is crucial.",
+    "example_vi": "Thời điểm là then chốt."
+  },
+  {
+    "term": "vital",
+    "phonetic": "/ˈvaɪtl/",
+    "meaning_vi": "sống còn (adj)",
+    "example_en": "Sleep is vital for memory.",
+    "example_vi": "Giấc ngủ sống còn với trí nhớ."
+  },
+  {
+    "term": "beneficial",
+    "phonetic": "/ˌbenɪˈfɪʃl/",
+    "meaning_vi": "có lợi (adj)",
+    "example_en": "Reading is beneficial for children.",
+    "example_vi": "Đọc sách có lợi cho trẻ em."
+  },
+  {
+    "term": "detrimental",
+    "phonetic": "/ˌdetrɪˈmentl/",
+    "meaning_vi": "có hại (adj)",
+    "example_en": "Smoking is detrimental to health.",
+    "example_vi": "Hút thuốc có hại cho sức khoẻ."
+  },
+  {
+    "term": "inevitable",
+    "phonetic": "/ɪnˈevɪtəbl/",
+    "meaning_vi": "không thể tránh khỏi (adj)",
+    "example_en": "Some change is inevitable.",
+    "example_vi": "Một số thay đổi là không thể tránh khỏi."
+  },
+  {
+    "term": "take steps",
+    "phonetic": "/teɪk steps/",
+    "meaning_vi": "có biện pháp, hành động",
+    "example_en": "Governments should take steps to reduce waste.",
+    "example_vi": "Chính phủ nên có biện pháp giảm rác thải."
+  },
+  {
+    "term": "solution",
+    "phonetic": "/səˈluːʃn/",
+    "meaning_vi": "giải pháp (n)",
+    "example_en": "There is no easy solution.",
+    "example_vi": "Không có giải pháp dễ dàng."
+  },
+  {
+    "term": "address",
+    "phonetic": "/əˈdres/",
+    "meaning_vi": "giải quyết (vấn đề) (v)",
+    "example_en": "We must address the root cause.",
+    "example_vi": "Phải giải quyết nguyên nhân gốc."
+  },
+  {
+    "term": "tackle",
+    "phonetic": "/ˈtækl/",
+    "meaning_vi": "đối phó, xử lý (v)",
+    "example_en": "How can we tackle pollution?",
+    "example_vi": "Làm sao xử lý ô nhiễm?"
+  },
+  {
+    "term": "emphasise",
+    "phonetic": "/ˈemfəsaɪz/",
+    "meaning_vi": "nhấn mạnh (v)",
+    "example_en": "The report emphasises prevention.",
+    "example_vi": "Báo cáo nhấn mạnh phòng ngừa."
+  },
+  {
+    "term": "highlight",
+    "phonetic": "/ˈhaɪlaɪt/",
+    "meaning_vi": "làm nổi bật (v)",
+    "example_en": "The study highlights a key risk.",
+    "example_vi": "Nghiên cứu làm nổi bật một rủi ro chính."
+  },
+  {
+    "term": "acknowledge",
+    "phonetic": "/əkˈnɒlɪdʒ/",
+    "meaning_vi": "thừa nhận (v)",
+    "example_en": "We acknowledge some limitations.",
+    "example_vi": "Chúng tôi thừa nhận vài hạn chế."
+  },
+  {
+    "term": "compelling",
+    "phonetic": "/kəmˈpelɪŋ/",
+    "meaning_vi": "rất thuyết phục (adj)",
+    "example_en": "There is a compelling reason to act.",
+    "example_vi": "Có lý do rất thuyết phục để hành động."
+  },
+  {
+    "term": "balanced",
+    "phonetic": "/ˈbælənst/",
+    "meaning_vi": "cân bằng (adj)",
+    "example_en": "A balanced view considers both sides.",
+    "example_vi": "Cái nhìn cân bằng xét cả hai phía."
+  },
+  {
+    "term": "coherent",
+    "phonetic": "/kəʊˈhɪərənt/",
+    "meaning_vi": "mạch lạc (adj)",
+    "example_en": "The essay is coherent and well organised.",
+    "example_vi": "Bài luận mạch lạc và có tổ chức tốt."
+  },
+  {
+    "term": "in my view",
+    "phonetic": "/ɪn maɪ vjuː/",
+    "meaning_vi": "theo quan điểm của tôi",
+    "example_en": "In my view, the benefits are clear.",
+    "example_vi": "Theo quan điểm của tôi, lợi ích là rõ ràng."
+  }
+]

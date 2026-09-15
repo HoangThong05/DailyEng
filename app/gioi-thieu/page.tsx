@@ -7,6 +7,7 @@ import { FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { ThemeButton } from "@/app/_components/theme-button";
 import { DECK_CATEGORIES } from "@/lib/deck-categories";
+import vitHero from "@/public/mascot/vit-hero.png";
 import { getCurrentUser } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -17,8 +18,8 @@ export const metadata: Metadata = {
 
 /** Số liệu nổi bật ở đầu trang. Cập nhật tay khi thêm bộ từ. */
 const STATS = [
-  { value: "30+", label: "bộ từ có sẵn" },
-  { value: "3.000+", label: "từ kèm phiên âm, ví dụ" },
+  { value: "36", label: "bộ từ có sẵn" },
+  { value: "3.300+", label: "từ kèm phiên âm, ví dụ" },
   { value: "9", label: "trò chơi & bài luyện" },
   { value: "0đ", label: "miễn phí toàn bộ" },
 ];
@@ -124,32 +125,27 @@ export default async function GioiThieuPage() {
             </p>
           </div>
 
-          {/* Cụm ảnh: vịt lớn + ba bìa game nghiêng + chip số liệu */}
-          <div className="relative mx-auto h-[380px] w-full max-w-md sm:h-[440px]">
-            <div className="from-brand/25 absolute inset-0 rounded-[3rem] bg-gradient-to-br via-violet-500/15 to-transparent blur-2xl" />
-            <div className="absolute top-2 left-0 w-[46%] rotate-[-8deg] overflow-hidden rounded-3xl shadow-2xl">
-              <GameCover game={GAMES.find((g) => g.slug === "mua-tu")!} sizes="220px" className="aspect-square" />
-            </div>
-            <div className="absolute top-0 right-0 w-[44%] rotate-[7deg] overflow-hidden rounded-3xl shadow-2xl">
-              <GameCover game={GAMES.find((g) => g.slug === "shadowing")!} sizes="220px" className="aspect-square" />
-            </div>
-            <div className="absolute bottom-0 left-[6%] w-[42%] rotate-[5deg] overflow-hidden rounded-3xl shadow-2xl">
-              <GameCover game={GAMES.find((g) => g.slug === "nghe-hinh")!} sizes="220px" className="aspect-square" />
-            </div>
-            <Mascot
-              variant="chao-trong"
-              size={260}
+          {/* Vịt hero (nền trong suốt) lơ lửng trên quầng sáng + chip số liệu */}
+          <div className="relative mx-auto w-full max-w-md">
+            <div className="from-brand/30 absolute inset-[8%] rounded-full bg-gradient-to-br via-violet-500/20 to-fuchsia-500/10 blur-3xl" />
+            <Image
+              src={vitHero}
+              alt="Vịt DailyEng đeo tai nghe học với laptop"
               priority
-              className="header-duck absolute right-[4%] bottom-0 h-auto w-[56%] drop-shadow-2xl"
+              sizes="(min-width: 768px) 448px, 90vw"
+              className="header-duck relative h-auto w-full drop-shadow-2xl"
             />
-            <span className="bg-card border-border absolute top-[42%] left-[2%] flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-bold shadow-lg">
-              <FlameIcon className="h-4 w-4 text-orange-500" /> 12 ngày
+            <span className="bg-card border-border absolute top-[14%] left-0 flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-bold shadow-lg">
+              <FlameIcon className="h-4 w-4 text-orange-500" /> 12 ngày liên tiếp
             </span>
-            <span className="from-brand absolute right-[2%] bottom-[38%] rounded-full bg-gradient-to-r to-violet-500 px-3 py-1.5 text-sm font-bold text-white shadow-lg">
+            <span className="from-brand absolute top-[8%] right-0 rounded-full bg-gradient-to-r to-violet-500 px-3 py-1.5 text-sm font-bold text-white shadow-lg">
               Combo ×5
             </span>
-            <span className="bg-card border-border absolute bottom-[8%] left-[40%] rounded-full border px-3 py-1.5 text-sm font-bold shadow-lg">
+            <span className="bg-card border-border absolute bottom-[10%] right-[4%] rounded-full border px-3 py-1.5 text-sm font-bold shadow-lg">
               +70 XP
+            </span>
+            <span className="bg-card border-border absolute bottom-[18%] left-0 rounded-full border px-3 py-1.5 text-sm font-bold text-emerald-500 shadow-lg">
+              Cấp 6 · Chăm chỉ
             </span>
           </div>
         </section>

@@ -1,0 +1,702 @@
+[
+  {
+    "term": "chart",
+    "phonetic": "/tʃɑːt/",
+    "meaning_vi": "biểu đồ (n)",
+    "example_en": "The chart shows sales by region.",
+    "example_vi": "Biểu đồ thể hiện doanh số theo vùng."
+  },
+  {
+    "term": "graph",
+    "phonetic": "/ɡrɑːf/",
+    "meaning_vi": "đồ thị (n)",
+    "example_en": "The graph compares two countries.",
+    "example_vi": "Đồ thị so sánh hai quốc gia."
+  },
+  {
+    "term": "bar chart",
+    "phonetic": "/bɑː tʃɑːt/",
+    "meaning_vi": "biểu đồ cột (n)",
+    "example_en": "The bar chart illustrates energy use.",
+    "example_vi": "Biểu đồ cột minh hoạ mức dùng năng lượng."
+  },
+  {
+    "term": "line graph",
+    "phonetic": "/laɪn ɡrɑːf/",
+    "meaning_vi": "biểu đồ đường (n)",
+    "example_en": "The line graph shows changes over time.",
+    "example_vi": "Biểu đồ đường thể hiện thay đổi theo thời gian."
+  },
+  {
+    "term": "pie chart",
+    "phonetic": "/paɪ tʃɑːt/",
+    "meaning_vi": "biểu đồ tròn (n)",
+    "example_en": "The pie chart shows the proportions.",
+    "example_vi": "Biểu đồ tròn thể hiện các tỉ lệ."
+  },
+  {
+    "term": "column",
+    "phonetic": "/ˈkɒləm/",
+    "meaning_vi": "cột (bảng) (n)",
+    "example_en": "The first column lists the countries.",
+    "example_vi": "Cột đầu tiên liệt kê các quốc gia."
+  },
+  {
+    "term": "diagram",
+    "phonetic": "/ˈdaɪəɡræm/",
+    "meaning_vi": "sơ đồ (n)",
+    "example_en": "The diagram explains the process.",
+    "example_vi": "Sơ đồ giải thích quy trình."
+  },
+  {
+    "term": "illustrate",
+    "phonetic": "/ˈɪləstreɪt/",
+    "meaning_vi": "minh hoạ (v)",
+    "example_en": "The graph illustrates population growth.",
+    "example_vi": "Đồ thị minh hoạ tăng trưởng dân số."
+  },
+  {
+    "term": "depict",
+    "phonetic": "/dɪˈpɪkt/",
+    "meaning_vi": "mô tả, thể hiện (v)",
+    "example_en": "The chart depicts car ownership.",
+    "example_vi": "Biểu đồ thể hiện tỉ lệ sở hữu xe."
+  },
+  {
+    "term": "represent",
+    "phonetic": "/ˌreprɪˈzent/",
+    "meaning_vi": "biểu thị (v)",
+    "example_en": "Each bar represents one year.",
+    "example_vi": "Mỗi cột biểu thị một năm."
+  },
+  {
+    "term": "axis",
+    "phonetic": "/ˈæksɪs/",
+    "meaning_vi": "trục (n)",
+    "example_en": "The vertical axis shows percentages.",
+    "example_vi": "Trục dọc thể hiện phần trăm."
+  },
+  {
+    "term": "unit",
+    "phonetic": "/ˈjuːnɪt/",
+    "meaning_vi": "đơn vị (n)",
+    "example_en": "The units are millions of tonnes.",
+    "example_vi": "Đơn vị là triệu tấn."
+  },
+  {
+    "term": "statistic",
+    "phonetic": "/stəˈtɪstɪk/",
+    "meaning_vi": "số liệu thống kê (n)",
+    "example_en": "One striking statistic is the 40% drop.",
+    "example_vi": "Một số liệu đáng chú ý là mức giảm 40%."
+  },
+  {
+    "term": "increase",
+    "phonetic": "/ɪnˈkriːs/",
+    "meaning_vi": "tăng (v, n)",
+    "example_en": "Sales increased by 10%.",
+    "example_vi": "Doanh số tăng 10%."
+  },
+  {
+    "term": "rise",
+    "phonetic": "/raɪz/",
+    "meaning_vi": "tăng lên (v, n)",
+    "example_en": "Prices rose steadily.",
+    "example_vi": "Giá tăng đều đặn."
+  },
+  {
+    "term": "grow",
+    "phonetic": "/ɡrəʊ/",
+    "meaning_vi": "tăng trưởng (v)",
+    "example_en": "The population grew rapidly.",
+    "example_vi": "Dân số tăng nhanh."
+  },
+  {
+    "term": "climb",
+    "phonetic": "/klaɪm/",
+    "meaning_vi": "leo lên, tăng (v)",
+    "example_en": "Exports climbed to a record high.",
+    "example_vi": "Xuất khẩu leo lên mức kỷ lục."
+  },
+  {
+    "term": "soar",
+    "phonetic": "/sɔː/",
+    "meaning_vi": "tăng vọt (v)",
+    "example_en": "Oil prices soared in 2008.",
+    "example_vi": "Giá dầu tăng vọt năm 2008."
+  },
+  {
+    "term": "surge",
+    "phonetic": "/sɜːdʒ/",
+    "meaning_vi": "tăng đột biến (v, n)",
+    "example_en": "Demand surged during the holiday.",
+    "example_vi": "Nhu cầu tăng đột biến dịp lễ."
+  },
+  {
+    "term": "rocket",
+    "phonetic": "/ˈrɒkɪt/",
+    "meaning_vi": "tăng chóng mặt (v)",
+    "example_en": "Rents rocketed after 2015.",
+    "example_vi": "Tiền thuê tăng chóng mặt sau 2015."
+  },
+  {
+    "term": "decrease",
+    "phonetic": "/dɪˈkriːs/",
+    "meaning_vi": "giảm (v, n)",
+    "example_en": "Unemployment decreased slightly.",
+    "example_vi": "Thất nghiệp giảm nhẹ."
+  },
+  {
+    "term": "fall",
+    "phonetic": "/fɔːl/",
+    "meaning_vi": "giảm, rơi (v, n)",
+    "example_en": "Profits fell sharply.",
+    "example_vi": "Lợi nhuận giảm mạnh."
+  },
+  {
+    "term": "drop",
+    "phonetic": "/drɒp/",
+    "meaning_vi": "giảm, rớt (v, n)",
+    "example_en": "There was a sudden drop in sales.",
+    "example_vi": "Doanh số rớt đột ngột."
+  },
+  {
+    "term": "decline",
+    "phonetic": "/dɪˈklaɪn/",
+    "meaning_vi": "suy giảm (v, n)",
+    "example_en": "Birth rates declined over the decade.",
+    "example_vi": "Tỉ lệ sinh suy giảm trong thập kỷ."
+  },
+  {
+    "term": "plunge",
+    "phonetic": "/plʌndʒ/",
+    "meaning_vi": "lao dốc (v)",
+    "example_en": "Shares plunged after the news.",
+    "example_vi": "Cổ phiếu lao dốc sau tin đó."
+  },
+  {
+    "term": "plummet",
+    "phonetic": "/ˈplʌmɪt/",
+    "meaning_vi": "giảm thẳng đứng (v)",
+    "example_en": "Tourist numbers plummeted in 2020.",
+    "example_vi": "Lượng khách du lịch giảm thẳng đứng năm 2020."
+  },
+  {
+    "term": "dip",
+    "phonetic": "/dɪp/",
+    "meaning_vi": "giảm nhẹ tạm thời (v, n)",
+    "example_en": "There was a small dip in March.",
+    "example_vi": "Có một đợt giảm nhẹ vào tháng Ba."
+  },
+  {
+    "term": "fluctuate",
+    "phonetic": "/ˈflʌktʃueɪt/",
+    "meaning_vi": "dao động (v)",
+    "example_en": "Prices fluctuated throughout the year.",
+    "example_vi": "Giá dao động suốt năm."
+  },
+  {
+    "term": "fluctuation",
+    "phonetic": "/ˌflʌktʃuˈeɪʃn/",
+    "meaning_vi": "sự dao động (n)",
+    "example_en": "There were minor fluctuations.",
+    "example_vi": "Có những dao động nhỏ."
+  },
+  {
+    "term": "remain stable",
+    "phonetic": "/rɪˈmeɪn ˈsteɪbl/",
+    "meaning_vi": "giữ ổn định",
+    "example_en": "Costs remained stable for five years.",
+    "example_vi": "Chi phí giữ ổn định trong năm năm."
+  },
+  {
+    "term": "level off",
+    "phonetic": "/ˈlevl ɒf/",
+    "meaning_vi": "chững lại",
+    "example_en": "Growth levelled off after 2018.",
+    "example_vi": "Tăng trưởng chững lại sau 2018."
+  },
+  {
+    "term": "plateau",
+    "phonetic": "/ˈplætəʊ/",
+    "meaning_vi": "đi ngang (v, n)",
+    "example_en": "Sales plateaued at 2 million.",
+    "example_vi": "Doanh số đi ngang ở mức 2 triệu."
+  },
+  {
+    "term": "stabilise",
+    "phonetic": "/ˈsteɪbəlaɪz/",
+    "meaning_vi": "ổn định lại (v)",
+    "example_en": "The rate stabilised in 2021.",
+    "example_vi": "Tỉ lệ ổn định lại vào 2021."
+  },
+  {
+    "term": "peak",
+    "phonetic": "/piːk/",
+    "meaning_vi": "đỉnh (n); đạt đỉnh (v)",
+    "example_en": "Sales peaked in December.",
+    "example_vi": "Doanh số đạt đỉnh vào tháng Mười Hai."
+  },
+  {
+    "term": "reach a high",
+    "phonetic": "/riːtʃ ə haɪ/",
+    "meaning_vi": "đạt mức cao",
+    "example_en": "Exports reached a high of $5bn.",
+    "example_vi": "Xuất khẩu đạt mức cao 5 tỉ đô."
+  },
+  {
+    "term": "hit a low",
+    "phonetic": "/hɪt ə ləʊ/",
+    "meaning_vi": "chạm đáy",
+    "example_en": "The rate hit a low of 3%.",
+    "example_vi": "Tỉ lệ chạm đáy 3%."
+  },
+  {
+    "term": "bottom out",
+    "phonetic": "/ˈbɒtəm aʊt/",
+    "meaning_vi": "chạm đáy rồi ngừng giảm",
+    "example_en": "Prices bottomed out in 2009.",
+    "example_vi": "Giá chạm đáy năm 2009."
+  },
+  {
+    "term": "recover",
+    "phonetic": "/rɪˈkʌvə/",
+    "meaning_vi": "phục hồi (v)",
+    "example_en": "The market recovered quickly.",
+    "example_vi": "Thị trường phục hồi nhanh."
+  },
+  {
+    "term": "rebound",
+    "phonetic": "/rɪˈbaʊnd/",
+    "meaning_vi": "bật tăng trở lại (v)",
+    "example_en": "Tourism rebounded in 2022.",
+    "example_vi": "Du lịch bật tăng trở lại năm 2022."
+  },
+  {
+    "term": "trend",
+    "phonetic": "/trend/",
+    "meaning_vi": "xu hướng (n)",
+    "example_en": "The overall trend is upward.",
+    "example_vi": "Xu hướng chung là đi lên."
+  },
+  {
+    "term": "upward trend",
+    "phonetic": "/ˈʌpwəd trend/",
+    "meaning_vi": "xu hướng tăng",
+    "example_en": "There was an upward trend in spending.",
+    "example_vi": "Chi tiêu có xu hướng tăng."
+  },
+  {
+    "term": "downward trend",
+    "phonetic": "/ˈdaʊnwəd trend/",
+    "meaning_vi": "xu hướng giảm",
+    "example_en": "Smoking shows a downward trend.",
+    "example_vi": "Hút thuốc có xu hướng giảm."
+  },
+  {
+    "term": "sharp",
+    "phonetic": "/ʃɑːp/",
+    "meaning_vi": "mạnh, đột ngột (adj)",
+    "example_en": "There was a sharp rise in costs.",
+    "example_vi": "Chi phí tăng mạnh."
+  },
+  {
+    "term": "sharply",
+    "phonetic": "/ˈʃɑːpli/",
+    "meaning_vi": "mạnh, đột ngột (adv)",
+    "example_en": "Numbers fell sharply.",
+    "example_vi": "Con số giảm mạnh."
+  },
+  {
+    "term": "dramatic",
+    "phonetic": "/drəˈmætɪk/",
+    "meaning_vi": "đáng kể, kịch tính (adj)",
+    "example_en": "A dramatic increase occurred in 2010.",
+    "example_vi": "Một mức tăng đáng kể xảy ra năm 2010."
+  },
+  {
+    "term": "dramatically",
+    "phonetic": "/drəˈmætɪkli/",
+    "meaning_vi": "một cách đáng kể (adv)",
+    "example_en": "Use rose dramatically.",
+    "example_vi": "Mức sử dụng tăng đáng kể."
+  },
+  {
+    "term": "noticeable",
+    "phonetic": "/ˈnəʊtɪsəbl/",
+    "meaning_vi": "rõ rệt (adj)",
+    "example_en": "There was a noticeable rise after 2015.",
+    "example_vi": "Có mức tăng rõ rệt sau 2015."
+  },
+  {
+    "term": "considerable",
+    "phonetic": "/kənˈsɪdərəbl/",
+    "meaning_vi": "đáng kể (adj)",
+    "example_en": "There was considerable growth.",
+    "example_vi": "Có mức tăng trưởng đáng kể."
+  },
+  {
+    "term": "substantial",
+    "phonetic": "/səbˈstænʃl/",
+    "meaning_vi": "lớn, đáng kể (adj)",
+    "example_en": "Substantial gains were recorded.",
+    "example_vi": "Ghi nhận mức tăng lớn."
+  },
+  {
+    "term": "steady",
+    "phonetic": "/ˈstedi/",
+    "meaning_vi": "đều đặn (adj)",
+    "example_en": "There was a steady increase.",
+    "example_vi": "Có mức tăng đều đặn."
+  },
+  {
+    "term": "steadily",
+    "phonetic": "/ˈstedɪli/",
+    "meaning_vi": "đều đặn (adv)",
+    "example_en": "Income grew steadily.",
+    "example_vi": "Thu nhập tăng đều đặn."
+  },
+  {
+    "term": "gradual",
+    "phonetic": "/ˈɡrædʒuəl/",
+    "meaning_vi": "từ từ (adj)",
+    "example_en": "A gradual decline is expected.",
+    "example_vi": "Dự kiến giảm từ từ."
+  },
+  {
+    "term": "gradually",
+    "phonetic": "/ˈɡrædʒuəli/",
+    "meaning_vi": "dần dần (adv)",
+    "example_en": "Costs gradually fell.",
+    "example_vi": "Chi phí giảm dần."
+  },
+  {
+    "term": "slight",
+    "phonetic": "/slaɪt/",
+    "meaning_vi": "nhẹ (adj)",
+    "example_en": "There was a slight drop.",
+    "example_vi": "Có mức giảm nhẹ."
+  },
+  {
+    "term": "slightly",
+    "phonetic": "/ˈslaɪtli/",
+    "meaning_vi": "nhẹ (adv)",
+    "example_en": "Figures rose slightly.",
+    "example_vi": "Số liệu tăng nhẹ."
+  },
+  {
+    "term": "marginal",
+    "phonetic": "/ˈmɑːdʒɪnl/",
+    "meaning_vi": "không đáng kể (adj)",
+    "example_en": "The change was marginal.",
+    "example_vi": "Thay đổi không đáng kể."
+  },
+  {
+    "term": "modest",
+    "phonetic": "/ˈmɒdɪst/",
+    "meaning_vi": "khiêm tốn, vừa phải (adj)",
+    "example_en": "A modest rise of 2% was seen.",
+    "example_vi": "Ghi nhận mức tăng vừa phải 2%."
+  },
+  {
+    "term": "rapid",
+    "phonetic": "/ˈræpɪd/",
+    "meaning_vi": "nhanh (adj)",
+    "example_en": "Rapid growth continued.",
+    "example_vi": "Tăng trưởng nhanh tiếp tục."
+  },
+  {
+    "term": "rapidly",
+    "phonetic": "/ˈræpɪdli/",
+    "meaning_vi": "nhanh chóng (adv)",
+    "example_en": "Cities expanded rapidly.",
+    "example_vi": "Thành phố mở rộng nhanh chóng."
+  },
+  {
+    "term": "proportion",
+    "phonetic": "/prəˈpɔːʃn/",
+    "meaning_vi": "tỉ lệ, phần (n)",
+    "example_en": "A large proportion of users are young.",
+    "example_vi": "Phần lớn người dùng còn trẻ."
+  },
+  {
+    "term": "per cent",
+    "phonetic": "/pə ˈsent/",
+    "meaning_vi": "phần trăm",
+    "example_en": "Sales grew 12 per cent.",
+    "example_vi": "Doanh số tăng 12 phần trăm."
+  },
+  {
+    "term": "rate",
+    "phonetic": "/reɪt/",
+    "meaning_vi": "tỉ lệ, tốc độ (n)",
+    "example_en": "The unemployment rate is 4%.",
+    "example_vi": "Tỉ lệ thất nghiệp là 4%."
+  },
+  {
+    "term": "ratio",
+    "phonetic": "/ˈreɪʃiəʊ/",
+    "meaning_vi": "tỉ số (n)",
+    "example_en": "The ratio of men to women was 3:2.",
+    "example_vi": "Tỉ số nam trên nữ là 3:2."
+  },
+  {
+    "term": "share",
+    "phonetic": "/ʃeə/",
+    "meaning_vi": "phần, thị phần (n)",
+    "example_en": "Coal's share fell to 20%.",
+    "example_vi": "Phần của than giảm còn 20%."
+  },
+  {
+    "term": "majority",
+    "phonetic": "/məˈdʒɒrəti/",
+    "meaning_vi": "đa số (n)",
+    "example_en": "The majority preferred trains.",
+    "example_vi": "Đa số thích tàu hoả hơn."
+  },
+  {
+    "term": "minority",
+    "phonetic": "/maɪˈnɒrəti/",
+    "meaning_vi": "thiểu số (n)",
+    "example_en": "Only a minority cycled to work.",
+    "example_vi": "Chỉ thiểu số đạp xe đi làm."
+  },
+  {
+    "term": "a quarter",
+    "phonetic": "/ə ˈkwɔːtə/",
+    "meaning_vi": "một phần tư",
+    "example_en": "A quarter of the budget went to health.",
+    "example_vi": "Một phần tư ngân sách dành cho y tế."
+  },
+  {
+    "term": "a third",
+    "phonetic": "/ə θɜːd/",
+    "meaning_vi": "một phần ba",
+    "example_en": "About a third of students work part-time.",
+    "example_vi": "Khoảng một phần ba sinh viên làm thêm."
+  },
+  {
+    "term": "half",
+    "phonetic": "/hɑːf/",
+    "meaning_vi": "một nửa (n)",
+    "example_en": "Half of the respondents agreed.",
+    "example_vi": "Một nửa người trả lời đồng ý."
+  },
+  {
+    "term": "twofold",
+    "phonetic": "/ˈtuːfəʊld/",
+    "meaning_vi": "gấp đôi (adj, adv)",
+    "example_en": "There was a twofold increase.",
+    "example_vi": "Có mức tăng gấp đôi."
+  },
+  {
+    "term": "double",
+    "phonetic": "/ˈdʌbl/",
+    "meaning_vi": "tăng gấp đôi (v)",
+    "example_en": "Sales doubled in two years.",
+    "example_vi": "Doanh số tăng gấp đôi trong hai năm."
+  },
+  {
+    "term": "triple",
+    "phonetic": "/ˈtrɪpl/",
+    "meaning_vi": "tăng gấp ba (v)",
+    "example_en": "Output tripled.",
+    "example_vi": "Sản lượng tăng gấp ba."
+  },
+  {
+    "term": "halve",
+    "phonetic": "/hɑːv/",
+    "meaning_vi": "giảm một nửa (v)",
+    "example_en": "Emissions halved since 1990.",
+    "example_vi": "Khí thải giảm một nửa từ 1990."
+  },
+  {
+    "term": "approximately",
+    "phonetic": "/əˈprɒksɪmətli/",
+    "meaning_vi": "xấp xỉ (adv)",
+    "example_en": "Approximately 60% agreed.",
+    "example_vi": "Xấp xỉ 60% đồng ý."
+  },
+  {
+    "term": "roughly",
+    "phonetic": "/ˈrʌfli/",
+    "meaning_vi": "khoảng chừng (adv)",
+    "example_en": "Roughly half were female.",
+    "example_vi": "Khoảng một nửa là nữ."
+  },
+  {
+    "term": "just over",
+    "phonetic": "/dʒʌst ˈəʊvə/",
+    "meaning_vi": "hơn một chút",
+    "example_en": "Just over 30% own a car.",
+    "example_vi": "Hơn 30% một chút sở hữu ô tô."
+  },
+  {
+    "term": "just under",
+    "phonetic": "/dʒʌst ˈʌndə/",
+    "meaning_vi": "kém một chút",
+    "example_en": "Just under a million visited.",
+    "example_vi": "Gần một triệu lượt (kém một chút) đã ghé thăm."
+  },
+  {
+    "term": "respectively",
+    "phonetic": "/rɪˈspektɪvli/",
+    "meaning_vi": "lần lượt (adv)",
+    "example_en": "France and Spain scored 45% and 40% respectively.",
+    "example_vi": "Pháp và Tây Ban Nha lần lượt đạt 45% và 40%."
+  },
+  {
+    "term": "compared with",
+    "phonetic": "/kəmˈpeəd wɪð/",
+    "meaning_vi": "so với",
+    "example_en": "Sales rose 5% compared with last year.",
+    "example_vi": "Doanh số tăng 5% so với năm ngoái."
+  },
+  {
+    "term": "in comparison",
+    "phonetic": "/ɪn kəmˈpærɪsn/",
+    "meaning_vi": "khi so sánh",
+    "example_en": "In comparison, Asia grew faster.",
+    "example_vi": "Khi so sánh, châu Á tăng nhanh hơn."
+  },
+  {
+    "term": "while",
+    "phonetic": "/waɪl/",
+    "meaning_vi": "trong khi (so sánh) (conj)",
+    "example_en": "Exports rose, while imports fell.",
+    "example_vi": "Xuất khẩu tăng, trong khi nhập khẩu giảm."
+  },
+  {
+    "term": "by contrast",
+    "phonetic": "/baɪ ˈkɒntrɑːst/",
+    "meaning_vi": "ngược lại",
+    "example_en": "By contrast, rural use stayed flat.",
+    "example_vi": "Ngược lại, mức dùng ở nông thôn đi ngang."
+  },
+  {
+    "term": "account for",
+    "phonetic": "/əˈkaʊnt fɔː/",
+    "meaning_vi": "chiếm (tỉ lệ)",
+    "example_en": "Cars account for 40% of emissions.",
+    "example_vi": "Ô tô chiếm 40% khí thải."
+  },
+  {
+    "term": "make up",
+    "phonetic": "/meɪk ʌp/",
+    "meaning_vi": "chiếm, cấu thành",
+    "example_en": "Women make up 55% of staff.",
+    "example_vi": "Phụ nữ chiếm 55% nhân sự."
+  },
+  {
+    "term": "constitute",
+    "phonetic": "/ˈkɒnstɪtjuːt/",
+    "meaning_vi": "cấu thành (v)",
+    "example_en": "Rent constitutes the biggest expense.",
+    "example_vi": "Tiền thuê cấu thành khoản chi lớn nhất."
+  },
+  {
+    "term": "over the period",
+    "phonetic": "/ˈəʊvə ðə ˈpɪəriəd/",
+    "meaning_vi": "trong giai đoạn",
+    "example_en": "Over the period, usage doubled.",
+    "example_vi": "Trong giai đoạn đó, mức dùng tăng gấp đôi."
+  },
+  {
+    "term": "throughout",
+    "phonetic": "/θruːˈaʊt/",
+    "meaning_vi": "suốt (prep)",
+    "example_en": "Prices rose throughout the decade.",
+    "example_vi": "Giá tăng suốt thập kỷ."
+  },
+  {
+    "term": "from … to …",
+    "phonetic": "/frɒm tuː/",
+    "meaning_vi": "từ … đến …",
+    "example_en": "It rose from 10% to 25%.",
+    "example_vi": "Nó tăng từ 10% lên 25%."
+  },
+  {
+    "term": "by",
+    "phonetic": "/baɪ/",
+    "meaning_vi": "(tăng/giảm) một mức",
+    "example_en": "Sales fell by 8%.",
+    "example_vi": "Doanh số giảm 8%."
+  },
+  {
+    "term": "reach",
+    "phonetic": "/riːtʃ/",
+    "meaning_vi": "đạt tới (v)",
+    "example_en": "The figure reached 1 million.",
+    "example_vi": "Con số đạt tới 1 triệu."
+  },
+  {
+    "term": "stand at",
+    "phonetic": "/stænd æt/",
+    "meaning_vi": "ở mức",
+    "example_en": "Inflation stood at 3% in June.",
+    "example_vi": "Lạm phát ở mức 3% vào tháng Sáu."
+  },
+  {
+    "term": "start at",
+    "phonetic": "/stɑːt æt/",
+    "meaning_vi": "bắt đầu ở mức",
+    "example_en": "The line starts at 20%.",
+    "example_vi": "Đường bắt đầu ở mức 20%."
+  },
+  {
+    "term": "end at",
+    "phonetic": "/end æt/",
+    "meaning_vi": "kết thúc ở mức",
+    "example_en": "It ended at just 5%.",
+    "example_vi": "Nó kết thúc chỉ ở mức 5%."
+  },
+  {
+    "term": "in general",
+    "phonetic": "/ɪn ˈdʒenrəl/",
+    "meaning_vi": "nhìn chung",
+    "example_en": "In general, the trend was positive.",
+    "example_vi": "Nhìn chung, xu hướng là tích cực."
+  },
+  {
+    "term": "notably",
+    "phonetic": "/ˈnəʊtəbli/",
+    "meaning_vi": "đáng chú ý là (adv)",
+    "example_en": "Notably, Japan bucked the trend.",
+    "example_vi": "Đáng chú ý, Nhật Bản đi ngược xu hướng."
+  },
+  {
+    "term": "it is clear that",
+    "phonetic": "/ɪt ɪz klɪə ðæt/",
+    "meaning_vi": "rõ ràng là",
+    "example_en": "It is clear that demand is rising.",
+    "example_vi": "Rõ ràng là nhu cầu đang tăng."
+  },
+  {
+    "term": "as can be seen",
+    "phonetic": "/əz kæn biː siːn/",
+    "meaning_vi": "như có thể thấy",
+    "example_en": "As can be seen, the gap widened.",
+    "example_vi": "Như có thể thấy, khoảng cách nới rộng."
+  },
+  {
+    "term": "forecast",
+    "phonetic": "/ˈfɔːkɑːst/",
+    "meaning_vi": "dự báo (n, v)",
+    "example_en": "Sales are forecast to rise.",
+    "example_vi": "Doanh số được dự báo tăng."
+  },
+  {
+    "term": "projected",
+    "phonetic": "/prəˈdʒektɪd/",
+    "meaning_vi": "dự kiến (adj)",
+    "example_en": "The projected figure for 2030 is 8 million.",
+    "example_vi": "Con số dự kiến cho 2030 là 8 triệu."
+  },
+  {
+    "term": "estimate",
+    "phonetic": "/ˈestɪmeɪt/",
+    "meaning_vi": "ước tính (v, n)",
+    "example_en": "Costs are estimated at $2m.",
+    "example_vi": "Chi phí ước tính 2 triệu đô."
+  }
+]
