@@ -14,6 +14,9 @@ export type Json =
 
 export type DeckLevel = "beginner" | "intermediate" | "advanced";
 
+/** Lượt trả lời đến từ đâu (review_log.source). */
+export type ReviewSource = "hoc" | "game" | "chep-cau" | "shadowing";
+
 /** Nhóm bộ từ, khớp constraint decks_category_check trong schema-07. */
 export type DeckCategory =
   | "giao-tiep"
@@ -183,6 +186,7 @@ export type Database = {
           word_id: string;
           day: string;
           remembered: boolean;
+          source: ReviewSource;
           created_at: string;
         };
         Insert: {
@@ -191,6 +195,7 @@ export type Database = {
           word_id: string;
           day: string;
           remembered: boolean;
+          source?: ReviewSource;
           created_at?: string;
         };
         Update: {
@@ -199,6 +204,31 @@ export type Database = {
           word_id?: string;
           day?: string;
           remembered?: boolean;
+          source?: ReviewSource;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      task_completions: {
+        Row: {
+          user_id: string;
+          day: string;
+          task_key: string;
+          xp: number;
+          created_at: string;
+        };
+        Insert: {
+          user_id: string;
+          day: string;
+          task_key: string;
+          xp: number;
+          created_at?: string;
+        };
+        Update: {
+          user_id?: string;
+          day?: string;
+          task_key?: string;
+          xp?: number;
           created_at?: string;
         };
         Relationships: [];

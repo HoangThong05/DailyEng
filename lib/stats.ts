@@ -38,7 +38,7 @@ export async function getStudyStats(): Promise<StudyStats> {
   const today = todayInAppZone();
 
   // RLS đã giới hạn về đúng người dùng hiện tại nên không cần lọc user_id.
-  const [daysResult, seenResult, masteredResult] = await Promise.all([
+  const [daysResult, seenResult, masteredResult, taskResult] = await Promise.all([
     supabase.from("study_days").select("day, reviews, correct, words"),
     supabase
       .from("word_progress")
@@ -47,9 +47,12 @@ export async function getStudyStats(): Promise<StudyStats> {
       .from("word_progress")
       .select("word_id", { count: "exact", head: true })
       .eq("box", MAX_BOX),
+    // XP thưởng nhiệm vụ ngày (schema-15); chưa có bảng thì coi như 0.
+    supabase.from("task_completions").select("xp"),
   ]);
 
   const days = daysResult.data ?? [];
+  const taskXp = (taskResult.data ?? []).reduce((sum, row) => sum + row.xp, 0);
   const byDay = new Map(days.map((row) => [row.day, row]));
 
   const todayRow = byDay.get(today);
@@ -74,7 +77,7 @@ export async function getStudyStats(): Promise<StudyStats> {
       days.map((row) => row.day),
       today,
     ),
-    level: levelFromXp(xpForAnswers(correct, reviews - correct)),
+    level: levelFromXp(xpForAnswers(correct, reviews - correct) + taskXp),
     today: {
       reviews: todayRow?.reviews ?? 0,
       words: todayRow?.words ?? 0,

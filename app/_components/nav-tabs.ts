@@ -28,6 +28,7 @@ export const SIDE_EXTRAS = [
 
 /** Trang con thuộc tab nào (để tab bar điện thoại sáng đúng chỗ). */
 const TAB_ALIASES: Record<string, string> = {
+  "/on-tap": "/hoc",
   "/quiz": "/tro-choi",
   "/phat-am": "/ky-nang",
   "/tien-do": "/tai-khoan",

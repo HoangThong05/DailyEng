@@ -71,7 +71,7 @@ export function MatchSession({ deckId, pairs, initialTiles }: Props) {
     // Ghép đúng ngay lần đầu = nhớ; sai dù một lần = chưa nhớ. Lưu chạy nền.
     void Promise.all(
       pairs.map((pair) =>
-        recordReview(pair.wordId, (finalMistakes.get(pair.wordId) ?? 0) === 0),
+        recordReview(pair.wordId, (finalMistakes.get(pair.wordId) ?? 0) === 0, "game"),
       ),
     ).catch(() => {});
   }

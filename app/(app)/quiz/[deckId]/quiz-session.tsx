@@ -49,7 +49,7 @@ export function QuizSession({ deckId, questions }: Props) {
 
     // Trả lời quiz cũng là một lần nhớ lại, nên đẩy luôn vào hệ Leitner.
     // Không chờ mạng: giao diện phản hồi ngay.
-    void recordReview(question.wordId, isCorrect).catch(() => {});
+    void recordReview(question.wordId, isCorrect, "game").catch(() => {});
   }
 
   function next() {

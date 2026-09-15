@@ -76,7 +76,7 @@ export function PictureSession({ questions }: { questions: PictureQuestion[] }) 
       if (sound) playMiss();
     }
 
-    void recordReview(question.wordId, correct).catch(() => {});
+    void recordReview(question.wordId, correct, "game").catch(() => {});
   }
 
   if (phase === "intro") {

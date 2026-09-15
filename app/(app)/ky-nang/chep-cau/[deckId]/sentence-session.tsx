@@ -76,7 +76,7 @@ export function SentenceSession({ items }: { items: SentenceItem[] }) {
     if (sound) (passed ? playCorrect : playMiss)();
 
     // Chép được câu có từ khoá = nhớ từ đó. Lưu chạy nền.
-    void recordReview(item.wordId, passed).catch(() => {});
+    void recordReview(item.wordId, passed, "chep-cau").catch(() => {});
   }
 
   function next() {

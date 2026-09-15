@@ -178,7 +178,7 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
     const score = best[i];
     if (score < 0 || committedRef.current.has(i)) return; // chưa thử / đã ghi
     committedRef.current.add(i);
-    void recordReview(items[i].wordId, score >= SHADOW_PASS).catch(() => {});
+    void recordReview(items[i].wordId, score >= SHADOW_PASS, "shadowing").catch(() => {});
   }
 
   function goTo(nextIndex: number) {

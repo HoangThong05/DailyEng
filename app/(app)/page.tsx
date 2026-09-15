@@ -5,10 +5,12 @@ import { ChevronRightIcon, FlameIcon } from "@/app/_components/icons";
 import { InstallPrompt } from "@/app/_components/install-prompt";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
-import { listDecks } from "@/lib/decks";
+import { countDueReviews, listDecks } from "@/lib/decks";
 import { getLeaderboard } from "@/lib/leaderboard";
 import { getStudyStats } from "@/lib/stats";
+import { getDailyTasks } from "@/lib/tasks";
 import { createClient } from "@/lib/supabase/server";
+import { DailyTaskList } from "./daily-tasks";
 import { GameCover } from "./tro-choi/game-cover";
 import { GAMES } from "./tro-choi/games";
 
@@ -61,11 +63,13 @@ export default async function Home() {
 
   // RLS chỉ trả về đúng hàng của người đang đăng nhập nên khỏi lọc theo id.
   // maybeSingle() để không ném lỗi nếu trigger tạo profile chưa chạy xong.
-  const [{ data: profile }, stats, decks, board] = await Promise.all([
+  const [{ data: profile }, stats, decks, board, dueReviews, tasks] = await Promise.all([
     supabase.from("profiles").select("display_name, daily_goal").maybeSingle(),
     getStudyStats(),
     listDecks(),
     getLeaderboard("week", 3),
+    countDueReviews(),
+    getDailyTasks(),
   ]);
   const topThree = board.filter((row) => row.rank <= 3);
   const myRank = board.find((row) => row.isMe);
@@ -161,6 +165,38 @@ export default async function Home() {
             className="absolute -right-1 -bottom-1 rounded-2xl sm:hidden"
           />
         </section>
+
+        <DailyTaskList data={tasks} />
+
+        {/* Ôn tập: từ đã học tới hạn, gom từ mọi bộ — lõi của giãn cách */}
+        {dueReviews > 0 ? (
+          <section aria-labelledby="on-tap" className="space-y-3">
+            <h2 id="on-tap" className="text-muted px-1 text-sm font-medium">
+              Ôn tập hôm nay
+            </h2>
+            <Link
+              href="/on-tap"
+              className="group flex items-center gap-4 overflow-hidden rounded-2xl border border-amber-300/60 bg-gradient-to-r from-amber-50 to-orange-50 p-4 press dark:border-amber-500/30 dark:from-amber-500/10 dark:to-orange-500/10"
+            >
+              <span className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-amber-500 text-white shadow-md shadow-amber-500/30">
+                <span className="text-2xl font-extrabold leading-none tabular-nums">{dueReviews}</span>
+                <span className="mt-0.5 text-[10px] font-semibold uppercase">từ</span>
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold">
+                  {dueReviews} từ đến hạn ôn lại
+                </span>
+                <span className="text-muted mt-0.5 block text-sm">
+                  Gom từ mọi bộ theo lịch giãn cách. Ôn đúng ngày thì nhớ lâu.
+                </span>
+              </span>
+              <span className="flex min-h-10 shrink-0 items-center gap-1 rounded-xl bg-amber-500 px-4 text-sm font-bold text-white">
+                Ôn ngay
+                <ChevronRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          </section>
+        ) : null}
 
         {/* Tiếp tục học */}
         <section aria-labelledby="tiep-tuc" className="space-y-3">

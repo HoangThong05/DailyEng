@@ -66,7 +66,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
     if (sound) (correct ? playCorrect : playMiss)();
 
     // Không chờ mạng: giao diện phản hồi ngay, kết quả lưu chạy nền.
-    void recordReview(word.wordId, correct).catch(() => {});
+    void recordReview(word.wordId, correct, "game").catch(() => {});
   }
 
   /** Không biết thì xem đáp án: tính như trả lời sai, không có tiếng "sai". */
@@ -74,7 +74,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
     if (phase !== "typing") return;
     setResults((list) => [...list, { word, answer, correct: false, skipped: true }]);
     setPhase("checked");
-    void recordReview(word.wordId, false).catch(() => {});
+    void recordReview(word.wordId, false, "game").catch(() => {});
   }
 
   function next() {

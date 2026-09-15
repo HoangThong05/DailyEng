@@ -27,6 +27,8 @@
 **Động lực**
 - XP và cấp độ (Người mới → Huyền thoại) tính từ mọi hoạt động học
 - Bảng xếp hạng XP 7 ngày / toàn thời gian giữa người dùng (hàm SQL `leaderboard`, chỉ lộ tên hiển thị và điểm; có nút ẩn mình khỏi bảng)
+- Nhiệm vụ hằng ngày: 3 việc nhỏ (học 10 từ + 2 việc xoay vòng: trò chơi, nghe chép, shadowing, mock test…), xong được XP thưởng, xong cả ba thưởng thêm
+- Ôn tập hôm nay: gom từ đã học tới hạn từ mọi bộ vào một phiên (`/on-tap`)
 - Chuỗi ngày học, biểu đồ tuần, phân bố hộp ôn, độ chính xác theo bộ, từ hay sai nhất
 - Nhắc học qua thông báo đẩy (Web Push) vào giờ tự chọn (07:00 / 12:00 / 20:00), chỉ khi hôm đó chưa học
 
@@ -106,6 +108,7 @@ Trong SQL Editor chạy lần lượt:
 12. `supabase/schema-12-quan-tri.sql` — hàm số liệu cho khu quản trị (tổng quan, người dùng, nội dung)
 13. `supabase/schema-13-admin-khong-hoc.sql` — admin không lên bảng xếp hạng, không tính là người học; đăng nhập là vào thẳng khu quản trị
 14. `supabase/schema-14-ho-so.sql` — ảnh đại diện, tiểu sử, ảnh bìa (bucket `avatars`), xếp hạng kèm avatar
+15. `supabase/schema-15-nhiem-vu.sql` — nhiệm vụ hằng ngày: `review_log.source`, bảng `task_completions`, xếp hạng cộng XP thưởng
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

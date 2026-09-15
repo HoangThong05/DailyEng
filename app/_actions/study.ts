@@ -1,5 +1,6 @@
 "use server";
 
+import type { ReviewSource } from "@/lib/database.types";
 import { nextReviewState, todayInAppZone } from "@/lib/leitner";
 import { getStudyStats } from "@/lib/stats";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
@@ -16,6 +17,8 @@ export type ReviewResult = { ok: true } | { ok: false; error: string };
 export async function recordReview(
   wordId: string,
   remembered: boolean,
+  /** Nguồn lượt trả lời, để nhiệm vụ ngày đếm riêng từng hoạt động. */
+  source: ReviewSource = "hoc",
 ): Promise<ReviewResult> {
   const user = await getCurrentUser();
   if (!user) return { ok: false, error: "Phiên đăng nhập đã hết hạn." };
@@ -55,6 +58,7 @@ export async function recordReview(
       word_id: wordId,
       day: today,
       remembered,
+      source,
     }),
   ]);
 

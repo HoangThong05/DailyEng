@@ -349,7 +349,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
 
     setHits((list) => [...list, target.word]);
     setInput("");
-    void recordReview(target.word.wordId, true).catch(() => {});
+    void recordReview(target.word.wordId, true, "game").catch(() => {});
     maybeFinish(remaining);
   }
 
@@ -364,7 +364,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
     setMisses((list) => [...list, drop.word]);
     setShake(true);
     if (sound) playMiss();
-    void recordReview(drop.word.wordId, false).catch(() => {});
+    void recordReview(drop.word.wordId, false, "game").catch(() => {});
 
     const left = lives - 1;
     setLives(left);

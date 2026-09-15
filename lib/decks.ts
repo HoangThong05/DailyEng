@@ -195,3 +195,67 @@ export async function getOwnWord(deckId: string, wordId: string) {
   if (!word) return null;
   return { deck, word };
 }
+
+/**
+ * Ôn tập hôm nay: từ đã học ít nhất một lần và tới hạn, gom từ mọi bộ.
+ * Khác getStudySession: không lấy từ mới (chưa có tiến độ) — đó là việc của
+ * từng bộ; đây chỉ là lịch giãn cách Leitner.
+ */
+export async function getReviewSession() {
+  const supabase = await createClient();
+  const today = todayInAppZone();
+
+  const [{ count }, { data: rows }] = await Promise.all([
+    supabase
+      .from("word_progress")
+      .select("word_id", { count: "exact", head: true })
+      .lte("due_on", today),
+    supabase
+      .from("word_progress")
+      .select("word_id, box")
+      .lte("due_on", today)
+      // Hộp thấp (hay quên) và hạn cũ nhất lên trước.
+      .order("box")
+      .order("due_on")
+      .limit(SESSION_SIZE),
+  ]);
+
+  const boxByWordId = new Map((rows ?? []).map((row) => [row.word_id, row.box]));
+  const { data: words } = boxByWordId.size
+    ? await supabase.from("words").select("*").in("id", [...boxByWordId.keys()])
+    : { data: [] as Word[] };
+
+  const cards: StudyCard[] = (words ?? [])
+    .map((word) => ({ ...word, box: boxByWordId.get(word.id) ?? 1 }))
+    .sort((a, b) => a.box - b.box);
+
+  // Đáp án nhiễu: từ trong phiên cộng thêm vài từ cùng bộ cho đủ đa dạng.
+  const pool = {
+    terms: cards.map((word) => word.term),
+    meanings: cards.map((word) => word.meaning_vi),
+  };
+  const deckIds = [...new Set(cards.map((word) => word.deck_id))];
+  if (deckIds.length > 0) {
+    const { data: extra } = await supabase
+      .from("words")
+      .select("term, meaning_vi")
+      .in("deck_id", deckIds)
+      .limit(60);
+    for (const row of extra ?? []) {
+      pool.terms.push(row.term);
+      pool.meanings.push(row.meaning_vi);
+    }
+  }
+
+  return { cards, totalDue: count ?? 0, pool };
+}
+
+/** Chỉ đếm từ đến hạn ôn (đã có tiến độ), cho trang chủ. */
+export async function countDueReviews() {
+  const supabase = await createClient();
+  const { count } = await supabase
+    .from("word_progress")
+    .select("word_id", { count: "exact", head: true })
+    .lte("due_on", todayInAppZone());
+  return count ?? 0;
+}
