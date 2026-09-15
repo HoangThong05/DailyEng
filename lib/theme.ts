@@ -7,8 +7,8 @@ export const THEME_STORAGE_KEY = "dailyeng:theme";
  * Phải khớp với --bg và --dark-bg trong globals.css.
  */
 export const THEME_COLORS = {
-  light: "#f5f7fb",
-  dark: "#0b1120",
+  light: "#f2f8f7",
+  dark: "#08151a",
 } as const;
 
 /**

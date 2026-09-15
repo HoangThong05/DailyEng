@@ -46,7 +46,7 @@ function NavItem({ item, active, collapsed }: { item: Item; active: boolean; col
 /**
  * Sidebar bên trái cho màn hình từ md trở lên; điện thoại dùng BottomNav.
  * Trên: logo. Giữa: 4 tab học + mục phụ. Dưới: thẻ hồ sơ (bấm vào là tới
- * Cá nhân) và nút thu gọn / mở rộng. Thu gọn thì chỉ còn icon, có tooltip.
+ * Cá nhân). Nút thu gọn / mở rộng nằm cạnh logo; thu gọn thì chỉ còn icon, có tooltip.
  */
 export function SideNav({ profile }: { profile: SideProfile }) {
   const pathname = usePathname();
@@ -59,21 +59,33 @@ export function SideNav({ profile }: { profile: SideProfile }) {
       aria-label="Điều hướng chính"
       className="side-nav border-border bg-card/70 fixed inset-y-0 left-0 z-50 hidden flex-col overflow-hidden border-r backdrop-blur-xl md:flex"
     >
-      <Link
-        href="/gioi-thieu"
-        className="group flex items-center gap-3 px-[18px] pt-6 pb-4"
-        aria-label="Trang giới thiệu DailyEng"
-        title={collapsed ? "DailyEng" : undefined}
-      >
-        <Mascot
-          variant="tot-nghiep"
-          size={40}
-          className="shrink-0 rounded-xl shadow-md shadow-blue-500/30 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
-        />
-        <span className="side-label from-brand bg-gradient-to-r to-violet-500 bg-clip-text text-xl font-extrabold tracking-tight text-transparent">
-          DailyEng
-        </span>
-      </Link>
+      {/* Đầu sidebar: logo + nút thu gọn (icon tròn nhỏ, thu gọn thì xuống dưới logo) */}
+      <div className="side-head flex items-center justify-between gap-2 px-[18px] pt-5 pb-3">
+        <Link
+          href="/gioi-thieu"
+          className="group flex min-w-0 items-center gap-3"
+          aria-label="Trang giới thiệu DailyEng"
+          title={collapsed ? "DailyEng" : undefined}
+        >
+          <Mascot
+            variant="tot-nghiep"
+            size={40}
+            className="shrink-0 rounded-xl shadow-md shadow-brand/30 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
+          />
+          <span className="side-label from-brand bg-gradient-to-r to-emerald-500 bg-clip-text text-xl font-extrabold tracking-tight text-transparent">
+            DailyEng
+          </span>
+        </Link>
+        <button
+          type="button"
+          onClick={() => setSidebarCollapsed(!collapsed)}
+          aria-label={collapsed ? "Mở rộng thanh bên" : "Thu gọn thanh bên"}
+          title={collapsed ? "Mở rộng" : "Thu gọn"}
+          className="border-border bg-card text-muted hover:text-brand hover:border-brand/50 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border press"
+        >
+          <ChevronRightIcon className={`h-4 w-4 transition-transform ${collapsed ? "" : "rotate-180"}`} />
+        </button>
+      </div>
 
       <ul className="flex flex-col gap-1 px-3">
         {mainTabs.map((item) => (
@@ -99,7 +111,7 @@ export function SideNav({ profile }: { profile: SideProfile }) {
         href="/tai-khoan"
         aria-current={profileActive ? "page" : undefined}
         title={collapsed ? `${profile.name} · Cấp ${profile.level}` : undefined}
-        className={`border-border mx-3 mt-auto mb-2 flex items-center gap-3 rounded-2xl border p-3 transition-colors ${
+        className={`border-border mx-3 mt-auto mb-4 flex items-center gap-3 rounded-2xl border p-3 transition-colors ${
           profileActive ? "border-brand bg-brand-soft" : "bg-card hover:border-brand/50"
         } ${collapsed ? "justify-center px-0" : ""}`}
       >
@@ -123,16 +135,6 @@ export function SideNav({ profile }: { profile: SideProfile }) {
         </span>
       </Link>
 
-      <button
-        type="button"
-        onClick={() => setSidebarCollapsed(!collapsed)}
-        aria-label={collapsed ? "Mở rộng thanh bên" : "Thu gọn thanh bên"}
-        title={collapsed ? "Mở rộng" : undefined}
-        className="side-item text-muted hover:bg-brand-soft hover:text-fg mx-3 mb-4 flex min-h-10 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-colors press"
-      >
-        <ChevronRightIcon className={`h-4 w-4 transition-transform ${collapsed ? "" : "rotate-180"}`} />
-        <span className="side-label">Thu gọn</span>
-      </button>
     </nav>
   );
 }

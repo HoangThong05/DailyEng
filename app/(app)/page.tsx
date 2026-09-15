@@ -120,7 +120,7 @@ export default async function Home() {
         {/* Hero: mục tiêu ngày + chuỗi + cấp, vịt đổi tâm trạng theo tiến độ */}
         <section
           aria-labelledby="hom-nay"
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 to-indigo-700 p-5 text-white shadow-lg shadow-blue-500/20"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-teal-500 to-emerald-700 p-5 text-white shadow-lg shadow-brand/25"
         >
           <div className="flex items-center gap-4">
             <GoalRing value={learnedToday} max={dailyGoal} />

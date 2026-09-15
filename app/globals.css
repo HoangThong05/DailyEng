@@ -2,31 +2,31 @@
 
 :root {
   /* Bảng sáng — dùng khi không có gì ghi đè */
-  --bg: #f3f6fc;
+  --bg: #f2f8f7;
   /* Card hơi trong để quầng sáng nền ánh qua. Không dùng backdrop-filter:
      Chrome vẽ lệch viền khi thẻ bo góc đang chạy animation. */
   --card: rgba(255, 255, 255, 0.9);
   --fg: #0f172a;
   --muted: #64748b;
-  --border: #e4e9f2;
-  --brand: #2563eb;
-  --brand-soft: #e5edff;
-  /* Ba quầng sáng mờ trôi sau nội dung (xanh, tím, lam) */
-  --glow-1: rgba(37, 99, 235, 0.16);
-  --glow-2: rgba(139, 92, 246, 0.14);
-  --glow-3: rgba(34, 211, 238, 0.13);
+  --border: #dbe7e5;
+  --brand: #0f9488;
+  --brand-soft: #dcf4f0;
+  /* Ba quầng sáng mờ trôi sau nội dung (xanh ngọc, vàng vịt, lam) */
+  --glow-1: rgba(15, 148, 136, 0.16);
+  --glow-2: rgba(245, 158, 11, 0.13);
+  --glow-3: rgba(56, 189, 248, 0.12);
 
   /* Bảng tối — khai báo đúng một lần, hai khối bên dưới chỉ trỏ vào đây */
-  --dark-bg: #0a0f1f;
-  --dark-card: rgba(20, 29, 50, 0.88);
-  --dark-fg: #e8edf7;
-  --dark-muted: #93a3bd;
-  --dark-border: #23304a;
-  --dark-brand: #6d9dff;
-  --dark-brand-soft: #1a2643;
-  --dark-glow-1: rgba(96, 165, 250, 0.22);
-  --dark-glow-2: rgba(167, 139, 250, 0.2);
-  --dark-glow-3: rgba(34, 211, 238, 0.14);
+  --dark-bg: #08151a;
+  --dark-card: rgba(16, 33, 40, 0.88);
+  --dark-fg: #e9f3f2;
+  --dark-muted: #94adaa;
+  --dark-border: #1f3a3f;
+  --dark-brand: #2dd4bf;
+  --dark-brand-soft: #123137;
+  --dark-glow-1: rgba(45, 212, 191, 0.2);
+  --dark-glow-2: rgba(251, 191, 36, 0.14);
+  --dark-glow-3: rgba(56, 189, 248, 0.14);
 }
 
 /*
@@ -535,7 +535,7 @@
 .pill-tab[aria-current="page"],
 .pill-tab[aria-selected="true"],
 .pill-tab[aria-checked="true"] {
-  background-image: linear-gradient(135deg, #3b82f6, #6366f1 60%, #8b5cf6);
+  background-image: linear-gradient(135deg, #14b8a6, #0f9488 60%, #059669);
   color: #fff;
   box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--brand) 80%, transparent);
 }
@@ -563,7 +563,7 @@
 }
 
 .nav-active {
-  background-image: linear-gradient(135deg, #3b82f6, #6366f1 60%, #8b5cf6);
+  background-image: linear-gradient(135deg, #14b8a6, #0f9488 60%, #059669);
   color: #fff;
   animation:
     nav-pill-in 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
@@ -834,4 +834,8 @@ html[data-sidebar="collapsed"] .side-item:hover {
 }
 html[data-sidebar="collapsed"] .side-divider {
   display: block;
+}
+html[data-sidebar="collapsed"] .side-head {
+  flex-direction: column;
+  padding-bottom: 0.5rem;
 }

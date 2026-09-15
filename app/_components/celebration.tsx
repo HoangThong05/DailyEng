@@ -97,7 +97,7 @@ export function Celebration() {
           priority
           className="duck-bounce mx-auto"
         />
-        <p className="from-brand bg-gradient-to-r to-violet-500 bg-clip-text text-sm font-bold tracking-wide text-transparent uppercase">
+        <p className="from-brand bg-gradient-to-r to-emerald-500 bg-clip-text text-sm font-bold tracking-wide text-transparent uppercase">
           {reason.kind === "goal" ? "Mục tiêu hôm nay" : "Lên cấp"}
         </p>
         <h2 id="an-mung" className="mt-1 text-2xl font-extrabold">

@@ -21,7 +21,7 @@ export function PageHeader({ title, subtitle, trailing, mascot }: PageHeaderProp
       {/* Dải sáng gradient: xanh → tím tan dần sang phải, không ảnh hưởng bố cục */}
       <div
         aria-hidden
-        className="from-brand/20 pointer-events-none absolute inset-0 bg-gradient-to-r via-violet-500/10 to-transparent"
+        className="from-brand/20 pointer-events-none absolute inset-0 bg-gradient-to-r via-amber-400/10 to-transparent"
       />
       <div className="relative flex items-center justify-between gap-3 px-5 pt-4 pb-3">
         <div className="min-w-0">

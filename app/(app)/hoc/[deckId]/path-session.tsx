@@ -539,7 +539,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
         {combo >= 2 ? (
           <span
             key={combo}
-            className="combo-pop from-brand rounded-full bg-gradient-to-r to-violet-500 px-3 py-1 text-xs font-bold text-white shadow-md"
+            className="combo-pop from-brand rounded-full bg-gradient-to-r to-emerald-500 px-3 py-1 text-xs font-bold text-white shadow-md"
           >
             Combo ×{combo}
           </span>

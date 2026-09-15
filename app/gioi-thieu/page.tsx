@@ -101,7 +101,7 @@ export default async function GioiThieuPage() {
             </p>
             <h1 className="mt-4 text-4xl leading-[1.1] font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
               Học tiếng Anh mỗi ngày:{" "}
-              <span className="from-brand bg-gradient-to-r via-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
+              <span className="from-brand bg-gradient-to-r via-emerald-500 to-amber-400 bg-clip-text text-transparent">
                 từ vựng, nghe, nói
               </span>{" "}
               và luyện thi
@@ -115,7 +115,7 @@ export default async function GioiThieuPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={ctaHref}
-                className="bg-brand flex min-h-14 items-center rounded-2xl px-7 text-lg font-bold text-white shadow-lg shadow-blue-500/30 press"
+                className="bg-brand flex min-h-14 items-center rounded-2xl px-7 text-lg font-bold text-white shadow-lg shadow-brand/30 press"
               >
                 {ctaLabel}
               </Link>
@@ -133,7 +133,7 @@ export default async function GioiThieuPage() {
 
           {/* Vịt hero (nền trong suốt) lơ lửng trên quầng sáng; bong bóng bay ngang lúc mở trang */}
           <div className="relative mx-auto w-full max-w-md">
-            <div className="from-brand/30 absolute inset-[8%] rounded-full bg-gradient-to-br via-violet-500/20 to-fuchsia-500/10 blur-3xl" />
+            <div className="from-brand/30 absolute inset-[8%] rounded-full bg-gradient-to-br via-amber-400/20 to-emerald-500/10 blur-3xl" />
             <div className="header-duck relative">
               <Image
                 src={vitHero}
@@ -150,7 +150,7 @@ export default async function GioiThieuPage() {
         <section className="border-border bg-card grid grid-cols-2 gap-4 rounded-3xl border p-6 md:grid-cols-4">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="from-brand bg-gradient-to-r to-violet-500 bg-clip-text text-3xl font-extrabold text-transparent tabular-nums">
+              <p className="from-brand bg-gradient-to-r to-emerald-500 bg-clip-text text-3xl font-extrabold text-transparent tabular-nums">
                 {stat.value}
               </p>
               <p className="text-muted mt-1 text-sm">{stat.label}</p>
@@ -252,7 +252,7 @@ export default async function GioiThieuPage() {
           <div className="stagger mt-10 grid gap-5 md:grid-cols-3">
             {STEPS.map((step) => (
               <div key={step.n} className="border-border bg-card rounded-3xl border p-6">
-                <span className="from-brand flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br to-violet-500 text-lg font-extrabold text-white">
+                <span className="from-brand flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br to-emerald-500 text-lg font-extrabold text-white">
                   {step.n}
                 </span>
                 <h3 className="mt-4 text-lg font-bold">{step.title}</h3>
@@ -263,7 +263,7 @@ export default async function GioiThieuPage() {
         </section>
 
         {/* CTA cuối */}
-        <section className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-500 to-indigo-700 p-8 text-white shadow-lg shadow-blue-500/25 md:p-12">
+        <section className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-teal-500 to-emerald-700 p-8 text-white shadow-lg shadow-brand/25 md:p-12">
           <div className="grid items-center gap-6 md:grid-cols-[1fr_auto]">
             <div>
               <h2 className="text-3xl font-extrabold tracking-tight">Hôm nay học 10 từ nhé?</h2>

@@ -47,7 +47,7 @@ export const GAMES: GameEntry[] = [
     badge: "Nghe · nói",
     mascot: "noi",
     gradient: "from-violet-500 via-purple-600 to-indigo-800",
-    button: "bg-violet-600 hover:bg-violet-500",
+    button: "bg-amber-500 hover:bg-amber-400",
     icon: "mic",
   },
   {

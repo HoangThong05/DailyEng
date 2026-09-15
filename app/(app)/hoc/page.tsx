@@ -148,16 +148,16 @@ export default async function HocPage() {
           ) : (
             <Link
               href="/kiem-tra-dau-vao"
-              className="group flex items-center gap-3 rounded-2xl border border-violet-300/60 bg-gradient-to-r from-violet-50 to-blue-50 p-3 pr-4 press dark:border-violet-500/30 dark:from-violet-500/10 dark:to-blue-500/10"
+              className="group flex items-center gap-3 rounded-2xl border border-teal-300/60 bg-gradient-to-r from-teal-50 to-emerald-50 p-3 pr-4 press dark:border-teal-500/30 dark:from-teal-500/10 dark:to-emerald-500/10"
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet-500 text-xl text-white shadow-md shadow-violet-500/30">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-600 text-xl text-white shadow-md shadow-teal-500/30">
                 📋
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block font-semibold">Chưa biết bắt đầu từ bộ nào?</span>
                 <span className="text-muted block text-sm">Kiểm tra đầu vào 20 câu, 3 phút — app gợi ý bộ vừa sức</span>
               </span>
-              <span className="flex min-h-10 shrink-0 items-center gap-1 rounded-xl bg-violet-500 px-4 text-sm font-bold text-white">
+              <span className="flex min-h-10 shrink-0 items-center gap-1 rounded-xl bg-teal-600 px-4 text-sm font-bold text-white">
                 Làm ngay
                 <ChevronRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </span>

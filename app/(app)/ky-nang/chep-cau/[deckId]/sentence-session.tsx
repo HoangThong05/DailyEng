@@ -204,7 +204,7 @@ export function SentenceSession({ items }: { items: SentenceItem[] }) {
             type="button"
             onClick={() => replay()}
             aria-label="Nghe lại"
-            className="bg-brand flex h-20 w-20 items-center justify-center rounded-full text-white shadow-lg shadow-blue-500/30 press"
+            className="bg-brand flex h-20 w-20 items-center justify-center rounded-full text-white shadow-lg shadow-brand/30 press"
           >
             <SpeakerIcon className="h-9 w-9" />
           </button>

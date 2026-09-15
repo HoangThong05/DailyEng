@@ -205,7 +205,7 @@ export function PictureSession({ questions }: { questions: PictureQuestion[] }) 
         {combo >= 2 ? (
           <span
             key={combo}
-            className="combo-pop from-brand rounded-full bg-gradient-to-r to-violet-500 px-2.5 py-0.5 text-xs font-bold text-white"
+            className="combo-pop from-brand rounded-full bg-gradient-to-r to-emerald-500 px-2.5 py-0.5 text-xs font-bold text-white"
           >
             ×{combo}
           </span>
@@ -217,7 +217,7 @@ export function PictureSession({ questions }: { questions: PictureQuestion[] }) 
           type="button"
           onClick={() => speak(question.term)}
           aria-label="Nghe lại"
-          className="bg-brand flex h-24 w-24 items-center justify-center rounded-full text-white shadow-lg shadow-blue-500/30 press"
+          className="bg-brand flex h-24 w-24 items-center justify-center rounded-full text-white shadow-lg shadow-brand/30 press"
         >
           <SpeakerIcon className="h-11 w-11" />
         </button>

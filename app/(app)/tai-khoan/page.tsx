@@ -244,7 +244,7 @@ export default async function TaiKhoanPage() {
                     <span className="text-muted block text-xs">Ảnh đại diện, ảnh bìa, tiểu sử, tên, mục tiêu</span>
                   </span>
                 </span>
-                <span className="bg-brand flex min-h-10 shrink-0 items-center gap-1 rounded-full px-4 text-sm font-bold text-white shadow-md shadow-blue-500/30 group-open:hidden">
+                <span className="bg-brand flex min-h-10 shrink-0 items-center gap-1 rounded-full px-4 text-sm font-bold text-white shadow-md shadow-brand/30 group-open:hidden">
                   Mở <span aria-hidden>▾</span>
                 </span>
                 <span className="border-border text-muted hidden min-h-10 shrink-0 items-center gap-1 rounded-full border px-4 text-sm font-semibold group-open:flex">

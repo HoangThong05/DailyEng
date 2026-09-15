@@ -83,7 +83,7 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-3">
             <Mascot variant="tot-nghiep" size={44} className="rounded-xl" />
-            <span className="from-brand bg-gradient-to-r to-violet-500 bg-clip-text text-xl font-extrabold text-transparent">
+            <span className="from-brand bg-gradient-to-r to-emerald-500 bg-clip-text text-xl font-extrabold text-transparent">
               {SITE.name}
             </span>
           </div>

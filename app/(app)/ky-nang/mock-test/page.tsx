@@ -50,7 +50,7 @@ const TESTS: {
     description:
       "Nghe một câu hỏi và ba câu đáp A, B, C — không có chữ trên màn hình. Chọn câu đáp lại hợp nhất; nộp bài mới thấy lời thoại và giải thích.",
     mascot: "nghe",
-    button: "bg-violet-600 hover:bg-violet-500",
+    button: "bg-amber-500 hover:bg-amber-400",
   },
   {
     kind: "toeic-part5",
@@ -62,7 +62,7 @@ const TESTS: {
     description:
       "Nửa đề là ngữ pháp và từ vựng chọn lọc, nửa còn lại sinh từ các bộ TOEIC của app. Nộp bài là có điểm và giải thích từng câu.",
     mascot: "tot-nghiep",
-    button: "bg-brand hover:bg-blue-500",
+    button: "bg-brand hover:bg-teal-600",
   },
 ];
 

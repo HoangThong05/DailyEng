@@ -2,7 +2,7 @@ import type { Badge } from "@/lib/badges";
 
 const TIER_CLASS: Record<Badge["tier"], string> = {
   1: "bg-sky-500/15 ring-sky-400/50",
-  2: "bg-violet-500/15 ring-violet-400/60",
+  2: "bg-emerald-500/15 ring-emerald-400/60",
   3: "bg-amber-400/20 ring-amber-400/70",
 };
 

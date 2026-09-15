@@ -104,15 +104,29 @@ export function UserBar({ data: dataProp }: { data?: UserBarData }) {
 
   return (
     <div ref={rootRef} className="relative flex shrink-0 items-center gap-2">
+      {/* Avatar đứng đầu cụm; chuỗi ngày kèm chữ trên màn rộng; chuông cuối */}
+      <Link href="/tai-khoan" aria-label="Trang cá nhân" className="relative shrink-0 press">
+        <Avatar url={data.avatarUrl} name={data.name} size={40} className="border-border border shadow-sm" />
+        <span className="bg-brand absolute -right-1 -bottom-1 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
+          Lv.{data.level}
+        </span>
+      </Link>
+
       <button
         type="button"
         onClick={() => toggle("streak")}
         aria-expanded={open === "streak"}
         aria-label={`Chuỗi ${data.streak} ngày, mở điểm danh`}
-        className={`${chip} gap-1 px-3 ${data.checkin.checkedToday ? "" : "ring-2 ring-amber-400/70"}`}
+        className={`${chip} gap-1.5 px-3 ${
+          data.checkin.checkedToday ? "" : "ring-2 ring-amber-400/70"
+        }`}
       >
         <FlameIcon className={`h-5 w-5 ${data.streak > 0 ? "text-orange-500" : "text-muted"}`} />
         <span className="text-sm font-bold tabular-nums">{data.streak}</span>
+        <span className="text-muted hidden text-xs font-semibold sm:inline">ngày</span>
+        {data.checkin.checkedToday ? (
+          <span aria-hidden className="hidden text-xs text-emerald-500 sm:inline">✓</span>
+        ) : null}
       </button>
 
       <button
@@ -129,13 +143,6 @@ export function UserBar({ data: dataProp }: { data?: UserBarData }) {
           </span>
         ) : null}
       </button>
-
-      <Link href="/tai-khoan" aria-label="Trang cá nhân" className="relative shrink-0 press">
-        <Avatar url={data.avatarUrl} name={data.name} size={40} className="border-border border shadow-sm" />
-        <span className="bg-brand absolute -right-1 -bottom-1 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
-          Lv.{data.level}
-        </span>
-      </Link>
 
       {open === "streak" ? (
         <CheckinPanel initial={data.checkin} streak={data.streak} onClose={() => setOpen(null)} />
@@ -239,7 +246,7 @@ function CheckinPanel({
         className={`mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-bold press ${
           state.checkedToday
             ? "bg-emerald-500/15 text-emerald-600"
-            : "bg-brand text-white shadow-md shadow-blue-500/30"
+            : "bg-brand text-white shadow-md shadow-brand/30"
         }`}
       >
         {state.checkedToday
