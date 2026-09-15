@@ -30,8 +30,8 @@ function StatTile({
   label: string;
 }) {
   return (
-    <div className="border-border bg-card rounded-2xl border p-3 text-center">
-      <p className="text-xl font-bold tabular-nums">
+    <div className="border-border bg-card rounded-2xl border p-4 text-center">
+      <p className="text-2xl font-bold tabular-nums">
         {value === null ? "—" : <CountUp value={value} suffix={suffix} />}
       </p>
       <p className="text-muted mt-0.5 text-xs">{label}</p>
@@ -62,11 +62,13 @@ export default async function TaiKhoanPage() {
     <>
       <PageHeader title="Cá nhân" mascot="tot-nghiep" />
 
-      <div className="stagger mx-auto max-w-3xl space-y-5 px-5 pt-2 pb-4">
+      <div className="stagger grid gap-6 px-5 pt-2 pb-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start">
+        {/* Cột trái: hồ sơ, số liệu, lối tắt */}
+        <div className="space-y-5">
         {/* Thẻ hồ sơ: ảnh bìa (màu hoặc ảnh tải lên), avatar chồng lên mép, tên, tiểu sử, cấp, chuỗi */}
         <section aria-labelledby="ho-so" className="border-border bg-card overflow-hidden rounded-3xl border">
           <div
-            className={`relative h-28 bg-gradient-to-br sm:h-36 ${COVER_PRESETS[coverInfo.preset].className}`}
+            className={`relative h-32 bg-gradient-to-br sm:h-44 ${COVER_PRESETS[coverInfo.preset].className}`}
           >
             {coverInfo.url ? (
               // eslint-disable-next-line @next/next/no-img-element -- ảnh người dùng tải lên, kích thước đã cố định
@@ -75,15 +77,15 @@ export default async function TaiKhoanPage() {
             <Mascot variant="chao-trong" size={72} className="absolute right-4 bottom-2 h-auto w-16 opacity-90 sm:w-20" />
           </div>
           <div className="px-5 pb-5">
-            <div className="relative z-10 -mt-10 flex items-end gap-4">
+            <div className="relative z-10 -mt-12 flex items-end gap-4">
               <Avatar
                 url={profile?.avatar_url}
                 name={displayName}
-                size={88}
+                size={104}
                 className="border-card shrink-0 border-4 shadow-lg"
               />
               <div className="min-w-0 flex-1 pb-1">
-                <h2 id="ho-so" className="truncate text-xl font-bold">
+                <h2 id="ho-so" className="truncate text-2xl font-bold">
                   {displayName}
                 </h2>
                 <p className="text-muted truncate text-xs">{user?.email}</p>
@@ -157,14 +159,13 @@ export default async function TaiKhoanPage() {
           </Link>
         </div>
 
-        {/* Cài đặt: từng mục gập lại, mở cái nào cần */}
-        <div className="space-y-3">
-            <details className="border-border bg-card group rounded-2xl border">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
-                Chỉnh sửa hồ sơ
-                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
-              </summary>
-              <div className="border-border border-t p-4">
+        </div>
+
+        {/* Cột phải: cài đặt */}
+        <div className="space-y-5">
+            <section className="space-y-3">
+              <h2 className="text-muted px-1 text-sm font-medium">Chỉnh sửa hồ sơ</h2>
+              <div className="border-border bg-card rounded-2xl border p-4">
               <div className="space-y-5">
                 <div className="flex flex-wrap items-center gap-4">
                   <Avatar url={profile?.avatar_url} name={displayName} size={56} />
@@ -186,14 +187,11 @@ export default async function TaiKhoanPage() {
                 />
               </div>
               </div>
-            </details>
+            </section>
 
-            <details className="border-border bg-card group rounded-2xl border">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
-                Nhắc học
-                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
-              </summary>
-              <div className="border-border border-t p-4">
+            <section className="space-y-3">
+              <h2 className="text-muted px-1 text-sm font-medium">Nhắc học</h2>
+              <div>
               <ReminderToggle
                 vapidPublicKey={
                   process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? null
@@ -201,48 +199,39 @@ export default async function TaiKhoanPage() {
                 reminderHour={profile?.reminder_hour ?? DEFAULT_REMINDER_HOUR}
               />
               </div>
-            </details>
+            </section>
 
-            <details className="border-border bg-card group rounded-2xl border">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
-                Bảng xếp hạng
-                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
-              </summary>
-              <div className="border-border border-t p-4">
+            <section className="space-y-3">
+              <h2 className="text-muted px-1 text-sm font-medium">Bảng xếp hạng</h2>
+              <div>
               <RankToggle hidden={profile?.hide_rank ?? false} />
               </div>
-            </details>
+            </section>
 
-            <details className="border-border bg-card group rounded-2xl border">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
-                Giao diện
-                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
-              </summary>
-              <div className="border-border border-t p-4">
+            <section className="space-y-3">
+              <h2 className="text-muted px-1 text-sm font-medium">Giao diện</h2>
+              <div>
               <ThemeToggle />
               </div>
-            </details>
+            </section>
 
-            <details className="border-border bg-card group rounded-2xl border">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
-                Giọng đọc
-                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
-              </summary>
-              <div className="border-border border-t p-4">
+            <section className="space-y-3">
+              <h2 className="text-muted px-1 text-sm font-medium">Giọng đọc</h2>
+              <div>
               <VoicePicker />
               </div>
-            </details>
+            </section>
 
+
+          <form action={signOut}>
+            <button
+              type="submit"
+              className="border-border min-h-11 w-full rounded-xl border text-sm font-semibold text-red-500 press"
+            >
+              Đăng xuất
+            </button>
+          </form>
         </div>
-
-        <form action={signOut}>
-          <button
-            type="submit"
-            className="border-border min-h-11 w-full rounded-xl border text-sm font-semibold text-red-500 press"
-          >
-            Đăng xuất
-          </button>
-        </form>
       </div>
     </>
   );
