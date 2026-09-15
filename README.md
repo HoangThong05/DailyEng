@@ -101,6 +101,7 @@ Trong SQL Editor chạy lần lượt:
 8. `supabase/schema-08-xep-hang-mock.sql` — hàm bảng xếp hạng XP, bảng kết quả mock test
 9. `supabase/schema-09-an-xep-hang-an-mung.sql` — ẩn khỏi bảng xếp hạng, lưu mốc đã ăn mừng
 10. `supabase/schema-10-gop-y.sql` — bảng góp ý
+11. `supabase/schema-11-admin.sql` — cờ admin, trang quản trị xem góp ý (sửa email admin trong file)
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

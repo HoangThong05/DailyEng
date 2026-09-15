@@ -35,6 +35,7 @@ export type Database = {
           hide_rank: boolean;
           celebrated_goal_on: string | null;
           celebrated_level: number;
+          is_admin: boolean;
           created_at: string;
           updated_at: string;
         };
@@ -46,6 +47,7 @@ export type Database = {
           hide_rank?: boolean;
           celebrated_goal_on?: string | null;
           celebrated_level?: number;
+          is_admin?: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -57,6 +59,7 @@ export type Database = {
           hide_rank?: boolean;
           celebrated_goal_on?: string | null;
           celebrated_level?: number;
+          is_admin?: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -222,6 +225,7 @@ export type Database = {
           email: string | null;
           message: string;
           page: string | null;
+          handled: boolean;
           created_at: string;
         };
         Insert: {
@@ -230,6 +234,7 @@ export type Database = {
           email?: string | null;
           message: string;
           page?: string | null;
+          handled?: boolean;
           created_at?: string;
         };
         Update: {
@@ -238,6 +243,7 @@ export type Database = {
           email?: string | null;
           message?: string;
           page?: string | null;
+          handled?: boolean;
           created_at?: string;
         };
         Relationships: [];
@@ -304,6 +310,8 @@ export type Database = {
           due_count: number;
         }[];
       };
+      /** Người gọi có phải admin không (đặt bằng SQL, schema-11). */
+      is_admin: { Args: Record<string, never>; Returns: boolean };
       /** Top XP (tuần hoặc toàn thời gian) + hàng của chính mình nếu ngoài top. */
       leaderboard: {
         Args: { period: "week" | "all"; top_n: number };
