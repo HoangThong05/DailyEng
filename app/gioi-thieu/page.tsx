@@ -5,6 +5,7 @@ import { GAMES } from "@/app/(app)/tro-choi/games";
 import { GameCover } from "@/app/(app)/tro-choi/game-cover";
 import { FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
+import { SiteFooter } from "@/app/_components/site-footer";
 import { ThemeButton } from "@/app/_components/theme-button";
 import { DECK_CATEGORIES } from "@/lib/deck-categories";
 import vitHero from "@/public/mascot/vit-hero.png";
@@ -27,21 +28,25 @@ const STATS = [
 const FEATURES = [
   {
     mascot: "hoc",
+    href: "/hoc",
     title: "Học theo chặng",
     text: "Mỗi 5 từ một chặng: gặp từ → trắc nghiệm → điền vào câu. App tự chấm, từ sai quay lại ngay, ôn tập giãn cách đúng lúc sắp quên.",
   },
   {
     mascot: "choi",
+    href: "/tro-choi",
     title: "Trò chơi ôn từ",
     text: "Mưa từ vựng, ghép cặp, nghe & gõ, nghe chọn hình… Chơi 5 phút mỗi ngày, từ nào nhớ hay quên đều ghi vào cùng hệ ôn tập.",
   },
   {
     mascot: "noi",
+    href: "/ky-nang",
     title: "Luyện nghe – nói",
     text: "Nghe chép câu, shadowing nói theo câu mẫu, luyện phát âm — máy chấm từng từ, ghi âm để bạn so với giọng mẫu.",
   },
   {
     mascot: "tot-nghiep",
+    href: "/ky-nang/mock-test",
     title: "Thi thử & tiến độ",
     text: "Mock test TOEIC Part 5 có đồng hồ, chấm ngay kèm giải thích. Chuỗi ngày, XP, cấp độ và bảng xếp hạng giữ bạn đi đều.",
   },
@@ -172,16 +177,23 @@ export default async function GioiThieuPage() {
           </p>
           <div className="stagger mt-10 grid gap-5 sm:grid-cols-2">
             {FEATURES.map((feature) => (
-              <div
+              <Link
                 key={feature.title}
-                className="border-border bg-card flex gap-4 rounded-3xl border p-5 press"
+                href={feature.href}
+                className="border-border bg-card group flex gap-4 rounded-3xl border p-5 press"
               >
                 <Mascot variant={feature.mascot} size={80} className="shrink-0 rounded-2xl" />
                 <div>
                   <h3 className="text-lg font-bold">{feature.title}</h3>
                   <p className="text-muted mt-1 text-sm leading-relaxed">{feature.text}</p>
+                  <span className="text-brand mt-2 inline-block text-sm font-semibold">
+                    Mở{" "}
+                    <span className="inline-block transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -196,16 +208,17 @@ export default async function GioiThieuPage() {
           </div>
           <div className="no-scrollbar stagger -mx-5 mt-8 flex snap-x gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:px-0 lg:grid-cols-5">
             {GAMES.map((game) => (
-              <div
+              <Link
                 key={game.slug}
-                className="border-border bg-card w-[62%] shrink-0 snap-start overflow-hidden rounded-2xl border sm:w-[40%] md:w-auto"
+                href={game.href}
+                className="border-border bg-card group w-[62%] shrink-0 snap-start overflow-hidden rounded-2xl border press sm:w-[40%] md:w-auto"
               >
                 <GameCover game={game} sizes="(min-width: 1024px) 220px, 60vw" className="aspect-square" />
                 <div className="p-3">
                   <p className="font-bold">{game.title}</p>
                   <p className="text-muted mt-0.5 line-clamp-2 text-xs">{game.description}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -218,8 +231,9 @@ export default async function GioiThieuPage() {
           </p>
           <div className="stagger mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {DECK_CATEGORIES.map((category) => (
-              <div
+              <Link
                 key={category.key}
+                href="/hoc"
                 className="border-border bg-card group overflow-hidden rounded-2xl border press"
               >
                 <div className="relative aspect-[4/3]">
@@ -236,7 +250,7 @@ export default async function GioiThieuPage() {
                   </p>
                 </div>
                 <p className="text-muted p-3 text-xs">{category.description}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -276,16 +290,8 @@ export default async function GioiThieuPage() {
           </div>
         </section>
 
-        <footer className="text-muted flex flex-wrap items-center justify-between gap-3 py-10 text-sm">
-          <span>© {new Date().getFullYear()} DailyEng · Học tiếng Anh mỗi ngày</span>
-          <span className="flex gap-4">
-            <Link href="/dang-nhap" className="hover:text-fg">Đăng nhập</Link>
-            <a href="https://github.com/HoangThong05/DailyEng" target="_blank" rel="noreferrer" className="hover:text-fg">
-              Mã nguồn
-            </a>
-          </span>
-        </footer>
       </main>
+      <SiteFooter />
     </div>
   );
 }
