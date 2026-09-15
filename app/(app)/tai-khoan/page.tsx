@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { signOut } from "@/app/_actions/auth";
 import { CountUp } from "@/app/_components/count-up";
-import { FlameIcon } from "@/app/_components/icons";
 import { Avatar } from "@/app/_components/avatar";
+import { ChevronRightIcon, FlameIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
 import { listDecks } from "@/lib/decks";
-import { BOX_INTERVAL_DAYS } from "@/lib/leitner";
 import { COVER_PRESETS, parseCover } from "@/lib/profile";
 import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
-import { getDetailedStats, getStudyStats } from "@/lib/stats";
+import { getStudyStats } from "@/lib/stats";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { ImagePicker } from "./image-picker";
 import { ProfileForm } from "./profile-form";
@@ -18,7 +17,6 @@ import { RankToggle } from "./rank-toggle";
 import { ReminderToggle } from "./reminder-toggle";
 import { ThemeToggle } from "./theme-toggle";
 import { VoicePicker } from "./voice-picker";
-import { WeekChart } from "./week-chart";
 
 export const metadata: Metadata = { title: "Cá nhân" };
 
@@ -27,14 +25,13 @@ function StatTile({
   suffix,
   label,
 }: {
-  /** null = chưa có dữ liệu, hiện gạch ngang. */
   value: number | null;
   suffix?: string;
   label: string;
 }) {
   return (
-    <div className="border-border bg-card rounded-2xl border p-4 text-center">
-      <p className="text-2xl font-bold tabular-nums">
+    <div className="border-border bg-card rounded-2xl border p-3 text-center">
+      <p className="text-xl font-bold tabular-nums">
         {value === null ? "—" : <CountUp value={value} suffix={suffix} />}
       </p>
       <p className="text-muted mt-0.5 text-xs">{label}</p>
@@ -42,49 +39,34 @@ function StatTile({
   );
 }
 
-function SectionTitle({ id, children }: { id: string; children: string }) {
-  return (
-    <h2 id={id} className="text-muted px-1 text-sm font-medium">
-      {children}
-    </h2>
-  );
-}
-
 export default async function TaiKhoanPage() {
   const user = await getCurrentUser();
   const supabase = await createClient();
 
-  const [
-    { data: profile },
-    { streak, today, week, totals, level },
-    detail,
-    decks,
-  ] = await Promise.all([
+  const [{ data: profile }, { streak, totals, level }, decks] = await Promise.all([
     supabase
       .from("profiles")
       .select("display_name, daily_goal, reminder_hour, hide_rank, bio, avatar_url, cover")
       .eq("id", user?.id ?? "")
       .maybeSingle(),
     getStudyStats(),
-    getDetailedStats(),
     listDecks(),
   ]);
   const ownDecks = decks.filter((deck) => deck.isOwn);
 
   const displayName =
     profile?.display_name ?? user?.email?.split("@")[0] ?? "Bạn";
-  const boxTotal = detail.boxes.reduce((sum, count) => sum + count, 0);
   const coverInfo = parseCover(profile?.cover);
 
   return (
     <>
       <PageHeader title="Cá nhân" mascot="tot-nghiep" />
 
-      <div className="stagger space-y-6 px-5 pt-2 pb-4">
+      <div className="stagger mx-auto max-w-3xl space-y-5 px-5 pt-2 pb-4">
         {/* Thẻ hồ sơ: ảnh bìa (màu hoặc ảnh tải lên), avatar chồng lên mép, tên, tiểu sử, cấp, chuỗi */}
         <section aria-labelledby="ho-so" className="border-border bg-card overflow-hidden rounded-3xl border">
           <div
-            className={`relative h-32 bg-gradient-to-br sm:h-40 ${COVER_PRESETS[coverInfo.preset].className}`}
+            className={`relative h-28 bg-gradient-to-br sm:h-36 ${COVER_PRESETS[coverInfo.preset].className}`}
           >
             {coverInfo.url ? (
               // eslint-disable-next-line @next/next/no-img-element -- ảnh người dùng tải lên, kích thước đã cố định
@@ -93,7 +75,7 @@ export default async function TaiKhoanPage() {
             <Mascot variant="chao-trong" size={72} className="absolute right-4 bottom-2 h-auto w-16 opacity-90 sm:w-20" />
           </div>
           <div className="px-5 pb-5">
-            <div className="-mt-10 flex items-end gap-4">
+            <div className="relative z-10 -mt-10 flex items-end gap-4">
               <Avatar
                 url={profile?.avatar_url}
                 name={displayName}
@@ -143,183 +125,47 @@ export default async function TaiKhoanPage() {
           </div>
         </section>
 
-        {/* Lối tắt tới bộ tự tạo và bảng xếp hạng (điện thoại không có sidebar) */}
-        <div className="grid grid-cols-2 gap-3 md:hidden">
+        {/* Bốn con số chính; chi tiết ở trang Thống kê */}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <StatTile value={totals.wordsSeen} label="từ đã học" />
+          <StatTile value={totals.wordsMastered} label="từ đã thuộc" />
+          <StatTile value={totals.accuracy} suffix="%" label="tỉ lệ nhớ" />
+          <StatTile value={streak.longest} label="chuỗi dài nhất" />
+        </div>
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <Link
+            href="/tien-do"
+            className="border-border bg-card flex min-h-12 items-center justify-between rounded-xl border px-4 text-sm font-semibold press"
+          >
+            Thống kê chi tiết
+            <ChevronRightIcon className="text-muted h-4 w-4" />
+          </Link>
           <Link
             href="/bo-cua-toi"
-            className="border-border bg-card flex min-h-12 items-center justify-center rounded-xl border text-sm font-semibold press"
+            className="border-border bg-card flex min-h-12 items-center justify-between rounded-xl border px-4 text-sm font-semibold press md:hidden"
           >
             Bộ của tôi ({ownDecks.length})
+            <ChevronRightIcon className="text-muted h-4 w-4" />
           </Link>
           <Link
             href="/xep-hang"
-            className="border-border bg-card flex min-h-12 items-center justify-center rounded-xl border text-sm font-semibold press"
+            className="border-border bg-card flex min-h-12 items-center justify-between rounded-xl border px-4 text-sm font-semibold press md:hidden"
           >
             Bảng xếp hạng
+            <ChevronRightIcon className="text-muted h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* Cột trái: tiến độ học */}
-          <div className="space-y-6">
-            <section aria-labelledby="hom-nay" className="space-y-3">
-              <SectionTitle id="hom-nay">Hôm nay</SectionTitle>
-              <div className="grid grid-cols-3 gap-3">
-                <StatTile value={today.words} label="từ đã ôn" />
-                <StatTile value={today.reviews} label="lượt ôn" />
-                <StatTile
-                  value={
-                    today.reviews > 0
-                      ? Math.round((today.correct / today.reviews) * 100)
-                      : null
-                  }
-                  suffix="%"
-                  label="nhớ được"
-                />
-              </div>
-            </section>
-
-            <section aria-labelledby="tong-ket" className="space-y-3">
-              <SectionTitle id="tong-ket">Tổng kết</SectionTitle>
-              <div className="grid grid-cols-3 gap-3">
-                <StatTile value={totals.wordsSeen} label="từ đã học" />
-                <StatTile
-                  value={totals.wordsMastered}
-                  label="từ đã thuộc"
-                />
-                <StatTile
-                  value={totals.accuracy}
-                  suffix="%"
-                  label="tỉ lệ nhớ"
-                />
-              </div>
-            </section>
-
-            <section
-              aria-labelledby="bay-ngay"
-              className="border-border bg-card rounded-2xl border p-5"
-            >
-              <h2 id="bay-ngay" className="mb-4 font-semibold">
-                7 ngày gần nhất
-              </h2>
-              <WeekChart week={week} />
-            </section>
-
-            {boxTotal > 0 ? (
-              <section
-                aria-labelledby="hop-on"
-                className="border-border bg-card rounded-2xl border p-5"
-              >
-                <h2 id="hop-on" className="font-semibold">
-                  Từ đang ở đâu
-                </h2>
-                <p className="text-muted mt-0.5 text-sm">
-                  Nhớ đúng thì từ lên hộp cao hơn, lâu mới phải ôn lại.
-                </p>
-                <ul className="mt-4 space-y-2.5">
-                  {detail.boxes.map((count, index) => {
-                    const percent = Math.round((count / boxTotal) * 100);
-                    const last = index === detail.boxes.length - 1;
-                    return (
-                      <li
-                        key={index}
-                        className="flex items-center gap-3 text-sm"
-                      >
-                        <span className="text-muted w-20 shrink-0 tabular-nums">
-                          {last
-                            ? "Đã thuộc"
-                            : `${BOX_INTERVAL_DAYS[index]} ngày`}
-                        </span>
-                        <span className="bg-brand-soft h-2.5 flex-1 overflow-hidden rounded-full">
-                          <span
-                            className={`block h-full rounded-full ${last ? "bg-brand" : "bg-brand/50"}`}
-                            style={{ width: `${percent}%` }}
-                          />
-                        </span>
-                        <span className="w-8 shrink-0 text-right font-semibold tabular-nums">
-                          {count}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
-            ) : null}
-
-            {detail.decks.length > 0 ? (
-              <section aria-labelledby="theo-bo" className="space-y-3">
-                <SectionTitle id="theo-bo">Theo bộ thẻ</SectionTitle>
-                <ul className="border-border bg-card divide-border divide-y rounded-2xl border">
-                  {detail.decks.map((deck) => (
-                    <li
-                      key={deck.deckId}
-                      className="flex items-center gap-3 px-4 py-3"
-                    >
-                      <span className="min-w-0 flex-1">
-                        <span className="block truncate font-medium">
-                          {deck.name}
-                        </span>
-                        <span className="text-muted block text-sm">
-                          {deck.wordsSeen}/{deck.wordsTotal} từ đã học ·{" "}
-                          {deck.reviews} lượt
-                        </span>
-                      </span>
-                      <span
-                        className={`shrink-0 text-lg font-bold tabular-nums ${
-                          deck.accuracy !== null && deck.accuracy < 60
-                            ? "text-red-500"
-                            : ""
-                        }`}
-                      >
-                        {deck.accuracy === null ? "—" : `${deck.accuracy}%`}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ) : null}
-
-            {detail.hardestWords.length > 0 ? (
-              <section aria-labelledby="hay-sai" className="space-y-3">
-                <SectionTitle id="hay-sai">Từ hay sai nhất</SectionTitle>
-                <ul className="border-border bg-card divide-border divide-y rounded-2xl border">
-                  {detail.hardestWords.map((word) => (
-                    <li
-                      key={word.wordId}
-                      className="flex items-center gap-3 px-4 py-3"
-                    >
-                      <span className="min-w-0 flex-1">
-                        <span className="block truncate font-medium">
-                          {word.term}
-                          <span className="text-muted font-normal">
-                            {" "}
-                            · {word.meaning}
-                          </span>
-                        </span>
-                        <span className="text-muted block truncate text-sm">
-                          {word.deckName}
-                        </span>
-                      </span>
-                      <span className="shrink-0 text-right">
-                        <span className="block text-sm font-semibold text-red-500 tabular-nums">
-                          sai {word.wrong}/{word.reviews}
-                        </span>
-                        <span className="text-muted block text-xs">
-                          hộp {word.box}
-                        </span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ) : null}
-          </div>
-
-          {/* Cột phải: cài đặt */}
-          <div className="space-y-6">
-            <section aria-labelledby="cai-dat" className="space-y-3">
-              <SectionTitle id="cai-dat">Hồ sơ</SectionTitle>
-              <div className="border-border bg-card space-y-5 rounded-2xl border p-4">
+        {/* Cài đặt: từng mục gập lại, mở cái nào cần */}
+        <div className="space-y-3">
+            <details className="border-border bg-card group rounded-2xl border">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
+                Chỉnh sửa hồ sơ
+                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
+              </summary>
+              <div className="border-border border-t p-4">
+              <div className="space-y-5">
                 <div className="flex flex-wrap items-center gap-4">
                   <Avatar url={profile?.avatar_url} name={displayName} size={56} />
                   <ImagePicker kind="avatar" hasImage={!!profile?.avatar_url} />
@@ -339,43 +185,64 @@ export default async function TaiKhoanPage() {
                   coverIsImage={!!coverInfo.url}
                 />
               </div>
-            </section>
+              </div>
+            </details>
 
-            <section aria-labelledby="nhac-hoc" className="space-y-3">
-              <SectionTitle id="nhac-hoc">Nhắc học</SectionTitle>
+            <details className="border-border bg-card group rounded-2xl border">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
+                Nhắc học
+                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
+              </summary>
+              <div className="border-border border-t p-4">
               <ReminderToggle
                 vapidPublicKey={
                   process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? null
                 }
                 reminderHour={profile?.reminder_hour ?? DEFAULT_REMINDER_HOUR}
               />
-            </section>
+              </div>
+            </details>
 
-            <section aria-labelledby="xep-hang" className="space-y-3">
-              <SectionTitle id="xep-hang">Bảng xếp hạng</SectionTitle>
+            <details className="border-border bg-card group rounded-2xl border">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
+                Bảng xếp hạng
+                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
+              </summary>
+              <div className="border-border border-t p-4">
               <RankToggle hidden={profile?.hide_rank ?? false} />
-            </section>
+              </div>
+            </details>
 
-            <section aria-labelledby="giao-dien" className="space-y-3">
-              <SectionTitle id="giao-dien">Giao diện</SectionTitle>
+            <details className="border-border bg-card group rounded-2xl border">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
+                Giao diện
+                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
+              </summary>
+              <div className="border-border border-t p-4">
               <ThemeToggle />
-            </section>
+              </div>
+            </details>
 
-            <section aria-labelledby="giong-doc" className="space-y-3">
-              <SectionTitle id="giong-doc">Giọng đọc</SectionTitle>
+            <details className="border-border bg-card group rounded-2xl border">
+              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
+                Giọng đọc
+                <span className="text-muted transition-transform group-open:rotate-180">⌄</span>
+              </summary>
+              <div className="border-border border-t p-4">
               <VoicePicker />
-            </section>
+              </div>
+            </details>
 
-            <form action={signOut}>
-              <button
-                type="submit"
-                className="border-border min-h-11 w-full rounded-xl border text-sm font-semibold text-red-500 press"
-              >
-                Đăng xuất
-              </button>
-            </form>
-          </div>
         </div>
+
+        <form action={signOut}>
+          <button
+            type="submit"
+            className="border-border min-h-11 w-full rounded-xl border text-sm font-semibold text-red-500 press"
+          >
+            Đăng xuất
+          </button>
+        </form>
       </div>
     </>
   );

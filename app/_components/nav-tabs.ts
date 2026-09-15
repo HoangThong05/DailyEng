@@ -1,5 +1,6 @@
 import {
   CardsIcon,
+  ChartIcon,
   FolderIcon,
   GamepadIcon,
   HomeIcon,
@@ -22,6 +23,7 @@ export const NAV_TABS = [
 
 /** Mục chỉ có ở sidebar: có chỗ thì tách ra cho dễ với, điện thoại vẫn gộp. */
 export const SIDE_EXTRAS = [
+  { href: "/tien-do", label: "Thống kê", Icon: ChartIcon },
   { href: "/xep-hang", label: "Bảng xếp hạng", Icon: TrophyIcon },
   { href: "/bo-cua-toi", label: "Bộ của tôi", Icon: FolderIcon },
 ] as const;
