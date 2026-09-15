@@ -91,6 +91,9 @@ export default async function TienDoPage() {
               </h2>
               <WeekChart week={week} />
             </section>
+          </div>
+
+          <div className="space-y-6">
 
             {boxTotal > 0 ? (
               <section
