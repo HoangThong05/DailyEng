@@ -28,11 +28,7 @@ export function ThemeToggle() {
   }, [preference]);
 
   return (
-    <div
-      role="radiogroup"
-      aria-label="Giao diện"
-      className="bg-brand-soft flex rounded-xl p-1"
-    >
+    <div role="radiogroup" aria-label="Giao diện" className="pill-tabs w-full">
       {OPTIONS.map((option) => {
         const active = preference === option.value;
         return (
@@ -42,9 +38,7 @@ export function ThemeToggle() {
             role="radio"
             aria-checked={active}
             onClick={() => setThemePreference(option.value)}
-            className={`min-h-11 flex-1 rounded-lg text-sm font-semibold transition-colors ${
-              active ? "bg-card text-fg shadow-sm" : "text-muted"
-            }`}
+            className="pill-tab flex-1"
           >
             {option.label}
           </button>

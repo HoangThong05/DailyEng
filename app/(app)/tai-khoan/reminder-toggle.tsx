@@ -241,7 +241,7 @@ export function ReminderToggle({ vapidPublicKey, reminderHour }: Props) {
         <div
           role="radiogroup"
           aria-label="Giờ nhắc"
-          className="bg-brand-soft mt-4 flex rounded-xl p-1"
+          className="pill-tabs mt-4 w-full"
         >
           {REMINDER_HOURS.map((option) => {
             const active = hour === option;
@@ -252,9 +252,7 @@ export function ReminderToggle({ vapidPublicKey, reminderHour }: Props) {
                 role="radio"
                 aria-checked={active}
                 onClick={() => chooseHour(option)}
-                className={`min-h-11 flex-1 rounded-lg text-sm font-semibold transition-colors ${
-                  active ? "bg-card text-fg shadow-sm" : "text-muted"
-                }`}
+                className="pill-tab flex-1"
               >
                 {formatHour(option)}
               </button>

@@ -41,11 +41,7 @@ export default async function XepHangPage({
       />
 
       <div className="px-5 pt-2 pb-4">
-        <div
-          role="tablist"
-          aria-label="Khoảng thời gian"
-          className="bg-brand-soft mb-5 flex rounded-xl p-1"
-        >
+        <div role="tablist" aria-label="Khoảng thời gian" className="pill-tabs mb-5 w-full">
           {PERIODS.map((option) => {
             const active = option.key === period;
             return (
@@ -54,9 +50,7 @@ export default async function XepHangPage({
                 role="tab"
                 aria-selected={active}
                 href={option.key === "week" ? "/xep-hang" : "/xep-hang?ky=all"}
-                className={`flex min-h-11 flex-1 items-center justify-center rounded-lg text-sm font-semibold transition-colors ${
-                  active ? "bg-card text-fg shadow-sm" : "text-muted"
-                }`}
+                className="pill-tab flex-1"
               >
                 {option.label}
               </Link>

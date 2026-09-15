@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mascot } from "@/app/_components/mascot";
 import { ThemeButton } from "@/app/_components/theme-button";
+import { LandingNav } from "./landing-nav";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 /** Thanh trên dùng chung cho trang giới thiệu và các trang thông tin. */
@@ -19,17 +20,7 @@ export async function LandingHeader({ showAnchors = false }: { showAnchors?: boo
             DailyEng
           </span>
         </Link>
-        {showAnchors ? (
-          <nav className="text-muted hidden items-center gap-6 text-sm font-semibold md:flex">
-            <a href="#tinh-nang" className="hover:text-fg">Tính năng</a>
-            <a href="#tro-choi" className="hover:text-fg">Trò chơi</a>
-            <a href="#bo-tu" className="hover:text-fg">Bộ từ</a>
-          </nav>
-        ) : (
-          <nav className="text-muted hidden items-center gap-6 text-sm font-semibold md:flex">
-            <Link href="/gioi-thieu" className="hover:text-fg">Trang giới thiệu</Link>
-          </nav>
-        )}
+        <LandingNav anchors={showAnchors} />
         <div className="flex items-center gap-2">
           <ThemeButton />
           <Link
