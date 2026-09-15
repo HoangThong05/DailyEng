@@ -3,7 +3,7 @@ import Link from "next/link";
 import { signOut } from "@/app/_actions/auth";
 import { CountUp } from "@/app/_components/count-up";
 import { Avatar } from "@/app/_components/avatar";
-import { ChevronRightIcon, FlameIcon } from "@/app/_components/icons";
+import { ChevronRightIcon, FlameIcon, PencilIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
 import { OpenDetailsOnHash } from "@/app/_components/open-details-on-hash";
 import { DeckCard } from "@/app/(app)/hoc/deck-card";
@@ -193,10 +193,22 @@ export default async function TaiKhoanPage() {
         <div className="space-y-5">
             {/* Gập lại mặc định; id để nút "Chỉnh sửa" trên thẻ hồ sơ nhảy tới và mở */}
             <details id="chinh-sua" className="border-border bg-card group rounded-2xl border">
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between px-4 font-semibold [&::-webkit-details-marker]:hidden">
-                Chỉnh sửa hồ sơ
-                <span className="text-muted text-xs font-normal group-open:hidden">Ảnh, bìa, tiểu sử, mục tiêu</span>
-                <span className="text-muted hidden text-xs font-normal group-open:inline">Thu gọn</span>
+              <summary className="hover:bg-brand-soft/60 flex min-h-16 cursor-pointer list-none items-center justify-between gap-3 rounded-2xl px-4 transition-colors [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-3">
+                  <span className="bg-brand-soft text-brand flex h-9 w-9 shrink-0 items-center justify-center rounded-xl">
+                    <PencilIcon className="h-5 w-5" />
+                  </span>
+                  <span>
+                    <span className="block font-semibold">Chỉnh sửa hồ sơ</span>
+                    <span className="text-muted block text-xs">Ảnh đại diện, ảnh bìa, tiểu sử, tên, mục tiêu</span>
+                  </span>
+                </span>
+                <span className="bg-brand flex min-h-10 shrink-0 items-center gap-1 rounded-full px-4 text-sm font-bold text-white shadow-md shadow-blue-500/30 group-open:hidden">
+                  Mở <span aria-hidden>▾</span>
+                </span>
+                <span className="border-border text-muted hidden min-h-10 shrink-0 items-center gap-1 rounded-full border px-4 text-sm font-semibold group-open:flex">
+                  Thu gọn <span aria-hidden>▴</span>
+                </span>
               </summary>
               <div className="border-border space-y-5 border-t p-4">
                 <div className="flex flex-wrap items-center gap-4">
