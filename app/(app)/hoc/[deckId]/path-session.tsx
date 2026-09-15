@@ -111,7 +111,7 @@ function ExampleCard({
   };
   return (
     <div className={`bg-brand-soft/60 rounded-2xl p-4 text-left ${className}`}>
-      <div className="flex items-start gap-3">
+      <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
           <p className="text-sm leading-relaxed">
             <Highlighted sentence={sentence} term={word.term} />
@@ -120,7 +120,8 @@ function ExampleCard({
             <p className="text-muted mt-1 text-sm">{word.example_vi}</p>
           ) : null}
         </div>
-        <div className="flex shrink-0 flex-col gap-1.5">
+        {/* Hai nút nghe nằm ngang, căn giữa theo chiều cao khối câu */}
+        <div className="flex shrink-0 items-center gap-1.5">
           <button
             type="button"
             aria-label="Nghe cả câu"
