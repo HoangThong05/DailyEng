@@ -42,7 +42,8 @@ create policy "Admin sua gop y"
 
 grant select, update on public.feedback to authenticated;
 
--- Đặt admin cho tài khoản tác giả (đổi email nếu cần).
-update public.profiles
-set is_admin = true
-where id = (select id from auth.users where email = 'dailyenglish78@gmail.com');
+-- Gán admin: KHÔNG để email trong repo (repo public). Chạy tay một lần trong
+-- SQL Editor, thay <email> bằng tài khoản đã đăng nhập app ít nhất một lần:
+--
+--   update public.profiles set is_admin = true
+--   where id = (select id from auth.users where email = '<email>');
