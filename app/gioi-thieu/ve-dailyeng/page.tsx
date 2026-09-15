@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { DocPage } from "../_components/doc-page";
 
 export const metadata: Metadata = { title: "Về DailyEng" };
@@ -48,23 +47,6 @@ export default function VeDailyEngPage() {
         Quizlet.
       </p>
 
-      <h2>Miễn phí và mã nguồn mở</h2>
-      <p>
-        DailyEng miễn phí toàn bộ, không quảng cáo, không gói Pro. Mã nguồn công
-        khai tại{" "}
-        <a href="https://github.com/HoangThong05/DailyEng" target="_blank" rel="noreferrer">
-          GitHub
-        </a>
-        . Xây bằng Next.js, Supabase và chạy trên Vercel; dùng Web Speech API
-        của trình duyệt để đọc và nhận dạng giọng nói nên không tốn phí dịch
-        vụ.
-      </p>
-
-      <p>
-        Muốn biết ai đứng sau app, xem trang{" "}
-        <Link href="/gioi-thieu/tac-gia">Tác giả</Link>. Có ý kiến gì, gửi ở{" "}
-        <Link href="/gioi-thieu/gop-y">Góp ý</Link>.
-      </p>
     </DocPage>
   );
 }
