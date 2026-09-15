@@ -13,7 +13,14 @@ export const REDIRECT_PARAM = "tiep-tuc";
  * Những đường dẫn xem được khi chưa đăng nhập.
  * /api/cron do Vercel gọi, không có cookie — tự xác thực bằng CRON_SECRET.
  */
-const PUBLIC_PATHS = [LOGIN_PATH, VERIFY_PATH, "/auth", "/offline", "/api/cron"];
+const PUBLIC_PATHS = [
+  LOGIN_PATH,
+  VERIFY_PATH,
+  "/auth",
+  "/offline",
+  "/api/cron",
+  "/gioi-thieu",
+];
 
 function isPublicPath(pathname: string) {
   return PUBLIC_PATHS.some(

@@ -15,9 +15,9 @@ export function SideNav() {
       className="border-border bg-card/70 fixed inset-y-0 left-0 z-50 hidden w-60 flex-col border-r backdrop-blur-xl md:flex"
     >
       <Link
-        href="/"
+        href="/gioi-thieu"
         className="group flex items-center gap-3 px-5 pt-6 pb-5"
-        aria-label="Về trang chủ"
+        aria-label="Trang giới thiệu DailyEng"
       >
         <Mascot
           variant="tot-nghiep"

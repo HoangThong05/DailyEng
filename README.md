@@ -52,6 +52,7 @@ app/
 │   ├── hoc/          #   Học theo chặng, tạo/sửa bộ từ
 │   ├── quiz/         #   Quiz trắc nghiệm
 │   ├── tro-choi/     #   Hub trò chơi: ghep-cap, nghe-go, mua-tu
+│   ├── gioi-thieu/   #   Trang giới thiệu công khai (landing)
 │   ├── ky-nang/      #   Hub kỹ năng: chep-cau, shadowing, mock-test (phat-am ở thư mục riêng)
 │   ├── phat-am/      #   Luyện phát âm
 │   └── tai-khoan/    #   Hồ sơ, cấp độ, thống kê, nhắc học, giao diện
