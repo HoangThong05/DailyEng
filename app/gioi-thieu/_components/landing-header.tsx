@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { Mascot } from "@/app/_components/mascot";
 import { ThemeButton } from "@/app/_components/theme-button";
-import { getCurrentUser } from "@/lib/supabase/server";
+import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 /** Thanh trên dùng chung cho trang giới thiệu và các trang thông tin. */
 export async function LandingHeader({ showAnchors = false }: { showAnchors?: boolean }) {
   const user = await getCurrentUser();
+  const supabase = await createClient();
+  const { data: isAdmin } = user ? await supabase.rpc("is_admin") : { data: false };
+  const appHref = isAdmin ? "/quan-tri" : user ? "/" : "/dang-nhap";
+  const appLabel = isAdmin ? "Quản trị" : user ? "Vào học" : "Đăng nhập";
   return (
     <header className="bg-bg/80 sticky top-0 z-40 backdrop-blur-lg">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
@@ -29,10 +33,10 @@ export async function LandingHeader({ showAnchors = false }: { showAnchors?: boo
         <div className="flex items-center gap-2">
           <ThemeButton />
           <Link
-            href={user ? "/" : "/dang-nhap"}
+            href={appHref}
             className="bg-brand flex min-h-10 items-center rounded-full px-4 text-sm font-bold text-white press"
           >
-            {user ? "Vào học" : "Đăng nhập"}
+            {appLabel}
           </Link>
         </div>
       </div>

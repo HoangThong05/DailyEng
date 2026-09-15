@@ -104,6 +104,7 @@ Trong SQL Editor chạy lần lượt:
 10. `supabase/schema-10-gop-y.sql` — bảng góp ý
 11. `supabase/schema-11-admin.sql` — cờ admin, trang quản trị xem góp ý; gán admin bằng lệnh `update` ghi trong file (chạy tay, không commit email)
 12. `supabase/schema-12-quan-tri.sql` — hàm số liệu cho khu quản trị (tổng quan, người dùng, nội dung)
+13. `supabase/schema-13-admin-khong-hoc.sql` — admin không lên bảng xếp hạng, không tính là người học; đăng nhập là vào thẳng khu quản trị
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

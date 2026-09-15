@@ -60,7 +60,7 @@ export default async function TaiKhoanPage() {
   ] = await Promise.all([
     supabase
       .from("profiles")
-      .select("display_name, daily_goal, reminder_hour, hide_rank, is_admin")
+      .select("display_name, daily_goal, reminder_hour, hide_rank")
       .eq("id", user?.id ?? "")
       .maybeSingle(),
     getStudyStats(),
@@ -350,15 +350,6 @@ export default async function TaiKhoanPage() {
               <SectionTitle id="giong-doc">Giọng đọc</SectionTitle>
               <VoicePicker />
             </section>
-
-            {profile?.is_admin ? (
-              <Link
-                href="/quan-tri"
-                className="border-brand bg-brand-soft text-brand flex min-h-11 items-center justify-center rounded-xl border text-sm font-semibold press"
-              >
-                Vào khu quản trị
-              </Link>
-            ) : null}
 
             <form action={signOut}>
               <button

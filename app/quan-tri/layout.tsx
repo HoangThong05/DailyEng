@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { signOut } from "@/app/_actions/auth";
 import { Mascot } from "@/app/_components/mascot";
 import { ThemeButton } from "@/app/_components/theme-button";
 import { createClient } from "@/lib/supabase/server";
@@ -45,9 +45,11 @@ export default async function QuanTriLayout({ children }: LayoutProps<"/quan-tri
         </div>
         <AdminNav pending={pending} />
         <div className="text-muted mt-auto flex items-center justify-between gap-2 px-5 py-4 text-xs">
-          <Link href="/" className="hover:text-fg font-semibold">
-            ← Về app
-          </Link>
+          <form action={signOut}>
+            <button type="submit" className="hover:text-fg font-semibold text-red-500">
+              Đăng xuất
+            </button>
+          </form>
           <ThemeButton />
         </div>
       </aside>
