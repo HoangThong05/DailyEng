@@ -110,7 +110,11 @@ export async function POST(request: Request) {
         }
       } catch (error) {
         console.error("ai chat:", error);
-        controller.enqueue(encoder.encode("\n\n[Xin lỗi, có lỗi khi trả lời. Thử lại nhé.]"));
+        // Hiện mã lỗi cho người dùng: app một người làm, biết lỗi gì mới sửa được.
+        const detail = error instanceof Error ? error.message.slice(0, 300) : "";
+        controller.enqueue(
+          encoder.encode(`\n\n[Xin lỗi, có lỗi khi trả lời.${detail ? ` Chi tiết: ${detail}` : ""}]`),
+        );
       } finally {
         controller.close();
       }

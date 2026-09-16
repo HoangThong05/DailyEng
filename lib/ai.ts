@@ -20,7 +20,17 @@ export function isAiEnabled() {
 }
 
 export const CLAUDE_MODEL = process.env.AI_MODEL ?? "claude-haiku-4-5-20251001";
-export const GEMINI_MODEL = process.env.GEMINI_MODEL ?? "gemini-2.5-flash";
+/**
+ * Model Gemini sẽ thử lần lượt: đặt GEMINI_MODEL thì ưu tiên cái đó, sau đó
+ * là các tên phổ biến — tên model của Google đổi theo thời gian, thử vài cái
+ * cho chắc thay vì hỏng hẳn.
+ */
+export const GEMINI_MODELS = [
+  process.env.GEMINI_MODEL,
+  "gemini-2.5-flash",
+  "gemini-flash-latest",
+  "gemini-2.0-flash",
+].filter((name): name is string => !!name);
 
 export const AI_DAILY_LIMIT = Number(process.env.AI_DAILY_LIMIT ?? 50);
 /** Trả lời ngắn cho rẻ và đọc nhanh trên điện thoại. */
@@ -76,24 +86,35 @@ export async function* streamGemini(
   turns: ChatTurn[],
   onUsage: (usage: Usage) => void,
 ): AsyncGenerator<string> {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent?alt=sse&key=${process.env.GEMINI_API_KEY}`;
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      systemInstruction: { parts: [{ text: AI_SYSTEM_PROMPT }] },
-      contents: turns.map((turn) => ({
-        role: turn.role === "assistant" ? "model" : "user",
-        parts: [{ text: turn.content }],
-      })),
-      generationConfig: { maxOutputTokens: AI_MAX_OUTPUT_TOKENS, temperature: 0.6 },
-    }),
+  const body = JSON.stringify({
+    systemInstruction: { parts: [{ text: AI_SYSTEM_PROMPT }] },
+    contents: turns.map((turn) => ({
+      role: turn.role === "assistant" ? "model" : "user",
+      parts: [{ text: turn.content }],
+    })),
+    generationConfig: { maxOutputTokens: AI_MAX_OUTPUT_TOKENS, temperature: 0.6 },
   });
 
-  if (!response.ok || !response.body) {
-    const detail = await response.text().catch(() => "");
-    throw new Error(`Gemini ${response.status}: ${detail.slice(0, 300)}`);
+  // Thử lần lượt các model; chỉ 404 (không có model đó) mới thử tiếp.
+  let response: Response | null = null;
+  let lastError = "";
+  for (const model of GEMINI_MODELS) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${process.env.GEMINI_API_KEY}`;
+    const attempt = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    });
+    if (attempt.ok && attempt.body) {
+      response = attempt;
+      break;
+    }
+    lastError = `${attempt.status} ${(await attempt.text().catch(() => "")).slice(0, 400)}`;
+    console.error(`Gemini ${model}:`, lastError);
+    if (attempt.status !== 404) break;
   }
+
+  if (!response?.body) throw new Error(`Gemini ${lastError}`);
 
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
