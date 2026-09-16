@@ -23,9 +23,7 @@ function loadMessages(): ChatMessage[] {
     return Array.isArray(parsed)
       ? parsed.filter(
           (m) =>
-            m &&
-            (m.role === "user" || m.role === "assistant") &&
-            typeof m.content === "string",
+            m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string",
         )
       : [];
   } catch {
@@ -90,33 +88,35 @@ function clean(text: string) {
 function Rich({ text }: { text: string }) {
   return (
     <div className="space-y-1.5 text-sm leading-relaxed">
-      {text.split("\n").map((line, i) => {
-        const bullet = /^\s*[-•*]\s+/.test(line);
-        const body = bullet ? line.replace(/^\s*[-•*]\s+/, "") : line;
-        if (!body.trim()) return <div key={i} className="h-1" />;
-        // **đậm** và *nghiêng*; không cần thư viện markdown.
-        const parts = body.split(/(\*\*[^*]+\*\*|\*[^*\n]+\*)/g).map((part, k) => {
-          if (part.startsWith("**") && part.endsWith("**")) {
-            return <strong key={k}>{part.slice(2, -2)}</strong>;
-          }
-          if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
-            return (
-              <em key={k} className="text-muted">
-                {part.slice(1, -1)}
-              </em>
-            );
-          }
-          return <span key={k}>{part}</span>;
-        });
-        return bullet ? (
-          <p key={i} className="flex gap-2 pl-1">
-            <span className="text-brand shrink-0">•</span>
-            <span>{parts}</span>
-          </p>
-        ) : (
-          <p key={i}>{parts}</p>
-        );
-      })}
+      {clean(text)
+        .split("\n")
+        .map((line, i) => {
+          const bullet = /^\s*[-•*]\s+/.test(line);
+          const body = bullet ? line.replace(/^\s*[-•*]\s+/, "") : line;
+          if (!body.trim()) return <div key={i} className="h-1" />;
+          // **đậm** và *nghiêng*; không cần thư viện markdown.
+          const parts = body.split(/(\*\*[^*]+\*\*|\*[^*\n]+\*)/g).map((part, k) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+              return <strong key={k}>{part.slice(2, -2)}</strong>;
+            }
+            if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
+              return (
+                <em key={k} className="text-muted">
+                  {part.slice(1, -1)}
+                </em>
+              );
+            }
+            return <span key={k}>{part}</span>;
+          });
+          return bullet ? (
+            <p key={i} className="flex gap-2 pl-1">
+              <span className="text-brand shrink-0">•</span>
+              <span>{parts}</span>
+            </p>
+          ) : (
+            <p key={i}>{parts}</p>
+          );
+        })}
     </div>
   );
 }
@@ -187,7 +187,9 @@ export function AiChat({
         body: JSON.stringify({ messages: history }),
       });
       if (!res.ok || !res.body) {
-        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        const data = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
         setMessages(history);
         setError(data?.error ?? "Không gọi được AI. Thử lại nhé.");
         return;
@@ -221,8 +223,16 @@ export function AiChat({
   }
 
   return (
-    <div className={panel ? "flex min-h-0 flex-1 flex-col" : "flex min-h-[60dvh] flex-col px-5 pt-2 pb-4"}>
-      <div className={panel ? "min-h-0 flex-1 space-y-3 overflow-y-auto px-3 py-3" : "flex-1 space-y-3"}>
+    <div
+      className={
+        panel ? "flex min-h-0 flex-1 flex-col" : "flex min-h-[60dvh] flex-col px-5 pt-2 pb-4"
+      }
+    >
+      <div
+        className={
+          panel ? "min-h-0 flex-1 space-y-3 overflow-y-auto px-3 py-3" : "flex-1 space-y-3"
+        }
+      >
         {messages.length === 0 ? (
           <div className={panel ? "" : "border-border bg-card rounded-3xl border p-5"}>
             <div className="flex items-center gap-3">
@@ -230,8 +240,8 @@ export function AiChat({
               <div className="text-sm leading-relaxed">
                 <p className="font-semibold">Chào {name}, mình ở đây để giúp bạn học tiếng Anh.</p>
                 <p className="text-muted mt-1">
-                  Cứ hỏi thoải mái: nghĩa từ, ngữ pháp, sửa câu, giải thích đáp án TOEIC,
-                  hay luyện hội thoại.
+                  Cứ hỏi thoải mái: nghĩa từ, ngữ pháp, sửa câu, giải thích đáp án TOEIC, hay luyện
+                  hội thoại.
                 </p>
               </div>
             </div>
@@ -251,7 +261,10 @@ export function AiChat({
         ) : null}
 
         {messages.map((message, i) => (
-          <div key={i} className={`flex items-end gap-2 ${message.role === "user" ? "justify-end" : ""}`}>
+          <div
+            key={i}
+            className={`flex items-end gap-2 ${message.role === "user" ? "justify-end" : ""}`}
+          >
             {message.role === "assistant" ? (
               // Chưa có chữ = đang soạn → vịt đổi sang tư thế suy nghĩ.
               <Mascot
@@ -285,7 +298,10 @@ export function AiChat({
       </div>
 
       {error ? (
-        <p role="alert" className={`text-sm font-medium text-red-500 ${panel ? "px-3 pb-1" : "mt-3"}`}>
+        <p
+          role="alert"
+          className={`text-sm font-medium text-red-500 ${panel ? "px-3 pb-1" : "mt-3"}`}
+        >
           {error}
         </p>
       ) : null}
@@ -335,7 +351,9 @@ export function AiChat({
           Hỏi
         </button>
       </form>
-      <p className={`text-muted text-xs tabular-nums ${panel ? "px-3 pb-2 text-center" : "mt-2 text-right"}`}>
+      <p
+        className={`text-muted text-xs tabular-nums ${panel ? "px-3 pb-2 text-center" : "mt-2 text-right"}`}
+      >
         Còn {left}/{limit} tin hôm nay
         {panel ? "" : " · Enter để gửi, Shift+Enter xuống dòng"}
       </p>
