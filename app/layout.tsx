@@ -3,7 +3,7 @@ import { Inter, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/app/_components/service-worker-register";
 import { SIDEBAR_INIT_SCRIPT } from "@/lib/sidebar-store";
-import { SITE } from "@/lib/site";
+import { OG_IMAGE, SITE } from "@/lib/site";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 
 // Inter có subset "vietnamese" nên dấu tiếng Việt hiển thị đúng.
@@ -40,18 +40,19 @@ export const metadata: Metadata = {
     title: "DailyEng",
     statusBarStyle: "default",
   },
-  // Ảnh dùng app/opengraph-image.png (Next tự gắn); chỉ khai phần chữ.
   openGraph: {
     type: "website",
     siteName: "DailyEng",
     locale: "vi_VN",
     title: "DailyEng — Học tiếng Anh mỗi ngày",
     description: DESCRIPTION,
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "DailyEng — Học tiếng Anh mỗi ngày",
     description: DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 };
 

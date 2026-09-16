@@ -26,3 +26,11 @@ export const SITE = {
   },
   repo: "https://github.com/HoangThong05/DailyEng",
 };
+
+/** Ảnh xem trước khi chia sẻ link; sinh bằng scripts/render-og.py. */
+export const OG_IMAGE = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: "DailyEng — học tiếng Anh mỗi ngày cùng chú vịt vàng",
+};

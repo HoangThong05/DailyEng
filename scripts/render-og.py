@@ -3,7 +3,7 @@
 Chạy:  python scripts/render-og.py
 Cần:   Pillow, và font Segoe UI của Windows (có sẵn).
 
-Kết quả: app/opengraph-image.png — Next tự gắn vào thẻ og:image cho mọi trang.
+Kết quả: public/og.png — khai trong app/layout.tsx (openGraph.images).
 """
 
 from PIL import Image, ImageDraw, ImageFont
@@ -65,6 +65,6 @@ for value, label in stats:
 
 draw.text((x, 470), "daily-eng-omega.vercel.app", font=small, fill=MUTED)
 
-out = os.path.join(ROOT, "app", "opengraph-image.png")
+out = os.path.join(ROOT, "public", "og.png")
 img.save(out, optimize=True)
 print("saved", out, img.size)

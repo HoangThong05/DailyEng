@@ -8,6 +8,7 @@ import { Mascot } from "@/app/_components/mascot";
 import { SiteFooter } from "@/app/_components/site-footer";
 import { LandingHeader } from "./_components/landing-header";
 import { DECK_CATEGORIES } from "@/lib/deck-categories";
+import { OG_IMAGE } from "@/lib/site";
 import vitHero from "@/public/mascot/vit-hero.png";
 import { getCurrentUser } from "@/lib/supabase/server";
 
@@ -21,9 +22,14 @@ export const metadata: Metadata = {
   // không phải đi qua chuyển hướng.
   alternates: { canonical: "/gioi-thieu" },
   openGraph: {
+    type: "website",
+    siteName: "DailyEng",
+    locale: "vi_VN",
     url: "/gioi-thieu",
     title: "DailyEng — Học tiếng Anh mỗi ngày",
     description: DESCRIPTION,
+    // Khối openGraph riêng ghi đè của layout gốc nên phải khai lại ảnh.
+    images: [OG_IMAGE],
   },
 };
 
