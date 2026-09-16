@@ -34,6 +34,11 @@ export const GEMINI_MODELS = [
 
 export const AI_DAILY_LIMIT = Number(process.env.AI_DAILY_LIMIT ?? 50);
 /**
+ * Trần theo phút: Gemini gói miễn phí chỉ cho ~15 lượt/phút cho CẢ app, bấm
+ * liên tục là dính 429. Chặn sớm ở đây để báo lỗi tử tế thay vì lỗi của Google.
+ */
+export const AI_MINUTE_LIMIT = Number(process.env.AI_MINUTE_LIMIT ?? 6);
+/**
  * Trần độ dài câu trả lời. Tiếng Việt tốn token hơn tiếng Anh nhiều, để thấp
  * quá thì câu trả lời đứt giữa chừng; 1500 đủ cho một lời giải thích đầy đủ.
  */
@@ -65,6 +70,17 @@ export async function countAiToday(): Promise<number> {
     .from("ai_chat_log")
     .select("id", { count: "exact", head: true })
     .eq("day", todayInAppZone());
+  return count ?? 0;
+}
+
+/** Số tin trong 60 giây gần nhất của người đang đăng nhập. */
+export async function countAiLastMinute(): Promise<number> {
+  const supabase = await createClient();
+  const since = new Date(Date.now() - 60_000).toISOString();
+  const { count } = await supabase
+    .from("ai_chat_log")
+    .select("id", { count: "exact", head: true })
+    .gte("created_at", since);
   return count ?? 0;
 }
 

@@ -34,6 +34,7 @@
 - Huy hiệu: 22 mốc thành tích (chuỗi ngày, từ vựng, siêng năng, kỹ năng) tính từ dữ liệu học, lưu `profiles.badges`; hiện ở Cá nhân, huy hiệu nổi bật hiện cạnh tên trên bảng xếp hạng, trang chủ báo huy hiệu mới
 - Nhiệm vụ hằng ngày: 3 việc nhỏ (học 10 từ + 2 việc xoay vòng: trò chơi, nghe chép, shadowing, mock test…), xong được XP thưởng, xong cả ba thưởng thêm
 - Ôn tập hôm nay: gom từ đã học tới hạn từ mọi bộ vào một phiên (`/on-tap`)
+- Từ khó (`/tu-kho`): danh sách từ hay sai nhất kèm tỉ lệ sai và hộp hiện tại, có phiên ôn riêng không phụ thuộc lịch giãn cách
 - Chuỗi ngày học, biểu đồ tuần, phân bố hộp ôn, độ chính xác theo bộ, từ hay sai nhất
 - Nhắc học qua thông báo đẩy (Web Push) vào giờ tự chọn (07:00 / 12:00 / 20:00), chỉ khi hôm đó chưa học
 
@@ -96,6 +97,7 @@ public/               # Icon PWA, ảnh linh vật (mascot/), bìa trò chơi (g
 npm install
 cp .env.local.example .env.local   # điền URL và publishable key của Supabase
 npm run dev
+npm test                           # test phần lõi: Leitner, XP, chấm câu, dựng chặng học
 ```
 
 ### Supabase

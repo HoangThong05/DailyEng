@@ -215,3 +215,48 @@ export async function getDetailedStats(): Promise<DetailedStats> {
 
   return { hardestWords: hard.slice(0, HARDEST_LIMIT), decks: deckStats, boxes };
 }
+
+/**
+ * Từ hay sai nhất, danh sách dài cho trang "Từ khó".
+ * Cùng cách tính với getDetailedStats nhưng trả về nhiều hơn và có kèm phiên âm.
+ */
+export async function getHardWords(limit = 50): Promise<HardWord[]> {
+  const supabase = await createClient();
+
+  const [progressResult, wordsResult, decksResult] = await Promise.all([
+    supabase
+      .from("word_progress")
+      .select("word_id, box, review_count, correct_count")
+      .gt("review_count", 0),
+    supabase.from("words").select("id, deck_id, term, meaning_vi"),
+    supabase.from("decks").select("id, name"),
+  ]);
+
+  const wordById = new Map((wordsResult.data ?? []).map((word) => [word.id, word]));
+  const deckById = new Map((decksResult.data ?? []).map((deck) => [deck.id, deck]));
+
+  const hard: HardWord[] = [];
+  for (const row of progressResult.data ?? []) {
+    const word = wordById.get(row.word_id);
+    if (!word) continue;
+    const wrong = row.review_count - row.correct_count;
+    if (wrong <= 0) continue;
+    hard.push({
+      wordId: word.id,
+      term: word.term,
+      meaning: word.meaning_vi,
+      deckName: deckById.get(word.deck_id)?.name ?? "",
+      wrong,
+      reviews: row.review_count,
+      box: row.box,
+    });
+  }
+
+  hard.sort((a, b) => b.wrong - a.wrong || b.wrong / b.reviews - a.wrong / a.reviews);
+  return hard.slice(0, limit);
+}
+
+/** Đếm số từ đang sai nhiều hơn đúng ít nhất một lần — cho thẻ gợi ý. */
+export async function countHardWords(): Promise<number> {
+  return (await getHardWords(200)).length;
+}

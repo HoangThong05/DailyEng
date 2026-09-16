@@ -1,5 +1,6 @@
 import type { DeckCategory, Word } from "@/lib/database.types";
 import { todayInAppZone } from "@/lib/leitner";
+import { getHardWords } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
 
 /** Số thẻ tối đa trong một phiên học, để phiên không dài lê thê. */
@@ -258,4 +259,42 @@ export async function countDueReviews() {
     .select("word_id", { count: "exact", head: true })
     .lte("due_on", todayInAppZone());
   return count ?? 0;
+}
+
+/**
+ * Phiên ôn "từ khó": những từ bạn sai nhiều nhất, bất kể đã tới hạn hay chưa.
+ * Khác getReviewSession (theo lịch giãn cách) — đây là ôn có chủ đích.
+ */
+export async function getHardSession(limit = SESSION_SIZE) {
+  const supabase = await createClient();
+  const hard = await getHardWords(limit);
+  if (hard.length === 0) return { cards: [] as StudyCard[], pool: { terms: [], meanings: [] } };
+
+  const ids = hard.map((word) => word.wordId);
+  const { data: words } = await supabase.from("words").select("*").in("id", ids);
+  const boxById = new Map(hard.map((word) => [word.wordId, word.box]));
+  const order = new Map(ids.map((id, i) => [id, i]));
+
+  const cards: StudyCard[] = (words ?? [])
+    .map((word) => ({ ...word, box: boxById.get(word.id) ?? 1 }))
+    .sort((a, b) => (order.get(a.id) ?? 0) - (order.get(b.id) ?? 0));
+
+  const pool = {
+    terms: cards.map((word) => word.term),
+    meanings: cards.map((word) => word.meaning_vi),
+  };
+  const deckIds = [...new Set(cards.map((word) => word.deck_id))];
+  if (deckIds.length > 0) {
+    const { data: extra } = await supabase
+      .from("words")
+      .select("term, meaning_vi")
+      .in("deck_id", deckIds)
+      .limit(60);
+    for (const row of extra ?? []) {
+      pool.terms.push(row.term);
+      pool.meanings.push(row.meaning_vi);
+    }
+  }
+
+  return { cards, pool };
 }

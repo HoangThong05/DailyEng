@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CountUp } from "@/app/_components/count-up";
 import { PageHeader } from "@/app/_components/page-header";
 import { BOX_INTERVAL_DAYS } from "@/lib/leitner";
@@ -171,7 +172,12 @@ export default async function TienDoPage() {
 
             {detail.hardestWords.length > 0 ? (
               <section aria-labelledby="hay-sai" className="space-y-3">
-                <SectionTitle id="hay-sai">Từ hay sai nhất</SectionTitle>
+                <div className="flex items-baseline justify-between gap-2 pr-1">
+                  <SectionTitle id="hay-sai">Từ hay sai nhất</SectionTitle>
+                  <Link href="/tu-kho" className="text-brand shrink-0 text-sm font-semibold">
+                    Ôn từ khó →
+                  </Link>
+                </div>
                 <ul className="border-border bg-card divide-border divide-y rounded-2xl border">
                   {detail.hardestWords.map((word) => (
                     <li

@@ -6,6 +6,7 @@ import { PageHeader } from "@/app/_components/page-header";
 import { ScrollRow } from "@/app/_components/scroll-row";
 import { DECK_CATEGORIES, type CategoryStyle } from "@/lib/deck-categories";
 import { countDueReviews, listDecks, type DeckSummary } from "@/lib/decks";
+import { countHardWords } from "@/lib/stats";
 import { LEVEL_LABEL, parsePlacement, recommendDecks } from "@/lib/placement";
 import { createClient } from "@/lib/supabase/server";
 import { DeckCard } from "./deck-card";
@@ -68,9 +69,10 @@ function DeckRow({ decks, label }: { decks: DeckSummary[]; label: string }) {
 
 export default async function HocPage() {
   const supabase = await createClient();
-  const [decks, dueReviews, { data: profile }] = await Promise.all([
+  const [decks, dueReviews, hardCount, { data: profile }] = await Promise.all([
     listDecks(),
     countDueReviews(),
+    countHardWords(),
     supabase.from("profiles").select("placement").maybeSingle(),
   ]);
   const placement = parsePlacement(profile?.placement);
@@ -121,6 +123,25 @@ export default async function HocPage() {
               </span>
               <span className="flex min-h-10 shrink-0 items-center gap-1 rounded-xl bg-amber-500 px-4 text-sm font-bold text-white">
                 Ôn ngay
+                <ChevronRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ) : null}
+
+          {hardCount > 0 ? (
+            <Link
+              href="/tu-kho"
+              className="group flex items-center gap-3 rounded-2xl border border-red-300/60 bg-gradient-to-r from-red-50 to-orange-50 p-3 pr-4 press dark:border-red-500/30 dark:from-red-500/10 dark:to-orange-500/10"
+            >
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-500 text-lg font-extrabold text-white tabular-nums shadow-md shadow-red-500/30">
+                {hardCount}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold">Từ khó</span>
+                <span className="text-muted block text-sm">Những từ bạn hay sai — ôn riêng cho nhớ</span>
+              </span>
+              <span className="flex min-h-10 shrink-0 items-center gap-1 rounded-xl bg-red-500 px-4 text-sm font-bold text-white">
+                Xem
                 <ChevronRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </span>
             </Link>

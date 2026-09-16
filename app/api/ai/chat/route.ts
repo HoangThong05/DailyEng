@@ -4,10 +4,12 @@ import {
   AI_HISTORY_TURNS,
   AI_MAX_MESSAGE_CHARS,
   AI_MAX_OUTPUT_TOKENS,
+  AI_MINUTE_LIMIT,
   AI_SYSTEM_PROMPT,
   aiProvider,
   CLAUDE_MODEL,
   type ChatTurn,
+  countAiLastMinute,
   countAiToday,
   getAiQuota,
   streamGemini,
@@ -65,9 +67,12 @@ export async function POST(request: Request) {
     return bad(400, "Chưa có câu hỏi.");
   }
 
-  const used = await countAiToday();
+  const [used, lastMinute] = await Promise.all([countAiToday(), countAiLastMinute()]);
   if (used >= AI_DAILY_LIMIT) {
     return bad(429, `Hôm nay bạn đã dùng hết ${AI_DAILY_LIMIT} tin. Mai hỏi tiếp nhé.`);
+  }
+  if (lastMinute >= AI_MINUTE_LIMIT) {
+    return bad(429, "Bạn hỏi hơi nhanh — đợi khoảng một phút rồi hỏi tiếp nhé.");
   }
 
   const supabase = await createClient();

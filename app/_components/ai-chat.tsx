@@ -6,6 +6,41 @@ import { SparkleIcon } from "@/app/_components/icons";
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
+/**
+ * Hội thoại lưu tạm trong sessionStorage: tải lại trang hay chuyển qua lại
+ * giữa khung nổi và trang /hoi-ai vẫn còn mạch. Đóng tab là mất — không gửi
+ * lên máy chủ, đúng như Chính sách quyền riêng tư.
+ */
+const STORAGE_KEY = "dailyeng-ai-chat";
+/** Giữ tối đa ngần này lượt cho nhẹ. */
+const KEEP = 20;
+
+function loadMessages(): ChatMessage[] {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as ChatMessage[];
+    return Array.isArray(parsed)
+      ? parsed.filter(
+          (m) =>
+            m &&
+            (m.role === "user" || m.role === "assistant") &&
+            typeof m.content === "string",
+        )
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveMessages(messages: ChatMessage[]) {
+  try {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages.slice(-KEEP)));
+  } catch {
+    // Chế độ ẩn danh có thể chặn — chỉ mất lịch sử tạm, không sao.
+  }
+}
+
 type Props = {
   used: number;
   limit: number;
@@ -70,6 +105,7 @@ export function AiChat({
   variant = "page",
 }: Props) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [restored, setRestored] = useState(false);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [used, setUsed] = useState(initialUsed);
@@ -81,9 +117,21 @@ export function AiChat({
   const panel = variant === "panel";
   const left = Math.max(0, limit - used);
 
+  // Nạp lại hội thoại cũ sau khi hydrate (sessionStorage chỉ có ở trình duyệt).
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const saved = loadMessages();
+      if (saved.length > 0) setMessages(saved);
+      setRestored(true);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [messages]);
+    // Chỉ lưu khi đã nạp xong và câu trả lời đã chạy hết, tránh ghi đè bằng mảng rỗng.
+    if (restored && !busy) saveMessages(messages);
+  }, [messages, restored, busy]);
 
   useEffect(() => {
     if (initialQuestion && !autoSent.current) {
@@ -216,6 +264,20 @@ export function AiChat({
         <p role="alert" className={`text-sm font-medium text-red-500 ${panel ? "px-3 pb-1" : "mt-3"}`}>
           {error}
         </p>
+      ) : null}
+
+      {messages.length > 0 ? (
+        <button
+          type="button"
+          onClick={() => {
+            setMessages([]);
+            saveMessages([]);
+            setError(null);
+          }}
+          className={`text-muted hover:text-brand self-end text-xs font-semibold ${panel ? "pr-3 pb-1" : "mt-3"}`}
+        >
+          Xoá hội thoại
+        </button>
       ) : null}
 
       <form
