@@ -17,7 +17,7 @@ export default async function HoiAiPage({ searchParams }: PageProps<"/hoi-ai">) 
       <PageHeader
         title="Hỏi AI"
         subtitle="Gia sư tiếng Anh trả lời ngay, bằng tiếng Việt"
-        mascot="noi"
+        mascot="ai-tron"
       />
       {quota.enabled ? (
         <div className="mx-auto w-full max-w-2xl">

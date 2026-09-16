@@ -39,7 +39,7 @@
 
 **Hỏi AI** (tuỳ chọn): con vịt nổi ở góc dưới phải, bấm vào là mở khung chat với gia sư tiếng Anh; có cả trang riêng `/hoi-ai`. Nút "Hỏi AI về từ này" ở câu ví dụ khi học và ở câu sai của mock test tự đính kèm ngữ cảnh. Chạy với **Gemini** (`GEMINI_API_KEY`, gói miễn phí của Google AI Studio) hoặc **Claude** (`ANTHROPIC_API_KEY`, ưu tiên nếu có cả hai); hạn mức 50 tin/người/ngày (`ai_chat_log`), không lưu nội dung hội thoại, trả lời stream. Không có khoá nào thì con vịt và mọi nút liên quan tự ẩn.
 
-**Linh vật**: chú vịt vàng với 9 tư thế (tốt nghiệp, chào, nghe, học, chơi game, ăn mừng, buồn, ngủ, nói) — làm icon app, đổi theo tiến độ trong ngày ở trang chủ, vui/buồn ở màn kết thúc mỗi phiên, ngủ trong thông báo nhắc học, cầm micro ở luyện phát âm.
+**Linh vật**: chú vịt vàng với 13 tư thế (tốt nghiệp, chào, nghe, học, chơi game, ăn mừng, buồn, ngủ, nói, gia sư AI, AI đang nghĩ) — làm icon app, đổi theo tiến độ trong ngày ở trang chủ, vui/buồn ở màn kết thúc mỗi phiên, ngủ trong thông báo nhắc học, cầm micro ở luyện phát âm.
 
 **Tài khoản & giao diện**
 - Đăng nhập bằng email/mật khẩu (xác nhận bằng mã 6 số) hoặc Google

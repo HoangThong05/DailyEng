@@ -63,7 +63,7 @@ export function DuckChat({ name }: { name: string }) {
           className="border-border bg-bg pop-in fixed right-4 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-[60] flex h-[min(32rem,70dvh)] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border shadow-2xl shadow-black/20 md:bottom-24"
         >
           <div className="border-border bg-brand-soft/60 flex shrink-0 items-center gap-3 border-b px-4 py-3">
-            <Mascot variant="noi" size={36} className="shrink-0 rounded-xl" />
+            <Mascot variant="ai-tron" size={38} className="shrink-0 rounded-xl" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-bold">Vịt gia sư</p>
               <p className="text-muted text-xs">Hỏi gì về tiếng Anh cũng được</p>
@@ -98,7 +98,7 @@ export function DuckChat({ name }: { name: string }) {
           open ? "scale-0 opacity-0" : ""
         }`}
       >
-        <Mascot variant="noi" size={52} className="duck-float rounded-full" />
+        <Mascot variant="ai-tron" size={56} className="duck-float rounded-full" />
         <span className="bg-brand absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold text-white shadow">
           AI
         </span>

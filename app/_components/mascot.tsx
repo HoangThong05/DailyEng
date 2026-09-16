@@ -1,4 +1,7 @@
 import Image from "next/image";
+import vitAi from "@/public/mascot/vit-ai.png";
+import vitAiNghi from "@/public/mascot/vit-ai-nghi.png";
+import vitAiTron from "@/public/mascot/vit-ai-tron.png";
 import vitAnMung from "@/public/mascot/vit-an-mung.png";
 import vitBuon from "@/public/mascot/vit-buon.png";
 import vitChao from "@/public/mascot/vit-chao.png";
@@ -11,7 +14,7 @@ import vitNoi from "@/public/mascot/vit-noi.png";
 import vitTotNghiep from "@/public/mascot/vit-tot-nghiep.png";
 
 /**
- * Linh vật DailyEng — chú vịt vàng, 9 tư thế cho 9 ngữ cảnh.
+ * Linh vật DailyEng — chú vịt vàng, mỗi ngữ cảnh một tư thế.
  *
  * Bốn tư thế có ô nền xanh bo góc (dùng như logo/ảnh bìa):
  *  - tot-nghiep: đội mũ cử nhân ôm sách "English" — logo, icon app
@@ -25,6 +28,9 @@ import vitTotNghiep from "@/public/mascot/vit-tot-nghiep.png";
  *  - buon:       mắt ướt, gãi đầu                — kết quả thấp, thua game
  *  - ngu:        đội mũ ngủ ôm gối, Zzz          — chưa học hôm nay, nhắc học
  *  - noi:        cầm micro, tai nghe             — luyện phát âm
+ *  - ai:         đeo kính + tai nghe, cầm tablet — gia sư AI (Hỏi AI)
+ *  - ai-nghi:    tư thế suy nghĩ                 — lúc AI đang soạn câu trả lời
+ *  - ai-tron:    bản cắt cận đầu của "ai"        — nút tròn nhỏ, avatar chat
  *
  * Ảnh gốc trong public/mascot/, next/image tự thu về đúng kích thước.
  * Bộ icon PWA/favicon sinh từ ảnh tot-nghiep bằng scripts/render-icons.mjs.
@@ -39,7 +45,10 @@ export type MascotVariant =
   | "an-mung"
   | "buon"
   | "ngu"
-  | "noi";
+  | "noi"
+  | "ai"
+  | "ai-nghi"
+  | "ai-tron";
 
 const SOURCES = {
   "tot-nghiep": vitTotNghiep,
@@ -52,6 +61,9 @@ const SOURCES = {
   buon: vitBuon,
   ngu: vitNgu,
   noi: vitNoi,
+  ai: vitAi,
+  "ai-nghi": vitAiNghi,
+  "ai-tron": vitAiTron,
 } as const;
 
 /** Chọn vịt vui hay buồn theo tỉ lệ đúng của một phiên. */

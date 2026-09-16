@@ -154,7 +154,7 @@ export function AiChat({
         {messages.length === 0 ? (
           <div className={panel ? "" : "border-border bg-card rounded-3xl border p-5"}>
             <div className="flex items-center gap-3">
-              <Mascot variant="noi" size={panel ? 56 : 72} className="shrink-0 rounded-2xl" />
+              <Mascot variant="ai" size={panel ? 64 : 84} className="shrink-0" />
               <div className="text-sm leading-relaxed">
                 <p className="font-semibold">Chào {name}, hỏi gì về tiếng Anh cũng được.</p>
                 <p className="text-muted mt-1">
@@ -180,7 +180,12 @@ export function AiChat({
         {messages.map((message, i) => (
           <div key={i} className={`flex items-end gap-2 ${message.role === "user" ? "justify-end" : ""}`}>
             {message.role === "assistant" ? (
-              <Mascot variant="noi" size={32} className="mb-1 shrink-0 rounded-lg" />
+              // Chưa có chữ = đang soạn → vịt đổi sang tư thế suy nghĩ.
+              <Mascot
+                variant={message.content ? "ai-tron" : "ai-nghi"}
+                size={34}
+                className="mb-1 shrink-0 rounded-lg"
+              />
             ) : null}
             <div
               className={`max-w-[85%] rounded-2xl px-4 py-3 ${
