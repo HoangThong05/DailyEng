@@ -66,7 +66,7 @@ export function DuckChat({ name }: { name: string }) {
             <Mascot variant="ai-tron" size={38} className="shrink-0 rounded-xl" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-bold">Vịt gia sư</p>
-              <p className="text-muted text-xs">Hỏi gì về tiếng Anh cũng được</p>
+              <p className="text-muted text-xs">Luôn sẵn sàng giúp bạn học tiếng Anh</p>
             </div>
             <button
               type="button"

@@ -156,9 +156,10 @@ export function AiChat({
             <div className="flex items-center gap-3">
               <Mascot variant="ai" size={panel ? 64 : 84} className="shrink-0" />
               <div className="text-sm leading-relaxed">
-                <p className="font-semibold">Chào {name}, hỏi gì về tiếng Anh cũng được.</p>
+                <p className="font-semibold">Chào {name}, mình ở đây để giúp bạn học tiếng Anh.</p>
                 <p className="text-muted mt-1">
-                  Nghĩa từ, ngữ pháp, sửa câu, giải thích đáp án TOEIC, hay luyện hội thoại.
+                  Cứ hỏi thoải mái: nghĩa từ, ngữ pháp, sửa câu, giải thích đáp án TOEIC,
+                  hay luyện hội thoại.
                 </p>
               </div>
             </div>
