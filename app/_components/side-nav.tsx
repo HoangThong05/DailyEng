@@ -68,9 +68,9 @@ export function SideNav({ profile }: { profile: SideProfile }) {
           title={collapsed ? "DailyEng" : undefined}
         >
           <Mascot
-            variant="tot-nghiep"
-            size={40}
-            className="shrink-0 rounded-xl shadow-md shadow-brand/30 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
+            variant="tot-nghiep-trong"
+            size={42}
+            className="shrink-0 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
           />
           <span className="side-label from-brand bg-gradient-to-r to-emerald-500 bg-clip-text text-xl font-extrabold tracking-tight text-transparent">
             DailyEng

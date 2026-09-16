@@ -12,6 +12,7 @@ import vitNghe from "@/public/mascot/vit-nghe.png";
 import vitNgu from "@/public/mascot/vit-ngu.png";
 import vitNoi from "@/public/mascot/vit-noi.png";
 import vitTotNghiep from "@/public/mascot/vit-tot-nghiep.png";
+import vitTotNghiepTrong from "@/public/mascot/vit-tot-nghiep-trong.png";
 
 /**
  * Linh vật DailyEng — chú vịt vàng, mỗi ngữ cảnh một tư thế.
@@ -19,7 +20,8 @@ import vitTotNghiep from "@/public/mascot/vit-tot-nghiep.png";
  * Bốn tư thế có ô nền xanh bo góc (dùng như logo/ảnh bìa):
  *  - tot-nghiep: đội mũ cử nhân ôm sách "English" — logo, icon app
  *  - chao:       nháy mắt vẫy "HELLO!"           — chào ở đăng nhập, trang chủ
- *  - chao-trong: bản chao đã bỏ ô nền xanh        — màn đang tải (vẫy tay)
+ *  - chao-trong: bản chao đã bỏ ô nền xanh        — màn đang tải, hero trang chủ
+ *  - tot-nghiep-trong: bản tot-nghiep bỏ nền xanh — logo sidebar, favicon
  *  - nghe:       đeo tai nghe đọc sách ABC       — trò chơi, nghe & gõ
  *  - hoc:        đeo kính, cắm cúi viết          — tạo bộ từ, màn chưa có dữ liệu
  *  - choi:       cầm tay cầm, "GAME ON!"          — hub trò chơi
@@ -37,6 +39,7 @@ import vitTotNghiep from "@/public/mascot/vit-tot-nghiep.png";
  */
 export type MascotVariant =
   | "tot-nghiep"
+  | "tot-nghiep-trong"
   | "chao"
   | "chao-trong"
   | "nghe"
@@ -52,6 +55,7 @@ export type MascotVariant =
 
 const SOURCES = {
   "tot-nghiep": vitTotNghiep,
+  "tot-nghiep-trong": vitTotNghiepTrong,
   chao: vitChao,
   "chao-trong": vitChaoTrong,
   nghe: vitNghe,

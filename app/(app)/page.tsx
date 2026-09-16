@@ -106,7 +106,8 @@ export default async function Home() {
     (_, i) => games[(offset + i) % games.length],
   );
 
-  const mood = goalReached ? "an-mung" : learnedToday === 0 ? "ngu" : "chao";
+  // Dùng bản "trong" để vịt không có ô nền xanh đè lên nền gradient của hero.
+  const mood = goalReached ? "an-mung" : learnedToday === 0 ? "ngu" : "chao-trong";
   const moodText = goalReached
     ? "Đã đạt mục tiêu hôm nay. Học thêm càng tốt!"
     : learnedToday === 0
@@ -144,7 +145,7 @@ export default async function Home() {
               variant={mood}
               size={112}
               priority
-              className="hidden shrink-0 rounded-2xl sm:block"
+              className="hidden shrink-0 sm:block"
             />
           </div>
 
@@ -172,7 +173,7 @@ export default async function Home() {
             variant={mood}
             size={80}
             priority
-            className="absolute -right-1 -bottom-1 rounded-2xl sm:hidden"
+            className="absolute -right-1 -bottom-1 sm:hidden"
           />
         </section>
 
