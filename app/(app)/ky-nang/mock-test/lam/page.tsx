@@ -1,4 +1,5 @@
 import { PageHeader } from "@/app/_components/page-header";
+import { isAiEnabled } from "@/lib/ai";
 import { buildMockTest, MOCK_SECONDS, signMockKey } from "@/lib/mock-test";
 import { MockSession } from "./mock-session";
 
@@ -15,7 +16,7 @@ export default async function MockTestRunPage() {
     <>
       <PageHeader title="Part 5" subtitle={`${questions.length} câu · ${MOCK_SECONDS / 60} phút`} />
       <div className="mx-auto w-full max-w-md">
-        <MockSession questions={questions} token={token} seconds={MOCK_SECONDS} />
+        <MockSession questions={questions} token={token} seconds={MOCK_SECONDS} aiEnabled={isAiEnabled()} />
       </div>
     </>
   );

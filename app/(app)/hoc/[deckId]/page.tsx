@@ -4,6 +4,7 @@ import { EmptyState } from "@/app/_components/empty-state";
 import { CardsIcon, PencilIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { getStudySession } from "@/lib/decks";
+import { isAiEnabled } from "@/lib/ai";
 import { buildStages } from "@/lib/study-path";
 import { PathSession } from "./path-session";
 
@@ -70,7 +71,7 @@ export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
         </>
       ) : (
         <div className="mx-auto w-full max-w-md">
-          <PathSession deckName={deck.name} stages={stages} pool={pool} />
+          <PathSession deckName={deck.name} stages={stages} pool={pool} aiEnabled={isAiEnabled()} />
         </div>
       )}
     </>

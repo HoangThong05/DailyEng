@@ -4,6 +4,7 @@ import { EmptyState } from "@/app/_components/empty-state";
 import { CardsIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { getReviewSession } from "@/lib/decks";
+import { isAiEnabled } from "@/lib/ai";
 import { buildStages } from "@/lib/study-path";
 import { PathSession } from "../hoc/[deckId]/path-session";
 
@@ -44,7 +45,7 @@ export default async function OnTapPage() {
         </>
       ) : (
         <div className="mx-auto w-full max-w-md">
-          <PathSession deckName="Ôn tập hôm nay" stages={stages} pool={pool} />
+          <PathSession deckName="Ôn tập hôm nay" stages={stages} pool={pool} aiEnabled={isAiEnabled()} />
         </div>
       )}
     </>

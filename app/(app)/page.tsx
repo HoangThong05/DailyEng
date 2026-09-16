@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { Avatar } from "@/app/_components/avatar";
 import { BadgeChip } from "@/app/_components/badge-chip";
+import { isAiEnabled } from "@/lib/ai";
 import { badgeByKey } from "@/lib/badges";
 import { syncBadges } from "@/lib/badges";
 import { DeckCover } from "@/app/_components/deck-cover";
-import { ChevronRightIcon, FlameIcon } from "@/app/_components/icons";
+import { ChevronRightIcon, FlameIcon, SparkleIcon } from "@/app/_components/icons";
 import { InstallPrompt } from "@/app/_components/install-prompt";
 import { Mascot } from "@/app/_components/mascot";
 import { PageHeader } from "@/app/_components/page-header";
@@ -308,6 +309,24 @@ export default async function Home() {
             </Link>
           )}
         </section>
+
+        {isAiEnabled() ? (
+          <Link
+            href="/hoi-ai"
+            className="border-border bg-card group flex items-center gap-4 rounded-2xl border p-4 press"
+          >
+            <span className="bg-brand-soft text-brand flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
+              <SparkleIcon className="h-6 w-6" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-semibold">Hỏi AI</span>
+              <span className="text-muted block text-sm">
+                Nghĩa từ, ngữ pháp, sửa câu, luyện hội thoại — trả lời ngay bằng tiếng Việt.
+              </span>
+            </span>
+            <ChevronRightIcon className="text-muted h-5 w-5 shrink-0 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        ) : null}
 
         {/* Chơi gì hôm nay: 3 bìa game xoay vòng theo ngày */}
         <section aria-labelledby="choi-gi" className="space-y-3">

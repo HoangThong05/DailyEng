@@ -22,7 +22,7 @@ const TYPE_LABEL: Record<Part2Question["type"], string> = {
   tag: "Câu hỏi đuôi",
 };
 
-type Props = { questions: Part2Question[]; token: string; seconds: number };
+type Props = { questions: Part2Question[]; token: string; seconds: number; aiEnabled?: boolean };
 type Phase = "intro" | "testing" | "done";
 /** Đang đọc gì: -1 câu hỏi, 0..2 đáp án, null im lặng. */
 type Reading = -1 | 0 | 1 | 2 | null;
@@ -37,7 +37,7 @@ function formatClock(total: number) {
  * Part 2: máy đọc câu hỏi rồi ba đáp án A, B, C; màn hình không in chữ.
  * Chọn A/B/C, sang câu sau tự đọc tiếp. Nộp bài mới thấy lời thoại và giải thích.
  */
-export function Part2Session({ questions, token, seconds }: Props) {
+export function Part2Session({ questions, token, seconds, aiEnabled = false }: Props) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => questions.map(() => null));
@@ -218,6 +218,16 @@ export function Part2Session({ questions, token, seconds }: Props) {
                   <p className="mt-1 text-xs font-semibold text-red-500">Bỏ trống</p>
                 ) : null}
                 <p className="text-muted mt-2 text-sm">{q.explain}</p>
+                {aiEnabled && !correct ? (
+                  <Link
+                    href={`/hoi-ai?q=${encodeURIComponent(
+                      `Câu TOEIC Part 2: "${q.question}" — A. ${q.options[0]} / B. ${q.options[1]} / C. ${q.options[2]}. Đáp án đúng là ${LETTERS[q.answer]}${mine !== null ? `, tôi chọn ${LETTERS[mine]}` : ""}. Giải thích vì sao và chỉ ra bẫy trong các đáp án sai.`,
+                    )}`}
+                    className="text-brand mt-2 inline-block text-xs font-semibold hover:underline"
+                  >
+                    ✨ Hỏi AI giải thích kỹ hơn
+                  </Link>
+                ) : null}
               </li>
             );
           })}

@@ -1,8 +1,10 @@
 import { redirect } from "next/navigation";
 import { BottomNav } from "@/app/_components/bottom-nav";
+import { DuckChat } from "@/app/_components/duck-chat";
 import { PageTransition } from "@/app/_components/page-transition";
 import { SideNav } from "@/app/_components/side-nav";
 import { UserBarProvider } from "@/app/_components/user-bar-context";
+import { isAiEnabled } from "@/lib/ai";
 import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
 import { getUserBarData } from "@/lib/user-bar";
@@ -43,8 +45,9 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           <PageTransition>{children}</PageTransition>
         </UserBarProvider>
       </main>
+      {isAiEnabled() ? <DuckChat name={sideProfile.name} /> : null}
       <BottomNav />
-      <SideNav profile={sideProfile} />
+      <SideNav profile={sideProfile} aiEnabled={isAiEnabled()} />
     </div>
   );
 }

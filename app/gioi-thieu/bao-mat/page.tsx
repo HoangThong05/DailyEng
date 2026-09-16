@@ -127,6 +127,24 @@ export default function BaoMatPage() {
         </li>
       </ul>
 
+      <h2>Hỏi AI</h2>
+      <ul>
+        <li>
+          Khi bạn trò chuyện với Vịt gia sư, nội dung bạn gõ (và vài lượt hội
+          thoại trước đó để giữ mạch) được gửi tới nhà cung cấp mô hình AI mà
+          app đang dùng — <strong>Google</strong> (Gemini) hoặc{" "}
+          <strong>Anthropic</strong> (Claude) — để tạo câu trả lời.{" "}
+          <strong>Đừng gõ thông tin cá nhân nhạy cảm vào đó</strong>: với gói
+          miễn phí của Google, nội dung có thể được họ dùng để cải thiện dịch vụ.
+        </li>
+        <li>
+          DailyEng <strong>không lưu nội dung hội thoại</strong> trên máy chủ; chỉ
+          ghi số tin và số token mỗi ngày để giới hạn hạn mức và theo dõi chi phí.
+          Rời trang là hội thoại mất.
+        </li>
+        <li>DailyEng không dùng nội dung hội thoại vào bất cứ việc gì ngoài việc trả lời bạn.</li>
+      </ul>
+
       <h2>Những gì người dùng khác thấy</h2>
       <p>
         Bảng xếp hạng và trang cá nhân công khai hiển thị{" "}

@@ -37,6 +37,8 @@
 - Chuỗi ngày học, biểu đồ tuần, phân bố hộp ôn, độ chính xác theo bộ, từ hay sai nhất
 - Nhắc học qua thông báo đẩy (Web Push) vào giờ tự chọn (07:00 / 12:00 / 20:00), chỉ khi hôm đó chưa học
 
+**Hỏi AI** (tuỳ chọn): con vịt nổi ở góc dưới phải, bấm vào là mở khung chat với gia sư tiếng Anh; có cả trang riêng `/hoi-ai`. Nút "Hỏi AI về từ này" ở câu ví dụ khi học và ở câu sai của mock test tự đính kèm ngữ cảnh. Chạy với **Gemini** (`GEMINI_API_KEY`, gói miễn phí của Google AI Studio) hoặc **Claude** (`ANTHROPIC_API_KEY`, ưu tiên nếu có cả hai); hạn mức 50 tin/người/ngày (`ai_chat_log`), không lưu nội dung hội thoại, trả lời stream. Không có khoá nào thì con vịt và mọi nút liên quan tự ẩn.
+
 **Linh vật**: chú vịt vàng với 9 tư thế (tốt nghiệp, chào, nghe, học, chơi game, ăn mừng, buồn, ngủ, nói) — làm icon app, đổi theo tiến độ trong ngày ở trang chủ, vui/buồn ở màn kết thúc mỗi phiên, ngủ trong thông báo nhắc học, cầm micro ở luyện phát âm.
 
 **Tài khoản & giao diện**
@@ -118,6 +120,7 @@ Trong SQL Editor chạy lần lượt:
 17. `supabase/schema-17-huy-hieu.sql` — cột `profiles.badges`, bảng xếp hạng trả thêm huy hiệu
 18. `supabase/schema-18-ho-so-cong-khai.sql` — hàm `public_profile`, bảng xếp hạng trả `user_id` để mở trang cá nhân người khác
 19. `supabase/schema-19-xp-cham-lai.sql` — XP chậm lại: nhớ +5 / quên +1, trần 300 XP/ngày (view `answer_xp_by_day`), cập nhật `leaderboard` và `public_profile`
+20. `supabase/schema-20-hoi-ai.sql` — bảng `ai_chat_log` đếm số tin "Hỏi AI" mỗi ngày (cần `GEMINI_API_KEY` hoặc `ANTHROPIC_API_KEY` trên Vercel để bật tính năng)
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

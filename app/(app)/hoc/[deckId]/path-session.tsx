@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { recordReview } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
-import { SpeakerIcon } from "@/app/_components/icons";
+import { SparkleIcon, SpeakerIcon } from "@/app/_components/icons";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { isCorrectAnswer } from "@/lib/dictation-game";
 import {
@@ -32,6 +32,8 @@ import { xpForAnswers } from "@/lib/xp";
 
 type Props = {
   deckName: string;
+  /** Có khoá Claude API thì hiện nút "Hỏi AI" ở câu ví dụ. */
+  aiEnabled?: boolean;
   stages: Stage[];
   pool: Pool;
 };
@@ -97,11 +99,13 @@ function ExampleCard({
   word,
   className = "",
   onListen,
+  ai = false,
 }: {
   word: PathWord;
   className?: string;
   /** Gọi khi bấm nghe, để phiên học dừng tự chuyển bước. */
   onListen?: () => void;
+  ai?: boolean;
 }) {
   if (!word.example_en) return null;
   const sentence = word.example_en;
@@ -142,11 +146,22 @@ function ExampleCard({
           </button>
         </div>
       </div>
+      {ai ? (
+        <Link
+          href={`/hoi-ai?q=${encodeURIComponent(
+            `Giải thích từ "${word.term}" (${word.meaning_vi}) và cách dùng trong câu: "${sentence}"`,
+          )}`}
+          onClick={onListen}
+          className="text-brand mt-2 inline-flex items-center gap-1 text-xs font-semibold hover:underline"
+        >
+          <SparkleIcon className="h-3.5 w-3.5" /> Hỏi AI về từ này
+        </Link>
+      ) : null}
     </div>
   );
 }
 
-export function PathSession({ deckName, stages, pool }: Props) {
+export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [stageIndex, setStageIndex] = useState(0);
   // Các bước của chặng hiện tại; bước làm lại được nối thêm vào cuối.
@@ -562,7 +577,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
               <p className="ipa text-muted mt-1 text-lg">{word.phonetic}</p>
             ) : null}
             <p className="mt-5 text-xl font-semibold">{word.meaning_vi}</p>
-            <ExampleCard word={word} className="mt-5" />
+            <ExampleCard word={word} className="mt-5" ai={aiEnabled} />
           </div>
           <button
             type="button"
@@ -638,7 +653,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
                   <span className="text-muted"> · {word.meaning_vi}</span>
                 </p>
               ) : null}
-              <ExampleCard word={word} className="mt-3" onListen={holdForListening} />
+              <ExampleCard word={word} className="mt-3" onListen={holdForListening} ai={aiEnabled} />
             </div>
           ) : null}
 
@@ -725,7 +740,7 @@ export function PathSession({ deckName, stages, pool }: Props) {
                   </button>
                 </div>
               ) : (
-                <ExampleCard word={word} className="step-enter mt-4" onListen={holdForListening} />
+                <ExampleCard word={word} className="step-enter mt-4" onListen={holdForListening} ai={aiEnabled} />
               )
             ) : null}
           </div>

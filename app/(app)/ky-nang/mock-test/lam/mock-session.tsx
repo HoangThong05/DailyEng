@@ -10,7 +10,7 @@ import type { MockQuestion } from "@/lib/mock-test";
 
 const LETTERS = ["A", "B", "C", "D"];
 
-type Props = { questions: MockQuestion[]; token: string; seconds: number };
+type Props = { questions: MockQuestion[]; token: string; seconds: number; aiEnabled?: boolean };
 
 function formatClock(total: number) {
   const m = Math.floor(total / 60);
@@ -36,7 +36,7 @@ function Blank({ sentence, filled }: { sentence: string; filled?: string }) {
   );
 }
 
-export function MockSession({ questions, token, seconds }: Props) {
+export function MockSession({ questions, token, seconds, aiEnabled = false }: Props) {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() =>
     questions.map(() => null),
@@ -151,6 +151,16 @@ export function MockSession({ questions, token, seconds }: Props) {
                   )}
                 </p>
                 <p className="text-muted mt-1 text-sm">{question.explain}</p>
+                {aiEnabled && !correct ? (
+                  <Link
+                    href={`/hoi-ai?q=${encodeURIComponent(
+                      `Câu TOEIC Part 5: "${question.sentence}" — các lựa chọn: ${question.options.join(", ")}. Đáp án đúng là "${question.options[question.answer]}"${mine !== null ? `, tôi chọn "${question.options[mine]}"` : ""}. Giải thích kỹ vì sao và vì sao các đáp án khác sai.`,
+                    )}`}
+                    className="text-brand mt-2 inline-block text-xs font-semibold hover:underline"
+                  >
+                    ✨ Hỏi AI giải thích kỹ hơn
+                  </Link>
+                ) : null}
               </li>
             );
           })}

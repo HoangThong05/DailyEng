@@ -5,6 +5,7 @@ import {
   GiftIcon,
   HomeIcon,
   MicIcon,
+  SparkleIcon,
   TrophyIcon,
   UserIcon,
 } from "./icons";
@@ -23,6 +24,7 @@ export const NAV_TABS = [
 
 /** Mục chỉ có ở sidebar: có chỗ thì tách ra cho dễ với, điện thoại vẫn gộp. */
 export const SIDE_EXTRAS = [
+  { href: "/hoi-ai", label: "Hỏi AI", Icon: SparkleIcon },
   { href: "/tien-do", label: "Thống kê", Icon: ChartIcon },
   { href: "/xep-hang", label: "Bảng xếp hạng", Icon: TrophyIcon },
   { href: "/phan-thuong", label: "Phần thưởng", Icon: GiftIcon },
@@ -38,6 +40,7 @@ const TAB_ALIASES: Record<string, string> = {
   "/xep-hang": "/tai-khoan",
   "/nguoi-dung": "/tai-khoan",
   "/phan-thuong": "/tai-khoan",
+  "/hoi-ai": "/hoc",
 };
 
 export function isTabActive(href: string, pathname: string) {

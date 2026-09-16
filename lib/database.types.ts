@@ -215,6 +215,33 @@ export type Database = {
         };
         Relationships: [];
       };
+      ai_chat_log: {
+        Row: {
+          id: string;
+          user_id: string;
+          day: string;
+          input_tokens: number;
+          output_tokens: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          day: string;
+          input_tokens?: number;
+          output_tokens?: number;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          day?: string;
+          input_tokens?: number;
+          output_tokens?: number;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       task_completions: {
         Row: {
           user_id: string;
