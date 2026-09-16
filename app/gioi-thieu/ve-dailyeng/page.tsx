@@ -27,10 +27,6 @@ export default function VeDailyEngPage() {
         <li><strong>Ra đời:</strong> 2026, dự án cá nhân của {SITE.author.name}</li>
         <li><strong>Lĩnh vực:</strong> học từ vựng và luyện kỹ năng tiếng Anh theo lịch ôn tập giãn cách</li>
         <li><strong>Chi phí:</strong> miễn phí toàn bộ, không quảng cáo, không gói trả phí</li>
-        <li>
-          <strong>Mã nguồn:</strong> công khai tại{" "}
-          <a href={SITE.repo} target="_blank" rel="noreferrer">GitHub</a>
-        </li>
       </ul>
 
       <h2>Vì sao có DailyEng</h2>
@@ -110,7 +106,7 @@ export default function VeDailyEngPage() {
         <li>Một hệ ôn tập duy nhất cho mọi hoạt động — chơi game cũng là ôn.</li>
         <li>Nội dung tiếng Việt, ví dụ thực tế, có phiên âm và giọng đọc.</li>
         <li>Không theo dõi, không quảng cáo; dữ liệu của bạn chỉ để bạn học.</li>
-        <li>Mã nguồn mở — ai cũng xem được app làm gì với dữ liệu của mình.</li>
+        <li>Dữ liệu của bạn được bảo vệ bằng chính sách truy cập theo hàng, mỗi người chỉ đọc được phần của mình.</li>
       </ul>
 
       <h2>Về tác giả</h2>

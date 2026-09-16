@@ -24,7 +24,6 @@ export const SITE = {
     tiktok: "https://www.tiktok.com/@hthong.05",
     youtube: "https://www.youtube.com/@padoithong05",
   },
-  repo: "https://github.com/HoangThong05/DailyEng",
 };
 
 /**

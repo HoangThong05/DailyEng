@@ -29,10 +29,8 @@ export const AUTHOR = {
     },
   ] as { school: string; major?: string; time?: string; note?: string }[],
 
-  /** Chứng chỉ, điểm thi. */
-  certificates: [
-    { name: "TOEIC", value: "", note: "Đang học và luyện thi — cũng là lý do DailyEng có phần thi thử Part 2 và Part 5" },
-  ] as { name: string; value?: string; note?: string }[],
+  /** Chứng chỉ, điểm thi. Để rỗng thì mục này tự ẩn. */
+  certificates: [] as { name: string; value?: string; note?: string }[],
 
   /** Học bổng, giải thưởng. */
   awards: [] as string[],
@@ -56,8 +54,8 @@ export const AUTHOR = {
       time: "2026",
       description:
         "App học tiếng Anh theo lịch ôn tập giãn cách: 36 bộ từ, trò chơi ôn từ, luyện nghe nói, thi thử TOEIC, gia sư AI. Tự làm từ thiết kế, nội dung tới lập trình và vận hành.",
-      link: SITE.repo,
-      linkLabel: "Mã nguồn trên GitHub",
+      link: "https://daily-eng-omega.vercel.app/gioi-thieu",
+      linkLabel: "Xem trang giới thiệu",
     },
     {
       name: "Football Stats Tracker",

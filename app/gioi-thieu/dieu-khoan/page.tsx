@@ -42,12 +42,6 @@ export default function DieuKhoanPage() {
         </li>
         <li>Không sao chép hàng loạt, phân phối lại, bán hay đưa nội dung vào sản phẩm khác mà không được đồng ý bằng văn bản.</li>
         <li>Ảnh minh hoạ trò Nghe chọn hình lấy từ Pixabay theo giấy phép của Pixabay.</li>
-        <li>
-          Mã nguồn của app được công khai tại{" "}
-          <a href={SITE.repo} target="_blank" rel="noreferrer">GitHub</a>; việc
-          dùng mã nguồn tuân theo giấy phép ghi trong kho mã, không phải điều
-          khoản này.
-        </li>
       </ul>
 
       <h2>Nội dung do bạn tạo</h2>
