@@ -83,7 +83,7 @@ export default async function MockTestPage() {
               className="border-border bg-card space-y-4 rounded-3xl border p-4"
             >
               <div className="flex items-center gap-4">
-                <Mascot variant={test.mascot} size={80} className="shrink-0 rounded-2xl" />
+                <Mascot variant={test.mascot} size={80} className="shrink-0" />
                 <div className="min-w-0">
                   <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-[11px] font-bold uppercase">
                     {test.tag}

@@ -82,7 +82,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <Mascot variant="tot-nghiep" size={44} className="rounded-xl" />
+            <Mascot variant="tot-nghiep" size={44} />
             <span className="from-brand bg-gradient-to-r to-emerald-500 bg-clip-text text-xl font-extrabold text-transparent">
               {SITE.name}
             </span>

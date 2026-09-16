@@ -20,7 +20,7 @@ export default function KyNangPage() {
 
       <div className="px-5 pt-2 pb-4">
         <div className="border-border bg-card flex items-center gap-4 rounded-2xl border p-4">
-          <Mascot variant="noi" size={96} className="shrink-0 rounded-2xl" />
+          <Mascot variant="noi" size={96} className="shrink-0" />
           <p className="text-muted text-sm leading-relaxed">
             Luyện nghe cả câu, nói theo giọng mẫu và làm đề thử như thi thật.
             Kết quả vẫn ghi vào hệ ôn tập và tính XP.

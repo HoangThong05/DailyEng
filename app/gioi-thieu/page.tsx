@@ -173,7 +173,7 @@ export default async function GioiThieuPage() {
                 href={feature.href}
                 className="border-border bg-card group flex gap-4 rounded-3xl border p-5 press"
               >
-                <Mascot variant={feature.mascot} size={80} className="shrink-0 rounded-2xl" />
+                <Mascot variant={feature.mascot} size={96} className="shrink-0" />
                 <div>
                   <h3 className="text-lg font-bold">{feature.title}</h3>
                   <p className="text-muted mt-1 text-sm leading-relaxed">{feature.text}</p>

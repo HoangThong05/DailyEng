@@ -202,7 +202,7 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
   if (phase === "intro") {
     return (
       <div className="flex flex-col items-center px-6 py-10 text-center">
-        <Mascot variant="noi" size={128} priority className="rounded-3xl" />
+        <Mascot variant="noi" size={128} priority />
         <h2 className="mt-4 text-xl font-bold">{items.length} câu</h2>
         <p className="text-muted mt-2 max-w-xs text-sm">
           Nghe câu mẫu, bấm micro và nói theo ngay. Máy chấm từng từ nghe được,

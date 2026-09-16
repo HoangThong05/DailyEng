@@ -32,7 +32,7 @@ export async function LandingHeader({ showAnchors = false }: { showAnchors?: boo
     <header className="bg-bg/80 sticky top-0 z-40 backdrop-blur-lg">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
         <Link href="/gioi-thieu" className="flex items-center gap-3">
-          <Mascot variant="tot-nghiep" size={40} className="rounded-xl shadow-md shadow-brand/30" />
+          <Mascot variant="tot-nghiep" size={42} />
           <span className="from-brand bg-gradient-to-r to-emerald-500 bg-clip-text text-xl font-extrabold tracking-tight text-transparent">
             DailyEng
           </span>

@@ -25,7 +25,7 @@ export default async function DangNhapPage({
     <main className="pt-safe pb-safe flex flex-1 flex-col justify-center px-6 py-10">
       <div className="mb-8 flex flex-col items-center text-center">
         <Link href="/gioi-thieu" aria-label="Giới thiệu DailyEng">
-          <Mascot variant="chao" size={112} priority className="rounded-3xl" />
+          <Mascot variant="chao" size={112} priority />
         </Link>
         <h1 className="mt-4 text-2xl font-bold tracking-tight">DailyEng</h1>
         <p className="text-muted mt-1 text-sm">

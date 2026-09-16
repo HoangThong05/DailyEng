@@ -269,7 +269,7 @@ export default async function Home() {
               href="/kiem-tra-dau-vao"
               className="border-border bg-card flex items-center gap-4 rounded-2xl border p-4 press"
             >
-              <Mascot variant="hoc" size={64} className="rounded-xl" />
+              <Mascot variant="hoc" size={64} />
               <span className="min-w-0 flex-1">
                 <span className="block font-semibold">Bắt đầu bằng kiểm tra đầu vào</span>
                 <span className="text-muted block text-sm">
@@ -283,7 +283,7 @@ export default async function Home() {
               href="/hoc"
               className="border-border bg-card flex items-center gap-4 rounded-2xl border p-4 press"
             >
-              <Mascot variant="hoc" size={64} className="rounded-xl" />
+              <Mascot variant="hoc" size={64} />
               <span className="min-w-0 flex-1">
                 <span className="block font-semibold">Chưa có bộ từ nào</span>
                 <span className="text-muted block text-sm">

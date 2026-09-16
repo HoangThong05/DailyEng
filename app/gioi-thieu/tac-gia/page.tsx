@@ -21,7 +21,7 @@ export default function TacGiaPage() {
   return (
     <DocPage title="Tác giả" subtitle="Người làm ra DailyEng và cách liên hệ.">
       <div className="border-border bg-card flex flex-col items-center gap-5 rounded-3xl border p-6 text-center sm:flex-row sm:text-left">
-        <Mascot variant="tot-nghiep" size={112} className="shrink-0 rounded-3xl" />
+        <Mascot variant="tot-nghiep" size={112} className="shrink-0" />
         <div>
           <p className="text-2xl font-extrabold">{SITE.author.name}</p>
           <p className="text-muted mt-1">{SITE.author.role}</p>

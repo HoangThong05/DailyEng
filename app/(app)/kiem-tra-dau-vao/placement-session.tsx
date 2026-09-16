@@ -64,7 +64,7 @@ export function PlacementSession({ questions, decks }: Props) {
     return (
       <div className="stagger space-y-4 px-5 pt-2">
         <div className="border-border bg-card flex items-center gap-4 rounded-2xl border p-4">
-          <Mascot variant="hoc" size={80} className="shrink-0 rounded-2xl" />
+          <Mascot variant="hoc" size={80} className="shrink-0" />
           <p className="text-sm leading-relaxed">
             {questions.length} câu chọn nghĩa, từ dễ tới khó. Không biết thì cứ chọn đại — bài này
             để <span className="font-semibold">đo</span>, không tính điểm hay XP.

@@ -64,7 +64,7 @@ export function DuckChat({ name }: { name: string }) {
           className="border-border bg-bg pop-in fixed right-4 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-[60] flex h-[min(32rem,70dvh)] w-[min(24rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border shadow-2xl shadow-black/20 md:bottom-24"
         >
           <div className="border-border bg-brand-soft/60 flex shrink-0 items-center gap-3 border-b px-4 py-3">
-            <Mascot variant="ai-tron" size={38} className="shrink-0 rounded-xl" />
+            <Mascot variant="ai-tron" size={38} className="shrink-0" />
             <div className="min-w-0 flex-1">
               <p className="text-sm font-bold">Vịt gia sư</p>
               <p className="text-muted text-xs">Luôn sẵn sàng giúp bạn học tiếng Anh</p>

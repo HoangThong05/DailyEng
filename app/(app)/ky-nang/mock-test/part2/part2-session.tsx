@@ -120,7 +120,7 @@ export function Part2Session({ questions, token, seconds, aiEnabled = false }: P
     return (
       <div className="space-y-4 px-5 pt-2">
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
-          <Mascot variant="nghe" size={96} className="mx-auto rounded-2xl" />
+          <Mascot variant="nghe" size={96} className="mx-auto" />
           <p className="mt-3 font-semibold">Nghe câu hỏi, chọn câu đáp lại hợp nhất</p>
           <p className="text-muted mt-2 text-sm leading-relaxed">
             Máy đọc một câu hỏi (hoặc câu nói) rồi ba câu đáp A, B, C. Không có chữ trên

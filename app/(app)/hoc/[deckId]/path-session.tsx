@@ -379,7 +379,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
       .filter((word) => word.box <= 1).length;
     return (
       <div className="flex flex-col items-center px-6 py-10 text-center">
-        <Mascot variant="hoc" size={128} priority className="rounded-3xl" />
+        <Mascot variant="hoc" size={128} priority />
         <h2 className="mt-4 text-xl font-bold">
           {stages.length} chặng · {totalWords} từ
         </h2>

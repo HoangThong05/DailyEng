@@ -112,7 +112,7 @@ export function DictationSession({ words }: { words: DictationWord[] }) {
     return (
       <div className="space-y-4 px-5 pt-2">
         <div className="border-border bg-card rounded-2xl border p-6 text-center">
-          <Mascot variant="nghe" size={128} className="mx-auto rounded-3xl" />
+          <Mascot variant="nghe" size={128} className="mx-auto" />
           <p className="mt-4 font-semibold">Nghe rồi gõ lại từ</p>
           <p className="text-muted mt-2 text-sm leading-relaxed">
             Máy sẽ đọc từng từ tiếng Anh. Bạn gõ đúng chính tả rồi bấm Enter.

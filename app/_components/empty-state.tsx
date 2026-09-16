@@ -13,7 +13,7 @@ export function EmptyState({ icon, mascot, title, description }: EmptyStateProps
   return (
     <div className="flex flex-col items-center px-8 py-16 text-center">
       {mascot ? (
-        <Mascot variant={mascot} size={128} className="rounded-3xl" />
+        <Mascot variant={mascot} size={128} />
       ) : (
         <span className="bg-brand-soft text-brand flex h-16 w-16 items-center justify-center rounded-2xl">
           {icon}

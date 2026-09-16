@@ -36,7 +36,7 @@ export function PageHeader({ title, subtitle, trailing, mascot }: PageHeaderProp
             <Mascot
               variant={mascot}
               size={48}
-              className="header-duck hidden rounded-xl sm:block"
+              className="header-duck hidden sm:block"
             />
           ) : null}
           {/* Có dữ liệu (trong app) mới hiện; trang giới thiệu tự truyền riêng */}

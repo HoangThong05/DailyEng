@@ -11,7 +11,7 @@ export default function TaoBoTuPage() {
       <PageHeader
         title="Tạo bộ từ"
         subtitle="Bộ này chỉ mình bạn thấy"
-        trailing={<Mascot variant="hoc" size={56} className="rounded-2xl" />}
+        trailing={<Mascot variant="hoc" size={56} />}
       />
       <CreateDeckForm />
     </>

@@ -37,7 +37,7 @@ export default async function QuanTriLayout({ children }: LayoutProps<"/quan-tri
     <div className="flex min-h-[100dvh] flex-col md:flex-row">
       <aside className="border-border bg-card/70 flex shrink-0 flex-col border-b backdrop-blur-xl md:sticky md:top-0 md:h-[100dvh] md:w-60 md:border-r md:border-b-0">
         <div className="flex items-center gap-3 px-5 pt-5 pb-4">
-          <Mascot variant="tot-nghiep" size={36} className="rounded-xl" />
+          <Mascot variant="tot-nghiep" size={36} />
           <div className="min-w-0">
             <p className="text-sm font-extrabold">DailyEng</p>
             <p className="text-muted text-xs">Khu quản trị</p>
