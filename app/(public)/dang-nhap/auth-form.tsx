@@ -3,13 +3,14 @@
 import { useActionState, useState } from "react";
 import { EyeIcon, EyeOffIcon, GoogleIcon } from "@/app/_components/icons";
 import { authenticate, signInWithGoogle, type AuthState } from "./actions";
+import { GoogleSignIn } from "./google-signin";
 
 const EMPTY: AuthState = {};
 
 const FIELD_CLASS =
   "border-border bg-card placeholder:text-muted/70 focus:border-brand min-h-12 w-full rounded-xl border px-4 text-base outline-none";
 
-export function AuthForm({ next }: { next: string }) {
+export function AuthForm({ next, googleClientId }: { next: string; googleClientId: string }) {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -27,15 +28,21 @@ export function AuthForm({ next }: { next: string }) {
 
   return (
     <div className="space-y-5">
-      <form action={signInWithGoogle}>
-        <button
-          type="submit"
-          className="border-border bg-card flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border text-base font-semibold press"
-        >
-          <GoogleIcon className="h-5 w-5" />
-          Tiếp tục với Google
-        </button>
-      </form>
+      {/* Có client ID thì dùng nút chạy tại chỗ (Google hiện tên miền của app);
+          thiếu thì lui về luồng chuyển hướng qua Supabase. */}
+      {googleClientId ? (
+        <GoogleSignIn clientId={googleClientId} next={next} />
+      ) : (
+        <form action={signInWithGoogle}>
+          <button
+            type="submit"
+            className="border-border bg-card flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border text-base font-semibold press"
+          >
+            <GoogleIcon className="h-5 w-5" />
+            Tiếp tục với Google
+          </button>
+        </form>
+      )}
 
       <div className="flex items-center gap-3">
         <span className="bg-border h-px flex-1" />

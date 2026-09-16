@@ -42,7 +42,7 @@ export default async function DangNhapPage({
         </p>
       ) : null}
 
-      <AuthForm next={next} />
+      <AuthForm next={next} googleClientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""} />
     </main>
   );
 }

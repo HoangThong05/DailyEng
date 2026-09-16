@@ -137,6 +137,8 @@ http://localhost:3000/auth/callback
 
 **Đăng nhập Google** (tuỳ chọn): tạo OAuth client trên Google Cloud với redirect URI `https://<project-ref>.supabase.co/auth/v1/callback`, rồi dán Client ID + Secret vào **Authentication → Sign In / Providers → Google**.
 
+Muốn màn hình Google hiện tên miền của app thay vì `*.supabase.co`, dùng thêm luồng Google Identity Services: đặt `NEXT_PUBLIC_GOOGLE_CLIENT_ID`, thêm địa chỉ app vào **Authorized JavaScript origins** của OAuth client, và thêm chính Client ID đó vào **Authorized Client IDs** ở trang Google provider của Supabase. Thiếu biến này thì app tự lui về luồng chuyển hướng cũ.
+
 ### Nhắc học (tuỳ chọn)
 
 Chạy `npx web-push generate-vapid-keys`, điền `VAPID_*`, `CRON_SECRET`, `SUPABASE_SERVICE_ROLE_KEY` theo `.env.local.example` — trên Vercel cũng thêm y hệt. Lịch gửi do `pg_cron` trong Supabase đảm nhiệm (schema-06), gọi `/api/cron/nhac-hoc` mỗi giờ; route chỉ gửi cho người chọn đúng giờ đó và hôm đó chưa học. Push không chạy ở `npm run dev` (service worker bị tắt ở dev).

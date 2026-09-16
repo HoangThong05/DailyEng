@@ -71,6 +71,30 @@ export async function signInWithGoogle() {
   redirect(data.url);
 }
 
+/**
+ * Đăng nhập bằng ID token của Google (luồng Google Identity Services).
+ *
+ * Token do trình duyệt lấy trực tiếp từ Google trên tên miền của app, nên
+ * người dùng không bị chuyển hướng qua địa chỉ dự án Supabase. `nonce` là
+ * chuỗi gốc; Google nhận bản băm SHA-256 của nó.
+ */
+export async function signInWithGoogleIdToken(
+  token: string,
+  nonce: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (!token) return { ok: false, error: "Google không trả về thông tin đăng nhập." };
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.signInWithIdToken({
+    provider: "google",
+    token,
+    nonce,
+  });
+
+  if (error) return { ok: false, error: toVietnamese(error) };
+  return { ok: true };
+}
+
 export async function authenticate(
   _prevState: AuthState,
   formData: FormData,
