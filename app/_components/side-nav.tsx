@@ -48,11 +48,9 @@ function NavItem({ item, active, collapsed }: { item: Item; active: boolean; col
  * Trên: logo. Giữa: 4 tab học + mục phụ. Dưới: thẻ hồ sơ (bấm vào là tới
  * Cá nhân). Nút thu gọn / mở rộng nằm cạnh logo; thu gọn thì chỉ còn icon, có tooltip.
  */
-export function SideNav({ profile, aiEnabled = false }: { profile: SideProfile; aiEnabled?: boolean }) {
+export function SideNav({ profile }: { profile: SideProfile }) {
   const pathname = usePathname();
   const collapsed = useSidebarCollapsed();
-  // Chưa có khoá Claude API thì giấu mục Hỏi AI.
-  const extras = SIDE_EXTRAS.filter((item) => item.href !== "/hoi-ai" || aiEnabled);
   const mainTabs = NAV_TABS.filter((tab) => tab.href !== "/tai-khoan");
   const profileActive = isSideActive("/tai-khoan", pathname);
 
@@ -101,7 +99,7 @@ export function SideNav({ profile, aiEnabled = false }: { profile: SideProfile; 
       {/* Thu gọn: thay chữ "Của tôi" bằng một vạch ngăn */}
       <div aria-hidden className="side-divider border-border mx-4 mt-4 hidden border-t" />
       <ul className="mt-1 flex flex-col gap-1 px-3">
-        {extras.map((item) => (
+        {SIDE_EXTRAS.map((item) => (
           <li key={item.href}>
             <NavItem item={item} active={isSideActive(item.href, pathname)} collapsed={collapsed} />
           </li>

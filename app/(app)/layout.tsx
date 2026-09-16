@@ -47,7 +47,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
       </main>
       {isAiEnabled() ? <DuckChat name={sideProfile.name} /> : null}
       <BottomNav />
-      <SideNav profile={sideProfile} aiEnabled={isAiEnabled()} />
+      <SideNav profile={sideProfile} />
     </div>
   );
 }

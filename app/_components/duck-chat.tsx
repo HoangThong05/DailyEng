@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AiChat } from "./ai-chat";
 import { CloseIcon } from "./icons";
@@ -15,6 +15,7 @@ type Quota = { enabled: boolean; used: number; limit: number };
  */
 export function DuckChat({ name }: { name: string }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [quota, setQuota] = useState<Quota | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -92,7 +93,11 @@ export function DuckChat({ name }: { name: string }) {
 
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          // Màn hẹp: khung nổi quá chật, mở thẳng trang chat toàn màn hình.
+          if (window.innerWidth < 640) router.push("/hoi-ai");
+          else setOpen(true);
+        }}
         aria-label="Mở trò chuyện với Vịt gia sư"
         className={`bg-card border-border fixed right-4 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] z-[55] flex h-16 w-16 items-center justify-center rounded-full border-2 shadow-xl shadow-black/15 transition-transform duration-300 hover:scale-105 active:scale-95 md:bottom-6 ${
           open ? "scale-0 opacity-0" : ""
