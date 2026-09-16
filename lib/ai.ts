@@ -27,9 +27,9 @@ export const CLAUDE_MODEL = process.env.AI_MODEL ?? "claude-haiku-4-5-20251001";
  */
 export const GEMINI_MODELS = [
   process.env.GEMINI_MODEL,
-  "gemini-2.5-flash",
+  "gemini-3.6-flash",
   "gemini-flash-latest",
-  "gemini-2.0-flash",
+  "gemini-2.5-flash",
 ].filter((name): name is string => !!name);
 
 export const AI_DAILY_LIMIT = Number(process.env.AI_DAILY_LIMIT ?? 50);
@@ -90,7 +90,7 @@ function geminiErrorMessage(status: number, body: string) {
     return "Khoá API chưa được phép gọi Gemini (cần bật Generative Language API cho project).";
   }
   if (status === 400) return "Khoá API không hợp lệ hoặc câu hỏi quá dài.";
-  return `Lỗi ${status || "mạng"}${body ? `: ${body.slice(0, 160)}` : ""}`;
+  return `Lỗi ${status || "mạng"}${body ? `: ${body.slice(0, 220)}` : ""}`;
 }
 
 /**
