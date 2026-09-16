@@ -111,15 +111,7 @@ export function UserBar({
 
   return (
     <div ref={rootRef} className="relative flex shrink-0 items-center gap-2">
-      {/* Avatar đứng đầu cụm (chỉ trang giới thiệu); rồi chuỗi ngày; chuông cuối */}
-      {showAvatar ? (
-        <Link href="/tai-khoan" aria-label="Trang cá nhân" className="relative shrink-0 press">
-          <Avatar url={data.avatarUrl} name={data.name} size={40} className="border-border border shadow-sm" />
-          <span className="bg-brand absolute -right-1 -bottom-1 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
-            Lv.{data.level}
-          </span>
-        </Link>
-      ) : null}
+      {/* Thứ tự: chuỗi ngày · chuông · avatar (avatar ngoài cùng, chỉ trang giới thiệu) */}
 
       <button
         type="button"
@@ -148,6 +140,15 @@ export function UserBar({
           </span>
         ) : null}
       </button>
+
+      {showAvatar ? (
+        <Link href="/tai-khoan" aria-label="Trang cá nhân" className="relative shrink-0 press">
+          <Avatar url={data.avatarUrl} name={data.name} size={40} className="border-border border shadow-sm" />
+          <span className="bg-brand absolute -right-1 -bottom-1 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
+            Lv.{data.level}
+          </span>
+        </Link>
+      ) : null}
 
       {open === "streak" ? (
         <CheckinPanel initial={data.checkin} streak={data.streak} onClose={() => setOpen(null)} />
