@@ -33,8 +33,11 @@ export const GEMINI_MODELS = [
 ].filter((name): name is string => !!name);
 
 export const AI_DAILY_LIMIT = Number(process.env.AI_DAILY_LIMIT ?? 50);
-/** Trả lời ngắn cho rẻ và đọc nhanh trên điện thoại. */
-export const AI_MAX_OUTPUT_TOKENS = 700;
+/**
+ * Trần độ dài câu trả lời. Tiếng Việt tốn token hơn tiếng Anh nhiều, để thấp
+ * quá thì câu trả lời đứt giữa chừng; 1500 đủ cho một lời giải thích đầy đủ.
+ */
+export const AI_MAX_OUTPUT_TOKENS = 1500;
 /** Gửi tối đa ngần này lượt gần nhất làm ngữ cảnh. */
 export const AI_HISTORY_TURNS = 10;
 export const AI_MAX_MESSAGE_CHARS = 2000;
@@ -50,7 +53,7 @@ Nhiệm vụ: giúp người học tiếng Anh (chủ yếu người Việt, tr�
 - Hỏi về chính app DailyEng (XP, cấp độ, chuỗi ngày, ôn tập giãn cách, nhiệm vụ, huy hiệu) hoặc phương pháp học thì cũng trả lời.
 
 Quy tắc:
-- Trả lời gọn: thường dưới 150 từ, dùng gạch đầu dòng khi liệt kê. Không lan man, không mở đầu bằng lời chào dài.
+- Trả lời gọn và LUÔN viết trọn ý: tối đa khoảng 180 từ, dùng gạch đầu dòng khi liệt kê. Không lan man, không mở đầu bằng lời chào dài. Thà bớt ví dụ còn hơn để câu cuối dở dang.
 - Chỉ trả lời chuyện học tiếng Anh và chuyện dùng app. Câu hỏi ngoài chủ đề (code, toán, đời sống, chính trị…) thì từ chối nhẹ nhàng một câu và gợi ý hỏi về tiếng Anh.
 - Không bịa từ hay nghĩa. Không chắc thì nói không chắc.
 - Không dùng markdown phức tạp (bảng, tiêu đề #); chỉ dùng gạch đầu dòng, **in đậm** cho từ khoá.`;
@@ -148,6 +151,7 @@ export async function* streamGemini(
   const decoder = new TextDecoder();
   let buffer = "";
   let usage: Usage = { input: 0, output: 0 };
+  let truncated = false;
 
   for (;;) {
     const { value, done } = await reader.read();
@@ -166,9 +170,10 @@ export async function* streamGemini(
       if (!payload || payload === "[DONE]") continue;
       try {
         const chunk = JSON.parse(payload) as {
-          candidates?: { content?: { parts?: { text?: string }[] } }[];
+          candidates?: { content?: { parts?: { text?: string }[] }; finishReason?: string }[];
           usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number };
         };
+        if (chunk.candidates?.[0]?.finishReason === "MAX_TOKENS") truncated = true;
         if (chunk.usageMetadata) {
           usage = {
             input: chunk.usageMetadata.promptTokenCount ?? usage.input,
@@ -182,6 +187,9 @@ export async function* streamGemini(
         // Khối chưa đủ / không phải JSON — bỏ qua.
       }
     }
+  }
+  if (truncated) {
+    yield "\n\n*(Câu trả lời hơi dài nên bị cắt — hỏi tiếp để Vịt nói nốt nhé.)*";
   }
   onUsage(usage);
 }

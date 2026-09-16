@@ -35,13 +35,20 @@ function Rich({ text }: { text: string }) {
         const bullet = /^\s*[-•*]\s+/.test(line);
         const body = bullet ? line.replace(/^\s*[-•*]\s+/, "") : line;
         if (!body.trim()) return <div key={i} className="h-1" />;
-        const parts = body.split(/(\*\*[^*]+\*\*)/g).map((part, k) =>
-          part.startsWith("**") && part.endsWith("**") ? (
-            <strong key={k}>{part.slice(2, -2)}</strong>
-          ) : (
-            <span key={k}>{part}</span>
-          ),
-        );
+        // **đậm** và *nghiêng*; không cần thư viện markdown.
+        const parts = body.split(/(\*\*[^*]+\*\*|\*[^*\n]+\*)/g).map((part, k) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            return <strong key={k}>{part.slice(2, -2)}</strong>;
+          }
+          if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
+            return (
+              <em key={k} className="text-muted">
+                {part.slice(1, -1)}
+              </em>
+            );
+          }
+          return <span key={k}>{part}</span>;
+        });
         return bullet ? (
           <p key={i} className="flex gap-2 pl-1">
             <span className="text-brand shrink-0">•</span>
