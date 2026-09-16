@@ -11,10 +11,20 @@ import { DECK_CATEGORIES } from "@/lib/deck-categories";
 import vitHero from "@/public/mascot/vit-hero.png";
 import { getCurrentUser } from "@/lib/supabase/server";
 
+const DESCRIPTION =
+  "Học từ vựng theo chặng, trò chơi ôn từ, luyện nghe nói và thi thử TOEIC. Miễn phí, chạy trên điện thoại và máy tính.";
+
 export const metadata: Metadata = {
   title: "DailyEng — Học tiếng Anh mỗi ngày",
-  description:
-    "Học từ vựng theo chặng, trò chơi ôn từ, luyện nghe nói và thi thử TOEIC. Miễn phí, chạy trên điện thoại và máy tính.",
+  description: DESCRIPTION,
+  // Địa chỉ chính thức của trang này; khai đúng để trình đọc thẻ chia sẻ
+  // không phải đi qua chuyển hướng.
+  alternates: { canonical: "/gioi-thieu" },
+  openGraph: {
+    url: "/gioi-thieu",
+    title: "DailyEng — Học tiếng Anh mỗi ngày",
+    description: DESCRIPTION,
+  },
 };
 
 /** Số liệu nổi bật ở đầu trang. Cập nhật tay khi thêm bộ từ. */

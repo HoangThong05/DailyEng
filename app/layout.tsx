@@ -45,7 +45,6 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "DailyEng",
     locale: "vi_VN",
-    url: SITE.url,
     title: "DailyEng — Học tiếng Anh mỗi ngày",
     description: DESCRIPTION,
   },
@@ -54,7 +53,6 @@ export const metadata: Metadata = {
     title: "DailyEng — Học tiếng Anh mỗi ngày",
     description: DESCRIPTION,
   },
-  alternates: { canonical: "/gioi-thieu" },
 };
 
 export const viewport: Viewport = {
