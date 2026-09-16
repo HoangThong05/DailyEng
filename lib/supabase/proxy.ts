@@ -20,6 +20,10 @@ const PUBLIC_PATHS = [
   "/offline",
   "/api/cron",
   "/gioi-thieu",
+  // Google phải đọc được hai file này mà không cần đăng nhập.
+  "/robots.txt",
+  "/sitemap.xml",
+  "/opengraph-image.png",
 ];
 
 function isPublicPath(pathname: string) {

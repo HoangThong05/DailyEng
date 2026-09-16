@@ -44,6 +44,7 @@
 **Tài khoản & giao diện**
 - Đăng nhập bằng email/mật khẩu (xác nhận bằng mã 6 số) hoặc Google
 - Hồ sơ: ảnh đại diện và ảnh bìa tải lên (thu nhỏ trên trình duyệt, lưu Supabase Storage), tiểu sử, màu bìa, tên hiển thị, mục tiêu từ/ngày; giao diện sáng/tối/theo máy
+- Thẻ chia sẻ (Open Graph) với ảnh 1200×630 sinh bằng `scripts/render-og.py`, `sitemap.xml` + `robots.txt` (chỉ cho lập chỉ mục trang giới thiệu), trang 404 riêng
 - PWA: offline, cài lên màn hình chính; responsive: tab bar trên điện thoại, sidebar trên màn hình lớn
 
 ## Công nghệ

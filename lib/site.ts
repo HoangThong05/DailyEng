@@ -4,6 +4,11 @@
  */
 export const SITE = {
   name: "DailyEng",
+  /**
+   * Địa chỉ thật của trang, dùng cho thẻ chia sẻ (Open Graph) và sitemap.
+   * Mua tên miền xong thì đặt NEXT_PUBLIC_SITE_URL trên Vercel, không cần sửa code.
+   */
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://daily-eng-omega.vercel.app").replace(/\/$/, ""),
   tagline: "Học tiếng Anh mỗi ngày: từ vựng, nghe, nói và luyện thi.",
   /** Email của app: liên hệ, góp ý, yêu cầu dữ liệu. Khác với email cá nhân của tác giả. */
   contactEmail: "dailyenglish78@gmail.com",

@@ -3,6 +3,7 @@ import { Inter, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/app/_components/service-worker-register";
 import { SIDEBAR_INIT_SCRIPT } from "@/lib/sidebar-store";
+import { SITE } from "@/lib/site";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 
 // Inter có subset "vietnamese" nên dấu tiếng Việt hiển thị đúng.
@@ -21,13 +22,17 @@ const notoSans = Noto_Sans({
   display: "swap",
 });
 
+const DESCRIPTION =
+  "Học từ vựng theo chặng, trò chơi ôn từ, luyện nghe nói và thi thử TOEIC. Miễn phí, chạy trên điện thoại và máy tính.";
+
 export const metadata: Metadata = {
+  // metadataBase để mọi đường dẫn ảnh trong thẻ chia sẻ thành URL tuyệt đối.
+  metadataBase: new URL(SITE.url),
   title: {
     default: "DailyEng — Học tiếng Anh mỗi ngày",
     template: "%s · DailyEng",
   },
-  description:
-    "Học tiếng Anh mỗi ngày với flashcard từ vựng, quiz trắc nghiệm và luyện phát âm.",
+  description: DESCRIPTION,
   applicationName: "DailyEng",
   formatDetection: { telephone: false },
   appleWebApp: {
@@ -35,6 +40,21 @@ export const metadata: Metadata = {
     title: "DailyEng",
     statusBarStyle: "default",
   },
+  // Ảnh dùng app/opengraph-image.png (Next tự gắn); chỉ khai phần chữ.
+  openGraph: {
+    type: "website",
+    siteName: "DailyEng",
+    locale: "vi_VN",
+    url: SITE.url,
+    title: "DailyEng — Học tiếng Anh mỗi ngày",
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DailyEng — Học tiếng Anh mỗi ngày",
+    description: DESCRIPTION,
+  },
+  alternates: { canonical: "/gioi-thieu" },
 };
 
 export const viewport: Viewport = {
