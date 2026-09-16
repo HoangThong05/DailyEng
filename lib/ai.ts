@@ -78,6 +78,21 @@ export type ChatTurn = { role: "user" | "assistant"; content: string };
 /** Số token đã dùng, để ghi nhật ký theo dõi chi phí. */
 export type Usage = { input: number; output: number };
 
+/** Đổi mã lỗi của Google thành câu tiếng Việt người dùng hiểu được. */
+function geminiErrorMessage(status: number, body: string) {
+  if (status === 503 || status === 500) {
+    return "Máy chủ AI đang quá tải, thử lại sau một chút nhé.";
+  }
+  if (status === 429) {
+    return "Đã chạm hạn mức miễn phí trong phút này, đợi khoảng một phút rồi hỏi lại nhé.";
+  }
+  if (status === 403) {
+    return "Khoá API chưa được phép gọi Gemini (cần bật Generative Language API cho project).";
+  }
+  if (status === 400) return "Khoá API không hợp lệ hoặc câu hỏi quá dài.";
+  return `Lỗi ${status || "mạng"}${body ? `: ${body.slice(0, 160)}` : ""}`;
+}
+
 /**
  * Gọi Gemini (REST, không cần SDK) và stream từng đoạn chữ.
  * Gói miễn phí của Google AI Studio đủ cho app nhỏ; xem README về hạn mức.
@@ -95,26 +110,39 @@ export async function* streamGemini(
     generationConfig: { maxOutputTokens: AI_MAX_OUTPUT_TOKENS, temperature: 0.6 },
   });
 
-  // Thử lần lượt các model; chỉ 404 (không có model đó) mới thử tiếp.
+  // Thử lần lượt các model. 404 (không có model), 429 (chạm hạn mức) và 503
+  // (Google đang quá tải) thì chuyển sang model kế; mỗi model thử 2 lần.
+  const RETRYABLE = [404, 429, 503, 500];
   let response: Response | null = null;
-  let lastError = "";
-  for (const model of GEMINI_MODELS) {
+  let lastStatus = 0;
+  let lastBody = "";
+
+  outer: for (const model of GEMINI_MODELS) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${process.env.GEMINI_API_KEY}`;
-    const attempt = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body,
-    });
-    if (attempt.ok && attempt.body) {
-      response = attempt;
-      break;
+    for (let attemptNo = 0; attemptNo < 2; attemptNo++) {
+      const attempt = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body,
+      });
+      if (attempt.ok && attempt.body) {
+        response = attempt;
+        break outer;
+      }
+      lastStatus = attempt.status;
+      lastBody = (await attempt.text().catch(() => "")).slice(0, 300);
+      console.error(`Gemini ${model} (lần ${attemptNo + 1}):`, lastStatus, lastBody);
+      if (!RETRYABLE.includes(lastStatus)) break outer;
+      // Quá tải thì nghỉ một nhịp rồi thử lại chính model đó.
+      if (lastStatus === 503 || lastStatus === 500) {
+        await new Promise((resolve) => setTimeout(resolve, 1200));
+      } else {
+        break;
+      }
     }
-    lastError = `${attempt.status} ${(await attempt.text().catch(() => "")).slice(0, 400)}`;
-    console.error(`Gemini ${model}:`, lastError);
-    if (attempt.status !== 404) break;
   }
 
-  if (!response?.body) throw new Error(`Gemini ${lastError}`);
+  if (!response?.body) throw new Error(geminiErrorMessage(lastStatus, lastBody));
 
   const reader = response.body.getReader();
   const decoder = new TextDecoder();

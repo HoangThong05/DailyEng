@@ -110,10 +110,10 @@ export async function POST(request: Request) {
         }
       } catch (error) {
         console.error("ai chat:", error);
-        // Hiện mã lỗi cho người dùng: app một người làm, biết lỗi gì mới sửa được.
-        const detail = error instanceof Error ? error.message.slice(0, 300) : "";
+        // Thông báo đã dịch sang tiếng Việt ở lib/ai.ts; log giữ bản gốc của Google.
+        const detail = error instanceof Error ? error.message.slice(0, 200) : "";
         controller.enqueue(
-          encoder.encode(`\n\n[Xin lỗi, có lỗi khi trả lời.${detail ? ` Chi tiết: ${detail}` : ""}]`),
+          encoder.encode(`\n\n[${detail || "Có lỗi khi trả lời. Thử lại nhé."}]`),
         );
       } finally {
         controller.close();
