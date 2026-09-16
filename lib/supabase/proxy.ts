@@ -26,7 +26,6 @@ const PUBLIC_PATHS = [
   // Google phải đọc được hai file này mà không cần đăng nhập.
   "/robots.txt",
   "/sitemap.xml",
-  "/og.png",
 ];
 
 function isPublicPath(pathname: string) {

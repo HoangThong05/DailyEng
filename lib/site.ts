@@ -27,9 +27,13 @@ export const SITE = {
   repo: "https://github.com/HoangThong05/DailyEng",
 };
 
-/** Ảnh xem trước khi chia sẻ link; sinh bằng scripts/render-og.py. */
+/**
+ * Ảnh xem trước khi chia sẻ link; sinh bằng scripts/render-og.py.
+ * Để dưới /gioi-thieu/ vì đó là nhánh luôn được robots.txt cho phép — trình
+ * đọc thẻ của Facebook/Zalo không bao giờ bị chặn dù nó cache robots cũ.
+ */
 export const OG_IMAGE = {
-  url: "/og.png",
+  url: "/gioi-thieu/og.png",
   width: 1200,
   height: 630,
   alt: "DailyEng — học tiếng Anh mỗi ngày cùng chú vịt vàng",
