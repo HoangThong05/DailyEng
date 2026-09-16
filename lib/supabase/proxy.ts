@@ -9,6 +9,9 @@ export const VERIFY_PATH = "/nhap-ma";
 /** Tham số lưu trang người dùng định vào, để đăng nhập xong quay lại đúng chỗ. */
 export const REDIRECT_PARAM = "tiep-tuc";
 
+/** Người lạ mở địa chỉ gốc thì tới đây thay vì form đăng nhập. */
+export const LANDING_PATH = "/gioi-thieu";
+
 /**
  * Những đường dẫn xem được khi chưa đăng nhập.
  * /api/cron do Vercel gọi, không có cookie — tự xác thực bằng CRON_SECRET.
@@ -74,9 +77,15 @@ export async function updateSession(request: NextRequest) {
 
   if (!isLoggedIn && !isPublicPath(pathname)) {
     const target = request.nextUrl.clone();
-    target.pathname = LOGIN_PATH;
     target.search = "";
-    if (pathname !== "/") target.searchParams.set(REDIRECT_PARAM, pathname);
+    if (pathname === "/") {
+      // Người lạ mở địa chỉ gốc (hoặc bấm link được chia sẻ) thì thấy trang
+      // giới thiệu, không phải form đăng nhập.
+      target.pathname = LANDING_PATH;
+    } else {
+      target.pathname = LOGIN_PATH;
+      target.searchParams.set(REDIRECT_PARAM, pathname);
+    }
     return redirectKeepingCookies(target, response);
   }
 
