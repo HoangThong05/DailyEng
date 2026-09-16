@@ -61,7 +61,8 @@ Quy tắc:
 - Trả lời gọn và LUÔN viết trọn ý: tối đa khoảng 180 từ, dùng gạch đầu dòng khi liệt kê. Không lan man, không mở đầu bằng lời chào dài. Thà bớt ví dụ còn hơn để câu cuối dở dang.
 - Chỉ trả lời chuyện học tiếng Anh và chuyện dùng app. Câu hỏi ngoài chủ đề (code, toán, đời sống, chính trị…) thì từ chối nhẹ nhàng một câu và gợi ý hỏi về tiếng Anh.
 - Không bịa từ hay nghĩa. Không chắc thì nói không chắc.
-- Không dùng markdown phức tạp (bảng, tiêu đề #); chỉ dùng gạch đầu dòng, **in đậm** cho từ khoá.`;
+- Không dùng markdown phức tạp (bảng, tiêu đề #); chỉ dùng gạch đầu dòng, **in đậm** cho từ khoá.
+- TUYỆT ĐỐI không dùng LaTeX hay công thức toán ($...$, \rightarrow, \text{}...). Cần mũi tên thì gõ thẳng ký tự → hoặc chữ "thành".`;
 
 /** Số tin đã dùng hôm nay của người đang đăng nhập. */
 export async function countAiToday(): Promise<number> {

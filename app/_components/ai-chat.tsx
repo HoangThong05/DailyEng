@@ -60,8 +60,32 @@ const QUICK = [
 ];
 
 /**
- * Vẽ câu trả lời: chỉ hỗ trợ **in đậm** và gạch đầu dòng — đủ cho gia sư,
- * không cần thư viện markdown.
+ * Mô hình thỉnh thoảng trả về LaTeX (\\rightarrow, $...$, \\text{...}) dù prompt đã
+ * cấm. Đổi các ký hiệu hay gặp thành ký tự thường rồi bỏ dấu $ còn sót, để
+ * người học không phải đọc mã lạ.
+ */
+const LATEX: [RegExp, string][] = [
+  [/\\(?:rightarrow|to|Rightarrow)\b/g, "→"],
+  [/\\(?:leftarrow|gets|Leftarrow)\b/g, "←"],
+  [/\\times\b/g, "×"],
+  [/\\approx\b/g, "≈"],
+  [/\\neq\b/g, "≠"],
+  [/\\l?dots\b/g, "…"],
+  [/\\(?:quad|qquad|;|,)/g, " "],
+  [/\\(?:text|mathrm|mathbf|textbf)\{([^}]*)\}/g, "$1"],
+];
+
+function clean(text: string) {
+  let out = text;
+  for (const [pattern, replacement] of LATEX) out = out.replace(pattern, replacement);
+  // Bỏ cặp $...$ bao quanh, giữ lại nội dung bên trong.
+  out = out.replace(/\$\$?([^$]*)\$\$?/g, "$1");
+  return out.replace(/[ \t]{2,}/g, " ");
+}
+
+/**
+ * Vẽ câu trả lời: chỉ hỗ trợ **in đậm**, *nghiêng* và gạch đầu dòng — đủ cho
+ * gia sư, không cần thư viện markdown.
  */
 function Rich({ text }: { text: string }) {
   return (
