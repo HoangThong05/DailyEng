@@ -111,7 +111,7 @@ export function UserBar({
 
   return (
     <div ref={rootRef} className="relative flex shrink-0 items-center gap-2">
-      {/* Avatar đứng đầu cụm (chỉ trang giới thiệu); chuỗi ngày kèm chữ trên màn rộng; chuông cuối */}
+      {/* Avatar đứng đầu cụm (chỉ trang giới thiệu); rồi chuỗi ngày; chuông cuối */}
       {showAvatar ? (
         <Link href="/tai-khoan" aria-label="Trang cá nhân" className="relative shrink-0 press">
           <Avatar url={data.avatarUrl} name={data.name} size={40} className="border-border border shadow-sm" />
@@ -125,17 +125,13 @@ export function UserBar({
         type="button"
         onClick={() => toggle("streak")}
         aria-expanded={open === "streak"}
-        aria-label={`Chuỗi ${data.streak} ngày, mở điểm danh`}
-        className={`${chip} gap-1.5 px-3 ${
+        aria-label={`Chuỗi ${data.streak} ngày${data.checkin.checkedToday ? ", đã điểm danh" : ", chưa điểm danh"}. Mở điểm danh`}
+        className={`${chip} gap-1 px-3 ${
           data.checkin.checkedToday ? "" : "ring-2 ring-amber-400/70"
         }`}
       >
         <FlameIcon className={`h-5 w-5 ${data.streak > 0 ? "text-orange-500" : "text-muted"}`} />
         <span className="text-sm font-bold tabular-nums">{data.streak}</span>
-        <span className="text-muted hidden text-xs font-semibold sm:inline">ngày</span>
-        {data.checkin.checkedToday ? (
-          <span aria-hidden className="hidden text-xs text-emerald-500 sm:inline">✓</span>
-        ) : null}
       </button>
 
       <button
