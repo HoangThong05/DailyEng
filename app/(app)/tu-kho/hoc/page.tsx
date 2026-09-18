@@ -2,15 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
+import { CardSession } from "@/app/(app)/hoc/[deckId]/card-session";
 import { PathSession } from "@/app/(app)/hoc/[deckId]/path-session";
+import { ModeTabs, readMode } from "@/app/_components/mode-tabs";
 import { isAiEnabled } from "@/lib/ai";
 import { getHardSession } from "@/lib/decks";
 import { buildStages } from "@/lib/study-path";
 
 export const metadata: Metadata = { title: "Ôn từ khó" };
 
-export default async function OnTuKhoPage() {
-  const { cards, pool } = await getHardSession();
+export default async function OnTuKhoPage({ searchParams }: PageProps<"/tu-kho/hoc">) {
+  const [{ "che-do": modeParam }, { cards, pool }] = await Promise.all([searchParams, getHardSession()]);
+  const mode = readMode(modeParam, "the");
   const stages = buildStages(cards, pool);
 
   return (
@@ -37,9 +40,16 @@ export default async function OnTuKhoPage() {
           </div>
         </>
       ) : (
-        <div className="mx-auto w-full max-w-md">
-          <PathSession deckName="Từ khó" stages={stages} pool={pool} aiEnabled={isAiEnabled()} />
-        </div>
+        <>
+          <ModeTabs mode={mode} basePath="/tu-kho/hoc" />
+          <div className="mx-auto w-full max-w-md">
+            {mode === "the" ? (
+              <CardSession title="Từ khó" words={cards} aiEnabled={isAiEnabled()} />
+            ) : (
+              <PathSession deckName="Từ khó" stages={stages} pool={pool} aiEnabled={isAiEnabled()} />
+            )}
+          </div>
+        </>
       )}
     </>
   );

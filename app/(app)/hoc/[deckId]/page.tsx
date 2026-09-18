@@ -6,7 +6,9 @@ import { PageHeader } from "@/app/_components/page-header";
 import { getStudySession } from "@/lib/decks";
 import { isAiEnabled } from "@/lib/ai";
 import { buildStages } from "@/lib/study-path";
+import { CardSession } from "./card-session";
 import { PathSession } from "./path-session";
+import { ModeTabs, readMode } from "@/app/_components/mode-tabs";
 
 export async function generateMetadata({ params }: PageProps<"/hoc/[deckId]">) {
   const { deckId } = await params;
@@ -14,9 +16,11 @@ export async function generateMetadata({ params }: PageProps<"/hoc/[deckId]">) {
   return { title: session?.deck.name ?? "Học từ vựng" };
 }
 
-export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
-  const { deckId } = await params;
+export default async function DeckPage({ params, searchParams }: PageProps<"/hoc/[deckId]">) {
+  const [{ deckId }, { "che-do": modeParam }] = await Promise.all([params, searchParams]);
   const session = await getStudySession(deckId);
+  // Bộ từ thường có từ mới → mặc định theo chặng (phải gõ mới nhớ).
+  const mode = readMode(modeParam, "chang");
 
   // Không tìm thấy, hoặc RLS chặn vì đây là bộ riêng của người khác.
   if (!session) notFound();
@@ -70,9 +74,16 @@ export default async function DeckPage({ params }: PageProps<"/hoc/[deckId]">) {
           </div>
         </>
       ) : (
-        <div className="mx-auto w-full max-w-md">
-          <PathSession deckName={deck.name} stages={stages} pool={pool} aiEnabled={isAiEnabled()} />
-        </div>
+        <>
+          <ModeTabs mode={mode} basePath={`/hoc/${deck.id}`} />
+          <div className="mx-auto w-full max-w-md">
+            {mode === "the" ? (
+              <CardSession title={deck.name} words={cards} aiEnabled={isAiEnabled()} />
+            ) : (
+              <PathSession deckName={deck.name} stages={stages} pool={pool} aiEnabled={isAiEnabled()} />
+            )}
+          </div>
+        </>
       )}
     </>
   );

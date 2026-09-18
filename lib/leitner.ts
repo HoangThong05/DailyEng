@@ -97,3 +97,67 @@ export function nextReviewState(
   const isDue = current.dueOn <= today;
   return isDue ? reviewOutcome(current.box, true, today) : current;
 }
+/* ---- Tự đánh giá 4 mức (chế độ Thẻ lật) ---------------------------------- */
+
+/**
+ * Người học tự chấm sau khi lật thẻ. Khác trả lời đúng/sai nhị phân ở học theo
+ * chặng: có mức "khó" (nhớ nhưng chật vật) và "dễ" (nhớ ngay, nhảy hai hộp).
+ */
+export type Rating = "again" | "hard" | "good" | "easy" | "master";
+
+export const RATINGS: Rating[] = ["again", "hard", "good", "easy"];
+
+function clampBox(box: number) {
+  return Math.max(1, Math.min(MAX_BOX, box));
+}
+
+/**
+ * Trạng thái mới theo mức tự chấm. Áp dụng ngay cả khi từ chưa tới hạn —
+ * người học đã chủ động ôn và tự đánh giá thì tôn trọng đánh giá đó.
+ *
+ *  - again : về hộp 1, tới hạn hôm nay (gặp lại ngay trong phiên)
+ *  - hard  : giữ hộp, nhưng chỉ giãn 1 ngày
+ *  - good  : lên 1 hộp, giãn theo hộp mới
+ *  - easy  : lên 2 hộp, giãn theo hộp mới
+ *  - master: nhảy thẳng hộp cao nhất
+ */
+export function rateReview(
+  current: ReviewState | null,
+  rating: Rating,
+  today: string = todayInAppZone(),
+): ReviewState & { remembered: boolean } {
+  const box = current?.box ?? 1;
+  switch (rating) {
+    case "again":
+      return { box: 1, dueOn: today, remembered: false };
+    case "hard":
+      return { box: clampBox(box), dueOn: addDays(today, 1), remembered: true };
+    case "good": {
+      const next = clampBox(box + 1);
+      return { box: next, dueOn: addDays(today, BOX_INTERVAL_DAYS[next - 1]), remembered: true };
+    }
+    case "easy": {
+      const next = clampBox(box + 2);
+      return { box: next, dueOn: addDays(today, BOX_INTERVAL_DAYS[next - 1]), remembered: true };
+    }
+    case "master":
+      return { box: MAX_BOX, dueOn: addDays(today, BOX_INTERVAL_DAYS[MAX_BOX - 1]), remembered: true };
+  }
+}
+
+/** Số ngày tới lần gặp lại cho từng mức, để in dưới nút ("3 ngày"). */
+export function ratingIntervals(box: number): Record<Rating, number> {
+  const today = "2000-01-01";
+  const days = (state: ReviewState) => {
+    const [y, m, d] = state.dueOn.split("-").map(Number);
+    return Math.round((Date.UTC(y, m - 1, d) - Date.UTC(2000, 0, 1)) / 86_400_000);
+  };
+  const current = { box, dueOn: today };
+  return {
+    again: 0,
+    hard: days(rateReview(current, "hard", today)),
+    good: days(rateReview(current, "good", today)),
+    easy: days(rateReview(current, "easy", today)),
+    master: days(rateReview(current, "master", today)),
+  };
+}

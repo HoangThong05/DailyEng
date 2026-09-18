@@ -1,7 +1,7 @@
 "use server";
 
 import type { ReviewSource } from "@/lib/database.types";
-import { nextReviewState, todayInAppZone } from "@/lib/leitner";
+import { nextReviewState, rateReview, type Rating, todayInAppZone } from "@/lib/leitner";
 import { getStudyStats } from "@/lib/stats";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
@@ -71,6 +71,59 @@ export async function recordReview(
     console.error("Không ghi được review_log:", logResult.error.message);
   }
 
+  return { ok: true };
+}
+
+/**
+ * Ghi một lần tự chấm ở chế độ Thẻ lật (quên / khó / nhớ / dễ / thành thạo).
+ * Cùng bảng với recordReview, chỉ khác cách tính hộp — xem rateReview.
+ */
+export async function recordRating(
+  wordId: string,
+  rating: Rating,
+): Promise<ReviewResult> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "Phiên đăng nhập đã hết hạn." };
+
+  const supabase = await createClient();
+  const { data: current } = await supabase
+    .from("word_progress")
+    .select("box, due_on, review_count, correct_count")
+    .eq("user_id", user.id)
+    .eq("word_id", wordId)
+    .maybeSingle();
+
+  const today = todayInAppZone();
+  const { box, dueOn, remembered } = rateReview(
+    current ? { box: current.box, dueOn: current.due_on } : null,
+    rating,
+    today,
+  );
+
+  const [progressResult, logResult] = await Promise.all([
+    supabase.from("word_progress").upsert(
+      {
+        user_id: user.id,
+        word_id: wordId,
+        box,
+        due_on: dueOn,
+        review_count: (current?.review_count ?? 0) + 1,
+        correct_count: (current?.correct_count ?? 0) + (remembered ? 1 : 0),
+        last_reviewed_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id,word_id" },
+    ),
+    supabase.from("review_log").insert({
+      user_id: user.id,
+      word_id: wordId,
+      day: today,
+      remembered,
+      source: "hoc",
+    }),
+  ]);
+
+  if (progressResult.error) return { ok: false, error: progressResult.error.message };
+  if (logResult.error) console.error("Không ghi được review_log:", logResult.error.message);
   return { ok: true };
 }
 

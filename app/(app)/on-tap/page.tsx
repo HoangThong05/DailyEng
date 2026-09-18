@@ -6,13 +6,20 @@ import { PageHeader } from "@/app/_components/page-header";
 import { getReviewSession } from "@/lib/decks";
 import { isAiEnabled } from "@/lib/ai";
 import { buildStages } from "@/lib/study-path";
+import { CardSession } from "../hoc/[deckId]/card-session";
 import { PathSession } from "../hoc/[deckId]/path-session";
+import { ModeTabs, readMode } from "@/app/_components/mode-tabs";
 
 export const metadata: Metadata = { title: "Ôn tập hôm nay" };
 
 /** Ôn từ đến hạn từ mọi bộ trong một phiên, không cần vào từng bộ. */
-export default async function OnTapPage() {
-  const { cards, totalDue, pool } = await getReviewSession();
+export default async function OnTapPage({ searchParams }: PageProps<"/on-tap">) {
+  const [{ "che-do": modeParam }, { cards, totalDue, pool }] = await Promise.all([
+    searchParams,
+    getReviewSession(),
+  ]);
+  // Ôn từ đã quen thì thẻ lật nhanh hơn; ai thích gõ vẫn chuyển được.
+  const mode = readMode(modeParam, "the");
   const stages = buildStages(cards, pool);
 
   return (
@@ -44,9 +51,16 @@ export default async function OnTapPage() {
           </div>
         </>
       ) : (
-        <div className="mx-auto w-full max-w-md">
-          <PathSession deckName="Ôn tập hôm nay" stages={stages} pool={pool} aiEnabled={isAiEnabled()} />
-        </div>
+        <>
+          <ModeTabs mode={mode} basePath="/on-tap" />
+          <div className="mx-auto w-full max-w-md">
+            {mode === "the" ? (
+              <CardSession title="Ôn tập hôm nay" words={cards} aiEnabled={isAiEnabled()} />
+            ) : (
+              <PathSession deckName="Ôn tập hôm nay" stages={stages} pool={pool} aiEnabled={isAiEnabled()} />
+            )}
+          </div>
+        </>
       )}
     </>
   );
