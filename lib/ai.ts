@@ -129,12 +129,23 @@ export async function* streamGemini(
   turns: ChatTurn[],
   onUsage: (usage: Usage) => void,
 ): AsyncGenerator<string> {
-  const body = JSON.stringify({
+  const payload = {
     systemInstruction: { parts: [{ text: AI_SYSTEM_PROMPT }] },
     contents: turns.map((turn) => ({
       role: turn.role === "assistant" ? "model" : "user",
       parts: [{ text: turn.content }],
     })),
+    generationConfig: {
+      maxOutputTokens: AI_MAX_OUTPUT_TOKENS,
+      temperature: 0.6,
+      // Gemini 2.5+/3.x mặc định "suy nghĩ" vài giây trước khi trả lời — thừa
+      // với câu hỏi từ vựng, chỉ làm chậm. Tắt để có chữ đầu tiên ngay.
+      thinkingConfig: { thinkingBudget: 0 },
+    },
+  };
+  const withThinkingOff = JSON.stringify(payload);
+  const withoutThinkingField = JSON.stringify({
+    ...payload,
     generationConfig: { maxOutputTokens: AI_MAX_OUTPUT_TOKENS, temperature: 0.6 },
   });
 
@@ -162,8 +173,10 @@ export async function* streamGemini(
   for (const model of GEMINI_MODELS) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${process.env.GEMINI_API_KEY}`;
     // 503 trả về nhanh thì nghỉ một nhịp rồi thử lại chính model đó một lần.
-    for (let attemptNo = 0; attemptNo < 2 && !response; attemptNo++) {
+    let body = withThinkingOff;
+    for (let attemptNo = 0; attemptNo < 3 && !response; attemptNo++) {
       if (Date.now() - startedAt > BUDGET_MS) break;
+      const t0 = Date.now();
       let attempt: Response;
       try {
         attempt = await fetch(url, {
@@ -178,15 +191,21 @@ export async function* streamGemini(
         break; // treo thì không thử lại model này
       }
       if (attempt.ok && attempt.body) {
+        console.log(`Gemini ${model}: bắt đầu trả lời sau ${Date.now() - t0}ms`);
         response = attempt;
         break;
       }
       const status = attempt.status;
       const text = (await attempt.text().catch(() => "")).slice(0, 300);
-      remember(status, text);
       console.error(`Gemini ${model} (lần ${attemptNo + 1}):`, status, text);
+      // Model không nhận thinkingConfig → gửi lại bản không có trường đó.
+      if (status === 400 && /thinking/i.test(text) && body === withThinkingOff) {
+        body = withoutThinkingField;
+        continue;
+      }
+      remember(status, text);
       if (!RETRYABLE.includes(status)) return yieldError(bestStatus, bestBody);
-      if (status !== 503 || attemptNo === 1) break;
+      if (status !== 503 || attemptNo >= 1) break;
       await new Promise((resolve) => setTimeout(resolve, 1500));
     }
     if (response) break;
