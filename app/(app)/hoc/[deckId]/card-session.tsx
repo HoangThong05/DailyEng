@@ -6,7 +6,7 @@ import { recordRating } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
 import { WordPicture } from "@/app/_components/emoji-image";
-import { SparkleIcon, SpeakerIcon } from "@/app/_components/icons";
+import { CheckIcon, CloseIcon, SparkleIcon, SpeakerIcon } from "@/app/_components/icons";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { playCorrect, playMiss, readSoundPreference, unlockAudio } from "@/lib/game-audio";
 import type { Rating } from "@/lib/leitner";
@@ -31,19 +31,25 @@ const MAX_AGAIN = 2;
  * Hai mức tự chấm, nhất quán với cả app (nhớ / quên). Số hộp, số ngày là việc
  * của thuật toán Leitner, người học không cần bận tâm.
  */
-const RATING_UI: { rating: Rating; label: string; emoji: string; className: string; key: string }[] = [
+const RATING_UI: {
+  rating: Rating;
+  label: string;
+  Icon: (p: { className?: string }) => React.JSX.Element;
+  className: string;
+  key: string;
+}[] = [
   {
     rating: "again",
-    label: "Quên",
-    emoji: "😵",
-    className: "border-red-500/50 bg-red-500/10 text-red-500 hover:bg-red-500/20",
+    label: "Chưa nhớ",
+    Icon: CloseIcon,
+    className: "border-red-500/40 bg-red-500/10 text-red-500 hover:bg-red-500/20",
     key: "1",
   },
   {
     rating: "good",
-    label: "Nhớ",
-    emoji: "🙂",
-    className: "border-brand/60 bg-brand-soft text-brand hover:bg-brand/15",
+    label: "Nhớ rồi",
+    Icon: CheckIcon,
+    className: "border-brand/50 bg-brand-soft text-brand hover:bg-brand/15",
     key: "2",
   },
 ];
@@ -160,10 +166,10 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
             <span className="text-lg">🔄</span> Bấm thẻ hoặc phím Space để lật
           </li>
           <li className="border-border bg-card flex items-center gap-3 rounded-xl border px-4 py-3">
-            <span className="text-lg">1️⃣</span> Phím 1 = Quên, 2 = Nhớ
+            <span className="text-lg">⌨️</span> Phím 1 = Chưa nhớ, 2 = Nhớ rồi
           </li>
           <li className="border-border bg-card flex items-center gap-3 rounded-xl border px-4 py-3">
-            <span className="text-lg">🔁</span> Chấm Quên thì thẻ quay lại cuối hàng
+            <span className="text-lg">🔁</span> Chưa nhớ thì thẻ quay lại cuối hàng
           </li>
         </ul>
         <button
@@ -384,17 +390,21 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
                 type="button"
                 onClick={() => rate(ui.rating)}
                 disabled={busy}
-                className={`flex min-h-16 flex-col items-center justify-center rounded-2xl border-2 text-lg font-bold transition-colors press ${ui.className}`}
+                className={`relative flex min-h-14 items-center justify-center gap-2 rounded-2xl border-2 text-base font-bold transition-colors press ${ui.className}`}
               >
-                <span className="text-2xl leading-none" aria-hidden>
-                  {ui.emoji}
-                </span>
-                <span className="mt-1">{ui.label}</span>
+                <ui.Icon className="h-5 w-5" />
+                {ui.label}
+                <kbd
+                  aria-hidden
+                  className="absolute top-1.5 right-2 hidden rounded-md border border-current/30 px-1.5 text-[10px] font-semibold opacity-60 sm:block"
+                >
+                  {ui.key}
+                </kbd>
               </button>
             ))}
           </div>
           <p className="text-muted mt-3 text-center text-xs">
-            Chấm thật lòng: quên thì gặp lại ngay, nhớ thì lâu mới gặp lại.
+            Chưa nhớ → gặp lại ngay trong phiên · Nhớ rồi → lâu hơn mới gặp lại
           </p>
         </div>
       ) : (
