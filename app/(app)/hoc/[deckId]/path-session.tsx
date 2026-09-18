@@ -52,6 +52,8 @@ type WordResult = {
 const OPTION_KEYS = ["1", "2", "3", "4"];
 /** Đúng thì tự qua bước sau ngần này ms; sai thì chờ bấm. */
 const AUTO_NEXT_MS = 900;
+/** Đúng mà có câu ví dụ thì nán lâu hơn để đọc; vẫn bấm Tiếp / Enter để qua ngay. */
+const READ_MS = 4000;
 
 function Highlighted({ sentence, term }: { sentence: string; term: string }) {
   const { before, hit, after } = splitSentence(sentence, term);
@@ -87,6 +89,30 @@ function SpeakButton({
       className={`bg-brand-soft text-brand flex items-center justify-center rounded-full press ${box} ${className}`}
     >
       <SpeakerIcon className={icon} />
+    </button>
+  );
+}
+
+/**
+ * Nút Tiếp sau khi trả lời. Đang tự đếm lùi thì có vạch chạy ngang cho biết
+ * còn bao lâu; bấm (hoặc Enter) là qua ngay.
+ */
+function NextButton({ onClick, countdownMs }: { onClick: () => void; countdownMs: number }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="bg-brand relative mt-4 min-h-12 w-full overflow-hidden rounded-2xl font-semibold text-white press"
+    >
+      Tiếp
+      {countdownMs > 0 ? (
+        <span
+          key={countdownMs}
+          aria-hidden
+          className="countdown-bar absolute inset-x-0 bottom-0 h-1 origin-left bg-white/60"
+          style={{ animationDuration: `${countdownMs}ms` }}
+        />
+      ) : null}
     </button>
   );
 }
@@ -182,9 +208,13 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
   /** Hẹn giờ tự qua bước khi đúng; bấm nghe câu thì huỷ để nghe cho hết. */
   const autoTimer = useRef<number | null>(null);
   const [held, setHeld] = useState(false);
+  /** Thời lượng đang đếm lùi (ms) để vẽ vạch; 0 = không đếm. */
+  const [countdownMs, setCountdownMs] = useState(0);
+  const feedbackRef = useRef<HTMLDivElement>(null);
 
   function scheduleAdvance(ms: number) {
     autoTimer.current = window.setTimeout(advance, ms);
+    setCountdownMs(ms);
   }
 
   function holdForListening() {
@@ -192,8 +222,18 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
       clearTimeout(autoTimer.current);
       autoTimer.current = null;
     }
+    setCountdownMs(0);
     setHeld(true);
   }
+
+  // Có phần giải thích hiện ra thì cuộn tới, kẻo nằm dưới đáy màn hình không thấy.
+  useEffect(() => {
+    if (feedback === "none") return;
+    const frame = requestAnimationFrame(() => {
+      feedbackRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [feedback, stepIndex]);
 
   const step = steps[stepIndex];
   const totalWords = stages.reduce((sum, stage) => sum + stage.words.length, 0);
@@ -258,6 +298,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
   function advance() {
     autoTimer.current = null;
     setHeld(false);
+    setCountdownMs(0);
     setFeedback("none");
     setPicked(null);
     setTyped("");
@@ -318,8 +359,8 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
     setFeedback(correct ? "correct" : "wrong");
     if (correct) {
       bumpCombo();
-      // Có câu ví dụ thì nán thêm chút để kịp liếc từ trong câu.
-      scheduleAdvance(step.word.example_en ? AUTO_NEXT_MS + 600 : AUTO_NEXT_MS);
+      // Có câu ví dụ thì chờ đủ lâu để đọc; không có thì qua nhanh.
+      scheduleAdvance(step.word.example_en ? READ_MS : AUTO_NEXT_MS);
     } else {
       breakCombo();
       markFailed(step.word);
@@ -335,7 +376,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
       bumpCombo();
       speak(step.word.term);
       commit(step.word, attempts === 0);
-      scheduleAdvance(AUTO_NEXT_MS + 300);
+      scheduleAdvance(step.mode === "recall" && step.word.example_en ? READ_MS : AUTO_NEXT_MS + 300);
       return;
     }
 
@@ -645,7 +686,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
 
           {/* Trả lời xong (đúng hay sai) đều thấy từ trong câu để nhớ ngữ cảnh */}
           {feedback !== "none" ? (
-            <div className="step-enter">
+            <div ref={feedbackRef} className="step-enter">
               {step.prompt !== "term" ? (
                 <p className="mt-4 text-center">
                   <span className="text-xl font-bold">{word.term}</span>{" "}
@@ -657,14 +698,8 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
             </div>
           ) : null}
 
-          {feedback === "wrong" || held ? (
-            <button
-              type="button"
-              onClick={advance}
-              className="bg-brand mt-4 min-h-12 w-full rounded-2xl font-semibold text-white press"
-            >
-              Tiếp
-            </button>
+          {feedback !== "none" ? (
+            <NextButton onClick={advance} countdownMs={held ? 0 : countdownMs} />
           ) : null}
         </div>
       ) : null}
@@ -749,9 +784,9 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
             className="mt-4 flex gap-2"
             onSubmit={(event) => {
               event.preventDefault();
-              // Đúng thì bộ đếm tự chuyển bước; chỉ sai mới cần bấm Tiếp.
+              // Trả lời xong thì Enter qua bước ngay (không cần đợi đếm lùi).
               if (feedback === "none") check();
-              else if (feedback === "wrong" || held) advance();
+              else advance();
             }}
           >
             <input

@@ -886,3 +886,16 @@ html[data-sidebar="collapsed"] .side-head {
     transition: none;
   }
 }
+
+/* Vạch đếm lùi dưới nút Tiếp (học theo chặng): co từ đầy về 0 trong thời gian chờ. */
+@keyframes countdown-bar {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+.countdown-bar {
+  animation: countdown-bar linear forwards;
+}
