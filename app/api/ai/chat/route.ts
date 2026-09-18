@@ -19,8 +19,8 @@ import { todayInAppZone } from "@/lib/leitner";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
-/** Phản hồi dài có thể mất vài chục giây khi stream. */
-export const maxDuration = 60;
+/** Phản hồi dài có thể mất vài chục giây khi stream; giữ dưới trần 60s của Vercel Hobby. */
+export const maxDuration = 45;
 
 function bad(status: number, error: string) {
   return Response.json({ error }, { status });

@@ -100,8 +100,8 @@ export type Usage = { input: number; output: number };
 
 /** Đổi mã lỗi của Google thành câu tiếng Việt người dùng hiểu được. */
 function geminiErrorMessage(status: number, body: string) {
-  if (status === 503 || status === 500) {
-    return "Máy chủ AI đang quá tải, thử lại sau một chút nhé.";
+  if (status === 503 || status === 500 || status === 504) {
+    return "Máy chủ AI đang quá tải hoặc phản hồi chậm, thử lại sau một chút nhé.";
   }
   if (status === 429) {
     return "Đã chạm hạn mức miễn phí trong phút này, đợi khoảng một phút rồi hỏi lại nhé.";
@@ -131,35 +131,43 @@ export async function* streamGemini(
   });
 
   // Thử lần lượt các model. 404 (không có model), 429 (chạm hạn mức) và 503
-  // (Google đang quá tải) thì chuyển sang model kế; mỗi model thử 2 lần.
+  // (Google đang quá tải) thì chuyển sang model kế. Mỗi lần gọi chờ tối đa
+  // CONNECT_MS để bắt đầu nhận dữ liệu; tổng thời gian thử không quá BUDGET_MS
+  // — vượt là Vercel cắt hàm (504), thà báo lỗi sớm còn hơn.
   const RETRYABLE = [404, 429, 503, 500];
+  const CONNECT_MS = 12_000;
+  const BUDGET_MS = 30_000;
+  const startedAt = Date.now();
   let response: Response | null = null;
   let lastStatus = 0;
   let lastBody = "";
 
-  outer: for (const model of GEMINI_MODELS) {
+  for (const model of GEMINI_MODELS) {
+    if (Date.now() - startedAt > BUDGET_MS) break;
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${process.env.GEMINI_API_KEY}`;
-    for (let attemptNo = 0; attemptNo < 2; attemptNo++) {
-      const attempt = await fetch(url, {
+    let attempt: Response;
+    try {
+      attempt = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body,
+        signal: AbortSignal.timeout(CONNECT_MS),
       });
-      if (attempt.ok && attempt.body) {
-        response = attempt;
-        break outer;
-      }
-      lastStatus = attempt.status;
-      lastBody = (await attempt.text().catch(() => "")).slice(0, 300);
-      console.error(`Gemini ${model} (lần ${attemptNo + 1}):`, lastStatus, lastBody);
-      if (!RETRYABLE.includes(lastStatus)) break outer;
-      // Quá tải thì nghỉ một nhịp rồi thử lại chính model đó.
-      if (lastStatus === 503 || lastStatus === 500) {
-        await new Promise((resolve) => setTimeout(resolve, 1200));
-      } else {
-        break;
-      }
+    } catch (error) {
+      // Hết giờ chờ hoặc lỗi mạng: coi như Google đang treo, thử model kế.
+      lastStatus = 504;
+      lastBody = error instanceof Error ? error.message : "timeout";
+      console.error(`Gemini ${model}: không phản hồi trong ${CONNECT_MS / 1000}s`);
+      continue;
     }
+    if (attempt.ok && attempt.body) {
+      response = attempt;
+      break;
+    }
+    lastStatus = attempt.status;
+    lastBody = (await attempt.text().catch(() => "")).slice(0, 300);
+    console.error(`Gemini ${model}:`, lastStatus, lastBody);
+    if (!RETRYABLE.includes(lastStatus)) break;
   }
 
   if (!response?.body) throw new Error(geminiErrorMessage(lastStatus, lastBody));

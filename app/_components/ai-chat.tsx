@@ -206,6 +206,11 @@ export function AiChat({
         const snapshot = answer;
         setMessages([...history, { role: "assistant", content: snapshot }]);
       }
+      // Kết nối đóng mà chưa nhận được chữ nào (máy chủ bị cắt giữa chừng).
+      if (!answer.trim()) {
+        setMessages(history);
+        setError("Máy chủ AI không trả lời kịp. Thử hỏi lại nhé.");
+      }
     } catch {
       setMessages(history);
       setError("Mất kết nối giữa chừng. Thử lại nhé.");
