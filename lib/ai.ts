@@ -29,7 +29,7 @@ export const GEMINI_MODELS = [
   process.env.GEMINI_MODEL,
   "gemini-3.6-flash",
   "gemini-flash-latest",
-  "gemini-2.5-flash",
+  "gemini-flash-lite-latest",
 ].filter((name): name is string => !!name);
 
 export const AI_DAILY_LIMIT = Number(process.env.AI_DAILY_LIMIT ?? 50);
@@ -98,6 +98,11 @@ export type ChatTurn = { role: "user" | "assistant"; content: string };
 /** Số token đã dùng, để ghi nhật ký theo dõi chi phí. */
 export type Usage = { input: number; output: number };
 
+/** Ném lỗi có thông điệp tiếng Việt (dùng trong generator). */
+function yieldError(status: number, body: string): never {
+  throw new Error(geminiErrorMessage(status, body));
+}
+
 /** Đổi mã lỗi của Google thành câu tiếng Việt người dùng hiểu được. */
 function geminiErrorMessage(status: number, body: string) {
   if (status === 503 || status === 500 || status === 504) {
@@ -110,6 +115,9 @@ function geminiErrorMessage(status: number, body: string) {
     return "Khoá API chưa được phép gọi Gemini (cần bật Generative Language API cho project).";
   }
   if (status === 400) return "Khoá API không hợp lệ hoặc câu hỏi quá dài.";
+  if (status === 404) {
+    return "Model AI đang cấu hình không còn tồn tại — cần cập nhật tên model (GEMINI_MODEL).";
+  }
   return `Lỗi ${status || "mạng"}${body ? `: ${body.slice(0, 220)}` : ""}`;
 }
 
@@ -139,38 +147,52 @@ export async function* streamGemini(
   const BUDGET_MS = 30_000;
   const startedAt = Date.now();
   let response: Response | null = null;
-  let lastStatus = 0;
-  let lastBody = "";
+  // Lỗi đáng báo nhất: quá tải / hạn mức nói lên tình trạng thật, còn 404 của
+  // model dự phòng chỉ là chuyện nội bộ — không đem 404 ra báo nếu có lỗi khác.
+  let bestStatus = 0;
+  let bestBody = "";
+  const remember = (status: number, body: string) => {
+    const rank = (code: number) => (code === 429 ? 3 : code === 503 || code === 504 || code === 500 ? 2 : 1);
+    if (bestStatus === 0 || rank(status) > rank(bestStatus)) {
+      bestStatus = status;
+      bestBody = body;
+    }
+  };
 
   for (const model of GEMINI_MODELS) {
-    if (Date.now() - startedAt > BUDGET_MS) break;
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${process.env.GEMINI_API_KEY}`;
-    let attempt: Response;
-    try {
-      attempt = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body,
-        signal: AbortSignal.timeout(CONNECT_MS),
-      });
-    } catch (error) {
-      // Hết giờ chờ hoặc lỗi mạng: coi như Google đang treo, thử model kế.
-      lastStatus = 504;
-      lastBody = error instanceof Error ? error.message : "timeout";
-      console.error(`Gemini ${model}: không phản hồi trong ${CONNECT_MS / 1000}s`);
-      continue;
+    // 503 trả về nhanh thì nghỉ một nhịp rồi thử lại chính model đó một lần.
+    for (let attemptNo = 0; attemptNo < 2 && !response; attemptNo++) {
+      if (Date.now() - startedAt > BUDGET_MS) break;
+      let attempt: Response;
+      try {
+        attempt = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body,
+          signal: AbortSignal.timeout(CONNECT_MS),
+        });
+      } catch (error) {
+        remember(504, error instanceof Error ? error.message : "timeout");
+        console.error(`Gemini ${model}: không phản hồi trong ${CONNECT_MS / 1000}s`);
+        break; // treo thì không thử lại model này
+      }
+      if (attempt.ok && attempt.body) {
+        response = attempt;
+        break;
+      }
+      const status = attempt.status;
+      const text = (await attempt.text().catch(() => "")).slice(0, 300);
+      remember(status, text);
+      console.error(`Gemini ${model} (lần ${attemptNo + 1}):`, status, text);
+      if (!RETRYABLE.includes(status)) return yieldError(bestStatus, bestBody);
+      if (status !== 503 || attemptNo === 1) break;
+      await new Promise((resolve) => setTimeout(resolve, 1500));
     }
-    if (attempt.ok && attempt.body) {
-      response = attempt;
-      break;
-    }
-    lastStatus = attempt.status;
-    lastBody = (await attempt.text().catch(() => "")).slice(0, 300);
-    console.error(`Gemini ${model}:`, lastStatus, lastBody);
-    if (!RETRYABLE.includes(lastStatus)) break;
+    if (response) break;
   }
 
-  if (!response?.body) throw new Error(geminiErrorMessage(lastStatus, lastBody));
+  if (!response?.body) throw new Error(geminiErrorMessage(bestStatus, bestBody));
 
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
