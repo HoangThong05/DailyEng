@@ -7,7 +7,7 @@
 ## Tính năng
 
 **Học**
-- Thẻ lật (mặc định cho Ôn tập hôm nay và Từ khó, chuyển được ở bộ từ): mặt trước ảnh minh hoạ + từ + loại từ + phiên âm, lật ra nghĩa và câu ví dụ có nghe; tự chấm 4 mức Quên / Khó / Nhớ / Dễ (+ Thành thạo) nối thẳng vào hộp Leitner, mỗi nút hiện số ngày tới lần gặp lại; phím Space lật, 1–4 chấm; thẻ Quên quay lại cuối hàng
+- Thẻ lật (mặc định cho Ôn tập hôm nay và Từ khó, chuyển được ở bộ từ): mặt trước ảnh minh hoạ + từ + loại từ + phiên âm, lật ra nghĩa và câu ví dụ có nghe; thẻ lật 3D thật, tự chấm Quên / Nhớ nối thẳng vào hộp Leitner; phím Space lật, 1–2 chấm; thẻ Quên quay lại cuối hàng
 - Học theo chặng: mỗi 5 từ là một chặng, từ mới đi qua gặp từ → trắc nghiệm (Anh→Việt, Việt→Anh, nghe→chọn) → gõ lại / điền vào câu; combo, âm thanh, từ sai làm lại ngay. Ôn tập giãn cách (hệ hộp Leitner) — chỉ hiện từ tới hạn ôn
 - Kiểm tra đầu vào (`/kiem-tra-dau-vao`): 20 câu chọn nghĩa từ dễ tới khó, ước mức nên học và gợi ý 3 bộ theo mục tiêu (TOEIC / giao tiếp / công việc / học thuật); kết quả lưu ở hồ sơ, trang Học hiện hàng "Gợi ý cho bạn"
 - Kho bộ từ theo nhóm: TOEIC (11 bộ theo chủ đề đề thi), Cốt lõi (8 bộ theo tần suất), Giao tiếp (7), Công việc (6), Học thuật (4) — hơn 3.300 từ kèm phiên âm và câu ví dụ, sinh bằng AI rồi duyệt lại

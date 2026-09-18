@@ -9,7 +9,7 @@ import { WordPicture } from "@/app/_components/emoji-image";
 import { SparkleIcon, SpeakerIcon } from "@/app/_components/icons";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { playCorrect, playMiss, readSoundPreference, unlockAudio } from "@/lib/game-audio";
-import { MAX_BOX, type Rating, ratingIntervals } from "@/lib/leitner";
+import type { Rating } from "@/lib/leitner";
 import { emojiFor, photoFor } from "@/lib/picture-game";
 import { parseMeaning } from "@/lib/pos";
 import { speak } from "@/lib/speech";
@@ -27,35 +27,26 @@ type Props = {
 /** Từ "quên" được cho gặp lại tối đa ngần này lần trong phiên. */
 const MAX_AGAIN = 2;
 
-const RATING_UI: Record<
-  Exclude<Rating, "master">,
-  { label: string; hint: (days: number) => string; className: string; key: string }
-> = {
-  again: {
+/**
+ * Hai mức tự chấm, nhất quán với cả app (nhớ / quên). Số hộp, số ngày là việc
+ * của thuật toán Leitner, người học không cần bận tâm.
+ */
+const RATING_UI: { rating: Rating; label: string; emoji: string; className: string; key: string }[] = [
+  {
+    rating: "again",
     label: "Quên",
-    hint: () => "gặp lại ngay",
+    emoji: "😵",
     className: "border-red-500/50 bg-red-500/10 text-red-500 hover:bg-red-500/20",
     key: "1",
   },
-  hard: {
-    label: "Khó",
-    hint: (d) => `${d} ngày`,
-    className: "border-amber-500/50 bg-amber-500/10 text-amber-600 hover:bg-amber-500/20",
+  {
+    rating: "good",
+    label: "Nhớ",
+    emoji: "🙂",
+    className: "border-brand/60 bg-brand-soft text-brand hover:bg-brand/15",
     key: "2",
   },
-  good: {
-    label: "Nhớ",
-    hint: (d) => `${d} ngày`,
-    className: "border-brand/60 bg-brand-soft text-brand hover:bg-brand/15",
-    key: "3",
-  },
-  easy: {
-    label: "Dễ",
-    hint: (d) => `${d} ngày`,
-    className: "border-emerald-500/50 bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20",
-    key: "4",
-  },
-};
+];
 
 function Highlighted({ sentence, term }: { sentence: string; term: string }) {
   const { before, hit, after } = splitSentence(sentence, term);
@@ -147,12 +138,10 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
       return;
     }
     if (!flipped) return;
-    const found = (Object.entries(RATING_UI) as [Exclude<Rating, "master">, (typeof RATING_UI)["again"]][]).find(
-      ([, ui]) => ui.key === event.key,
-    );
+    const found = RATING_UI.find((ui) => ui.key === event.key);
     if (found) {
       event.preventDefault();
-      rate(found[0]);
+      rate(found.rating);
     }
   }
 
@@ -163,15 +152,15 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
         <Mascot variant="hoc" size={128} priority />
         <h2 className="mt-4 text-xl font-bold">{words.length} thẻ</h2>
         <p className="text-muted mt-2 max-w-xs text-sm">
-          Nhìn từ, tự nhớ nghĩa, lật ra kiểm tra rồi tự chấm. Chấm thật lòng — lịch ôn giãn cách
-          dựa vào đó.
+          Nhìn từ, tự nhớ nghĩa, lật ra xem đúng không rồi tự chấm. App sẽ tự sắp lịch: từ quên
+          gặp lại sớm, từ dễ lâu mới gặp lại.
         </p>
         <ul className="text-muted mt-6 w-full max-w-xs space-y-2 text-left text-sm">
           <li className="border-border bg-card flex items-center gap-3 rounded-xl border px-4 py-3">
             <span className="text-lg">🔄</span> Bấm thẻ hoặc phím Space để lật
           </li>
           <li className="border-border bg-card flex items-center gap-3 rounded-xl border px-4 py-3">
-            <span className="text-lg">1️⃣</span> Phím 1–4 để chấm Quên · Khó · Nhớ · Dễ
+            <span className="text-lg">1️⃣</span> Phím 1 = Quên, 2 = Nhớ
           </li>
           <li className="border-border bg-card flex items-center gap-3 rounded-xl border px-4 py-3">
             <span className="text-lg">🔁</span> Chấm Quên thì thẻ quay lại cuối hàng
@@ -251,7 +240,6 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
   const parsed = parseMeaning(word.meaning_vi);
   const photo = photoFor(word.term);
   const emoji = emojiFor(word.term);
-  const intervals = ratingIntervals(word.box);
   const progress = Math.round((index / queue.length) * 100);
 
   return (
@@ -270,63 +258,73 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
         <span className="text-muted shrink-0 text-sm tabular-nums">
           {index + 1}/{queue.length}
         </span>
-        <span className="bg-brand-soft text-brand shrink-0 rounded-full px-2 py-0.5 text-xs font-bold">
-          Hộp {word.box}/{MAX_BOX}
-        </span>
       </div>
 
-      {/* Thẻ: bấm để lật */}
-      <div
-        ref={cardRef}
-        role="button"
-        tabIndex={0}
-        onClick={flip}
-        aria-pressed={flipped}
-        aria-label={flipped ? "Thẻ đã lật, bấm để úp lại" : "Bấm để lật thẻ"}
-        className="border-border bg-card step-enter focus-visible:ring-brand/50 mt-4 block w-full cursor-pointer overflow-hidden rounded-3xl border text-left shadow-sm outline-none focus-visible:ring-4"
-      >
-        {/* Mặt trước */}
-        <div className="flex flex-col items-center px-6 pt-6 pb-5 text-center">
-          {emoji ? (
-            <div className="bg-brand-soft/60 mb-4 aspect-[4/3] w-full max-w-[260px] overflow-hidden rounded-2xl">
-              <WordPicture photo={photo} emoji={emoji} />
+      {/* Thẻ lật 3D: hai mặt chồng lên nhau, xoay quanh trục dọc */}
+      <div className="flip-scene mt-4">
+        <div
+          ref={cardRef}
+          role="button"
+          tabIndex={0}
+          onClick={flip}
+          aria-pressed={flipped}
+          aria-label={flipped ? "Thẻ đã lật, bấm để úp lại" : "Bấm để lật thẻ"}
+          className={`flip-card focus-visible:ring-brand/50 w-full cursor-pointer rounded-3xl outline-none focus-visible:ring-4 ${
+            flipped ? "is-flipped" : ""
+          }`}
+        >
+          {/* Mặt trước */}
+          <div
+            inert={flipped}
+            className="border-border bg-card flex min-h-[22rem] flex-col items-center justify-center rounded-3xl border px-6 py-6 text-center shadow-sm"
+          >
+            {emoji ? (
+              <div className="bg-brand-soft/60 mb-4 aspect-[4/3] w-full max-w-[240px] overflow-hidden rounded-2xl">
+                <WordPicture photo={photo} emoji={emoji} />
+              </div>
+            ) : (
+              <Mascot variant="hoc" size={96} className="mb-3" />
+            )}
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <p className="text-3xl font-bold tracking-tight">{word.term}</p>
+              {parsed.pos ? (
+                <span className="bg-brand-soft text-brand rounded-full px-2.5 py-0.5 text-xs font-bold">
+                  {parsed.pos}
+                </span>
+              ) : null}
             </div>
-          ) : (
-            <Mascot variant="hoc" size={88} className="mb-3" />
-          )}
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <p className="text-3xl font-bold tracking-tight">{word.term}</p>
-            {parsed.pos ? (
-              <span className="bg-brand-soft text-brand rounded-full px-2.5 py-0.5 text-xs font-bold">
-                {parsed.pos}
-              </span>
-            ) : null}
-          </div>
-          <div className="mt-2 flex items-center gap-2">
-            {word.phonetic ? <span className="ipa text-muted text-lg">{word.phonetic}</span> : null}
-            <button
-              type="button"
-              aria-label="Nghe phát âm"
-              onClick={(event) => {
-                event.stopPropagation();
-                speak(word.term);
-              }}
-              className="bg-brand-soft text-brand flex h-9 w-9 items-center justify-center rounded-full press"
-            >
-              <SpeakerIcon className="h-4 w-4" />
-            </button>
-          </div>
-          {!flipped ? (
+            <div className="mt-2 flex items-center gap-2">
+              {word.phonetic ? <span className="ipa text-muted text-lg">{word.phonetic}</span> : null}
+              <button
+                type="button"
+                aria-label="Nghe phát âm"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  speak(word.term);
+                }}
+                className="bg-brand-soft text-brand flex h-9 w-9 items-center justify-center rounded-full press"
+              >
+                <SpeakerIcon className="h-4 w-4" />
+              </button>
+            </div>
             <p className="text-muted mt-5 text-xs">Nhớ nghĩa chưa? Bấm để lật · Space</p>
-          ) : null}
-        </div>
+          </div>
 
-        {/* Mặt sau */}
-        {flipped ? (
-          <div className="border-border step-enter border-t px-6 py-5">
-            <p className="text-center text-2xl font-bold">{parsed.meaning}</p>
+          {/* Mặt sau */}
+          <div
+            inert={!flipped}
+            className="flip-back border-brand/40 bg-card flex min-h-[22rem] flex-col justify-center rounded-3xl border px-6 py-6 shadow-sm"
+          >
+            <p className="text-muted text-center text-sm font-semibold">
+              {word.term}
+              {word.phonetic ? <span className="ipa font-normal"> {word.phonetic}</span> : null}
+            </p>
+            <p className="mt-2 text-center text-3xl font-bold">{parsed.meaning}</p>
+            {parsed.pos ? (
+              <p className="text-brand mt-1 text-center text-xs font-bold">{parsed.pos}</p>
+            ) : null}
             {word.example_en ? (
-              <div className="bg-brand-soft/60 mt-4 rounded-2xl p-4">
+              <div className="bg-brand-soft/60 mt-5 rounded-2xl p-4">
                 <div className="flex items-center gap-3">
                   <div className="min-w-0 flex-1">
                     <p className="text-sm leading-relaxed">
@@ -367,46 +365,37 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
                   `Giải thích từ "${word.term}" (${parsed.meaning}) và cách dùng${word.example_en ? ` trong câu: "${word.example_en}"` : ""}`,
                 )}`}
                 onClick={(event) => event.stopPropagation()}
-                className="text-brand mt-3 inline-flex items-center gap-1 text-xs font-semibold hover:underline"
+                className="text-brand mt-4 inline-flex items-center gap-1 self-center text-xs font-semibold hover:underline"
               >
                 <SparkleIcon className="h-3.5 w-3.5" /> Hỏi AI về từ này
               </Link>
             ) : null}
           </div>
-        ) : null}
+        </div>
       </div>
 
       {/* Chấm điểm: chỉ hiện sau khi lật */}
       {flipped ? (
         <div className="step-enter mt-4">
-          <div className="grid grid-cols-4 gap-2">
-            {(Object.entries(RATING_UI) as [Exclude<Rating, "master">, (typeof RATING_UI)["again"]][]).map(
-              ([rating, ui]) => (
-                <button
-                  key={rating}
-                  type="button"
-                  onClick={() => rate(rating)}
-                  disabled={busy}
-                  className={`flex min-h-16 flex-col items-center justify-center rounded-2xl border-2 font-bold transition-colors press ${ui.className}`}
-                >
-                  <span>{ui.label}</span>
-                  <span className="mt-0.5 text-[11px] font-medium opacity-80">
-                    {ui.hint(intervals[rating])}
-                  </span>
-                </button>
-              ),
-            )}
+          <div className="grid grid-cols-2 gap-3">
+            {RATING_UI.map((ui) => (
+              <button
+                key={ui.rating}
+                type="button"
+                onClick={() => rate(ui.rating)}
+                disabled={busy}
+                className={`flex min-h-16 flex-col items-center justify-center rounded-2xl border-2 text-lg font-bold transition-colors press ${ui.className}`}
+              >
+                <span className="text-2xl leading-none" aria-hidden>
+                  {ui.emoji}
+                </span>
+                <span className="mt-1">{ui.label}</span>
+              </button>
+            ))}
           </div>
-          {word.box < MAX_BOX ? (
-            <button
-              type="button"
-              onClick={() => rate("master")}
-              disabled={busy}
-              className="text-muted hover:text-brand mt-3 block w-full text-center text-xs font-semibold"
-            >
-              ✓ Đã thuộc hẳn — chuyển thẳng hộp {MAX_BOX} ({intervals.master} ngày)
-            </button>
-          ) : null}
+          <p className="text-muted mt-3 text-center text-xs">
+            Chấm thật lòng: quên thì gặp lại ngay, nhớ thì lâu mới gặp lại.
+          </p>
         </div>
       ) : (
         <button

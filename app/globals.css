@@ -858,3 +858,31 @@ html[data-sidebar="collapsed"] .side-head {
     animation: none;
   }
 }
+
+/* ---- Thẻ lật 3D (chế độ Thẻ lật) -----------------------------------------
+   Hai mặt đặt cùng một ô lưới nên chiều cao = mặt cao hơn; mặt sau xoay sẵn
+   180° và ẩn mặt lưng, cả khối xoay khi .is-flipped. */
+.flip-scene {
+  perspective: 1400px;
+}
+.flip-card {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.flip-card > * {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-card.is-flipped {
+  transform: rotateY(180deg);
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-card {
+    transition: none;
+  }
+}
