@@ -47,6 +47,24 @@ describe("gradeAgainst", () => {
     expect(passesSentence(grade)).toBe(false);
   });
 
+  it("từ khoá ở dạng biến thể trong câu vẫn tính là trúng", () => {
+    const s = "The manager approved my request.";
+    expect(gradeAgainst(s, s, "approve").termHit).toBe(true);
+    expect(gradeAgainst("She is working now.", "She is working now.", "work").termHit).toBe(true);
+    expect(passesSentence(gradeAgainst(s, s, "approve"))).toBe(true);
+  });
+
+  it("gõ sai đúng từ khoá thì vẫn trượt dù các chữ khác đúng", () => {
+    const s = "The manager approved my request.";
+    const grade = gradeAgainst("The manager approve my request.", s, "approve");
+    expect(grade.termHit).toBe(false);
+  });
+
+  it("từ khoá ngắn không nhận chữ dài hơn", () => {
+    const grade = gradeAgainst("I went to the office.", "Take off your shoes.", "take off");
+    expect(grade.termHit).toBe(false);
+  });
+
   it("bỏ trống thì 0%", () => {
     const grade = gradeAgainst("", sentence, "invoice");
     expect(grade.accuracy).toBe(0);

@@ -110,10 +110,34 @@ export function gradeAgainst(answer: string, sentence: string, term: string) {
 
   const correctCount = hits.filter(Boolean).length;
   const accuracy = n > 0 ? correctCount / n : 0;
-  const termTokens = normalizeAnswer(term).split(" ");
-  const termHit = termTokens.every((token) => typed.includes(token));
+
+  // Từ khoá trong câu có thể ở dạng biến thể (approve → approved, approving).
+  // Tìm những chữ trong câu gốc ứng với từ khoá, rồi xem người học có gõ trúng
+  // đúng những chữ đó không. Không tìm thấy trong câu (bất quy tắc) thì so
+  // trực tiếp với phần đã gõ.
+  const termTokens = normalizeAnswer(term).split(" ").filter(Boolean);
+  const termIndexes = target
+    .map((token, index) => (termTokens.some((tt) => matchesTerm(token, tt)) ? index : -1))
+    .filter((index) => index >= 0);
+  const termHit =
+    termIndexes.length > 0
+      ? termIndexes.every((index) => hits[index])
+      : termTokens.every((tt) => typed.some((token) => matchesTerm(token, tt)));
 
   return { marks, accuracy, termHit };
+}
+
+/**
+ * `token` (chữ trong câu / chữ đã gõ) có phải là từ khoá `termToken` hay biến
+ * thể của nó không: bằng nhau, hoặc cùng gốc và đuôi thêm không quá 4 ký tự
+ * (work → works / worked / working; approve → approved / approving).
+ * Từ khoá quá ngắn (≤ 3 chữ) chỉ nhận khớp hoàn toàn, kẻo "off" nhận "office".
+ */
+function matchesTerm(token: string, termToken: string) {
+  if (token === termToken) return true;
+  if (termToken.length <= 3) return false;
+  const base = termToken.endsWith("e") ? termToken.slice(0, -1) : termToken;
+  return token.startsWith(base) && token.length - base.length <= 4;
 }
 
 /** Đạt khi gõ đúng từ khoá và ít nhất 70% câu. */
