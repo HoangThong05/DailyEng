@@ -8,7 +8,7 @@ import type { CheckinState } from "@/lib/rewards";
 import type { UserBarData } from "@/lib/user-bar";
 import { Avatar } from "./avatar";
 import { BellIcon, FlameIcon } from "./icons";
-import { useUserBar } from "./user-bar-context";
+import { useAppShell } from "./user-bar-context";
 
 type Panel = "streak" | "bell" | null;
 
@@ -68,8 +68,10 @@ export function UserBar({
   /** Trang giới thiệu bật; trong app tắt vì sidebar / tab Cá nhân đã có sẵn. */
   showAvatar?: boolean;
 }) {
-  const fromContext = useUserBar();
-  const data = dataProp ?? fromContext;
+  // Trong app: dữ liệu về qua promise của layout (treo trong Suspense của
+  // PageHeader). Trang giới thiệu truyền thẳng qua prop.
+  const shell = useAppShell();
+  const data = dataProp ?? shell?.userBar ?? null;
   const [open, setOpen] = useState<Panel>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const today = data?.checkin.week.find((day) => day.isToday)?.day ?? "";

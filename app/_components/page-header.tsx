@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Mascot, type MascotVariant } from "./mascot";
 import { ThemeButton } from "./theme-button";
 import { UserBar } from "./user-bar";
@@ -39,11 +40,22 @@ export function PageHeader({ title, subtitle, trailing, mascot }: PageHeaderProp
               className="header-duck hidden sm:block"
             />
           ) : null}
-          {/* Có dữ liệu (trong app) mới hiện; trang giới thiệu tự truyền riêng */}
-          <UserBar />
+          {/* Dữ liệu chuỗi / chuông về sau khung; giữ chỗ bằng hai chip rỗng cho khỏi nhảy */}
+          <Suspense fallback={<UserBarSkeleton />}>
+            <UserBar />
+          </Suspense>
           <ThemeButton className="hidden sm:flex" />
         </div>
       </div>
     </header>
+  );
+}
+
+function UserBarSkeleton() {
+  return (
+    <div aria-hidden className="flex shrink-0 items-center gap-2">
+      <span className="border-border bg-card skeleton-pulse h-10 w-16 rounded-full border" />
+      <span className="border-border bg-card skeleton-pulse h-10 w-10 rounded-full border" />
+    </div>
   );
 }

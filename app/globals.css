@@ -899,3 +899,17 @@ html[data-sidebar="collapsed"] .side-head {
 .countdown-bar {
   animation: countdown-bar linear forwards;
 }
+
+/* Bản xương (skeleton) trong lúc chờ dữ liệu khung app. */
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.skeleton-pulse {
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { AiChat } from "./ai-chat";
 import { CloseIcon } from "./icons";
 import { Mascot } from "./mascot";
+import { useAppShell } from "./user-bar-context";
 
 type Quota = { enabled: boolean; used: number; limit: number };
 
@@ -13,8 +14,9 @@ type Quota = { enabled: boolean; used: number; limit: number };
  * Hạn mức lấy khi mở lần đầu, nên trang nào cũng nhẹ. Trang /hoi-ai đã là
  * chat toàn màn hình nên ẩn con vịt đi cho khỏi trùng.
  */
-export function DuckChat({ name }: { name: string }) {
+export function DuckChat() {
   const pathname = usePathname();
+  const name = useAppShell()?.sideProfile.name ?? "bạn";
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [quota, setQuota] = useState<Quota | null>(null);

@@ -1,0 +1,50 @@
+import { getStudyStats } from "@/lib/stats";
+import { createClient } from "@/lib/supabase/server";
+import { getUserBarData, type UserBarData } from "@/lib/user-bar";
+
+export type SideProfile = {
+  name: string;
+  avatarUrl: string | null;
+  level: number;
+  title: string;
+  streak: number;
+  /** 0–100 tiến độ tới cấp kế. */
+  percent: number;
+};
+
+export type AppShellData = {
+  isAdmin: boolean;
+  sideProfile: SideProfile;
+  userBar: UserBarData;
+};
+
+/**
+ * Mọi dữ liệu mà khung app (sidebar, cụm nút góc trên, vịt AI) cần.
+ *
+ * Trả về promise và KHÔNG await ở layout: layout gửi khung HTML ngay, các
+ * mảnh cần dữ liệu tự `use()` promise này trong Suspense riêng. Nhờ vậy vừa
+ * vào app là thấy sidebar + header + vịt đang tải, thay vì màn hình trống cho
+ * tới khi mọi truy vấn xong.
+ */
+export async function loadAppShell(): Promise<AppShellData> {
+  const supabase = await createClient();
+  const [{ data: isAdmin }, { data: profile }, stats] = await Promise.all([
+    supabase.rpc("is_admin"),
+    supabase.from("profiles").select("display_name, avatar_url").maybeSingle(),
+    getStudyStats(),
+  ]);
+  const userBar = await getUserBarData(profile, stats);
+
+  return {
+    isAdmin: Boolean(isAdmin),
+    sideProfile: {
+      name: profile?.display_name ?? "Bạn",
+      avatarUrl: profile?.avatar_url ?? null,
+      level: stats.level.level,
+      title: stats.level.title,
+      streak: stats.streak.current,
+      percent: stats.level.percent,
+    },
+    userBar,
+  };
+}

@@ -2,21 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 import { setSidebarCollapsed, useSidebarCollapsed } from "@/lib/sidebar-store";
 import { ChevronRightIcon, FlameIcon } from "./icons";
 import { Avatar } from "./avatar";
 import { Mascot } from "./mascot";
 import { isSideActive, NAV_TABS, SIDE_EXTRAS } from "./nav-tabs";
-
-export type SideProfile = {
-  name: string;
-  avatarUrl: string | null;
-  level: number;
-  title: string;
-  streak: number;
-  /** 0–100 tiến độ tới cấp kế. */
-  percent: number;
-};
+import { useAppShell } from "./user-bar-context";
 
 type Item = { href: string; label: string; Icon: (p: { className?: string }) => React.JSX.Element };
 
@@ -48,7 +40,7 @@ function NavItem({ item, active, collapsed }: { item: Item; active: boolean; col
  * Trên: logo. Giữa: 4 tab học + mục phụ. Dưới: thẻ hồ sơ (bấm vào là tới
  * Cá nhân). Nút thu gọn / mở rộng nằm cạnh logo; thu gọn thì chỉ còn icon, có tooltip.
  */
-export function SideNav({ profile }: { profile: SideProfile }) {
+export function SideNav() {
   const pathname = usePathname();
   const collapsed = useSidebarCollapsed();
   const mainTabs = NAV_TABS.filter((tab) => tab.href !== "/tai-khoan");
@@ -106,35 +98,66 @@ export function SideNav({ profile }: { profile: SideProfile }) {
         ))}
       </ul>
 
-      {/* Thẻ hồ sơ dưới cùng: tên, cấp, chuỗi; bấm vào tới Cá nhân */}
-      <Link
-        href="/tai-khoan"
-        aria-current={profileActive ? "page" : undefined}
-        title={collapsed ? `${profile.name} · Cấp ${profile.level}` : undefined}
-        className={`border-border mx-3 mt-auto mb-4 flex items-center gap-3 rounded-2xl border p-3 transition-colors ${
-          profileActive ? "border-brand bg-brand-soft" : "bg-card hover:border-brand/50"
-        } ${collapsed ? "justify-center px-0" : ""}`}
-      >
-        <span className="relative shrink-0">
-          <Avatar url={profile.avatarUrl} name={profile.name} size={collapsed ? 36 : 44} />
-          <span className="bg-brand absolute -right-1.5 -bottom-1.5 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
-            Lv.{profile.level}
-          </span>
-        </span>
-        <span className="side-label min-w-0">
-          <span className="block truncate text-sm font-bold">{profile.name}</span>
-          <span className="text-muted flex items-center gap-1 text-xs">
-            {profile.title}
-            <span aria-hidden>·</span>
-            <FlameIcon className="h-3 w-3 text-orange-500" />
-            {profile.streak}
-          </span>
-          <span className="bg-brand-soft mt-1.5 block h-1 overflow-hidden rounded-full">
-            <span className="bg-brand block h-full rounded-full" style={{ width: `${profile.percent}%` }} />
-          </span>
-        </span>
-      </Link>
+      {/* Thẻ hồ sơ dưới cùng: tên, cấp, chuỗi; bấm vào tới Cá nhân.
+          Dữ liệu về sau khung, nên có bản xương trong lúc chờ. */}
+      <Suspense fallback={<ProfileCardSkeleton collapsed={collapsed} />}>
+        <ProfileCard active={profileActive} collapsed={collapsed} />
+      </Suspense>
 
     </nav>
+  );
+}
+
+function ProfileCard({ active, collapsed }: { active: boolean; collapsed: boolean }) {
+  const shell = useAppShell();
+  if (!shell) return null;
+  const profile = shell.sideProfile;
+  return (
+    <Link
+      href="/tai-khoan"
+      aria-current={active ? "page" : undefined}
+      title={collapsed ? `${profile.name} · Cấp ${profile.level}` : undefined}
+      className={`border-border mx-3 mt-auto mb-4 flex items-center gap-3 rounded-2xl border p-3 transition-colors ${
+        active ? "border-brand bg-brand-soft" : "bg-card hover:border-brand/50"
+      } ${collapsed ? "justify-center px-0" : ""}`}
+    >
+      <span className="relative shrink-0">
+        <Avatar url={profile.avatarUrl} name={profile.name} size={collapsed ? 36 : 44} />
+        <span className="bg-brand absolute -right-1.5 -bottom-1.5 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
+          Lv.{profile.level}
+        </span>
+      </span>
+      <span className="side-label min-w-0">
+        <span className="block truncate text-sm font-bold">{profile.name}</span>
+        <span className="text-muted flex items-center gap-1 text-xs">
+          {profile.title}
+          <span aria-hidden>·</span>
+          <FlameIcon className="h-3 w-3 text-orange-500" />
+          {profile.streak}
+        </span>
+        <span className="bg-brand-soft mt-1.5 block h-1 overflow-hidden rounded-full">
+          <span className="bg-brand block h-full rounded-full" style={{ width: `${profile.percent}%` }} />
+        </span>
+      </span>
+    </Link>
+  );
+}
+
+/** Bản xương của thẻ hồ sơ: cùng kích thước, nhấp nháy nhẹ, không nhảy bố cục. */
+function ProfileCardSkeleton({ collapsed }: { collapsed: boolean }) {
+  return (
+    <div
+      aria-hidden
+      className={`border-border bg-card mx-3 mt-auto mb-4 flex items-center gap-3 rounded-2xl border p-3 ${
+        collapsed ? "justify-center px-0" : ""
+      }`}
+    >
+      <span className="bg-brand-soft skeleton-pulse block shrink-0 rounded-full" style={{ width: collapsed ? 36 : 44, height: collapsed ? 36 : 44 }} />
+      <span className="side-label min-w-0 flex-1 space-y-2">
+        <span className="bg-brand-soft skeleton-pulse block h-3.5 w-24 rounded" />
+        <span className="bg-brand-soft skeleton-pulse block h-2.5 w-16 rounded" />
+        <span className="bg-brand-soft block h-1 w-full rounded-full" />
+      </span>
+    </div>
   );
 }

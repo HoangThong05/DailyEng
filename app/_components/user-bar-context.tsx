@@ -1,21 +1,33 @@
 "use client";
 
-import { createContext, useContext } from "react";
-import type { UserBarData } from "@/lib/user-bar";
+import { createContext, use, useContext } from "react";
+import type { AppShellData } from "@/lib/app-shell";
 
-const UserBarContext = createContext<UserBarData | null>(null);
+/**
+ * Layout app tạo một promise dữ liệu khung (chưa await) và đưa xuống đây.
+ * Mảnh nào cần thì gọi `useAppShell()` bên trong một <Suspense> — React treo
+ * đúng mảnh đó cho tới khi dữ liệu về, phần còn lại của trang vẽ ngay.
+ */
+const AppShellContext = createContext<Promise<AppShellData> | null>(null);
 
-/** Layout app nạp dữ liệu một lần; PageHeader ở từng trang đọc qua context. */
-export function UserBarProvider({
-  value,
+export function AppShellProvider({
+  promise,
   children,
 }: {
-  value: UserBarData;
+  promise: Promise<AppShellData>;
   children: React.ReactNode;
 }) {
-  return <UserBarContext.Provider value={value}>{children}</UserBarContext.Provider>;
+  return <AppShellContext.Provider value={promise}>{children}</AppShellContext.Provider>;
 }
 
-export function useUserBar() {
-  return useContext(UserBarContext);
+/** Promise thô; null khi ở ngoài app (trang giới thiệu). */
+export function useAppShellPromise() {
+  return useContext(AppShellContext);
+}
+
+/** Dữ liệu khung app; phải gọi trong Suspense. Null khi ở ngoài app. */
+export function useAppShell(): AppShellData | null {
+  const promise = useContext(AppShellContext);
+  // `use` được phép gọi có điều kiện, khác các hook thường.
+  return promise ? use(promise) : null;
 }
