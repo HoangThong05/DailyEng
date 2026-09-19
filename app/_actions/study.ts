@@ -127,6 +127,31 @@ export async function recordRating(
   return { ok: true };
 }
 
+/** Trần số lượt đồng bộ một lần; hàng đợi offline hiếm khi tới mức này. */
+const SYNC_MAX = 300;
+
+const RATINGS: Rating[] = ["again", "hard", "good", "easy", "master"];
+
+/**
+ * Đẩy kết quả ôn lúc mất mạng lên server, theo đúng thứ tự người học đã chấm.
+ * Ghi vào ngày hôm nay (không phải ngày offline) — đơn giản và không lệch
+ * chuỗi ngày quá xa vì hàng đợi được đẩy ngay khi có mạng lại.
+ */
+export async function syncOfflineReviews(
+  entries: { wordId: string; rating: Rating }[],
+): Promise<{ ok: true; saved: number } | { ok: false; error: string }> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "Phiên đăng nhập đã hết hạn." };
+
+  let saved = 0;
+  for (const entry of entries.slice(0, SYNC_MAX)) {
+    if (typeof entry?.wordId !== "string" || !RATINGS.includes(entry.rating)) continue;
+    const result = await recordRating(entry.wordId, entry.rating);
+    if (result.ok) saved++;
+  }
+  return { ok: true, saved };
+}
+
 /*
  * Không revalidatePath khi kết thúc phiên: làm vậy Next render lại ngay trang
  * đang mở, server thấy bộ đã ôn xong nên thay màn kết quả bằng màn trống.

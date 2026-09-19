@@ -18,6 +18,7 @@ const PRIVATE = [
   "/phat-am",
   "/tai-khoan",
   "/tien-do",
+  "/tu-cua-toi",
   "/xep-hang",
   "/phan-thuong",
   "/nguoi-dung",

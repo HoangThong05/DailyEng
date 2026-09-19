@@ -5,6 +5,7 @@ import { PageHeader } from "@/app/_components/page-header";
 import { BOX_INTERVAL_DAYS } from "@/lib/leitner";
 import { getDetailedStats, getStudyStats } from "@/lib/stats";
 import { WeekChart } from "../tai-khoan/week-chart";
+import { Heatmap } from "./heatmap";
 
 export const metadata: Metadata = { title: "Thống kê" };
 
@@ -38,7 +39,7 @@ function SectionTitle({ id, children }: { id: string; children: string }) {
 
 /** Thống kê chi tiết, tách khỏi Cá nhân để trang đó gọn. */
 export default async function TienDoPage() {
-  const [{ today, week, totals }, detail] = await Promise.all([
+  const [{ today, week, totals, history }, detail] = await Promise.all([
     getStudyStats(),
     getDetailedStats(),
   ]);
@@ -91,6 +92,17 @@ export default async function TienDoPage() {
                 7 ngày gần nhất
               </h2>
               <WeekChart week={week} />
+            </section>
+
+            <section
+              aria-labelledby="ban-do"
+              className="border-border bg-card rounded-2xl border p-5"
+            >
+              <h2 id="ban-do" className="mb-1 font-semibold">
+                Nửa năm qua
+              </h2>
+              <p className="text-muted mb-4 text-sm">Mỗi ô một ngày, học càng nhiều càng đậm</p>
+              <Heatmap history={history} />
             </section>
           </div>
 

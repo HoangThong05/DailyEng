@@ -5,7 +5,7 @@ import {
   AI_MAX_MESSAGE_CHARS,
   AI_MAX_OUTPUT_TOKENS,
   AI_MINUTE_LIMIT,
-  AI_SYSTEM_PROMPT,
+  type AiMode,
   aiProvider,
   CLAUDE_MODEL,
   type ChatTurn,
@@ -13,6 +13,7 @@ import {
   countAiToday,
   getAiQuota,
   streamGemini,
+  systemPromptFor,
   type Usage,
 } from "@/lib/ai";
 import { todayInAppZone } from "@/lib/leitner";
@@ -45,7 +46,7 @@ export async function POST(request: Request) {
   const user = await getCurrentUser();
   if (!user) return bad(401, "Bạn cần đăng nhập.");
 
-  let body: { messages?: ChatTurn[] };
+  let body: { messages?: ChatTurn[]; mode?: AiMode };
   try {
     body = await request.json();
   } catch {
@@ -75,6 +76,7 @@ export async function POST(request: Request) {
     return bad(429, "Bạn hỏi hơi nhanh — đợi khoảng một phút rồi hỏi tiếp nhé.");
   }
 
+  const system = systemPromptFor(body.mode === "viet-cau" ? "viet-cau" : "chat");
   const supabase = await createClient();
   const day = todayInAppZone();
   const encoder = new TextEncoder();
@@ -93,7 +95,7 @@ export async function POST(request: Request) {
       try {
         if (provider === "gemini") {
           let usage: Usage = { input: 0, output: 0 };
-          for await (const text of streamGemini(history, (u) => (usage = u))) {
+          for await (const text of streamGemini(history, (u) => (usage = u), system)) {
             controller.enqueue(encoder.encode(text));
           }
           await log(usage);
@@ -102,7 +104,7 @@ export async function POST(request: Request) {
           const stream = client.messages.stream({
             model: CLAUDE_MODEL,
             max_tokens: AI_MAX_OUTPUT_TOKENS,
-            system: AI_SYSTEM_PROMPT,
+            system,
             messages: history,
           });
           for await (const event of stream) {

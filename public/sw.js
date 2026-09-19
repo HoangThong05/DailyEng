@@ -10,9 +10,11 @@
  *    đụng vào — để trình duyệt tự lo. Chen vào đây từng làm router của Next
  *    nhận phản hồi lỗi/cũ và kẹt điều hướng.
  *  - Push: hiện thông báo nhắc học, bấm vào thì mở app
+ *  - Message "cache-offline" (app gửi khi có mạng): tải lại /offline cùng
+ *    JS/CSS của nó vào cache, để màn ôn offline luôn khớp bản build đang chạy.
  * Tăng VERSION mỗi lần đổi logic để cache cũ bị dọn.
  */
-const VERSION = "dailyeng-v8";
+const VERSION = "dailyeng-v9";
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 const OFFLINE_URL = "/offline";
@@ -167,4 +169,39 @@ self.addEventListener("notificationclick", (event) => {
         return self.clients.openWindow(target);
       }),
   );
+});
+
+/* ---- Cache lại trang offline theo bản build hiện tại ------------------- */
+
+async function cacheOfflinePage() {
+  const response = await fetch(OFFLINE_URL, { cache: "no-store" });
+  if (!response.ok) return;
+
+  const html = await response.clone().text();
+  const precache = await caches.open(PRECACHE);
+  await precache.put(OFFLINE_URL, response);
+
+  // JS/CSS mà trang này cần: tên file có hash nên cache-first là an toàn.
+  const assets = new Set();
+  for (const match of html.matchAll(/["'](\/_next\/static\/[^"']+)["']/g)) {
+    assets.add(match[1]);
+  }
+  const runtime = await caches.open(RUNTIME);
+  await Promise.all(
+    [...assets].map(async (url) => {
+      if (await runtime.match(url)) return;
+      try {
+        const asset = await fetch(url);
+        if (asset.ok) await runtime.put(url, asset);
+      } catch {
+        // Thiếu một file thì lần sau thử lại.
+      }
+    }),
+  );
+}
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "cache-offline") {
+    event.waitUntil(cacheOfflinePage().catch(() => {}));
+  }
 });

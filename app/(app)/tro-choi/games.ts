@@ -64,6 +64,19 @@ export const GAMES: GameEntry[] = [
     icon: "pencil",
   },
   {
+    slug: "dat-cau",
+    kind: "skill",
+    href: "/ky-nang/dat-cau",
+    title: "Đặt câu với AI",
+    description:
+      "Nhận một từ vừa học, viết một câu tiếng Anh dùng từ đó. Vịt AI chấm điểm, sửa lỗi và cho câu mẫu — cách nhanh nhất để từ thành của mình.",
+    badge: "Mới",
+    mascot: "ai",
+    gradient: "from-teal-400 via-cyan-500 to-sky-700",
+    button: "bg-teal-600 hover:bg-teal-500",
+    icon: "pencil",
+  },
+  {
     slug: "mock-test",
     kind: "skill",
     href: "/ky-nang/mock-test",

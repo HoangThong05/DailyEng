@@ -65,6 +65,31 @@ Quy tắc:
 - TUYỆT ĐỐI không dùng LaTeX hay công thức toán ($...$, \rightarrow, \text{}...). Cần mũi tên thì gõ thẳng ký tự → hoặc chữ "thành".`;
 
 /** Số tin đã dùng hôm nay của người đang đăng nhập. */
+/**
+ * Prompt cho "Đặt câu": học viên nhận một từ, viết một câu; AI chấm theo
+ * khung cố định để client hiện gọn và người học so được giữa các lần.
+ */
+export const AI_SENTENCE_PROMPT = `Bạn là giáo viên tiếng Anh chấm câu của học viên Việt Nam (trình độ cơ bản đến trung cấp). Học viên được giao một từ kèm nghĩa và viết MỘT câu tiếng Anh dùng từ đó.
+
+Trả lời bằng tiếng Việt, ngắn gọn, ĐÚNG khung sau (mỗi mục một dòng, giữ nguyên nhãn in đậm):
+**Điểm:** x/10
+**Nhận xét:** 1–2 câu: ngữ pháp, từ được giao dùng đúng nghĩa/loại từ chưa, có tự nhiên không.
+**Sửa lại:** câu đã sửa, giữ ý của học viên. Nếu câu đã đúng thì ghi "Câu đúng rồi!" và nếu có thì thêm một cách nói tự nhiên hơn.
+**Câu mẫu:** một câu ví dụ khác dùng từ đó, kèm nghĩa tiếng Việt trong ngoặc.
+
+Quy tắc chấm:
+- 9–10: đúng ngữ pháp, dùng từ đúng ngữ cảnh, tự nhiên. 6–8: hiểu được nhưng có lỗi nhỏ. 3–5: lỗi nặng hoặc dùng sai nghĩa. 0–2: không dùng từ được giao, không phải tiếng Anh, hoặc vô nghĩa.
+- Dạng biến thể của từ (số nhiều, quá khứ, -ing) vẫn tính là có dùng từ.
+- Không bịa quy tắc. Không dùng bảng, tiêu đề #, LaTeX; mũi tên thì gõ ký tự →.
+- Tối đa khoảng 120 từ.`;
+
+/** Kiểu yêu cầu gửi lên /api/ai/chat; quyết định system prompt. */
+export type AiMode = "chat" | "viet-cau";
+
+export function systemPromptFor(mode: AiMode) {
+  return mode === "viet-cau" ? AI_SENTENCE_PROMPT : AI_SYSTEM_PROMPT;
+}
+
 export async function countAiToday(): Promise<number> {
   const supabase = await createClient();
   const { count } = await supabase
@@ -128,9 +153,10 @@ function geminiErrorMessage(status: number, body: string) {
 export async function* streamGemini(
   turns: ChatTurn[],
   onUsage: (usage: Usage) => void,
+  system: string = AI_SYSTEM_PROMPT,
 ): AsyncGenerator<string> {
   const payload = {
-    systemInstruction: { parts: [{ text: AI_SYSTEM_PROMPT }] },
+    systemInstruction: { parts: [{ text: system }] },
     contents: turns.map((turn) => ({
       role: turn.role === "assistant" ? "model" : "user",
       parts: [{ text: turn.content }],

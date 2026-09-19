@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { BottomNav } from "@/app/_components/bottom-nav";
 import { DuckChat } from "@/app/_components/duck-chat";
+import { OfflineSync } from "@/app/_components/offline-sync";
 import { PageTransition } from "@/app/_components/page-transition";
 import { SideNav } from "@/app/_components/side-nav";
 import { AppShellProvider } from "@/app/_components/user-bar-context";
@@ -41,6 +42,7 @@ export default function AppLayout({ children }: LayoutProps<"/">) {
         ) : null}
         <BottomNav />
         <SideNav />
+        <OfflineSync />
       </div>
     </AppShellProvider>
   );

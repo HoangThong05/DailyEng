@@ -17,6 +17,8 @@ export type StudyStats = {
   level: LevelInfo;
   today: { reviews: number; words: number; correct: number };
   week: DayBar[];
+  /** Mọi ngày có học (số lượt), cho bản đồ nhiệt ở Thống kê. */
+  history: { day: string; reviews: number }[];
   totals: {
     reviews: number;
     correct: number;
@@ -87,6 +89,7 @@ export async function getStudyStats(): Promise<StudyStats> {
       correct: todayRow?.correct ?? 0,
     },
     week,
+    history: days.map((row) => ({ day: row.day, reviews: row.reviews })),
     totals: {
       reviews,
       correct,

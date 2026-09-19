@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -40,4 +41,15 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+/**
+ * Sentry: bọc config để bundle SDK đúng cách. Chỉ tải source map lên Sentry
+ * khi có SENTRY_AUTH_TOKEN (đặt ở Vercel); local không cần.
+ */
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  sourcemaps: { disable: !process.env.SENTRY_AUTH_TOKEN },
+  widenClientFileUpload: false,
+});

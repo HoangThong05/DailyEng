@@ -22,6 +22,10 @@ type Props = {
   title: string;
   words: PathWord[];
   aiEnabled?: boolean;
+  /** Thay cách lưu kết quả (mặc định gọi server). Ôn offline thì xếp hàng đợi. */
+  onRate?: (wordId: string, rating: Rating) => void;
+  /** Thay cụm nút ở màn kết quả (mặc định: Chọn bộ khác / Về trang chủ). */
+  footer?: React.ReactNode;
 };
 
 /** Từ "quên" được cho gặp lại tối đa ngần này lần trong phiên. */
@@ -70,7 +74,7 @@ function Highlighted({ sentence, term }: { sentence: string; term: string }) {
  * kiểm tra rồi tự chấm 4 mức. Nhanh hơn học theo chặng, hợp với ôn từ đã quen.
  * Từ chấm "Quên" quay lại cuối hàng để gặp thêm lần nữa.
  */
-export function CardSession({ title, words, aiEnabled = false }: Props) {
+export function CardSession({ title, words, aiEnabled = false, onRate, footer }: Props) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [queue, setQueue] = useState<PathWord[]>(words);
   const [index, setIndex] = useState(0);
@@ -113,11 +117,15 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
 
     // Mức cuối cùng của từ mới là thứ được tính ở màn kết quả.
     setRatings((previous) => new Map(previous).set(word.id, rating));
-    recordRating(word.id, rating)
-      .then((result) => {
-        if (!result.ok) setFailedSaves((n) => n + 1);
-      })
-      .catch(() => setFailedSaves((n) => n + 1));
+    if (onRate) {
+      onRate(word.id, rating);
+    } else {
+      recordRating(word.id, rating)
+        .then((result) => {
+          if (!result.ok) setFailedSaves((n) => n + 1);
+        })
+        .catch(() => setFailedSaves((n) => n + 1));
+    }
 
     // "Quên" thì xếp lại cuối hàng (tối đa MAX_AGAIN lần).
     if (rating === "again") {
@@ -224,20 +232,22 @@ export function CardSession({ title, words, aiEnabled = false }: Props) {
           </ul>
         ) : null}
 
-        <div className="mt-8 grid w-full max-w-sm grid-cols-2 gap-3">
-          <Link
-            href="/hoc"
-            className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
-          >
-            Chọn bộ khác
-          </Link>
-          <Link
-            href="/"
-            className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white press"
-          >
-            Về trang chủ
-          </Link>
-        </div>
+        {footer ?? (
+          <div className="mt-8 grid w-full max-w-sm grid-cols-2 gap-3">
+            <Link
+              href="/hoc"
+              className="border-border text-muted flex min-h-12 items-center justify-center rounded-xl border font-medium press"
+            >
+              Chọn bộ khác
+            </Link>
+            <Link
+              href="/"
+              className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white press"
+            >
+              Về trang chủ
+            </Link>
+          </div>
+        )}
       </div>
     );
   }

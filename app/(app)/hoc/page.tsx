@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/app/_components/empty-state";
-import { ChevronRightIcon } from "@/app/_components/icons";
+import { BookmarkIcon, ChevronRightIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { ScrollRow } from "@/app/_components/scroll-row";
 import { DECK_CATEGORIES, type CategoryStyle } from "@/lib/deck-categories";
@@ -146,6 +146,20 @@ export default async function HocPage() {
               </span>
             </Link>
           ) : null}
+
+          <Link
+            href="/tu-cua-toi"
+            className="border-border bg-card group flex items-center gap-3 rounded-2xl border p-3 pr-4 press"
+          >
+            <span className="bg-brand-soft text-brand flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
+              <BookmarkIcon className="h-6 w-6" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-semibold">Từ của tôi</span>
+              <span className="text-muted block text-sm">Lưu nhanh từ gặp ở ngoài, học như bộ thường</span>
+            </span>
+            <ChevronRightIcon className="text-muted h-5 w-5 shrink-0 transition-transform group-hover:translate-x-0.5" />
+          </Link>
 
           {/* Kiểm tra đầu vào: chưa làm thì mời; làm rồi thì gợi ý bộ theo kết quả */}
           {placement && suggested.length > 0 ? (

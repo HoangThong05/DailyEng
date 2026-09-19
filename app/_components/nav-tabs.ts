@@ -1,4 +1,5 @@
 import {
+  BookmarkIcon,
   CardsIcon,
   ChartIcon,
   GamepadIcon,
@@ -23,6 +24,7 @@ export const NAV_TABS = [
 
 /** Mục chỉ có ở sidebar: có chỗ thì tách ra cho dễ với, điện thoại vẫn gộp. */
 export const SIDE_EXTRAS = [
+  { href: "/tu-cua-toi", label: "Từ của tôi", Icon: BookmarkIcon },
   { href: "/tien-do", label: "Thống kê", Icon: ChartIcon },
   { href: "/xep-hang", label: "Bảng xếp hạng", Icon: TrophyIcon },
   { href: "/phan-thuong", label: "Phần thưởng", Icon: GiftIcon },
@@ -32,6 +34,7 @@ export const SIDE_EXTRAS = [
 const TAB_ALIASES: Record<string, string> = {
   "/on-tap": "/hoc",
   "/tu-kho": "/hoc",
+  "/tu-cua-toi": "/hoc",
   "/kiem-tra-dau-vao": "/hoc",
   "/quiz": "/tro-choi",
   "/phat-am": "/ky-nang",

@@ -85,7 +85,7 @@ function clean(text: string) {
  * Vẽ câu trả lời: chỉ hỗ trợ **in đậm**, *nghiêng* và gạch đầu dòng — đủ cho
  * gia sư, không cần thư viện markdown.
  */
-function Rich({ text }: { text: string }) {
+export function Rich({ text }: { text: string }) {
   return (
     <div className="space-y-1.5 text-sm leading-relaxed">
       {clean(text)
