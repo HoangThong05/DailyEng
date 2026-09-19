@@ -6,6 +6,10 @@ import { getSupabaseEnv } from "./env";
 export const LOGIN_PATH = "/dang-nhap";
 /** Trang nhập mã xác nhận 6 số, vào được khi chưa đăng nhập. */
 export const VERIFY_PATH = "/nhap-ma";
+/** Nhập email để nhận mã khôi phục mật khẩu. */
+export const FORGOT_PATH = "/quen-mat-khau";
+/** Đặt mật khẩu mới; cần phiên đăng nhập (có sau khi nhập đúng mã khôi phục). */
+export const RESET_PATH = "/doi-mat-khau";
 /** Tham số lưu trang người dùng định vào, để đăng nhập xong quay lại đúng chỗ. */
 export const REDIRECT_PARAM = "tiep-tuc";
 
@@ -19,6 +23,7 @@ export const LANDING_PATH = "/gioi-thieu";
 const PUBLIC_PATHS = [
   LOGIN_PATH,
   VERIFY_PATH,
+  FORGOT_PATH,
   "/auth",
   "/offline",
   "/api/cron",

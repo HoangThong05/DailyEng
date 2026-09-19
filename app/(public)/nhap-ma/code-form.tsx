@@ -2,11 +2,12 @@
 
 import { useActionState, useEffect, useRef, useState } from "react";
 import { resendCode, verifyCode, type VerifyState } from "./actions";
+import type { VerifyKind } from "./kind";
 
 const EMPTY: VerifyState = {};
 const CODE_LENGTH = 6;
 
-export function CodeForm({ email }: { email: string }) {
+export function CodeForm({ email, kind }: { email: string; kind: VerifyKind }) {
   const [code, setCode] = useState("");
   const [verifyState, verifyAction, verifying] = useActionState(
     verifyCode,
@@ -36,6 +37,7 @@ export function CodeForm({ email }: { email: string }) {
     <div className="space-y-5">
       <form ref={formRef} action={verifyAction} className="space-y-4">
         <input type="hidden" name="email" value={email} />
+        <input type="hidden" name="kind" value={kind} />
 
         {/* Ô nhập thật nằm trong suốt đè lên 6 khung bên dưới:
             vẫn dán được, vẫn tự điền được, mà nhìn như 6 ô riêng. */}
@@ -108,6 +110,7 @@ export function CodeForm({ email }: { email: string }) {
 
       <form action={resendAction}>
         <input type="hidden" name="email" value={email} />
+        <input type="hidden" name="kind" value={kind} />
         <button
           type="submit"
           disabled={resending}

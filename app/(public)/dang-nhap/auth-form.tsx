@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useState } from "react";
 import { EyeIcon, EyeOffIcon, GoogleIcon } from "@/app/_components/icons";
+import { FORGOT_PATH } from "@/lib/supabase/proxy";
 import { authenticate, signInWithGoogle, type AuthState } from "./actions";
 import { GoogleSignIn } from "./google-signin";
 
@@ -99,9 +101,16 @@ export function AuthForm({ next, googleClientId }: { next: string; googleClientI
         </div>
 
         <div className="space-y-1.5">
-          <label htmlFor="password" className="block text-sm font-medium">
-            Mật khẩu
-          </label>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-medium">
+              Mật khẩu
+            </label>
+            {!isSignup ? (
+              <Link href={FORGOT_PATH} className="text-brand text-sm font-medium">
+                Quên mật khẩu?
+              </Link>
+            ) : null}
+          </div>
           <div className="relative">
             <input
               id="password"

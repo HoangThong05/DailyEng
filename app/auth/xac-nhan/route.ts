@@ -16,17 +16,22 @@ export async function GET(request: NextRequest) {
   const tokenHash = searchParams.get("token_hash");
   const type = searchParams.get("type") as EmailOtpType | null;
 
+  // Link khôi phục mật khẩu mang ?next=/doi-mat-khau; chỉ nhận đường dẫn
+  // nội bộ để không bị lợi dụng chuyển hướng ra ngoài.
+  const rawNext = searchParams.get("next") ?? "/";
+  const next = rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : "/";
+
   const supabase = await createClient();
 
   if (code) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) return NextResponse.redirect(`${origin}/`);
+    if (!error) return NextResponse.redirect(`${origin}${next}`);
   } else if (tokenHash && type) {
     const { error } = await supabase.auth.verifyOtp({
       type,
       token_hash: tokenHash,
     });
-    if (!error) return NextResponse.redirect(`${origin}/`);
+    if (!error) return NextResponse.redirect(`${origin}${next}`);
   }
 
   const failed = new URL("/dang-nhap", origin);
