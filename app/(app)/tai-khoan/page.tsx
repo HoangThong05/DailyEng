@@ -17,6 +17,7 @@ import { getStudyStats } from "@/lib/stats";
 import { RESET_PATH } from "@/lib/supabase/proxy";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
 import { DeleteAccount } from "./delete-account";
+import { EditToggle } from "./edit-toggle";
 import { ImagePicker } from "./image-picker";
 import { ProfileForm } from "./profile-form";
 import { RankToggle } from "./rank-toggle";
@@ -104,12 +105,10 @@ export default async function TaiKhoanPage() {
                 </h2>
                 <p className="text-muted truncate text-xs">{user?.email}</p>
               </div>
-              <a
-                href="#chinh-sua"
-                className="border-border bg-card mb-1 hidden min-h-10 shrink-0 items-center rounded-xl border px-4 text-sm font-semibold press sm:flex"
-              >
-                Chỉnh sửa
-              </a>
+              <EditToggle className="border-border bg-card mb-1 flex min-h-10 shrink-0 items-center gap-1.5 rounded-xl border px-3 text-sm font-semibold press sm:px-4">
+                <PencilIcon className="h-4 w-4" />
+                <span className="hidden sm:inline">Chỉnh sửa</span>
+              </EditToggle>
             </div>
             {profile?.bio ? (
               <p className="mt-3 text-sm leading-relaxed">{profile.bio}</p>
@@ -146,6 +145,39 @@ export default async function TaiKhoanPage() {
             </div>
           </div>
         </section>
+
+        {/* Khung chỉnh sửa: gập mặc định, chỉ mở bằng nút "Chỉnh sửa" trên thẻ */}
+        <details id="chinh-sua" className="border-border bg-card rounded-2xl border">
+          <summary className="sr-only">Chỉnh sửa hồ sơ</summary>
+          <div className="space-y-5 p-4">
+            <div className="flex items-center justify-between">
+              <h2 className="font-semibold">Chỉnh sửa hồ sơ</h2>
+              <EditToggle className="text-muted min-h-9 rounded-lg px-3 text-sm font-medium">
+                Đóng
+              </EditToggle>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <Avatar url={profile?.avatar_url} name={displayName} size={56} />
+              <ImagePicker kind="avatar" hasImage={!!profile?.avatar_url} />
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <span
+                className={`h-10 w-16 shrink-0 rounded-xl bg-gradient-to-br ${COVER_PRESETS[coverInfo.preset].className}`}
+                style={coverInfo.url ? { backgroundImage: `url(${coverInfo.url})`, backgroundSize: "cover" } : undefined}
+              />
+              <ImagePicker kind="cover" hasImage={!!coverInfo.url} />
+            </div>
+            {/* key theo bìa: tải/bỏ ảnh xong thì form nạp lại, không giữ màu cũ rồi ghi đè mất ảnh */}
+            <ProfileForm
+              key={coverInfo.url ?? coverInfo.preset}
+              displayName={displayName}
+              dailyGoal={profile?.daily_goal ?? 10}
+              bio={profile?.bio ?? ""}
+              cover={coverInfo.preset}
+              coverIsImage={!!coverInfo.url}
+            />
+          </div>
+        </details>
 
         {/* Bốn con số chính; chi tiết ở trang Thống kê */}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -238,49 +270,6 @@ export default async function TaiKhoanPage() {
 
         {/* Cột phải: cài đặt */}
         <div className="space-y-5">
-            {/* Gập lại mặc định; id để nút "Chỉnh sửa" trên thẻ hồ sơ nhảy tới và mở */}
-            <details id="chinh-sua" className="border-border bg-card group rounded-2xl border">
-              <summary className="hover:bg-brand-soft/60 flex min-h-16 cursor-pointer list-none items-center justify-between gap-3 rounded-2xl px-4 transition-colors [&::-webkit-details-marker]:hidden">
-                <span className="flex items-center gap-3">
-                  <span className="bg-brand-soft text-brand flex h-9 w-9 shrink-0 items-center justify-center rounded-xl">
-                    <PencilIcon className="h-5 w-5" />
-                  </span>
-                  <span>
-                    <span className="block font-semibold">Chỉnh sửa hồ sơ</span>
-                    <span className="text-muted block text-xs">Ảnh đại diện, ảnh bìa, tiểu sử, tên, mục tiêu</span>
-                  </span>
-                </span>
-                <span className="bg-brand flex min-h-10 shrink-0 items-center gap-1 rounded-full px-4 text-sm font-bold text-white shadow-md shadow-brand/30 group-open:hidden">
-                  Mở <span aria-hidden>▾</span>
-                </span>
-                <span className="border-border text-muted hidden min-h-10 shrink-0 items-center gap-1 rounded-full border px-4 text-sm font-semibold group-open:flex">
-                  Thu gọn <span aria-hidden>▴</span>
-                </span>
-              </summary>
-              <div className="border-border space-y-5 border-t p-4">
-                <div className="flex flex-wrap items-center gap-4">
-                  <Avatar url={profile?.avatar_url} name={displayName} size={56} />
-                  <ImagePicker kind="avatar" hasImage={!!profile?.avatar_url} />
-                </div>
-                <div className="flex flex-wrap items-center gap-4">
-                  <span
-                    className={`h-10 w-16 shrink-0 rounded-xl bg-gradient-to-br ${COVER_PRESETS[coverInfo.preset].className}`}
-                    style={coverInfo.url ? { backgroundImage: `url(${coverInfo.url})`, backgroundSize: "cover" } : undefined}
-                  />
-                  <ImagePicker kind="cover" hasImage={!!coverInfo.url} />
-                </div>
-                {/* key theo bìa: tải/bỏ ảnh xong thì form nạp lại, không giữ màu cũ rồi ghi đè mất ảnh */}
-                <ProfileForm
-                  key={coverInfo.url ?? coverInfo.preset}
-                  displayName={displayName}
-                  dailyGoal={profile?.daily_goal ?? 10}
-                  bio={profile?.bio ?? ""}
-                  cover={coverInfo.preset}
-                  coverIsImage={!!coverInfo.url}
-                />
-              </div>
-            </details>
-
             <section className="space-y-3">
               <h2 className="text-muted px-1 text-sm font-medium">Nhắc học</h2>
               <div>
@@ -317,25 +306,32 @@ export default async function TaiKhoanPage() {
 
             <section className="space-y-3">
               <h2 className="text-muted px-1 text-sm font-medium">Tài khoản</h2>
-              <Link
-                href={`${RESET_PATH}?ve=tai-khoan`}
-                className="border-border bg-card flex min-h-12 items-center justify-between rounded-2xl border px-4 text-sm font-medium press"
-              >
-                {hasPassword ? "Đổi mật khẩu" : "Đặt mật khẩu (để đăng nhập không cần Google)"}
-                <ChevronRightIcon className="text-muted h-4 w-4" />
-              </Link>
+              <div className="border-border bg-card divide-border divide-y rounded-2xl border">
+                <Link
+                  href={`${RESET_PATH}?ve=tai-khoan`}
+                  className="hover:bg-brand-soft/60 flex min-h-13 items-center justify-between gap-3 rounded-t-2xl px-4 text-sm font-medium transition-colors"
+                >
+                  <span>
+                    {hasPassword ? "Đổi mật khẩu" : "Đặt mật khẩu"}
+                    {!hasPassword ? (
+                      <span className="text-muted block text-xs font-normal">
+                        Để đăng nhập bằng email khi không dùng Google
+                      </span>
+                    ) : null}
+                  </span>
+                  <ChevronRightIcon className="text-muted h-4 w-4 shrink-0" />
+                </Link>
+                <form action={signOut}>
+                  <button
+                    type="submit"
+                    className="hover:bg-brand-soft/60 flex min-h-13 w-full items-center px-4 text-sm font-medium transition-colors"
+                  >
+                    Đăng xuất
+                  </button>
+                </form>
+                <DeleteAccount />
+              </div>
             </section>
-
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="border-border min-h-11 w-full rounded-xl border text-sm font-semibold text-red-500 press"
-            >
-              Đăng xuất
-            </button>
-          </form>
-
-          <DeleteAccount />
         </div>
       </div>
     </>

@@ -19,7 +19,7 @@ export function DeleteAccount() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-muted min-h-11 w-full text-sm font-medium hover:text-red-500"
+        className="flex min-h-13 w-full items-center rounded-b-2xl px-4 text-sm font-medium text-red-500 transition-colors hover:bg-red-500/5"
       >
         Xóa tài khoản
       </button>
@@ -29,7 +29,7 @@ export function DeleteAccount() {
   return (
     <form
       action={formAction}
-      className="space-y-3 rounded-2xl border border-red-500/40 bg-red-500/5 p-4"
+      className="space-y-3 rounded-b-2xl bg-red-500/5 p-4"
     >
       <p className="text-sm font-semibold text-red-500">Xóa tài khoản vĩnh viễn</p>
       <p className="text-muted text-sm">
