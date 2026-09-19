@@ -29,6 +29,8 @@ export async function updatePassword(
 ): Promise<PasswordState> {
   const password = String(formData.get("password") ?? "");
   const confirm = String(formData.get("confirm") ?? "");
+  const rawNext = String(formData.get("next") ?? "/");
+  const next = rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : "/";
 
   if (password.length < 6) return { error: "Mật khẩu cần ít nhất 6 ký tự." };
   if (password !== confirm) return { error: "Hai mật khẩu chưa khớp nhau." };
@@ -37,5 +39,5 @@ export async function updatePassword(
   const { error } = await supabase.auth.updateUser({ password });
   if (error) return { error: toVietnamese(error) };
 
-  redirect("/");
+  redirect(next);
 }

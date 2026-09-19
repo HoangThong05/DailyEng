@@ -10,6 +10,8 @@ export const VERIFY_PATH = "/nhap-ma";
 export const FORGOT_PATH = "/quen-mat-khau";
 /** Đặt mật khẩu mới; cần phiên đăng nhập (có sau khi nhập đúng mã khôi phục). */
 export const RESET_PATH = "/doi-mat-khau";
+/** Màn chào mừng người mới; cần đăng nhập, nằm ngoài khung app. */
+export const ONBOARDING_PATH = "/chao-mung";
 /** Tham số lưu trang người dùng định vào, để đăng nhập xong quay lại đúng chỗ. */
 export const REDIRECT_PARAM = "tiep-tuc";
 

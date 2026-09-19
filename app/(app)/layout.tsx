@@ -7,6 +7,7 @@ import { SideNav } from "@/app/_components/side-nav";
 import { AppShellProvider } from "@/app/_components/user-bar-context";
 import { isAiEnabled } from "@/lib/ai";
 import { type AppShellData, loadAppShell } from "@/lib/app-shell";
+import { ONBOARDING_PATH } from "@/lib/supabase/proxy";
 
 /**
  * Khung cho các màn cần đăng nhập.
@@ -46,7 +47,9 @@ export default function AppLayout({ children }: LayoutProps<"/">) {
 }
 
 async function AdminGate({ promise }: { promise: Promise<AppShellData> }) {
-  const { isAdmin } = await promise;
+  const { isAdmin, needsOnboarding } = await promise;
   if (isAdmin) redirect("/quan-tri");
+  // Người mới: qua màn chào mừng (ngoài khung app) trước khi thấy trang chủ.
+  if (needsOnboarding) redirect(ONBOARDING_PATH);
   return null;
 }

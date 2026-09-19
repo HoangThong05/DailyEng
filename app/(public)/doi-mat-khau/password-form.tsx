@@ -9,7 +9,7 @@ const EMPTY: PasswordState = {};
 const FIELD_CLASS =
   "border-border bg-card placeholder:text-muted/70 focus:border-brand min-h-12 w-full rounded-xl border px-4 text-base outline-none";
 
-export function PasswordForm() {
+export function PasswordForm({ next }: { next: string }) {
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -19,6 +19,7 @@ export function PasswordForm() {
 
   return (
     <form action={formAction} className="space-y-4">
+      <input type="hidden" name="next" value={next} />
       <div className="space-y-1.5">
         <label htmlFor="password" className="block text-sm font-medium">
           Mật khẩu mới

@@ -27,6 +27,7 @@ const PRIVATE = [
   "/nhap-ma",
   "/quen-mat-khau",
   "/doi-mat-khau",
+  "/chao-mung",
   "/auth",
   "/api",
 ];

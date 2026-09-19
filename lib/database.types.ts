@@ -44,6 +44,8 @@ export type Database = {
           cover: string;
           placement: Json | null;
           badges: Json;
+          /** Lúc qua màn chào mừng; null = người mới, cần vào /chao-mung. */
+          onboarded_at: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -61,6 +63,7 @@ export type Database = {
           cover?: string;
           placement?: Json | null;
           badges?: Json;
+          onboarded_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -78,6 +81,7 @@ export type Database = {
           cover?: string;
           placement?: Json | null;
           badges?: Json;
+          onboarded_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -384,6 +388,8 @@ export type Database = {
       };
       /** Người gọi có phải admin không (đặt bằng SQL, schema-11). */
       is_admin: { Args: Record<string, never>; Returns: boolean };
+      /** Xóa tài khoản của chính người gọi (schema-21); dữ liệu cascade theo. */
+      delete_own_account: { Args: Record<string, never>; Returns: undefined };
       admin_overview: {
         Args: Record<string, never>;
         Returns: {

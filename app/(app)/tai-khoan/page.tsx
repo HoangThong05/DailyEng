@@ -14,7 +14,9 @@ import { listDecks } from "@/lib/decks";
 import { COVER_PRESETS, parseCover } from "@/lib/profile";
 import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
 import { getStudyStats } from "@/lib/stats";
+import { RESET_PATH } from "@/lib/supabase/proxy";
 import { createClient, getCurrentUser } from "@/lib/supabase/server";
+import { DeleteAccount } from "./delete-account";
 import { ImagePicker } from "./image-picker";
 import { ProfileForm } from "./profile-form";
 import { RankToggle } from "./rank-toggle";
@@ -63,6 +65,10 @@ export default async function TaiKhoanPage() {
 
   const displayName =
     profile?.display_name ?? user?.email?.split("@")[0] ?? "Bạn";
+  // Đăng ký qua Google thì chưa có mật khẩu; nút đổi thành "Đặt mật khẩu".
+  const { data: authUser } = await supabase.auth.getUser();
+  const providers = (authUser.user?.app_metadata.providers as string[] | undefined) ?? [];
+  const hasPassword = providers.includes("email");
   const coverInfo = parseCover(profile?.cover);
 
   return (
@@ -309,6 +315,17 @@ export default async function TaiKhoanPage() {
             </section>
 
 
+            <section className="space-y-3">
+              <h2 className="text-muted px-1 text-sm font-medium">Tài khoản</h2>
+              <Link
+                href={`${RESET_PATH}?ve=tai-khoan`}
+                className="border-border bg-card flex min-h-12 items-center justify-between rounded-2xl border px-4 text-sm font-medium press"
+              >
+                {hasPassword ? "Đổi mật khẩu" : "Đặt mật khẩu (để đăng nhập không cần Google)"}
+                <ChevronRightIcon className="text-muted h-4 w-4" />
+              </Link>
+            </section>
+
           <form action={signOut}>
             <button
               type="submit"
@@ -317,6 +334,8 @@ export default async function TaiKhoanPage() {
               Đăng xuất
             </button>
           </form>
+
+          <DeleteAccount />
         </div>
       </div>
     </>
