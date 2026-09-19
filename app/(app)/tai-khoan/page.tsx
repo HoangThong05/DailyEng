@@ -309,7 +309,7 @@ export default async function TaiKhoanPage() {
               <div className="border-border bg-card divide-border divide-y rounded-2xl border">
                 <Link
                   href={`${RESET_PATH}?ve=tai-khoan`}
-                  className="hover:bg-brand-soft/60 flex min-h-13 items-center justify-between gap-3 rounded-t-2xl px-4 text-sm font-medium transition-colors"
+                  className="hover:bg-brand-soft/60 flex min-h-13 items-center justify-between gap-3 rounded-2xl px-4 text-sm font-medium transition-colors md:rounded-2xl max-md:rounded-b-none"
                 >
                   <span>
                     {hasPassword ? "Đổi mật khẩu" : "Đặt mật khẩu"}
@@ -321,17 +321,28 @@ export default async function TaiKhoanPage() {
                   </span>
                   <ChevronRightIcon className="text-muted h-4 w-4 shrink-0" />
                 </Link>
-                <form action={signOut}>
+                {/* Điện thoại không có sidebar nên đăng xuất ở đây; màn lớn dùng mục ở sidebar */}
+                <form action={signOut} className="md:hidden">
                   <button
                     type="submit"
-                    className="hover:bg-brand-soft/60 flex min-h-13 w-full items-center px-4 text-sm font-medium transition-colors"
+                    className="flex min-h-13 w-full items-center rounded-b-2xl px-4 text-sm font-medium text-red-500 transition-colors hover:bg-red-500/5"
                   >
                     Đăng xuất
                   </button>
                 </form>
-                <DeleteAccount />
               </div>
             </section>
+
+            {/* Xóa tài khoản: giấu trong mục gập, tránh bấm nhầm */}
+            <details className="group px-1">
+              <summary className="text-muted flex min-h-9 cursor-pointer list-none items-center gap-1 text-xs [&::-webkit-details-marker]:hidden">
+                <span className="transition-transform group-open:rotate-90" aria-hidden>▸</span>
+                Tuỳ chọn khác
+              </summary>
+              <div className="border-border bg-card mt-2 overflow-hidden rounded-2xl border">
+                <DeleteAccount />
+              </div>
+            </details>
         </div>
       </div>
     </>

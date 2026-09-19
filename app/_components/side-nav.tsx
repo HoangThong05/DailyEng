@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import { setSidebarCollapsed, useSidebarCollapsed } from "@/lib/sidebar-store";
-import { ChevronRightIcon, FlameIcon } from "./icons";
+import { signOut } from "@/app/_actions/auth";
+import { ChevronRightIcon, FlameIcon, LogoutIcon } from "./icons";
 import { Avatar } from "./avatar";
 import { Mascot } from "./mascot";
 import { isSideActive, NAV_TABS, SIDE_EXTRAS } from "./nav-tabs";
@@ -98,6 +99,20 @@ export function SideNav() {
         ))}
       </ul>
 
+      {/* Đăng xuất: mục riêng ngay trên thẻ hồ sơ, không nằm chung với cài đặt */}
+      <form action={signOut} className="mt-auto px-3">
+        <button
+          type="submit"
+          title={collapsed ? "Đăng xuất" : undefined}
+          className="side-item group flex min-h-11 w-full items-center gap-3 rounded-2xl px-3 font-semibold text-red-500 transition-[background-color,transform] duration-200 hover:bg-red-500/10 hover:translate-x-1"
+        >
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
+            <LogoutIcon className="h-5 w-5" />
+          </span>
+          <span className="side-label truncate">Đăng xuất</span>
+        </button>
+      </form>
+
       {/* Thẻ hồ sơ dưới cùng: tên, cấp, chuỗi; bấm vào tới Cá nhân.
           Dữ liệu về sau khung, nên có bản xương trong lúc chờ. */}
       <Suspense fallback={<ProfileCardSkeleton collapsed={collapsed} />}>
@@ -117,7 +132,7 @@ function ProfileCard({ active, collapsed }: { active: boolean; collapsed: boolea
       href="/tai-khoan"
       aria-current={active ? "page" : undefined}
       title={collapsed ? `${profile.name} · Cấp ${profile.level}` : undefined}
-      className={`border-border mx-3 mt-auto mb-4 flex items-center gap-3 rounded-2xl border p-3 transition-colors ${
+      className={`border-border mx-3 mt-2 mb-4 flex items-center gap-3 rounded-2xl border p-3 transition-colors ${
         active ? "border-brand bg-brand-soft" : "bg-card hover:border-brand/50"
       } ${collapsed ? "justify-center px-0" : ""}`}
     >
@@ -148,7 +163,7 @@ function ProfileCardSkeleton({ collapsed }: { collapsed: boolean }) {
   return (
     <div
       aria-hidden
-      className={`border-border bg-card mx-3 mt-auto mb-4 flex items-center gap-3 rounded-2xl border p-3 ${
+      className={`border-border bg-card mx-3 mt-2 mb-4 flex items-center gap-3 rounded-2xl border p-3 ${
         collapsed ? "justify-center px-0" : ""
       }`}
     >
