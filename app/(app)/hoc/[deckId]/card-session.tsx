@@ -294,15 +294,15 @@ export function CardSession({ title, words, aiEnabled = false, onRate, footer }:
             inert={flipped}
             className="border-border bg-card flex min-h-[22rem] flex-col items-center justify-center rounded-3xl border px-6 py-6 text-center shadow-sm"
           >
+            {/* Chỉ hiện ảnh khi từ có hình minh hoạ thật; từ trừu tượng thì
+                thẻ chỉ có chữ, chữ to hơn để cân mặt thẻ. */}
             {emoji ? (
               <div className="bg-brand-soft/60 mb-4 aspect-[4/3] w-full max-w-[240px] overflow-hidden rounded-2xl">
                 <WordPicture photo={photo} emoji={emoji} />
               </div>
-            ) : (
-              <Mascot variant="hoc" size={96} className="mb-3" />
-            )}
+            ) : null}
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <p className="text-3xl font-bold tracking-tight">{word.term}</p>
+              <p className={`font-bold tracking-tight ${emoji ? "text-3xl" : "text-4xl"}`}>{word.term}</p>
               {parsed.pos ? (
                 <span className="bg-brand-soft text-brand rounded-full px-2.5 py-0.5 text-xs font-bold">
                   {parsed.pos}
