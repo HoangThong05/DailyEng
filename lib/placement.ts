@@ -147,10 +147,13 @@ export function recommendDecks(
   };
 
   const neighbour: DeckLevel = level === "beginner" ? "intermediate" : level === "advanced" ? "intermediate" : "beginner";
+  // Cốt lõi 1–2 toàn "the, a, of, and…" — ai qua được bài kiểm tra cũng biết
+  // rồi, không gợi ý; muốn vẫn tự chọn ở danh sách.
+  const tooBasic = (d: DeckSummary) => d.slug === "cot-loi-1" || d.slug === "cot-loi-2";
 
   if (goal !== "chua-ro") take((d) => d.level === level && d.category === goal);
-  take((d) => d.level === level && d.category === "cot-loi");
-  take((d) => d.level === level);
+  take((d) => d.level === level && d.category === "cot-loi" && !tooBasic(d));
+  take((d) => d.level === level && !tooBasic(d));
   if (goal !== "chua-ro") take((d) => d.level === neighbour && d.category === goal);
   take((d) => d.level === neighbour);
   return picked;

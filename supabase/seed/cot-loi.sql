@@ -4,7 +4,7 @@
 
 -- Cốt lõi 1 (123 từ)
 insert into public.decks (slug, name, description, level, category, position)
-values ('cot-loi-1', 'Cốt lõi 1', '120 từ thông dụng nhất — động từ, đại từ, giới từ cơ bản', 'beginner', 'cot-loi', 10)
+values ('cot-loi-1', 'Cốt lõi 1', '120 từ hay gặp nhất: mạo từ, giới từ, đại từ, động từ cơ bản — ai cũng cần biết', 'beginner', 'cot-loi', 10)
 on conflict (slug) do update set
   name = excluded.name, description = excluded.description, level = excluded.level,
   category = excluded.category, position = excluded.position;
@@ -142,7 +142,7 @@ on conflict (deck_id, term) do nothing;
 
 -- Cốt lõi 2 (121 từ)
 insert into public.decks (slug, name, description, level, category, position)
-values ('cot-loi-2', 'Cốt lõi 2', 'Tần suất 121–240', 'beginner', 'cot-loi', 20)
+values ('cot-loi-2', 'Cốt lõi 2', 'Từ hay gặp thứ 121–240 trong tiếng Anh', 'beginner', 'cot-loi', 20)
 on conflict (slug) do update set
   name = excluded.name, description = excluded.description, level = excluded.level,
   category = excluded.category, position = excluded.position;
@@ -278,7 +278,7 @@ on conflict (deck_id, term) do nothing;
 
 -- Cốt lõi 3 (122 từ)
 insert into public.decks (slug, name, description, level, category, position)
-values ('cot-loi-3', 'Cốt lõi 3', 'Tần suất 241–360', 'beginner', 'cot-loi', 30)
+values ('cot-loi-3', 'Cốt lõi 3', 'Từ hay gặp thứ 241–360 trong tiếng Anh', 'beginner', 'cot-loi', 30)
 on conflict (slug) do update set
   name = excluded.name, description = excluded.description, level = excluded.level,
   category = excluded.category, position = excluded.position;
@@ -415,7 +415,7 @@ on conflict (deck_id, term) do nothing;
 
 -- Cốt lõi 4 (121 từ)
 insert into public.decks (slug, name, description, level, category, position)
-values ('cot-loi-4', 'Cốt lõi 4', 'Tần suất 361–480', 'beginner', 'cot-loi', 40)
+values ('cot-loi-4', 'Cốt lõi 4', 'Từ hay gặp thứ 361–480 trong tiếng Anh', 'beginner', 'cot-loi', 40)
 on conflict (slug) do update set
   name = excluded.name, description = excluded.description, level = excluded.level,
   category = excluded.category, position = excluded.position;
@@ -551,7 +551,7 @@ on conflict (deck_id, term) do nothing;
 
 -- Cốt lõi 5 (120 từ)
 insert into public.decks (slug, name, description, level, category, position)
-values ('cot-loi-5', 'Cốt lõi 5', 'Tần suất 481–600', 'intermediate', 'cot-loi', 50)
+values ('cot-loi-5', 'Cốt lõi 5', 'Từ hay gặp thứ 481–600 trong tiếng Anh', 'intermediate', 'cot-loi', 50)
 on conflict (slug) do update set
   name = excluded.name, description = excluded.description, level = excluded.level,
   category = excluded.category, position = excluded.position;
@@ -686,7 +686,7 @@ on conflict (deck_id, term) do nothing;
 
 -- Cốt lõi 6 (122 từ)
 insert into public.decks (slug, name, description, level, category, position)
-values ('cot-loi-6', 'Cốt lõi 6', 'Tần suất 601–720', 'intermediate', 'cot-loi', 60)
+values ('cot-loi-6', 'Cốt lõi 6', 'Từ hay gặp thứ 601–720 trong tiếng Anh', 'intermediate', 'cot-loi', 60)
 on conflict (slug) do update set
   name = excluded.name, description = excluded.description, level = excluded.level,
   category = excluded.category, position = excluded.position;
@@ -823,7 +823,7 @@ on conflict (deck_id, term) do nothing;
 
 -- Cốt lõi 7 (121 từ)
 insert into public.decks (slug, name, description, level, category, position)
-values ('cot-loi-7', 'Cốt lõi 7', 'Tần suất 721–840', 'intermediate', 'cot-loi', 70)
+values ('cot-loi-7', 'Cốt lõi 7', 'Từ hay gặp thứ 721–840 trong tiếng Anh', 'intermediate', 'cot-loi', 70)
 on conflict (slug) do update set
   name = excluded.name, description = excluded.description, level = excluded.level,
   category = excluded.category, position = excluded.position;
@@ -959,7 +959,7 @@ on conflict (deck_id, term) do nothing;
 
 -- Cốt lõi 8 (122 từ)
 insert into public.decks (slug, name, description, level, category, position)
-values ('cot-loi-8', 'Cốt lõi 8', 'Tần suất 841–960', 'intermediate', 'cot-loi', 80)
+values ('cot-loi-8', 'Cốt lõi 8', 'Từ hay gặp thứ 841–960 trong tiếng Anh', 'intermediate', 'cot-loi', 80)
 on conflict (slug) do update set
   name = excluded.name, description = excluded.description, level = excluded.level,
   category = excluded.category, position = excluded.position;

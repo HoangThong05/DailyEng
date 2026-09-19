@@ -37,7 +37,7 @@ export const DECK_CATEGORIES: CategoryStyle[] = [
   {
     key: "cot-loi",
     label: "Từ vựng cốt lõi",
-    description: "Những từ dùng nhiều nhất, học theo tần suất",
+    description: "1.000 từ hay gặp nhất, xếp theo thứ tự hay gặp — phủ ~80% tiếng Anh thường ngày",
     gradient: "from-blue-500 to-indigo-600",
     solid: "bg-blue-500 text-white",
     soft: "bg-blue-500/15 text-blue-600",
