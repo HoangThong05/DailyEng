@@ -74,6 +74,7 @@ export function VoicePicker() {
         {voices.map((voice) => (
           <option key={voice.name} value={voice.name}>
             {voice.name} · {voice.lang}
+            {voice.localService ? " · nhanh, đọc máy" : " · tự nhiên, hơi trễ"}
           </option>
         ))}
       </select>

@@ -209,29 +209,52 @@ export function pickVoice(): SpeechSynthesisVoice | null {
   return voices.find((voice) => voice.name === preferred) ?? voices[0];
 }
 
+/**
+ * Lượt đọc đang chờ khởi động. Bấm loa liên tục thì chỉ lượt cuối được đọc,
+ * các lượt trước bị huỷ trước khi kịp phát.
+ */
+let queued: number | null = null;
+
+/**
+ * Chrome có hai tật:
+ *  1. Gọi speak() ngay sau cancel() thì câu mới bị nuốt (không phát, không
+ *     báo lỗi). Phải chờ một nhịp ngắn giữa hai lệnh.
+ *  2. Đôi khi engine kẹt ở trạng thái "paused" sau khi chuyển tab; resume()
+ *     trước khi đọc để chắc ăn.
+ */
+function speakNow(utterance: SpeechSynthesisUtterance) {
+  const synth = window.speechSynthesis;
+  const fire = () => {
+    queued = null;
+    const voice = pickVoice();
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    }
+    synth.resume();
+    synth.speak(utterance);
+  };
+
+  if (queued !== null) clearTimeout(queued);
+  if (synth.speaking || synth.pending) {
+    synth.cancel();
+    queued = window.setTimeout(fire, 90);
+  } else {
+    fire();
+  }
+}
+
 /** Đọc to một đoạn tiếng Anh. Trả về false nếu trình duyệt không đọc được. */
 export function speak(text: string, lang = "en-US", rate = 0.92): boolean {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) {
     return false;
   }
 
-  // Bấm liên tục thì huỷ lượt đọc đang dở, tránh chồng tiếng.
-  window.speechSynthesis.cancel();
-
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = lang;
   // Hơi chậm hơn bình thường cho người học nghe rõ; nút "Đọc chậm" truyền
   // rate thấp hơn nữa. Giọng tự nhiên đọc 0.92 nghe vẫn trôi chảy.
   utterance.rate = rate;
-
-  const say = () => {
-    const voice = pickVoice();
-    if (voice) {
-      utterance.voice = voice;
-      utterance.lang = voice.lang;
-    }
-    window.speechSynthesis.speak(utterance);
-  };
 
   // Chrome nạp danh sách giọng bất đồng bộ: lần gọi đầu getVoices() có thể
   // rỗng → chờ voiceschanged (tối đa 400ms) rồi mới đọc, để ngay câu đầu
@@ -242,12 +265,12 @@ export function speak(text: string, lang = "en-US", rate = 0.92): boolean {
       if (done) return;
       done = true;
       window.speechSynthesis.removeEventListener("voiceschanged", go);
-      say();
+      speakNow(utterance);
     };
     window.speechSynthesis.addEventListener("voiceschanged", go);
     setTimeout(go, 400);
   } else {
-    say();
+    speakNow(utterance);
   }
   return true;
 }
@@ -270,9 +293,6 @@ export function speakAsync(text: string, rate = 0.92): Promise<void> {
     }
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = rate;
-    const voice = pickVoice();
-    utterance.lang = voice?.lang ?? "en-US";
-    if (voice) utterance.voice = voice;
     let settled = false;
     const done = () => {
       if (settled) return;
@@ -281,7 +301,7 @@ export function speakAsync(text: string, rate = 0.92): Promise<void> {
     };
     utterance.onend = done;
     utterance.onerror = done;
-    window.speechSynthesis.speak(utterance);
+    speakNow(utterance);
     // Vài trình duyệt không bắn onend khi bị cancel — chốt chặn theo độ dài.
     setTimeout(done, 1500 + (text.length * 90) / rate);
   });
@@ -289,6 +309,8 @@ export function speakAsync(text: string, rate = 0.92): Promise<void> {
 
 export function stopSpeaking() {
   if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    if (queued !== null) clearTimeout(queued);
+    queued = null;
     window.speechSynthesis.cancel();
   }
 }
