@@ -5,12 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { recordRating } from "@/app/_actions/study";
 import { Celebration } from "@/app/_components/celebration";
 import { CountUp } from "@/app/_components/count-up";
-import { WordPicture } from "@/app/_components/emoji-image";
 import { CheckIcon, CloseIcon, SparkleIcon, SpeakerIcon } from "@/app/_components/icons";
 import { Mascot, resultMascot } from "@/app/_components/mascot";
 import { playCorrect, playMiss, readSoundPreference, unlockAudio } from "@/lib/game-audio";
 import type { Rating } from "@/lib/leitner";
-import { emojiFor, photoFor } from "@/lib/picture-game";
 import { parseMeaning } from "@/lib/pos";
 import { speak } from "@/lib/speech";
 import { type PathWord, splitSentence } from "@/lib/study-path";
@@ -254,8 +252,6 @@ export function CardSession({ title, words, aiEnabled = false, onRate, footer }:
 
   /* ---------- Đang ôn ---------- */
   const parsed = parseMeaning(word.meaning_vi);
-  const photo = photoFor(word.term);
-  const emoji = emojiFor(word.term);
   const progress = Math.round((index / queue.length) * 100);
 
   return (
@@ -294,15 +290,10 @@ export function CardSession({ title, words, aiEnabled = false, onRate, footer }:
             inert={flipped}
             className="border-border bg-card flex min-h-[22rem] flex-col items-center justify-center rounded-3xl border px-6 py-6 text-center shadow-sm"
           >
-            {/* Chỉ hiện ảnh khi từ có hình minh hoạ thật; từ trừu tượng thì
-                thẻ chỉ có chữ, chữ to hơn để cân mặt thẻ. */}
-            {emoji ? (
-              <div className="bg-brand-soft/60 mb-4 aspect-[4/3] w-full max-w-[240px] overflow-hidden rounded-2xl">
-                <WordPicture photo={photo} emoji={emoji} />
-              </div>
-            ) : null}
+            {/* Mặt trước chỉ có chữ: ảnh minh hoạ chỉ có cho một phần từ và
+                đôi khi sai nghĩa, nên bỏ hẳn cho nhất quán. */}
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <p className={`font-bold tracking-tight ${emoji ? "text-3xl" : "text-4xl"}`}>{word.term}</p>
+              <p className="text-4xl font-bold tracking-tight">{word.term}</p>
               {parsed.pos ? (
                 <span className="bg-brand-soft text-brand rounded-full px-2.5 py-0.5 text-xs font-bold">
                   {parsed.pos}
