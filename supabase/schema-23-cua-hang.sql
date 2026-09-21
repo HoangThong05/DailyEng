@@ -24,14 +24,14 @@ insert into public.shop_items (key, kind, name, price, limited_until) values
   ('khung-bang', 'khung', 'Viền băng', 1200, null),
   ('khung-cau-vong', 'khung', 'Cầu vồng', 2000, null),
   ('khung-tot-nghiep', 'khung', 'Tốt nghiệp', 1500, null),
-  ('khung-trung-thu', 'khung', 'Trung thu', 600, date '2026-10-15'),
-  ('khung-halloween', 'khung', 'Halloween', 600, date '2026-11-05'),
-  ('khung-giang-sinh', 'khung', 'Giáng sinh', 600, date '2026-12-31'),
-  ('khung-tet', 'khung', 'Tết', 600, date '2027-02-28'),
-  ('bia-trung-thu', 'bia', 'Đêm trăng rằm', 500, date '2026-10-15'),
-  ('bia-halloween', 'bia', 'Đêm Halloween', 500, date '2026-11-05'),
-  ('bia-giang-sinh', 'bia', 'Giáng sinh', 500, date '2026-12-31'),
-  ('bia-tet', 'bia', 'Tết', 500, date '2027-02-28'),
+  ('khung-trung-thu', 'khung', 'Trung thu', 400, date '2026-10-15'),
+  ('khung-halloween', 'khung', 'Halloween', 400, date '2026-11-05'),
+  ('khung-giang-sinh', 'khung', 'Giáng sinh', 400, date '2026-12-31'),
+  ('khung-tet', 'khung', 'Tết', 400, date '2027-02-28'),
+  ('bia-trung-thu', 'bia', 'Đêm trăng rằm', 300, date '2026-10-15'),
+  ('bia-halloween', 'bia', 'Đêm Halloween', 300, date '2026-11-05'),
+  ('bia-giang-sinh', 'bia', 'Giáng sinh', 300, date '2026-12-31'),
+  ('bia-tet', 'bia', 'Tết', 300, date '2027-02-28'),
   ('bia-toeic-990', 'bia', 'TOEIC 990', 1200, null),
   ('bia-ha-noi', 'bia', 'Hà Nội', 900, null),
   ('bia-sai-gon', 'bia', 'Sài Gòn', 900, null),
@@ -41,7 +41,7 @@ insert into public.shop_items (key, kind, name, price, limited_until) values
   ('dh-mot-tu', 'danh-hieu', 'Mọt từ', 1000, null),
   ('dh-chien-binh', 'danh-hieu', 'Chiến binh TOEIC', 1500, null),
   ('dh-vit-vang', 'danh-hieu', 'Vịt vàng', 3000, null),
-  ('dong-bang', 'dong-bang', 'Đóng băng chuỗi', 500, null)
+  ('dong-bang', 'dong-bang', 'Đóng băng chuỗi', 300, null)
 on conflict (key) do update set
   kind = excluded.kind, name = excluded.name, price = excluded.price,
   limited_until = excluded.limited_until;

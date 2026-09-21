@@ -174,20 +174,20 @@ export const SHOP_ITEMS: ShopItem[] = [
     frame: { colors: ["#f472b6", "#facc15", "#22d3ee"], effect: "spin" } },
   { key: "khung-tot-nghiep", kind: "khung", name: "Tốt nghiệp", description: "Vòng nguyệt quế xanh navy viền vàng, có mũ cử nhân.", price: 1500, gradient: "from-indigo-800 via-blue-700 to-amber-400",
     frame: { colors: ["#1e3a8a", "#3b82f6", "#fbbf24"], effect: "glow", charms: [{ glyph: "🎓", angle: 0, size: 1.3 }, { glyph: "🌿", angle: 250, size: 1 }, { glyph: "🌿", angle: 110, size: 1 }] } },
-  { key: "khung-trung-thu", kind: "khung", name: "Trung thu", description: "Đèn lồng treo quanh, trăng vàng phía trên — chỉ bán mùa Trung thu.", price: 600, limitedUntil: "2026-10-15", collection: "trung-thu", gradient: "from-amber-400 via-orange-500 to-red-600",
+  { key: "khung-trung-thu", kind: "khung", name: "Trung thu", description: "Đèn lồng treo quanh, trăng vàng phía trên — chỉ bán mùa Trung thu.", price: 400, limitedUntil: "2026-10-15", collection: "trung-thu", gradient: "from-amber-400 via-orange-500 to-red-600",
     frame: { colors: ["#fcd34d", "#f97316", "#7f1d1d"], effect: "glow", charms: [{ glyph: "🌕", angle: 0, size: 1.2 }, { glyph: "🏮", angle: 300, size: 1.1 }, { glyph: "🏮", angle: 60, size: 1.1 }, { glyph: "🏮", angle: 180, size: 0.9 }] } },
-  { key: "khung-halloween", kind: "khung", name: "Halloween", description: "Cam tím ma mị, bí ngô và dơi bám quanh.", price: 600, limitedUntil: "2026-11-05", collection: "halloween", gradient: "from-orange-500 via-purple-700 to-black",
+  { key: "khung-halloween", kind: "khung", name: "Halloween", description: "Cam tím ma mị, bí ngô và dơi bám quanh.", price: 400, limitedUntil: "2026-11-05", collection: "halloween", gradient: "from-orange-500 via-purple-700 to-black",
     frame: { colors: ["#fb923c", "#7e22ce", "#0f0716"], effect: "glow", charms: [{ glyph: "🎃", angle: 0, size: 1.3 }, { glyph: "🦇", angle: 290, size: 1 }, { glyph: "🦇", angle: 70, size: 1 }, { glyph: "🕸️", angle: 180, size: 0.9 }] } },
-  { key: "khung-giang-sinh", kind: "khung", name: "Giáng sinh", description: "Đỏ xanh lá, tuyết rơi quanh vòng.", price: 600, limitedUntil: "2026-12-31", collection: "giang-sinh", gradient: "from-red-500 via-emerald-500 to-red-600",
+  { key: "khung-giang-sinh", kind: "khung", name: "Giáng sinh", description: "Đỏ xanh lá, tuyết rơi quanh vòng.", price: 400, limitedUntil: "2026-12-31", collection: "giang-sinh", gradient: "from-red-500 via-emerald-500 to-red-600",
     frame: { colors: ["#fecaca", "#dc2626", "#047857"], effect: "snow", charms: [{ glyph: "🎄", angle: 0, size: 1.2 }, { glyph: "🎁", angle: 120, size: 0.9 }, { glyph: "🔔", angle: 240, size: 0.9 }] } },
-  { key: "khung-tet", kind: "khung", name: "Tết", description: "Đỏ vàng may mắn, hoa mai và bao lì xì.", price: 600, limitedUntil: "2027-02-28", collection: "tet", gradient: "from-red-600 via-amber-400 to-red-600",
+  { key: "khung-tet", kind: "khung", name: "Tết", description: "Đỏ vàng may mắn, hoa mai và bao lì xì.", price: 400, limitedUntil: "2027-02-28", collection: "tet", gradient: "from-red-600 via-amber-400 to-red-600",
     frame: { colors: ["#fde68a", "#dc2626", "#991b1b"], effect: "glow", charms: [{ glyph: "🧧", angle: 0, size: 1.2 }, { glyph: "🌸", angle: 300, size: 1 }, { glyph: "🌼", angle: 60, size: 1 }, { glyph: "🧨", angle: 180, size: 0.9 }] } },
 
   // --- Ảnh bìa (cảnh vẽ bằng code; có file public/shop/<key>.webp thì đặt art: true) ---
-  { key: "bia-trung-thu", kind: "bia", name: "Đêm trăng rằm", description: "Trăng tròn, đèn lồng, thỏ ngọc — mùa Trung thu.", price: 500, limitedUntil: "2026-10-15", collection: "trung-thu", gradient: "from-indigo-900 via-purple-800 to-orange-500", scene: SCENE["trung-thu"], art: true },
-  { key: "bia-halloween", kind: "bia", name: "Đêm Halloween", description: "Trăng máu, bí ngô và dơi.", price: 500, limitedUntil: "2026-11-05", collection: "halloween", gradient: "from-black via-purple-900 to-orange-600", scene: SCENE["halloween"] },
-  { key: "bia-giang-sinh", kind: "bia", name: "Giáng sinh", description: "Tuyết rơi, thông và quà.", price: 500, limitedUntil: "2026-12-31", collection: "giang-sinh", gradient: "from-emerald-700 via-red-600 to-emerald-800", scene: SCENE["giang-sinh"] },
-  { key: "bia-tet", kind: "bia", name: "Tết", description: "Hoa mai, hoa đào, pháo hoa.", price: 500, limitedUntil: "2027-02-28", collection: "tet", gradient: "from-red-600 via-amber-400 to-pink-500", scene: SCENE["tet"] },
+  { key: "bia-trung-thu", kind: "bia", name: "Đêm trăng rằm", description: "Trăng tròn, đèn lồng, thỏ ngọc — mùa Trung thu.", price: 300, limitedUntil: "2026-10-15", collection: "trung-thu", gradient: "from-indigo-900 via-purple-800 to-orange-500", scene: SCENE["trung-thu"], art: true },
+  { key: "bia-halloween", kind: "bia", name: "Đêm Halloween", description: "Trăng máu, bí ngô và dơi.", price: 300, limitedUntil: "2026-11-05", collection: "halloween", gradient: "from-black via-purple-900 to-orange-600", scene: SCENE["halloween"] },
+  { key: "bia-giang-sinh", kind: "bia", name: "Giáng sinh", description: "Tuyết rơi, thông và quà.", price: 300, limitedUntil: "2026-12-31", collection: "giang-sinh", gradient: "from-emerald-700 via-red-600 to-emerald-800", scene: SCENE["giang-sinh"] },
+  { key: "bia-tet", kind: "bia", name: "Tết", description: "Hoa mai, hoa đào, pháo hoa.", price: 300, limitedUntil: "2027-02-28", collection: "tet", gradient: "from-red-600 via-amber-400 to-pink-500", scene: SCENE["tet"] },
   { key: "bia-toeic-990", kind: "bia", name: "TOEIC 990", description: "Mục tiêu điểm tuyệt đối, treo lên cho nhớ.", price: 1200, gradient: "from-blue-900 via-blue-700 to-amber-400",
     scene: { sky: "linear-gradient(135deg,#0b1f4d 0%,#1d4ed8 60%,#f59e0b 100%)", stars: 20, props: [{ glyph: "🎯", x: 14, y: 30, size: 3.4 }, { glyph: "📈", x: 84, y: 26, size: 3, float: true }, { glyph: "🏆", x: 50, y: 62, size: 2.6 }] } },
   { key: "bia-ha-noi", kind: "bia", name: "Hà Nội", description: "Hồ Gươm chiều thu, lá vàng rơi.", price: 900, gradient: "from-amber-200 via-orange-300 to-rose-400",
@@ -206,7 +206,7 @@ export const SHOP_ITEMS: ShopItem[] = [
   { key: "dh-vit-vang", kind: "danh-hieu", name: "Vịt vàng", description: "Danh hiệu đắt nhất — khoe được.", price: 3000, gradient: "from-amber-400 to-yellow-600", decor: "🦆" },
 
   // --- Tiện ích ---
-  { key: "dong-bang", kind: "dong-bang", name: "Đóng băng chuỗi", description: `Bỏ lỡ một ngày thì tự cứu chuỗi. Giữ tối đa ${FREEZE_MAX} cái.`, price: 500, gradient: "from-cyan-300 to-blue-500", decor: "❄️" },
+  { key: "dong-bang", kind: "dong-bang", name: "Đóng băng chuỗi", description: `Bỏ lỡ một ngày thì tự cứu chuỗi. Giữ tối đa ${FREEZE_MAX} cái.`, price: 300, gradient: "from-cyan-300 to-blue-500", decor: "❄️" },
 ];
 
 export const KIND_LABEL: Record<ItemKind, string> = {
