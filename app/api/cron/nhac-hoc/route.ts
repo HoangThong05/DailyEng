@@ -50,7 +50,10 @@ export async function GET(request: NextRequest) {
   }
 
   const today = todayInAppZone();
-  const override = Number(request.nextUrl.searchParams.get("hour"));
+  // Chỉ nhận giờ giả lập khi có tham số thật; Number(null) = 0 từng làm
+  // route tưởng lúc nào cũng là 0 giờ và không gửi cho ai.
+  const raw = request.nextUrl.searchParams.get("hour");
+  const override = raw === null ? NaN : Number(raw);
   const hour =
     Number.isInteger(override) && override >= 0 && override <= 23
       ? override
