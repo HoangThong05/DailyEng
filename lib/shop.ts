@@ -155,6 +155,7 @@ export const SEED_RULES = [
   { emoji: "📅", text: "Điểm danh: +5 Hạt, ngày thứ 7 liên tiếp +20" },
   { emoji: "✅", text: "Xong đủ nhiệm vụ ngày: +10 Hạt" },
   { emoji: "🎯", text: "Đạt mục tiêu từ trong ngày: +5 Hạt" },
+  { emoji: "📖", text: "Mỗi 20 lượt trả lời trong ngày: +2 Hạt (tối đa +6/ngày)" },
   { emoji: "🔥", text: "Mốc chuỗi 3/7/14/30/60/100 ngày: +20/50/100/200/400/700" },
   { emoji: "🏅", text: "Mỗi huy hiệu mới: +30 Hạt" },
 ] as const;

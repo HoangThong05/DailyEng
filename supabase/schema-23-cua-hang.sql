@@ -4,7 +4,7 @@
 --
 -- Chống gian lận: người dùng KHÔNG ghi được vào sổ Hạt hay kho đồ. Mọi cộng /
 -- trừ đi qua hàm security definer: claim_seeds() tự suy Hạt từ dữ liệu học
--- (điểm danh, nhiệm vụ, mốc chuỗi, huy hiệu, mục tiêu ngày) — không nhận tham
+-- (điểm danh, nhiệm vụ, mốc chuỗi, huy hiệu, mục tiêu ngày, số lượt học) — không nhận tham
 -- số nên không bịa được; buy_item() lấy giá từ bảng shop_items.
 
 -- ---------------------------------------------------------------------------
@@ -175,6 +175,16 @@ begin
   select uid, 5, 'Đạt mục tiêu ngày', 'goal:' || d.day
   from public.study_days d, public.profiles p
   where d.user_id = uid and p.id = uid and d.words >= p.daily_goal
+  on conflict (user_id, ref) do nothing;
+  get diagnostics n = row_count; added := added + n;
+
+  -- Khối lượng học: mỗi 20 lượt trả lời trong ngày +2, tối đa 3 lần/ngày (+6).
+  -- Theo tổng lượt, không theo từng câu → bấm bừa 500 lượt vẫn chỉ +6.
+  insert into public.seed_ledger (user_id, amount, reason, ref)
+  select uid, 2, 'Học ' || (k * 20) || ' lượt', 'reviews:' || d.day || ':' || k
+  from public.study_days d
+  cross join generate_series(1, 3) as k
+  where d.user_id = uid and d.reviews >= k * 20
   on conflict (user_id, ref) do nothing;
   get diagnostics n = row_count; added := added + n;
 
