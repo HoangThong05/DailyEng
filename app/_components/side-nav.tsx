@@ -137,7 +137,7 @@ function ProfileCard({ active, collapsed }: { active: boolean; collapsed: boolea
       } ${collapsed ? "justify-center px-0" : ""}`}
     >
       <span className="relative shrink-0">
-        <Avatar url={profile.avatarUrl} name={profile.name} size={collapsed ? 36 : 44} />
+        <Avatar url={profile.avatarUrl} name={profile.name} size={collapsed ? 36 : 44} frame={profile.frame} />
         <span className="bg-brand absolute -right-1.5 -bottom-1.5 rounded-full px-1.5 text-[10px] font-bold text-white shadow">
           Lv.{profile.level}
         </span>

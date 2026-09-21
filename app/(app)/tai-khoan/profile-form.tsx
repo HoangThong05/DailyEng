@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useState } from "react";
 import { BIO_MAX, COVER_PRESETS, type CoverKey } from "@/lib/profile";
 import { updateProfile, type ProfileState } from "./actions";
@@ -90,6 +91,13 @@ export function ProfileForm({ displayName, dailyGoal, bio, cover, coverIsImage }
         {coverIsImage && !chosenCover ? (
           <p className="text-muted text-xs">Đang dùng ảnh bìa tải lên. Chọn một màu để thay.</p>
         ) : null}
+        <p className="text-muted text-xs">
+          Bìa đặc biệt (Trung thu, TOEIC 990…) mua bằng Hạt ở{" "}
+          <Link href="/cua-hang" className="text-brand font-medium">
+            Cửa hàng
+          </Link>
+          .
+        </p>
       </div>
 
       <div className="space-y-1.5">

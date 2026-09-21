@@ -1,3 +1,4 @@
+import { settleSeeds } from "@/lib/seeds";
 import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
 import { getUserBarData, type UserBarData } from "@/lib/user-bar";
@@ -10,6 +11,7 @@ export type SideProfile = {
   streak: number;
   /** 0–100 tiến độ tới cấp kế. */
   percent: number;
+  frame: string | null;
 };
 
 export type AppShellData = {
@@ -30,9 +32,11 @@ export type AppShellData = {
  */
 export async function loadAppShell(): Promise<AppShellData> {
   const supabase = await createClient();
+  // Cộng Hạt mới + tự dùng Đóng băng chuỗi trước khi tính chuỗi/số dư.
+  await settleSeeds();
   const [{ data: isAdmin }, { data: profile }, stats] = await Promise.all([
     supabase.rpc("is_admin"),
-    supabase.from("profiles").select("display_name, avatar_url, onboarded_at").maybeSingle(),
+    supabase.from("profiles").select("display_name, avatar_url, onboarded_at, frame").maybeSingle(),
     getStudyStats(),
   ]);
   const userBar = await getUserBarData(profile, stats);
@@ -49,6 +53,7 @@ export async function loadAppShell(): Promise<AppShellData> {
       title: stats.level.title,
       streak: stats.streak.current,
       percent: stats.level.percent,
+      frame: profile?.frame ?? null,
     },
     userBar,
   };

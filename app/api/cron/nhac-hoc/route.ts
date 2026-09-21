@@ -88,14 +88,15 @@ export async function GET(request: NextRequest) {
 
   const userIds = [...new Set(subscriptions.map((row) => row.user_id))];
 
-  const { data: days } = await supabase
-    .from("study_days")
-    .select("user_id, day")
-    .in("user_id", userIds)
-    .gte("day", addDays(today, -STREAK_LOOKBACK_DAYS));
+  const since = addDays(today, -STREAK_LOOKBACK_DAYS);
+  const [{ data: days }, { data: shields }] = await Promise.all([
+    supabase.from("study_days").select("user_id, day").in("user_id", userIds).gte("day", since),
+    // Ngày được Đóng băng chuỗi cứu cũng giữ chuỗi (schema-23).
+    supabase.from("streak_shields").select("user_id, day").in("user_id", userIds).gte("day", since),
+  ]);
 
   const daysByUser = new Map<string, string[]>();
-  for (const row of days ?? []) {
+  for (const row of [...(days ?? []), ...(shields ?? [])]) {
     const list = daysByUser.get(row.user_id) ?? [];
     list.push(row.day);
     daysByUser.set(row.user_id, list);

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { signOut } from "@/app/_actions/auth";
 import { CountUp } from "@/app/_components/count-up";
 import { Avatar } from "@/app/_components/avatar";
+import { CoverArt } from "@/app/_components/cover-art";
+import { TitleChip } from "@/app/_components/title-chip";
 import { BadgeChip } from "@/app/_components/badge-chip";
 import { ChevronRightIcon, FlameIcon, PencilIcon } from "@/app/_components/icons";
 import { Mascot } from "@/app/_components/mascot";
@@ -11,7 +13,7 @@ import { DeckCard } from "@/app/(app)/hoc/deck-card";
 import { PageHeader } from "@/app/_components/page-header";
 import { BADGE_GROUPS, BADGES, syncBadges } from "@/lib/badges";
 import { listDecks } from "@/lib/decks";
-import { COVER_PRESETS, parseCover } from "@/lib/profile";
+import { parseCover } from "@/lib/profile";
 import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
 import { getStudyStats } from "@/lib/stats";
 import { RESET_PATH } from "@/lib/supabase/proxy";
@@ -53,7 +55,7 @@ export default async function TaiKhoanPage() {
   const [{ data: profile }, stats, decks] = await Promise.all([
     supabase
       .from("profiles")
-      .select("display_name, daily_goal, reminder_hour, hide_rank, bio, avatar_url, cover")
+      .select("display_name, daily_goal, reminder_hour, hide_rank, bio, avatar_url, cover, frame, title")
       .eq("id", user?.id ?? "")
       .maybeSingle(),
     getStudyStats(),
@@ -82,27 +84,23 @@ export default async function TaiKhoanPage() {
         <div className="space-y-5">
         {/* Thẻ hồ sơ: ảnh bìa (màu hoặc ảnh tải lên), avatar chồng lên mép, tên, tiểu sử, cấp, chuỗi */}
         <section aria-labelledby="ho-so" className="border-border bg-card overflow-hidden rounded-3xl border">
-          <div
-            className={`relative h-32 bg-gradient-to-br sm:h-44 ${COVER_PRESETS[coverInfo.preset].className}`}
-          >
-            {coverInfo.url ? (
-              // eslint-disable-next-line @next/next/no-img-element -- ảnh người dùng tải lên, kích thước đã cố định
-              <img src={coverInfo.url} alt="" className="h-full w-full object-cover" />
-            ) : null}
+          <CoverArt info={coverInfo} className="h-32 sm:h-44">
             <Mascot variant="chao-trong" size={72} className="absolute right-4 bottom-2 h-auto w-16 opacity-90 sm:w-20" />
-          </div>
+          </CoverArt>
           <div className="px-5 pb-5">
             <div className="relative z-10 -mt-12 flex items-end gap-4">
               <Avatar
                 url={profile?.avatar_url}
                 name={displayName}
                 size={104}
+                frame={profile?.frame}
                 className="border-card shrink-0 border-4 shadow-lg"
               />
               <div className="min-w-0 flex-1 pb-1">
                 <h2 id="ho-so" className="truncate text-2xl font-bold">
                   {displayName}
                 </h2>
+                <TitleChip title={profile?.title} />
                 <p className="text-muted truncate text-xs">{user?.email}</p>
               </div>
               <EditToggle className="border-border bg-card mb-1 flex min-h-10 shrink-0 items-center gap-1.5 rounded-xl border px-3 text-sm font-semibold press sm:px-4">
@@ -161,10 +159,7 @@ export default async function TaiKhoanPage() {
               <ImagePicker kind="avatar" hasImage={!!profile?.avatar_url} />
             </div>
             <div className="flex flex-wrap items-center gap-4">
-              <span
-                className={`h-10 w-16 shrink-0 rounded-xl bg-gradient-to-br ${COVER_PRESETS[coverInfo.preset].className}`}
-                style={coverInfo.url ? { backgroundImage: `url(${coverInfo.url})`, backgroundSize: "cover" } : undefined}
-              />
+              <CoverArt info={coverInfo} className="h-10 w-16 shrink-0 rounded-xl" />
               <ImagePicker kind="cover" hasImage={!!coverInfo.url} />
             </div>
             {/* key theo bìa: tải/bỏ ảnh xong thì form nạp lại, không giữ màu cũ rồi ghi đè mất ảnh */}

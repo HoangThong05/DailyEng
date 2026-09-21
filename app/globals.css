@@ -913,3 +913,18 @@ html[data-sidebar="collapsed"] .side-head {
 .skeleton-pulse {
   animation: skeleton-pulse 1.4s ease-in-out infinite;
 }
+
+/* Khung avatar mua ở cửa hàng: vòng gradient; khung "animated" xoay chậm. */
+@keyframes avatar-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.avatar-ring-spin {
+  animation: avatar-ring-spin 4s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .avatar-ring-spin {
+    animation: none;
+  }
+}

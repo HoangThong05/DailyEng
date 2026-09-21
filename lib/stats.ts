@@ -40,7 +40,7 @@ export async function getStudyStats(): Promise<StudyStats> {
   const today = todayInAppZone();
 
   // RLS đã giới hạn về đúng người dùng hiện tại nên không cần lọc user_id.
-  const [daysResult, seenResult, masteredResult, taskResult] = await Promise.all([
+  const [daysResult, seenResult, masteredResult, taskResult, shieldResult] = await Promise.all([
     supabase.from("study_days").select("day, reviews, correct, words"),
     supabase
       .from("word_progress")
@@ -51,6 +51,8 @@ export async function getStudyStats(): Promise<StudyStats> {
       .eq("box", MAX_BOX),
     // XP thưởng nhiệm vụ ngày (schema-15); chưa có bảng thì coi như 0.
     supabase.from("task_completions").select("xp"),
+    // Ngày được Đóng băng chuỗi cứu (schema-23): tính như có học khi đếm chuỗi.
+    supabase.from("streak_shields").select("day"),
   ]);
 
   const days = daysResult.data ?? [];
@@ -76,7 +78,7 @@ export async function getStudyStats(): Promise<StudyStats> {
 
   return {
     streak: computeStreak(
-      days.map((row) => row.day),
+      [...days.map((row) => row.day), ...(shieldResult.data ?? []).map((row) => row.day)],
       today,
     ),
     // XP trả lời áp trần theo từng ngày (lib/xp.ts), cộng XP thưởng.

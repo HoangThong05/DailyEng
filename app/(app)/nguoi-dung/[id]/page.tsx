@@ -6,7 +6,8 @@ import { CountUp } from "@/app/_components/count-up";
 import { FlameIcon } from "@/app/_components/icons";
 import { PageHeader } from "@/app/_components/page-header";
 import { BADGE_GROUPS, BADGES, topBadges } from "@/lib/badges";
-import { COVER_PRESETS } from "@/lib/profile";
+import { CoverArt } from "@/app/_components/cover-art";
+import { TitleChip } from "@/app/_components/title-chip";
 import { getPublicProfile } from "@/lib/public-profile";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -51,24 +52,19 @@ export default async function NguoiDungPage({ params }: PageProps<"/nguoi-dung/[
       <div className="stagger grid gap-6 px-5 pt-2 pb-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start">
         <div className="space-y-5">
           <section className="border-border bg-card overflow-hidden rounded-3xl border">
-            <div
-              className={`relative h-32 bg-gradient-to-br sm:h-44 ${COVER_PRESETS[profile.cover.preset].className}`}
-            >
-              {profile.cover.url ? (
-                // eslint-disable-next-line @next/next/no-img-element -- ảnh người dùng tải lên
-                <img src={profile.cover.url} alt="" className="h-full w-full object-cover" />
-              ) : null}
-            </div>
+            <CoverArt info={profile.cover} className="h-32 sm:h-44" />
             <div className="px-5 pb-5">
               <div className="relative z-10 -mt-12 flex items-end gap-4">
                 <Avatar
                   url={profile.avatarUrl}
                   name={profile.displayName}
                   size={104}
+                  frame={profile.frame}
                   className="border-card shrink-0 border-4 shadow-lg"
                 />
                 <div className="min-w-0 flex-1 pb-1">
                   <h2 className="truncate text-2xl font-bold">{profile.displayName}</h2>
+                  <TitleChip title={profile.title} />
                   <p className="text-muted text-xs">Tham gia {joinedLabel(profile.joinedAt)}</p>
                 </div>
               </div>

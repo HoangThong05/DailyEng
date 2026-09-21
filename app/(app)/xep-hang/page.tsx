@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Avatar } from "@/app/_components/avatar";
 import { BadgeChip } from "@/app/_components/badge-chip";
+import { TitleChip } from "@/app/_components/title-chip";
 import { topBadges } from "@/lib/badges";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
@@ -80,7 +81,7 @@ export default async function XepHangPage({
                 <span className="w-9 shrink-0 text-center text-lg font-bold tabular-nums">
                   {MEDALS[row.rank - 1] ?? row.rank}
                 </span>
-                <Avatar url={row.avatarUrl} name={row.displayName} size={36} />
+                <Avatar url={row.avatarUrl} name={row.displayName} size={36} frame={row.frame} />
                 <span className="min-w-0 flex-1">
                   <span className="block truncate font-semibold">
                     {row.userId && !row.isMe ? (
@@ -94,6 +95,7 @@ export default async function XepHangPage({
                       <span className="text-brand ml-2 text-xs font-bold">Bạn</span>
                     ) : null}
                   </span>
+                  <TitleChip title={row.title} className="mt-0.5" />
                   {row.badges.length > 0 ? (
                     <span className="mt-1 flex items-center gap-1">
                       {topBadges(row.badges).map((badge) => (

@@ -20,6 +20,8 @@ export type PublicProfile = {
   streak: { current: number; longest: number };
   joinedAt: string;
   isMe: boolean;
+  frame: string | null;
+  title: string | null;
 };
 
 /** Trang cá nhân người khác; null nếu không có, đã ẩn, hoặc chưa chạy schema-18. */
@@ -41,6 +43,8 @@ export async function getPublicProfile(userId: string): Promise<PublicProfile | 
     displayName: row.display_name,
     avatarUrl: row.avatar_url,
     cover: parseCover(row.cover),
+    frame: row.frame ?? null,
+    title: row.title ?? null,
     bio: row.bio,
     badges: parseBadgeKeys(row.badges),
     xp: row.xp,

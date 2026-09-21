@@ -46,6 +46,9 @@ export type Database = {
           badges: Json;
           /** Lúc qua màn chào mừng; null = người mới, cần vào /chao-mung. */
           onboarded_at: string | null;
+          /** Khung avatar / danh hiệu đang trang bị (khoá trong lib/shop.ts). */
+          frame: string | null;
+          title: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -64,6 +67,8 @@ export type Database = {
           placement?: Json | null;
           badges?: Json;
           onboarded_at?: string | null;
+          frame?: string | null;
+          title?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -82,6 +87,8 @@ export type Database = {
           placement?: Json | null;
           badges?: Json;
           onboarded_at?: string | null;
+          frame?: string | null;
+          title?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -246,6 +253,30 @@ export type Database = {
         };
         Relationships: [];
       };
+      shop_items: {
+        Row: { key: string; kind: string; name: string; price: number; limited_until: string | null };
+        Insert: { key: string; kind: string; name: string; price: number; limited_until?: string | null };
+        Update: { key?: string; kind?: string; name?: string; price?: number; limited_until?: string | null };
+        Relationships: [];
+      };
+      seed_ledger: {
+        Row: { id: number; user_id: string; amount: number; reason: string; ref: string; created_at: string };
+        Insert: { id?: number; user_id: string; amount: number; reason: string; ref: string; created_at?: string };
+        Update: { id?: number; user_id?: string; amount?: number; reason?: string; ref?: string; created_at?: string };
+        Relationships: [];
+      };
+      inventory: {
+        Row: { user_id: string; item_key: string; bought_at: string };
+        Insert: { user_id: string; item_key: string; bought_at?: string };
+        Update: { user_id?: string; item_key?: string; bought_at?: string };
+        Relationships: [];
+      };
+      streak_shields: {
+        Row: { user_id: string; day: string };
+        Insert: { user_id: string; day: string };
+        Update: { user_id?: string; day?: string };
+        Relationships: [];
+      };
       task_completions: {
         Row: {
           user_id: string;
@@ -388,6 +419,13 @@ export type Database = {
       };
       /** Người gọi có phải admin không (đặt bằng SQL, schema-11). */
       is_admin: { Args: Record<string, never>; Returns: boolean };
+      /** Cửa hàng Hạt (schema-23). */
+      seed_balance: { Args: Record<string, never>; Returns: number };
+      claim_seeds: { Args: Record<string, never>; Returns: number };
+      my_freezes: { Args: Record<string, never>; Returns: number };
+      buy_item: { Args: { p_key: string }; Returns: undefined };
+      equip_item: { Args: { p_kind: string; p_key: string | null }; Returns: undefined };
+      use_streak_freeze: { Args: Record<string, never>; Returns: boolean };
       /** Xóa tài khoản của chính người gọi (schema-21); dữ liệu cascade theo. */
       delete_own_account: { Args: Record<string, never>; Returns: undefined };
       admin_overview: {
@@ -451,6 +489,8 @@ export type Database = {
           reviews: number;
           recent_days: string[];
           joined_at: string;
+          frame: string | null;
+          title: string | null;
         }[];
       };
       leaderboard: {
@@ -463,6 +503,8 @@ export type Database = {
           rank: number;
           is_me: boolean;
           badges?: Json;
+          frame?: string | null;
+          title?: string | null;
         }[];
       };
     };

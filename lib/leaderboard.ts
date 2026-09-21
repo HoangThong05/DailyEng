@@ -13,6 +13,8 @@ export type LeaderboardRow = {
   xp: number;
   rank: number;
   isMe: boolean;
+  frame: string | null;
+  title: string | null;
 };
 
 /**
@@ -41,5 +43,7 @@ export async function getLeaderboard(
     xp: row.xp,
     rank: row.rank,
     isMe: row.is_me,
+    frame: row.frame ?? null,
+    title: row.title ?? null,
   }));
 }

@@ -21,6 +21,7 @@ const PRIVATE = [
   "/tu-cua-toi",
   "/xep-hang",
   "/phan-thuong",
+  "/cua-hang",
   "/nguoi-dung",
   "/hoi-ai",
   "/quan-tri",

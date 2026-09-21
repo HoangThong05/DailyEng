@@ -129,6 +129,17 @@ export function UserBar({
         <span className="text-sm font-bold tabular-nums">{data.streak}</span>
       </button>
 
+      {/* Hạt: tiền trong app, bấm tới cửa hàng */}
+      <Link
+        href="/cua-hang"
+        aria-label={`${data.seeds} Hạt. Mở cửa hàng`}
+        title="Hạt — đổi khung, bìa, danh hiệu ở Cửa hàng"
+        className={`${chip} gap-1 px-3`}
+      >
+        <span aria-hidden className="text-base leading-none">🌾</span>
+        <span className="text-sm font-bold tabular-nums">{data.seeds.toLocaleString("vi-VN")}</span>
+      </Link>
+
       <button
         type="button"
         onClick={() => toggle("bell")}

@@ -10,6 +10,7 @@ import {
   STREAK_KEY_PREFIX,
   STREAK_MILESTONES,
 } from "@/lib/rewards";
+import { getSeedBalance } from "@/lib/seeds";
 import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
 import { getDailyTasks } from "@/lib/tasks";
@@ -20,11 +21,12 @@ export const metadata: Metadata = { title: "Phần thưởng" };
 export default async function PhanThuongPage() {
   const supabase = await createClient();
   const today = todayInAppZone();
-  const [stats, checkin, tasks, { data: completions }] = await Promise.all([
+  const [stats, checkin, tasks, { data: completions }, seeds] = await Promise.all([
     getStudyStats(),
     getCheckinState(),
     getDailyTasks(),
     supabase.from("task_completions").select("task_key, xp, day"),
+    getSeedBalance(),
   ]);
   const rows = completions ?? [];
   const bonusTotal = rows.reduce((sum, row) => sum + row.xp, 0);
@@ -49,6 +51,18 @@ export default async function PhanThuongPage() {
 
       <div className="stagger grid gap-6 px-5 pt-2 pb-4 lg:grid-cols-2 lg:items-start">
         <div className="space-y-5">
+          <Link
+            href="/cua-hang"
+            className="shadow-brand/25 flex items-center justify-between gap-4 rounded-2xl bg-gradient-to-br from-amber-400 via-orange-500 to-rose-500 p-4 text-white shadow-lg press"
+          >
+            <span>
+              <span className="block text-sm text-white/85">Hạt của bạn</span>
+              <span className="block text-2xl font-bold tabular-nums">🌾 {seeds.toLocaleString("vi-VN")}</span>
+            </span>
+            <span className="shrink-0 rounded-xl bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur">
+              Cửa hàng →
+            </span>
+          </Link>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2">
             {summary.map((item) => (
               <div key={item.label} className="border-border bg-card rounded-2xl border p-4 text-center">

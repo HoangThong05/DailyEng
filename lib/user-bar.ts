@@ -1,4 +1,5 @@
 import { countDueReviews } from "@/lib/decks";
+import { getSeedBalance } from "@/lib/seeds";
 import { getCheckinState, type CheckinState } from "@/lib/rewards";
 import type { StudyStats } from "@/lib/stats";
 import { getDailyTasks } from "@/lib/tasks";
@@ -21,6 +22,8 @@ export type UserBarData = {
   streak: number;
   checkin: CheckinState;
   notices: UserNotice[];
+  /** Số dư Hạt 🌾 (schema-23); 0 nếu chưa có. */
+  seeds: number;
 };
 
 /**
@@ -31,10 +34,11 @@ export async function getUserBarData(
   profile: { display_name: string | null; avatar_url: string | null } | null,
   stats: StudyStats,
 ): Promise<UserBarData> {
-  const [checkin, dueReviews, tasks] = await Promise.all([
+  const [checkin, dueReviews, tasks, seeds] = await Promise.all([
     getCheckinState(),
     countDueReviews(),
     getDailyTasks(),
+    getSeedBalance(),
   ]);
 
   const notices: UserNotice[] = [];
@@ -71,5 +75,6 @@ export async function getUserBarData(
     streak: stats.streak.current,
     checkin,
     notices,
+    seeds,
   };
 }

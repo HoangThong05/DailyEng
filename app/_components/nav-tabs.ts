@@ -1,4 +1,5 @@
 import {
+  BagIcon,
   BookmarkIcon,
   CardsIcon,
   ChartIcon,
@@ -28,6 +29,7 @@ export const SIDE_EXTRAS = [
   { href: "/tien-do", label: "Thống kê", Icon: ChartIcon },
   { href: "/xep-hang", label: "Bảng xếp hạng", Icon: TrophyIcon },
   { href: "/phan-thuong", label: "Phần thưởng", Icon: GiftIcon },
+  { href: "/cua-hang", label: "Cửa hàng", Icon: BagIcon },
 ] as const;
 
 /** Trang con thuộc tab nào (để tab bar điện thoại sáng đúng chỗ). */
@@ -42,6 +44,7 @@ const TAB_ALIASES: Record<string, string> = {
   "/xep-hang": "/tai-khoan",
   "/nguoi-dung": "/tai-khoan",
   "/phan-thuong": "/tai-khoan",
+  "/cua-hang": "/tai-khoan",
   "/hoi-ai": "/hoc",
 };
 

@@ -1,3 +1,5 @@
+import { type ShopItem, shopItem } from "@/lib/shop";
+
 /** Ảnh bìa có sẵn cho hồ sơ. Khoá lưu trong profiles.cover. */
 export const COVER_PRESETS = {
   sky: { label: "Trời xanh", className: "from-blue-500 to-indigo-700" },
@@ -13,14 +15,27 @@ export type CoverKey = keyof typeof COVER_PRESETS;
 export const DEFAULT_COVER: CoverKey = "sky";
 export const BIO_MAX = 160;
 
-/** Ảnh bìa tự tải lên lưu dạng "url:<link>"; còn lại là khoá preset. */
+/**
+ * Ảnh bìa tự tải lên lưu dạng "url:<link>"; bìa mua ở cửa hàng là khoá
+ * "bia-…" (lib/shop.ts); còn lại là khoá preset.
+ */
 export function parseCover(cover: string | null | undefined): {
   url: string | null;
   preset: CoverKey;
+  /** Bìa mua ở cửa hàng đang dùng; có thì vẽ theo nó thay vì preset. */
+  shop: ShopItem | null;
 } {
-  if (cover?.startsWith("url:")) return { url: cover.slice(4), preset: DEFAULT_COVER };
+  if (cover?.startsWith("url:")) return { url: cover.slice(4), preset: DEFAULT_COVER, shop: null };
+  const shop = shopItem(cover);
+  if (shop && shop.kind === "bia") return { url: null, preset: DEFAULT_COVER, shop };
   return {
     url: null,
     preset: cover && cover in COVER_PRESETS ? (cover as CoverKey) : DEFAULT_COVER,
+    shop: null,
   };
+}
+
+/** Class gradient để vẽ bìa: bìa cửa hàng ưu tiên, không thì preset. */
+export function coverClass(info: ReturnType<typeof parseCover>) {
+  return info.shop ? info.shop.gradient : COVER_PRESETS[info.preset].className;
 }

@@ -239,6 +239,15 @@ export function FolderIcon({ className }: IconProps) {
   );
 }
 
+export function BagIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M6 8.5h12l-.8 10.2a1.5 1.5 0 0 1-1.5 1.3H8.3a1.5 1.5 0 0 1-1.5-1.3L6 8.5Z" />
+      <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" />
+    </svg>
+  );
+}
+
 export function BookmarkIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className}>
