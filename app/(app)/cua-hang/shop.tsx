@@ -144,11 +144,16 @@ export function Shop({
                 type="button"
                 aria-pressed={active}
                 onClick={() => setCollection(active ? null : c.key)}
-                className={`relative h-40 w-[min(100%,26rem)] shrink-0 overflow-hidden rounded-3xl text-left text-white shadow-lg transition-transform hover:-translate-y-0.5 ${
+                className={`group relative h-44 w-[min(100%,30rem)] shrink-0 overflow-hidden rounded-3xl text-left text-white shadow-lg transition-transform hover:-translate-y-0.5 ${
                   active ? "ring-brand ring-4" : ""
                 }`}
               >
-                <SceneArt scene={c.scene} />
+                {c.art ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- ảnh tĩnh trong public/shop
+                  <img src={`/shop/${c.art}.webp`} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                ) : (
+                  <SceneArt scene={c.scene} />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                 <div className="absolute top-3 left-4 rounded-full bg-white/20 px-2.5 py-0.5 text-[11px] font-bold backdrop-blur">
                   Còn {daysLeft(c.until, today)} ngày · {count} món

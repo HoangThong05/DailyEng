@@ -60,6 +60,8 @@ export type Collection = {
   tagline: string;
   until: string;
   scene: Scene;
+  /** Banner dùng ảnh public/shop/<art>.webp thay cho cảnh vẽ. */
+  art?: string;
 };
 
 /** Bộ sưu tập theo mùa: cửa hàng hiện banner bộ đang mở bán. */
@@ -69,6 +71,7 @@ export const COLLECTIONS: Collection[] = [
     name: "Đêm rằm Trung thu",
     tagline: "Đèn lồng, trăng tròn và bánh nướng — chỉ bán tới 15/10.",
     until: "2026-10-15",
+    art: "bia-trung-thu",
     scene: {
       sky: "linear-gradient(180deg,#0b1030 0%,#2a1a5e 55%,#7c3a12 100%)",
       moon: { x: 78, y: 30, size: 22, color: "#ffd166" },
@@ -181,7 +184,7 @@ export const SHOP_ITEMS: ShopItem[] = [
     frame: { colors: ["#fde68a", "#dc2626", "#991b1b"], effect: "glow", charms: [{ glyph: "🧧", angle: 0, size: 1.2 }, { glyph: "🌸", angle: 300, size: 1 }, { glyph: "🌼", angle: 60, size: 1 }, { glyph: "🧨", angle: 180, size: 0.9 }] } },
 
   // --- Ảnh bìa (cảnh vẽ bằng code; có file public/shop/<key>.webp thì đặt art: true) ---
-  { key: "bia-trung-thu", kind: "bia", name: "Đêm trăng rằm", description: "Trăng tròn, đèn lồng, thỏ ngọc — mùa Trung thu.", price: 500, limitedUntil: "2026-10-15", collection: "trung-thu", gradient: "from-indigo-900 via-purple-800 to-orange-500", scene: SCENE["trung-thu"] },
+  { key: "bia-trung-thu", kind: "bia", name: "Đêm trăng rằm", description: "Trăng tròn, đèn lồng, thỏ ngọc — mùa Trung thu.", price: 500, limitedUntil: "2026-10-15", collection: "trung-thu", gradient: "from-indigo-900 via-purple-800 to-orange-500", scene: SCENE["trung-thu"], art: true },
   { key: "bia-halloween", kind: "bia", name: "Đêm Halloween", description: "Trăng máu, bí ngô và dơi.", price: 500, limitedUntil: "2026-11-05", collection: "halloween", gradient: "from-black via-purple-900 to-orange-600", scene: SCENE["halloween"] },
   { key: "bia-giang-sinh", kind: "bia", name: "Giáng sinh", description: "Tuyết rơi, thông và quà.", price: 500, limitedUntil: "2026-12-31", collection: "giang-sinh", gradient: "from-emerald-700 via-red-600 to-emerald-800", scene: SCENE["giang-sinh"] },
   { key: "bia-tet", kind: "bia", name: "Tết", description: "Hoa mai, hoa đào, pháo hoa.", price: 500, limitedUntil: "2027-02-28", collection: "tet", gradient: "from-red-600 via-amber-400 to-pink-500", scene: SCENE["tet"] },
