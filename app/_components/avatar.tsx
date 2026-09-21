@@ -35,6 +35,30 @@ export function Avatar({ url, name, size, className = "", frame }: Props) {
 
   if (!art || !item) return picture;
 
+  // Khung có ảnh vẽ: đè PNG trong suốt lên avatar. Ảnh to hơn avatar sao cho
+  // lỗ trống ôm vừa avatar (mép avatar hơi chui dưới vành khung). Khung tràn
+  // ra ngoài ô layout như hình trang trí của Discord, không đẩy hàng xóm.
+  if (art.hole) {
+    const scale = 1 / (art.hole + 0.14);
+    const outer = Math.round(size * scale);
+    const offset = (size - outer) / 2;
+    return (
+      <span className={`relative inline-block shrink-0 ${className}`} style={{ width: size, height: size }} data-frame={item.key}>
+        <span className="bg-card absolute inset-0 overflow-hidden rounded-full">{picture}</span>
+        {/* eslint-disable-next-line @next/next/no-img-element -- ảnh tĩnh trong public/shop */}
+        <img
+          src={`/shop/${item.key}.webp`}
+          alt=""
+          aria-hidden
+          width={outer}
+          height={outer}
+          className={`pointer-events-none absolute max-w-none ${art.effect === "spin" ? "avatar-ring-spin" : ""}`}
+          style={{ width: outer, height: outer, left: offset, top: offset }}
+        />
+      </span>
+    );
+  }
+
   // Khung rộng hơn ảnh ~30% để hoạ tiết bám ngoài mép ảnh.
   const outer = Math.round(size * 1.3);
   const offset = (outer - size) / 2;
