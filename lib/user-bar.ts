@@ -9,6 +9,8 @@ export type UserNotice = {
   emoji: string;
   text: string;
   href: string;
+  /** Tin vui, không phải việc cần làm: hiện trong danh sách nhưng không làm chuông đỏ. */
+  quiet?: boolean;
 };
 
 /** Dữ liệu cho cụm nút góc trên: chuỗi, điểm danh, chuông, avatar. */
@@ -56,7 +58,7 @@ export async function getUserBarData(
       href: "/#nhiem-vu",
     });
   } else if (tasks.allDone) {
-    notices.push({ key: "nhiem-vu-xong", emoji: "🎉", text: `Xong nhiệm vụ hôm nay, +${tasks.earnedXp} XP`, href: "/#nhiem-vu" });
+    notices.push({ key: "nhiem-vu-xong", quiet: true, emoji: "🎉", text: `Xong nhiệm vụ hôm nay, +${tasks.earnedXp} XP`, href: "/#nhiem-vu" });
   }
   if (stats.today.words === 0) {
     notices.push({ key: "chuoi", emoji: "🔥", text: "Học vài từ để giữ chuỗi ngày", href: "/hoc" });

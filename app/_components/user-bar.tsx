@@ -107,7 +107,8 @@ export function UserBar({
     if (panel === "bell" && open !== "bell") markSeen(data.notices.map((n) => n.key));
     setOpen((current) => (current === panel ? null : panel));
   };
-  const pending = seen === null ? 0 : data.notices.filter((n) => !seen.has(n.key)).length;
+  const pending =
+    seen === null ? 0 : data.notices.filter((n) => !n.quiet && !seen.has(n.key)).length;
   const chip =
     "border-border bg-card hover:border-brand/50 flex h-10 shrink-0 items-center justify-center rounded-full border shadow-sm press";
 
