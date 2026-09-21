@@ -79,8 +79,8 @@ export function UserBar({
   const seenRaw = useSyncExternalStore(subscribeSeen, readSeenRaw, () => null);
   const seen = seenRaw === null ? null : parseSeen(seenRaw, today);
 
-  function markSeen(texts: string[]) {
-    writeSeen(today, new Set([...(seen ?? []), ...texts]));
+  function markSeen(keys: string[]) {
+    writeSeen(today, new Set([...(seen ?? []), ...keys]));
   }
 
   // Bấm ra ngoài hoặc Esc thì đóng.
@@ -104,10 +104,10 @@ export function UserBar({
 
   const toggle = (panel: Panel) => {
     // Mở chuông là coi như đã xem hết mục đang có.
-    if (panel === "bell" && open !== "bell") markSeen(data.notices.map((n) => n.text));
+    if (panel === "bell" && open !== "bell") markSeen(data.notices.map((n) => n.key));
     setOpen((current) => (current === panel ? null : panel));
   };
-  const pending = seen === null ? 0 : data.notices.filter((n) => !seen.has(n.text)).length;
+  const pending = seen === null ? 0 : data.notices.filter((n) => !seen.has(n.key)).length;
   const chip =
     "border-border bg-card hover:border-brand/50 flex h-10 shrink-0 items-center justify-center rounded-full border shadow-sm press";
 

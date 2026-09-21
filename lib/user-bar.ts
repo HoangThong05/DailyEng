@@ -4,6 +4,8 @@ import type { StudyStats } from "@/lib/stats";
 import { getDailyTasks } from "@/lib/tasks";
 
 export type UserNotice = {
+  /** Loại thông báo, ổn định trong ngày — dùng để nhớ "đã xem" (câu chữ có số, đổi liên tục). */
+  key: "diem-danh" | "den-han" | "nhiem-vu" | "nhiem-vu-xong" | "chuoi";
   emoji: string;
   text: string;
   href: string;
@@ -36,26 +38,28 @@ export async function getUserBarData(
   const notices: UserNotice[] = [];
   if (!checkin.checkedToday) {
     notices.push({
+      key: "diem-danh",
       emoji: "📅",
       text: `Chưa điểm danh hôm nay — nhận +${checkin.nextXp} XP`,
       href: "#diem-danh",
     });
   }
   if (dueReviews > 0) {
-    notices.push({ emoji: "🔁", text: `${dueReviews} từ đến hạn ôn lại`, href: "/on-tap" });
+    notices.push({ key: "den-han", emoji: "🔁", text: `${dueReviews} từ đến hạn ôn lại`, href: "/on-tap" });
   }
   const remaining = tasks.tasks.filter((t) => !t.done).length;
   if (remaining > 0) {
     notices.push({
+      key: "nhiem-vu",
       emoji: "✅",
       text: `Còn ${remaining} nhiệm vụ hôm nay`,
       href: "/#nhiem-vu",
     });
   } else if (tasks.allDone) {
-    notices.push({ emoji: "🎉", text: `Xong nhiệm vụ hôm nay, +${tasks.earnedXp} XP`, href: "/#nhiem-vu" });
+    notices.push({ key: "nhiem-vu-xong", emoji: "🎉", text: `Xong nhiệm vụ hôm nay, +${tasks.earnedXp} XP`, href: "/#nhiem-vu" });
   }
   if (stats.today.words === 0) {
-    notices.push({ emoji: "🔥", text: "Học vài từ để giữ chuỗi ngày", href: "/hoc" });
+    notices.push({ key: "chuoi", emoji: "🔥", text: "Học vài từ để giữ chuỗi ngày", href: "/hoc" });
   }
 
   return {
