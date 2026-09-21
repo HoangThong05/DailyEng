@@ -14,8 +14,10 @@ import { getLeaderboard } from "@/lib/leaderboard";
 import { awardStreakMilestones } from "@/lib/rewards";
 import { getStudyStats } from "@/lib/stats";
 import { getDailyTasks } from "@/lib/tasks";
+import { getWeeklyQuests } from "@/lib/weekly";
 import { createClient } from "@/lib/supabase/server";
 import { DailyTaskList } from "./daily-tasks";
+import { WeeklyQuestList } from "./weekly-quests";
 import { GameCover } from "./tro-choi/game-cover";
 import { GAMES } from "./tro-choi/games";
 
@@ -68,13 +70,14 @@ export default async function Home() {
 
   // RLS chỉ trả về đúng hàng của người đang đăng nhập nên khỏi lọc theo id.
   // maybeSingle() để không ném lỗi nếu trigger tạo profile chưa chạy xong.
-  const [{ data: profile }, stats, decks, board, dueReviews, tasks] = await Promise.all([
+  const [{ data: profile }, stats, decks, board, dueReviews, tasks, weekly] = await Promise.all([
     supabase.from("profiles").select("display_name, daily_goal, placement").maybeSingle(),
     getStudyStats(),
     listDecks(),
     getLeaderboard("week", 3),
     countDueReviews(),
     getDailyTasks(),
+    getWeeklyQuests(),
   ]);
   // Mốc chuỗi 3/7/14… ngày: thưởng một lần, ghi ngay khi ghé trang chủ.
   await awardStreakMilestones(stats.streak.current);
@@ -198,6 +201,7 @@ export default async function Home() {
         ) : null}
 
         <DailyTaskList data={tasks} />
+        <WeeklyQuestList data={weekly} />
 
         {/* Ôn tập: từ đã học tới hạn, gom từ mọi bộ — lõi của giãn cách */}
         {dueReviews > 0 ? (

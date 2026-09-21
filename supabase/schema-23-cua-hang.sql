@@ -178,6 +178,17 @@ begin
   on conflict (user_id, ref) do nothing;
   get diagnostics n = row_count; added := added + n;
 
+  -- Nhiệm vụ tuần (lib/weekly.ts): tuan-hoc-5-ngay-<thứ Hai> +50, tuan-200-luot-<thứ Hai> +30
+  insert into public.seed_ledger (user_id, amount, reason, ref)
+  select uid,
+    case when t.task_key like 'tuan-hoc-5-ngay-%' then 50 else 30 end,
+    case when t.task_key like 'tuan-hoc-5-ngay-%' then 'Nhiệm vụ tuần: học 5 ngày' else 'Nhiệm vụ tuần: 200 lượt' end,
+    t.task_key
+  from public.task_completions t
+  where t.user_id = uid and t.task_key like 'tuan-%'
+  on conflict (user_id, ref) do nothing;
+  get diagnostics n = row_count; added := added + n;
+
   -- Khối lượng học: mỗi 20 lượt trả lời trong ngày +2, tối đa 3 lần/ngày (+6).
   -- Theo tổng lượt, không theo từng câu → bấm bừa 500 lượt vẫn chỉ +6.
   insert into public.seed_ledger (user_id, amount, reason, ref)

@@ -171,6 +171,14 @@ export const REWARD_RULES = [
     ],
   },
   {
+    title: "Nhiệm vụ tuần",
+    emoji: "📆",
+    lines: [
+      "Học 5 ngày trong tuần (thứ Hai → Chủ nhật): +100 XP, +50 Hạt",
+      "Trả lời 200 lượt trong tuần: +60 XP, +30 Hạt",
+    ],
+  },
+  {
     title: "Mỗi lượt trả lời",
     emoji: "🧠",
     lines: [
