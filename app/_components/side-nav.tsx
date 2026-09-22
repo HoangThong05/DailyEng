@@ -80,6 +80,9 @@ export function SideNav() {
         </button>
       </div>
 
+      {/* Vùng cuộn: nhiều mục hơn chiều cao màn thì cuộn ở đây, không đẩy
+          thẻ hồ sơ (lối vào Cá nhân) ra khỏi tầm nhìn. */}
+      <div className="no-scrollbar min-h-0 flex-1 overflow-y-auto">
       <ul className="flex flex-col gap-1 px-3">
         {mainTabs.map((item) => (
           <li key={item.href}>
@@ -98,9 +101,10 @@ export function SideNav() {
           </li>
         ))}
       </ul>
+      </div>
 
       {/* Đăng xuất: mục riêng ngay trên thẻ hồ sơ, không nằm chung với cài đặt */}
-      <form action={signOut} className="mt-auto px-3">
+      <form action={signOut} className="mt-2 px-3">
         <button
           type="submit"
           title={collapsed ? "Đăng xuất" : undefined}
