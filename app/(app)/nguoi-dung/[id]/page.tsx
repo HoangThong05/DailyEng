@@ -57,10 +57,10 @@ export default async function NguoiDungPage({ params }: PageProps<"/nguoi-dung/[
                   frame={profile.frame}
                   className="border-card shrink-0 border-4 shadow-lg"
                 />
-                <div className="min-w-0 flex-1 pb-1">
-                  <h2 className="truncate text-2xl font-bold">{profile.displayName}</h2>
-                  <TitleChip title={profile.title} />
-                </div>
+              </div>
+              <div className="mt-3 min-w-0">
+                <h2 className="truncate text-2xl font-bold">{profile.displayName}</h2>
+                <TitleChip title={profile.title} className="mt-1" />
               </div>
               {profile.bio ? (
                 <p className="mt-3 text-sm leading-relaxed">{profile.bio}</p>

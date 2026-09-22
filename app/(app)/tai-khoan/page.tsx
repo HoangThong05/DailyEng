@@ -90,7 +90,9 @@ export default async function TaiKhoanPage() {
             <Mascot variant="chao-trong" size={72} className="absolute right-4 bottom-2 h-auto w-16 opacity-90 sm:w-20" />
           </CoverArt>
           <div className="px-5 pb-5">
-            <div className="relative z-10 -mt-12 flex items-end gap-4">
+            {/* Avatar chồng lên mép bìa; tên và mọi chữ nằm hẳn dưới bìa để
+                không bị ảnh nền nuốt mất. */}
+            <div className="relative z-10 -mt-12 flex items-end justify-between gap-3">
               <Avatar
                 url={profile?.avatar_url}
                 name={displayName}
@@ -98,17 +100,17 @@ export default async function TaiKhoanPage() {
                 frame={profile?.frame}
                 className="border-card shrink-0 border-4 shadow-lg"
               />
-              <div className="min-w-0 flex-1 pb-1">
-                <h2 id="ho-so" className="truncate text-2xl font-bold">
-                  {displayName}
-                </h2>
-                <TitleChip title={profile?.title} />
-                <p className="text-muted truncate text-xs">{user?.email}</p>
-              </div>
               <EditToggle className="border-border bg-card mb-1 flex min-h-10 shrink-0 items-center gap-1.5 rounded-xl border px-3 text-sm font-semibold press sm:px-4">
                 <PencilIcon className="h-4 w-4" />
                 <span className="hidden sm:inline">Chỉnh sửa</span>
               </EditToggle>
+            </div>
+            <div className="mt-3 min-w-0">
+              <h2 id="ho-so" className="truncate text-2xl font-bold">
+                {displayName}
+              </h2>
+              <TitleChip title={profile?.title} className="mt-1" />
+              <p className="text-muted mt-0.5 truncate text-xs">{user?.email}</p>
             </div>
             {profile?.bio ? (
               <p className="mt-3 text-sm leading-relaxed">{profile.bio}</p>
