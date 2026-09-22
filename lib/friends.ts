@@ -59,18 +59,38 @@ export async function getFriendCircle(): Promise<FriendCircle> {
   };
 }
 
-/** Số lời mời đang chờ mình trả lời, cho chuông thông báo. */
-export async function countFriendRequests(): Promise<number> {
+/** Mấy ngày vẫn còn báo "vừa đồng ý kết bạn" trên chuông. */
+const ACCEPTED_WINDOW_DAYS = 3;
+
+export type FriendNotices = {
+  /** Lời mời đang chờ mình trả lời. */
+  incoming: number;
+  /** Lời mời mình gửi vừa được đồng ý (trong vài ngày gần đây). */
+  accepted: number;
+};
+
+/** Số liệu cho chuông thông báo. */
+export async function getFriendNotices(): Promise<FriendNotices> {
   const user = await getCurrentUser();
-  if (!user) return 0;
+  if (!user) return { incoming: 0, accepted: 0 };
+
+  const since = new Date(Date.now() - ACCEPTED_WINDOW_DAYS * 86_400_000).toISOString();
   const supabase = await createClient();
-  const { count, error } = await supabase
-    .from("friendships")
-    .select("requester", { count: "exact", head: true })
-    .eq("addressee", user.id)
-    .eq("status", "pending");
-  if (error) return 0;
-  return count ?? 0;
+  const [incoming, accepted] = await Promise.all([
+    supabase
+      .from("friendships")
+      .select("requester", { count: "exact", head: true })
+      .eq("addressee", user.id)
+      .eq("status", "pending"),
+    supabase
+      .from("friendships")
+      .select("addressee", { count: "exact", head: true })
+      .eq("requester", user.id)
+      .eq("status", "accepted")
+      .gte("responded_at", since),
+  ]);
+
+  return { incoming: incoming.count ?? 0, accepted: accepted.count ?? 0 };
 }
 
 /** Quan hệ giữa mình và một người, cho nút ở trang cá nhân của họ. */
