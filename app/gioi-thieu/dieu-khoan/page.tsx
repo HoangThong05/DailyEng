@@ -82,6 +82,30 @@ export default function DieuKhoanPage() {
         <li>DailyEng có quyền sửa số liệu bị sai do lỗi hệ thống hoặc gian lận.</li>
       </ul>
 
+      <h2>Hạt và vật phẩm trong cửa hàng</h2>
+      <ul>
+        <li>
+          Hạt là điểm thưởng nội bộ của DailyEng, nhận được khi bạn học đều đặn.
+          Hạt <strong>không phải tiền</strong>: không mua được bằng tiền thật,
+          không bán, không quy đổi, không chuyển cho người khác.
+        </li>
+        <li>
+          Vật phẩm mua bằng Hạt (khung ảnh đại diện, ảnh bìa, danh hiệu, đóng
+          băng chuỗi) chỉ dùng để trang trí hồ sơ trong app. Vật phẩm theo mùa
+          chỉ bán trong thời gian ghi trên thẻ; hết thời gian thì không mua được
+          nữa, nhưng ai đã mua vẫn giữ.
+        </li>
+        <li>
+          Giá, cách kiếm Hạt và danh mục vật phẩm có thể thay đổi để giữ cân bằng;
+          quy định hiện hành luôn ghi ở trang <strong>Phần thưởng</strong> và{" "}
+          <strong>Cửa hàng</strong> trong app.
+        </li>
+        <li>
+          Xoá tài khoản là mất toàn bộ Hạt và vật phẩm, không hoàn lại. DailyEng
+          có quyền thu hồi Hạt hoặc vật phẩm có được do lỗi hệ thống hoặc gian lận.
+        </li>
+      </ul>
+
       <h2>Giọng nói và micro</h2>
       <ul>
         <li>Shadowing và Luyện phát âm dùng nhận dạng giọng nói của trình duyệt; giọng nói của bạn không được gửi lên hay lưu ở máy chủ của DailyEng.</li>
