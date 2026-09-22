@@ -11,6 +11,7 @@ import {
   STREAK_MILESTONES,
 } from "@/lib/rewards";
 import { getSeedBalance } from "@/lib/seeds";
+import { SEED_RULES } from "@/lib/shop";
 import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
 import { getDailyTasks } from "@/lib/tasks";
@@ -47,7 +48,7 @@ export default async function PhanThuongPage() {
 
   return (
     <>
-      <PageHeader title="Phần thưởng" subtitle="Làm gì được XP, và bạn đang ở đâu" mascot="an-mung" />
+      <PageHeader title="Phần thưởng" subtitle="Làm gì được XP và Hạt, bạn đang ở đâu" mascot="an-mung" />
 
       <div className="stagger grid gap-6 px-5 pt-2 pb-4 lg:grid-cols-2 lg:items-start">
         <div className="space-y-5">
@@ -142,7 +143,37 @@ export default async function PhanThuongPage() {
 
         {/* Quy định */}
         <section className="space-y-3">
-          <h2 className="text-muted px-1 text-sm font-medium">Quy định thưởng</h2>
+          {/* Hạt trước, vì nút "Cách kiếm Hạt" ở Cửa hàng nhảy tới đây */}
+          <div
+            id="kiem-hat"
+            className="rounded-2xl border border-amber-400/40 bg-gradient-to-br from-amber-400/10 to-orange-500/10 p-4 scroll-mt-24"
+          >
+            <p className="flex items-center gap-2 font-semibold">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-lg">
+                🌾
+              </span>
+              Cách kiếm Hạt
+            </p>
+            <p className="text-muted mt-1 text-sm">
+              Hạt là tiền trong app, dùng để mua khung avatar, ảnh bìa, danh hiệu ở{" "}
+              <Link href="/cua-hang" className="text-brand font-medium">
+                Cửa hàng
+              </Link>
+              . Khác XP: XP chỉ để lên cấp và xếp hạng, không tiêu được.
+            </p>
+            <ul className="text-muted mt-2 space-y-1 text-sm">
+              {SEED_RULES.map((rule) => (
+                <li key={rule.text}>
+                  {rule.emoji} {rule.text}
+                </li>
+              ))}
+            </ul>
+            <p className="text-muted mt-2 text-xs">
+              Cộng tự động mỗi lần mở app. Tối đa khoảng 26 Hạt một ngày thường.
+            </p>
+          </div>
+
+          <h2 className="text-muted px-1 text-sm font-medium">Quy định thưởng XP</h2>
           {REWARD_RULES.map((rule) => (
             <div key={rule.title} className="border-border bg-card rounded-2xl border p-4">
               <p className="flex items-center gap-2 font-semibold">

@@ -38,7 +38,7 @@ export default async function CuaHangPage() {
               </p>
             </div>
             <Link
-              href="/phan-thuong"
+              href="/phan-thuong#kiem-hat"
               className="shrink-0 rounded-xl bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur press"
             >
               Cách kiếm Hạt
