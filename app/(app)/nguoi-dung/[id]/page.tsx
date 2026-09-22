@@ -20,14 +20,6 @@ export async function generateMetadata({ params }: PageProps<"/nguoi-dung/[id]">
   return { title: profile ? profile.displayName : "Người học" };
 }
 
-function joinedLabel(iso: string) {
-  return new Intl.DateTimeFormat("vi-VN", {
-    month: "2-digit",
-    year: "numeric",
-    timeZone: "Asia/Ho_Chi_Minh",
-  }).format(new Date(iso));
-}
-
 /** Trang cá nhân công khai: bìa, avatar, tiểu sử, cấp, số tổng, huy hiệu. */
 export default async function NguoiDungPage({ params }: PageProps<"/nguoi-dung/[id]">) {
   const { id } = await params;
@@ -68,7 +60,6 @@ export default async function NguoiDungPage({ params }: PageProps<"/nguoi-dung/[
                 <div className="min-w-0 flex-1 pb-1">
                   <h2 className="truncate text-2xl font-bold">{profile.displayName}</h2>
                   <TitleChip title={profile.title} />
-                  <p className="text-muted text-xs">Tham gia {joinedLabel(profile.joinedAt)}</p>
                 </div>
               </div>
               {profile.bio ? (
