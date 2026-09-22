@@ -37,6 +37,21 @@ export type FrameArt = {
   hole?: number;
 };
 
+/**
+ * Kiểu vẽ chip danh hiệu. Chữ luôn nổi trên nền gradient; thêm hiệu ứng để
+ * xứng với giá: vệt sáng quét qua, viền phát sáng, hạt lấp lánh bay.
+ */
+export type TitleArt = {
+  /** Nền chip (Tailwind gradient hoặc màu đặc). */
+  gradient: string;
+  /** Màu vệt sáng quét và ánh phát ra (hex). */
+  glow: string;
+  /** Kiểu: vệt sáng quét, viền phát sáng đập nhịp, hạt lấp lánh. */
+  effects: ("shine" | "pulse" | "sparkle")[];
+  /** Viền ngoài (hiếm thì viền vàng dày hơn). */
+  ring?: string;
+};
+
 export type ShopItem = {
   key: string;
   kind: ItemKind;
@@ -53,6 +68,8 @@ export type ShopItem = {
   frame?: FrameArt;
   /** Bìa: cảnh vẽ bằng code. */
   scene?: Scene;
+  /** Danh hiệu: kiểu chip. */
+  title?: TitleArt;
   /** Bìa: có file ảnh thật public/shop/<key>.webp (1200×400). */
   art?: boolean;
   /** Thuộc bộ sưu tập theo mùa nào (COLLECTIONS). */
@@ -210,10 +227,10 @@ export const SHOP_ITEMS: ShopItem[] = [
     scene: { sky: "linear-gradient(180deg,#bae6fd 0%,#22d3ee 50%,#0369a1 100%)", moon: { x: 82, y: 22, size: 16, color: "#fef3c7" }, hills: "#fde68a", props: [{ glyph: "🌊", x: 10, y: 60, size: 3, float: true }, { glyph: "⛵", x: 60, y: 44, size: 2.4, float: true }, { glyph: "🐚", x: 84, y: 76, size: 1.8 }, { glyph: "🌴", x: 30, y: 58, size: 3 }] }, art: true },
 
   // --- Danh hiệu (hiện dưới tên ở bảng xếp hạng và trang cá nhân) ---
-  { key: "dh-cu-dem", kind: "danh-hieu", name: "Cú đêm", description: "Học khuya mới vào.", price: 1000, gradient: "from-indigo-500 to-purple-600", decor: "🦉" },
-  { key: "dh-mot-tu", kind: "danh-hieu", name: "Mọt từ", description: "Gặp từ nào cũng muốn nhớ.", price: 1000, gradient: "from-emerald-500 to-teal-600", decor: "📚" },
-  { key: "dh-chien-binh", kind: "danh-hieu", name: "Chiến binh TOEIC", description: "Đang cày điểm.", price: 1500, gradient: "from-orange-500 to-red-600", decor: "⚔️" },
-  { key: "dh-vit-vang", kind: "danh-hieu", name: "Vịt vàng", description: "Danh hiệu đắt nhất — khoe được.", price: 3000, gradient: "from-amber-400 to-yellow-600", decor: "🦆" },
+  { key: "dh-cu-dem", kind: "danh-hieu", name: "Cú đêm", description: "Học khuya mới vào.", price: 1000, gradient: "from-indigo-500 to-purple-600", decor: "🦉", title: { gradient: "from-indigo-600 via-violet-600 to-purple-700", glow: "#c4b5fd", effects: ["shine", "sparkle"] } },
+  { key: "dh-mot-tu", kind: "danh-hieu", name: "Mọt từ", description: "Gặp từ nào cũng muốn nhớ.", price: 1000, gradient: "from-emerald-500 to-teal-600", decor: "📚", title: { gradient: "from-emerald-500 via-teal-500 to-cyan-600", glow: "#6ee7b7", effects: ["shine"] } },
+  { key: "dh-chien-binh", kind: "danh-hieu", name: "Chiến binh TOEIC", description: "Đang cày điểm.", price: 1500, gradient: "from-orange-500 to-red-600", decor: "⚔️", title: { gradient: "from-orange-500 via-red-500 to-rose-600", glow: "#fdba74", effects: ["shine", "pulse"] } },
+  { key: "dh-vit-vang", kind: "danh-hieu", name: "Vịt vàng", description: "Danh hiệu đắt nhất — khoe được.", price: 3000, gradient: "from-amber-400 to-yellow-600", decor: "🦆", title: { gradient: "from-amber-300 via-yellow-400 to-amber-500", glow: "#fffbeb", effects: ["shine", "pulse", "sparkle"], ring: "ring-2 ring-amber-200/80" } },
 
   // --- Tiện ích ---
   { key: "dong-bang", kind: "dong-bang", name: "Đóng băng chuỗi", description: `Bỏ lỡ một ngày thì tự cứu chuỗi. Giữ tối đa ${FREEZE_MAX} cái.`, price: 300, gradient: "from-cyan-300 to-blue-500", decor: "❄️" },
