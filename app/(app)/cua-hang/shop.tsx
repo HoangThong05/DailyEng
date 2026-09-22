@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { Avatar } from "@/app/_components/avatar";
 import { SceneArt } from "@/app/_components/cover-art";
+import { ScrollRow } from "@/app/_components/scroll-row";
 import { TitleChip } from "@/app/_components/title-chip";
 import type { Wallet } from "@/lib/seeds";
 import {
@@ -134,7 +135,7 @@ export function Shop({
     <div className="space-y-5">
       {/* Banner bộ sưu tập mùa đang mở */}
       {tab === "cua-hang" && live.length > 0 ? (
-        <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ScrollRow label="bộ sưu tập" className="pb-1">
           {live.map((c) => {
             const active = collection === c.key;
             const count = SHOP_ITEMS.filter((i) => i.collection === c.key).length;
@@ -144,7 +145,7 @@ export function Shop({
                 type="button"
                 aria-pressed={active}
                 onClick={() => setCollection(active ? null : c.key)}
-                className={`group relative h-44 w-[min(100%,30rem)] shrink-0 overflow-hidden rounded-3xl text-left text-white shadow-lg transition-transform hover:-translate-y-0.5 ${
+                className={`group relative h-44 w-[min(100%,30rem)] shrink-0 snap-start overflow-hidden rounded-3xl text-left text-white shadow-lg transition-transform hover:-translate-y-0.5 ${
                   active ? "ring-brand ring-4" : ""
                 }`}
               >
@@ -168,7 +169,7 @@ export function Shop({
               </button>
             );
           })}
-        </div>
+        </ScrollRow>
       ) : null}
 
       {/* Tab + lọc */}
