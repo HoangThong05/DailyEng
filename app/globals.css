@@ -108,6 +108,21 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* Tailwind v4 đặt cursor: default cho <button>; trả lại bàn tay như v3 để
+     chuột báo đúng chỗ bấm được. Nút đang khoá thì giữ mũi tên. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  label[for],
+  select {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: default;
+  }
+
   body {
     background: var(--bg);
     color: var(--fg);
