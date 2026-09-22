@@ -10,6 +10,15 @@ import { createClient, getCurrentUser } from "@/lib/supabase/server";
  */
 export const MY_DECK_NAME = "Từ của tôi";
 
+/**
+ * "Từ của tôi" cài đặt như một bộ của người dùng, nhưng có trang riêng
+ * (/tu-cua-toi) nên không liệt kê chung với bộ tự tạo — tránh thấy cùng một
+ * thứ ở hai nơi.
+ */
+export function isMyWordsDeck(deck: { name: string; isOwn: boolean }) {
+  return deck.isOwn && deck.name === MY_DECK_NAME;
+}
+
 export type MyWordStatus = "moi" | "dang-hoc" | "da-thuoc";
 
 export type MyWord = {

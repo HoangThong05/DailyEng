@@ -30,7 +30,7 @@ export default async function TuCuaToiPage() {
     <>
       <PageHeader
         title="Từ của tôi"
-        subtitle="Gặp từ hay ở đâu, lưu vào đây rồi học như bộ thường"
+        subtitle="Sổ tay nhặt từ — gặp đâu lưu đó, rồi học như bộ thường"
         mascot="hoc"
       />
 
@@ -61,11 +61,9 @@ export default async function TuCuaToiPage() {
             <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
               {words.length}
             </span>
-            {deckId ? (
-              <Link href={`/hoc/${deckId}/sua`} className="text-brand ml-auto text-sm font-medium">
-                Dán nhiều từ
-              </Link>
-            ) : null}
+            <Link href="/hoc/tao" className="text-muted ml-auto text-sm font-medium">
+              Tạo bộ theo chủ đề →
+            </Link>
           </div>
 
           {words.length === 0 || !deckId ? (

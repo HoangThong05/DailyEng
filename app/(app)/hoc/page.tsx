@@ -156,7 +156,7 @@ export default async function HocPage() {
             </span>
             <span className="min-w-0 flex-1">
               <span className="block font-semibold">Từ của tôi</span>
-              <span className="text-muted block text-sm">Lưu nhanh từ gặp ở ngoài, học như bộ thường</span>
+              <span className="text-muted block text-sm">Sổ tay nhặt từ — gặp đâu lưu đó, học như bộ thường</span>
             </span>
             <ChevronRightIcon className="text-muted h-5 w-5 shrink-0 transition-transform group-hover:translate-x-0.5" />
           </Link>

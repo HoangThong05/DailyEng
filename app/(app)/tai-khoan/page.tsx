@@ -13,6 +13,7 @@ import { DeckCard } from "@/app/(app)/hoc/deck-card";
 import { PageHeader } from "@/app/_components/page-header";
 import { BADGE_GROUPS, BADGES, syncBadges } from "@/lib/badges";
 import { listDecks } from "@/lib/decks";
+import { isMyWordsDeck } from "@/lib/my-words";
 import { parseCover } from "@/lib/profile";
 import { DEFAULT_REMINDER_HOUR } from "@/lib/reminder";
 import { getStudyStats } from "@/lib/stats";
@@ -62,7 +63,8 @@ export default async function TaiKhoanPage() {
     listDecks(),
   ]);
   const { streak, totals, level } = stats;
-  const ownDecks = decks.filter((deck) => deck.isOwn);
+  // "Từ của tôi" có trang riêng nên không kể vào danh sách bộ tự tạo.
+  const ownDecks = decks.filter((deck) => deck.isOwn && !isMyWordsDeck(deck));
   const badgeState = await syncBadges(stats);
   const earnedBadges = new Set(badgeState.earnedKeys);
 
@@ -244,7 +246,17 @@ export default async function TaiKhoanPage() {
             <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-xs font-bold tabular-nums">
               {ownDecks.length}
             </span>
+            <Link href="/tu-cua-toi" className="text-brand ml-auto text-sm font-medium">
+              Từ của tôi →
+            </Link>
           </div>
+          <p className="text-muted -mt-1 px-1 text-sm">
+            Bộ từ theo chủ đề bạn tự tạo. Lưu nhanh một từ lẻ thì dùng{" "}
+            <Link href="/tu-cua-toi" className="text-brand font-medium">
+              Từ của tôi
+            </Link>
+            .
+          </p>
           <div className="grid gap-4 sm:grid-cols-2">
             {ownDecks.map((deck) => (
               <DeckCard key={deck.id} deck={deck} />
