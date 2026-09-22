@@ -7,7 +7,7 @@ import { addDays, todayInAppZone } from "@/lib/leitner";
 
 /** Hạt thưởng theo hạng — phải khớp hàm season_prize trong schema-25. */
 export const SEASON_PRIZES: { rank: string; seeds: number; extra?: string }[] = [
-  { rank: "1", seeds: 300, extra: "Danh hiệu Quán quân tuần" },
+  { rank: "1", seeds: 300, extra: "Danh hiệu Quán quân (×3 và ×10 lên bậc)" },
   { rank: "2", seeds: 200 },
   { rank: "3", seeds: 150 },
   { rank: "4–10", seeds: 50 },

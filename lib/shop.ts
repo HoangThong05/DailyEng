@@ -241,6 +241,11 @@ export const SHOP_ITEMS: ShopItem[] = [
   { key: "dh-quan-quan", kind: "danh-hieu", name: "Quán quân tuần", description: "Hạng nhất bảng xếp hạng một tuần. Không mua được bằng Hạt.", price: 0, awardOnly: true, gradient: "from-amber-300 to-yellow-600", decor: "🏆",
     title: { gradient: "from-amber-200 via-yellow-400 to-orange-500", glow: "#fffbeb", effects: ["shine", "pulse", "sparkle"], ring: "ring-2 ring-amber-200/90" } },
 
+  { key: "dh-quan-quan-3", kind: "danh-hieu", name: "Quán quân ×3", description: "Ba lần đứng nhất tuần. Tự thay cho Quán quân tuần.", price: 0, awardOnly: true, gradient: "from-yellow-400 to-orange-600", decor: "👑",
+    title: { gradient: "from-yellow-200 via-amber-400 to-orange-600", glow: "#fef08a", effects: ["shine", "pulse", "sparkle"], ring: "ring-2 ring-yellow-200" } },
+  { key: "dh-huyen-thoai", kind: "danh-hieu", name: "Huyền thoại DailyEng", description: "Mười lần đứng nhất tuần. Danh hiệu hiếm nhất app.", price: 0, awardOnly: true, gradient: "from-fuchsia-500 to-cyan-500", decor: "🌟",
+    title: { gradient: "from-fuchsia-400 via-violet-400 to-cyan-400", glow: "#f5d0fe", effects: ["shine", "pulse", "sparkle"], ring: "ring-2 ring-fuchsia-200" } },
+
   // --- Tiện ích ---
   { key: "dong-bang", kind: "dong-bang", name: "Đóng băng chuỗi", description: `Bỏ lỡ một ngày thì tự cứu chuỗi. Giữ tối đa ${FREEZE_MAX} cái.`, price: 300, gradient: "from-cyan-300 to-blue-500", decor: "❄️" },
 ];

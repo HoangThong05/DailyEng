@@ -119,3 +119,26 @@ describe("mùa giải tuần", () => {
     }
   });
 });
+
+describe("danh hiệu quán quân theo bậc", () => {
+  const SEASON = readFileSync("supabase/schema-25-mua-giai.sql", "utf8");
+
+  it("ba bậc khai đủ ở cả code lẫn SQL", () => {
+    for (const key of ["dh-quan-quan", "dh-quan-quan-3", "dh-huyen-thoai"]) {
+      expect(SHOP_ITEMS.find((item) => item.key === key)?.awardOnly, key).toBe(true);
+      expect(SEASON, key).toContain(`('${key}', 'danh-hieu'`);
+    }
+  });
+
+  it("ngưỡng lên bậc là 1 / 3 / 10 lần vô địch", () => {
+    expect(SEASON).toContain("when wins >= 10 then 'dh-huyen-thoai'");
+    expect(SEASON).toContain("when wins >= 3 then 'dh-quan-quan-3'");
+    expect(SEASON).toContain("when wins >= 1 then 'dh-quan-quan'");
+  });
+
+  it("chỉ ghi đè danh hiệu nếu đang đeo bậc quán quân hoặc chưa đeo gì", () => {
+    expect(SEASON).toContain(
+      "and (p.title is null or p.title in ('dh-quan-quan', 'dh-quan-quan-3', 'dh-huyen-thoai'))",
+    );
+  });
+});

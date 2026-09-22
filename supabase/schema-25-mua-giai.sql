@@ -13,7 +13,9 @@ alter table public.shop_items
   add column if not exists purchasable boolean not null default true;
 
 insert into public.shop_items (key, kind, name, price, limited_until, purchasable) values
-  ('dh-quan-quan', 'danh-hieu', 'Quán quân tuần', 0, null, false)
+  ('dh-quan-quan', 'danh-hieu', 'Quán quân tuần', 0, null, false),
+  ('dh-quan-quan-3', 'danh-hieu', 'Quán quân ×3', 0, null, false),
+  ('dh-huyen-thoai', 'danh-hieu', 'Huyền thoại DailyEng', 0, null, false)
 on conflict (key) do update set
   kind = excluded.kind, name = excluded.name, price = excluded.price,
   limited_until = excluded.limited_until, purchasable = excluded.purchasable;
@@ -165,6 +167,78 @@ as $$
 $$;
 
 -- ---------------------------------------------------------------------------
+-- champion_title: danh hiệu ứng với số lần vô địch (null nếu chưa lần nào).
+-- ---------------------------------------------------------------------------
+create or replace function public.champion_title(wins integer)
+returns text
+language sql
+immutable
+as $$
+  select case
+    when wins >= 10 then 'dh-huyen-thoai'
+    when wins >= 3 then 'dh-quan-quan-3'
+    when wins >= 1 then 'dh-quan-quan'
+    else null
+  end;
+$$;
+
+-- ---------------------------------------------------------------------------
+-- grant_champion_titles: trao (và tự đeo) danh hiệu cho quán quân của tuần
+-- p_week. Tách riêng để chạy bù cho tuần cũ khi cần.
+-- ---------------------------------------------------------------------------
+create or replace function public.grant_champion_titles(p_week date)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  -- Thêm vào kho mọi bậc mà số lần vô địch đã đạt (giữ cả bậc cũ để khoe).
+  insert into public.inventory (user_id, item_key)
+  select w.user_id, t.key
+  from (
+    -- ::integer vì count(*) là bigint, không tự ép sang kiểu tham số của
+    -- champion_title(integer).
+    select a.user_id, (select count(*) from public.season_awards b
+                       where b.user_id = a.user_id and b.rank = 1)::integer as wins
+    from public.season_awards a
+    where a.week_start = p_week and a.rank = 1
+  ) w
+  cross join (values ('dh-quan-quan', 1), ('dh-quan-quan-3', 3), ('dh-huyen-thoai', 10)) as t(key, need)
+  where w.wins >= t.need
+  on conflict do nothing;
+
+  -- Đeo bậc cao nhất: chỉ ghi đè khi họ chưa đeo gì, hoặc đang đeo bậc quán
+  -- quân thấp hơn. Ai chọn danh hiệu khác thì tôn trọng lựa chọn đó.
+  update public.profiles p
+  set title = public.champion_title(w.wins)
+  from (
+    -- ::integer vì count(*) là bigint, không tự ép sang kiểu tham số của
+    -- champion_title(integer).
+    select a.user_id, (select count(*) from public.season_awards b
+                       where b.user_id = a.user_id and b.rank = 1)::integer as wins
+    from public.season_awards a
+    where a.week_start = p_week and a.rank = 1
+  ) w
+  where p.id = w.user_id
+    and (p.title is null or p.title in ('dh-quan-quan', 'dh-quan-quan-3', 'dh-huyen-thoai'))
+    and p.title is distinct from public.champion_title(w.wins);
+end;
+$$;
+revoke all on function public.grant_champion_titles(date) from public;
+grant execute on function public.grant_champion_titles(date) to authenticated;
+
+-- Chạy bù cho các quán quân đã trao trước khi có bậc danh hiệu.
+do $$
+declare w date;
+begin
+  for w in select distinct week_start from public.season_awards where rank = 1 loop
+    perform public.grant_champion_titles(w);
+  end loop;
+end
+$$;
+
+-- ---------------------------------------------------------------------------
 -- close_last_week: trao thưởng cho tuần vừa kết thúc. Chạy lại vô hại.
 -- Gọi khi người dùng mở app (lib/season.ts), nên không cần cron.
 -- ---------------------------------------------------------------------------
@@ -205,23 +279,10 @@ begin
   where a.week_start = last_monday and a.seeds > 0
   on conflict (user_id, ref) do nothing;
 
-  -- Hạng nhất nhận danh hiệu "Quán quân tuần".
-  insert into public.inventory (user_id, item_key)
-  select a.user_id, 'dh-quan-quan'
-  from public.season_awards a
-  where a.week_start = last_monday and a.rank = 1
-  on conflict do nothing;
-
-  -- Đeo luôn cho quán quân nếu họ chưa đeo danh hiệu nào, để thấy ngay mà
-  -- không phải vào Kho đồ bấm "Dùng". Ai đang đeo danh hiệu khác thì giữ
-  -- nguyên lựa chọn của họ.
-  update public.profiles p
-  set title = 'dh-quan-quan'
-  where p.title is null
-    and exists (
-      select 1 from public.season_awards a
-      where a.user_id = p.id and a.week_start = last_monday and a.rank = 1
-    );
+  -- Hạng nhất nhận danh hiệu theo số lần vô địch: 1 lần "Quán quân tuần",
+  -- 3 lần "Quán quân ×3", 10 lần "Huyền thoại DailyEng". Giữ cả bậc cũ trong
+  -- kho, chỉ đeo bậc cao nhất.
+  perform public.grant_champion_titles(last_monday);
 
   return awarded;
 end;
