@@ -1,3 +1,4 @@
+import { settleSeason } from "@/lib/season";
 import { settleSeeds } from "@/lib/seeds";
 import { getStudyStats } from "@/lib/stats";
 import { createClient } from "@/lib/supabase/server";
@@ -32,8 +33,8 @@ export type AppShellData = {
  */
 export async function loadAppShell(): Promise<AppShellData> {
   const supabase = await createClient();
-  // Cộng Hạt mới + tự dùng Đóng băng chuỗi trước khi tính chuỗi/số dư.
-  await settleSeeds();
+  // Cộng Hạt mới, tự dùng Đóng băng chuỗi, và chốt mùa tuần trước nếu chưa.
+  await Promise.all([settleSeeds(), settleSeason()]);
   const [{ data: isAdmin }, { data: profile }, stats] = await Promise.all([
     supabase.rpc("is_admin"),
     supabase.from("profiles").select("display_name, avatar_url, onboarded_at, frame").maybeSingle(),

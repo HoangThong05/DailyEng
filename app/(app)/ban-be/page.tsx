@@ -53,7 +53,7 @@ export default async function BanBePage() {
               {circle.friends.length}
             </span>
             {circle.friends.length > 0 ? (
-              <Link href="/xep-hang?nhom=ban-be" className="text-brand ml-auto text-sm font-medium">
+              <Link href="/xep-hang?bang=ban-be" className="text-brand ml-auto text-sm font-medium">
                 Xếp hạng nhóm →
               </Link>
             ) : null}

@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { COLLECTIONS, FREEZE_MAX, SEED_RULES, SHOP_ITEMS, shopItem } from "@/lib/shop";
+import { seasonEndsAt, seasonPrize, weekStart } from "@/lib/season-rules";
 import { WEEKLY_DEFS, weeklyKey } from "@/lib/weekly";
 
 const SQL = readFileSync("supabase/schema-23-cua-hang.sql", "utf8");
@@ -74,5 +75,39 @@ describe("kinh tế Hạt", () => {
     for (const word of ["Điểm danh", "nhiệm vụ", "mục tiêu", "chuỗi", "huy hiệu", "lượt"]) {
       expect(text, word).toContain(word);
     }
+  });
+});
+
+describe("mùa giải tuần", () => {
+  const SEASON = readFileSync("supabase/schema-25-mua-giai.sql", "utf8");
+
+  it("thứ Hai của tuần tính đúng, kể cả Chủ nhật", () => {
+    expect(weekStart("2026-09-21")).toBe("2026-09-21"); // thứ Hai
+    expect(weekStart("2026-09-24")).toBe("2026-09-21"); // thứ Năm
+    expect(weekStart("2026-09-27")).toBe("2026-09-21"); // Chủ nhật
+    expect(weekStart("2026-09-28")).toBe("2026-09-28"); // thứ Hai kế
+  });
+
+  it("mùa đóng vào 0h thứ Hai kế, giờ VN", () => {
+    expect(seasonEndsAt("2026-09-21")).toBe("2026-09-28T00:00:00+07:00");
+  });
+
+  it("thưởng theo hạng khớp giữa code và SQL", () => {
+    expect([1, 2, 3, 4, 10, 11].map(seasonPrize)).toEqual([300, 200, 150, 50, 50, 0]);
+    expect(SEASON).toContain("when p_rank = 1 then 300");
+    expect(SEASON).toContain("when p_rank = 2 then 200");
+    expect(SEASON).toContain("when p_rank = 3 then 150");
+    expect(SEASON).toContain("when p_rank <= 10 then 50");
+  });
+
+  it("chốt mùa không trao trùng và khoá theo tuần", () => {
+    expect(SEASON).toContain("on conflict (user_id, week_start) do nothing");
+    expect(SEASON).toContain("on conflict (user_id, ref) do nothing");
+    expect(SEASON).toContain("pg_advisory_xact_lock(hashtext('season:'");
+  });
+
+  it("vật phẩm chỉ-trao không mua được ở cửa hàng", () => {
+    expect(SEASON).toContain("'dh-quan-quan'");
+    expect(SEASON).toContain("if not item.purchasable then raise exception");
   });
 });

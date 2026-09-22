@@ -129,6 +129,7 @@ Trong SQL Editor chạy lần lượt:
 22. `supabase/schema-22-chao-mung.sql` — cột `profiles.onboarded_at`: người mới được đưa tới màn chào mừng `/chao-mung` (đặt tên, mục tiêu, nhắc học, kiểm tra đầu vào)
 23. `supabase/schema-23-cua-hang.sql` — Hạt 🌾 (sổ cái `seed_ledger`, hàm `claim_seeds`), cửa hàng `shop_items`, kho đồ `inventory`, khung avatar / danh hiệu (`profiles.frame`, `profiles.title`), đóng băng chuỗi (`streak_shields`); `leaderboard` và `public_profile` trả thêm frame/title
 24. `supabase/schema-24-ban-be.sql` — bạn bè: bảng `friendships` (lời mời + đã đồng ý), hàm `friend_list`, `friend_leaderboard`, `friend_status`, `accept_friend`
+25. `supabase/schema-25-mua-giai.sql` — mùa giải tuần: `week_leaderboard`, `season_awards`, `close_last_week` (tự trao Hạt + danh hiệu "Quán quân tuần"), cột `shop_items.purchasable`
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

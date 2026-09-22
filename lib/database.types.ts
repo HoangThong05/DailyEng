@@ -278,9 +278,58 @@ export type Database = {
         Relationships: [];
       };
       shop_items: {
-        Row: { key: string; kind: string; name: string; price: number; limited_until: string | null };
-        Insert: { key: string; kind: string; name: string; price: number; limited_until?: string | null };
-        Update: { key?: string; kind?: string; name?: string; price?: number; limited_until?: string | null };
+        Row: {
+          key: string;
+          kind: string;
+          name: string;
+          price: number;
+          limited_until: string | null;
+          /** false = chỉ trao khi đạt thành tích, không bán (schema-25). */
+          purchasable: boolean;
+        };
+        Insert: {
+          key: string;
+          kind: string;
+          name: string;
+          price: number;
+          limited_until?: string | null;
+          purchasable?: boolean;
+        };
+        Update: {
+          key?: string;
+          kind?: string;
+          name?: string;
+          price?: number;
+          limited_until?: string | null;
+          purchasable?: boolean;
+        };
+        Relationships: [];
+      };
+      season_awards: {
+        Row: {
+          user_id: string;
+          week_start: string;
+          rank: number;
+          xp: number;
+          seeds: number;
+          created_at: string;
+        };
+        Insert: {
+          user_id: string;
+          week_start: string;
+          rank: number;
+          xp: number;
+          seeds: number;
+          created_at?: string;
+        };
+        Update: {
+          user_id?: string;
+          week_start?: string;
+          rank?: number;
+          xp?: number;
+          seeds?: number;
+          created_at?: string;
+        };
         Relationships: [];
       };
       seed_ledger: {
@@ -443,6 +492,26 @@ export type Database = {
       };
       /** Người gọi có phải admin không (đặt bằng SQL, schema-11). */
       is_admin: { Args: Record<string, never>; Returns: boolean };
+      /** Mùa giải tuần (schema-25). */
+      week_leaderboard: {
+        Args: { p_week_start: string; top_n: number };
+        Returns: {
+          user_id: string;
+          display_name: string;
+          avatar_url: string | null;
+          xp: number;
+          rank: number;
+          is_me: boolean;
+          badges: Json;
+          frame: string | null;
+          title: string | null;
+        }[];
+      };
+      close_last_week: { Args: Record<string, never>; Returns: number };
+      my_season_awards: {
+        Args: { limit_n: number };
+        Returns: { week_start: string; rank: number; xp: number; seeds: number }[];
+      };
       /** Bạn bè (schema-24). */
       friend_list: {
         Args: Record<string, never>;
