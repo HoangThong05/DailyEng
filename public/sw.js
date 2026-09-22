@@ -14,7 +14,7 @@
  *    JS/CSS của nó vào cache, để màn ôn offline luôn khớp bản build đang chạy.
  * Tăng VERSION mỗi lần đổi logic để cache cũ bị dọn.
  */
-const VERSION = "dailyeng-v9";
+const VERSION = "dailyeng-v10";
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 const OFFLINE_URL = "/offline";
