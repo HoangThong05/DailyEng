@@ -1100,3 +1100,74 @@ html[data-sidebar="collapsed"] .side-head {
     animation: none;
   }
 }
+
+/* Khung avatar đắt tiền (từ 1000 Hạt) có chuyển động riêng theo chất liệu:
+   lửa bập bùng, băng loé ánh, vàng phát sáng, tuyết nhún nhẹ. Khung rẻ và
+   khung mùa đứng yên. */
+.frame-flicker {
+  animation: frame-flicker 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes frame-flicker {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgb(249 115 22 / 0.55)) saturate(1);
+    transform: scale(1);
+  }
+  35% {
+    filter: drop-shadow(0 0 12px rgb(249 115 22 / 0.9)) saturate(1.15);
+    transform: scale(1.025);
+  }
+  65% {
+    filter: drop-shadow(0 0 7px rgb(234 88 12 / 0.75)) saturate(1.05);
+    transform: scale(1.005);
+  }
+}
+
+.frame-shimmer {
+  animation: frame-shimmer 3s ease-in-out infinite;
+}
+@keyframes frame-shimmer {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgb(56 189 248 / 0.5)) brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgb(125 211 252 / 0.95)) brightness(1.15);
+  }
+}
+
+.frame-glow {
+  animation: frame-glow 2.6s ease-in-out infinite;
+}
+@keyframes frame-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgb(251 191 36 / 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 13px rgb(251 191 36 / 0.85));
+  }
+}
+
+.frame-bob {
+  animation: frame-bob 3.4s ease-in-out infinite;
+}
+@keyframes frame-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2%) rotate(1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame-flicker,
+  .frame-shimmer,
+  .frame-glow,
+  .frame-bob {
+    animation: none;
+  }
+}

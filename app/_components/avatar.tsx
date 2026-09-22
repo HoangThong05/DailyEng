@@ -1,4 +1,4 @@
-import { type FrameArt, shopItem } from "@/lib/shop";
+import { type FrameArt, frameIsAnimated, type ShopItem, shopItem } from "@/lib/shop";
 import { Mascot } from "./mascot";
 
 type Props = {
@@ -38,6 +38,8 @@ export function Avatar({ url, name, size, className = "", frame }: Props) {
   // Khung có ảnh vẽ: đè PNG trong suốt lên avatar. Ảnh to hơn avatar sao cho
   // lỗ trống ôm vừa avatar (mép avatar hơi chui dưới vành khung). Khung tràn
   // ra ngoài ô layout như hình trang trí của Discord, không đẩy hàng xóm.
+  const motion = frameMotionClass(item);
+
   if (art.hole) {
     const scale = 1 / (art.hole + 0.14);
     const outer = Math.round(size * scale);
@@ -52,7 +54,7 @@ export function Avatar({ url, name, size, className = "", frame }: Props) {
           aria-hidden
           width={outer}
           height={outer}
-          className={`pointer-events-none absolute max-w-none ${art.effect === "spin" ? "avatar-ring-spin" : ""}`}
+          className={`pointer-events-none absolute max-w-none ${motion}`}
           style={{ width: outer, height: outer, left: offset, top: offset }}
         />
       </span>
@@ -78,6 +80,26 @@ export function Avatar({ url, name, size, className = "", frame }: Props) {
       {art.charms && size >= 28 ? <Charms art={art} size={outer} /> : null}
     </span>
   );
+}
+
+/**
+ * Lớp CSS chuyển động cho khung: chỉ khung đắt tiền mới động (xem
+ * ANIMATED_FROM_PRICE), mỗi kiểu một chuyển động hợp với hình.
+ */
+function frameMotionClass(item: ShopItem) {
+  if (!frameIsAnimated(item)) return "";
+  switch (item.frame?.effect) {
+    case "spin":
+      return "avatar-ring-spin";
+    case "flame":
+      return "frame-flicker";
+    case "shimmer":
+      return "frame-shimmer";
+    case "snow":
+      return "frame-bob";
+    default:
+      return "frame-glow";
+  }
 }
 
 /** Vòng gradient (+ hiệu ứng) vẽ bằng SVG, phủ đúng kích thước khung. */

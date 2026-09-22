@@ -28,8 +28,8 @@ export type FrameArt = {
   colors: [string, string, string];
   /** Emoji bám quanh vòng; góc tính bằng độ (0 = trên cùng, thuận chiều kim đồng hồ). */
   charms?: { glyph: string; angle: number; size: number }[];
-  /** Hiệu ứng: xoay vòng, lửa liếm, phát sáng nhẹ, tuyết rơi. */
-  effect?: "spin" | "flame" | "glow" | "snow";
+  /** Hiệu ứng: xoay vòng, lửa bập bùng, ánh băng lướt, phát sáng, tuyết. */
+  effect?: "spin" | "flame" | "shimmer" | "glow" | "snow";
   /**
    * Có ảnh vẽ public/shop/<key>.webp (vuông, trong suốt ở giữa): tỉ lệ lỗ
    * trống so với bề rộng ảnh, để đặt avatar vừa khít. Không có thì vẽ SVG.
@@ -191,6 +191,17 @@ export const SEED_RULES = [
   { emoji: "🏅", text: "Mỗi huy hiệu mới: +30 Hạt" },
 ] as const;
 
+/**
+ * Khung từ giá này trở lên mới có hiệu ứng động — tiền nhiều thì phải thấy
+ * khác. Khung rẻ và khung mùa vẫn đẹp nhưng đứng yên.
+ */
+export const ANIMATED_FROM_PRICE = 1000;
+
+/** Khung này có chuyển động không (dùng cho nhãn ở cửa hàng và lớp CSS). */
+export function frameIsAnimated(item: ShopItem) {
+  return item.kind === "khung" && item.price >= ANIMATED_FROM_PRICE && !!item.frame?.effect;
+}
+
 /** Số Đóng băng chuỗi được giữ cùng lúc. */
 export const FREEZE_MAX = 2;
 
@@ -201,7 +212,7 @@ export const SHOP_ITEMS: ShopItem[] = [
   { key: "khung-lua", kind: "khung", name: "Viền lửa", description: "Lửa liếm quanh avatar — hợp với chuỗi ngày dài.", price: 1200, gradient: "from-orange-400 via-red-500 to-yellow-400",
     frame: { colors: ["#fbbf24", "#ef4444", "#7c2d12"], hole: 0.498, effect: "flame", charms: [{ glyph: "🔥", angle: 315, size: 1.1 }, { glyph: "🔥", angle: 45, size: 1.1 }, { glyph: "🔥", angle: 0, size: 1.3 }] } },
   { key: "khung-bang", kind: "khung", name: "Viền băng", description: "Xanh lạnh, băng đọng quanh vòng.", price: 1200, gradient: "from-cyan-200 via-sky-400 to-blue-500",
-    frame: { colors: ["#e0f2fe", "#38bdf8", "#1d4ed8"], hole: 0.521, effect: "glow", charms: [{ glyph: "❄️", angle: 0, size: 1 }, { glyph: "❄️", angle: 135, size: 0.8 }, { glyph: "❄️", angle: 225, size: 0.8 }, { glyph: "🧊", angle: 180, size: 0.8 }] } },
+    frame: { colors: ["#e0f2fe", "#38bdf8", "#1d4ed8"], hole: 0.521, effect: "shimmer", charms: [{ glyph: "❄️", angle: 0, size: 1 }, { glyph: "❄️", angle: 135, size: 0.8 }, { glyph: "❄️", angle: 225, size: 0.8 }, { glyph: "🧊", angle: 180, size: 0.8 }] } },
   { key: "khung-cau-vong", kind: "khung", name: "Cầu vồng", description: "Bảy sắc xoay chậm quanh avatar.", price: 2000, gradient: "from-pink-500 via-yellow-400 to-cyan-400",
     frame: { colors: ["#f472b6", "#facc15", "#22d3ee"], hole: 0.598, effect: "spin" } },
   { key: "khung-tot-nghiep", kind: "khung", name: "Tốt nghiệp", description: "Vòng nguyệt quế xanh navy viền vàng, có mũ cử nhân.", price: 1500, gradient: "from-indigo-800 via-blue-700 to-amber-400",

@@ -8,6 +8,7 @@ import { TitleChip } from "@/app/_components/title-chip";
 import type { Wallet } from "@/lib/seeds";
 import {
   COLLECTIONS,
+  frameIsAnimated,
   FREEZE_MAX,
   isOnSale,
   type ItemKind,
@@ -265,7 +266,14 @@ export function Shop({
                   ) : null}
                 </div>
                 <div className="min-w-0 flex-1 px-1">
-                  <p className="font-bold">{item.name}</p>
+                  <p className="flex flex-wrap items-center gap-2 font-bold">
+                    {item.name}
+                    {frameIsAnimated(item) ? (
+                      <span className="bg-brand-soft text-brand rounded-full px-2 py-0.5 text-[10px] font-bold">
+                        ✨ Hiệu ứng động
+                      </span>
+                    ) : null}
+                  </p>
                   <p className="text-muted mt-0.5 text-xs leading-relaxed">{item.description}</p>
                 </div>
                 <div className="flex items-center justify-between gap-2 px-1 pb-1">

@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { isOnSale, SHOP_ITEMS } from "@/lib/shop";
+import { ANIMATED_FROM_PRICE, frameIsAnimated, isOnSale, SHOP_ITEMS } from "@/lib/shop";
 
 describe("danh mục cửa hàng", () => {
   it("khoá không trùng", () => {
@@ -30,5 +30,19 @@ describe("danh mục cửa hàng", () => {
     expect(isOnSale(seasonal, "2099-01-01")).toBe(false);
     const evergreen = SHOP_ITEMS.find((item) => !item.limitedUntil)!;
     expect(isOnSale(evergreen, "2099-01-01")).toBe(true);
+  });
+});
+
+describe("hiệu ứng động của khung", () => {
+  it("chỉ khung từ 1000 Hạt trở lên mới động", () => {
+    for (const item of SHOP_ITEMS.filter((i) => i.kind === "khung")) {
+      expect(frameIsAnimated(item), item.key).toBe(item.price >= ANIMATED_FROM_PRICE);
+    }
+  });
+
+  it("mọi khung đắt tiền đều khai hiệu ứng, không cái nào đứng yên", () => {
+    const pricey = SHOP_ITEMS.filter((i) => i.kind === "khung" && i.price >= ANIMATED_FROM_PRICE);
+    expect(pricey.length).toBeGreaterThan(0);
+    for (const item of pricey) expect(item.frame?.effect, item.key).toBeTruthy();
   });
 });
