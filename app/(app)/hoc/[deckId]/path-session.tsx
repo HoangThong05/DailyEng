@@ -429,7 +429,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
             ? `${newCount} từ mới sẽ đi qua gặp từ → trắc nghiệm → gõ lại.`
             : "Toàn từ đã quen, vào thẳng phần gõ lại cho nhanh."}
         </p>
-        <ul className="text-muted mt-6 w-full max-w-xs space-y-2 text-left text-sm">
+        <ul className="text-muted mt-6 w-full max-w-sm space-y-2 text-left text-sm">
           <li className="border-border bg-card flex items-center gap-3 rounded-xl border px-4 py-3">
             <span className="bg-brand-soft text-brand flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-bold">1</span>
             Gặp từ: nghe, đọc nghĩa và câu ví dụ
@@ -446,7 +446,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
         <button
           type="button"
           onClick={start}
-          className="bg-brand mt-8 min-h-12 w-full max-w-xs rounded-xl font-semibold text-white press"
+          className="bg-brand mt-8 min-h-12 w-full max-w-sm rounded-xl font-semibold text-white press"
         >
           Bắt đầu
         </button>
@@ -473,7 +473,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
             suffix=" XP"
           />
         </p>
-        <div className="mt-5 grid w-full max-w-xs grid-cols-2 gap-3">
+        <div className="mt-5 grid w-full max-w-sm grid-cols-2 gap-3">
           <div className="border-border bg-card rounded-2xl border p-3">
             <p className="text-2xl font-bold tabular-nums">
               <CountUp value={remembered.length} />/{all.length}
@@ -489,7 +489,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
         </div>
 
         {forgot.length > 0 ? (
-          <div className="border-border bg-card mt-5 w-full max-w-xs rounded-2xl border p-4 text-left">
+          <div className="border-border bg-card mt-5 w-full max-w-sm rounded-2xl border p-4 text-left">
             <p className="mb-2 text-sm font-semibold">Sẽ gặp lại sớm</p>
             <ul className="space-y-1.5 text-sm">
               {forgot.map((word) => (
@@ -511,7 +511,7 @@ export function PathSession({ deckName, stages, pool, aiEnabled = false }: Props
           </p>
         ) : null}
 
-        <div className="mt-8 flex w-full max-w-xs flex-col gap-3">
+        <div className="mt-8 flex w-full max-w-sm flex-col gap-3">
           <Link
             href="/hoc"
             className="bg-brand flex min-h-12 items-center justify-center rounded-xl font-semibold text-white press"

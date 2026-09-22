@@ -51,7 +51,7 @@ export default async function PhatAmDeckPage({
           </div>
         </>
       ) : (
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full max-w-md md:max-w-2xl">
           <PronunciationSession deckName={deck.name} words={words} />
         </div>
       )}

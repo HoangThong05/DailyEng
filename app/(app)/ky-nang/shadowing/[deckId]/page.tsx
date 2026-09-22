@@ -34,7 +34,7 @@ export default async function ShadowingDeckPage({
           description="Thêm câu ví dụ cho từ (Cá nhân → Bộ của tôi → sửa) để luyện shadowing."
         />
       ) : (
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full max-w-md md:max-w-2xl">
           <ShadowingSession items={items} />
         </div>
       )}

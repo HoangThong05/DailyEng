@@ -17,7 +17,7 @@ export function ModeTabs({ mode, basePath }: { mode: StudyMode; basePath: string
     { key: "chang", label: "Theo chặng", hint: "trắc nghiệm + gõ" },
   ];
   return (
-    <nav aria-label="Cách học" className="pill-tabs mx-auto mt-2 w-full max-w-md">
+    <nav aria-label="Cách học" className="pill-tabs mx-auto mt-2 w-full max-w-md md:max-w-2xl">
       {tabs.map((tab) => (
         <Link
           key={tab.key}

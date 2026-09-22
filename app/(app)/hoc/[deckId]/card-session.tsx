@@ -163,11 +163,11 @@ export function CardSession({ title, words, aiEnabled = false, onRate, footer }:
       <div className="flex flex-col items-center px-6 py-10 text-center">
         <Mascot variant="hoc" size={128} priority />
         <h2 className="mt-4 text-xl font-bold">{words.length} thẻ</h2>
-        <p className="text-muted mt-2 max-w-xs text-sm">
+        <p className="text-muted mt-2 max-w-sm text-sm">
           Nhìn từ, tự nhớ nghĩa, lật ra xem đúng không rồi tự chấm. App sẽ tự sắp lịch: từ quên
           gặp lại sớm, từ dễ lâu mới gặp lại.
         </p>
-        <ul className="text-muted mt-6 w-full max-w-xs space-y-2 text-left text-sm">
+        <ul className="text-muted mt-6 w-full max-w-sm space-y-2 text-left text-sm">
           <li className="border-border bg-card flex items-center gap-3 rounded-xl border px-4 py-3">
             <span className="text-lg">🔄</span> Bấm thẻ hoặc phím Space để lật
           </li>
@@ -181,7 +181,7 @@ export function CardSession({ title, words, aiEnabled = false, onRate, footer }:
         <button
           type="button"
           onClick={start}
-          className="bg-brand mt-8 min-h-12 w-full max-w-xs rounded-xl font-semibold text-white press"
+          className="bg-brand mt-8 min-h-12 w-full max-w-sm rounded-xl font-semibold text-white press"
         >
           Bắt đầu
         </button>

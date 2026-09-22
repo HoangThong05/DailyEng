@@ -24,7 +24,7 @@ export default async function KiemTraDauVaoPage() {
           description="Cần nạp các bộ từ có sẵn (supabase/seed) trước."
         />
       ) : (
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full max-w-md md:max-w-2xl">
           <PlacementSession questions={questions} decks={decks} />
         </div>
       )}

@@ -36,7 +36,7 @@ export default async function NgheHinhDeckPage({
           description="Cần ít nhất 4 từ chỉ đồ vật, con vật, đồ ăn… Thử bộ Giao tiếp hoặc Cốt lõi."
         />
       ) : (
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full max-w-md md:max-w-2xl">
           <PictureSession questions={questions} />
         </div>
       )}

@@ -42,7 +42,7 @@ export default async function OnTuKhoPage({ searchParams }: PageProps<"/tu-kho/h
       ) : (
         <>
           <ModeTabs mode={mode} basePath="/tu-kho/hoc" />
-          <div className="mx-auto w-full max-w-md">
+          <div className="mx-auto w-full max-w-md md:max-w-2xl">
             {mode === "the" ? (
               <CardSession title="Từ khó" words={cards} aiEnabled={isAiEnabled()} />
             ) : (

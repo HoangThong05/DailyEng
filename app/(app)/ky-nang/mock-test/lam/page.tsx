@@ -15,7 +15,7 @@ export default async function MockTestRunPage() {
   return (
     <>
       <PageHeader title="Part 5" subtitle={`${questions.length} câu · ${MOCK_SECONDS / 60} phút`} />
-      <div className="mx-auto w-full max-w-md">
+      <div className="mx-auto w-full max-w-md md:max-w-2xl">
         <MockSession questions={questions} token={token} seconds={MOCK_SECONDS} aiEnabled={isAiEnabled()} />
       </div>
     </>

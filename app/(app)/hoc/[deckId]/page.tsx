@@ -76,7 +76,7 @@ export default async function DeckPage({ params, searchParams }: PageProps<"/hoc
       ) : (
         <>
           <ModeTabs mode={mode} basePath={`/hoc/${deck.id}`} />
-          <div className="mx-auto w-full max-w-md">
+          <div className="mx-auto w-full max-w-md md:max-w-2xl">
             {mode === "the" ? (
               <CardSession title={deck.name} words={cards} aiEnabled={isAiEnabled()} />
             ) : (

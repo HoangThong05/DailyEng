@@ -52,7 +52,7 @@ export default async function GhepCapDeckPage({
           </div>
         </>
       ) : (
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full max-w-md md:max-w-2xl">
           <MatchSession
             deckId={deck.id}
             pairs={pairs}

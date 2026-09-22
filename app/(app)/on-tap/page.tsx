@@ -53,7 +53,7 @@ export default async function OnTapPage({ searchParams }: PageProps<"/on-tap">) 
       ) : (
         <>
           <ModeTabs mode={mode} basePath="/on-tap" />
-          <div className="mx-auto w-full max-w-md">
+          <div className="mx-auto w-full max-w-md md:max-w-2xl">
             {mode === "the" ? (
               <CardSession title="Ôn tập hôm nay" words={cards} aiEnabled={isAiEnabled()} />
             ) : (

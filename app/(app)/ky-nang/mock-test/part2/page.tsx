@@ -15,7 +15,7 @@ export default function Part2RunPage() {
   return (
     <>
       <PageHeader title="Part 2" subtitle={`${questions.length} câu · ${PART2_SECONDS / 60} phút · chỉ nghe`} />
-      <div className="mx-auto w-full max-w-md">
+      <div className="mx-auto w-full max-w-md md:max-w-2xl">
         <Part2Session questions={questions} token={token} seconds={PART2_SECONDS} aiEnabled={isAiEnabled()} />
       </div>
     </>

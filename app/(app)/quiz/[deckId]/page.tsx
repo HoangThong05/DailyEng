@@ -53,7 +53,7 @@ export default async function QuizDeckPage({
           </div>
         </>
       ) : (
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full max-w-md md:max-w-2xl">
           <QuizSession deckId={deckId} questions={questions} />
         </div>
       )}

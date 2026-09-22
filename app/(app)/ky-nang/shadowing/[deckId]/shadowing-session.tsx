@@ -204,7 +204,7 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
       <div className="flex flex-col items-center px-6 py-10 text-center">
         <Mascot variant="noi" size={128} priority />
         <h2 className="mt-4 text-xl font-bold">{items.length} câu</h2>
-        <p className="text-muted mt-2 max-w-xs text-sm">
+        <p className="text-muted mt-2 max-w-sm text-sm">
           Nghe câu mẫu, bấm micro và nói theo ngay. Máy chấm từng từ nghe được,
           ghi âm để bạn nghe lại và so với mẫu. Không giới hạn số lần thử.
         </p>
@@ -217,7 +217,7 @@ export function ShadowingSession({ items }: { items: SentenceItem[] }) {
         <button
           type="button"
           onClick={start}
-          className="bg-brand mt-8 min-h-12 w-full max-w-xs rounded-xl font-semibold text-white press"
+          className="bg-brand mt-8 min-h-12 w-full max-w-sm rounded-xl font-semibold text-white press"
         >
           Bắt đầu
         </button>

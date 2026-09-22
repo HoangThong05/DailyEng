@@ -36,7 +36,7 @@ export default async function ChepCauDeckPage({
           description="Thêm câu ví dụ cho từ (tab Học → sửa bộ) để chơi trò này."
         />
       ) : (
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full max-w-md md:max-w-2xl">
           <SentenceSession items={items} />
         </div>
       )}

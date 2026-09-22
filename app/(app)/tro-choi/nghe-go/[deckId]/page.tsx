@@ -24,7 +24,7 @@ export default async function NgheGoDeckPage({
   return (
     <>
       <PageHeader title={deck.name} subtitle={`${words.length} từ để nghe và gõ`} />
-      <div className="mx-auto w-full max-w-md">
+      <div className="mx-auto w-full max-w-md md:max-w-2xl">
         <DictationSession words={words} />
       </div>
     </>

@@ -567,7 +567,7 @@ export function RainSession({ words }: { words: GameWord[] }) {
                   "--fall": `${drop.duration}s`,
                 } as React.CSSProperties
               }
-              className={`rain-drop absolute max-w-[40%] rounded-xl border px-3 py-1.5 text-center shadow-lg md:max-w-xs ${
+              className={`rain-drop absolute max-w-[40%] rounded-xl border px-3 py-1.5 text-center shadow-lg md:max-w-sm ${
                 drop.dead
                   ? "rain-drop-dead border-yellow-300 bg-yellow-400/30"
                   : isTarget
