@@ -52,7 +52,9 @@ describe("kinh tế Hạt", () => {
   it("thu nhập tối đa một ngày thường vẫn nhỏ hơn món rẻ nhất", () => {
     // 5 điểm danh + 10 nhiệm vụ + 5 mục tiêu + 6 khối lượng học = 26.
     const dailyMax = 5 + 10 + 5 + 6;
-    const cheapest = Math.min(...SHOP_ITEMS.map((item) => item.price));
+    const cheapest = Math.min(
+      ...SHOP_ITEMS.filter((item) => !item.awardOnly).map((item) => item.price),
+    );
     expect(dailyMax).toBeLessThan(cheapest);
   });
 
@@ -107,7 +109,13 @@ describe("mùa giải tuần", () => {
   });
 
   it("vật phẩm chỉ-trao không mua được ở cửa hàng", () => {
-    expect(SEASON).toContain("'dh-quan-quan'");
     expect(SEASON).toContain("if not item.purchasable then raise exception");
+    // Mỗi vật phẩm chỉ-trao phải có trong cả danh mục code lẫn schema-25,
+    // nếu không app không vẽ được thứ vừa trao cho người dùng.
+    const awardOnly = SHOP_ITEMS.filter((item) => item.awardOnly);
+    expect(awardOnly.length).toBeGreaterThan(0);
+    for (const item of awardOnly) {
+      expect(SEASON, item.key).toContain(`('${item.key}', '${item.kind}', '${item.name}'`);
+    }
   });
 });

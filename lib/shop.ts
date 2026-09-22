@@ -74,6 +74,11 @@ export type ShopItem = {
   art?: boolean;
   /** Thuộc bộ sưu tập theo mùa nào (COLLECTIONS). */
   collection?: string;
+  /**
+   * Không bán: chỉ nhận được khi đạt thành tích (khớp cột
+   * shop_items.purchasable = false trong schema-25).
+   */
+  awardOnly?: boolean;
 };
 
 export type Collection = {
@@ -231,6 +236,10 @@ export const SHOP_ITEMS: ShopItem[] = [
   { key: "dh-mot-tu", kind: "danh-hieu", name: "Mọt từ", description: "Gặp từ nào cũng muốn nhớ.", price: 1000, gradient: "from-emerald-500 to-teal-600", decor: "📚", title: { gradient: "from-emerald-500 via-teal-500 to-cyan-600", glow: "#6ee7b7", effects: ["shine"] } },
   { key: "dh-chien-binh", kind: "danh-hieu", name: "Chiến binh TOEIC", description: "Đang cày điểm.", price: 1500, gradient: "from-orange-500 to-red-600", decor: "⚔️", title: { gradient: "from-orange-500 via-red-500 to-rose-600", glow: "#fdba74", effects: ["shine", "pulse"] } },
   { key: "dh-vit-vang", kind: "danh-hieu", name: "Vịt vàng", description: "Danh hiệu đắt nhất — khoe được.", price: 3000, gradient: "from-amber-400 to-yellow-600", decor: "🦆", title: { gradient: "from-amber-300 via-yellow-400 to-amber-500", glow: "#fffbeb", effects: ["shine", "pulse", "sparkle"], ring: "ring-2 ring-amber-200/80" } },
+
+  // --- Danh hiệu chỉ trao, không bán (mùa giải tuần — schema-25) ---
+  { key: "dh-quan-quan", kind: "danh-hieu", name: "Quán quân tuần", description: "Hạng nhất bảng xếp hạng một tuần. Không mua được bằng Hạt.", price: 0, awardOnly: true, gradient: "from-amber-300 to-yellow-600", decor: "🏆",
+    title: { gradient: "from-amber-200 via-yellow-400 to-orange-500", glow: "#fffbeb", effects: ["shine", "pulse", "sparkle"], ring: "ring-2 ring-amber-200/90" } },
 
   // --- Tiện ích ---
   { key: "dong-bang", kind: "dong-bang", name: "Đóng băng chuỗi", description: `Bỏ lỡ một ngày thì tự cứu chuỗi. Giữ tối đa ${FREEZE_MAX} cái.`, price: 300, gradient: "from-cyan-300 to-blue-500", decor: "❄️" },

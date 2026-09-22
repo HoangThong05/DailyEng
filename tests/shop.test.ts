@@ -10,10 +10,17 @@ describe("danh mục cửa hàng", () => {
 
   it("khớp giá và loại với schema-23 (SQL là nơi kiểm giá khi mua)", () => {
     const sql = readFileSync("supabase/schema-23-cua-hang.sql", "utf8");
-    for (const item of SHOP_ITEMS) {
+    // Vật phẩm chỉ-trao khai ở schema-25; tests/seeds.test.ts kiểm riêng.
+    for (const item of SHOP_ITEMS.filter((i) => !i.awardOnly)) {
       const limited = item.limitedUntil ? `date '${item.limitedUntil}'` : "null";
       const row = `('${item.key}', '${item.kind}', '${item.name}', ${item.price}, ${limited})`;
       expect(sql, `thiếu hoặc lệch: ${row}`).toContain(row);
+    }
+  });
+
+  it("vật phẩm chỉ-trao không có giá bán", () => {
+    for (const item of SHOP_ITEMS.filter((i) => i.awardOnly)) {
+      expect(item.price, item.key).toBe(0);
     }
   });
 

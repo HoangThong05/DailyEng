@@ -111,7 +111,8 @@ export function Shop({
     if (filter !== "all" && item.kind !== filter) return false;
     if (collection && item.collection !== collection) return false;
     if (tab === "kho-do") return owned.has(item.key) || (item.kind === "dong-bang" && wallet.freezes > 0);
-    return isOnSale(item, today);
+    // Vật phẩm chỉ-trao không bày bán; chỉ hiện trong kho của ai đã nhận.
+    return !item.awardOnly && isOnSale(item, today);
   }).sort((a, b) => Number(Boolean(b.limitedUntil)) - Number(Boolean(a.limitedUntil)));
 
   function run(key: string, action: () => Promise<{ ok: boolean; message?: string; error?: string }>) {
@@ -269,7 +270,11 @@ export function Shop({
                 </div>
                 <div className="flex items-center justify-between gap-2 px-1 pb-1">
                   <span className="font-bold tabular-nums">
-                    🌾 {item.price.toLocaleString("vi-VN")}
+                    {item.awardOnly ? (
+                      <span className="text-muted text-xs font-semibold">Phần thưởng thành tích</span>
+                    ) : (
+                      <>🌾 {item.price.toLocaleString("vi-VN")}</>
+                    )}
                     {item.kind === "dong-bang" ? (
                       <span className="text-muted ml-1 text-xs font-medium">
                         · giữ {wallet.freezes}/{FREEZE_MAX}
