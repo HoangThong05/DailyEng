@@ -212,6 +212,17 @@ begin
   where a.week_start = last_monday and a.rank = 1
   on conflict do nothing;
 
+  -- Đeo luôn cho quán quân nếu họ chưa đeo danh hiệu nào, để thấy ngay mà
+  -- không phải vào Kho đồ bấm "Dùng". Ai đang đeo danh hiệu khác thì giữ
+  -- nguyên lựa chọn của họ.
+  update public.profiles p
+  set title = 'dh-quan-quan'
+  where p.title is null
+    and exists (
+      select 1 from public.season_awards a
+      where a.user_id = p.id and a.week_start = last_monday and a.rank = 1
+    );
+
   return awarded;
 end;
 $$;

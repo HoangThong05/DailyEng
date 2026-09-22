@@ -1,4 +1,5 @@
 import { parseBadgeKeys } from "@/lib/badges";
+import { addDays, todayInAppZone } from "@/lib/leitner";
 import { createClient } from "@/lib/supabase/server";
 
 /**
@@ -58,6 +59,19 @@ export async function settleSeason() {
 }
 
 export type SeasonAward = { weekStart: string; rank: number; xp: number; seeds: number };
+
+/**
+ * Phần thưởng của tuần vừa đóng (nếu có), để chuông báo một lần.
+ * Chỉ tính mùa gần nhất, tuần này thì chưa có gì.
+ */
+export async function getLastAward(): Promise<SeasonAward | null> {
+  const awards = await getMyAwards(1);
+  const last = awards[0];
+  if (!last) return null;
+  // Chỉ báo khi mùa đó vừa đóng trong vòng một tuần.
+  const closed = addDays(last.weekStart, 7);
+  return closed >= addDays(todayInAppZone(), -6) ? last : null;
+}
 
 /** Thành tích mùa của chính mình. */
 export async function getMyAwards(limit = 8): Promise<SeasonAward[]> {

@@ -1,5 +1,6 @@
 import { countDueReviews } from "@/lib/decks";
 import { getFriendNotices } from "@/lib/friends";
+import { getLastAward } from "@/lib/season";
 import { getSeedBalance } from "@/lib/seeds";
 import { getCheckinState, type CheckinState } from "@/lib/rewards";
 import type { StudyStats } from "@/lib/stats";
@@ -14,7 +15,8 @@ export type UserNotice = {
     | "nhiem-vu-xong"
     | "chuoi"
     | "ban-be"
-    | "ban-be-dong-y";
+    | "ban-be-dong-y"
+    | "mua-giai";
   emoji: string;
   text: string;
   href: string;
@@ -42,15 +44,28 @@ export async function getUserBarData(
   profile: { display_name: string | null; avatar_url: string | null } | null,
   stats: StudyStats,
 ): Promise<UserBarData> {
-  const [checkin, dueReviews, tasks, seeds, friends] = await Promise.all([
+  const [checkin, dueReviews, tasks, seeds, friends, lastAward] = await Promise.all([
     getCheckinState(),
     countDueReviews(),
     getDailyTasks(),
     getSeedBalance(),
     getFriendNotices(),
+    getLastAward(),
   ]);
 
   const notices: UserNotice[] = [];
+  if (lastAward) {
+    notices.push({
+      key: "mua-giai",
+      quiet: true,
+      emoji: lastAward.rank === 1 ? "🏆" : "🎖️",
+      text:
+        lastAward.rank === 1
+          ? `Bạn vô địch tuần rồi! +${lastAward.seeds} Hạt và danh hiệu Quán quân`
+          : `Hạng ${lastAward.rank} tuần rồi · +${lastAward.seeds} Hạt`,
+      href: "/xep-hang?tuan=truoc",
+    });
+  }
   if (friends.incoming > 0) {
     notices.push({
       key: "ban-be",
