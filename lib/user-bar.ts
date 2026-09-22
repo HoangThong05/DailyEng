@@ -1,4 +1,5 @@
 import { countDueReviews } from "@/lib/decks";
+import { countFriendRequests } from "@/lib/friends";
 import { getSeedBalance } from "@/lib/seeds";
 import { getCheckinState, type CheckinState } from "@/lib/rewards";
 import type { StudyStats } from "@/lib/stats";
@@ -6,7 +7,7 @@ import { getDailyTasks } from "@/lib/tasks";
 
 export type UserNotice = {
   /** Loại thông báo, ổn định trong ngày — dùng để nhớ "đã xem" (câu chữ có số, đổi liên tục). */
-  key: "diem-danh" | "den-han" | "nhiem-vu" | "nhiem-vu-xong" | "chuoi";
+  key: "diem-danh" | "den-han" | "nhiem-vu" | "nhiem-vu-xong" | "chuoi" | "ban-be";
   emoji: string;
   text: string;
   href: string;
@@ -34,14 +35,23 @@ export async function getUserBarData(
   profile: { display_name: string | null; avatar_url: string | null } | null,
   stats: StudyStats,
 ): Promise<UserBarData> {
-  const [checkin, dueReviews, tasks, seeds] = await Promise.all([
+  const [checkin, dueReviews, tasks, seeds, friendRequests] = await Promise.all([
     getCheckinState(),
     countDueReviews(),
     getDailyTasks(),
     getSeedBalance(),
+    countFriendRequests(),
   ]);
 
   const notices: UserNotice[] = [];
+  if (friendRequests > 0) {
+    notices.push({
+      key: "ban-be",
+      emoji: "👋",
+      text: `${friendRequests} lời mời kết bạn`,
+      href: "/ban-be",
+    });
+  }
   if (!checkin.checkedToday) {
     notices.push({
       key: "diem-danh",

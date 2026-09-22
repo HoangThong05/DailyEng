@@ -162,6 +162,20 @@ export default function BaoMatPage() {
         nữa; XP và cấp độ vẫn tính bình thường cho riêng bạn.
       </p>
 
+      <h2>Bạn bè</h2>
+      <p>
+        Kết bạn cần cả hai đồng ý. Bạn bè thấy của nhau{" "}
+        <strong>tên hiển thị, ảnh đại diện, khung, danh hiệu, huy hiệu, XP, số
+        ngày có học gần đây và hôm nay đã học hay chưa</strong> — không thấy
+        thêm gì so với trang cá nhân công khai.
+      </p>
+      <p>
+        DailyEng <strong>không có tìm kiếm người dùng theo tên</strong>: chỉ kết
+        bạn được khi có link trang cá nhân của nhau (bạn tự chia sẻ) hoặc gặp
+        nhau trên bảng xếp hạng. Bạn huỷ kết bạn bất cứ lúc nào, lúc đó hai bên
+        không còn thấy nhau trong danh sách bạn bè và bảng xếp hạng nhóm.
+      </p>
+
       <h2>Bảo mật và lưu trữ</h2>
       <ul>
         <li>Mọi kết nối đều qua HTTPS.</li>

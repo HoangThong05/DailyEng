@@ -253,6 +253,30 @@ export type Database = {
         };
         Relationships: [];
       };
+      friendships: {
+        Row: {
+          requester: string;
+          addressee: string;
+          status: "pending" | "accepted";
+          created_at: string;
+          responded_at: string | null;
+        };
+        Insert: {
+          requester: string;
+          addressee: string;
+          status?: "pending" | "accepted";
+          created_at?: string;
+          responded_at?: string | null;
+        };
+        Update: {
+          requester?: string;
+          addressee?: string;
+          status?: "pending" | "accepted";
+          created_at?: string;
+          responded_at?: string | null;
+        };
+        Relationships: [];
+      };
       shop_items: {
         Row: { key: string; kind: string; name: string; price: number; limited_until: string | null };
         Insert: { key: string; kind: string; name: string; price: number; limited_until?: string | null };
@@ -419,6 +443,39 @@ export type Database = {
       };
       /** Người gọi có phải admin không (đặt bằng SQL, schema-11). */
       is_admin: { Args: Record<string, never>; Returns: boolean };
+      /** Bạn bè (schema-24). */
+      friend_list: {
+        Args: Record<string, never>;
+        Returns: {
+          user_id: string;
+          display_name: string;
+          avatar_url: string | null;
+          frame: string | null;
+          title: string | null;
+          badges: Json;
+          xp: number;
+          streak_days: number;
+          studied_today: boolean;
+          kind: string;
+          since: string;
+        }[];
+      };
+      friend_leaderboard: {
+        Args: { period: "week" | "all" };
+        Returns: {
+          user_id: string;
+          display_name: string;
+          avatar_url: string | null;
+          xp: number;
+          rank: number;
+          is_me: boolean;
+          badges: Json;
+          frame: string | null;
+          title: string | null;
+        }[];
+      };
+      friend_status: { Args: { target: string }; Returns: string };
+      accept_friend: { Args: { target: string }; Returns: undefined };
       /** Cửa hàng Hạt (schema-23). */
       seed_balance: { Args: Record<string, never>; Returns: number };
       claim_seeds: { Args: Record<string, never>; Returns: number };

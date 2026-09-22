@@ -128,6 +128,7 @@ Trong SQL Editor chạy lần lượt:
 21. `supabase/schema-21-xoa-tai-khoan.sql` — hàm `delete_own_account()` để người dùng tự xóa tài khoản trong tab Cá nhân
 22. `supabase/schema-22-chao-mung.sql` — cột `profiles.onboarded_at`: người mới được đưa tới màn chào mừng `/chao-mung` (đặt tên, mục tiêu, nhắc học, kiểm tra đầu vào)
 23. `supabase/schema-23-cua-hang.sql` — Hạt 🌾 (sổ cái `seed_ledger`, hàm `claim_seeds`), cửa hàng `shop_items`, kho đồ `inventory`, khung avatar / danh hiệu (`profiles.frame`, `profiles.title`), đóng băng chuỗi (`streak_shields`); `leaderboard` và `public_profile` trả thêm frame/title
+24. `supabase/schema-24-ban-be.sql` — bạn bè: bảng `friendships` (lời mời + đã đồng ý), hàm `friend_list`, `friend_leaderboard`, `friend_status`, `accept_friend`
 8. `supabase/seed/*.sql` — nội dung các bộ từ (mỗi nhóm một file, chạy thứ tự nào cũng được)
 
 **Authentication → URL Configuration → Redirect URLs**, thêm:

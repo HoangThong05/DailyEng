@@ -6,6 +6,7 @@ import { TitleChip } from "@/app/_components/title-chip";
 import { topBadges } from "@/lib/badges";
 import { EmptyState } from "@/app/_components/empty-state";
 import { PageHeader } from "@/app/_components/page-header";
+import { getFriendLeaderboard } from "@/lib/friends";
 import { getLeaderboard, type LeaderboardPeriod } from "@/lib/leaderboard";
 import { createClient } from "@/lib/supabase/server";
 
@@ -24,9 +25,11 @@ export default async function XepHangPage({
 }: PageProps<"/xep-hang">) {
   const params = await searchParams;
   const period: LeaderboardPeriod = params.ky === "all" ? "all" : "week";
+  // Nhóm bạn bè: cùng cách tính XP, chỉ đổi tập người.
+  const circle = params.nhom === "ban-be";
   const supabase = await createClient();
   const [rows, { data: profile }] = await Promise.all([
-    getLeaderboard(period, TOP_N),
+    circle ? getFriendLeaderboard(period) : getLeaderboard(period, TOP_N),
     supabase.from("profiles").select("hide_rank").maybeSingle(),
   ]);
   const hidden = profile?.hide_rank ?? false;
@@ -39,11 +42,37 @@ export default async function XepHangPage({
     <>
       <PageHeader
         title="Bảng xếp hạng"
-        subtitle="XP tính từ mọi lượt học và chơi"
+        subtitle={circle ? "Chỉ bạn bè của bạn" : "XP tính từ mọi lượt học và chơi"}
         mascot="an-mung"
       />
 
       <div className="px-5 pt-2 pb-4">
+        {/* Tất cả người học / chỉ nhóm bạn bè */}
+        <div role="tablist" aria-label="Phạm vi" className="pill-tabs mb-3 w-full">
+          {(
+            [
+              [false, "Tất cả"],
+              [true, "Bạn bè"],
+            ] as const
+          ).map(([value, label]) => (
+            <Link
+              key={label}
+              role="tab"
+              aria-selected={circle === value}
+              href={
+                value
+                  ? `/xep-hang?nhom=ban-be${period === "all" ? "&ky=all" : ""}`
+                  : period === "all"
+                    ? "/xep-hang?ky=all"
+                    : "/xep-hang"
+              }
+              className="pill-tab flex-1"
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+
         <div role="tablist" aria-label="Khoảng thời gian" className="pill-tabs mb-5 w-full">
           {PERIODS.map((option) => {
             const active = option.key === period;
@@ -52,7 +81,13 @@ export default async function XepHangPage({
                 key={option.key}
                 role="tab"
                 aria-selected={active}
-                href={option.key === "week" ? "/xep-hang" : "/xep-hang?ky=all"}
+                href={
+                  circle
+                    ? `/xep-hang?nhom=ban-be${option.key === "all" ? "&ky=all" : ""}`
+                    : option.key === "week"
+                      ? "/xep-hang"
+                      : "/xep-hang?ky=all"
+                }
                 className="pill-tab flex-1"
               >
                 {option.label}
@@ -64,8 +99,12 @@ export default async function XepHangPage({
         {top.length === 0 ? (
           <EmptyState
             mascot="ngu"
-            title="Chưa ai ghi điểm"
-            description="Học vài từ là bạn đứng đầu bảng ngay."
+            title={circle ? "Chưa có bạn nào" : "Chưa ai ghi điểm"}
+            description={
+              circle
+                ? "Kết bạn ở tab Bạn bè rồi quay lại đua XP cùng nhau."
+                : "Học vài từ là bạn đứng đầu bảng ngay."
+            }
           />
         ) : (
           <ol className="stagger space-y-2">

@@ -239,6 +239,16 @@ export function FolderIcon({ className }: IconProps) {
   );
 }
 
+export function FriendsIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M9.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+      <path d="M3.5 19.5c0-2.8 2.7-4.5 6-4.5s6 1.7 6 4.5" />
+      <path d="M16 5.5a2.6 2.6 0 0 1 0 5.2M17.5 14.6c1.8.5 3 1.8 3 3.6" />
+    </svg>
+  );
+}
+
 export function BagIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className}>

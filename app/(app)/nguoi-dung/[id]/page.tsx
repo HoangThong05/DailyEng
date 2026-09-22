@@ -8,7 +8,9 @@ import { PageHeader } from "@/app/_components/page-header";
 import { BADGE_GROUPS, BADGES, topBadges } from "@/lib/badges";
 import { CoverArt } from "@/app/_components/cover-art";
 import { TitleChip } from "@/app/_components/title-chip";
+import { getFriendStatus } from "@/lib/friends";
 import { getPublicProfile } from "@/lib/public-profile";
+import { FriendAction } from "./friend-button";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -33,6 +35,7 @@ export default async function NguoiDungPage({ params }: PageProps<"/nguoi-dung/[
 
   const profile = await getPublicProfile(id);
   if (!profile) notFound();
+  const friendStatus = await getFriendStatus(id);
   // Trang của chính mình thì về Cá nhân (có chỉnh sửa).
   if (profile.isMe) redirect("/tai-khoan");
 
@@ -84,6 +87,9 @@ export default async function NguoiDungPage({ params }: PageProps<"/nguoi-dung/[
                 <span className="bg-brand-soft text-brand rounded-full px-2.5 py-1 tabular-nums">
                   {profile.xp.toLocaleString("vi-VN")} XP
                 </span>
+              </div>
+              <div className="mt-4">
+                <FriendAction targetId={profile.userId} status={friendStatus} />
               </div>
               {featured.length > 0 ? (
                 <div className="mt-4 flex items-center gap-2">

@@ -1,5 +1,6 @@
 import {
   BagIcon,
+  FriendsIcon,
   BookmarkIcon,
   CardsIcon,
   ChartIcon,
@@ -27,6 +28,7 @@ export const NAV_TABS = [
 export const SIDE_EXTRAS = [
   { href: "/tu-cua-toi", label: "Từ của tôi", Icon: BookmarkIcon },
   { href: "/tien-do", label: "Thống kê", Icon: ChartIcon },
+  { href: "/ban-be", label: "Bạn bè", Icon: FriendsIcon },
   { href: "/xep-hang", label: "Bảng xếp hạng", Icon: TrophyIcon },
   { href: "/phan-thuong", label: "Phần thưởng", Icon: GiftIcon },
   { href: "/cua-hang", label: "Cửa hàng", Icon: BagIcon },
@@ -42,6 +44,7 @@ const TAB_ALIASES: Record<string, string> = {
   "/phat-am": "/ky-nang",
   "/tien-do": "/tai-khoan",
   "/xep-hang": "/tai-khoan",
+  "/ban-be": "/tai-khoan",
   "/nguoi-dung": "/tai-khoan",
   "/phan-thuong": "/tai-khoan",
   "/cua-hang": "/tai-khoan",
