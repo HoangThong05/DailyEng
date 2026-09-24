@@ -67,18 +67,31 @@ export default async function CuaHangPage() {
 
         {wallet.history.length > 0 ? (
           <section className="border-border bg-card rounded-2xl border p-4">
-            <h2 className="font-semibold">Gần đây</h2>
-            <ul className="mt-2 space-y-1.5 text-sm">
-              {wallet.history.map((row, i) => (
-                <li key={i} className="flex items-center justify-between gap-3">
-                  <span className="text-muted min-w-0 truncate">{row.reason}</span>
-                  <span className={`shrink-0 font-bold tabular-nums ${row.amount < 0 ? "text-red-500" : "text-emerald-600"}`}>
-                    {row.amount > 0 ? "+" : ""}
-                    {row.amount}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            {/* Gập lại: sổ Hạt dài hàng chục dòng, xổ hết làm trang loãng. */}
+            <details className="group">
+              <summary className="flex cursor-pointer list-none items-center gap-2 font-semibold [&::-webkit-details-marker]:hidden">
+                <span className="text-muted transition-transform group-open:rotate-90" aria-hidden>
+                  ▸
+                </span>
+                Gần đây
+                <span className="text-muted ml-auto text-sm font-medium">
+                  {wallet.history.length} lượt · xem
+                </span>
+              </summary>
+              <ul className="mt-2 space-y-1.5 text-sm">
+                {wallet.history.map((row, i) => (
+                  <li key={i} className="flex items-center justify-between gap-3">
+                    <span className="text-muted min-w-0 truncate">{row.reason}</span>
+                    <span
+                      className={`shrink-0 font-bold tabular-nums ${row.amount < 0 ? "text-red-500" : "text-emerald-600"}`}
+                    >
+                      {row.amount > 0 ? "+" : ""}
+                      {row.amount}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </details>
           </section>
         ) : null}
       </div>
